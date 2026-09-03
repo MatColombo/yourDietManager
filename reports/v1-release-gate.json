@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "generatedAt": "2026-09-03T14:24:51.632Z",
+  "candidateAppVersion": "1.0.0-rc.1",
+  "catalogVersion": "0.3.0-dev",
+  "checks": [
+    {
+      "id": "app-version-sync",
+      "pass": true,
+      "detail": "package=1.0.0-rc.1, runtime=1.0.0-rc.1"
+    },
+    {
+      "id": "recipe-corpus-minimum",
+      "pass": false,
+      "detail": "recipeVersions=3, required>=3000"
+    },
+    {
+      "id": "production-pipeline",
+      "pass": false,
+      "detail": "pipelineVersion=phase3-fixture"
+    },
+    {
+      "id": "curated-high-confidence-ingredients",
+      "pass": false,
+      "detail": "uncuratedBaseIngredientRevisions=4"
+    },
+    {
+      "id": "catalog-not-dev-version",
+      "pass": false,
+      "detail": "catalogVersion=0.3.0-dev"
+    }
+  ],
+  "releasable": false,
+  "blockers": [
+    {
+      "id": "recipe-corpus-minimum",
+      "detail": "recipeVersions=3, required>=3000"
+    },
+    {
+      "id": "production-pipeline",
+      "detail": "pipelineVersion=phase3-fixture"
+    },
+    {
+      "id": "curated-high-confidence-ingredients",
+      "detail": "uncuratedBaseIngredientRevisions=4"
+    },
+    {
+      "id": "catalog-not-dev-version",
+      "detail": "catalogVersion=0.3.0-dev"
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "policyId": "corpus-policy-v1-default",
+  "policyVersion": "1.0.0",
+  "plannerVersion": "corpus-planner-1",
+  "targetCorpus": {
+    "min": 3000,
+    "target": 4000,
+    "max": 5000
+  },
+  "batchPlanning": {
+    "defaultAcceptedCount": 100,
+    "minAcceptedCount": 60,
+    "maxAcceptedCount": 150,
+    "oversampleRatio": 1.25,
+    "maxCandidateCount": 250,
+    "candidateIntentLimit": 100,
+    "maxConsecutiveSamePrimaryFocus": 2,
+    "tieBreakStrategy": "seeded_hash_then_lexical",
+    "stopWhenNoPositivePriority": true
+  },
+  "scoreWeights": {
+    "nutrition": 1.4,
+    "meal": 1.2,
+    "practicality": 1.0,
+    "cuisine": 0.6,
+    "ingredientDiversity": 1.0,
+    "recipeFamily": 0.8,
+    "focusBoost": 1.5,
+    "similarityPenalty": 1.5,
+    "ingredientOverusePenalty": 1.2,
+    "pairRepetitionPenalty": 0.8
+  },
+  "energyBands": [
+    {"bandId": "kcal-100-199", "min": 100, "max": 199},
+    {"bandId": "kcal-200-299", "min": 200, "max": 299},
+    {"bandId": "kcal-300-399", "min": 300, "max": 399},
+    {"bandId": "kcal-400-499", "min": 400, "max": 499},
+    {"bandId": "kcal-500-599", "min": 500, "max": 599},
+    {"bandId": "kcal-600-699", "min": 600, "max": 699},
+    {"bandId": "kcal-700-799", "min": 700, "max": 799}
+  ],
+  "proteinBands": [
+    {"bandId": "protein-low", "min": 0, "max": 19.9},
+    {"bandId": "protein-medium", "min": 20, "max": 34.9},
+    {"bandId": "protein-high", "min": 35, "max": 80}
+  ],
+  "fiberBands": [
+    {"bandId": "fiber-low", "min": 0, "max": 4.9},
+    {"bandId": "fiber-moderate", "min": 5, "max": 9.9},
+    {"bandId": "fiber-high", "min": 10, "max": 30}
+  ],
+  "coverageTargets": [
+    {
+      "targetId": "meal-breakfast-min",
+      "dimension": "meal_archetype",
+      "key": "breakfast",
+      "minCount": 500,
+      "desiredCount": 600,
+      "weight": 1.0,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "meal-lunch-min",
+      "dimension": "meal_archetype",
+      "key": "lunch",
+      "minCount": 700,
+      "desiredCount": 800,
+      "weight": 1.0,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "meal-dinner-min",
+      "dimension": "meal_archetype",
+      "key": "dinner",
+      "minCount": 700,
+      "desiredCount": 800,
+      "weight": 1.0,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "energy-500-599-density",
+      "dimension": "energy_band",
+      "key": "kcal-500-599",
+      "desiredShare": 0.18,
+      "weight": 0.8,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "practical-portable-density",
+      "dimension": "practicality",
+      "key": "portable",
+      "minCount": 300,
+      "desiredCount": 450,
+      "weight": 0.9,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "family-soup-diversity",
+      "dimension": "recipe_family",
+      "key": "soup_stew",
+      "desiredShare": 0.08,
+      "maxShare": 0.16,
+      "weight": 0.5,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cuisine-east-asia-soft",
+      "dimension": "cuisine",
+      "key": "east_asian",
+      "desiredShare": 0.08,
+      "weight": 0.4,
+      "hardForRelease": false
+    }
+  ],
+  "diversity": {
+    "primaryIngredientMaxShare": 0.12,
+    "ingredientOverusePenaltyStartShare": 0.08,
+    "repeatedPairMaxShare": 0.05,
+    "pairPenaltyStartShare": 0.03,
+    "minimumDistinctPrimaryIngredients": 80,
+    "exemptIngredientIds": []
+  },
+  "similarity": {
+    "highJaccardThreshold": 0.82,
+    "titleSimilarityThreshold": 0.9,
+    "nearDuplicateMaxShare": 0.05
+  },
+  "releaseGates": {
+    "maxSchemaErrors": 0,
+    "maxUnknownIngredientReferences": 0,
+    "maxNutritionErrors": 0,
+    "maxAllergenDerivationErrors": 0,
+    "maxExactDuplicates": 0,
+    "maxMissingRequiredLocaleFields": 0
+  },
+  "createdAt": "2026-09-03T10:00:00Z"
+}

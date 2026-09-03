@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "checklistId": "shop_plan_main_2026w37",
+  "planInstanceId": "plan_main",
+  "range": {
+    "startCivilDate": "2026-09-07",
+    "endCivilDate": "2026-09-13"
+  },
+  "peopleMultiplier": 2.1,
+  "sourcePlanUpdatedAt": "2026-09-03T12:00:00Z",
+  "items": [
+    {
+      "itemId": "shopitem_salmon",
+      "kind": "derived",
+      "label": "Salmone",
+      "checked": false,
+      "quantity": 252,
+      "unit": "g",
+      "ingredientId": "ing_salmon",
+      "sourceMealOccurrenceIds": [
+        "meal_20260907_breakfast"
+      ],
+      "notes": null
+    },
+    {
+      "itemId": "shopitem_manual_bags",
+      "kind": "manual",
+      "label": "Sacchetti freezer",
+      "checked": true,
+      "quantity": 1,
+      "unit": "pack",
+      "ingredientId": null,
+      "sourceMealOccurrenceIds": [],
+      "notes": "Formato medio"
+    }
+  ],
+  "createdAt": "2026-09-03T12:00:00Z",
+  "updatedAt": "2026-09-03T12:05:00Z"
+}

@@ -1,0 +1,322 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/calendar-day.schema.json",
+  "title": "CalendarDay",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "calendarDayId",
+    "planInstanceId",
+    "date",
+    "cycleDay",
+    "dayClassId",
+    "dayArchetype",
+    "mealSlots",
+    "status",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "calendarDayId": {
+      "type": "string"
+    },
+    "planInstanceId": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "cycleDay": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 1,
+      "maximum": 31
+    },
+    "dayClassId": {
+      "type": "string"
+    },
+    "dayArchetype": {
+      "$ref": "domain-enums.schema.json#/$defs/dayArchetype"
+    },
+    "mealSlots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "mealOccurrenceId",
+          "mealClassId",
+          "time",
+          "dayOffset",
+          "civilDate",
+          "mode",
+          "recipeComponents",
+          "adherenceStatus"
+        ],
+        "properties": {
+          "mealOccurrenceId": {
+            "type": "string"
+          },
+          "mealClassId": {
+            "type": "string"
+          },
+          "time": {
+            "$ref": "domain-enums.schema.json#/$defs/time24h"
+          },
+          "dayOffset": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2
+          },
+          "civilDate": {
+            "type": "string",
+            "format": "date"
+          },
+          "mode": {
+            "enum": [
+              "planned",
+              "external"
+            ]
+          },
+          "recipeComponents": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "recipeId",
+                "recipeVersionId",
+                "servings"
+              ],
+              "properties": {
+                "recipeId": {
+                  "type": "string"
+                },
+                "recipeVersionId": {
+                  "type": "string"
+                },
+                "servings": {
+                  "const": 1
+                }
+              }
+            }
+          },
+          "adherenceStatus": {
+            "enum": [
+              "not_recorded",
+              "followed",
+              "partial",
+              "not_followed"
+            ]
+          },
+          "adherenceNotes": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "externalEstimate": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": false,
+            "required": [
+              "policy"
+            ],
+            "properties": {
+              "policy": {
+                "enum": [
+                  "unknown",
+                  "budget_only",
+                  "user_estimate"
+                ]
+              },
+              "energyBudgetKcal": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "proteinMinG": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "userEstimatedEnergyKcal": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "userEstimatedProteinG": {
+                "type": [
+                  "number",
+                  "null"
+                ],
+                "minimum": 0
+              }
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "mode": {
+                  "const": "planned"
+                }
+              },
+              "required": [
+                "mode"
+              ]
+            },
+            "then": {
+              "properties": {
+                "externalEstimate": {
+                  "type": "null"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "mode": {
+                  "const": "external"
+                }
+              },
+              "required": [
+                "mode"
+              ]
+            },
+            "then": {
+              "properties": {
+                "recipeComponents": {
+                  "maxItems": 0
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "status": {
+      "enum": [
+        "planned",
+        "followed",
+        "partial",
+        "not_followed"
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "nutritionSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "knownPlanned",
+        "externalBudget",
+        "target",
+        "score"
+      ],
+      "properties": {
+        "knownPlanned": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "energyKcal",
+            "proteinG",
+            "carbsG",
+            "fatG",
+            "fiberG"
+          ],
+          "properties": {
+            "energyKcal": {
+              "type": "number",
+              "minimum": 0
+            },
+            "proteinG": {
+              "type": "number",
+              "minimum": 0
+            },
+            "carbsG": {
+              "type": "number",
+              "minimum": 0
+            },
+            "fatG": {
+              "type": "number",
+              "minimum": 0
+            },
+            "fiberG": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "externalBudget": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "energyKcal",
+            "proteinMinG"
+          ],
+          "properties": {
+            "energyKcal": {
+              "type": "number",
+              "minimum": 0
+            },
+            "proteinMinG": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        },
+        "target": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "energyKcal",
+            "plannedEnergyKcal",
+            "energyTolerancePct"
+          ],
+          "properties": {
+            "energyKcal": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "plannedEnergyKcal": {
+              "type": "number",
+              "minimum": 0
+            },
+            "energyTolerancePct": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 30
+            }
+          }
+        },
+        "score": {
+          "type": "number"
+        }
+      }
+    }
+  }
+}

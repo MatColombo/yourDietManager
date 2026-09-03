@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "runId": "orun-build-3e690a828774",
+  "mode": "build",
+  "plannerVersion": "corpus-planner-1",
+  "policyId": "corpus-policy-phase4-smoke",
+  "policyVersion": "1.0.0",
+  "inputSnapshotId": "snapshot-0.3.0-dev-fb65d3d79779",
+  "outputSnapshotId": "snapshot-0.4.0-dev-e71c65323c79",
+  "seed": "phase4-smoke-seed",
+  "goal": {
+    "targetRecipeCount": 8,
+    "acceptedAddCount": null,
+    "maxJobs": null,
+    "allowRetire": false,
+    "focusMode": "boost",
+    "focus": null
+  },
+  "status": "completed",
+  "stopReason": "target_reached",
+  "plannedJobs": [
+    {
+      "jobId": "batch-04ef295dce73e0",
+      "priority": 1.105567,
+      "scoreBreakdown": {
+        "nutrition": 0,
+        "meal": 0.625,
+        "practicality": 0.6667,
+        "cuisine": 0,
+        "ingredientDiversity": 0,
+        "recipeFamily": 0,
+        "focusBoost": 0,
+        "similarityPenalty": 0,
+        "ingredientOverusePenalty": 0.555667,
+        "pairRepetitionPenalty": 1
+      },
+      "targetIds": [
+        "smoke-dinner",
+        "smoke-portable"
+      ],
+      "reasons": [
+        "meal_archetype:dinner deficit=0.625",
+        "practicality:portable deficit=0.667"
+      ],
+      "expectedAcceptedCount": 5
+    }
+  ],
+  "createdAt": "2026-09-03T14:06:00Z",
+  "completedAt": "2026-09-03T14:08:00Z"
+}

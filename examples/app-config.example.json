@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "locale": "it",
+  "timeZone": "Europe/Rome",
+  "nutritionProfileId": "nutrition-default",
+  "allergyIntoleranceProfileId": "allergy-profile-main",
+  "foodPreferencesId": "food-preferences-main",
+  "themeProfileId": "theme-user",
+  "mealClassIds": ["mc-breakfast", "mc-dinner", "mc-shift-snack"],
+  "dayClassIds": ["dc-work", "dc-night", "dc-rest"],
+  "cycleId": "cycle-6",
+  "shoppingPeopleMultiplier": 2.1,
+  "measurementSystem": "metric",
+  "weekStart": "monday"
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/operation.schema.json",
+  "title": "Operation",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion","operationId","sequence","kind","createdAt","before","after"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "operationId": {"type": "string"},
+    "planInstanceId": {"type": ["string","null"]},
+    "sequence": {"type": "integer", "minimum": 1},
+    "kind": {"type": "string", "minLength": 1},
+    "createdAt": {"type": "string", "format": "date-time"},
+    "undoneAt": {"type": ["string","null"], "format": "date-time"},
+    "before": {"type": "object", "additionalProperties": true},
+    "after": {"type": "object", "additionalProperties": true},
+    "metadata": {"type": "object", "additionalProperties": true}
+  }
+}

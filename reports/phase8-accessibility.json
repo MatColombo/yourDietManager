@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "generatedAt": "2026-09-03T14:24:41.132Z",
+  "checks": [
+    {
+      "id": "html-lang",
+      "pass": true
+    },
+    {
+      "id": "skip-link",
+      "pass": true
+    },
+    {
+      "id": "main-landmark",
+      "pass": true
+    },
+    {
+      "id": "route-focus",
+      "pass": true
+    },
+    {
+      "id": "aria-current",
+      "pass": true
+    },
+    {
+      "id": "navigation-label-i18n",
+      "pass": true
+    },
+    {
+      "id": "progress-label",
+      "pass": true
+    },
+    {
+      "id": "focus-visible",
+      "pass": true
+    },
+    {
+      "id": "reduced-motion",
+      "pass": true
+    },
+    {
+      "id": "forced-colors",
+      "pass": true
+    },
+    {
+      "id": "touch-target",
+      "pass": true
+    },
+    {
+      "id": "no-inner-html",
+      "pass": true
+    },
+    {
+      "id": "safe-dom-text",
+      "pass": true
+    },
+    {
+      "id": "locale-parity",
+      "pass": true
+    },
+    {
+      "id": "a11y-keys-it",
+      "pass": true
+    },
+    {
+      "id": "a11y-keys-en",
+      "pass": true
+    }
+  ],
+  "pass": true,
+  "failures": []
+}

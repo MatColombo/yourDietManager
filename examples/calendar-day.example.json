@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "calendarDayId": "cal_plan_main_2026-09-07",
+  "planInstanceId": "plan_main",
+  "date": "2026-09-07",
+  "cycleDay": 1,
+  "dayClassId": "dc-work",
+  "dayArchetype": "day",
+  "mealSlots": [
+    {
+      "mealOccurrenceId": "meal_20260907_breakfast",
+      "mealClassId": "mc-breakfast",
+      "time": "07:00",
+      "dayOffset": 0,
+      "civilDate": "2026-09-07",
+      "mode": "planned",
+      "recipeComponents": [
+        {
+          "recipeId": "rec_salmon_rice",
+          "recipeVersionId": "recver_salmon_rice_v1",
+          "servings": 1
+        }
+      ],
+      "adherenceStatus": "not_recorded",
+      "adherenceNotes": null,
+      "externalEstimate": null
+    }
+  ],
+  "status": "planned",
+  "createdAt": "2026-09-03T00:00:00Z",
+  "updatedAt": "2026-09-03T00:00:00Z"
+}

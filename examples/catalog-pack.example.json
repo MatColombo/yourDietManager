@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "packId": "core",
+  "catalogVersion": "1.0.0",
+  "labelKey": "catalog.pack.core.label",
+  "descriptionKey": "catalog.pack.core.description",
+  "required": true,
+  "estimatedBytes": 18000000,
+  "recipeVersionIds": [
+    "recver_salmon_rice_v1"
+  ],
+  "status": "installed",
+  "installedAt": "2026-09-03T12:00:00Z",
+  "lastErrorCode": null,
+  "createdAt": "2026-09-03T11:58:00Z",
+  "updatedAt": "2026-09-03T12:00:00Z"
+}

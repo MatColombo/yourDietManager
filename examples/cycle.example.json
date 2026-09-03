@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "cycle-6",
+  "name": "Ciclo personale 6 giorni",
+  "length": 6,
+  "days": [
+    {
+      "cycleDay": 1,
+      "dayClassId": "dc-work"
+    },
+    {
+      "cycleDay": 2,
+      "dayClassId": "dc-work"
+    },
+    {
+      "cycleDay": 3,
+      "dayClassId": "dc-night"
+    },
+    {
+      "cycleDay": 4,
+      "dayClassId": "dc-night"
+    },
+    {
+      "cycleDay": 5,
+      "dayClassId": "dc-rest"
+    },
+    {
+      "cycleDay": 6,
+      "dayClassId": "dc-rest"
+    }
+  ]
+}

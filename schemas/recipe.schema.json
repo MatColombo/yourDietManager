@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/recipe.schema.json",
+  "title": "Recipe",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion","recipeId","origin","currentVersionId","status","createdAt","updatedAt"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "recipeId": {"type": "string", "minLength": 1},
+    "origin": {"enum": ["base","user"]},
+    "currentVersionId": {"type": "string", "minLength": 1},
+    "status": {"enum": ["active","archived","retired"]},
+    "createdAt": {"type": "string", "format": "date-time"},
+    "updatedAt": {"type": "string", "format": "date-time"}
+  }
+}

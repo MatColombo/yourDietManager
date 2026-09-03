@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "policyId": "corpus-policy-phase4-smoke",
+  "policyVersion": "1.0.0",
+  "plannerVersion": "corpus-planner-1",
+  "targetCorpus": {
+    "min": 5,
+    "target": 8,
+    "max": 20
+  },
+  "batchPlanning": {
+    "defaultAcceptedCount": 5,
+    "minAcceptedCount": 1,
+    "maxAcceptedCount": 8,
+    "oversampleRatio": 1.4,
+    "maxCandidateCount": 12,
+    "candidateIntentLimit": 20,
+    "maxConsecutiveSamePrimaryFocus": 2,
+    "tieBreakStrategy": "seeded_hash_then_lexical",
+    "stopWhenNoPositivePriority": true,
+    "maxCoverageTargetsPerJob": 4
+  },
+  "scoreWeights": {
+    "nutrition": 1,
+    "meal": 1.2,
+    "practicality": 1,
+    "cuisine": 0.3,
+    "ingredientDiversity": 0.4,
+    "recipeFamily": 0.4,
+    "focusBoost": 1,
+    "similarityPenalty": 0.2,
+    "ingredientOverusePenalty": 0.2,
+    "pairRepetitionPenalty": 0.2
+  },
+  "energyBands": [
+    {
+      "bandId": "kcal-200-399",
+      "min": 200,
+      "max": 399
+    },
+    {
+      "bandId": "kcal-400-599",
+      "min": 400,
+      "max": 599
+    },
+    {
+      "bandId": "kcal-600-799",
+      "min": 600,
+      "max": 799
+    }
+  ],
+  "proteinBands": [
+    {
+      "bandId": "protein-low",
+      "min": 0,
+      "max": 19.9
+    },
+    {
+      "bandId": "protein-medium",
+      "min": 20,
+      "max": 34.9
+    },
+    {
+      "bandId": "protein-high",
+      "min": 35,
+      "max": 80
+    }
+  ],
+  "fiberBands": [
+    {
+      "bandId": "fiber-low",
+      "min": 0,
+      "max": 4.9
+    },
+    {
+      "bandId": "fiber-moderate",
+      "min": 5,
+      "max": 9.9
+    },
+    {
+      "bandId": "fiber-high",
+      "min": 10,
+      "max": 30
+    }
+  ],
+  "coverageTargets": [
+    {
+      "targetId": "smoke-lunch",
+      "dimension": "meal_archetype",
+      "key": "lunch",
+      "minCount": 5,
+      "desiredCount": 8,
+      "weight": 1,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "smoke-dinner",
+      "dimension": "meal_archetype",
+      "key": "dinner",
+      "minCount": 5,
+      "desiredCount": 8,
+      "weight": 1,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "smoke-portable",
+      "dimension": "practicality",
+      "key": "portable",
+      "minCount": 4,
+      "desiredCount": 6,
+      "weight": 0.8,
+      "hardForRelease": true
+    }
+  ],
+  "diversity": {
+    "primaryIngredientMaxShare": 0.8,
+    "ingredientOverusePenaltyStartShare": 0.5,
+    "repeatedPairMaxShare": 0.9,
+    "pairPenaltyStartShare": 0.7,
+    "minimumDistinctPrimaryIngredients": 2,
+    "exemptIngredientIds": [
+      "ing_olive_oil"
+    ]
+  },
+  "similarity": {
+    "highJaccardThreshold": 0.82,
+    "titleSimilarityThreshold": 0.9,
+    "nearDuplicateMaxShare": 1
+  },
+  "releaseGates": {
+    "maxSchemaErrors": 0,
+    "maxUnknownIngredientReferences": 0,
+    "maxNutritionErrors": 0,
+    "maxAllergenDerivationErrors": 0,
+    "maxExactDuplicates": 0,
+    "maxMissingRequiredLocaleFields": 0
+  },
+  "createdAt": "2026-09-03T14:00:00Z"
+}

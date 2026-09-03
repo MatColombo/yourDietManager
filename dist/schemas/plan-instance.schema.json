@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/plan-instance.schema.json",
+  "title": "PlanInstance",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "planInstanceId",
+    "generationRunId",
+    "startDate",
+    "endDate",
+    "status",
+    "createdAt",
+    "updatedAt",
+    "continuationPolicy",
+    "previousPlanInstanceId"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "planInstanceId": {
+      "type": "string"
+    },
+    "generationRunId": {
+      "type": "string"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "enum": [
+        "active",
+        "archived"
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "continuationPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mode",
+        "triggerDaysBeforeEnd",
+        "extensionDays"
+      ],
+      "properties": {
+        "mode": {
+          "enum": [
+            "prompt",
+            "auto_extend",
+            "fixed"
+          ]
+        },
+        "triggerDaysBeforeEnd": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 31
+        },
+        "extensionDays": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 31
+        }
+      }
+    },
+    "previousPlanInstanceId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

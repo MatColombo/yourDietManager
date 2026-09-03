@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "generationRunId": "genrun_20260903_001",
+  "generatorVersion": "plan-generator-1",
+  "solverVersion": "beam-solver-1",
+  "seed": "user-seed-example",
+  "catalogVersion": "1.0.0",
+  "configSnapshotHash": "44444444444444444444444444444444",
+  "configSnapshot": {
+    "appConfigId": "active",
+    "nutritionProfileId": "nutrition-default",
+    "cycleId": "cycle-6"
+  },
+  "horizon": {
+    "startDate": "2026-09-07",
+    "endDate": "2026-10-06"
+  },
+  "createdAt": "2026-09-03T00:00:00Z",
+  "diagnostics": {
+    "daysGenerated": 30,
+    "hardConstraintViolations": 0
+  },
+  "reason": "initial",
+  "previousGenerationRunId": null
+}

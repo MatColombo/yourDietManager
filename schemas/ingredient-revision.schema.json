@@ -1,0 +1,326 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/ingredient-revision.schema.json",
+  "title": "IngredientRevision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "ingredientRevisionId",
+    "ingredientId",
+    "revisionNumber",
+    "origin",
+    "catalogVersion",
+    "i18n",
+    "basis",
+    "nutrition",
+    "taxonomy",
+    "allergenIds",
+    "conversions",
+    "source",
+    "quality",
+    "contentHash",
+    "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "ingredientRevisionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ingredientId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revisionNumber": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "origin": {
+      "enum": [
+        "base",
+        "user"
+      ]
+    },
+    "catalogVersion": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "i18n": {
+      "type": "object",
+      "required": [
+        "it",
+        "en"
+      ],
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "basis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "amount",
+        "unit",
+        "state"
+      ],
+      "properties": {
+        "amount": {
+          "const": 100
+        },
+        "unit": {
+          "enum": [
+            "g",
+            "ml"
+          ]
+        },
+        "state": {
+          "enum": [
+            "raw",
+            "cooked",
+            "dry",
+            "drained",
+            "prepared",
+            "ready_to_eat",
+            "as_sold",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "nutrition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "energyKcal",
+        "proteinG",
+        "carbsG",
+        "fatG",
+        "fiberG"
+      ],
+      "properties": {
+        "energyKcal": {
+          "type": "number",
+          "minimum": 0
+        },
+        "proteinG": {
+          "type": "number",
+          "minimum": 0
+        },
+        "carbsG": {
+          "type": "number",
+          "minimum": 0
+        },
+        "fatG": {
+          "type": "number",
+          "minimum": 0
+        },
+        "fiberG": {
+          "type": "number",
+          "minimum": 0
+        },
+        "sugarsG": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "saturatedFatG": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "saltG": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "sodiumMg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    },
+    "taxonomy": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "foodGroup",
+        "foodSubgroup",
+        "flavorProfile",
+        "mealArchetypes"
+      ],
+      "properties": {
+        "foodGroup": {
+          "type": "string"
+        },
+        "foodSubgroup": {
+          "type": "string"
+        },
+        "flavorProfile": {
+          "enum": [
+            "sweet",
+            "savory",
+            "neutral"
+          ]
+        },
+        "mealArchetypes": {
+          "type": "array",
+          "items": {
+            "$ref": "domain-enums.schema.json#/$defs/mealArchetype"
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "allergenIds": {
+      "type": "array",
+      "items": {
+        "$ref": "domain-enums.schema.json#/$defs/allergenId"
+      },
+      "uniqueItems": true
+    },
+    "conversions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "unit",
+          "canonicalAmount",
+          "canonicalUnit"
+        ],
+        "properties": {
+          "unit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "canonicalAmount": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "canonicalUnit": {
+            "enum": [
+              "g",
+              "ml"
+            ]
+          }
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "manual",
+            "curated",
+            "imported",
+            "generated_mapping"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reference": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sourceRecordId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "checkedAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "licenseNote": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "confidence"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "draft",
+            "validated",
+            "curated"
+          ]
+        },
+        "confidence": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "contentHash": {
+      "type": "string",
+      "minLength": 16
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

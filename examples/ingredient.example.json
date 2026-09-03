@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "ingredientId": "ing_salmon",
+  "origin": "base",
+  "currentRevisionId": "ingrev_salmon_raw_v1",
+  "status": "active",
+  "createdAt": "2026-09-03T00:00:00Z",
+  "updatedAt": "2026-09-03T00:00:00Z"
+}

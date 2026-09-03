@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "jobId": "batch-451d01d04e97a8",
+  "pipelineVersion": "recipe-pipeline-1",
+  "seed": "phase4-default-policy-test:451d01d04e97a823",
+  "targetCatalogVersion": "1.0.0",
+  "sourceLocale": "it",
+  "requiredLocales": [
+    "it",
+    "en"
+  ],
+  "targetAcceptedCount": 100,
+  "candidateCount": 125,
+  "mealArchetypes": [
+    "breakfast",
+    "dinner"
+  ],
+  "energyKcal": {
+    "min": 400,
+    "max": 499
+  },
+  "proteinG": {
+    "min": 35,
+    "max": 80
+  },
+  "fiberG": {
+    "min": 0,
+    "max": 4.9
+  },
+  "maxTotalMinutes": null,
+  "recipeFamilies": [
+    "side_component"
+  ],
+  "cuisineFocus": [
+    "east_asian"
+  ],
+  "practicalityTargets": [
+    "portable"
+  ],
+  "requiredTags": [
+    "vegetarian"
+  ],
+  "forbiddenTags": [],
+  "preferredUnderusedIngredientIds": [
+    "ing_olive_oil",
+    "ing_salmon",
+    "ing_rice_cooked",
+    "ing_zucchini"
+  ],
+  "diversityTargets": {
+    "minDistinctPrimaryIngredients": 4,
+    "minDistinctIngredientIds": 4,
+    "maxPrimaryIngredientFrequency": 25,
+    "maxIngredientPairFrequency": 8
+  },
+  "coverageTargets": [
+    {
+      "targetId": "cell-dinner-kcal-600-699",
+      "key": "dinner|kcal-600-699",
+      "desiredAcceptedGain": 12
+    },
+    {
+      "targetId": "cell-kcal-300-399-protein-high",
+      "key": "kcal-300-399|protein-high",
+      "desiredAcceptedGain": 12
+    },
+    {
+      "targetId": "cell-kcal-400-499-fiber-low",
+      "key": "kcal-400-499|fiber-low",
+      "desiredAcceptedGain": 12
+    },
+    {
+      "targetId": "cell-kcal-400-499-vegetarian",
+      "key": "kcal-400-499|vegetarian",
+      "desiredAcceptedGain": 12
+    },
+    {
+      "targetId": "cuisine-east_asian-soft",
+      "key": "east_asian",
+      "desiredAcceptedGain": 12
+    },
+    {
+      "targetId": "family-side_component-soft",
+      "key": "side_component",
+      "desiredAcceptedGain": 12
+    },
+    {
+      "targetId": "ingredient-category-legumes-soft",
+      "key": "legumes",
+      "desiredAcceptedGain": 12
+    },
+    {
+      "targetId": "meal-breakfast-coverage",
+      "key": "breakfast",
+      "desiredAcceptedGain": 12
+    },
+    {
+      "targetId": "practical-portable-coverage",
+      "key": "portable",
+      "desiredAcceptedGain": 12
+    }
+  ],
+  "allowedIngredientIds": [
+    "ing_olive_oil",
+    "ing_rice_cooked",
+    "ing_salmon",
+    "ing_zucchini"
+  ],
+  "orchestration": {
+    "runId": "orun-build-c29d54ef7296",
+    "inputSnapshotId": "snapshot-0.4.0-dev-c5e854e48159",
+    "policyId": "corpus-policy-v1-default",
+    "policyVersion": "1.1.0",
+    "plannedPriority": 4,
+    "targetIds": [
+      "cell-dinner-kcal-600-699",
+      "cell-kcal-300-399-protein-high",
+      "cell-kcal-400-499-fiber-low",
+      "cell-kcal-400-499-vegetarian",
+      "cuisine-east_asian-soft",
+      "family-side_component-soft",
+      "ingredient-category-legumes-soft",
+      "meal-breakfast-coverage",
+      "practical-portable-coverage"
+    ],
+    "reasons": [
+      "energy_band:dinner|kcal-600-699 deficit=1",
+      "protein_band:kcal-300-399|protein-high deficit=1",
+      "fiber_band:kcal-400-499|fiber-low deficit=0.988",
+      "diet:kcal-400-499|vegetarian deficit=1",
+      "cuisine:east_asian deficit=1",
+      "recipe_family:side_component deficit=1",
+      "ingredient_category:legumes deficit=1",
+      "meal_archetype:breakfast deficit=1",
+      "practicality:portable deficit=0.996"
+    ]
+  }
+}

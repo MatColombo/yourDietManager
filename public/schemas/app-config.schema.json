@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/app-config.schema.json",
+  "title": "AppConfig",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "locale",
+    "timeZone",
+    "nutritionProfileId",
+    "allergyIntoleranceProfileId",
+    "foodPreferencesId",
+    "themeProfileId",
+    "mealClassIds",
+    "dayClassIds",
+    "cycleId",
+    "shoppingPeopleMultiplier",
+    "measurementSystem",
+    "weekStart"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "locale": {
+      "type": "string",
+      "minLength": 2
+    },
+    "nutritionProfileId": {
+      "type": "string"
+    },
+    "allergyIntoleranceProfileId": {
+      "type": "string"
+    },
+    "foodPreferencesId": {
+      "type": "string"
+    },
+    "themeProfileId": {
+      "type": "string"
+    },
+    "mealClassIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "dayClassIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "cycleId": {
+      "type": "string"
+    },
+    "shoppingPeopleMultiplier": {
+      "type": "number",
+      "minimum": 0.1,
+      "maximum": 20
+    },
+    "timeZone": {
+      "type": "string",
+      "minLength": 1
+    },
+    "measurementSystem": {
+      "enum": [
+        "metric",
+        "imperial",
+        "mixed"
+      ]
+    },
+    "weekStart": {
+      "enum": [
+        "monday",
+        "sunday",
+        "saturday"
+      ]
+    }
+  }
+}

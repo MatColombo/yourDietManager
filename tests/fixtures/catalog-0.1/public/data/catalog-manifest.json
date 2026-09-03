@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "0.1.0-dev",
+  "builtAt": "2026-09-03T10:00:00Z",
+  "appCompatibility": {
+    "minVersion": "0.1.0",
+    "maxVersion": null
+  },
+  "locales": [
+    "it",
+    "en"
+  ],
+  "pipelineVersion": "phase1-fixture",
+  "calculationAlgorithmVersion": "nutrition-core-1",
+  "ingredientFamilies": {
+    "count": 4,
+    "shards": [
+      {
+        "path": "ingredients/ingredient-families-0001.json",
+        "count": 4,
+        "sha256": "3937e7e0b8401c473f9b69a910ea8dc779558b5c6100f9e203373826bc977a23"
+      }
+    ]
+  },
+  "ingredientRevisions": {
+    "count": 4,
+    "shards": [
+      {
+        "path": "ingredients/ingredient-revisions-0001.json",
+        "count": 4,
+        "sha256": "9e94e871acf457134b5181979f8b10c009e188022bc3bd0647ed2e281b3cb895"
+      }
+    ]
+  },
+  "recipeFamilies": {
+    "count": 1,
+    "shards": [
+      {
+        "path": "recipes/recipe-families-0001.json",
+        "count": 1,
+        "sha256": "3d673794dafb085a1ada409d59a636e8d943edd73f5f4343927a0b569cfb5e4f"
+      }
+    ]
+  },
+  "recipeVersions": {
+    "count": 1,
+    "shards": [
+      {
+        "path": "recipes/recipe-versions-0001.json",
+        "count": 1,
+        "sha256": "3bdc1f2c5d5429559e32f5951fe641edc253229462c27036281ad8acfdb979f3"
+      }
+    ]
+  },
+  "packs": [
+    {
+      "packId": "core",
+      "labelKey": "catalog.pack.core.label",
+      "descriptionKey": "catalog.pack.core.description",
+      "required": true,
+      "estimatedBytes": 10869,
+      "recipeVersionIds": [
+        "recver_salmon_rice_v1"
+      ]
+    }
+  ]
+}

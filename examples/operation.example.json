@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "operationId": "op_0001",
+  "planInstanceId": "plan_main",
+  "sequence": 1,
+  "kind": "replace_meal",
+  "createdAt": "2026-09-03T12:00:00Z",
+  "undoneAt": null,
+  "before": {"calendarDayId":"cal_plan_main_2026-09-07","recipeVersionId":"recver_a"},
+  "after": {"calendarDayId":"cal_plan_main_2026-09-07","recipeVersionId":"recver_b"},
+  "metadata": {"source":"user"}
+}

@@ -1,0 +1,393 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/recipe-corpus-orchestration-run.schema.json",
+  "title": "RecipeCorpusOrchestrationRun",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "runId",
+    "mode",
+    "plannerVersion",
+    "policyId",
+    "policyVersion",
+    "inputSnapshotId",
+    "seed",
+    "goal",
+    "status",
+    "plannedJobs",
+    "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "runId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "enum": [
+        "build",
+        "expand",
+        "improve",
+        "focused_expansion"
+      ]
+    },
+    "plannerVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "policyId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "policyVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "inputSnapshotId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "outputSnapshotId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "seed": {
+      "type": "string",
+      "minLength": 1
+    },
+    "goal": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "targetRecipeCount": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "acceptedAddCount": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "maxJobs": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "allowRetire": {
+          "type": "boolean"
+        },
+        "focusMode": {
+          "enum": [
+            "boost",
+            "restrict"
+          ]
+        },
+        "focus": {
+          "$ref": "#/$defs/focus"
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "planned",
+        "running",
+        "completed",
+        "blocked",
+        "failed"
+      ]
+    },
+    "stopReason": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        null,
+        "target_reached",
+        "release_gates_met",
+        "job_budget_exhausted",
+        "no_positive_priority",
+        "no_feasible_batch_intent",
+        "quality_gate_failure",
+        "manual_stop"
+      ]
+    },
+    "plannedJobs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "jobId",
+          "priority",
+          "scoreBreakdown",
+          "targetIds",
+          "reasons",
+          "expectedAcceptedCount"
+        ],
+        "properties": {
+          "jobId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "priority": {
+            "type": "number"
+          },
+          "scoreBreakdown": {
+            "$ref": "#/$defs/scoreBreakdown"
+          },
+          "targetIds": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "reasons": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "expectedAcceptedCount": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completedAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "focus": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "mealArchetypes": {
+          "type": "array",
+          "items": {
+            "$ref": "domain-enums.schema.json#/$defs/mealArchetype"
+          },
+          "uniqueItems": true
+        },
+        "cuisines": {
+          "$ref": "#/$defs/stringSet"
+        },
+        "recipeFamilies": {
+          "$ref": "#/$defs/stringSet"
+        },
+        "ingredientIds": {
+          "$ref": "#/$defs/stringSet"
+        },
+        "ingredientCategoryIds": {
+          "$ref": "#/$defs/stringSet"
+        },
+        "dietTags": {
+          "$ref": "#/$defs/stringSet"
+        },
+        "practicalityTags": {
+          "$ref": "#/$defs/stringSet"
+        },
+        "energyBandIds": {
+          "$ref": "#/$defs/stringSet"
+        },
+        "proteinBandIds": {
+          "$ref": "#/$defs/stringSet"
+        },
+        "fiberBandIds": {
+          "$ref": "#/$defs/stringSet"
+        }
+      }
+    },
+    "stringSet": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "scoreBreakdown": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "nutrition",
+        "meal",
+        "practicality",
+        "cuisine",
+        "ingredientDiversity",
+        "recipeFamily",
+        "focusBoost",
+        "similarityPenalty",
+        "ingredientOverusePenalty",
+        "pairRepetitionPenalty"
+      ],
+      "properties": {
+        "nutrition": {
+          "type": "number"
+        },
+        "meal": {
+          "type": "number"
+        },
+        "practicality": {
+          "type": "number"
+        },
+        "cuisine": {
+          "type": "number"
+        },
+        "ingredientDiversity": {
+          "type": "number"
+        },
+        "recipeFamily": {
+          "type": "number"
+        },
+        "focusBoost": {
+          "type": "number"
+        },
+        "similarityPenalty": {
+          "type": "number"
+        },
+        "ingredientOverusePenalty": {
+          "type": "number"
+        },
+        "pairRepetitionPenalty": {
+          "type": "number"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "build"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "goal": {
+            "required": [
+              "targetRecipeCount"
+            ],
+            "properties": {
+              "targetRecipeCount": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "expand"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "goal": {
+            "required": [
+              "acceptedAddCount"
+            ],
+            "properties": {
+              "acceptedAddCount": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "improve"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "goal": {
+            "required": [
+              "maxJobs",
+              "allowRetire"
+            ],
+            "properties": {
+              "maxJobs": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "mode": {
+            "const": "focused_expansion"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "goal": {
+            "required": [
+              "acceptedAddCount",
+              "focusMode",
+              "focus"
+            ],
+            "properties": {
+              "acceptedAddCount": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "focus": {
+                "type": "object",
+                "minProperties": 1
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

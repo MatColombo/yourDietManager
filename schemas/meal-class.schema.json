@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/meal-class.schema.json",
+  "title": "MealClass",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "abbreviation",
+    "mealArchetype",
+    "rules"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "abbreviation": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2
+    },
+    "mealArchetype": {
+      "$ref": "domain-enums.schema.json#/$defs/mealArchetype"
+    },
+    "energyShare": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "target": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "min": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "max": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": [
+        "target",
+        "min",
+        "max"
+      ]
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ruleType",
+          "target",
+          "strength"
+        ],
+        "properties": {
+          "ruleType": {
+            "enum": [
+              "foodCategory",
+              "ingredient",
+              "tag",
+              "flavor",
+              "nutrition",
+              "practical"
+            ]
+          },
+          "target": {
+            "type": "string",
+            "minLength": 1
+          },
+          "strength": {
+            "enum": [
+              "prefer",
+              "slight_prefer",
+              "neutral",
+              "avoid",
+              "forbid"
+            ]
+          },
+          "operator": {
+            "enum": [
+              "eq",
+              "lte",
+              "gte"
+            ]
+          },
+          "value": {
+            "type": "number"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "ruleType": {
+                  "enum": [
+                    "nutrition",
+                    "practical"
+                  ]
+                }
+              },
+              "required": [
+                "ruleType"
+              ]
+            },
+            "then": {
+              "required": [
+                "operator",
+                "value"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

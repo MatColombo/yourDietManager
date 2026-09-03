@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "generatedAt": "2026-09-03T14:24:41.424Z",
+  "environment": {
+    "node": "v22.16.0",
+    "platform": "linux",
+    "arch": "x64",
+    "cpus": 5,
+    "memoryBytes": 6236925952
+  },
+  "dataset": {
+    "recipeVersions": 10000,
+    "operations": 10000
+  },
+  "measurementsMs": {
+    "unfilteredPage50": 9.47,
+    "indexedFilteredPage50": 76.91,
+    "recentOperations100": 15.93
+  },
+  "boundedness": {
+    "unfilteredRecipeGetManyMax": 50,
+    "recipeVersionGetAllCalls": 0,
+    "operationCursorPageCalls": 1
+  },
+  "note": "Node/in-memory benchmark. Timing is diagnostic, not a browser SLA; boundedness is the release invariant.",
+  "pass": true
+}

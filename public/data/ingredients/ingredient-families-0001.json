@@ -1,0 +1,38 @@
+[
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_salmon",
+    "origin": "base",
+    "currentRevisionId": "ingrev_salmon_raw_v2",
+    "status": "active",
+    "createdAt": "2026-09-03T00:00:00Z",
+    "updatedAt": "2026-09-03T12:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_rice_cooked",
+    "origin": "base",
+    "currentRevisionId": "ingrev_rice_cooked_v2",
+    "status": "active",
+    "createdAt": "2026-09-03T00:00:00Z",
+    "updatedAt": "2026-09-03T12:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_zucchini",
+    "origin": "base",
+    "currentRevisionId": "ingrev_zucchini_raw_v2",
+    "status": "active",
+    "createdAt": "2026-09-03T00:00:00Z",
+    "updatedAt": "2026-09-03T12:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_olive_oil",
+    "origin": "base",
+    "currentRevisionId": "ingrev_olive_oil_v2",
+    "status": "active",
+    "createdAt": "2026-09-03T00:00:00Z",
+    "updatedAt": "2026-09-03T12:00:00Z"
+  }
+]

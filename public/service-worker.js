@@ -1,0 +1,94 @@
+const SHELL_CACHE = 'ydm-shell-v9';
+const DATA_CACHE = 'ydm-data-v5';
+const SHELL = [
+  '/', '/index.html', '/manifest.webmanifest', '/icons/icon.svg',
+  '/src/bootstrapVisual.js', '/src/db/constants.js', '/src/db/database.js', '/src/domain/configurationRules.js', '/src/domain/catalogEnums.js', '/src/domain/nutritionCore.js',
+  '/src/i18n/i18n.js', '/src/lib/crypto.js', '/src/lib/schemaValidator.js', '/src/lib/semver.js', '/src/main.js',
+  '/src/repositories/domainRepositories.js', '/src/repositories/repositoryHub.js',
+  '/src/services/backupEngine.js', '/src/services/catalogDataSource.js', '/src/services/catalogImporter.js', '/src/services/catalogUpdater.js', '/src/services/catalogQuery.js',
+  '/src/services/configurationBootstrap.js', '/src/services/configurationService.js', '/src/services/configurationTransfer.js', '/src/services/customCatalogTransfer.js', '/src/services/migrationRunner.js', '/src/services/personalCatalogService.js',
+  '/src/services/planCandidateService.js', '/src/services/planGenerationService.js', '/src/services/effectivePlanService.js', '/src/services/operationHistoryService.js', '/src/services/shoppingService.js',
+  '/src/services/offlineCatalog.js', '/src/services/storageMetrics.js',
+  '/src/planner/seededRandom.js', '/src/planner/planMath.js', '/src/planner/recipeFeatures.js', '/src/planner/hardFilter.js', '/src/planner/softScoring.js', '/src/planner/beamSolver.js', '/src/planner/planGenerator.js',
+  '/src/styles.css', '/src/theme/themeEngine.js', '/src/ui/app.js', '/src/ui/catalogPages.js', '/src/ui/configurationPages.js', '/src/ui/planPages.js', '/src/ui/shoppingPages.js', '/src/ui/dom.js', '/src/ui/router.js',
+  '/schemas/allergy-intolerance-profile.schema.json', '/schemas/app-config.schema.json', '/schemas/backup.schema.json', '/schemas/calendar-day.schema.json', '/schemas/catalog-manifest.schema.json', '/schemas/catalog-pack.schema.json', '/schemas/cycle.schema.json', '/schemas/day-class.schema.json', '/schemas/domain-enums.schema.json', '/schemas/food-preferences.schema.json', '/schemas/generation-run.schema.json', '/schemas/ingredient-revision.schema.json', '/schemas/ingredient.schema.json', '/schemas/meal-class.schema.json', '/schemas/nutrition-profile.schema.json', '/schemas/operation.schema.json', '/schemas/plan-instance.schema.json', '/schemas/recipe-corpus-orchestration-run.schema.json', '/schemas/recipe-corpus-policy.schema.json', '/schemas/recipe-corpus-snapshot.schema.json', '/schemas/recipe-generation-job.schema.json', '/schemas/recipe-version.schema.json', '/schemas/recipe.schema.json', '/schemas/shopping-checklist.schema.json', '/schemas/theme-profile.schema.json',
+  '/data/locales/it.json', '/data/locales/en.json', '/data/catalog-manifest.json'
+];
+
+self.addEventListener('install', event => {
+  event.waitUntil(caches.open(SHELL_CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
+});
+
+self.addEventListener('activate', event => {
+  event.waitUntil(Promise.all([
+    self.clients.claim(),
+    caches.keys().then(keys => Promise.all(keys.filter(key => ![SHELL_CACHE, DATA_CACHE].includes(key)).map(key => caches.delete(key))))
+  ]));
+});
+
+self.addEventListener('message', event => {
+  if (event.data?.type !== 'YDM_CACHE_URLS') return;
+  const urls = [...new Set((event.data.urls || []).filter(value => typeof value === 'string'))];
+  event.waitUntil((async () => {
+    const cache = await caches.open(DATA_CACHE);
+    let count = 0;
+    const failed = [];
+    for (const raw of urls) {
+      const url = new URL(raw, self.location.origin);
+      if (url.origin !== self.location.origin || (!url.pathname.startsWith('/data/') && !url.pathname.startsWith('/schemas/'))) { failed.push(raw); continue; }
+      try {
+        const existing = await cache.match(url.href);
+        if (existing) { count += 1; continue; }
+        const response = await fetch(url.href, { cache: 'no-cache' });
+        if (!response.ok) { failed.push(raw); continue; }
+        await cache.put(url.href, response.clone());
+        count += 1;
+      } catch { failed.push(raw); }
+    }
+    event.ports?.[0]?.postMessage({ cached: failed.length === 0, count, failed });
+  })());
+});
+
+self.addEventListener('fetch', event => {
+  const url = new URL(event.request.url);
+  if (event.request.method !== 'GET' || url.origin !== self.location.origin) return;
+
+  if (url.pathname === '/data/catalog-manifest.json') {
+    event.respondWith(caches.open(DATA_CACHE).then(async cache => {
+      try {
+        const response = await fetch(event.request);
+        if (response.ok) await cache.put(event.request, response.clone());
+        return response;
+      } catch {
+        return (await cache.match(event.request)) || Response.error();
+      }
+    }));
+    return;
+  }
+
+  if (url.pathname.startsWith('/data/') || url.pathname.startsWith('/schemas/')) {
+    event.respondWith(caches.open(DATA_CACHE).then(async cache => {
+      const cached = await cache.match(event.request);
+      if (cached) return cached;
+      const response = await fetch(event.request);
+      if (response.ok) await cache.put(event.request, response.clone());
+      return response;
+    }));
+    return;
+  }
+
+  if (event.request.mode === 'navigate') {
+    event.respondWith(fetch(event.request).catch(() => caches.match('/index.html')));
+    return;
+  }
+
+  event.respondWith(caches.match(event.request).then(async cached => {
+    if (cached) return cached;
+    const response = await fetch(event.request);
+    if (response.ok && /\.(?:js|css|svg|webmanifest)$/.test(url.pathname)) {
+      const cache = await caches.open(SHELL_CACHE);
+      await cache.put(event.request, response.clone());
+    }
+    return response;
+  }));
+});

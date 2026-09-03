@@ -1,0 +1,457 @@
+[
+  {
+    "candidateId": "p4-a",
+    "i18n": {
+      "it": {
+        "title": "Salmone e zucchine",
+        "description": "Ricetta di sviluppo per verificare la pipeline Phase 4.",
+        "instructions": [
+          "Cuoci gli ingredienti se necessario.",
+          "Combina e servi."
+        ]
+      },
+      "en": {
+        "title": "Salmon and zucchini",
+        "description": "Development recipe used to verify the Phase 4 pipeline.",
+        "instructions": [
+          "Cook ingredients as needed.",
+          "Combine and serve."
+        ]
+      }
+    },
+    "mealArchetypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredientLines": [
+      {
+        "ingredientId": "ing_salmon",
+        "amount": 130,
+        "unit": "g"
+      },
+      {
+        "ingredientId": "ing_zucchini",
+        "amount": 300,
+        "unit": "g"
+      }
+    ],
+    "practical": {
+      "prepMinutes": 5,
+      "cookMinutes": 15,
+      "reheatingRequired": false,
+      "coldSuitable": true,
+      "portable": true,
+      "fridgeRequired": true,
+      "freezerSuitable": false,
+      "mealPrepSuitable": true,
+      "finalWeightG": 430,
+      "finalVolumeMl": null,
+      "yieldNotes": null
+    },
+    "tags": {
+      "families": [
+        "fish_side"
+      ],
+      "cuisines": [
+        "mediterranean"
+      ],
+      "practical": [
+        "portable"
+      ]
+    },
+    "culinaryReview": {
+      "status": "approved",
+      "notes": "Deterministic Phase 4 smoke fixture; not production culinary content."
+    }
+  },
+  {
+    "candidateId": "p4-b",
+    "i18n": {
+      "it": {
+        "title": "Salmone e riso",
+        "description": "Ricetta di sviluppo per verificare la pipeline Phase 4.",
+        "instructions": [
+          "Cuoci gli ingredienti se necessario.",
+          "Combina e servi."
+        ]
+      },
+      "en": {
+        "title": "Salmon and rice",
+        "description": "Development recipe used to verify the Phase 4 pipeline.",
+        "instructions": [
+          "Cook ingredients as needed.",
+          "Combine and serve."
+        ]
+      }
+    },
+    "mealArchetypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredientLines": [
+      {
+        "ingredientId": "ing_salmon",
+        "amount": 160,
+        "unit": "g"
+      },
+      {
+        "ingredientId": "ing_rice_cooked",
+        "amount": 150,
+        "unit": "g"
+      }
+    ],
+    "practical": {
+      "prepMinutes": 5,
+      "cookMinutes": 15,
+      "reheatingRequired": false,
+      "coldSuitable": true,
+      "portable": true,
+      "fridgeRequired": true,
+      "freezerSuitable": false,
+      "mealPrepSuitable": true,
+      "finalWeightG": 310,
+      "finalVolumeMl": null,
+      "yieldNotes": null
+    },
+    "tags": {
+      "families": [
+        "grain_bowl"
+      ],
+      "cuisines": [
+        "mediterranean"
+      ],
+      "practical": [
+        "portable"
+      ]
+    },
+    "culinaryReview": {
+      "status": "approved",
+      "notes": "Deterministic Phase 4 smoke fixture; not production culinary content."
+    }
+  },
+  {
+    "candidateId": "p4-reject-duplicate",
+    "i18n": {
+      "it": {
+        "title": "Salmone e riso variante",
+        "description": "Ricetta di sviluppo per verificare la pipeline Phase 4.",
+        "instructions": [
+          "Cuoci gli ingredienti se necessario.",
+          "Combina e servi."
+        ]
+      },
+      "en": {
+        "title": "Salmon and rice variant",
+        "description": "Development recipe used to verify the Phase 4 pipeline.",
+        "instructions": [
+          "Cook ingredients as needed.",
+          "Combine and serve."
+        ]
+      }
+    },
+    "mealArchetypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredientLines": [
+      {
+        "ingredientId": "ing_salmon",
+        "amount": 160,
+        "unit": "g"
+      },
+      {
+        "ingredientId": "ing_rice_cooked",
+        "amount": 150,
+        "unit": "g"
+      }
+    ],
+    "practical": {
+      "prepMinutes": 5,
+      "cookMinutes": 15,
+      "reheatingRequired": false,
+      "coldSuitable": true,
+      "portable": true,
+      "fridgeRequired": true,
+      "freezerSuitable": false,
+      "mealPrepSuitable": true,
+      "finalWeightG": 310,
+      "finalVolumeMl": null,
+      "yieldNotes": null
+    },
+    "tags": {
+      "families": [
+        "grain_bowl"
+      ],
+      "cuisines": [
+        "mediterranean"
+      ],
+      "practical": [
+        "portable"
+      ]
+    },
+    "culinaryReview": {
+      "status": "approved",
+      "notes": "Deterministic Phase 4 smoke fixture; not production culinary content."
+    }
+  },
+  {
+    "candidateId": "p4-c",
+    "i18n": {
+      "it": {
+        "title": "Riso e zucchine",
+        "description": "Ricetta di sviluppo per verificare la pipeline Phase 4.",
+        "instructions": [
+          "Cuoci gli ingredienti se necessario.",
+          "Combina e servi."
+        ]
+      },
+      "en": {
+        "title": "Rice and zucchini",
+        "description": "Development recipe used to verify the Phase 4 pipeline.",
+        "instructions": [
+          "Cook ingredients as needed.",
+          "Combine and serve."
+        ]
+      }
+    },
+    "mealArchetypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredientLines": [
+      {
+        "ingredientId": "ing_rice_cooked",
+        "amount": 250,
+        "unit": "g"
+      },
+      {
+        "ingredientId": "ing_zucchini",
+        "amount": 220,
+        "unit": "g"
+      }
+    ],
+    "practical": {
+      "prepMinutes": 5,
+      "cookMinutes": 15,
+      "reheatingRequired": false,
+      "coldSuitable": true,
+      "portable": true,
+      "fridgeRequired": true,
+      "freezerSuitable": false,
+      "mealPrepSuitable": true,
+      "finalWeightG": 470,
+      "finalVolumeMl": null,
+      "yieldNotes": null
+    },
+    "tags": {
+      "families": [
+        "grain_side"
+      ],
+      "cuisines": [
+        "mediterranean"
+      ],
+      "practical": [
+        "portable"
+      ]
+    },
+    "culinaryReview": {
+      "status": "approved",
+      "notes": "Deterministic Phase 4 smoke fixture; not production culinary content."
+    }
+  },
+  {
+    "candidateId": "p4-reject-range",
+    "i18n": {
+      "it": {
+        "title": "Zucchine leggere",
+        "description": "Ricetta di sviluppo per verificare la pipeline Phase 4.",
+        "instructions": [
+          "Cuoci gli ingredienti se necessario.",
+          "Combina e servi."
+        ]
+      },
+      "en": {
+        "title": "Light zucchini",
+        "description": "Development recipe used to verify the Phase 4 pipeline.",
+        "instructions": [
+          "Cook ingredients as needed.",
+          "Combine and serve."
+        ]
+      }
+    },
+    "mealArchetypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredientLines": [
+      {
+        "ingredientId": "ing_zucchini",
+        "amount": 300,
+        "unit": "g"
+      },
+      {
+        "ingredientId": "ing_olive_oil",
+        "amount": 3,
+        "unit": "g"
+      }
+    ],
+    "practical": {
+      "prepMinutes": 5,
+      "cookMinutes": 15,
+      "reheatingRequired": false,
+      "coldSuitable": true,
+      "portable": true,
+      "fridgeRequired": true,
+      "freezerSuitable": false,
+      "mealPrepSuitable": true,
+      "finalWeightG": 303,
+      "finalVolumeMl": null,
+      "yieldNotes": null
+    },
+    "tags": {
+      "families": [
+        "vegetable_side"
+      ],
+      "cuisines": [
+        "mediterranean"
+      ],
+      "practical": [
+        "portable"
+      ]
+    },
+    "culinaryReview": {
+      "status": "approved",
+      "notes": "Deterministic Phase 4 smoke fixture; not production culinary content."
+    }
+  },
+  {
+    "candidateId": "p4-d",
+    "i18n": {
+      "it": {
+        "title": "Salmone all olio",
+        "description": "Ricetta di sviluppo per verificare la pipeline Phase 4.",
+        "instructions": [
+          "Cuoci gli ingredienti se necessario.",
+          "Combina e servi."
+        ]
+      },
+      "en": {
+        "title": "Salmon with olive oil",
+        "description": "Development recipe used to verify the Phase 4 pipeline.",
+        "instructions": [
+          "Cook ingredients as needed.",
+          "Combine and serve."
+        ]
+      }
+    },
+    "mealArchetypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredientLines": [
+      {
+        "ingredientId": "ing_salmon",
+        "amount": 150,
+        "unit": "g"
+      },
+      {
+        "ingredientId": "ing_olive_oil",
+        "amount": 10,
+        "unit": "g"
+      }
+    ],
+    "practical": {
+      "prepMinutes": 5,
+      "cookMinutes": 15,
+      "reheatingRequired": false,
+      "coldSuitable": true,
+      "portable": true,
+      "fridgeRequired": true,
+      "freezerSuitable": false,
+      "mealPrepSuitable": true,
+      "finalWeightG": 160,
+      "finalVolumeMl": null,
+      "yieldNotes": null
+    },
+    "tags": {
+      "families": [
+        "fish_component"
+      ],
+      "cuisines": [
+        "mediterranean"
+      ],
+      "practical": [
+        "portable"
+      ]
+    },
+    "culinaryReview": {
+      "status": "approved",
+      "notes": "Deterministic Phase 4 smoke fixture; not production culinary content."
+    }
+  },
+  {
+    "candidateId": "p4-e",
+    "i18n": {
+      "it": {
+        "title": "Riso all olio",
+        "description": "Ricetta di sviluppo per verificare la pipeline Phase 4.",
+        "instructions": [
+          "Cuoci gli ingredienti se necessario.",
+          "Combina e servi."
+        ]
+      },
+      "en": {
+        "title": "Rice with olive oil",
+        "description": "Development recipe used to verify the Phase 4 pipeline.",
+        "instructions": [
+          "Cook ingredients as needed.",
+          "Combine and serve."
+        ]
+      }
+    },
+    "mealArchetypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredientLines": [
+      {
+        "ingredientId": "ing_rice_cooked",
+        "amount": 250,
+        "unit": "g"
+      },
+      {
+        "ingredientId": "ing_olive_oil",
+        "amount": 10,
+        "unit": "g"
+      }
+    ],
+    "practical": {
+      "prepMinutes": 5,
+      "cookMinutes": 15,
+      "reheatingRequired": false,
+      "coldSuitable": true,
+      "portable": true,
+      "fridgeRequired": true,
+      "freezerSuitable": false,
+      "mealPrepSuitable": true,
+      "finalWeightG": 260,
+      "finalVolumeMl": null,
+      "yieldNotes": null
+    },
+    "tags": {
+      "families": [
+        "grain_side"
+      ],
+      "cuisines": [
+        "mediterranean"
+      ],
+      "practical": [
+        "portable"
+      ]
+    },
+    "culinaryReview": {
+      "status": "approved",
+      "notes": "Deterministic Phase 4 smoke fixture; not production culinary content."
+    }
+  }
+]

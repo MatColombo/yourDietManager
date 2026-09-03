@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/generation-run.schema.json",
+  "title": "GenerationRun",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "generationRunId",
+    "generatorVersion",
+    "solverVersion",
+    "seed",
+    "catalogVersion",
+    "configSnapshotHash",
+    "configSnapshot",
+    "horizon",
+    "createdAt",
+    "diagnostics",
+    "reason",
+    "previousGenerationRunId"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "generationRunId": {
+      "type": "string"
+    },
+    "generatorVersion": {
+      "type": "string"
+    },
+    "solverVersion": {
+      "type": "string"
+    },
+    "seed": {
+      "type": "string"
+    },
+    "catalogVersion": {
+      "type": "string"
+    },
+    "configSnapshotHash": {
+      "type": "string",
+      "minLength": 16
+    },
+    "configSnapshot": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "horizon": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "startDate",
+        "endDate"
+      ],
+      "properties": {
+        "startDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "diagnostics": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "reason": {
+      "enum": [
+        "initial",
+        "manual_regeneration",
+        "rebalance",
+        "horizon_extension"
+      ]
+    },
+    "previousGenerationRunId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

@@ -1,0 +1,421 @@
+{
+  "appConfig": {
+    "schemaVersion": 1,
+    "locale": "it",
+    "timeZone": "Europe/Rome",
+    "nutritionProfileId": "nutrition-default",
+    "allergyIntoleranceProfileId": "allergy-profile-main",
+    "foodPreferencesId": "food-preferences-main",
+    "themeProfileId": "theme-user",
+    "mealClassIds": [
+      "mc-breakfast",
+      "mc-lunch",
+      "mc-dinner",
+      "mc-shift-snack"
+    ],
+    "dayClassIds": [
+      "dc-work",
+      "dc-night",
+      "dc-rest"
+    ],
+    "cycleId": "cycle-6",
+    "shoppingPeopleMultiplier": 2.1,
+    "measurementSystem": "metric",
+    "weekStart": "monday"
+  },
+  "nutritionProfiles": [
+    {
+      "schemaVersion": 1,
+      "id": "nutrition-default",
+      "dailyEnergyKcal": 1900,
+      "energyTolerancePct": 5,
+      "preset": "higher_protein",
+      "nutrients": {
+        "proteinG": {
+          "min": 100,
+          "target": 120,
+          "max": null,
+          "weight": 2.0,
+          "enabled": true
+        },
+        "carbsG": {
+          "min": null,
+          "target": 210,
+          "max": 250,
+          "weight": 1.0,
+          "enabled": true
+        },
+        "fatG": {
+          "min": 50,
+          "target": 65,
+          "max": 80,
+          "weight": 1.0,
+          "enabled": true
+        },
+        "fiberG": {
+          "min": 20,
+          "target": 27,
+          "max": 35,
+          "weight": 1.4,
+          "enabled": true
+        }
+      },
+      "dayArchetypeModifiers": {
+        "night": {
+          "mode": "percent",
+          "value": 8
+        },
+        "rest": {
+          "mode": "kcal",
+          "value": -100
+        }
+      }
+    }
+  ],
+  "allergyIntoleranceProfiles": [
+    {
+      "schemaVersion": 1,
+      "id": "allergy-profile-main",
+      "rules": [
+        {
+          "id": "rule-peanut",
+          "kind": "allergy",
+          "targetType": "allergen",
+          "targetId": "peanuts",
+          "label": "Arachidi",
+          "enabled": true,
+          "notes": ""
+        }
+      ]
+    }
+  ],
+  "foodPreferences": [
+    {
+      "schemaVersion": 1,
+      "id": "food-preferences-main",
+      "rules": [
+        {
+          "id": "pref-eggs",
+          "targetType": "foodCategory",
+          "targetId": "eggs",
+          "level": "rarely",
+          "autoExclude": false,
+          "frequency": {
+            "maxOccurrences": 2,
+            "windowDays": 7
+          }
+        },
+        {
+          "id": "pref-legumes",
+          "targetType": "foodCategory",
+          "targetId": "legumes",
+          "level": "more_often",
+          "autoExclude": false,
+          "frequency": null
+        }
+      ]
+    }
+  ],
+  "themeProfiles": [
+    {
+      "schemaVersion": 1,
+      "id": "theme-user",
+      "mode": "system",
+      "preset": "minimal",
+      "density": "compact",
+      "fontScale": 1.0,
+      "tokens": {
+        "primary": "#2F6B4F",
+        "secondary": "#5B6F9E",
+        "surface": "#FFFFFF",
+        "background": "#F5F7F5",
+        "text": "#1B1F1D",
+        "mutedText": "#5A625E",
+        "border": "#C8D0CC",
+        "success": "#2E7D32",
+        "warning": "#8A5A00",
+        "danger": "#B3261E",
+        "focusRing": "#005FCC",
+        "borderRadiusScale": 1.0
+      }
+    }
+  ],
+  "mealClasses": [
+    {
+      "schemaVersion": 1,
+      "id": "mc-breakfast",
+      "name": "Colazione",
+      "abbreviation": "CO",
+      "mealArchetype": "breakfast",
+      "energyShare": {
+        "target": 0.22,
+        "min": 0.15,
+        "max": 0.3
+      },
+      "rules": [
+        {
+          "ruleType": "flavor",
+          "target": "sweet",
+          "strength": "prefer"
+        }
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mc-lunch",
+      "name": "Pranzo",
+      "abbreviation": "PR",
+      "mealArchetype": "lunch",
+      "energyShare": {
+        "target": 0.3,
+        "min": 0.22,
+        "max": 0.38
+      },
+      "rules": [
+        {
+          "ruleType": "practical",
+          "target": "prepMinutes",
+          "operator": "lte",
+          "value": 30,
+          "strength": "slight_prefer"
+        }
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mc-dinner",
+      "name": "Cena",
+      "abbreviation": "CE",
+      "mealArchetype": "dinner",
+      "energyShare": {
+        "target": 0.28,
+        "min": 0.2,
+        "max": 0.36
+      },
+      "rules": [
+        {
+          "ruleType": "foodCategory",
+          "target": "fish",
+          "strength": "avoid"
+        },
+        {
+          "ruleType": "tag",
+          "target": "spicy",
+          "strength": "avoid"
+        }
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mc-shift-snack",
+      "name": "Pausa lavoro",
+      "abbreviation": "PL",
+      "mealArchetype": "during_shift",
+      "energyShare": {
+        "target": 0.12,
+        "min": 0.07,
+        "max": 0.18
+      },
+      "rules": [
+        {
+          "ruleType": "tag",
+          "target": "portable",
+          "strength": "prefer"
+        }
+      ]
+    }
+  ],
+  "dayClasses": [
+    {
+      "schemaVersion": 1,
+      "id": "dc-work",
+      "name": "Lavoro",
+      "abbreviation": "LA",
+      "color": "#4A8F55",
+      "dayArchetype": "day",
+      "workWindows": [
+        {
+          "start": "08:00",
+          "end": "17:00",
+          "endDayOffset": 0
+        }
+      ],
+      "capabilities": {
+        "fridge": "yes",
+        "reheating": "yes",
+        "cooking": false,
+        "complexSnack": true,
+        "portabilityRequired": true,
+        "maxPrepMinutes": 30
+      },
+      "mealSlots": [
+        {
+          "id": "slot-breakfast",
+          "mealClassId": "mc-breakfast",
+          "time": "07:00",
+          "dayOffset": 0,
+          "mode": "planned",
+          "energyBudgetKcal": null,
+          "energyShare": 0.22,
+          "guidanceKeys": [],
+          "parallel": false,
+          "proteinMinG": null
+        },
+        {
+          "id": "slot-lunch",
+          "mealClassId": "mc-lunch",
+          "time": "13:00",
+          "dayOffset": 0,
+          "mode": "external",
+          "energyBudgetKcal": 600,
+          "energyShare": null,
+          "guidanceKeys": [
+            "externalMeal.protein",
+            "externalMeal.vegetables"
+          ],
+          "parallel": false,
+          "proteinMinG": 25,
+          "estimatedNutritionPolicy": "budget_only"
+        },
+        {
+          "id": "slot-snack",
+          "mealClassId": "mc-shift-snack",
+          "time": "16:30",
+          "dayOffset": 0,
+          "mode": "planned",
+          "energyBudgetKcal": null,
+          "energyShare": 0.12,
+          "guidanceKeys": [],
+          "parallel": false,
+          "proteinMinG": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "id": "dc-night",
+      "name": "Notte",
+      "abbreviation": "NT",
+      "color": "#243B7B",
+      "dayArchetype": "night",
+      "workWindows": [
+        {
+          "start": "20:00",
+          "end": "08:00",
+          "endDayOffset": 1
+        }
+      ],
+      "capabilities": {
+        "fridge": "yes",
+        "reheating": "no",
+        "cooking": false,
+        "complexSnack": false,
+        "portabilityRequired": true,
+        "maxPrepMinutes": 20
+      },
+      "mealSlots": [
+        {
+          "id": "slot-pre",
+          "mealClassId": "mc-dinner",
+          "time": "19:00",
+          "dayOffset": 0,
+          "mode": "planned",
+          "energyBudgetKcal": null,
+          "energyShare": 0.28,
+          "guidanceKeys": [],
+          "parallel": false,
+          "proteinMinG": null
+        },
+        {
+          "id": "slot-night",
+          "mealClassId": "mc-shift-snack",
+          "time": "02:30",
+          "dayOffset": 1,
+          "mode": "planned",
+          "energyBudgetKcal": null,
+          "energyShare": 0.15,
+          "guidanceKeys": [],
+          "parallel": false,
+          "proteinMinG": null
+        }
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "id": "dc-rest",
+      "name": "Riposo",
+      "abbreviation": "RI",
+      "color": "#5F876D",
+      "dayArchetype": "rest",
+      "workWindows": [],
+      "capabilities": {
+        "fridge": "yes",
+        "reheating": "yes",
+        "cooking": true,
+        "complexSnack": true,
+        "portabilityRequired": false,
+        "maxPrepMinutes": 45
+      },
+      "mealSlots": [
+        {
+          "id": "slot-rest-breakfast",
+          "mealClassId": "mc-breakfast",
+          "time": "08:30",
+          "dayOffset": 0,
+          "mode": "planned",
+          "energyBudgetKcal": null,
+          "energyShare": 0.22,
+          "guidanceKeys": [],
+          "parallel": false,
+          "proteinMinG": null
+        },
+        {
+          "id": "slot-rest-dinner",
+          "mealClassId": "mc-dinner",
+          "time": "20:00",
+          "dayOffset": 0,
+          "mode": "planned",
+          "energyBudgetKcal": null,
+          "energyShare": 0.28,
+          "guidanceKeys": [],
+          "parallel": false,
+          "proteinMinG": null
+        }
+      ]
+    }
+  ],
+  "cycles": [
+    {
+      "schemaVersion": 1,
+      "id": "cycle-6",
+      "name": "Ciclo personale 6 giorni",
+      "length": 6,
+      "days": [
+        {
+          "cycleDay": 1,
+          "dayClassId": "dc-work"
+        },
+        {
+          "cycleDay": 2,
+          "dayClassId": "dc-work"
+        },
+        {
+          "cycleDay": 3,
+          "dayClassId": "dc-night"
+        },
+        {
+          "cycleDay": 4,
+          "dayClassId": "dc-night"
+        },
+        {
+          "cycleDay": 5,
+          "dayClassId": "dc-rest"
+        },
+        {
+          "cycleDay": 6,
+          "dayClassId": "dc-rest"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "format": "yourDietManager-backup",
+  "formatVersion": 1,
+  "appVersion": "1.0.0",
+  "dbSchemaVersion": 1,
+  "contentSchemaVersion": 1,
+  "catalog": {"catalogVersion":"1.0.0"},
+  "createdAt": "2026-09-03T12:00:00Z",
+  "payload": {
+    "configuration": {"appConfigs":[],"nutritionProfiles":[],"allergyIntoleranceProfiles":[],"foodPreferences":[],"themeProfiles":[],"mealClasses":[],"dayClasses":[],"cycles":[]},
+    "customIngredients": [],
+    "customIngredientRevisions": [],
+    "customRecipes": [],
+    "customRecipeVersions": [],
+    "plans": [],
+    "calendarDays": [],
+    "generationRuns": [],
+    "operations": [],
+    "shoppingChecklists": []
+  },
+  "sha256": null
+}

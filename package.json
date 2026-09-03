@@ -1,0 +1,25 @@
+{
+  "name": "yourdietmanager",
+  "private": true,
+  "version": "1.0.0-rc.1",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev-server.mjs",
+    "lint": "node scripts/lint.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "build": "node scripts/build.mjs",
+    "hardening:a11y": "node scripts/hardening/a11y-audit.mjs",
+    "hardening:scale": "node scripts/hardening/scale-benchmark.mjs",
+    "release:gate": "node scripts/hardening/release-gate.mjs",
+    "check": "npm run corpus:smoke && npm run planner:smoke && npm run lint && npm run test && npm run hardening:a11y && npm run hardening:scale && npm run build",
+    "corpus:scan": "node scripts/corpus/scan.mjs",
+    "corpus:plan": "node scripts/corpus/plan.mjs",
+    "corpus:smoke": "node scripts/corpus/build-phase4-smoke.mjs",
+    "corpus:import-usda": "node scripts/corpus/import-usda-foundation.mjs",
+    "corpus:materialize-usda": "node scripts/corpus/materialize-usda-reviewed.mjs",
+    "corpus:process": "node scripts/corpus/process-batch.mjs",
+    "corpus:apply": "node scripts/corpus/apply-batch.mjs",
+    "corpus:publish": "node scripts/corpus/publish-release.mjs",
+    "planner:smoke": "node scripts/planner/build-phase5-smoke.mjs"
+  }
+}

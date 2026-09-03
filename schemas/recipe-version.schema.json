@@ -1,0 +1,397 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/recipe-version.schema.json",
+  "title": "RecipeVersion",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "recipeVersionId",
+    "recipeId",
+    "versionNumber",
+    "origin",
+    "catalogVersion",
+    "i18n",
+    "servingCount",
+    "mealArchetypes",
+    "ingredientLines",
+    "calculatedNutrition",
+    "practical",
+    "tags",
+    "allergenIds",
+    "searchTokens",
+    "calculationAlgorithmVersion",
+    "inputDigest",
+    "contentHash",
+    "generation",
+    "quality",
+    "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "recipeVersionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recipeId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "versionNumber": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "supersedesVersionId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "origin": {
+      "enum": [
+        "base",
+        "user"
+      ]
+    },
+    "catalogVersion": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "i18n": {
+      "type": "object",
+      "required": [
+        "it",
+        "en"
+      ],
+      "properties": {
+        "it": {
+          "$ref": "#/$defs/text"
+        },
+        "en": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/text"
+      }
+    },
+    "servingCount": {
+      "const": 1
+    },
+    "mealArchetypes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "domain-enums.schema.json#/$defs/mealArchetype"
+      },
+      "uniqueItems": true
+    },
+    "ingredientLines": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "ingredientId",
+          "ingredientRevisionId",
+          "amount",
+          "unit",
+          "normalizedAmount",
+          "normalizedUnit",
+          "optional"
+        ],
+        "properties": {
+          "ingredientId": {
+            "type": "string"
+          },
+          "ingredientRevisionId": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "unit": {
+            "type": "string"
+          },
+          "normalizedAmount": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "normalizedUnit": {
+            "enum": [
+              "g",
+              "ml"
+            ]
+          },
+          "optional": {
+            "type": "boolean"
+          },
+          "notesKey": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "calculatedNutrition": {
+      "$ref": "#/$defs/nutrition"
+    },
+    "practical": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "prepMinutes",
+        "cookMinutes",
+        "reheatingRequired",
+        "coldSuitable",
+        "portable",
+        "fridgeRequired",
+        "mealPrepSuitable"
+      ],
+      "properties": {
+        "prepMinutes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cookMinutes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "reheatingRequired": {
+          "type": "boolean"
+        },
+        "coldSuitable": {
+          "type": "boolean"
+        },
+        "portable": {
+          "type": "boolean"
+        },
+        "fridgeRequired": {
+          "type": "boolean"
+        },
+        "freezerSuitable": {
+          "type": "boolean"
+        },
+        "mealPrepSuitable": {
+          "type": "boolean"
+        },
+        "finalWeightG": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
+        },
+        "finalVolumeMl": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "exclusiveMinimum": 0
+        },
+        "yieldNotes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "tags": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "families": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "cuisines": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "diet": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "flavor": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "practical": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "allergenIds": {
+      "type": "array",
+      "items": {
+        "$ref": "domain-enums.schema.json#/$defs/allergenId"
+      },
+      "uniqueItems": true
+    },
+    "searchTokens": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "calculationAlgorithmVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "inputDigest": {
+      "type": "string",
+      "minLength": 16
+    },
+    "contentHash": {
+      "type": "string",
+      "minLength": 16
+    },
+    "generation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pipelineVersion",
+        "generatedAt"
+      ],
+      "properties": {
+        "jobId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pipelineVersion": {
+          "type": "string"
+        },
+        "sourceLocale": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "generatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "generated",
+            "validated",
+            "curated"
+          ]
+        },
+        "reviewNotes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "text": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "instructions"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string"
+        },
+        "instructions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "nutrition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "energyKcal",
+        "proteinG",
+        "carbsG",
+        "fatG",
+        "fiberG"
+      ],
+      "properties": {
+        "energyKcal": {
+          "type": "number",
+          "minimum": 0
+        },
+        "proteinG": {
+          "type": "number",
+          "minimum": 0
+        },
+        "carbsG": {
+          "type": "number",
+          "minimum": 0
+        },
+        "fatG": {
+          "type": "number",
+          "minimum": 0
+        },
+        "fiberG": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    }
+  }
+}

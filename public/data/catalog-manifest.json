@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "0.3.0-dev",
+  "builtAt": "2026-09-03T12:00:00Z",
+  "appCompatibility": {
+    "minVersion": "0.3.0",
+    "maxVersion": null
+  },
+  "locales": [
+    "it",
+    "en"
+  ],
+  "pipelineVersion": "phase3-fixture",
+  "calculationAlgorithmVersion": "nutrition-core-1",
+  "ingredientFamilies": {
+    "count": 4,
+    "shards": [
+      {
+        "path": "ingredients/ingredient-families-0001.json",
+        "count": 4,
+        "sha256": "cfa280c127e9ec1e5eb5ee7a13a1c539a9ec64a321df7c667d386c7ff916c5c6",
+        "recordIds": [
+          "ing_salmon",
+          "ing_rice_cooked",
+          "ing_zucchini",
+          "ing_olive_oil"
+        ]
+      }
+    ]
+  },
+  "ingredientRevisions": {
+    "count": 4,
+    "shards": [
+      {
+        "path": "ingredients/ingredient-revisions-0001.json",
+        "count": 4,
+        "sha256": "fb59e403186e1fcec154bc745c4eebae8d0611786d4a971e76f5b29433841580",
+        "recordIds": [
+          "ingrev_salmon_raw_v2",
+          "ingrev_rice_cooked_v2",
+          "ingrev_zucchini_raw_v2",
+          "ingrev_olive_oil_v2"
+        ]
+      }
+    ]
+  },
+  "recipeFamilies": {
+    "count": 3,
+    "shards": [
+      {
+        "path": "recipes/recipe-families-0001.json",
+        "count": 3,
+        "sha256": "aa9929dfb0c47ad677e3dc790eb98041ab838d353effb1885f2a9aed73a2e706",
+        "recordIds": [
+          "rec_salmon_rice",
+          "rec_zucchini_rice",
+          "rec_salmon_zucchini"
+        ]
+      }
+    ]
+  },
+  "recipeVersions": {
+    "count": 3,
+    "shards": [
+      {
+        "path": "recipes/recipe-versions-0001.json",
+        "count": 3,
+        "sha256": "8c55d85bc22a44c14588452069cd501ad6f7740387191bcdeb5573f64fbd8dbc",
+        "recordIds": [
+          "recver_salmon_rice_v2",
+          "recver_zucchini_rice_v1",
+          "recver_salmon_zucchini_v1"
+        ]
+      }
+    ]
+  },
+  "packs": [
+    {
+      "packId": "core",
+      "labelKey": "catalog.pack.core.label",
+      "descriptionKey": "catalog.pack.core.description",
+      "required": true,
+      "estimatedBytes": 12000,
+      "recipeVersionIds": [
+        "recver_salmon_rice_v2"
+      ]
+    },
+    {
+      "packId": "quick",
+      "labelKey": "catalog.pack.quick.label",
+      "descriptionKey": "catalog.pack.quick.description",
+      "required": false,
+      "estimatedBytes": 5000,
+      "recipeVersionIds": [
+        "recver_zucchini_rice_v1"
+      ]
+    },
+    {
+      "packId": "high_protein",
+      "labelKey": "catalog.pack.highProtein.label",
+      "descriptionKey": "catalog.pack.highProtein.description",
+      "required": false,
+      "estimatedBytes": 5000,
+      "recipeVersionIds": [
+        "recver_salmon_zucchini_v1",
+        "recver_salmon_rice_v2"
+      ]
+    },
+    {
+      "packId": "vegetarian",
+      "labelKey": "catalog.pack.vegetarian.label",
+      "descriptionKey": "catalog.pack.vegetarian.description",
+      "required": false,
+      "estimatedBytes": 5000,
+      "recipeVersionIds": [
+        "recver_zucchini_rice_v1"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,238 @@
+{
+  "schemaVersion": 1,
+  "snapshotId": "snapshot-0.4.0-dev-e71c65323c79",
+  "catalogVersion": "0.4.0-dev",
+  "policyId": "corpus-policy-phase4-smoke",
+  "policyVersion": "1.0.0",
+  "recipeCount": 8,
+  "activeRecipeCount": 8,
+  "coverageCells": [
+    {
+      "targetId": "smoke-lunch",
+      "currentCount": 8,
+      "denominator": 8,
+      "currentShare": 1,
+      "normalizedDeficit": 0,
+      "weightedDeficit": 0
+    },
+    {
+      "targetId": "smoke-dinner",
+      "currentCount": 8,
+      "denominator": 8,
+      "currentShare": 1,
+      "normalizedDeficit": 0,
+      "weightedDeficit": 0
+    },
+    {
+      "targetId": "smoke-portable",
+      "currentCount": 7,
+      "denominator": 8,
+      "currentShare": 0.875,
+      "normalizedDeficit": 0,
+      "weightedDeficit": 0
+    }
+  ],
+  "distributions": {
+    "mealArchetypes": [
+      {
+        "key": "dinner",
+        "count": 8
+      },
+      {
+        "key": "lunch",
+        "count": 8
+      }
+    ],
+    "energyBands": [
+      {
+        "key": "kcal-200-399",
+        "count": 3
+      },
+      {
+        "key": "kcal-400-599",
+        "count": 5
+      }
+    ],
+    "proteinBands": [
+      {
+        "key": "protein-high",
+        "count": 2
+      },
+      {
+        "key": "protein-low",
+        "count": 3
+      },
+      {
+        "key": "protein-medium",
+        "count": 3
+      }
+    ],
+    "fiberBands": [
+      {
+        "key": "fiber-low",
+        "count": 8
+      }
+    ],
+    "practicality": [
+      {
+        "key": "cold",
+        "count": 7
+      },
+      {
+        "key": "hot",
+        "count": 1
+      },
+      {
+        "key": "meal_prep",
+        "count": 8
+      },
+      {
+        "key": "portable",
+        "count": 7
+      },
+      {
+        "key": "quick",
+        "count": 6
+      }
+    ],
+    "diet": [
+      {
+        "key": "high_protein",
+        "count": 2
+      },
+      {
+        "key": "vegetarian",
+        "count": 3
+      }
+    ],
+    "recipeFamilies": [
+      {
+        "key": "fish_component",
+        "count": 1
+      },
+      {
+        "key": "fish_side",
+        "count": 1
+      },
+      {
+        "key": "grain_bowl",
+        "count": 3
+      },
+      {
+        "key": "grain_side",
+        "count": 2
+      },
+      {
+        "key": "protein_plate",
+        "count": 1
+      }
+    ],
+    "cuisines": [
+      {
+        "key": "mediterranean",
+        "count": 8
+      }
+    ],
+    "ingredientCategories": [
+      {
+        "key": "fats_oils",
+        "count": 5
+      },
+      {
+        "key": "fish_seafood",
+        "count": 5
+      },
+      {
+        "key": "grains",
+        "count": 5
+      },
+      {
+        "key": "vegetables",
+        "count": 5
+      }
+    ]
+  },
+  "ingredientUsage": [
+    {
+      "ingredientId": "ing_olive_oil",
+      "recipeCount": 5,
+      "primaryCount": 0,
+      "recipeShare": 0.625,
+      "primaryShare": 0
+    },
+    {
+      "ingredientId": "ing_rice_cooked",
+      "recipeCount": 5,
+      "primaryCount": 3,
+      "recipeShare": 0.625,
+      "primaryShare": 0.375
+    },
+    {
+      "ingredientId": "ing_salmon",
+      "recipeCount": 5,
+      "primaryCount": 2,
+      "recipeShare": 0.625,
+      "primaryShare": 0.25
+    },
+    {
+      "ingredientId": "ing_zucchini",
+      "recipeCount": 5,
+      "primaryCount": 3,
+      "recipeShare": 0.625,
+      "primaryShare": 0.375
+    }
+  ],
+  "ingredientPairUsage": [
+    {
+      "ingredientIdA": "ing_olive_oil",
+      "ingredientIdB": "ing_rice_cooked",
+      "coOccurrenceCount": 3,
+      "share": 0.375
+    },
+    {
+      "ingredientIdA": "ing_olive_oil",
+      "ingredientIdB": "ing_salmon",
+      "coOccurrenceCount": 3,
+      "share": 0.375
+    },
+    {
+      "ingredientIdA": "ing_olive_oil",
+      "ingredientIdB": "ing_zucchini",
+      "coOccurrenceCount": 3,
+      "share": 0.375
+    },
+    {
+      "ingredientIdA": "ing_rice_cooked",
+      "ingredientIdB": "ing_zucchini",
+      "coOccurrenceCount": 3,
+      "share": 0.375
+    },
+    {
+      "ingredientIdA": "ing_salmon",
+      "ingredientIdB": "ing_zucchini",
+      "coOccurrenceCount": 3,
+      "share": 0.375
+    },
+    {
+      "ingredientIdA": "ing_rice_cooked",
+      "ingredientIdB": "ing_salmon",
+      "coOccurrenceCount": 2,
+      "share": 0.25
+    }
+  ],
+  "similarity": {
+    "exactDuplicateCount": 0,
+    "nearDuplicateCount": 0,
+    "nearDuplicateShare": 0
+  },
+  "quality": {
+    "schemaErrors": 0,
+    "unknownIngredientReferences": 0,
+    "nutritionErrors": 0,
+    "allergenDerivationErrors": 0,
+    "missingRequiredLocaleFields": 0
+  },
+  "undercoveredTargetIds": [],
+  "contentDigest": "sha256:e71c65323c79920cdbf27cf3757996c9680689ad61e3c4f7bc042e372ff615fb",
+  "createdAt": "2026-09-03T14:08:00Z"
+}

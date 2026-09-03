@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "recipeVersionId": "recver_salmon_rice_v1",
+  "recipeId": "rec_salmon_rice",
+  "versionNumber": 1,
+  "supersedesVersionId": null,
+  "origin": "base",
+  "catalogVersion": "1.0.0",
+  "i18n": {
+    "it": {
+      "title": "Riso con salmone e zucchine",
+      "description": "Esempio strutturale.",
+      "instructions": [
+        "Cuoci il riso.",
+        "Cuoci salmone e zucchine.",
+        "Unisci e condisci."
+      ]
+    },
+    "en": {
+      "title": "Rice with salmon and zucchini",
+      "description": "Structural example.",
+      "instructions": [
+        "Cook the rice.",
+        "Cook the salmon and zucchini.",
+        "Combine and season."
+      ]
+    }
+  },
+  "servingCount": 1,
+  "mealArchetypes": [
+    "lunch",
+    "dinner"
+  ],
+  "ingredientLines": [
+    {
+      "ingredientId": "ing_rice_cooked",
+      "ingredientRevisionId": "ingrev_rice_cooked_v1",
+      "amount": 180,
+      "unit": "g",
+      "normalizedAmount": 180,
+      "normalizedUnit": "g",
+      "optional": false,
+      "notesKey": null
+    },
+    {
+      "ingredientId": "ing_salmon",
+      "ingredientRevisionId": "ingrev_salmon_raw_v1",
+      "amount": 120,
+      "unit": "g",
+      "normalizedAmount": 120,
+      "normalizedUnit": "g",
+      "optional": false,
+      "notesKey": null
+    },
+    {
+      "ingredientId": "ing_zucchini",
+      "ingredientRevisionId": "ingrev_zucchini_raw_v1",
+      "amount": 180,
+      "unit": "g",
+      "normalizedAmount": 180,
+      "normalizedUnit": "g",
+      "optional": false,
+      "notesKey": null
+    },
+    {
+      "ingredientId": "ing_olive_oil",
+      "ingredientRevisionId": "ingrev_olive_oil_v1",
+      "amount": 8,
+      "unit": "g",
+      "normalizedAmount": 8,
+      "normalizedUnit": "g",
+      "optional": false,
+      "notesKey": null
+    }
+  ],
+  "calculatedNutrition": {
+    "energyKcal": 590,
+    "proteinG": 35,
+    "carbsG": 62,
+    "fatG": 22,
+    "fiberG": 5
+  },
+  "practical": {
+    "prepMinutes": 10,
+    "cookMinutes": 20,
+    "reheatingRequired": false,
+    "coldSuitable": true,
+    "portable": true,
+    "fridgeRequired": true,
+    "freezerSuitable": false,
+    "mealPrepSuitable": true,
+    "finalWeightG": 480,
+    "finalVolumeMl": null,
+    "yieldNotes": null
+  },
+  "tags": {
+    "families": [
+      "grain_bowl"
+    ],
+    "cuisines": [
+      "mediterranean"
+    ],
+    "diet": [
+      "high_protein"
+    ]
+  },
+  "allergenIds": [
+    "fish"
+  ],
+  "searchTokens": [
+    "riso",
+    "salmone",
+    "zucchine",
+    "rice",
+    "salmon",
+    "zucchini",
+    "grain_bowl"
+  ],
+  "calculationAlgorithmVersion": "nutrition-core-1",
+  "inputDigest": "22222222222222222222222222222222",
+  "contentHash": "33333333333333333333333333333333",
+  "generation": {
+    "jobId": "batch-lunch-001",
+    "pipelineVersion": "recipe-pipeline-1",
+    "sourceLocale": "it",
+    "generatedAt": "2026-09-03T00:00:00Z"
+  },
+  "quality": {
+    "status": "validated",
+    "reviewNotes": null
+  },
+  "createdAt": "2026-09-03T00:00:00Z"
+}

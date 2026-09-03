@@ -1,0 +1,359 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/nutrition-profile.schema.json",
+  "title": "NutritionProfile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "dailyEnergyKcal",
+    "energyTolerancePct",
+    "preset",
+    "nutrients",
+    "dayArchetypeModifiers"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dailyEnergyKcal": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "energyTolerancePct": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 30
+    },
+    "preset": {
+      "enum": [
+        "balanced",
+        "higher_protein",
+        "lower_fiber",
+        "moderate_fiber",
+        "higher_fiber",
+        "moderate_carbs",
+        "custom"
+      ]
+    },
+    "nutrients": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "proteinG": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "enabled",
+            "min",
+            "target",
+            "max",
+            "weight"
+          ],
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "min": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "target": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "max": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "weight": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "enabled": {
+                    "const": false
+                  }
+                },
+                "required": [
+                  "enabled"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "min": {
+                    "type": "null"
+                  },
+                  "target": {
+                    "type": "null"
+                  },
+                  "max": {
+                    "type": "null"
+                  },
+                  "weight": {
+                    "const": 0
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "carbsG": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "enabled",
+            "min",
+            "target",
+            "max",
+            "weight"
+          ],
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "min": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "target": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "max": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "weight": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "enabled": {
+                    "const": false
+                  }
+                },
+                "required": [
+                  "enabled"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "min": {
+                    "type": "null"
+                  },
+                  "target": {
+                    "type": "null"
+                  },
+                  "max": {
+                    "type": "null"
+                  },
+                  "weight": {
+                    "const": 0
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "fatG": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "enabled",
+            "min",
+            "target",
+            "max",
+            "weight"
+          ],
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "min": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "target": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "max": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "weight": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "enabled": {
+                    "const": false
+                  }
+                },
+                "required": [
+                  "enabled"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "min": {
+                    "type": "null"
+                  },
+                  "target": {
+                    "type": "null"
+                  },
+                  "max": {
+                    "type": "null"
+                  },
+                  "weight": {
+                    "const": 0
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "fiberG": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "enabled",
+            "min",
+            "target",
+            "max",
+            "weight"
+          ],
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "min": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "target": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "max": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "weight": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "enabled": {
+                    "const": false
+                  }
+                },
+                "required": [
+                  "enabled"
+                ]
+              },
+              "then": {
+                "properties": {
+                  "min": {
+                    "type": "null"
+                  },
+                  "target": {
+                    "type": "null"
+                  },
+                  "max": {
+                    "type": "null"
+                  },
+                  "weight": {
+                    "const": 0
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "dayArchetypeModifiers": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "mode",
+          "value"
+        ],
+        "properties": {
+          "mode": {
+            "enum": [
+              "kcal",
+              "percent"
+            ]
+          },
+          "value": {
+            "type": "number",
+            "minimum": -1000,
+            "maximum": 1000
+          }
+        }
+      }
+    }
+  }
+}

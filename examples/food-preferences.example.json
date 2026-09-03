@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "food-preferences-main",
+  "rules": [
+    {
+      "id": "pref-eggs",
+      "targetType": "foodCategory",
+      "targetId": "eggs",
+      "level": "rarely",
+      "autoExclude": false,
+      "frequency": {
+        "maxOccurrences": 2,
+        "windowDays": 7
+      }
+    },
+    {
+      "id": "pref-legumes",
+      "targetType": "foodCategory",
+      "targetId": "legumes",
+      "level": "more_often",
+      "autoExclude": false,
+      "frequency": null
+    }
+  ]
+}

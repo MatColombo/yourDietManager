@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "planInstanceId": "plan_main",
+  "generationRunId": "genrun_20260903_001",
+  "startDate": "2026-09-07",
+  "endDate": "2026-10-06",
+  "status": "active",
+  "createdAt": "2026-09-03T00:00:00Z",
+  "updatedAt": "2026-09-03T00:00:00Z",
+  "continuationPolicy": {
+    "mode": "prompt",
+    "triggerDaysBeforeEnd": 3,
+    "extensionDays": 14
+  },
+  "previousPlanInstanceId": null
+}

@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "ingredientRevisionId": "ingrev_salmon_raw_v1",
+  "ingredientId": "ing_salmon",
+  "revisionNumber": 1,
+  "origin": "base",
+  "catalogVersion": "1.0.0",
+  "i18n": {
+    "it": {"name": "Salmone crudo", "aliases": ["salmone"]},
+    "en": {"name": "Raw salmon", "aliases": ["salmon"]}
+  },
+  "basis": {"amount": 100, "unit": "g", "state": "raw"},
+  "nutrition": {
+    "energyKcal": 208,
+    "proteinG": 20.4,
+    "carbsG": 0,
+    "fatG": 13.4,
+    "fiberG": 0,
+    "sugarsG": 0,
+    "saturatedFatG": 3.1,
+    "saltG": 0.15,
+    "sodiumMg": 59
+  },
+  "taxonomy": {
+    "foodGroup": "fish_seafood",
+    "foodSubgroup": "fatty_fish",
+    "flavorProfile": "savory",
+    "mealArchetypes": ["lunch", "dinner"],
+    "proteinRole": "high",
+    "fatRole": "high"
+  },
+  "allergenIds": ["fish"],
+  "conversions": [],
+  "source": {
+    "type": "curated",
+    "label": "Example curated source",
+    "reference": null,
+    "sourceRecordId": null,
+    "checkedAt": "2026-09-03T00:00:00Z",
+    "licenseNote": null
+  },
+  "quality": {"status": "validated", "confidence": "high", "notes": null},
+  "contentHash": "11111111111111111111111111111111",
+  "createdAt": "2026-09-03T00:00:00Z"
+}

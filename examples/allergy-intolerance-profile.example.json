@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "id": "allergy-profile-main",
+  "rules": [
+    {
+      "id": "rule-peanut",
+      "kind": "allergy",
+      "targetType": "allergen",
+      "targetId": "peanuts",
+      "label": "Arachidi",
+      "enabled": true,
+      "notes": ""
+    }
+  ]
+}

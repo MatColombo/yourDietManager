@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/recipe-corpus-snapshot.schema.json",
+  "title": "RecipeCorpusSnapshot",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "snapshotId",
+    "catalogVersion",
+    "policyId",
+    "policyVersion",
+    "recipeCount",
+    "activeRecipeCount",
+    "coverageCells",
+    "distributions",
+    "ingredientUsage",
+    "ingredientPairUsage",
+    "similarity",
+    "quality",
+    "undercoveredTargetIds",
+    "contentDigest",
+    "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "snapshotId": {"type": "string", "minLength": 1},
+    "catalogVersion": {"type": "string", "minLength": 1},
+    "policyId": {"type": "string", "minLength": 1},
+    "policyVersion": {"type": "string", "minLength": 1},
+    "recipeCount": {"type": "integer", "minimum": 0},
+    "activeRecipeCount": {"type": "integer", "minimum": 0},
+    "coverageCells": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "targetId",
+          "currentCount",
+          "denominator",
+          "currentShare",
+          "normalizedDeficit",
+          "weightedDeficit"
+        ],
+        "properties": {
+          "targetId": {"type": "string", "minLength": 1},
+          "currentCount": {"type": "integer", "minimum": 0},
+          "denominator": {"type": "integer", "minimum": 0},
+          "currentShare": {"type": "number", "minimum": 0},
+          "normalizedDeficit": {"type": "number", "minimum": 0, "maximum": 1},
+          "weightedDeficit": {"type": "number", "minimum": 0}
+        }
+      }
+    },
+    "distributions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mealArchetypes",
+        "energyBands",
+        "proteinBands",
+        "fiberBands",
+        "practicality",
+        "diet",
+        "recipeFamilies",
+        "cuisines",
+        "ingredientCategories"
+      ],
+      "properties": {
+        "mealArchetypes": {"$ref": "#/$defs/countEntries"},
+        "energyBands": {"$ref": "#/$defs/countEntries"},
+        "proteinBands": {"$ref": "#/$defs/countEntries"},
+        "fiberBands": {"$ref": "#/$defs/countEntries"},
+        "practicality": {"$ref": "#/$defs/countEntries"},
+        "diet": {"$ref": "#/$defs/countEntries"},
+        "recipeFamilies": {"$ref": "#/$defs/countEntries"},
+        "cuisines": {"$ref": "#/$defs/countEntries"},
+        "ingredientCategories": {"$ref": "#/$defs/countEntries"}
+      }
+    },
+    "ingredientUsage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["ingredientId", "recipeCount", "primaryCount", "recipeShare", "primaryShare"],
+        "properties": {
+          "ingredientId": {"type": "string", "minLength": 1},
+          "recipeCount": {"type": "integer", "minimum": 0},
+          "primaryCount": {"type": "integer", "minimum": 0},
+          "recipeShare": {"type": "number", "minimum": 0},
+          "primaryShare": {"type": "number", "minimum": 0}
+        }
+      }
+    },
+    "ingredientPairUsage": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["ingredientIdA", "ingredientIdB", "coOccurrenceCount", "share"],
+        "properties": {
+          "ingredientIdA": {"type": "string", "minLength": 1},
+          "ingredientIdB": {"type": "string", "minLength": 1},
+          "coOccurrenceCount": {"type": "integer", "minimum": 0},
+          "share": {"type": "number", "minimum": 0}
+        }
+      }
+    },
+    "similarity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["exactDuplicateCount", "nearDuplicateCount", "nearDuplicateShare"],
+      "properties": {
+        "exactDuplicateCount": {"type": "integer", "minimum": 0},
+        "nearDuplicateCount": {"type": "integer", "minimum": 0},
+        "nearDuplicateShare": {"type": "number", "minimum": 0}
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaErrors",
+        "unknownIngredientReferences",
+        "nutritionErrors",
+        "allergenDerivationErrors",
+        "missingRequiredLocaleFields"
+      ],
+      "properties": {
+        "schemaErrors": {"type": "integer", "minimum": 0},
+        "unknownIngredientReferences": {"type": "integer", "minimum": 0},
+        "nutritionErrors": {"type": "integer", "minimum": 0},
+        "allergenDerivationErrors": {"type": "integer", "minimum": 0},
+        "missingRequiredLocaleFields": {"type": "integer", "minimum": 0}
+      }
+    },
+    "undercoveredTargetIds": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "contentDigest": {"type": "string", "minLength": 1},
+    "createdAt": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "countEntries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["key", "count"],
+        "properties": {
+          "key": {"type": "string", "minLength": 1},
+          "count": {"type": "integer", "minimum": 0}
+        }
+      }
+    }
+  }
+}

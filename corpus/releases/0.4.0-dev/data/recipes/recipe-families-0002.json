@@ -1,0 +1,38 @@
+[
+  {
+    "schemaVersion": 1,
+    "recipeId": "rec_a01ebdf0dcaf3c139fac",
+    "origin": "base",
+    "currentVersionId": "recver_a01ebdf0dcaf3c139fac37a2_v1",
+    "status": "active",
+    "createdAt": "2026-09-03T14:07:00Z",
+    "updatedAt": "2026-09-03T14:07:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "recipeId": "rec_49aa3237f33c228c2d03",
+    "origin": "base",
+    "currentVersionId": "recver_49aa3237f33c228c2d03cdb1_v1",
+    "status": "active",
+    "createdAt": "2026-09-03T14:07:00Z",
+    "updatedAt": "2026-09-03T14:07:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "recipeId": "rec_56854b1f020fbcb205ec",
+    "origin": "base",
+    "currentVersionId": "recver_56854b1f020fbcb205ec234a_v1",
+    "status": "active",
+    "createdAt": "2026-09-03T14:07:00Z",
+    "updatedAt": "2026-09-03T14:07:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "recipeId": "rec_ff90a5fa76c9fd090506",
+    "origin": "base",
+    "currentVersionId": "recver_ff90a5fa76c9fd090506efd4_v1",
+    "status": "active",
+    "createdAt": "2026-09-03T14:07:00Z",
+    "updatedAt": "2026-09-03T14:07:00Z"
+  }
+]

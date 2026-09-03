@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/food-preferences.schema.json",
+  "title": "FoodPreferences",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "rules"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string"
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "targetType",
+          "targetId",
+          "level",
+          "autoExclude"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "targetType": {
+            "enum": [
+              "ingredient",
+              "foodCategory",
+              "recipeTag",
+              "cuisine"
+            ]
+          },
+          "targetId": {
+            "type": "string"
+          },
+          "level": {
+            "enum": [
+              "more_often",
+              "normal",
+              "less_often",
+              "rarely"
+            ]
+          },
+          "autoExclude": {
+            "type": "boolean"
+          },
+          "frequency": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": false,
+            "required": [
+              "maxOccurrences",
+              "windowDays"
+            ],
+            "properties": {
+              "maxOccurrences": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "windowDays": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 31
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

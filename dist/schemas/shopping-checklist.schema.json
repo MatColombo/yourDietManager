@@ -1,0 +1,180 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/shopping-checklist.schema.json",
+  "title": "ShoppingChecklist",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "checklistId",
+    "planInstanceId",
+    "range",
+    "peopleMultiplier",
+    "sourcePlanUpdatedAt",
+    "items",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "checklistId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "planInstanceId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "range": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "startCivilDate",
+        "endCivilDate"
+      ],
+      "properties": {
+        "startCivilDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "endCivilDate": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "peopleMultiplier": {
+      "type": "number",
+      "minimum": 0.1,
+      "maximum": 20
+    },
+    "sourcePlanUpdatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "itemId",
+          "kind",
+          "label",
+          "checked",
+          "quantity",
+          "unit",
+          "ingredientId",
+          "sourceMealOccurrenceIds"
+        ],
+        "properties": {
+          "itemId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "derived",
+              "manual"
+            ]
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "checked": {
+            "type": "boolean"
+          },
+          "quantity": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "exclusiveMinimum": 0
+          },
+          "unit": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "ingredientId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "sourceMealOccurrenceIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          },
+          "notes": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "derived"
+                }
+              },
+              "required": [
+                "kind"
+              ]
+            },
+            "then": {
+              "properties": {
+                "ingredientId": {
+                  "type": "string"
+                },
+                "quantity": {
+                  "type": "number",
+                  "exclusiveMinimum": 0
+                }
+              },
+              "minProperties": 1
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "kind": {
+                  "const": "manual"
+                }
+              },
+              "required": [
+                "kind"
+              ]
+            },
+            "then": {
+              "properties": {
+                "sourceMealOccurrenceIds": {
+                  "maxItems": 0
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

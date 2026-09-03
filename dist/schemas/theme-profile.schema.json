@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/theme-profile.schema.json",
+  "title": "ThemeProfile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "mode",
+    "preset",
+    "density",
+    "fontScale",
+    "tokens"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string"
+    },
+    "mode": {
+      "enum": [
+        "system",
+        "light",
+        "dark"
+      ]
+    },
+    "preset": {
+      "enum": [
+        "minimal",
+        "warm",
+        "botanical",
+        "pastel",
+        "professional",
+        "dark",
+        "high_contrast",
+        "custom"
+      ]
+    },
+    "density": {
+      "enum": [
+        "compact",
+        "comfortable"
+      ]
+    },
+    "fontScale": {
+      "type": "number",
+      "minimum": 0.8,
+      "maximum": 1.5
+    },
+    "tokens": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "primary",
+        "secondary",
+        "surface",
+        "background",
+        "text",
+        "mutedText",
+        "border",
+        "success",
+        "warning",
+        "danger",
+        "focusRing",
+        "borderRadiusScale"
+      ],
+      "properties": {
+        "primary": {
+          "$ref": "domain-enums.schema.json#/$defs/hexColor"
+        },
+        "secondary": {
+          "$ref": "domain-enums.schema.json#/$defs/hexColor"
+        },
+        "surface": {
+          "$ref": "domain-enums.schema.json#/$defs/hexColor"
+        },
+        "background": {
+          "$ref": "domain-enums.schema.json#/$defs/hexColor"
+        },
+        "text": {
+          "$ref": "domain-enums.schema.json#/$defs/hexColor"
+        },
+        "mutedText": {
+          "$ref": "domain-enums.schema.json#/$defs/hexColor"
+        },
+        "border": {
+          "$ref": "domain-enums.schema.json#/$defs/hexColor"
+        },
+        "success": {
+          "$ref": "domain-enums.schema.json#/$defs/hexColor"
+        },
+        "warning": {
+          "$ref": "domain-enums.schema.json#/$defs/hexColor"
+        },
+        "danger": {
+          "$ref": "domain-enums.schema.json#/$defs/hexColor"
+        },
+        "focusRing": {
+          "$ref": "domain-enums.schema.json#/$defs/hexColor"
+        },
+        "borderRadiusScale": {
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 2.0
+        }
+      }
+    }
+  }
+}

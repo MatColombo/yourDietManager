@@ -1,0 +1,28 @@
+import path from 'node:path';
+import { SchemaRegistry } from '../../src/lib/schemaValidator.js';
+import { planNextBatch } from '../../src/corpus/corpusOrchestrator.js';
+import { loadCorpusInput, readJson, writeJson } from './io-lib.mjs';
+
+const snapshotFile = process.argv[2] || 'corpus/snapshots/latest.json';
+const mode = process.argv[3] || 'build';
+const policyFile = process.argv[4] || 'corpus/policies/v1-default.json';
+const corpusInput = process.argv[5] || 'public/data';
+const goalFileArg = process.argv[6] || null;
+const goalFile = goalFileArg === '-' ? null : goalFileArg;
+const targetCatalogVersion = process.argv[7] || '1.0.0';
+const explicitSeed = process.argv[8] || null;
+const registry = new SchemaRegistry(async file => readJson(path.join('schemas', file)));
+await registry.loadAll();
+const policy = await readJson(policyFile); const snapshot = await readJson(snapshotFile); const corpus = await loadCorpusInput(corpusInput);
+registry.assert('recipeCorpusPolicy', policy); registry.assert('recipeCorpusSnapshot', snapshot);
+let goal;
+if (goalFile) goal = await readJson(goalFile);
+else if (mode === 'build') goal = { targetRecipeCount: policy.targetCorpus.target };
+else if (mode === 'expand') goal = { acceptedAddCount: policy.batchPlanning.defaultAcceptedCount };
+else if (mode === 'improve') goal = { maxJobs: 1, allowRetire: false };
+else throw new Error('focused_expansion requires an explicit goal JSON file with focus/focusMode');
+const seed = explicitSeed || `cli-${mode}-${snapshot.contentDigest}`;
+const planned = await planNextBatch({ policy, snapshot, ingredientFamilies: corpus.ingredientFamilies, ingredientRevisions: corpus.ingredientRevisions, mode, goal, seed, targetCatalogVersion });
+registry.assert('recipeCorpusOrchestrationRun', planned.run); for (const job of planned.jobs) registry.assert('recipeGenerationJob', job);
+await writeJson(`corpus/runs/${planned.run.runId}.json`, planned.run); for (const job of planned.jobs) await writeJson(`corpus/jobs/${job.jobId}.json`, job);
+console.log(JSON.stringify({ run: planned.run, jobs: planned.jobs, rankedIntents: planned.rankedIntents || [] }, null, 2));

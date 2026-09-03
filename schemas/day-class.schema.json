@@ -1,0 +1,209 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/day-class.schema.json",
+  "title": "DayClass",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "name",
+    "abbreviation",
+    "color",
+    "dayArchetype",
+    "workWindows",
+    "capabilities",
+    "mealSlots"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "abbreviation": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2
+    },
+    "color": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}$"
+    },
+    "dayArchetype": {
+      "$ref": "domain-enums.schema.json#/$defs/dayArchetype"
+    },
+    "workWindows": {
+      "type": "array",
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "start",
+          "end",
+          "endDayOffset"
+        ],
+        "properties": {
+          "start": {
+            "$ref": "domain-enums.schema.json#/$defs/time24h"
+          },
+          "end": {
+            "$ref": "domain-enums.schema.json#/$defs/time24h"
+          },
+          "endDayOffset": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2
+          }
+        }
+      }
+    },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fridge",
+        "reheating",
+        "cooking",
+        "complexSnack",
+        "portabilityRequired"
+      ],
+      "properties": {
+        "fridge": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "reheating": {
+          "enum": [
+            "yes",
+            "no",
+            "unknown"
+          ]
+        },
+        "cooking": {
+          "type": "boolean"
+        },
+        "complexSnack": {
+          "type": "boolean"
+        },
+        "portabilityRequired": {
+          "type": "boolean"
+        },
+        "maxPrepMinutes": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    },
+    "mealSlots": {
+      "type": "array",
+      "maxItems": 31,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "mealClassId",
+          "time",
+          "dayOffset",
+          "mode"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "mealClassId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "time": {
+            "$ref": "domain-enums.schema.json#/$defs/time24h"
+          },
+          "dayOffset": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2
+          },
+          "mode": {
+            "enum": [
+              "planned",
+              "external"
+            ]
+          },
+          "energyBudgetKcal": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "energyShare": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+          },
+          "guidanceKeys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "parallel": {
+            "type": "boolean",
+            "default": false
+          },
+          "proteinMinG": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "estimatedNutritionPolicy": {
+            "enum": [
+              "unknown",
+              "budget_only",
+              "user_estimate"
+            ]
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "mode": {
+                  "const": "external"
+                }
+              },
+              "required": [
+                "mode"
+              ]
+            },
+            "then": {
+              "required": [
+                "estimatedNutritionPolicy"
+              ]
+            }
+          }
+        ]
+      }
+    }
+  }
+}

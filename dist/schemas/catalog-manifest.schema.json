@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/catalog-manifest.schema.json",
+  "title": "CatalogManifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "catalogVersion",
+    "builtAt",
+    "appCompatibility",
+    "locales",
+    "pipelineVersion",
+    "calculationAlgorithmVersion",
+    "ingredientFamilies",
+    "ingredientRevisions",
+    "recipeFamilies",
+    "recipeVersions",
+    "packs"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "catalogVersion": {
+      "type": "string"
+    },
+    "builtAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "appCompatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minVersion"
+      ],
+      "properties": {
+        "minVersion": {
+          "type": "string"
+        },
+        "maxVersion": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "locales": {
+      "type": "array",
+      "contains": {
+        "const": "it"
+      },
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "pipelineVersion": {
+      "type": "string"
+    },
+    "calculationAlgorithmVersion": {
+      "type": "string"
+    },
+    "ingredientFamilies": {
+      "$ref": "#/$defs/catalogPart"
+    },
+    "ingredientRevisions": {
+      "$ref": "#/$defs/catalogPart"
+    },
+    "recipeFamilies": {
+      "$ref": "#/$defs/catalogPart"
+    },
+    "recipeVersions": {
+      "$ref": "#/$defs/catalogPart"
+    },
+    "packs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "packId",
+          "labelKey",
+          "descriptionKey",
+          "required",
+          "estimatedBytes",
+          "recipeVersionIds"
+        ],
+        "properties": {
+          "packId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "labelKey": {
+            "type": "string",
+            "minLength": 1
+          },
+          "descriptionKey": {
+            "type": "string",
+            "minLength": 1
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "estimatedBytes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "recipeVersionIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          }
+        }
+      },
+      "uniqueItems": true
+    }
+  },
+  "$defs": {
+    "catalogPart": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "count",
+        "shards"
+      ],
+      "properties": {
+        "count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "shards": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "path",
+              "count",
+              "sha256"
+            ],
+            "properties": {
+              "path": {
+                "type": "string"
+              },
+              "count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "sha256": {
+                "type": "string",
+                "minLength": 16
+              },
+              "recordIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

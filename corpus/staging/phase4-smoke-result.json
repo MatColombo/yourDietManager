@@ -1,0 +1,819 @@
+{
+  "jobId": "batch-04ef295dce73e0",
+  "candidateCount": 7,
+  "acceptedCount": 5,
+  "rejectedCount": 2,
+  "targetAcceptedCount": 5,
+  "acceptanceRate": 0.7142857142857143,
+  "targetMet": true,
+  "diversityPassed": true,
+  "families": [
+    {
+      "schemaVersion": 1,
+      "recipeId": "rec_128e8af23d3ecbded190",
+      "origin": "base",
+      "currentVersionId": "recver_128e8af23d3ecbded19097a7_v1",
+      "status": "active",
+      "createdAt": "2026-09-03T14:07:00Z",
+      "updatedAt": "2026-09-03T14:07:00Z"
+    },
+    {
+      "schemaVersion": 1,
+      "recipeId": "rec_a01ebdf0dcaf3c139fac",
+      "origin": "base",
+      "currentVersionId": "recver_a01ebdf0dcaf3c139fac37a2_v1",
+      "status": "active",
+      "createdAt": "2026-09-03T14:07:00Z",
+      "updatedAt": "2026-09-03T14:07:00Z"
+    },
+    {
+      "schemaVersion": 1,
+      "recipeId": "rec_49aa3237f33c228c2d03",
+      "origin": "base",
+      "currentVersionId": "recver_49aa3237f33c228c2d03cdb1_v1",
+      "status": "active",
+      "createdAt": "2026-09-03T14:07:00Z",
+      "updatedAt": "2026-09-03T14:07:00Z"
+    },
+    {
+      "schemaVersion": 1,
+      "recipeId": "rec_56854b1f020fbcb205ec",
+      "origin": "base",
+      "currentVersionId": "recver_56854b1f020fbcb205ec234a_v1",
+      "status": "active",
+      "createdAt": "2026-09-03T14:07:00Z",
+      "updatedAt": "2026-09-03T14:07:00Z"
+    },
+    {
+      "schemaVersion": 1,
+      "recipeId": "rec_ff90a5fa76c9fd090506",
+      "origin": "base",
+      "currentVersionId": "recver_ff90a5fa76c9fd090506efd4_v1",
+      "status": "active",
+      "createdAt": "2026-09-03T14:07:00Z",
+      "updatedAt": "2026-09-03T14:07:00Z"
+    }
+  ],
+  "versions": [
+    {
+      "schemaVersion": 1,
+      "recipeVersionId": "recver_128e8af23d3ecbded19097a7_v1",
+      "recipeId": "rec_128e8af23d3ecbded190",
+      "versionNumber": 1,
+      "supersedesVersionId": null,
+      "origin": "base",
+      "catalogVersion": "0.4.0-dev",
+      "i18n": {
+        "it": {
+          "title": "Salmone e zucchine",
+          "description": "Ricetta di sviluppo per verificare la pipeline Phase 4.",
+          "instructions": [
+            "Cuoci gli ingredienti se necessario.",
+            "Combina e servi."
+          ]
+        },
+        "en": {
+          "title": "Salmon and zucchini",
+          "description": "Development recipe used to verify the Phase 4 pipeline.",
+          "instructions": [
+            "Cook ingredients as needed.",
+            "Combine and serve."
+          ]
+        }
+      },
+      "servingCount": 1,
+      "mealArchetypes": [
+        "lunch",
+        "dinner"
+      ],
+      "ingredientLines": [
+        {
+          "ingredientId": "ing_salmon",
+          "ingredientRevisionId": "ingrev_salmon_raw_v2_p4",
+          "amount": 130,
+          "unit": "g",
+          "normalizedAmount": 130,
+          "normalizedUnit": "g",
+          "optional": false,
+          "notesKey": null
+        },
+        {
+          "ingredientId": "ing_zucchini",
+          "ingredientRevisionId": "ingrev_zucchini_raw_v2_p4",
+          "amount": 300,
+          "unit": "g",
+          "normalizedAmount": 300,
+          "normalizedUnit": "g",
+          "optional": false,
+          "notesKey": null
+        }
+      ],
+      "calculatedNutrition": {
+        "energyKcal": 321.4,
+        "proteinG": 30.1,
+        "carbsG": 9.3,
+        "fatG": 18.3,
+        "fiberG": 3
+      },
+      "practical": {
+        "prepMinutes": 5,
+        "cookMinutes": 15,
+        "reheatingRequired": false,
+        "coldSuitable": true,
+        "portable": true,
+        "fridgeRequired": true,
+        "freezerSuitable": false,
+        "mealPrepSuitable": true,
+        "finalWeightG": 430,
+        "finalVolumeMl": null,
+        "yieldNotes": null
+      },
+      "tags": {
+        "families": [
+          "fish_side"
+        ],
+        "cuisines": [
+          "mediterranean"
+        ],
+        "practical": [
+          "portable"
+        ],
+        "diet": []
+      },
+      "allergenIds": [
+        "fish"
+      ],
+      "searchTokens": [
+        "4",
+        "and",
+        "as",
+        "combina",
+        "combine",
+        "cook",
+        "crude",
+        "crudo",
+        "cuoci",
+        "development",
+        "di",
+        "e",
+        "fish",
+        "gli",
+        "ingredienti",
+        "ingredients",
+        "la",
+        "mediterranean",
+        "necessario",
+        "needed",
+        "per",
+        "phase",
+        "pipeline",
+        "portable",
+        "raw",
+        "recipe",
+        "ricetta",
+        "salmon",
+        "salmone",
+        "se",
+        "serve",
+        "servi",
+        "side",
+        "sviluppo",
+        "the",
+        "to",
+        "used",
+        "verificare",
+        "verify",
+        "zucchine",
+        "zucchini"
+      ],
+      "calculationAlgorithmVersion": "nutrition-core-1",
+      "inputDigest": "a83690594635ed65b1745763dae93ba6a7df5133c3871cb85fa3b085ac2d7f56",
+      "contentHash": "ea23e1a065b4dfddb51855a9a0251199c200d7cb3a6f407a2f9b15d379fb6863",
+      "generation": {
+        "jobId": "batch-04ef295dce73e0",
+        "pipelineVersion": "recipe-pipeline-1",
+        "sourceLocale": "it",
+        "generatedAt": "2026-09-03T14:07:00Z"
+      },
+      "quality": {
+        "status": "validated",
+        "reviewNotes": "Deterministic Phase 4 smoke fixture; not production culinary content."
+      },
+      "createdAt": "2026-09-03T14:07:00Z"
+    },
+    {
+      "schemaVersion": 1,
+      "recipeVersionId": "recver_a01ebdf0dcaf3c139fac37a2_v1",
+      "recipeId": "rec_a01ebdf0dcaf3c139fac",
+      "versionNumber": 1,
+      "supersedesVersionId": null,
+      "origin": "base",
+      "catalogVersion": "0.4.0-dev",
+      "i18n": {
+        "it": {
+          "title": "Salmone e riso",
+          "description": "Ricetta di sviluppo per verificare la pipeline Phase 4.",
+          "instructions": [
+            "Cuoci gli ingredienti se necessario.",
+            "Combina e servi."
+          ]
+        },
+        "en": {
+          "title": "Salmon and rice",
+          "description": "Development recipe used to verify the Phase 4 pipeline.",
+          "instructions": [
+            "Cook ingredients as needed.",
+            "Combine and serve."
+          ]
+        }
+      },
+      "servingCount": 1,
+      "mealArchetypes": [
+        "lunch",
+        "dinner"
+      ],
+      "ingredientLines": [
+        {
+          "ingredientId": "ing_salmon",
+          "ingredientRevisionId": "ingrev_salmon_raw_v2_p4",
+          "amount": 160,
+          "unit": "g",
+          "normalizedAmount": 160,
+          "normalizedUnit": "g",
+          "optional": false,
+          "notesKey": null
+        },
+        {
+          "ingredientId": "ing_rice_cooked",
+          "ingredientRevisionId": "ingrev_rice_cooked_v2_p4",
+          "amount": 150,
+          "unit": "g",
+          "normalizedAmount": 150,
+          "normalizedUnit": "g",
+          "optional": false,
+          "notesKey": null
+        }
+      ],
+      "calculatedNutrition": {
+        "energyKcal": 527.8,
+        "proteinG": 36.7,
+        "carbsG": 42.3,
+        "fatG": 21.9,
+        "fiberG": 0.6
+      },
+      "practical": {
+        "prepMinutes": 5,
+        "cookMinutes": 15,
+        "reheatingRequired": false,
+        "coldSuitable": true,
+        "portable": true,
+        "fridgeRequired": true,
+        "freezerSuitable": false,
+        "mealPrepSuitable": true,
+        "finalWeightG": 310,
+        "finalVolumeMl": null,
+        "yieldNotes": null
+      },
+      "tags": {
+        "families": [
+          "grain_bowl"
+        ],
+        "cuisines": [
+          "mediterranean"
+        ],
+        "practical": [
+          "portable"
+        ],
+        "diet": []
+      },
+      "allergenIds": [
+        "fish"
+      ],
+      "searchTokens": [
+        "4",
+        "and",
+        "as",
+        "bowl",
+        "combina",
+        "combine",
+        "cook",
+        "cooked",
+        "cotto",
+        "crudo",
+        "cuoci",
+        "development",
+        "di",
+        "e",
+        "gli",
+        "grain",
+        "ingredienti",
+        "ingredients",
+        "la",
+        "mediterranean",
+        "necessario",
+        "needed",
+        "per",
+        "phase",
+        "pipeline",
+        "portable",
+        "raw",
+        "recipe",
+        "rice",
+        "ricetta",
+        "riso",
+        "salmon",
+        "salmone",
+        "se",
+        "serve",
+        "servi",
+        "sviluppo",
+        "the",
+        "to",
+        "used",
+        "verificare",
+        "verify"
+      ],
+      "calculationAlgorithmVersion": "nutrition-core-1",
+      "inputDigest": "5b63dbb0c55977513873296c7a31605a49ebbe8c1d9347c4232a008ae277a234",
+      "contentHash": "ab9ffa7820e19a6ab83d388a1579f799791ceb241dc9e731cc303a09f840a747",
+      "generation": {
+        "jobId": "batch-04ef295dce73e0",
+        "pipelineVersion": "recipe-pipeline-1",
+        "sourceLocale": "it",
+        "generatedAt": "2026-09-03T14:07:00Z"
+      },
+      "quality": {
+        "status": "validated",
+        "reviewNotes": "Deterministic Phase 4 smoke fixture; not production culinary content."
+      },
+      "createdAt": "2026-09-03T14:07:00Z"
+    },
+    {
+      "schemaVersion": 1,
+      "recipeVersionId": "recver_49aa3237f33c228c2d03cdb1_v1",
+      "recipeId": "rec_49aa3237f33c228c2d03",
+      "versionNumber": 1,
+      "supersedesVersionId": null,
+      "origin": "base",
+      "catalogVersion": "0.4.0-dev",
+      "i18n": {
+        "it": {
+          "title": "Riso e zucchine",
+          "description": "Ricetta di sviluppo per verificare la pipeline Phase 4.",
+          "instructions": [
+            "Cuoci gli ingredienti se necessario.",
+            "Combina e servi."
+          ]
+        },
+        "en": {
+          "title": "Rice and zucchini",
+          "description": "Development recipe used to verify the Phase 4 pipeline.",
+          "instructions": [
+            "Cook ingredients as needed.",
+            "Combine and serve."
+          ]
+        }
+      },
+      "servingCount": 1,
+      "mealArchetypes": [
+        "lunch",
+        "dinner"
+      ],
+      "ingredientLines": [
+        {
+          "ingredientId": "ing_rice_cooked",
+          "ingredientRevisionId": "ingrev_rice_cooked_v2_p4",
+          "amount": 250,
+          "unit": "g",
+          "normalizedAmount": 250,
+          "normalizedUnit": "g",
+          "optional": false,
+          "notesKey": null
+        },
+        {
+          "ingredientId": "ing_zucchini",
+          "ingredientRevisionId": "ingrev_zucchini_raw_v2_p4",
+          "amount": 220,
+          "unit": "g",
+          "normalizedAmount": 220,
+          "normalizedUnit": "g",
+          "optional": false,
+          "notesKey": null
+        }
+      ],
+      "calculatedNutrition": {
+        "energyKcal": 362.4,
+        "proteinG": 9.4,
+        "carbsG": 77.3,
+        "fatG": 1.4,
+        "fiberG": 3.2
+      },
+      "practical": {
+        "prepMinutes": 5,
+        "cookMinutes": 15,
+        "reheatingRequired": false,
+        "coldSuitable": true,
+        "portable": true,
+        "fridgeRequired": true,
+        "freezerSuitable": false,
+        "mealPrepSuitable": true,
+        "finalWeightG": 470,
+        "finalVolumeMl": null,
+        "yieldNotes": null
+      },
+      "tags": {
+        "families": [
+          "grain_side"
+        ],
+        "cuisines": [
+          "mediterranean"
+        ],
+        "practical": [
+          "portable"
+        ],
+        "diet": [
+          "vegetarian"
+        ]
+      },
+      "allergenIds": [],
+      "searchTokens": [
+        "4",
+        "and",
+        "as",
+        "combina",
+        "combine",
+        "cook",
+        "cooked",
+        "cotto",
+        "crude",
+        "cuoci",
+        "development",
+        "di",
+        "e",
+        "gli",
+        "grain",
+        "ingredienti",
+        "ingredients",
+        "la",
+        "mediterranean",
+        "necessario",
+        "needed",
+        "per",
+        "phase",
+        "pipeline",
+        "portable",
+        "raw",
+        "recipe",
+        "rice",
+        "ricetta",
+        "riso",
+        "se",
+        "serve",
+        "servi",
+        "side",
+        "sviluppo",
+        "the",
+        "to",
+        "used",
+        "vegetarian",
+        "verificare",
+        "verify",
+        "zucchine",
+        "zucchini"
+      ],
+      "calculationAlgorithmVersion": "nutrition-core-1",
+      "inputDigest": "97dfd4f98ac2b2e342b67f160605102da25d1aac7ce1634a05eb7a3c18623557",
+      "contentHash": "f76d24c5182a92d4f81b3dbf49a06ecb4a753f9f2d89994137d079cc3560bf78",
+      "generation": {
+        "jobId": "batch-04ef295dce73e0",
+        "pipelineVersion": "recipe-pipeline-1",
+        "sourceLocale": "it",
+        "generatedAt": "2026-09-03T14:07:00Z"
+      },
+      "quality": {
+        "status": "validated",
+        "reviewNotes": "Deterministic Phase 4 smoke fixture; not production culinary content."
+      },
+      "createdAt": "2026-09-03T14:07:00Z"
+    },
+    {
+      "schemaVersion": 1,
+      "recipeVersionId": "recver_56854b1f020fbcb205ec234a_v1",
+      "recipeId": "rec_56854b1f020fbcb205ec",
+      "versionNumber": 1,
+      "supersedesVersionId": null,
+      "origin": "base",
+      "catalogVersion": "0.4.0-dev",
+      "i18n": {
+        "it": {
+          "title": "Salmone all olio",
+          "description": "Ricetta di sviluppo per verificare la pipeline Phase 4.",
+          "instructions": [
+            "Cuoci gli ingredienti se necessario.",
+            "Combina e servi."
+          ]
+        },
+        "en": {
+          "title": "Salmon with olive oil",
+          "description": "Development recipe used to verify the Phase 4 pipeline.",
+          "instructions": [
+            "Cook ingredients as needed.",
+            "Combine and serve."
+          ]
+        }
+      },
+      "servingCount": 1,
+      "mealArchetypes": [
+        "lunch",
+        "dinner"
+      ],
+      "ingredientLines": [
+        {
+          "ingredientId": "ing_salmon",
+          "ingredientRevisionId": "ingrev_salmon_raw_v2_p4",
+          "amount": 150,
+          "unit": "g",
+          "normalizedAmount": 150,
+          "normalizedUnit": "g",
+          "optional": false,
+          "notesKey": null
+        },
+        {
+          "ingredientId": "ing_olive_oil",
+          "ingredientRevisionId": "ingrev_olive_oil_v2_p4",
+          "amount": 10,
+          "unit": "g",
+          "normalizedAmount": 10,
+          "normalizedUnit": "g",
+          "optional": false,
+          "notesKey": null
+        }
+      ],
+      "calculatedNutrition": {
+        "energyKcal": 400.4,
+        "proteinG": 30.6,
+        "carbsG": 0,
+        "fatG": 30.1,
+        "fiberG": 0
+      },
+      "practical": {
+        "prepMinutes": 5,
+        "cookMinutes": 15,
+        "reheatingRequired": false,
+        "coldSuitable": true,
+        "portable": true,
+        "fridgeRequired": true,
+        "freezerSuitable": false,
+        "mealPrepSuitable": true,
+        "finalWeightG": 160,
+        "finalVolumeMl": null,
+        "yieldNotes": null
+      },
+      "tags": {
+        "families": [
+          "fish_component"
+        ],
+        "cuisines": [
+          "mediterranean"
+        ],
+        "practical": [
+          "portable"
+        ],
+        "diet": []
+      },
+      "allergenIds": [
+        "fish"
+      ],
+      "searchTokens": [
+        "4",
+        "all",
+        "and",
+        "as",
+        "combina",
+        "combine",
+        "component",
+        "cook",
+        "crudo",
+        "cuoci",
+        "development",
+        "di",
+        "e",
+        "fish",
+        "gli",
+        "ingredienti",
+        "ingredients",
+        "la",
+        "mediterranean",
+        "necessario",
+        "needed",
+        "oil",
+        "olio",
+        "oliva",
+        "olive",
+        "per",
+        "phase",
+        "pipeline",
+        "portable",
+        "raw",
+        "recipe",
+        "ricetta",
+        "salmon",
+        "salmone",
+        "se",
+        "serve",
+        "servi",
+        "sviluppo",
+        "the",
+        "to",
+        "used",
+        "verificare",
+        "verify",
+        "with"
+      ],
+      "calculationAlgorithmVersion": "nutrition-core-1",
+      "inputDigest": "0632486321f1bf1870782b5ae3a55d19c5a5f93c1dc53182ca2d8cd2b1ade9b8",
+      "contentHash": "0f6ceef1cef78424ae090a9abf4cc4c0558c178021e616d00eb527fca26e50fa",
+      "generation": {
+        "jobId": "batch-04ef295dce73e0",
+        "pipelineVersion": "recipe-pipeline-1",
+        "sourceLocale": "it",
+        "generatedAt": "2026-09-03T14:07:00Z"
+      },
+      "quality": {
+        "status": "validated",
+        "reviewNotes": "Deterministic Phase 4 smoke fixture; not production culinary content."
+      },
+      "createdAt": "2026-09-03T14:07:00Z"
+    },
+    {
+      "schemaVersion": 1,
+      "recipeVersionId": "recver_ff90a5fa76c9fd090506efd4_v1",
+      "recipeId": "rec_ff90a5fa76c9fd090506",
+      "versionNumber": 1,
+      "supersedesVersionId": null,
+      "origin": "base",
+      "catalogVersion": "0.4.0-dev",
+      "i18n": {
+        "it": {
+          "title": "Riso all olio",
+          "description": "Ricetta di sviluppo per verificare la pipeline Phase 4.",
+          "instructions": [
+            "Cuoci gli ingredienti se necessario.",
+            "Combina e servi."
+          ]
+        },
+        "en": {
+          "title": "Rice with olive oil",
+          "description": "Development recipe used to verify the Phase 4 pipeline.",
+          "instructions": [
+            "Cook ingredients as needed.",
+            "Combine and serve."
+          ]
+        }
+      },
+      "servingCount": 1,
+      "mealArchetypes": [
+        "lunch",
+        "dinner"
+      ],
+      "ingredientLines": [
+        {
+          "ingredientId": "ing_rice_cooked",
+          "ingredientRevisionId": "ingrev_rice_cooked_v2_p4",
+          "amount": 250,
+          "unit": "g",
+          "normalizedAmount": 250,
+          "normalizedUnit": "g",
+          "optional": false,
+          "notesKey": null
+        },
+        {
+          "ingredientId": "ing_olive_oil",
+          "ingredientRevisionId": "ingrev_olive_oil_v2_p4",
+          "amount": 10,
+          "unit": "g",
+          "normalizedAmount": 10,
+          "normalizedUnit": "g",
+          "optional": false,
+          "notesKey": null
+        }
+      ],
+      "calculatedNutrition": {
+        "energyKcal": 413.4,
+        "proteinG": 6.8,
+        "carbsG": 70.5,
+        "fatG": 10.8,
+        "fiberG": 1
+      },
+      "practical": {
+        "prepMinutes": 5,
+        "cookMinutes": 15,
+        "reheatingRequired": false,
+        "coldSuitable": true,
+        "portable": true,
+        "fridgeRequired": true,
+        "freezerSuitable": false,
+        "mealPrepSuitable": true,
+        "finalWeightG": 260,
+        "finalVolumeMl": null,
+        "yieldNotes": null
+      },
+      "tags": {
+        "families": [
+          "grain_side"
+        ],
+        "cuisines": [
+          "mediterranean"
+        ],
+        "practical": [
+          "portable"
+        ],
+        "diet": [
+          "vegetarian"
+        ]
+      },
+      "allergenIds": [],
+      "searchTokens": [
+        "4",
+        "all",
+        "and",
+        "as",
+        "combina",
+        "combine",
+        "cook",
+        "cooked",
+        "cotto",
+        "cuoci",
+        "development",
+        "di",
+        "e",
+        "gli",
+        "grain",
+        "ingredienti",
+        "ingredients",
+        "la",
+        "mediterranean",
+        "necessario",
+        "needed",
+        "oil",
+        "olio",
+        "oliva",
+        "olive",
+        "per",
+        "phase",
+        "pipeline",
+        "portable",
+        "recipe",
+        "rice",
+        "ricetta",
+        "riso",
+        "se",
+        "serve",
+        "servi",
+        "side",
+        "sviluppo",
+        "the",
+        "to",
+        "used",
+        "vegetarian",
+        "verificare",
+        "verify",
+        "with"
+      ],
+      "calculationAlgorithmVersion": "nutrition-core-1",
+      "inputDigest": "bf3b5e288f21df62a1c014052561876ec6fcae0ba2fc574b2d9c19d944bdb9fd",
+      "contentHash": "c84f5f8f0d7e8b392e070bac8fcdd6f7c54ba2013a48f9a8bb0a881e7817280a",
+      "generation": {
+        "jobId": "batch-04ef295dce73e0",
+        "pipelineVersion": "recipe-pipeline-1",
+        "sourceLocale": "it",
+        "generatedAt": "2026-09-03T14:07:00Z"
+      },
+      "quality": {
+        "status": "validated",
+        "reviewNotes": "Deterministic Phase 4 smoke fixture; not production culinary content."
+      },
+      "createdAt": "2026-09-03T14:07:00Z"
+    }
+  ],
+  "rejected": [
+    {
+      "candidateId": "p4-reject-duplicate",
+      "code": "exact_duplicate",
+      "detail": null
+    },
+    {
+      "candidateId": "p4-reject-range",
+      "code": "nutrition_outside_job",
+      "detail": {
+        "energyKcal": 77.5,
+        "proteinG": 3.6,
+        "carbsG": 9.3,
+        "fatG": 3.9,
+        "fiberG": 3
+      }
+    }
+  ],
+  "warnings": [],
+  "diversityFailures": []
+}

@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/backup.schema.json",
+  "title": "Backup",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "formatVersion",
+    "appVersion",
+    "dbSchemaVersion",
+    "contentSchemaVersion",
+    "catalog",
+    "createdAt",
+    "payload"
+  ],
+  "properties": {
+    "format": {
+      "const": "yourDietManager-backup"
+    },
+    "formatVersion": {
+      "const": 1
+    },
+    "appVersion": {
+      "type": "string"
+    },
+    "dbSchemaVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "contentSchemaVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "catalog": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "catalogVersion"
+      ],
+      "properties": {
+        "catalogVersion": {
+          "type": "string"
+        }
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "configuration",
+        "customIngredients",
+        "customIngredientRevisions",
+        "customRecipes",
+        "customRecipeVersions",
+        "plans",
+        "calendarDays",
+        "generationRuns",
+        "operations",
+        "shoppingChecklists"
+      ],
+      "properties": {
+        "configuration": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "customIngredients": {
+          "type": "array"
+        },
+        "customIngredientRevisions": {
+          "type": "array"
+        },
+        "customRecipes": {
+          "type": "array"
+        },
+        "customRecipeVersions": {
+          "type": "array"
+        },
+        "plans": {
+          "type": "array"
+        },
+        "calendarDays": {
+          "type": "array"
+        },
+        "generationRuns": {
+          "type": "array"
+        },
+        "operations": {
+          "type": "array"
+        },
+        "shoppingChecklists": {
+          "type": "array",
+          "items": {
+            "$ref": "shopping-checklist.schema.json"
+          }
+        }
+      }
+    },
+    "sha256": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

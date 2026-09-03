@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "snapshotId": "snapshot-catalog-0.8.0-001",
+  "catalogVersion": "0.8.0",
+  "policyId": "corpus-policy-v1-default",
+  "policyVersion": "1.0.0",
+  "recipeCount": 2140,
+  "activeRecipeCount": 2110,
+  "coverageCells": [
+    {
+      "targetId": "meal-breakfast-min",
+      "currentCount": 420,
+      "denominator": 2110,
+      "currentShare": 0.1991,
+      "normalizedDeficit": 0.3,
+      "weightedDeficit": 0.3
+    },
+    {
+      "targetId": "meal-lunch-min",
+      "currentCount": 640,
+      "denominator": 2110,
+      "currentShare": 0.3033,
+      "normalizedDeficit": 0.2,
+      "weightedDeficit": 0.2
+    },
+    {
+      "targetId": "practical-portable-density",
+      "currentCount": 180,
+      "denominator": 2110,
+      "currentShare": 0.0853,
+      "normalizedDeficit": 0.6,
+      "weightedDeficit": 0.54
+    }
+  ],
+  "distributions": {
+    "mealArchetypes": [
+      {"key": "breakfast", "count": 420},
+      {"key": "lunch", "count": 640},
+      {"key": "dinner", "count": 690}
+    ],
+    "energyBands": [
+      {"key": "kcal-300-399", "count": 360},
+      {"key": "kcal-400-499", "count": 520},
+      {"key": "kcal-500-599", "count": 290}
+    ],
+    "proteinBands": [
+      {"key": "protein-low", "count": 620},
+      {"key": "protein-medium", "count": 1030},
+      {"key": "protein-high", "count": 460}
+    ],
+    "fiberBands": [
+      {"key": "fiber-low", "count": 540},
+      {"key": "fiber-moderate", "count": 1190},
+      {"key": "fiber-high", "count": 380}
+    ],
+    "practicality": [
+      {"key": "portable", "count": 180},
+      {"key": "quick", "count": 710},
+      {"key": "meal_prep", "count": 580}
+    ],
+    "diet": [
+      {"key": "vegetarian", "count": 680}
+    ],
+    "recipeFamilies": [
+      {"key": "bowl", "count": 360},
+      {"key": "soup_stew", "count": 90}
+    ],
+    "cuisines": [
+      {"key": "mediterranean", "count": 510},
+      {"key": "east_asian", "count": 80}
+    ],
+    "ingredientCategories": [
+      {"key": "legumes", "count": 360},
+      {"key": "fish", "count": 170}
+    ]
+  },
+  "ingredientUsage": [
+    {
+      "ingredientId": "ing_chicken_breast",
+      "recipeCount": 310,
+      "primaryCount": 220,
+      "recipeShare": 0.1469,
+      "primaryShare": 0.1043
+    },
+    {
+      "ingredientId": "ing_lentils_cooked",
+      "recipeCount": 140,
+      "primaryCount": 92,
+      "recipeShare": 0.0664,
+      "primaryShare": 0.0436
+    }
+  ],
+  "ingredientPairUsage": [
+    {
+      "ingredientIdA": "ing_chicken_breast",
+      "ingredientIdB": "ing_rice_cooked",
+      "coOccurrenceCount": 92,
+      "share": 0.0436
+    }
+  ],
+  "similarity": {
+    "exactDuplicateCount": 0,
+    "nearDuplicateCount": 62,
+    "nearDuplicateShare": 0.0294
+  },
+  "quality": {
+    "schemaErrors": 0,
+    "unknownIngredientReferences": 0,
+    "nutritionErrors": 0,
+    "allergenDerivationErrors": 0,
+    "missingRequiredLocaleFields": 0
+  },
+  "undercoveredTargetIds": [
+    "meal-breakfast-min",
+    "meal-lunch-min",
+    "practical-portable-density"
+  ],
+  "contentDigest": "sha256:example-catalog-content-digest",
+  "createdAt": "2026-09-03T10:15:00Z"
+}

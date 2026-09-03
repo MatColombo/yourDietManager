@@ -1,0 +1,99 @@
+# yourDietManager
+
+Baseline di prodotto e architettura per una PWA local-first dedicata alla pianificazione alimentare altamente configurabile.
+
+## Stato
+
+Questo repository di specifiche definisce **yourDietManager V1**. TataDiet V5.2.1 resta una applicazione legacy separata e una reference implementation per funzioni gia validate (calendario effettivo, compositore, spesa, backup, offline, undo/redo), ma nessun concetto specifico di TataDiet deve diventare un vincolo del nuovo dominio.
+
+## Principio guida
+
+> Configurazione prima delle assunzioni.
+
+Il motore non conosce turni da infermiera, matrici fisse, target calorici prefissati o ricette hardcoded. Conosce profili, archetipi, classi configurabili, vincoli e cataloghi dati.
+
+## Decisioni V1
+
+- PWA local-first, senza account obbligatorio e senza backend richiesto.
+- Cataloghi ingredienti/ricette distribuiti come **JSON shard versionati**.
+- **IndexedDB** come database runtime strutturato, indicizzato e transazionale.
+- Repository Layer tra domain/UI e IndexedDB; nessun accesso DB disperso nei componenti.
+- JSON come formato canonico di distribuzione, backup/export e pipeline catalogo.
+- Ciclo configurabile da 1 a 31 giorni, indipendente dal mese civile.
+- Classi giornata custom basate su archetipi hardcoded.
+- Classi pasto custom basate su archetipi hardcoded.
+- Carry-over determinato dagli slot tramite `dayOffset`.
+- Timezone IANA esplicito e sistema di misura configurabile.
+- Allergie e intolleranze sono hard constraints.
+- Preferenze e obiettivi nutrizionali sono soft constraints, salvo esplicite esclusioni hard.
+- Il generatore automatico non usa moltiplicatori di porzione: ogni recipe component e una porzione standard.
+- Ingredienti e ricette usano famiglia stabile + revisioni/versioni immutabili.
+- I piani storici referenziano sempre `recipeVersionId`; le ricette referenziano `ingredientRevisionId`.
+- Solver seedato, versionato e spiegabile tramite GenerationRun.
+- IT e EN dalla prima release; architettura predisposta per altre lingue.
+- Tema e densita UI configurabili.
+- Nessuna pagina HTML per singola ricetta: una vista dinamica usa RecipeRepository.
+- Nessuna dipendenza da fotografie nel catalogo ricette V1.
+- Catalog update atomico con checksum/schema validation e rollback al catalogo precedente.
+- Corpus ricette governato da policy versionata + snapshot di coverage + orchestratore deterministico dei batch.
+- Catalog pack con membership canonica nel manifest e stato installazione persistito.
+- Checklist spesa persistite con checked state, note e item manuali.
+- Rolling horizon esplicito tramite continuation policy e segmenti di piano concatenati.
+- Dati sensibili local-only per default; export/delete espliciti.
+
+## Persistenza
+
+```text
+JSON catalog shards
+        ↓ import/validate
+IndexedDB yourDietManager
+        ↓ repositories
+UI + planner + shopping + history
+        ↓ export
+JSON backup
+```
+
+`localStorage` puo contenere soltanto copie bootstrap non autorevoli (es. tema/locale per evitare flash), mai piano/configurazione come fonte primaria.
+
+## Mappa delle specifiche
+
+| Documento | Scopo |
+|---|---|
+| `specs/PRODUCT_SPEC.md` | Visione, utenti, scope, UX e onboarding |
+| `specs/FOUNDATIONAL_DECISIONS_V1.md` | Decisioni architetturali gia congelate per V1 |
+| `specs/ARCHITECTURE_SPEC.md` | PWA, Repository Layer, IndexedDB, catalog bootstrap/update |
+| `specs/DATA_MODEL_SPEC.md` | Entita, relazioni, piano e runtime model |
+| `specs/CONFIGURATION_SPEC.md` | Bundle configurazione e validazione |
+| `specs/JSON_STORAGE_SPEC.md` | JSON canonico + IndexedDB runtime + backup/migrazioni |
+| `specs/IDENTITY_VERSIONING_SPEC.md` | Famiglie e versioni/revisioni immutabili |
+| `specs/DATA_PROVENANCE_QUALITY_SPEC.md` | Provenance e quality status dei cataloghi |
+| `specs/UNITS_YIELD_SPEC.md` | Unita, conversioni, stati e yield |
+| `specs/SOLVER_REPRODUCIBILITY_SPEC.md` | Seed, GenerationRun e diagnostica |
+| `specs/OPERATIONS_HISTORY_SPEC.md` | Operazioni atomiche, undo/redo |
+| `specs/PRIVACY_DATA_LIFECYCLE_SPEC.md` | Privacy locale, export/delete/recovery |
+| `specs/PERFORMANCE_BUDGET_SPEC.md` | Scala 10k ricette, query e performance budget |
+| `specs/DAY_CLASS_SPEC.md` | Archetipi e classi giornata, carry-over |
+| `specs/MEAL_CLASS_SPEC.md` | Archetipi e classi pasto, slot esterni |
+| `specs/NUTRITION_ENGINE_SPEC.md` | Target, soft constraints e scoring |
+| `specs/ALLERGY_INTOLERANCE_SPEC.md` | Vincoli hard di sicurezza alimentare |
+| `specs/FOOD_PREFERENCES_SPEC.md` | Preferenze soft, esclusioni e frequenze |
+| `specs/INGREDIENT_TAXONOMY_SPEC.md` | Tassonomia ingredienti |
+| `specs/RECIPE_CATALOG_SPEC.md` | Contratto famiglie/versioni ricetta |
+| `specs/RECIPE_CORPUS_ORCHESTRATOR_SPEC.md` | Orchestrazione coverage-driven dei batch BUILD/EXPAND/IMPROVE/FOCUSED_EXPANSION |
+| `specs/RECIPE_PIPELINE_GENERATOR.md` | Pipeline esecutiva per generare e validare singoli batch di ricette |
+| `specs/INITIAL_RECIPE_CORPUS_PLAN.md` | Piano quantitativo per il catalogo iniziale |
+| `specs/PLAN_GENERATOR_SPEC.md` | Generatore del piano e solver |
+| `specs/SHOPPING_SPEC.md` | Spesa e moltiplicatore persone |
+| `specs/SHOPPING_CHECKLIST_SPEC.md` | Contratto checklist persistita e refresh |
+| `specs/CATALOG_PACK_SPEC.md` | Membership pack, installazione e garbage collection |
+| `specs/I18N_SPEC.md` | Localizzazione, timezone e unita |
+| `specs/THEME_SPEC.md` | Personalizzazione estetica |
+| `specs/UX_SPEC.md` | UI compatta per utenti formati |
+| `specs/TEST_STRATEGY.md` | Quality gates e test |
+| `specs/ROADMAP_V1.md` | Fasi raccomandate della V1 |
+
+Gli esempi JSON sono in `examples/`; gli schemi JSON Schema Draft 2020-12 sono in `schemas/`.
+
+## Skill
+
+La directory `skills/yourdietmanager-builder/` contiene una Skill ChatGPT riutilizzabile per progettare, implementare e mantenere yourDietManager rispettando queste invarianti.

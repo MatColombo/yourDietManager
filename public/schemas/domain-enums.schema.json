@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/domain-enums.schema.json",
+  "title": "yourDietManager shared domain definitions",
+  "$defs": {
+    "allergenId": {
+      "enum": [
+        "gluten_cereals",
+        "crustaceans",
+        "eggs",
+        "fish",
+        "peanuts",
+        "soy",
+        "milk",
+        "tree_nuts",
+        "celery",
+        "mustard",
+        "sesame",
+        "sulphites",
+        "lupin",
+        "molluscs"
+      ]
+    },
+    "time24h": {
+      "type": "string",
+      "pattern": "^(?:[01][0-9]|2[0-3]):[0-5][0-9]$"
+    },
+    "hexColor": {
+      "type": "string",
+      "pattern": "^#[0-9A-Fa-f]{6}$"
+    },
+    "dayArchetype": {
+      "enum": [
+        "day",
+        "morning",
+        "afternoon",
+        "night",
+        "long_shift",
+        "split_shift",
+        "on_call",
+        "rest",
+        "free"
+      ]
+    },
+    "mealArchetype": {
+      "enum": [
+        "breakfast",
+        "lunch",
+        "dinner",
+        "snack",
+        "mini_meal",
+        "brunch",
+        "pre_shift",
+        "during_shift",
+        "post_shift",
+        "night_meal"
+      ]
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/ingredient.schema.json",
+  "title": "Ingredient",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion","ingredientId","origin","currentRevisionId","status","createdAt","updatedAt"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "ingredientId": {"type": "string", "minLength": 1},
+    "origin": {"enum": ["base","user"]},
+    "currentRevisionId": {"type": "string", "minLength": 1},
+    "status": {"enum": ["active","archived","retired"]},
+    "createdAt": {"type": "string", "format": "date-time"},
+    "updatedAt": {"type": "string", "format": "date-time"}
+  }
+}

@@ -1,0 +1,394 @@
+{
+  "status": "success",
+  "generationRun": {
+    "schemaVersion": 1,
+    "generationRunId": "genrun_79e54332",
+    "generatorVersion": "plan-generator-1",
+    "solverVersion": "beam-search-1",
+    "seed": "phase5-smoke",
+    "catalogVersion": "phase5-smoke",
+    "configSnapshotHash": "1234567890abcdef",
+    "configSnapshot": {
+      "kind": "phase5-smoke"
+    },
+    "horizon": {
+      "startDate": "2026-09-07",
+      "endDate": "2026-09-08"
+    },
+    "createdAt": "2026-09-03T14:00:00Z",
+    "diagnostics": {
+      "status": "success",
+      "dayCount": 2,
+      "days": [
+        {
+          "date": "2026-09-07",
+          "cycleDay": 1,
+          "dayClassId": "dc-day",
+          "energyTarget": 1800,
+          "plannedEnergyTarget": 1300,
+          "externalEnergy": 500,
+          "selectedMeals": [
+            {
+              "mealClassId": "mc-breakfast",
+              "recipeId": "r_oats",
+              "recipeVersionId": "rv_oats",
+              "hardFiltersPassed": true,
+              "score": 15,
+              "scoreComponents": {
+                "nutrition": 14.999999999999995,
+                "preference": 0,
+                "variety": 0
+              },
+              "reasons": [],
+              "relaxedSoftConstraints": []
+            },
+            {
+              "mealClassId": "mc-dinner",
+              "recipeId": "r_chicken",
+              "recipeVersionId": "rv_chicken",
+              "hardFiltersPassed": true,
+              "score": 81.429,
+              "scoreComponents": {
+                "nutrition": 81.4285714285714,
+                "preference": 0,
+                "variety": 0
+              },
+              "reasons": [],
+              "relaxedSoftConstraints": []
+            }
+          ],
+          "rejectionCounts": {
+            "meal_archetype": 5,
+            "safety:fish": 2
+          },
+          "score": 191.085
+        },
+        {
+          "date": "2026-09-08",
+          "cycleDay": 2,
+          "dayClassId": "dc-night",
+          "energyTarget": 1890,
+          "plannedEnergyTarget": 1890,
+          "externalEnergy": 0,
+          "selectedMeals": [
+            {
+              "mealClassId": "mc-dinner",
+              "recipeId": "r_chicken",
+              "recipeVersionId": "rv_chicken",
+              "hardFiltersPassed": true,
+              "score": 116.56,
+              "scoreComponents": {
+                "nutrition": 93,
+                "preference": 0,
+                "variety": 23.560000000000002
+              },
+              "reasons": [
+                "variety:23.56"
+              ],
+              "relaxedSoftConstraints": []
+            },
+            {
+              "mealClassId": "mc-night",
+              "recipeId": "r_night",
+              "recipeVersionId": "rv_night",
+              "hardFiltersPassed": true,
+              "score": 31.51,
+              "scoreComponents": {
+                "nutrition": 20.10000000000002,
+                "preference": 0,
+                "variety": 11.41
+              },
+              "reasons": [
+                "variety:11.41"
+              ],
+              "relaxedSoftConstraints": []
+            }
+          ],
+          "rejectionCounts": {
+            "meal_archetype": 5,
+            "safety:fish": 2
+          },
+          "score": 298.842
+        }
+      ],
+      "summary": {
+        "meanScore": 244.964
+      }
+    },
+    "reason": "initial",
+    "previousGenerationRunId": null
+  },
+  "planInstance": {
+    "schemaVersion": 1,
+    "planInstanceId": "plan_9da7c21a",
+    "generationRunId": "genrun_79e54332",
+    "startDate": "2026-09-07",
+    "endDate": "2026-09-08",
+    "status": "active",
+    "createdAt": "2026-09-03T14:00:00Z",
+    "updatedAt": "2026-09-03T14:00:00Z",
+    "continuationPolicy": {
+      "mode": "prompt",
+      "triggerDaysBeforeEnd": 1,
+      "extensionDays": 2
+    },
+    "previousPlanInstanceId": null
+  },
+  "calendarDays": [
+    {
+      "schemaVersion": 1,
+      "calendarDayId": "calday_a4504493",
+      "planInstanceId": "plan_9da7c21a",
+      "date": "2026-09-07",
+      "cycleDay": 1,
+      "dayClassId": "dc-day",
+      "dayArchetype": "day",
+      "mealSlots": [
+        {
+          "mealOccurrenceId": "meal_32fee79c",
+          "mealClassId": "mc-breakfast",
+          "time": "08:00",
+          "dayOffset": 0,
+          "civilDate": "2026-09-07",
+          "mode": "planned",
+          "recipeComponents": [
+            {
+              "recipeId": "r_oats",
+              "recipeVersionId": "rv_oats",
+              "servings": 1
+            }
+          ],
+          "adherenceStatus": "not_recorded",
+          "adherenceNotes": null,
+          "externalEstimate": null
+        },
+        {
+          "mealOccurrenceId": "meal_02a456b1",
+          "mealClassId": "mc-lunch",
+          "time": "13:00",
+          "dayOffset": 0,
+          "civilDate": "2026-09-07",
+          "mode": "external",
+          "recipeComponents": [],
+          "adherenceStatus": "not_recorded",
+          "adherenceNotes": null,
+          "externalEstimate": {
+            "policy": "budget_only",
+            "energyBudgetKcal": 500,
+            "proteinMinG": 25,
+            "userEstimatedEnergyKcal": null,
+            "userEstimatedProteinG": null
+          }
+        },
+        {
+          "mealOccurrenceId": "meal_d96a1017",
+          "mealClassId": "mc-dinner",
+          "time": "20:00",
+          "dayOffset": 0,
+          "civilDate": "2026-09-07",
+          "mode": "planned",
+          "recipeComponents": [
+            {
+              "recipeId": "r_chicken",
+              "recipeVersionId": "rv_chicken",
+              "servings": 1
+            }
+          ],
+          "adherenceStatus": "not_recorded",
+          "adherenceNotes": null,
+          "externalEstimate": null
+        }
+      ],
+      "status": "planned",
+      "nutritionSummary": {
+        "knownPlanned": {
+          "energyKcal": 1100,
+          "proteinG": 80,
+          "carbsG": 110,
+          "fatG": 27.5,
+          "fiberG": 10
+        },
+        "externalBudget": {
+          "energyKcal": 500,
+          "proteinMinG": 25
+        },
+        "target": {
+          "energyKcal": 1800,
+          "plannedEnergyKcal": 1300,
+          "energyTolerancePct": 10
+        },
+        "score": 191.085
+      },
+      "createdAt": "2026-09-03T14:00:00Z",
+      "updatedAt": "2026-09-03T14:00:00Z"
+    },
+    {
+      "schemaVersion": 1,
+      "calendarDayId": "calday_b150590a",
+      "planInstanceId": "plan_9da7c21a",
+      "date": "2026-09-08",
+      "cycleDay": 2,
+      "dayClassId": "dc-night",
+      "dayArchetype": "night",
+      "mealSlots": [
+        {
+          "mealOccurrenceId": "meal_271fd3ad",
+          "mealClassId": "mc-dinner",
+          "time": "19:00",
+          "dayOffset": 0,
+          "civilDate": "2026-09-08",
+          "mode": "planned",
+          "recipeComponents": [
+            {
+              "recipeId": "r_chicken",
+              "recipeVersionId": "rv_chicken",
+              "servings": 1
+            }
+          ],
+          "adherenceStatus": "not_recorded",
+          "adherenceNotes": null,
+          "externalEstimate": null
+        },
+        {
+          "mealOccurrenceId": "meal_6d12f3fa",
+          "mealClassId": "mc-night",
+          "time": "02:00",
+          "dayOffset": 1,
+          "civilDate": "2026-09-09",
+          "mode": "planned",
+          "recipeComponents": [
+            {
+              "recipeId": "r_night",
+              "recipeVersionId": "rv_night",
+              "servings": 1
+            }
+          ],
+          "adherenceStatus": "not_recorded",
+          "adherenceNotes": null,
+          "externalEstimate": null
+        }
+      ],
+      "status": "planned",
+      "nutritionSummary": {
+        "knownPlanned": {
+          "energyKcal": 1200,
+          "proteinG": 90,
+          "carbsG": 120,
+          "fatG": 30,
+          "fiberG": 10
+        },
+        "externalBudget": {
+          "energyKcal": 0,
+          "proteinMinG": 0
+        },
+        "target": {
+          "energyKcal": 1890,
+          "plannedEnergyKcal": 1890,
+          "energyTolerancePct": 10
+        },
+        "score": 298.842
+      },
+      "createdAt": "2026-09-03T14:00:00Z",
+      "updatedAt": "2026-09-03T14:00:00Z"
+    }
+  ],
+  "diagnostics": {
+    "status": "success",
+    "dayCount": 2,
+    "days": [
+      {
+        "date": "2026-09-07",
+        "cycleDay": 1,
+        "dayClassId": "dc-day",
+        "energyTarget": 1800,
+        "plannedEnergyTarget": 1300,
+        "externalEnergy": 500,
+        "selectedMeals": [
+          {
+            "mealClassId": "mc-breakfast",
+            "recipeId": "r_oats",
+            "recipeVersionId": "rv_oats",
+            "hardFiltersPassed": true,
+            "score": 15,
+            "scoreComponents": {
+              "nutrition": 14.999999999999995,
+              "preference": 0,
+              "variety": 0
+            },
+            "reasons": [],
+            "relaxedSoftConstraints": []
+          },
+          {
+            "mealClassId": "mc-dinner",
+            "recipeId": "r_chicken",
+            "recipeVersionId": "rv_chicken",
+            "hardFiltersPassed": true,
+            "score": 81.429,
+            "scoreComponents": {
+              "nutrition": 81.4285714285714,
+              "preference": 0,
+              "variety": 0
+            },
+            "reasons": [],
+            "relaxedSoftConstraints": []
+          }
+        ],
+        "rejectionCounts": {
+          "meal_archetype": 5,
+          "safety:fish": 2
+        },
+        "score": 191.085
+      },
+      {
+        "date": "2026-09-08",
+        "cycleDay": 2,
+        "dayClassId": "dc-night",
+        "energyTarget": 1890,
+        "plannedEnergyTarget": 1890,
+        "externalEnergy": 0,
+        "selectedMeals": [
+          {
+            "mealClassId": "mc-dinner",
+            "recipeId": "r_chicken",
+            "recipeVersionId": "rv_chicken",
+            "hardFiltersPassed": true,
+            "score": 116.56,
+            "scoreComponents": {
+              "nutrition": 93,
+              "preference": 0,
+              "variety": 23.560000000000002
+            },
+            "reasons": [
+              "variety:23.56"
+            ],
+            "relaxedSoftConstraints": []
+          },
+          {
+            "mealClassId": "mc-night",
+            "recipeId": "r_night",
+            "recipeVersionId": "rv_night",
+            "hardFiltersPassed": true,
+            "score": 31.51,
+            "scoreComponents": {
+              "nutrition": 20.10000000000002,
+              "preference": 0,
+              "variety": 11.41
+            },
+            "reasons": [
+              "variety:11.41"
+            ],
+            "relaxedSoftConstraints": []
+          }
+        ],
+        "rejectionCounts": {
+          "meal_archetype": 5,
+          "safety:fish": 2
+        },
+        "score": 298.842
+      }
+    ],
+    "summary": {
+      "meanScore": 244.964
+    }
+  }
+}

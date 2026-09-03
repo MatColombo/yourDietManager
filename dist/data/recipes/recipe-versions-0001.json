@@ -1,0 +1,424 @@
+[
+  {
+    "schemaVersion": 1,
+    "recipeVersionId": "recver_salmon_rice_v2",
+    "recipeId": "rec_salmon_rice",
+    "versionNumber": 2,
+    "supersedesVersionId": "recver_salmon_rice_v1",
+    "origin": "base",
+    "catalogVersion": "0.3.0-dev",
+    "i18n": {
+      "it": {
+        "title": "Riso con salmone e zucchine",
+        "description": "Bowl semplice per test del catalogo.",
+        "instructions": [
+          "Cuoci il riso.",
+          "Cuoci salmone e zucchine.",
+          "Unisci e condisci."
+        ]
+      },
+      "en": {
+        "title": "Rice with salmon and zucchini",
+        "description": "Simple bowl for catalog testing.",
+        "instructions": [
+          "Cook the rice.",
+          "Cook salmon and zucchini.",
+          "Combine and season."
+        ]
+      }
+    },
+    "servingCount": 1,
+    "mealArchetypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredientLines": [
+      {
+        "ingredientId": "ing_rice_cooked",
+        "ingredientRevisionId": "ingrev_rice_cooked_v2",
+        "amount": 180,
+        "unit": "g",
+        "normalizedAmount": 180,
+        "normalizedUnit": "g",
+        "optional": false,
+        "notesKey": null
+      },
+      {
+        "ingredientId": "ing_salmon",
+        "ingredientRevisionId": "ingrev_salmon_raw_v2",
+        "amount": 120,
+        "unit": "g",
+        "normalizedAmount": 120,
+        "normalizedUnit": "g",
+        "optional": false,
+        "notesKey": null
+      },
+      {
+        "ingredientId": "ing_zucchini",
+        "ingredientRevisionId": "ingrev_zucchini_raw_v2",
+        "amount": 180,
+        "unit": "g",
+        "normalizedAmount": 180,
+        "normalizedUnit": "g",
+        "optional": false,
+        "notesKey": null
+      },
+      {
+        "ingredientId": "ing_olive_oil",
+        "ingredientRevisionId": "ingrev_olive_oil_v2",
+        "amount": 8,
+        "unit": "g",
+        "normalizedAmount": 8,
+        "normalizedUnit": "g",
+        "optional": false,
+        "notesKey": null
+      }
+    ],
+    "calculatedNutrition": {
+      "energyKcal": 584.9,
+      "proteinG": 31.5,
+      "carbsG": 56.3,
+      "fatG": 25.2,
+      "fiberG": 2.5
+    },
+    "practical": {
+      "prepMinutes": 10,
+      "cookMinutes": 20,
+      "reheatingRequired": false,
+      "coldSuitable": true,
+      "portable": true,
+      "fridgeRequired": true,
+      "freezerSuitable": false,
+      "mealPrepSuitable": true,
+      "finalWeightG": 488,
+      "finalVolumeMl": null,
+      "yieldNotes": null
+    },
+    "tags": {
+      "families": [
+        "grain_bowl"
+      ],
+      "cuisines": [
+        "mediterranean"
+      ],
+      "diet": [
+        "high_protein"
+      ]
+    },
+    "allergenIds": [
+      "fish"
+    ],
+    "searchTokens": [
+      "and",
+      "bowl",
+      "con",
+      "cooked",
+      "cotto",
+      "crude",
+      "crudo",
+      "di",
+      "grain",
+      "high",
+      "mediterranean",
+      "oil",
+      "olio",
+      "oliva",
+      "olive",
+      "protein",
+      "raw",
+      "rice",
+      "riso",
+      "salmon",
+      "salmone",
+      "with",
+      "zucchine",
+      "zucchini"
+    ],
+    "calculationAlgorithmVersion": "nutrition-core-1",
+    "inputDigest": "b1e079bc5ef34e5f21db2d326e581739a07cd58825e4a1b4f36601317dc7aef2",
+    "contentHash": "be5d37d54b908a79b89053fe25c79d27e0c4cba5598c9f269b168f7ed1c4ff0e",
+    "generation": {
+      "jobId": "phase3-fixture",
+      "pipelineVersion": "phase3-fixture",
+      "sourceLocale": "it",
+      "generatedAt": "2026-09-03T12:00:00Z"
+    },
+    "quality": {
+      "status": "validated",
+      "reviewNotes": "Development fixture only"
+    },
+    "createdAt": "2026-09-03T12:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "recipeVersionId": "recver_zucchini_rice_v1",
+    "recipeId": "rec_zucchini_rice",
+    "versionNumber": 1,
+    "supersedesVersionId": null,
+    "origin": "base",
+    "catalogVersion": "0.3.0-dev",
+    "i18n": {
+      "it": {
+        "title": "Riso e zucchine all’olio",
+        "description": "Fixture vegetariana rapida.",
+        "instructions": [
+          "Scalda il riso.",
+          "Salta le zucchine.",
+          "Condisci con olio."
+        ]
+      },
+      "en": {
+        "title": "Rice and zucchini with olive oil",
+        "description": "Quick vegetarian fixture.",
+        "instructions": [
+          "Warm the rice.",
+          "Saute the zucchini.",
+          "Dress with olive oil."
+        ]
+      }
+    },
+    "servingCount": 1,
+    "mealArchetypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredientLines": [
+      {
+        "ingredientId": "ing_rice_cooked",
+        "ingredientRevisionId": "ingrev_rice_cooked_v2",
+        "amount": 200,
+        "unit": "g",
+        "normalizedAmount": 200,
+        "normalizedUnit": "g",
+        "optional": false,
+        "notesKey": null
+      },
+      {
+        "ingredientId": "ing_zucchini",
+        "ingredientRevisionId": "ingrev_zucchini_raw_v2",
+        "amount": 220,
+        "unit": "g",
+        "normalizedAmount": 220,
+        "normalizedUnit": "g",
+        "optional": false,
+        "notesKey": null
+      },
+      {
+        "ingredientId": "ing_olive_oil",
+        "ingredientRevisionId": "ingrev_olive_oil_v2",
+        "amount": 10,
+        "unit": "g",
+        "normalizedAmount": 10,
+        "normalizedUnit": "g",
+        "optional": false,
+        "notesKey": null
+      }
+    ],
+    "calculatedNutrition": {
+      "energyKcal": 385.8,
+      "proteinG": 8,
+      "carbsG": 63.2,
+      "fatG": 11.3,
+      "fiberG": 3
+    },
+    "practical": {
+      "prepMinutes": 5,
+      "cookMinutes": 10,
+      "reheatingRequired": false,
+      "coldSuitable": true,
+      "portable": true,
+      "fridgeRequired": true,
+      "freezerSuitable": false,
+      "mealPrepSuitable": true,
+      "finalWeightG": 430,
+      "finalVolumeMl": null,
+      "yieldNotes": null
+    },
+    "tags": {
+      "families": [
+        "grain_bowl"
+      ],
+      "cuisines": [
+        "mediterranean"
+      ],
+      "diet": [
+        "vegetarian"
+      ],
+      "practical": [
+        "quick"
+      ]
+    },
+    "allergenIds": [],
+    "searchTokens": [
+      "all",
+      "and",
+      "bowl",
+      "cooked",
+      "cotto",
+      "crude",
+      "di",
+      "grain",
+      "mediterranean",
+      "oil",
+      "olio",
+      "oliva",
+      "olive",
+      "quick",
+      "raw",
+      "rice",
+      "riso",
+      "vegetarian",
+      "with",
+      "zucchine",
+      "zucchini"
+    ],
+    "calculationAlgorithmVersion": "nutrition-core-1",
+    "inputDigest": "f3b9c24796c0c77bae623724334b9d39a595fbef9bfe34a7124e2d05df058a31",
+    "contentHash": "5331045cdff5c0e3a88732054a5e2d5a8241dd4012aaf6a0450266120d4aba02",
+    "generation": {
+      "jobId": "phase3-fixture",
+      "pipelineVersion": "phase3-fixture",
+      "sourceLocale": "it",
+      "generatedAt": "2026-09-03T12:00:00Z"
+    },
+    "quality": {
+      "status": "validated",
+      "reviewNotes": "Development fixture only"
+    },
+    "createdAt": "2026-09-03T12:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "recipeVersionId": "recver_salmon_zucchini_v1",
+    "recipeId": "rec_salmon_zucchini",
+    "versionNumber": 1,
+    "supersedesVersionId": null,
+    "origin": "base",
+    "catalogVersion": "0.3.0-dev",
+    "i18n": {
+      "it": {
+        "title": "Salmone con zucchine",
+        "description": "Fixture proteica senza cereali.",
+        "instructions": [
+          "Cuoci il salmone.",
+          "Cuoci le zucchine.",
+          "Condisci con olio."
+        ]
+      },
+      "en": {
+        "title": "Salmon with zucchini",
+        "description": "Protein-focused fixture without grains.",
+        "instructions": [
+          "Cook the salmon.",
+          "Cook the zucchini.",
+          "Dress with olive oil."
+        ]
+      }
+    },
+    "servingCount": 1,
+    "mealArchetypes": [
+      "lunch",
+      "dinner"
+    ],
+    "ingredientLines": [
+      {
+        "ingredientId": "ing_salmon",
+        "ingredientRevisionId": "ingrev_salmon_raw_v2",
+        "amount": 180,
+        "unit": "g",
+        "normalizedAmount": 180,
+        "normalizedUnit": "g",
+        "optional": false,
+        "notesKey": null
+      },
+      {
+        "ingredientId": "ing_zucchini",
+        "ingredientRevisionId": "ingrev_zucchini_raw_v2",
+        "amount": 250,
+        "unit": "g",
+        "normalizedAmount": 250,
+        "normalizedUnit": "g",
+        "optional": false,
+        "notesKey": null
+      },
+      {
+        "ingredientId": "ing_olive_oil",
+        "ingredientRevisionId": "ingrev_olive_oil_v2",
+        "amount": 8,
+        "unit": "g",
+        "normalizedAmount": 8,
+        "normalizedUnit": "g",
+        "optional": false,
+        "notesKey": null
+      }
+    ],
+    "calculatedNutrition": {
+      "energyKcal": 487.6,
+      "proteinG": 39.7,
+      "carbsG": 7.8,
+      "fatG": 32.9,
+      "fiberG": 2.5
+    },
+    "practical": {
+      "prepMinutes": 8,
+      "cookMinutes": 18,
+      "reheatingRequired": false,
+      "coldSuitable": false,
+      "portable": false,
+      "fridgeRequired": true,
+      "freezerSuitable": false,
+      "mealPrepSuitable": true,
+      "finalWeightG": 438,
+      "finalVolumeMl": null,
+      "yieldNotes": null
+    },
+    "tags": {
+      "families": [
+        "protein_plate"
+      ],
+      "cuisines": [
+        "mediterranean"
+      ],
+      "diet": [
+        "high_protein"
+      ]
+    },
+    "allergenIds": [
+      "fish"
+    ],
+    "searchTokens": [
+      "con",
+      "crude",
+      "crudo",
+      "di",
+      "high",
+      "mediterranean",
+      "oil",
+      "olio",
+      "oliva",
+      "olive",
+      "plate",
+      "protein",
+      "raw",
+      "salmon",
+      "salmone",
+      "with",
+      "zucchine",
+      "zucchini"
+    ],
+    "calculationAlgorithmVersion": "nutrition-core-1",
+    "inputDigest": "9bea04467e02bfb131c3bed0738f1758cdcd64b8863ca928e26ccb3d6fcd095d",
+    "contentHash": "b56bdbdd11baae0c4fe74dc053ebb93a25cf065b19614f83f76b4dc98272432c",
+    "generation": {
+      "jobId": "phase3-fixture",
+      "pipelineVersion": "phase3-fixture",
+      "sourceLocale": "it",
+      "generatedAt": "2026-09-03T12:00:00Z"
+    },
+    "quality": {
+      "status": "validated",
+      "reviewNotes": "Development fixture only"
+    },
+    "createdAt": "2026-09-03T12:00:00Z"
+  }
+]

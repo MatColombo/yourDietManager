@@ -1,0 +1,1636 @@
+{
+  "schemaVersion": 1,
+  "policyId": "corpus-policy-v1-default",
+  "policyVersion": "1.1.0",
+  "plannerVersion": "corpus-planner-1",
+  "targetCorpus": {
+    "min": 3000,
+    "target": 4000,
+    "max": 5000
+  },
+  "batchPlanning": {
+    "defaultAcceptedCount": 100,
+    "minAcceptedCount": 60,
+    "maxAcceptedCount": 150,
+    "oversampleRatio": 1.25,
+    "maxCandidateCount": 250,
+    "candidateIntentLimit": 100,
+    "maxConsecutiveSamePrimaryFocus": 2,
+    "tieBreakStrategy": "seeded_hash_then_lexical",
+    "stopWhenNoPositivePriority": true,
+    "maxCoverageTargetsPerJob": 5
+  },
+  "scoreWeights": {
+    "nutrition": 1.4,
+    "meal": 1.2,
+    "practicality": 1,
+    "cuisine": 0.6,
+    "ingredientDiversity": 1,
+    "recipeFamily": 0.8,
+    "focusBoost": 1.5,
+    "similarityPenalty": 1.5,
+    "ingredientOverusePenalty": 1.2,
+    "pairRepetitionPenalty": 0.8
+  },
+  "energyBands": [
+    {
+      "bandId": "kcal-100-199",
+      "min": 100,
+      "max": 199
+    },
+    {
+      "bandId": "kcal-200-299",
+      "min": 200,
+      "max": 299
+    },
+    {
+      "bandId": "kcal-300-399",
+      "min": 300,
+      "max": 399
+    },
+    {
+      "bandId": "kcal-400-499",
+      "min": 400,
+      "max": 499
+    },
+    {
+      "bandId": "kcal-500-599",
+      "min": 500,
+      "max": 599
+    },
+    {
+      "bandId": "kcal-600-699",
+      "min": 600,
+      "max": 699
+    },
+    {
+      "bandId": "kcal-700-799",
+      "min": 700,
+      "max": 799
+    }
+  ],
+  "proteinBands": [
+    {
+      "bandId": "protein-low",
+      "min": 0,
+      "max": 19.9
+    },
+    {
+      "bandId": "protein-medium",
+      "min": 20,
+      "max": 34.9
+    },
+    {
+      "bandId": "protein-high",
+      "min": 35,
+      "max": 80
+    }
+  ],
+  "fiberBands": [
+    {
+      "bandId": "fiber-low",
+      "min": 0,
+      "max": 4.9
+    },
+    {
+      "bandId": "fiber-moderate",
+      "min": 5,
+      "max": 9.9
+    },
+    {
+      "bandId": "fiber-high",
+      "min": 10,
+      "max": 30
+    }
+  ],
+  "coverageTargets": [
+    {
+      "targetId": "meal-breakfast-coverage",
+      "dimension": "meal_archetype",
+      "key": "breakfast",
+      "minCount": 500,
+      "desiredCount": 600,
+      "weight": 1,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "meal-lunch-coverage",
+      "dimension": "meal_archetype",
+      "key": "lunch",
+      "minCount": 700,
+      "desiredCount": 800,
+      "weight": 1,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "meal-dinner-coverage",
+      "dimension": "meal_archetype",
+      "key": "dinner",
+      "minCount": 700,
+      "desiredCount": 800,
+      "weight": 1,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "meal-snack-coverage",
+      "dimension": "meal_archetype",
+      "key": "snack",
+      "minCount": 350,
+      "desiredCount": 450,
+      "weight": 1,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "meal-mini_meal-coverage",
+      "dimension": "meal_archetype",
+      "key": "mini_meal",
+      "minCount": 150,
+      "desiredCount": 250,
+      "weight": 1,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "energy-kcal-100-199-density",
+      "dimension": "energy_band",
+      "key": "kcal-100-199",
+      "desiredShare": 0.06,
+      "weight": 0.85,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "energy-kcal-200-299-density",
+      "dimension": "energy_band",
+      "key": "kcal-200-299",
+      "desiredShare": 0.1,
+      "weight": 0.85,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "energy-kcal-300-399-density",
+      "dimension": "energy_band",
+      "key": "kcal-300-399",
+      "desiredShare": 0.14,
+      "weight": 0.85,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "energy-kcal-400-499-density",
+      "dimension": "energy_band",
+      "key": "kcal-400-499",
+      "desiredShare": 0.18,
+      "weight": 0.85,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "energy-kcal-500-599-density",
+      "dimension": "energy_band",
+      "key": "kcal-500-599",
+      "desiredShare": 0.2,
+      "weight": 0.85,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "energy-kcal-600-699-density",
+      "dimension": "energy_band",
+      "key": "kcal-600-699",
+      "desiredShare": 0.16,
+      "weight": 0.85,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "energy-kcal-700-799-density",
+      "dimension": "energy_band",
+      "key": "kcal-700-799",
+      "desiredShare": 0.1,
+      "weight": 0.85,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "protein-protein-low-density",
+      "dimension": "protein_band",
+      "key": "protein-low",
+      "desiredShare": 0.28,
+      "weight": 0.75,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "protein-protein-medium-density",
+      "dimension": "protein_band",
+      "key": "protein-medium",
+      "desiredShare": 0.42,
+      "weight": 0.75,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "protein-protein-high-density",
+      "dimension": "protein_band",
+      "key": "protein-high",
+      "desiredShare": 0.3,
+      "weight": 0.75,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "fiber-fiber-low-density",
+      "dimension": "fiber_band",
+      "key": "fiber-low",
+      "desiredShare": 0.3,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "fiber-fiber-moderate-density",
+      "dimension": "fiber_band",
+      "key": "fiber-moderate",
+      "desiredShare": 0.5,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "fiber-fiber-high-density",
+      "dimension": "fiber_band",
+      "key": "fiber-high",
+      "desiredShare": 0.2,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "practical-portable-coverage",
+      "dimension": "practicality",
+      "key": "portable",
+      "minCount": 300,
+      "desiredCount": 450,
+      "weight": 1,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "practical-quick-density",
+      "dimension": "practicality",
+      "key": "quick",
+      "desiredShare": 0.3,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "practical-cold-density",
+      "dimension": "practicality",
+      "key": "cold",
+      "desiredShare": 0.2,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "practical-meal_prep-density",
+      "dimension": "practicality",
+      "key": "meal_prep",
+      "desiredShare": 0.25,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "diet-vegetarian-density",
+      "dimension": "diet",
+      "key": "vegetarian",
+      "desiredShare": 0.3,
+      "weight": 0.55,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "family-soup_stew-soft",
+      "dimension": "recipe_family",
+      "key": "soup_stew",
+      "desiredShare": 0.08,
+      "weight": 0.4,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "family-grain_bowl-soft",
+      "dimension": "recipe_family",
+      "key": "grain_bowl",
+      "desiredShare": 0.1,
+      "weight": 0.4,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "family-side_component-soft",
+      "dimension": "recipe_family",
+      "key": "side_component",
+      "desiredShare": 0.08,
+      "weight": 0.4,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cuisine-italian-soft",
+      "dimension": "cuisine",
+      "key": "italian",
+      "desiredShare": 0.12,
+      "weight": 0.35,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cuisine-mediterranean-soft",
+      "dimension": "cuisine",
+      "key": "mediterranean",
+      "desiredShare": 0.12,
+      "weight": 0.35,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cuisine-east_asian-soft",
+      "dimension": "cuisine",
+      "key": "east_asian",
+      "desiredShare": 0.08,
+      "weight": 0.35,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cuisine-south_asian-soft",
+      "dimension": "cuisine",
+      "key": "south_asian",
+      "desiredShare": 0.06,
+      "weight": 0.35,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cuisine-middle_eastern-soft",
+      "dimension": "cuisine",
+      "key": "middle_eastern",
+      "desiredShare": 0.06,
+      "weight": 0.35,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "ingredient-category-vegetables-soft",
+      "dimension": "ingredient_category",
+      "key": "vegetables",
+      "desiredShare": 0.45,
+      "weight": 0.45,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "ingredient-category-legumes-soft",
+      "dimension": "ingredient_category",
+      "key": "legumes",
+      "desiredShare": 0.15,
+      "weight": 0.45,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "ingredient-category-fish_seafood-soft",
+      "dimension": "ingredient_category",
+      "key": "fish_seafood",
+      "desiredShare": 0.12,
+      "weight": 0.45,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-lunch-kcal-300-399",
+      "dimension": "energy_band",
+      "key": "lunch|kcal-300-399",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "lunch"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-300-399"
+        }
+      ],
+      "minCount": 75,
+      "desiredCount": 110,
+      "weight": 1.15,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "cell-lunch-kcal-400-499",
+      "dimension": "energy_band",
+      "key": "lunch|kcal-400-499",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "lunch"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-400-499"
+        }
+      ],
+      "minCount": 75,
+      "desiredCount": 110,
+      "weight": 1.15,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "cell-lunch-kcal-500-599",
+      "dimension": "energy_band",
+      "key": "lunch|kcal-500-599",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "lunch"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-500-599"
+        }
+      ],
+      "minCount": 75,
+      "desiredCount": 110,
+      "weight": 1.15,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "cell-lunch-kcal-600-699",
+      "dimension": "energy_band",
+      "key": "lunch|kcal-600-699",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "lunch"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-600-699"
+        }
+      ],
+      "minCount": 75,
+      "desiredCount": 110,
+      "weight": 1.15,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "cell-lunch-kcal-700-799",
+      "dimension": "energy_band",
+      "key": "lunch|kcal-700-799",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "lunch"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-700-799"
+        }
+      ],
+      "minCount": 75,
+      "desiredCount": 110,
+      "weight": 1.15,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "cell-dinner-kcal-300-399",
+      "dimension": "energy_band",
+      "key": "dinner|kcal-300-399",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "dinner"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-300-399"
+        }
+      ],
+      "minCount": 75,
+      "desiredCount": 110,
+      "weight": 1.15,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "cell-dinner-kcal-400-499",
+      "dimension": "energy_band",
+      "key": "dinner|kcal-400-499",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "dinner"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-400-499"
+        }
+      ],
+      "minCount": 75,
+      "desiredCount": 110,
+      "weight": 1.15,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "cell-dinner-kcal-500-599",
+      "dimension": "energy_band",
+      "key": "dinner|kcal-500-599",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "dinner"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-500-599"
+        }
+      ],
+      "minCount": 75,
+      "desiredCount": 110,
+      "weight": 1.15,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "cell-dinner-kcal-600-699",
+      "dimension": "energy_band",
+      "key": "dinner|kcal-600-699",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "dinner"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-600-699"
+        }
+      ],
+      "minCount": 75,
+      "desiredCount": 110,
+      "weight": 1.15,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "cell-dinner-kcal-700-799",
+      "dimension": "energy_band",
+      "key": "dinner|kcal-700-799",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "dinner"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-700-799"
+        }
+      ],
+      "minCount": 75,
+      "desiredCount": 110,
+      "weight": 1.15,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "cell-breakfast-kcal-100-199",
+      "dimension": "energy_band",
+      "key": "breakfast|kcal-100-199",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "breakfast"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-100-199"
+        }
+      ],
+      "minCount": 50,
+      "desiredCount": 80,
+      "weight": 1.05,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "cell-breakfast-kcal-200-299",
+      "dimension": "energy_band",
+      "key": "breakfast|kcal-200-299",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "breakfast"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-200-299"
+        }
+      ],
+      "minCount": 50,
+      "desiredCount": 80,
+      "weight": 1.05,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "cell-breakfast-kcal-300-399",
+      "dimension": "energy_band",
+      "key": "breakfast|kcal-300-399",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "breakfast"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-300-399"
+        }
+      ],
+      "minCount": 50,
+      "desiredCount": 80,
+      "weight": 1.05,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "cell-breakfast-kcal-400-499",
+      "dimension": "energy_band",
+      "key": "breakfast|kcal-400-499",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "breakfast"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-400-499"
+        }
+      ],
+      "minCount": 50,
+      "desiredCount": 80,
+      "weight": 1.05,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "cell-snack-kcal-100-199",
+      "dimension": "energy_band",
+      "key": "snack|kcal-100-199",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "snack"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-100-199"
+        }
+      ],
+      "minCount": 50,
+      "desiredCount": 80,
+      "weight": 1.05,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "cell-snack-kcal-200-299",
+      "dimension": "energy_band",
+      "key": "snack|kcal-200-299",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "snack"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-200-299"
+        }
+      ],
+      "minCount": 50,
+      "desiredCount": 80,
+      "weight": 1.05,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "cell-snack-kcal-300-399",
+      "dimension": "energy_band",
+      "key": "snack|kcal-300-399",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "snack"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-300-399"
+        }
+      ],
+      "minCount": 50,
+      "desiredCount": 80,
+      "weight": 1.05,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "cell-snack-kcal-400-499",
+      "dimension": "energy_band",
+      "key": "snack|kcal-400-499",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "snack"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-400-499"
+        }
+      ],
+      "minCount": 50,
+      "desiredCount": 80,
+      "weight": 1.05,
+      "hardForRelease": true
+    },
+    {
+      "targetId": "cell-kcal-300-399-protein-low",
+      "dimension": "protein_band",
+      "key": "kcal-300-399|protein-low",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-300-399"
+        },
+        {
+          "dimension": "protein_band",
+          "key": "protein-low"
+        }
+      ],
+      "desiredCount": 100,
+      "weight": 0.8,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-300-399-protein-medium",
+      "dimension": "protein_band",
+      "key": "kcal-300-399|protein-medium",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-300-399"
+        },
+        {
+          "dimension": "protein_band",
+          "key": "protein-medium"
+        }
+      ],
+      "desiredCount": 100,
+      "weight": 0.8,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-300-399-protein-high",
+      "dimension": "protein_band",
+      "key": "kcal-300-399|protein-high",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-300-399"
+        },
+        {
+          "dimension": "protein_band",
+          "key": "protein-high"
+        }
+      ],
+      "desiredCount": 100,
+      "weight": 0.8,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-400-499-protein-low",
+      "dimension": "protein_band",
+      "key": "kcal-400-499|protein-low",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-400-499"
+        },
+        {
+          "dimension": "protein_band",
+          "key": "protein-low"
+        }
+      ],
+      "desiredCount": 100,
+      "weight": 0.8,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-400-499-protein-medium",
+      "dimension": "protein_band",
+      "key": "kcal-400-499|protein-medium",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-400-499"
+        },
+        {
+          "dimension": "protein_band",
+          "key": "protein-medium"
+        }
+      ],
+      "desiredCount": 100,
+      "weight": 0.8,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-400-499-protein-high",
+      "dimension": "protein_band",
+      "key": "kcal-400-499|protein-high",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-400-499"
+        },
+        {
+          "dimension": "protein_band",
+          "key": "protein-high"
+        }
+      ],
+      "desiredCount": 100,
+      "weight": 0.8,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-500-599-protein-low",
+      "dimension": "protein_band",
+      "key": "kcal-500-599|protein-low",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-500-599"
+        },
+        {
+          "dimension": "protein_band",
+          "key": "protein-low"
+        }
+      ],
+      "desiredCount": 100,
+      "weight": 0.8,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-500-599-protein-medium",
+      "dimension": "protein_band",
+      "key": "kcal-500-599|protein-medium",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-500-599"
+        },
+        {
+          "dimension": "protein_band",
+          "key": "protein-medium"
+        }
+      ],
+      "desiredCount": 100,
+      "weight": 0.8,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-500-599-protein-high",
+      "dimension": "protein_band",
+      "key": "kcal-500-599|protein-high",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-500-599"
+        },
+        {
+          "dimension": "protein_band",
+          "key": "protein-high"
+        }
+      ],
+      "desiredCount": 100,
+      "weight": 0.8,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-600-699-protein-low",
+      "dimension": "protein_band",
+      "key": "kcal-600-699|protein-low",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-600-699"
+        },
+        {
+          "dimension": "protein_band",
+          "key": "protein-low"
+        }
+      ],
+      "desiredCount": 100,
+      "weight": 0.8,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-600-699-protein-medium",
+      "dimension": "protein_band",
+      "key": "kcal-600-699|protein-medium",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-600-699"
+        },
+        {
+          "dimension": "protein_band",
+          "key": "protein-medium"
+        }
+      ],
+      "desiredCount": 100,
+      "weight": 0.8,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-600-699-protein-high",
+      "dimension": "protein_band",
+      "key": "kcal-600-699|protein-high",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-600-699"
+        },
+        {
+          "dimension": "protein_band",
+          "key": "protein-high"
+        }
+      ],
+      "desiredCount": 100,
+      "weight": 0.8,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-700-799-protein-low",
+      "dimension": "protein_band",
+      "key": "kcal-700-799|protein-low",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-700-799"
+        },
+        {
+          "dimension": "protein_band",
+          "key": "protein-low"
+        }
+      ],
+      "desiredCount": 100,
+      "weight": 0.8,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-700-799-protein-medium",
+      "dimension": "protein_band",
+      "key": "kcal-700-799|protein-medium",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-700-799"
+        },
+        {
+          "dimension": "protein_band",
+          "key": "protein-medium"
+        }
+      ],
+      "desiredCount": 100,
+      "weight": 0.8,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-700-799-protein-high",
+      "dimension": "protein_band",
+      "key": "kcal-700-799|protein-high",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-700-799"
+        },
+        {
+          "dimension": "protein_band",
+          "key": "protein-high"
+        }
+      ],
+      "desiredCount": 100,
+      "weight": 0.8,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-300-399-fiber-low",
+      "dimension": "fiber_band",
+      "key": "kcal-300-399|fiber-low",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-300-399"
+        },
+        {
+          "dimension": "fiber_band",
+          "key": "fiber-low"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-300-399-fiber-moderate",
+      "dimension": "fiber_band",
+      "key": "kcal-300-399|fiber-moderate",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-300-399"
+        },
+        {
+          "dimension": "fiber_band",
+          "key": "fiber-moderate"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-300-399-fiber-high",
+      "dimension": "fiber_band",
+      "key": "kcal-300-399|fiber-high",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-300-399"
+        },
+        {
+          "dimension": "fiber_band",
+          "key": "fiber-high"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-400-499-fiber-low",
+      "dimension": "fiber_band",
+      "key": "kcal-400-499|fiber-low",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-400-499"
+        },
+        {
+          "dimension": "fiber_band",
+          "key": "fiber-low"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-400-499-fiber-moderate",
+      "dimension": "fiber_band",
+      "key": "kcal-400-499|fiber-moderate",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-400-499"
+        },
+        {
+          "dimension": "fiber_band",
+          "key": "fiber-moderate"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-400-499-fiber-high",
+      "dimension": "fiber_band",
+      "key": "kcal-400-499|fiber-high",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-400-499"
+        },
+        {
+          "dimension": "fiber_band",
+          "key": "fiber-high"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-500-599-fiber-low",
+      "dimension": "fiber_band",
+      "key": "kcal-500-599|fiber-low",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-500-599"
+        },
+        {
+          "dimension": "fiber_band",
+          "key": "fiber-low"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-500-599-fiber-moderate",
+      "dimension": "fiber_band",
+      "key": "kcal-500-599|fiber-moderate",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-500-599"
+        },
+        {
+          "dimension": "fiber_band",
+          "key": "fiber-moderate"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-500-599-fiber-high",
+      "dimension": "fiber_band",
+      "key": "kcal-500-599|fiber-high",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-500-599"
+        },
+        {
+          "dimension": "fiber_band",
+          "key": "fiber-high"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-600-699-fiber-low",
+      "dimension": "fiber_band",
+      "key": "kcal-600-699|fiber-low",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-600-699"
+        },
+        {
+          "dimension": "fiber_band",
+          "key": "fiber-low"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-600-699-fiber-moderate",
+      "dimension": "fiber_band",
+      "key": "kcal-600-699|fiber-moderate",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-600-699"
+        },
+        {
+          "dimension": "fiber_band",
+          "key": "fiber-moderate"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-600-699-fiber-high",
+      "dimension": "fiber_band",
+      "key": "kcal-600-699|fiber-high",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-600-699"
+        },
+        {
+          "dimension": "fiber_band",
+          "key": "fiber-high"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-700-799-fiber-low",
+      "dimension": "fiber_band",
+      "key": "kcal-700-799|fiber-low",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-700-799"
+        },
+        {
+          "dimension": "fiber_band",
+          "key": "fiber-low"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-700-799-fiber-moderate",
+      "dimension": "fiber_band",
+      "key": "kcal-700-799|fiber-moderate",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-700-799"
+        },
+        {
+          "dimension": "fiber_band",
+          "key": "fiber-moderate"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-700-799-fiber-high",
+      "dimension": "fiber_band",
+      "key": "kcal-700-799|fiber-high",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-700-799"
+        },
+        {
+          "dimension": "fiber_band",
+          "key": "fiber-high"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.65,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-lunch-kcal-300-399-quick",
+      "dimension": "practicality",
+      "key": "lunch|kcal-300-399|quick",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "lunch"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-300-399"
+        },
+        {
+          "dimension": "practicality",
+          "key": "quick"
+        }
+      ],
+      "desiredCount": 30,
+      "weight": 0.55,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-lunch-kcal-400-499-quick",
+      "dimension": "practicality",
+      "key": "lunch|kcal-400-499|quick",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "lunch"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-400-499"
+        },
+        {
+          "dimension": "practicality",
+          "key": "quick"
+        }
+      ],
+      "desiredCount": 30,
+      "weight": 0.55,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-lunch-kcal-500-599-quick",
+      "dimension": "practicality",
+      "key": "lunch|kcal-500-599|quick",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "lunch"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-500-599"
+        },
+        {
+          "dimension": "practicality",
+          "key": "quick"
+        }
+      ],
+      "desiredCount": 30,
+      "weight": 0.55,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-lunch-kcal-600-699-quick",
+      "dimension": "practicality",
+      "key": "lunch|kcal-600-699|quick",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "lunch"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-600-699"
+        },
+        {
+          "dimension": "practicality",
+          "key": "quick"
+        }
+      ],
+      "desiredCount": 30,
+      "weight": 0.55,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-lunch-kcal-700-799-quick",
+      "dimension": "practicality",
+      "key": "lunch|kcal-700-799|quick",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "lunch"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-700-799"
+        },
+        {
+          "dimension": "practicality",
+          "key": "quick"
+        }
+      ],
+      "desiredCount": 30,
+      "weight": 0.55,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-dinner-kcal-300-399-quick",
+      "dimension": "practicality",
+      "key": "dinner|kcal-300-399|quick",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "dinner"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-300-399"
+        },
+        {
+          "dimension": "practicality",
+          "key": "quick"
+        }
+      ],
+      "desiredCount": 30,
+      "weight": 0.55,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-dinner-kcal-400-499-quick",
+      "dimension": "practicality",
+      "key": "dinner|kcal-400-499|quick",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "dinner"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-400-499"
+        },
+        {
+          "dimension": "practicality",
+          "key": "quick"
+        }
+      ],
+      "desiredCount": 30,
+      "weight": 0.55,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-dinner-kcal-500-599-quick",
+      "dimension": "practicality",
+      "key": "dinner|kcal-500-599|quick",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "dinner"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-500-599"
+        },
+        {
+          "dimension": "practicality",
+          "key": "quick"
+        }
+      ],
+      "desiredCount": 30,
+      "weight": 0.55,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-dinner-kcal-600-699-quick",
+      "dimension": "practicality",
+      "key": "dinner|kcal-600-699|quick",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "dinner"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-600-699"
+        },
+        {
+          "dimension": "practicality",
+          "key": "quick"
+        }
+      ],
+      "desiredCount": 30,
+      "weight": 0.55,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-dinner-kcal-700-799-quick",
+      "dimension": "practicality",
+      "key": "dinner|kcal-700-799|quick",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "dinner"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-700-799"
+        },
+        {
+          "dimension": "practicality",
+          "key": "quick"
+        }
+      ],
+      "desiredCount": 30,
+      "weight": 0.55,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-300-399-vegetarian",
+      "dimension": "diet",
+      "key": "kcal-300-399|vegetarian",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-300-399"
+        },
+        {
+          "dimension": "diet",
+          "key": "vegetarian"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.5,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-400-499-vegetarian",
+      "dimension": "diet",
+      "key": "kcal-400-499|vegetarian",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-400-499"
+        },
+        {
+          "dimension": "diet",
+          "key": "vegetarian"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.5,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-500-599-vegetarian",
+      "dimension": "diet",
+      "key": "kcal-500-599|vegetarian",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-500-599"
+        },
+        {
+          "dimension": "diet",
+          "key": "vegetarian"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.5,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-600-699-vegetarian",
+      "dimension": "diet",
+      "key": "kcal-600-699|vegetarian",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-600-699"
+        },
+        {
+          "dimension": "diet",
+          "key": "vegetarian"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.5,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-300-399-portable",
+      "dimension": "practicality",
+      "key": "kcal-300-399|portable",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-300-399"
+        },
+        {
+          "dimension": "practicality",
+          "key": "portable"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.5,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-400-499-portable",
+      "dimension": "practicality",
+      "key": "kcal-400-499|portable",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-400-499"
+        },
+        {
+          "dimension": "practicality",
+          "key": "portable"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.5,
+      "hardForRelease": false
+    },
+    {
+      "targetId": "cell-kcal-500-599-portable",
+      "dimension": "practicality",
+      "key": "kcal-500-599|portable",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-500-599"
+        },
+        {
+          "dimension": "practicality",
+          "key": "portable"
+        }
+      ],
+      "desiredCount": 80,
+      "weight": 0.5,
+      "hardForRelease": false
+    }
+  ],
+  "diversity": {
+    "primaryIngredientMaxShare": 0.12,
+    "ingredientOverusePenaltyStartShare": 0.08,
+    "repeatedPairMaxShare": 0.05,
+    "pairPenaltyStartShare": 0.03,
+    "minimumDistinctPrimaryIngredients": 80,
+    "exemptIngredientIds": []
+  },
+  "similarity": {
+    "highJaccardThreshold": 0.82,
+    "titleSimilarityThreshold": 0.9,
+    "nearDuplicateMaxShare": 0.05
+  },
+  "releaseGates": {
+    "maxSchemaErrors": 0,
+    "maxUnknownIngredientReferences": 0,
+    "maxNutritionErrors": 0,
+    "maxAllergenDerivationErrors": 0,
+    "maxExactDuplicates": 0,
+    "maxMissingRequiredLocaleFields": 0
+  },
+  "createdAt": "2026-09-03T15:10:00Z"
+}

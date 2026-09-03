@@ -1,0 +1,159 @@
+[
+  {
+    "schemaVersion": 1,
+    "id": "dc-work",
+    "name": "Lavoro",
+    "abbreviation": "LA",
+    "color": "#4A8F55",
+    "dayArchetype": "day",
+    "workWindows": [
+      {
+        "start": "08:00",
+        "end": "17:00",
+        "endDayOffset": 0
+      }
+    ],
+    "capabilities": {
+      "fridge": "yes",
+      "reheating": "yes",
+      "cooking": false,
+      "complexSnack": true,
+      "portabilityRequired": true,
+      "maxPrepMinutes": 30
+    },
+    "mealSlots": [
+      {
+        "id": "slot-breakfast",
+        "mealClassId": "mc-breakfast",
+        "time": "07:00",
+        "dayOffset": 0,
+        "mode": "planned",
+        "energyBudgetKcal": null,
+        "energyShare": 0.22,
+        "guidanceKeys": [],
+        "parallel": false,
+        "proteinMinG": null
+      },
+      {
+        "id": "slot-lunch",
+        "mealClassId": "mc-lunch",
+        "time": "13:00",
+        "dayOffset": 0,
+        "mode": "external",
+        "energyBudgetKcal": 600,
+        "energyShare": null,
+        "guidanceKeys": [
+          "externalMeal.protein",
+          "externalMeal.vegetables"
+        ],
+        "parallel": false,
+        "proteinMinG": 25,
+        "estimatedNutritionPolicy": "budget_only"
+      },
+      {
+        "id": "slot-snack",
+        "mealClassId": "mc-shift-snack",
+        "time": "16:30",
+        "dayOffset": 0,
+        "mode": "planned",
+        "energyBudgetKcal": null,
+        "energyShare": 0.12,
+        "guidanceKeys": [],
+        "parallel": false,
+        "proteinMinG": null
+      }
+    ]
+  },
+  {
+    "schemaVersion": 1,
+    "id": "dc-night",
+    "name": "Notte",
+    "abbreviation": "NT",
+    "color": "#243B7B",
+    "dayArchetype": "night",
+    "workWindows": [
+      {
+        "start": "20:00",
+        "end": "08:00",
+        "endDayOffset": 1
+      }
+    ],
+    "capabilities": {
+      "fridge": "yes",
+      "reheating": "no",
+      "cooking": false,
+      "complexSnack": false,
+      "portabilityRequired": true,
+      "maxPrepMinutes": 20
+    },
+    "mealSlots": [
+      {
+        "id": "slot-pre",
+        "mealClassId": "mc-dinner",
+        "time": "19:00",
+        "dayOffset": 0,
+        "mode": "planned",
+        "energyBudgetKcal": null,
+        "energyShare": 0.28,
+        "guidanceKeys": [],
+        "parallel": false,
+        "proteinMinG": null
+      },
+      {
+        "id": "slot-night",
+        "mealClassId": "mc-shift-snack",
+        "time": "02:30",
+        "dayOffset": 1,
+        "mode": "planned",
+        "energyBudgetKcal": null,
+        "energyShare": 0.15,
+        "guidanceKeys": [],
+        "parallel": false,
+        "proteinMinG": null
+      }
+    ]
+  },
+  {
+    "schemaVersion": 1,
+    "id": "dc-rest",
+    "name": "Riposo",
+    "abbreviation": "RI",
+    "color": "#5F876D",
+    "dayArchetype": "rest",
+    "workWindows": [],
+    "capabilities": {
+      "fridge": "yes",
+      "reheating": "yes",
+      "cooking": true,
+      "complexSnack": true,
+      "portabilityRequired": false,
+      "maxPrepMinutes": 45
+    },
+    "mealSlots": [
+      {
+        "id": "slot-rest-breakfast",
+        "mealClassId": "mc-breakfast",
+        "time": "08:30",
+        "dayOffset": 0,
+        "mode": "planned",
+        "energyBudgetKcal": null,
+        "energyShare": 0.22,
+        "guidanceKeys": [],
+        "parallel": false,
+        "proteinMinG": null
+      },
+      {
+        "id": "slot-rest-dinner",
+        "mealClassId": "mc-dinner",
+        "time": "20:00",
+        "dayOffset": 0,
+        "mode": "planned",
+        "energyBudgetKcal": null,
+        "energyShare": 0.28,
+        "guidanceKeys": [],
+        "parallel": false,
+        "proteinMinG": null
+      }
+    ]
+  }
+]

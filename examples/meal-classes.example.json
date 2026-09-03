@@ -1,0 +1,85 @@
+[
+  {
+    "schemaVersion": 1,
+    "id": "mc-breakfast",
+    "name": "Colazione",
+    "abbreviation": "CO",
+    "mealArchetype": "breakfast",
+    "energyShare": {
+      "target": 0.22,
+      "min": 0.15,
+      "max": 0.3
+    },
+    "rules": [
+      {
+        "ruleType": "flavor",
+        "target": "sweet",
+        "strength": "prefer"
+      }
+    ]
+  },
+  {
+    "schemaVersion": 1,
+    "id": "mc-lunch",
+    "name": "Pranzo",
+    "abbreviation": "PR",
+    "mealArchetype": "lunch",
+    "energyShare": {
+      "target": 0.3,
+      "min": 0.22,
+      "max": 0.38
+    },
+    "rules": [
+      {
+        "ruleType": "practical",
+        "target": "prepMinutes",
+        "operator": "lte",
+        "value": 30,
+        "strength": "slight_prefer"
+      }
+    ]
+  },
+  {
+    "schemaVersion": 1,
+    "id": "mc-dinner",
+    "name": "Cena",
+    "abbreviation": "CE",
+    "mealArchetype": "dinner",
+    "energyShare": {
+      "target": 0.28,
+      "min": 0.2,
+      "max": 0.36
+    },
+    "rules": [
+      {
+        "ruleType": "foodCategory",
+        "target": "fish",
+        "strength": "avoid"
+      },
+      {
+        "ruleType": "tag",
+        "target": "spicy",
+        "strength": "avoid"
+      }
+    ]
+  },
+  {
+    "schemaVersion": 1,
+    "id": "mc-shift-snack",
+    "name": "Pausa lavoro",
+    "abbreviation": "PL",
+    "mealArchetype": "during_shift",
+    "energyShare": {
+      "target": 0.12,
+      "min": 0.07,
+      "max": 0.18
+    },
+    "rules": [
+      {
+        "ruleType": "tag",
+        "target": "portable",
+        "strength": "prefer"
+      }
+    ]
+  }
+]

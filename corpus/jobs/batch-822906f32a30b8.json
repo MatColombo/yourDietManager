@@ -1,0 +1,154 @@
+{
+  "schemaVersion": 1,
+  "jobId": "batch-822906f32a30b8",
+  "pipelineVersion": "recipe-pipeline-1",
+  "seed": "phase4-default-policy-test:822906f32a30b895",
+  "targetCatalogVersion": "1.0.0",
+  "sourceLocale": "it",
+  "requiredLocales": [
+    "it",
+    "en"
+  ],
+  "targetAcceptedCount": 100,
+  "candidateCount": 125,
+  "mealArchetypes": [
+    "breakfast"
+  ],
+  "energyKcal": {
+    "min": 400,
+    "max": 499
+  },
+  "proteinG": {
+    "min": 0,
+    "max": 19.9
+  },
+  "fiberG": {
+    "min": 10,
+    "max": 30
+  },
+  "maxTotalMinutes": null,
+  "recipeFamilies": [],
+  "cuisineFocus": [],
+  "practicalityTargets": [
+    "portable"
+  ],
+  "requiredTags": [],
+  "forbiddenTags": [],
+  "preferredUnderusedIngredientIds": [
+    "ing_olive_oil",
+    "ing_salmon",
+    "ing_rice_cooked",
+    "ing_zucchini"
+  ],
+  "diversityTargets": {
+    "minDistinctPrimaryIngredients": 4,
+    "minDistinctIngredientIds": 4,
+    "maxPrimaryIngredientFrequency": 25,
+    "maxIngredientPairFrequency": 8
+  },
+  "coverageTargets": [
+    {
+      "targetId": "cell-breakfast-kcal-400-499",
+      "key": "breakfast|kcal-400-499",
+      "dimension": "energy_band",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "breakfast"
+        },
+        {
+          "dimension": "energy_band",
+          "key": "kcal-400-499"
+        }
+      ],
+      "desiredAcceptedGain": 20
+    },
+    {
+      "targetId": "cell-kcal-400-499-fiber-high",
+      "key": "kcal-400-499|fiber-high",
+      "dimension": "fiber_band",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-400-499"
+        },
+        {
+          "dimension": "fiber_band",
+          "key": "fiber-high"
+        }
+      ],
+      "desiredAcceptedGain": 20
+    },
+    {
+      "targetId": "cell-kcal-400-499-portable",
+      "key": "kcal-400-499|portable",
+      "dimension": "practicality",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-400-499"
+        },
+        {
+          "dimension": "practicality",
+          "key": "portable"
+        }
+      ],
+      "desiredAcceptedGain": 20
+    },
+    {
+      "targetId": "cell-kcal-400-499-protein-low",
+      "key": "kcal-400-499|protein-low",
+      "dimension": "protein_band",
+      "criteria": [
+        {
+          "dimension": "energy_band",
+          "key": "kcal-400-499"
+        },
+        {
+          "dimension": "protein_band",
+          "key": "protein-low"
+        }
+      ],
+      "desiredAcceptedGain": 20
+    },
+    {
+      "targetId": "meal-breakfast-coverage",
+      "key": "breakfast",
+      "dimension": "meal_archetype",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "breakfast"
+        }
+      ],
+      "desiredAcceptedGain": 20
+    }
+  ],
+  "allowedIngredientIds": [
+    "ing_olive_oil",
+    "ing_rice_cooked",
+    "ing_salmon",
+    "ing_zucchini"
+  ],
+  "orchestration": {
+    "runId": "orun-build-c29d54ef7296",
+    "inputSnapshotId": "snapshot-0.4.0-dev-c5e854e48159",
+    "policyId": "corpus-policy-v1-default",
+    "policyVersion": "1.1.0",
+    "plannedPriority": 2.575,
+    "targetIds": [
+      "cell-breakfast-kcal-400-499",
+      "cell-kcal-400-499-fiber-high",
+      "cell-kcal-400-499-portable",
+      "cell-kcal-400-499-protein-low",
+      "meal-breakfast-coverage"
+    ],
+    "reasons": [
+      "energy_band:breakfast|kcal-400-499 deficit=1",
+      "fiber_band:kcal-400-499|fiber-high deficit=1",
+      "practicality:kcal-400-499|portable deficit=1",
+      "protein_band:kcal-400-499|protein-low deficit=1",
+      "meal_archetype:breakfast deficit=1"
+    ]
+  }
+}

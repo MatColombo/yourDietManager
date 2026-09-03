@@ -1,0 +1,100 @@
+{
+  "schemaVersion": 1,
+  "catalogVersion": "1.0.0",
+  "builtAt": "2026-09-03T00:00:00Z",
+  "appCompatibility": {
+    "minVersion": "1.0.0",
+    "maxVersion": null
+  },
+  "locales": [
+    "it",
+    "en"
+  ],
+  "pipelineVersion": "recipe-pipeline-1",
+  "calculationAlgorithmVersion": "nutrition-core-1",
+  "ingredientFamilies": {
+    "count": 500,
+    "shards": [
+      {
+        "path": "ingredients/ingredient-families-0001.json",
+        "count": 500,
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      }
+    ]
+  },
+  "ingredientRevisions": {
+    "count": 500,
+    "shards": [
+      {
+        "path": "ingredients/ingredient-revisions-0001.json",
+        "count": 500,
+        "sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      }
+    ]
+  },
+  "recipeFamilies": {
+    "count": 3000,
+    "shards": [
+      {
+        "path": "recipes/recipe-families-0001.json",
+        "count": 3000,
+        "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      }
+    ]
+  },
+  "recipeVersions": {
+    "count": 3000,
+    "shards": [
+      {
+        "path": "recipes/recipe-versions-0001.json",
+        "count": 500,
+        "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+      },
+      {
+        "path": "recipes/recipe-versions-0002.json",
+        "count": 500,
+        "sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+      },
+      {
+        "path": "recipes/recipe-versions-0003.json",
+        "count": 500,
+        "sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+      },
+      {
+        "path": "recipes/recipe-versions-0004.json",
+        "count": 500,
+        "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+      },
+      {
+        "path": "recipes/recipe-versions-0005.json",
+        "count": 500,
+        "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+      },
+      {
+        "path": "recipes/recipe-versions-0006.json",
+        "count": 500,
+        "sha256": "3333333333333333333333333333333333333333333333333333333333333333"
+      }
+    ]
+  },
+  "packs": [
+    {
+      "packId": "core",
+      "labelKey": "catalog.pack.core.label",
+      "descriptionKey": "catalog.pack.core.description",
+      "required": true,
+      "estimatedBytes": 18000000,
+      "recipeVersionIds": [
+        "recver_salmon_rice_v1"
+      ]
+    },
+    {
+      "packId": "quick",
+      "labelKey": "catalog.pack.quick.label",
+      "descriptionKey": "catalog.pack.quick.description",
+      "required": false,
+      "estimatedBytes": 6000000,
+      "recipeVersionIds": []
+    }
+  ]
+}

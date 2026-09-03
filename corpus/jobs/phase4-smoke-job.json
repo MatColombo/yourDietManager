@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "jobId": "batch-04ef295dce73e0",
+  "pipelineVersion": "recipe-pipeline-1",
+  "seed": "phase4-smoke-seed:04ef295dce73e013",
+  "targetCatalogVersion": "0.4.0-dev",
+  "sourceLocale": "it",
+  "requiredLocales": [
+    "it",
+    "en"
+  ],
+  "targetAcceptedCount": 5,
+  "candidateCount": 7,
+  "mealArchetypes": [
+    "dinner"
+  ],
+  "energyKcal": {
+    "min": 300,
+    "max": 799
+  },
+  "proteinG": null,
+  "fiberG": null,
+  "maxTotalMinutes": null,
+  "recipeFamilies": [],
+  "cuisineFocus": [],
+  "practicalityTargets": [
+    "portable"
+  ],
+  "requiredTags": [],
+  "forbiddenTags": [],
+  "preferredUnderusedIngredientIds": [
+    "ing_salmon",
+    "ing_rice_cooked",
+    "ing_zucchini"
+  ],
+  "diversityTargets": {
+    "minDistinctPrimaryIngredients": 3,
+    "minDistinctIngredientIds": 4,
+    "maxPrimaryIngredientFrequency": 2,
+    "maxIngredientPairFrequency": 2
+  },
+  "coverageTargets": [
+    {
+      "targetId": "smoke-dinner",
+      "key": "dinner",
+      "dimension": "meal_archetype",
+      "criteria": [
+        {
+          "dimension": "meal_archetype",
+          "key": "dinner"
+        }
+      ],
+      "desiredAcceptedGain": 3
+    },
+    {
+      "targetId": "smoke-portable",
+      "key": "portable",
+      "dimension": "practicality",
+      "criteria": [
+        {
+          "dimension": "practicality",
+          "key": "portable"
+        }
+      ],
+      "desiredAcceptedGain": 3
+    }
+  ],
+  "allowedIngredientIds": [
+    "ing_olive_oil",
+    "ing_rice_cooked",
+    "ing_salmon",
+    "ing_zucchini"
+  ],
+  "orchestration": {
+    "runId": "orun-build-3e690a828774",
+    "inputSnapshotId": "snapshot-0.3.0-dev-fb65d3d79779",
+    "policyId": "corpus-policy-phase4-smoke",
+    "policyVersion": "1.0.0",
+    "plannedPriority": 1.105567,
+    "targetIds": [
+      "smoke-dinner",
+      "smoke-portable"
+    ],
+    "reasons": [
+      "meal_archetype:dinner deficit=0.625",
+      "practicality:portable deficit=0.667"
+    ]
+  }
+}

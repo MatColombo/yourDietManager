@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "theme-user",
+  "mode": "system",
+  "preset": "minimal",
+  "density": "compact",
+  "fontScale": 1.0,
+  "tokens": {
+    "primary": "#2F6B4F",
+    "secondary": "#5B6F9E",
+    "surface": "#FFFFFF",
+    "background": "#F5F7F5",
+    "text": "#1B1F1D",
+    "mutedText": "#5A625E",
+    "border": "#C8D0CC",
+    "success": "#2E7D32",
+    "warning": "#8A5A00",
+    "danger": "#B3261E",
+    "focusRing": "#005FCC",
+    "borderRadiusScale": 1.0
+  }
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "schemaVersion": 1,
+    "recipeId": "rec_salmon_rice",
+    "origin": "base",
+    "currentVersionId": "recver_salmon_rice_v2",
+    "status": "active",
+    "createdAt": "2026-09-03T12:00:00Z",
+    "updatedAt": "2026-09-03T12:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "recipeId": "rec_zucchini_rice",
+    "origin": "base",
+    "currentVersionId": "recver_zucchini_rice_v1",
+    "status": "active",
+    "createdAt": "2026-09-03T12:00:00Z",
+    "updatedAt": "2026-09-03T12:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "recipeId": "rec_salmon_zucchini",
+    "origin": "base",
+    "currentVersionId": "recver_salmon_zucchini_v1",
+    "status": "active",
+    "createdAt": "2026-09-03T12:00:00Z",
+    "updatedAt": "2026-09-03T12:00:00Z"
+  }
+]

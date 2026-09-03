@@ -1,0 +1,92 @@
+# Candidate Generation Protocol — Phase 4
+
+This protocol is the hand-off between a `RecipeGenerationJob` and the deterministic Recipe Pipeline.
+
+## Normal operator flow
+
+The user gives a high-level intent such as BUILD, EXPAND, IMPROVE or FOCUSED_EXPANSION. The agent must not ask the user to manually choose kcal bands, macro bands, cuisine or ingredient mix when those choices are derivable from the current policy/snapshot.
+
+1. Scan the current corpus with the active `RecipeCorpusPolicy`.
+2. Ask the deterministic orchestrator for the next `RecipeGenerationJob`.
+3. Read the job and generate exactly `candidateCount` candidate objects.
+4. Run the deterministic batch processor.
+5. If `targetMet` or diversity fails, generate a replacement batch from the rejection summary; never weaken release gates.
+6. Apply only accepted records.
+7. Re-scan the complete corpus.
+8. Repeat until the run stop condition is reached.
+9. Publish only through the release validator.
+
+## Candidate JSON contract
+
+The candidate file is an array. Each object supplies editorial/culinary intent only; authoritative nutrition, allergens, normalized amounts, hashes and immutable IDs are derived by code.
+
+```json
+[
+  {
+    "candidateId": "cand-001",
+    "i18n": {
+      "it": {
+        "title": "...",
+        "description": "...",
+        "instructions": ["...", "..."]
+      },
+      "en": {
+        "title": "...",
+        "description": "...",
+        "instructions": ["...", "..."]
+      }
+    },
+    "mealArchetypes": ["lunch"],
+    "ingredientLines": [
+      {"ingredientId": "ing_example", "amount": 120, "unit": "g", "optional": false}
+    ],
+    "practical": {
+      "prepMinutes": 10,
+      "cookMinutes": 15,
+      "reheatingRequired": false,
+      "coldSuitable": false,
+      "portable": true,
+      "fridgeRequired": true,
+      "freezerSuitable": false,
+      "mealPrepSuitable": true,
+      "finalWeightG": 400,
+      "finalVolumeMl": null,
+      "yieldNotes": null
+    },
+    "tags": {
+      "families": ["grain_bowl"],
+      "cuisines": ["mediterranean"],
+      "practical": ["portable"]
+    },
+    "culinaryReview": {
+      "status": "approved",
+      "notes": "Short rationale for culinary plausibility."
+    }
+  }
+]
+```
+
+## Agent rules
+
+- Use only `allowedIngredientIds` from the job.
+- Prefer `preferredUnderusedIngredientIds` when culinarily sensible.
+- Satisfy job meal, energy/protein/fiber ranges, family/cuisine/practicality focus and required/forbidden tags.
+- Treat `targetAcceptedCount` as the net target and `candidateCount` as oversampled candidates.
+- Vary primary ingredients and recurring ingredient pairs according to `diversityTargets`.
+- Do not invent nutrient values or allergen IDs.
+- Do not create new ingredient IDs inside a recipe batch.
+- Do not copy titles/instructions while merely changing quantities.
+- `candidateId` must be unique within the file and stable when re-running the same candidate.
+- Mark `culinaryReview.status` as `approved` only when the combination, quantities, preparation and serving are plausible.
+- The pipeline, not the generator, decides final acceptance.
+
+## Commands
+
+```bash
+npm run corpus:scan -- <catalog-data-dir|bundle.json> <policy.json> <snapshot.json>
+npm run corpus:plan -- <snapshot.json> <build|expand|improve|focused_expansion> <policy.json> <catalog-data-dir|bundle.json> [goal.json] [targetCatalogVersion] [seed]
+npm run corpus:process -- <catalog-data-dir|bundle.json> <policy.json> <job.json> <candidates.json> <result.json>
+npm run corpus:apply -- <catalog-data-dir|bundle.json> <result.json> <new-bundle.json> <targetCatalogVersion>
+```
+
+Re-run scan/plan after every applied batch. Do not pre-plan a long sequence against a stale snapshot.

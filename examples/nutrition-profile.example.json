@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "id": "nutrition-default",
+  "dailyEnergyKcal": 1900,
+  "energyTolerancePct": 5,
+  "preset": "higher_protein",
+  "nutrients": {
+    "proteinG": {
+      "min": 100,
+      "target": 120,
+      "max": null,
+      "weight": 2.0,
+      "enabled": true
+    },
+    "carbsG": {
+      "min": null,
+      "target": 210,
+      "max": 250,
+      "weight": 1.0,
+      "enabled": true
+    },
+    "fatG": {
+      "min": 50,
+      "target": 65,
+      "max": 80,
+      "weight": 1.0,
+      "enabled": true
+    },
+    "fiberG": {
+      "min": 20,
+      "target": 27,
+      "max": 35,
+      "weight": 1.4,
+      "enabled": true
+    }
+  },
+  "dayArchetypeModifiers": {
+    "night": {
+      "mode": "percent",
+      "value": 8
+    },
+    "rest": {
+      "mode": "kcal",
+      "value": -100
+    }
+  }
+}

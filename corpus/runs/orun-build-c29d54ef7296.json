@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "runId": "orun-build-c29d54ef7296",
+  "mode": "build",
+  "plannerVersion": "corpus-planner-1",
+  "policyId": "corpus-policy-v1-default",
+  "policyVersion": "1.1.0",
+  "inputSnapshotId": "snapshot-0.4.0-dev-c5e854e48159",
+  "outputSnapshotId": null,
+  "seed": "phase4-default-policy-test",
+  "goal": {
+    "targetRecipeCount": 4000,
+    "acceptedAddCount": null,
+    "maxJobs": null,
+    "allowRetire": false,
+    "focusMode": "boost",
+    "focus": null
+  },
+  "status": "planned",
+  "stopReason": null,
+  "plannedJobs": [
+    {
+      "jobId": "batch-822906f32a30b8",
+      "priority": 2.575,
+      "scoreBreakdown": {
+        "nutrition": 1,
+        "meal": 1,
+        "practicality": 1,
+        "cuisine": 0,
+        "ingredientDiversity": 0.975,
+        "recipeFamily": 0,
+        "focusBoost": 0,
+        "similarityPenalty": 0,
+        "ingredientOverusePenalty": 1,
+        "pairRepetitionPenalty": 1
+      },
+      "targetIds": [
+        "cell-breakfast-kcal-400-499",
+        "cell-kcal-400-499-fiber-high",
+        "cell-kcal-400-499-portable",
+        "cell-kcal-400-499-protein-low",
+        "meal-breakfast-coverage"
+      ],
+      "reasons": [
+        "energy_band:breakfast|kcal-400-499 deficit=1",
+        "fiber_band:kcal-400-499|fiber-high deficit=1",
+        "practicality:kcal-400-499|portable deficit=1",
+        "protein_band:kcal-400-499|protein-low deficit=1",
+        "meal_archetype:breakfast deficit=1"
+      ],
+      "expectedAcceptedCount": 100
+    }
+  ],
+  "createdAt": "2026-09-03T12:53:34.520Z",
+  "completedAt": null
+}
