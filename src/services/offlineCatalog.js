@@ -1,4 +1,6 @@
-const DATA_CACHE = 'ydm-data-v5';
+import { APP_BASE_PATH, cacheScopeKey, prefixAppPath } from '../lib/appBase.js';
+
+const DATA_CACHE = `ydm-data-v6-${cacheScopeKey(APP_BASE_PATH)}`;
 
 function shardMatches(shard, wantedIds) {
   if (!wantedIds || wantedIds.size === 0) return true;
@@ -8,7 +10,7 @@ function shardMatches(shard, wantedIds) {
 
 function shardUrls(manifest, key, ids = null) {
   const wanted = ids ? new Set(ids) : null;
-  return (manifest[key]?.shards || []).filter(shard => shardMatches(shard, wanted)).map(shard => `/data/${shard.path}`);
+  return (manifest[key]?.shards || []).filter(shard => shardMatches(shard, wanted)).map(shard => prefixAppPath(`/data/${shard.path}`));
 }
 
 export function offlineUrlsForPack(manifest, pack, recipeVersions = []) {
@@ -18,8 +20,8 @@ export function offlineUrlsForPack(manifest, pack, recipeVersions = []) {
   const ingredientRevisionIds = new Set(selectedVersions.flatMap(version => (version.ingredientLines || []).map(line => line.ingredientRevisionId)));
   const ingredientIds = new Set(selectedVersions.flatMap(version => (version.ingredientLines || []).map(line => line.ingredientId)));
   return [...new Set([
-    '/data/catalog-manifest.json',
-    ...(manifest.locales || []).map(locale => `/data/locales/${locale}.json`),
+    prefixAppPath('/data/catalog-manifest.json'),
+    ...(manifest.locales || []).map(locale => prefixAppPath(`/data/locales/${locale}.json`)),
     ...shardUrls(manifest, 'recipeVersions', recipeVersionIds),
     ...shardUrls(manifest, 'recipeFamilies', recipeIds),
     ...shardUrls(manifest, 'ingredientRevisions', ingredientRevisionIds),

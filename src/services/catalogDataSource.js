@@ -1,8 +1,9 @@
 import { APP_VERSION } from '../db/constants.js';
 import { sha256Text } from '../lib/crypto.js';
 import { compareSemver } from '../lib/semver.js';
+import { assetPath } from '../lib/appBase.js';
 
-const BASE = '/data/';
+const catalogUrl = path => assetPath(`/data/${String(path).replace(/^\/+/, '')}`);
 const PART_SCHEMAS = {
   ingredientFamilies: 'ingredient', ingredientRevisions: 'ingredientRevision', recipeFamilies: 'recipe', recipeVersions: 'recipeVersion'
 };
@@ -23,7 +24,7 @@ export function assertCatalogCompatibility(manifest) {
 
 export async function fetchCatalogManifest({ fetcher = fetch, registry, cache = 'no-cache' } = {}) {
   if (!registry) throw new Error('Schema registry is required');
-  const response = await fetcher(`${BASE}catalog-manifest.json`, { cache });
+  const response = await fetcher(catalogUrl('catalog-manifest.json'), { cache });
   if (!response.ok) throw new Error(`Unable to fetch catalog manifest: HTTP ${response.status}`);
   const manifest = await response.json();
   registry.assert('catalogManifest', manifest); assertCatalogCompatibility(manifest); return manifest;
@@ -36,7 +37,7 @@ function shardNeeded(shard, wantedIds) {
 }
 
 async function readShard(fetcher, shard, idKey) {
-  const response = await fetcher(`${BASE}${shard.path}`);
+  const response = await fetcher(catalogUrl(shard.path));
   if (!response.ok) throw new Error(`Unable to fetch catalog shard ${shard.path}: HTTP ${response.status}`);
   const text = await response.text();
   const hash = await sha256Text(text);

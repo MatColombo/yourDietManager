@@ -28,4 +28,4 @@ createServer(async (req, res) => {
     res.writeHead(500, { 'content-type': 'text/plain; charset=utf-8' });
     res.end(String(error));
   }
-}).listen(port, () => console.log(`yourDietManager Phase 7: http://localhost:${port}`));
+}).listen(port, () => console.log(`yourDietManager V1 RC1: http://localhost:${port}`));

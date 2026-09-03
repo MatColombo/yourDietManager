@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>yourDietManager</title></head>
+<body>
+<script>
+(function () {
+  var base = "";
+  var path = location.pathname;
+  if (base && (path === base || path.indexOf(base + '/') === 0)) path = path.slice(base.length);
+  if (!path || path.charAt(0) !== '/') path = '/' + (path || '');
+  var route = path + location.search + location.hash;
+  location.replace((base || '') + '/?__ydm_route=' + encodeURIComponent(route));
+}());
+</script>
+<noscript>This application requires JavaScript.</noscript>
+</body>
+</html>

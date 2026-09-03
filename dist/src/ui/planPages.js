@@ -1,5 +1,6 @@
 import { element } from './dom.js';
 import { addCivilDays } from '../planner/planMath.js';
+import { prefixAppPath } from '../lib/appBase.js';
 import {
   civilDateInTimeZone, loadEffectivePlanState, loadCalendarRange, createInitialPreview, createExtensionPreview, commitGeneratedPreview,
   createReplacementPreview, commitReplacement, updateAdherence, createRebalancePreview, commitRebalancePreview,
@@ -8,7 +9,7 @@ import {
 
 function t(state, key, vars = {}) { let value = state.i18n.t(key); for (const [name, replacement] of Object.entries(vars)) value = value.replace(`{${name}}`, String(replacement)); return value; }
 function page(state, titleKey, leadKey, eyebrow = 'PLAN') { return element('section', { className: 'page-card page-card--wide plan-page' }, [element('p', { className: 'eyebrow', text: eyebrow }), element('h1', { text: t(state, titleKey) }), element('p', { className: 'lead', text: t(state, leadKey) })]); }
-function nav(state, url) { history.pushState({}, '', url); state.render(); }
+function nav(state, url) { history.pushState({}, '', prefixAppPath(url)); state.render(); }
 function localeTitle(state, recipe) { return recipe?.i18n?.[state.i18n.locale]?.title || recipe?.i18n?.en?.title || recipe?.i18n?.it?.title || recipe?.recipeId || 'Recipe'; }
 function dayClass(state, id) { return state.configuration?.dayClasses?.find(item => item.id === id) || null; }
 function mealClass(state, id) { return state.configuration?.mealClasses?.find(item => item.id === id) || null; }

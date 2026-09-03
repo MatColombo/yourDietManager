@@ -1,3 +1,5 @@
+import { assetPath } from '../lib/appBase.js';
+
 export function normalizeLocale(locale) { return String(locale || '').toLowerCase().startsWith('it') ? 'it' : 'en'; }
 export class I18n {
   constructor(dictionaries, locale = 'en', fallback = 'en') { this.dictionaries = dictionaries; this.fallback = fallback; this.locale = normalizeLocale(locale); }
@@ -7,7 +9,7 @@ export class I18n {
 }
 export async function loadDictionaries(fetcher = fetch) {
   const [it, en] = await Promise.all(['it', 'en'].map(async locale => {
-    const response = await fetcher(`/data/locales/${locale}.json`);
+    const response = await fetcher(assetPath(`/data/locales/${locale}.json`));
     if (!response.ok) throw new Error(`Unable to load locale ${locale}`);
     return response.json();
   }));

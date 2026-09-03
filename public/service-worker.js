@@ -1,19 +1,28 @@
-const SHELL_CACHE = 'ydm-shell-v9';
-const DATA_CACHE = 'ydm-data-v5';
+const BASE_URL = new URL('./', self.location.href);
+const BASE_PATH = BASE_URL.pathname.endsWith('/') ? BASE_URL.pathname : `${BASE_URL.pathname}/`;
+const CACHE_SCOPE_KEY = BASE_PATH.replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '') || 'root';
+const SHELL_CACHE = `ydm-shell-v10-${CACHE_SCOPE_KEY}`;
+const DATA_CACHE = `ydm-data-v6-${CACHE_SCOPE_KEY}`;
+const scoped = path => new URL(String(path || '').replace(/^\/+/, ''), BASE_URL).pathname;
+const DATA_PREFIX = scoped('data/');
+const SCHEMA_PREFIX = scoped('schemas/');
+const MANIFEST_PATH = scoped('data/catalog-manifest.json');
+const INDEX_PATH = scoped('index.html');
+
 const SHELL = [
-  '/', '/index.html', '/manifest.webmanifest', '/icons/icon.svg',
-  '/src/bootstrapVisual.js', '/src/db/constants.js', '/src/db/database.js', '/src/domain/configurationRules.js', '/src/domain/catalogEnums.js', '/src/domain/nutritionCore.js',
-  '/src/i18n/i18n.js', '/src/lib/crypto.js', '/src/lib/schemaValidator.js', '/src/lib/semver.js', '/src/main.js',
-  '/src/repositories/domainRepositories.js', '/src/repositories/repositoryHub.js',
-  '/src/services/backupEngine.js', '/src/services/catalogDataSource.js', '/src/services/catalogImporter.js', '/src/services/catalogUpdater.js', '/src/services/catalogQuery.js',
-  '/src/services/configurationBootstrap.js', '/src/services/configurationService.js', '/src/services/configurationTransfer.js', '/src/services/customCatalogTransfer.js', '/src/services/migrationRunner.js', '/src/services/personalCatalogService.js',
-  '/src/services/planCandidateService.js', '/src/services/planGenerationService.js', '/src/services/effectivePlanService.js', '/src/services/operationHistoryService.js', '/src/services/shoppingService.js',
-  '/src/services/offlineCatalog.js', '/src/services/storageMetrics.js',
-  '/src/planner/seededRandom.js', '/src/planner/planMath.js', '/src/planner/recipeFeatures.js', '/src/planner/hardFilter.js', '/src/planner/softScoring.js', '/src/planner/beamSolver.js', '/src/planner/planGenerator.js',
-  '/src/styles.css', '/src/theme/themeEngine.js', '/src/ui/app.js', '/src/ui/catalogPages.js', '/src/ui/configurationPages.js', '/src/ui/planPages.js', '/src/ui/shoppingPages.js', '/src/ui/dom.js', '/src/ui/router.js',
-  '/schemas/allergy-intolerance-profile.schema.json', '/schemas/app-config.schema.json', '/schemas/backup.schema.json', '/schemas/calendar-day.schema.json', '/schemas/catalog-manifest.schema.json', '/schemas/catalog-pack.schema.json', '/schemas/cycle.schema.json', '/schemas/day-class.schema.json', '/schemas/domain-enums.schema.json', '/schemas/food-preferences.schema.json', '/schemas/generation-run.schema.json', '/schemas/ingredient-revision.schema.json', '/schemas/ingredient.schema.json', '/schemas/meal-class.schema.json', '/schemas/nutrition-profile.schema.json', '/schemas/operation.schema.json', '/schemas/plan-instance.schema.json', '/schemas/recipe-corpus-orchestration-run.schema.json', '/schemas/recipe-corpus-policy.schema.json', '/schemas/recipe-corpus-snapshot.schema.json', '/schemas/recipe-generation-job.schema.json', '/schemas/recipe-version.schema.json', '/schemas/recipe.schema.json', '/schemas/shopping-checklist.schema.json', '/schemas/theme-profile.schema.json',
-  '/data/locales/it.json', '/data/locales/en.json', '/data/catalog-manifest.json'
-];
+  '', 'index.html', 'manifest.webmanifest', 'icons/icon.svg',
+  'src/bootstrapVisual.js', 'src/db/constants.js', 'src/db/database.js', 'src/domain/configurationRules.js', 'src/domain/catalogEnums.js', 'src/domain/nutritionCore.js',
+  'src/i18n/i18n.js', 'src/lib/appBase.js', 'src/lib/crypto.js', 'src/lib/schemaValidator.js', 'src/lib/semver.js', 'src/main.js',
+  'src/repositories/domainRepositories.js', 'src/repositories/repositoryHub.js',
+  'src/services/backupEngine.js', 'src/services/catalogDataSource.js', 'src/services/catalogImporter.js', 'src/services/catalogUpdater.js', 'src/services/catalogQuery.js',
+  'src/services/configurationBootstrap.js', 'src/services/configurationService.js', 'src/services/configurationTransfer.js', 'src/services/customCatalogTransfer.js', 'src/services/migrationRunner.js', 'src/services/personalCatalogService.js',
+  'src/services/planCandidateService.js', 'src/services/planGenerationService.js', 'src/services/effectivePlanService.js', 'src/services/operationHistoryService.js', 'src/services/shoppingService.js',
+  'src/services/offlineCatalog.js', 'src/services/storageMetrics.js',
+  'src/planner/seededRandom.js', 'src/planner/planMath.js', 'src/planner/recipeFeatures.js', 'src/planner/hardFilter.js', 'src/planner/softScoring.js', 'src/planner/beamSolver.js', 'src/planner/planGenerator.js',
+  'src/styles.css', 'src/theme/themeEngine.js', 'src/ui/app.js', 'src/ui/catalogPages.js', 'src/ui/configurationPages.js', 'src/ui/planPages.js', 'src/ui/shoppingPages.js', 'src/ui/dom.js', 'src/ui/router.js',
+  'schemas/allergy-intolerance-profile.schema.json', 'schemas/app-config.schema.json', 'schemas/backup.schema.json', 'schemas/calendar-day.schema.json', 'schemas/catalog-manifest.schema.json', 'schemas/catalog-pack.schema.json', 'schemas/cycle.schema.json', 'schemas/day-class.schema.json', 'schemas/domain-enums.schema.json', 'schemas/food-preferences.schema.json', 'schemas/generation-run.schema.json', 'schemas/ingredient-revision.schema.json', 'schemas/ingredient.schema.json', 'schemas/meal-class.schema.json', 'schemas/nutrition-profile.schema.json', 'schemas/operation.schema.json', 'schemas/plan-instance.schema.json', 'schemas/recipe-corpus-orchestration-run.schema.json', 'schemas/recipe-corpus-policy.schema.json', 'schemas/recipe-corpus-snapshot.schema.json', 'schemas/recipe-generation-job.schema.json', 'schemas/recipe-version.schema.json', 'schemas/recipe.schema.json', 'schemas/shopping-checklist.schema.json', 'schemas/theme-profile.schema.json',
+  'data/locales/it.json', 'data/locales/en.json', 'data/catalog-manifest.json'
+].map(scoped);
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(SHELL_CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
@@ -22,7 +31,10 @@ self.addEventListener('install', event => {
 self.addEventListener('activate', event => {
   event.waitUntil(Promise.all([
     self.clients.claim(),
-    caches.keys().then(keys => Promise.all(keys.filter(key => ![SHELL_CACHE, DATA_CACHE].includes(key)).map(key => caches.delete(key))))
+    caches.keys().then(keys => {
+      const legacy = new Set(['ydm-shell-v9', 'ydm-data-v5']);
+      return Promise.all(keys.filter(key => (legacy.has(key) || key.endsWith(`-${CACHE_SCOPE_KEY}`)) && ![SHELL_CACHE, DATA_CACHE].includes(key)).map(key => caches.delete(key)));
+    })
   ]));
 });
 
@@ -35,7 +47,8 @@ self.addEventListener('message', event => {
     const failed = [];
     for (const raw of urls) {
       const url = new URL(raw, self.location.origin);
-      if (url.origin !== self.location.origin || (!url.pathname.startsWith('/data/') && !url.pathname.startsWith('/schemas/'))) { failed.push(raw); continue; }
+      const allowed = url.pathname.startsWith(DATA_PREFIX) || url.pathname.startsWith(SCHEMA_PREFIX);
+      if (url.origin !== self.location.origin || !allowed) { failed.push(raw); continue; }
       try {
         const existing = await cache.match(url.href);
         if (existing) { count += 1; continue; }
@@ -52,8 +65,9 @@ self.addEventListener('message', event => {
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   if (event.request.method !== 'GET' || url.origin !== self.location.origin) return;
+  if (!url.pathname.startsWith(BASE_PATH)) return;
 
-  if (url.pathname === '/data/catalog-manifest.json') {
+  if (url.pathname === MANIFEST_PATH) {
     event.respondWith(caches.open(DATA_CACHE).then(async cache => {
       try {
         const response = await fetch(event.request);
@@ -66,7 +80,7 @@ self.addEventListener('fetch', event => {
     return;
   }
 
-  if (url.pathname.startsWith('/data/') || url.pathname.startsWith('/schemas/')) {
+  if (url.pathname.startsWith(DATA_PREFIX) || url.pathname.startsWith(SCHEMA_PREFIX)) {
     event.respondWith(caches.open(DATA_CACHE).then(async cache => {
       const cached = await cache.match(event.request);
       if (cached) return cached;
@@ -78,7 +92,7 @@ self.addEventListener('fetch', event => {
   }
 
   if (event.request.mode === 'navigate') {
-    event.respondWith(fetch(event.request).catch(() => caches.match('/index.html')));
+    event.respondWith(fetch(event.request).catch(() => caches.match(INDEX_PATH)));
     return;
   }
 

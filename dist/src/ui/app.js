@@ -9,12 +9,14 @@ import {
 import { ingredientsPage, packsPage, recipeEditorPage, recipesPage } from './catalogPages.js';
 import { todayPage, calendarPage, manageDayPage, historyPage } from './planPages.js';
 import { shoppingPage } from './shoppingPages.js';
+import { routePath } from '../lib/appBase.js';
 
 const PRIMARY = [['/', 'nav.today'], ['/calendar', 'nav.calendar'], ['/recipes', 'nav.recipes'], ['/shopping', 'nav.shopping']];
 const SECONDARY = [['/configure', 'nav.configure'], ['/appearance', 'nav.appearance'], ['/language', 'nav.language'], ['/backup', 'nav.backup']];
 
 function navLink(state, [href, key]) {
-  const active = location.pathname === href || (href === '/recipes' && location.pathname.startsWith('/recipes')) || (href === '/configure' && location.pathname.startsWith('/configure'));
+  const currentPath = routePath();
+  const active = currentPath === href || (href === '/recipes' && currentPath.startsWith('/recipes')) || (href === '/configure' && currentPath.startsWith('/configure'));
   return element('a', { href, 'data-route': '', className: `nav-link${active ? ' nav-link--active' : ''}`, 'aria-current': active ? 'page' : null, text: state.i18n.t(key) });
 }
 
@@ -128,7 +130,7 @@ function backupPage(state) {
 }
 
 function routePage(state) {
-  const path = location.pathname;
+  const path = routePath();
   if (path === '/onboarding') return onboardingPage(state);
   if (path === '/calendar/day') return manageDayPage(state);
   if (path === '/calendar') return calendarPage(state);
@@ -153,7 +155,7 @@ function routePage(state) {
 }
 
 export function renderApp(root, state) {
-  const routeSignature = location.pathname + location.search;
+  const routeSignature = routePath() + location.search;
   const routeChanged = state.lastRenderedPath !== routeSignature;
   state.lastRenderedPath = routeSignature;
   clear(root);

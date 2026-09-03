@@ -10,6 +10,9 @@ import { applyTheme } from './theme/themeEngine.js';
 import { renderApp } from './ui/app.js';
 import { installRouter } from './ui/router.js';
 import { loadConfigurationBundle, onboardingIsComplete, getOnboardingDraft } from './services/configurationService.js';
+import { APP_BASE_PATH, assetPath, prefixAppPath, restorePagesRedirect, routePath } from './lib/appBase.js';
+
+restorePagesRedirect();
 
 const root = document.getElementById('root');
 const registry = new SchemaRegistry();
@@ -69,14 +72,14 @@ async function start() {
   state.uninstallPack = async packId => { await catalogUpdater.uninstallPack(packId); await refreshCatalogStats(state); state.render(); };
 
   installRouter(() => state.render()); await refreshCatalogStats(state);
-  if (!state.onboardingComplete && location.pathname === '/') history.replaceState({}, '', '/onboarding');
+  if (!state.onboardingComplete && routePath() === '/') history.replaceState({}, '', prefixAppPath('/onboarding'));
   state.render(); await bootstrapCatalog();
 
   if (state.catalogVersion) void catalogUpdater.check().then(result => {
     state.catalogUpdateAvailable = result.updateAvailable; state.catalogUpdateVersion = result.updateAvailable ? result.manifest.catalogVersion : null; state.render();
   }).catch(() => { /* Offline is a valid Phase 3 state. */ });
 
-  if ('serviceWorker' in navigator) navigator.serviceWorker.register('/service-worker.js').catch(error => console.warn('Service worker registration failed', error));
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register(assetPath('/service-worker.js'), { scope: `${APP_BASE_PATH || ''}/` }).catch(error => console.warn('Service worker registration failed', error));
 }
 
 start().catch(error => {

@@ -2,9 +2,10 @@ import { element } from './dom.js';
 import { ALLERGEN_IDS, INGREDIENT_STATES, MEAL_ARCHETYPES } from '../domain/catalogEnums.js';
 import { archiveUserIngredient, archiveUserRecipe, duplicateRecipeToDraft, saveUserIngredient, saveUserRecipe } from '../services/personalCatalogService.js';
 import { createCustomCatalogExport, importCustomCatalogExport } from '../services/customCatalogTransfer.js';
+import { prefixAppPath } from '../lib/appBase.js';
 
 function t(state, key, vars = {}) { let value = state.i18n.t(key); for (const [name, replacement] of Object.entries(vars)) value = value.replace(`{${name}}`, replacement); return value; }
-function nav(state, url) { history.pushState({}, '', url); state.render(); }
+function nav(state, url) { history.pushState({}, '', prefixAppPath(url)); state.render(); }
 function field(label, control, hint = '') { return element('label', { className: 'field' }, [element('span', { text: label }), control, hint ? element('small', { className: 'field__hint', text: hint }) : null]); }
 function number(value = '', attrs = {}) { return element('input', { type: 'number', value: value ?? '', ...attrs }); }
 function text(value = '', attrs = {}) { return element('input', { type: 'text', value: value ?? '', ...attrs }); }

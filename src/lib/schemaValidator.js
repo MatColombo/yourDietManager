@@ -1,3 +1,5 @@
+import { assetPath } from './appBase.js';
+
 const SCHEMA_FILES = [
   'allergy-intolerance-profile.schema.json', 'app-config.schema.json', 'backup.schema.json', 'calendar-day.schema.json',
   'catalog-manifest.schema.json', 'catalog-pack.schema.json', 'cycle.schema.json', 'day-class.schema.json',
@@ -51,7 +53,7 @@ function validFormat(format, value) {
 }
 
 export class SchemaRegistry {
-  constructor(loader = async file => (await fetch(`/schemas/${file}`)).json()) {
+  constructor(loader = async file => (await fetch(assetPath(`/schemas/${file}`))).json()) {
     this.loader = loader;
     this.schemas = new Map();
   }

@@ -1,4 +1,5 @@
 import { element } from './dom.js';
+import { prefixAppPath } from '../lib/appBase.js';
 import {
   ALLERGEN_IDS, ALLERGY_KINDS, ALLERGY_TARGET_TYPES, DAY_ARCHETYPES, FOOD_PREFERENCE_LEVELS,
   FOOD_PREFERENCE_TARGET_TYPES, MEAL_ARCHETYPES, MEAL_RULE_TARGET_REGISTRY, NUTRIENT_KEYS,
@@ -627,7 +628,7 @@ export function onboardingPage(state) {
         const saved = await completeOnboarding(draft, { repo: state.repo, registry: state.registry });
         state.configuration = saved; state.config = saved.appConfig; state.onboardingComplete = true; state.onboardingDraft = null;
         const latest = activeRecords(saved); state.theme = latest.themeProfile; applyTheme(state.theme); state.i18n.setLocale(saved.appConfig.locale); document.documentElement.lang = state.i18n.locale;
-        history.pushState({}, '', '/configure'); state.render();
+        history.pushState({}, '', prefixAppPath('/configure')); state.render();
       } catch (error) { host.append(element('div', { className: 'validation-box validation-box--error', text: error.message || String(error) })); }
     }, finish));
   };

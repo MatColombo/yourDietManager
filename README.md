@@ -19,6 +19,15 @@ Phases 1–7 remain fully present: IndexedDB persistence, onboarding/configurati
 
 See `PHASE8_IMPLEMENTATION_REPORT.md` for the full implementation and verification record.
 
+
+## GitHub Pages
+
+This package is GitHub Pages-ready. Use **Settings -> Pages -> Source: GitHub Actions**; do not publish the repository root directly. The included `.github/workflows/pages.yml` verifies the app, obtains the repository Pages `base_path`, builds `dist/`, checks the artifact and deploys it.
+
+Project-site paths such as `https://USERNAME.github.io/yourDietManager/`, root user sites and root custom domains are supported without hardcoding the repository name. Direct SPA links are handled by the generated `404.html` redirect and deployment-specific `<base href>`.
+
+See `GITHUB_PAGES_DEPLOYMENT.md` for the exact setup and troubleshooting model.
+
 ## Commands
 
 ```bash

@@ -5,11 +5,11 @@
   "theme_color": "#2F6B4F",
   "background_color": "#F5F7F5",
   "display": "standalone",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "./",
+  "scope": "./",
   "icons": [
     {
-      "src": "/icons/icon.svg",
+      "src": "icons/icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
