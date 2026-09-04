@@ -12,7 +12,7 @@ import { offlineUrlsForPack } from '../src/services/offlineCatalog.js';
 import { collectStorageMetrics } from '../src/services/storageMetrics.js';
 import { commitOperation, listRecentOperations } from '../src/services/operationHistoryService.js';
 import { SchemaRegistry } from '../src/lib/schemaValidator.js';
-import { MemoryRepository, fileFetch, fileLoader } from './helpers.mjs';
+import { MemoryRepository, fileFetch, fileLoader, bundledReferenceData } from './helpers.mjs';
 
 const root = process.cwd();
 
@@ -34,26 +34,29 @@ function fakeStructuralDb() {
   return { db, transaction, stores };
 }
 
-test('Phase 8 structural schema is DB v3 and applies the new compound catalog indexes without deleting stores', () => {
-  assert.equal(DB_VERSION, 3);
-  assert.equal(CONTENT_SCHEMA_VERSION, 2);
+test('Pass A structural schema is DB v4 and applies the new compound catalog indexes without deleting stores', () => {
+  assert.equal(DB_VERSION, 4);
+  assert.equal(CONTENT_SCHEMA_VERSION, 3);
   const { db, transaction, stores } = fakeStructuralDb();
   applyStructuralUpgrade(db, transaction);
   assert.ok(stores.get('recipeVersions').indexes.has('originAndCatalogVersion'));
   assert.ok(stores.get('ingredientRevisions').indexes.has('originAndCatalogVersion'));
-  assert.equal(stores.size, 19);
+  assert.equal(stores.size, 21);
+  assert.ok(stores.get('taxonomyTerms').indexes.has('taxonomyAndStatus'));
 });
 
 test('content migration resumes after interruption and is idempotent', async () => {
   const repo = new MemoryRepository();
   await repo.put('appConfigs', { schemaVersion: 1, locale: 'it' });
-  await assert.rejects(() => runMigrations(repo, { onStep(step) { if (step === 'migration2:appConfig') throw new Error('simulated interruption'); } }), /simulated interruption/);
+  const referenceDataLoader = () => bundledReferenceData(root);
+  await assert.rejects(() => runMigrations(repo, { referenceDataLoader, onStep(step) { if (step === 'migration2:appConfig') throw new Error('simulated interruption'); } }), /simulated interruption/);
   assert.equal((await repo.get('appConfigs', 'active')).shoppingPeopleMultiplier, 1);
   assert.equal((await repo.getMeta('contentMigration:2')).status, 'running');
-  await runMigrations(repo);
-  await runMigrations(repo);
-  assert.equal(await repo.getMeta('contentSchemaVersion'), 2);
+  await runMigrations(repo, { referenceDataLoader });
+  await runMigrations(repo, { referenceDataLoader });
+  assert.equal(await repo.getMeta('contentSchemaVersion'), 3);
   assert.equal((await repo.getMeta('contentMigration:2')).status, 'complete');
+  assert.equal((await repo.getMeta('contentMigration:3')).status, 'complete');
   assert.ok((await repo.getMeta('contentMigration:2')).attempts >= 2);
 });
 

@@ -1,0 +1,165 @@
+[
+  {
+    "schemaVersion": 1,
+    "termId": "diet_high_fiber",
+    "taxonomyId": "diet_tag",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Alto contenuto di fibre",
+        "description": ""
+      },
+      "en": {
+        "label": "High fiber",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "high_fiber"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "diet",
+      "high",
+      "fiber",
+      "alto",
+      "contenuto",
+      "di",
+      "fibre"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "practical_quick",
+    "taxonomyId": "practical_tag",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Veloce",
+        "description": ""
+      },
+      "en": {
+        "label": "Quick",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "quick"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "practical",
+      "quick",
+      "veloce"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "practical_portable",
+    "taxonomyId": "practical_tag",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Trasportabile",
+        "description": ""
+      },
+      "en": {
+        "label": "Portable",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "portable"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "practical",
+      "portable",
+      "trasportabile"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "practical_meal_prep",
+    "taxonomyId": "practical_tag",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Adatto al meal prep",
+        "description": ""
+      },
+      "en": {
+        "label": "Meal-prep suitable",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "meal_prep"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "practical",
+      "meal",
+      "prep",
+      "adatto",
+      "al",
+      "suitable"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  }
+]

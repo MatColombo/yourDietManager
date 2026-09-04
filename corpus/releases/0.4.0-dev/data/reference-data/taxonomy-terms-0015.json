@@ -1,0 +1,163 @@
+[
+  {
+    "schemaVersion": 1,
+    "termId": "cuisine_north_american",
+    "taxonomyId": "cuisine",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Nordamericana",
+        "description": ""
+      },
+      "en": {
+        "label": "North American",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "north_american"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "cuisine",
+      "north",
+      "american",
+      "nordamericana"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "cuisine_northern_european",
+    "taxonomyId": "cuisine",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Nord europea",
+        "description": ""
+      },
+      "en": {
+        "label": "Northern European",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "northern_european"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "cuisine",
+      "northern",
+      "european",
+      "nord",
+      "europea"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "cuisine_eastern_european",
+    "taxonomyId": "cuisine",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Est europea",
+        "description": ""
+      },
+      "en": {
+        "label": "Eastern European",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "eastern_european"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "cuisine",
+      "eastern",
+      "european",
+      "est",
+      "europea"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "cuisine_international",
+    "taxonomyId": "cuisine",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Internazionale",
+        "description": ""
+      },
+      "en": {
+        "label": "International",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "international"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "cuisine",
+      "international",
+      "internazionale"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  }
+]

@@ -1,0 +1,170 @@
+[
+  {
+    "schemaVersion": 1,
+    "termId": "food_group_vegetables",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Verdure",
+        "description": ""
+      },
+      "en": {
+        "label": "Vegetables",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "vegetables"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "group",
+      "vegetables",
+      "verdure"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "food_group_fruit",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Frutta",
+        "description": ""
+      },
+      "en": {
+        "label": "Fruit",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "fruit"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "group",
+      "fruit",
+      "frutta"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "food_group_nuts_seeds",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Frutta a guscio e semi",
+        "description": ""
+      },
+      "en": {
+        "label": "Nuts and seeds",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "nuts_seeds"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "group",
+      "nuts",
+      "seeds",
+      "frutta",
+      "a",
+      "guscio",
+      "e",
+      "semi",
+      "and"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "food_group_meat",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Carne",
+        "description": ""
+      },
+      "en": {
+        "label": "Meat",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "meat",
+      "meat_poultry"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "group",
+      "meat",
+      "carne",
+      "poultry"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  }
+]

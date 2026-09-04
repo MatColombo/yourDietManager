@@ -3,13 +3,15 @@ import { validateThemeContrast, applyTheme } from '../theme/themeEngine.js';
 import { createBackup, importBackup } from '../services/backupEngine.js';
 import { loadConfigurationBundle, saveConfigurationBundle } from '../services/configurationService.js';
 import {
-  configurationIndexPage, cyclePage, dayClassesPage, mealClassesPage, nutritionPage, onboardingPage,
-  preferencesPage, refreshOnboardingState, safetyPage
+  configurationIndexPage, cyclePage, dayClassesPage, mealClassesPage, nutritionPage,
+  preferencesPage, safetyPage
 } from './configurationPages.js';
-import { ingredientsPage, packsPage, recipeEditorPage, recipesPage } from './catalogPages.js';
+import { ingredientDetailPage, ingredientEditorPage, ingredientsPage, packsPage, recipeDetailPage, recipeEditorPage, recipesPage } from './catalogPages.js';
 import { todayPage, calendarPage, manageDayPage, historyPage } from './planPages.js';
 import { shoppingPage } from './shoppingPages.js';
+import { referenceDataPage } from './referenceDataPages.js';
 import { routePath } from '../lib/appBase.js';
+import { notificationRegion } from './uiState.js';
 
 const PRIMARY = [['/', 'nav.today'], ['/calendar', 'nav.calendar'], ['/recipes', 'nav.recipes'], ['/shopping', 'nav.shopping']];
 const SECONDARY = [['/configure', 'nav.configure'], ['/appearance', 'nav.appearance'], ['/language', 'nav.language'], ['/backup', 'nav.backup']];
@@ -68,9 +70,12 @@ function languagePage(state) {
     'aria-pressed': state.i18n.locale === locale ? 'true' : 'false',
     text: state.i18n.t(`language.${locale}`),
     onClick: async () => {
-      const draft = structuredClone(state.configuration); draft.appConfig.locale = locale;
-      await persistShellConfiguration(state, draft);
-      state.i18n.setLocale(locale); document.documentElement.lang = locale; localStorage.setItem('ydm:locale-bootstrap', locale); state.render();
+      try {
+        const draft = structuredClone(state.configuration); draft.appConfig.locale = locale;
+        await persistShellConfiguration(state, draft);
+        state.i18n.setLocale(locale); document.documentElement.lang = locale; localStorage.setItem('ydm:locale-bootstrap', locale);
+        state.notify?.('success', state.i18n.t('config.saved')); state.render({ force: true });
+      } catch (error) { state.notify?.('error', `${state.i18n.t('config.saveFailed')}: ${error.message || error}`); }
     }
   }));
   section.append(group); return section;
@@ -91,7 +96,12 @@ function appearancePage(state) {
     validation.textContent = state.i18n.t(failures.length ? 'theme.contrast.fail' : 'theme.contrast.ok'); save.disabled = failures.length > 0;
   };
   mode.addEventListener('change', refresh); density.addEventListener('change', refresh); scale.addEventListener('input', refresh);
-  save.addEventListener('click', async () => { refresh(); state.registry.assert('themeProfile', draft); await persistShellConfiguration(state, draftBundle); state.theme = structuredClone(draft); applyTheme(state.theme); state.render(); });
+  save.addEventListener('click', async () => {
+    try {
+      refresh(); state.registry.assert('themeProfile', draft); await persistShellConfiguration(state, draftBundle); state.theme = structuredClone(draft); applyTheme(state.theme);
+      state.markSaved?.(); state.notify?.('success', state.i18n.t('config.saved')); state.render({ force: true });
+    } catch (error) { state.notify?.('error', `${state.i18n.t('config.saveFailed')}: ${error.message || error}`); }
+  });
   section.append(element('label', { className: 'field' }, [element('span', { text: state.i18n.t('theme.mode.label') }), mode]));
   section.append(element('label', { className: 'field' }, [element('span', { text: state.i18n.t('theme.density.label') }), density]));
   section.append(element('label', { className: 'field' }, [element('span', { text: state.i18n.t('theme.fontScale') }), scale]));
@@ -116,7 +126,7 @@ function backupPage(state) {
       const result = await importBackup(JSON.parse(await file.text()), { repo: state.repo, registry: state.registry }); state.preImportBackup = result.preImportBackup;
       state.configuration = await loadConfigurationBundle(state.repo); state.config = state.configuration.appConfig;
       state.theme = state.configuration.themeProfiles.find(theme => theme.id === state.config.themeProfileId); state.i18n.setLocale(state.config.locale); applyTheme(state.theme);
-      await refreshOnboardingState(state); state.notice = state.i18n.t('backup.import.success'); state.render();
+      state.notice = state.i18n.t('backup.import.success'); state.notify?.('success', state.notice); state.render();
     } catch (error) { status.className = 'validation-box validation-box--error'; status.textContent = `${state.i18n.t('backup.import.error')}: ${error.message || error}`; }
     finally { input.value = ''; }
   });
@@ -129,15 +139,25 @@ function backupPage(state) {
   return section;
 }
 
+function onboardingDisabledPage(state) {
+  const section = element('section', { className: 'page-card page-card--narrow' });
+  section.append(element('p', { className: 'eyebrow', text: 'CONFIG' }), element('h1', { text: state.i18n.t('onboarding.disabled.title') }), element('p', { className: 'lead', text: state.i18n.t('onboarding.disabled.body') }), element('a', { href: '/configure', 'data-route': '', className: 'button', text: state.i18n.t('onboarding.disabled.cta') }));
+  return section;
+}
+
 function routePage(state) {
   const path = routePath();
-  if (path === '/onboarding') return onboardingPage(state);
+  if (path === '/onboarding') return onboardingDisabledPage(state);
   if (path === '/calendar/day') return manageDayPage(state);
   if (path === '/calendar') return calendarPage(state);
   if (path === '/history') return historyPage(state);
   if (path === '/recipes/new') return recipeEditorPage(state);
-  if (path === '/recipes/edit') return recipeEditorPage(state, { edit: true });
+  if (path === '/recipes/edit') return recipeEditorPage(state, { edit: true }); // legacy query route
   if (path === '/recipes/packs') return packsPage(state);
+  const recipeEditMatch = path.match(/^\/recipes\/([^/]+)\/edit$/);
+  if (recipeEditMatch) return recipeEditorPage(state, { edit: true, recipeId: decodeURIComponent(recipeEditMatch[1]) });
+  const recipeDetailMatch = path.match(/^\/recipes\/([^/]+)$/);
+  if (recipeDetailMatch) return recipeDetailPage(state, decodeURIComponent(recipeDetailMatch[1]), new URLSearchParams(location.search).get('version'));
   if (path === '/recipes') return recipesPage(state);
   if (path === '/shopping') return shoppingPage(state);
   if (path === '/configure/nutrition') return nutritionPage(state);
@@ -146,7 +166,12 @@ function routePage(state) {
   if (path === '/configure/meals') return mealClassesPage(state);
   if (path === '/configure/days') return dayClassesPage(state);
   if (path === '/configure/cycle') return cyclePage(state);
+  const ingredientEditMatch = path.match(/^\/configure\/ingredients\/([^/]+)\/edit$/);
+  if (ingredientEditMatch) return ingredientEditorPage(state, decodeURIComponent(ingredientEditMatch[1]));
+  const ingredientDetailMatch = path.match(/^\/configure\/ingredients\/([^/]+)$/);
+  if (ingredientDetailMatch) return ingredientDetailPage(state, decodeURIComponent(ingredientDetailMatch[1]), new URLSearchParams(location.search).get('revision'));
   if (path === '/configure/ingredients') return ingredientsPage(state);
+  if (path === '/configure/reference-data') return referenceDataPage(state);
   if (path === '/configure') return configurationIndexPage(state);
   if (path === '/appearance') return appearancePage(state);
   if (path === '/language') return languagePage(state);
@@ -162,15 +187,14 @@ export function renderApp(root, state) {
   const shell = element('div', { className: 'app-shell' });
   const skip = element('a', { href: '#main-content', className: 'skip-link', text: state.i18n.t('a11y.skipToContent') });
   const topbar = element('header', { className: 'topbar' }, [
-    element('div', {}, [element('div', { className: 'brand', text: state.i18n.t('app.name') }), element('div', { className: 'topbar__meta', text: `${state.i18n.t('shell.phase')} · ${state.i18n.t('shell.localFirst')}` })]),
-    !state.onboardingComplete ? element('a', { href: '/onboarding', 'data-route': '', className: 'setup-badge', text: state.i18n.t('onboarding.setupRequired') }) : null
+    element('div', {}, [element('div', { className: 'brand', text: state.i18n.t('app.name') }), element('div', { className: 'topbar__meta', text: `${state.i18n.t('shell.phase')} · ${state.i18n.t('shell.localFirst')}` })])
   ]);
   const sidebar = element('aside', { className: 'sidebar', 'aria-label': state.i18n.t('a11y.mainNavigation') });
   const primary = element('nav', { className: 'nav-group' }, PRIMARY.map(item => navLink(state, item)));
   const secondary = element('nav', { className: 'nav-group nav-group--secondary' }, SECONDARY.map(item => navLink(state, item)));
   sidebar.append(primary, element('div', { className: 'nav-divider' }), secondary, catalogPanel(state));
   const content = element('main', { className: 'content', id: 'main-content', tabindex: '-1' }, [routePage(state)]);
-  shell.append(skip, topbar, sidebar, content); root.append(shell);
+  shell.append(skip, topbar, sidebar, content, notificationRegion(state)); root.append(shell);
   const heading = content.querySelector('h1');
   if (heading) document.title = `${heading.textContent} · ${state.i18n.t('app.name')}`;
   if (routeChanged && heading) {

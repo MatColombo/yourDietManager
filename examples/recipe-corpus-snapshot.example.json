@@ -34,44 +34,110 @@
   ],
   "distributions": {
     "mealArchetypes": [
-      {"key": "breakfast", "count": 420},
-      {"key": "lunch", "count": 640},
-      {"key": "dinner", "count": 690}
+      {
+        "key": "breakfast",
+        "count": 420
+      },
+      {
+        "key": "lunch",
+        "count": 640
+      },
+      {
+        "key": "dinner",
+        "count": 690
+      }
     ],
     "energyBands": [
-      {"key": "kcal-300-399", "count": 360},
-      {"key": "kcal-400-499", "count": 520},
-      {"key": "kcal-500-599", "count": 290}
+      {
+        "key": "kcal-300-399",
+        "count": 360
+      },
+      {
+        "key": "kcal-400-499",
+        "count": 520
+      },
+      {
+        "key": "kcal-500-599",
+        "count": 290
+      }
     ],
     "proteinBands": [
-      {"key": "protein-low", "count": 620},
-      {"key": "protein-medium", "count": 1030},
-      {"key": "protein-high", "count": 460}
+      {
+        "key": "protein-low",
+        "count": 620
+      },
+      {
+        "key": "protein-medium",
+        "count": 1030
+      },
+      {
+        "key": "protein-high",
+        "count": 460
+      }
     ],
     "fiberBands": [
-      {"key": "fiber-low", "count": 540},
-      {"key": "fiber-moderate", "count": 1190},
-      {"key": "fiber-high", "count": 380}
+      {
+        "key": "fiber-low",
+        "count": 540
+      },
+      {
+        "key": "fiber-moderate",
+        "count": 1190
+      },
+      {
+        "key": "fiber-high",
+        "count": 380
+      }
     ],
     "practicality": [
-      {"key": "portable", "count": 180},
-      {"key": "quick", "count": 710},
-      {"key": "meal_prep", "count": 580}
+      {
+        "key": "practical_portable",
+        "count": 180
+      },
+      {
+        "key": "practical_quick",
+        "count": 710
+      },
+      {
+        "key": "practical_meal_prep",
+        "count": 580
+      }
     ],
     "diet": [
-      {"key": "vegetarian", "count": 680}
+      {
+        "key": "diet_vegetarian",
+        "count": 680
+      }
     ],
     "recipeFamilies": [
-      {"key": "bowl", "count": 360},
-      {"key": "soup_stew", "count": 90}
+      {
+        "key": "recipe_family_grain_bowl",
+        "count": 360
+      },
+      {
+        "key": "recipe_family_soup",
+        "count": 90
+      }
     ],
     "cuisines": [
-      {"key": "mediterranean", "count": 510},
-      {"key": "east_asian", "count": 80}
+      {
+        "key": "cuisine_mediterranean",
+        "count": 510
+      },
+      {
+        "key": "cuisine_japanese",
+        "count": 80
+      }
     ],
     "ingredientCategories": [
-      {"key": "legumes", "count": 360},
-      {"key": "fish", "count": 170}
+      {
+        "key": "food_group_legumes",
+        "count": 360
+      },
+      {
+        "key": "food_group_fish_seafood",
+        "count": 170
+      }
     ]
   },
   "ingredientUsage": [

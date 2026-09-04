@@ -1,13 +1,14 @@
 import { CALCULATION_ALGORITHM_VERSION, calculateRecipeNutrition, deriveAllergens, normalizeIngredientAmount } from '../domain/nutritionCore.js';
 import { sha256Json, sha256Text } from '../lib/crypto.js';
 import { bandIdFor, exactRecipeSignature, jaccard, primaryIngredientId, recipeIngredientSet, textTokens, tokenSimilarity, unique } from './corpusMath.js';
+import { assertReferenceData, assertSemanticReferences } from '../services/referenceDataService.js';
 
 function totalMinutes(practical = {}) { return Number(practical.prepMinutes || 0) + Number(practical.cookMinutes || 0); }
 function flattenTags(tags = {}) { return new Set(Object.values(tags).flatMap(value => Array.isArray(value) ? value : [])); }
 function boolean(value) { return Boolean(value); }
 function normalizeTags(tags = {}) {
   const out = {};
-  for (const key of ['families','cuisines','diet','flavor','practical']) { const values = unique(tags[key] || []).sort(); if (values.length) out[key] = values; }
+  for (const key of ['families','cuisines','diet','flavor','practical','preparation']) { const values = unique(tags[key] || []).sort(); if (values.length) out[key] = values; }
   return out;
 }
 function normalizePractical(value = {}) {
@@ -19,11 +20,11 @@ function normalizePractical(value = {}) {
 }
 function requiredLocalesPresent(candidate, locales) { return locales.every(locale => candidate.i18n?.[locale]?.title?.trim() && Array.isArray(candidate.i18n?.[locale]?.instructions) && candidate.i18n[locale].instructions.length && candidate.i18n[locale].instructions.every(item => String(item).trim())); }
 function practicalMatches(target, practical, tags) {
-  if (target === 'quick') return totalMinutes(practical) <= 20;
-  if (target === 'portable') return practical.portable;
-  if (target === 'cold') return practical.coldSuitable;
-  if (target === 'hot') return !practical.coldSuitable;
-  if (target === 'meal_prep') return practical.mealPrepSuitable;
+  if (target === 'practical_quick') return totalMinutes(practical) <= 20;
+  if (target === 'practical_portable') return practical.portable;
+  if (target === 'practical_cold_suitable') return practical.coldSuitable;
+  if (target === 'practical_reheatable') return practical.reheatingRequired;
+  if (target === 'practical_meal_prep') return practical.mealPrepSuitable;
   return tags.has(target);
 }
 function rangeIncludes(value, range) { return range == null || (Number(value) >= Number(range.min) && Number(value) <= Number(range.max)); }
@@ -41,8 +42,8 @@ function cleanI18n(i18n, locales) {
 }
 function deriveDietTags(revisions, explicit = []) {
   const tags = new Set(explicit); const groups = new Set(revisions.map(revision => revision.taxonomy?.foodGroup));
-  const hasAnimal = [...groups].some(group => ['meat_poultry','fish_seafood'].includes(group));
-  if (!hasAnimal) tags.add('vegetarian');
+  const hasAnimal = [...groups].some(group => ['food_group_meat','food_group_poultry','food_group_fish_seafood'].includes(group));
+  if (!hasAnimal) tags.add('diet_vegetarian');
   return [...tags].sort();
 }
 function searchTokensFor(recipe, revisions) {
@@ -74,9 +75,11 @@ function missedCoverageTarget(job, context) {
   return null;
 }
 
-export async function processCandidateBatch({ job, candidates, policy, ingredientFamilies, ingredientRevisions, existingRecipeVersions = [], registry = null, generatedAt = null }) {
+export async function processCandidateBatch({ job, candidates, policy, ingredientFamilies, ingredientRevisions, existingRecipeVersions = [], taxonomies = [], taxonomyTerms = [], registry = null, generatedAt = null }) {
   if (!Array.isArray(candidates)) throw new Error('Candidates must be an array');
   if (candidates.length > job.candidateCount) throw new Error(`Received ${candidates.length} candidates but job allows ${job.candidateCount}`);
+  const referenceIndex = taxonomies.length || taxonomyTerms.length ? assertReferenceData(taxonomies, taxonomyTerms, registry) : null;
+  if ((job.referenceDataVersion || job.referenceDataDigest) && !referenceIndex) throw new Error('RecipeGenerationJob freezes reference data but no taxonomy snapshot was supplied');
   const familyById = new Map(ingredientFamilies.map(record => [record.ingredientId, record])); const revisionById = new Map(ingredientRevisions.map(record => [record.ingredientRevisionId, record]));
   const currentRevisionByIngredient = new Map(); for (const family of ingredientFamilies) { const revision = revisionById.get(family.currentRevisionId); if (revision) currentRevisionByIngredient.set(family.ingredientId, revision); }
   const allowed = new Set(job.allowedIngredientIds); const acceptedFamilies = [], acceptedVersions = [], rejected = [], warnings = [];
@@ -128,6 +131,7 @@ export async function processCandidateBatch({ job, candidates, policy, ingredien
         schemaVersion: 1, recipeVersionId, recipeId, versionNumber: 1, supersedesVersionId: null, origin: 'base', catalogVersion: job.targetCatalogVersion, i18n, servingCount: 1, mealArchetypes: candidateMeals, ingredientLines: lines, calculatedNutrition: nutrition, practical, tags, allergenIds,
         searchTokens: [], calculationAlgorithmVersion: CALCULATION_ALGORITHM_VERSION, inputDigest, contentHash: '', generation: { jobId: job.jobId, pipelineVersion: job.pipelineVersion, sourceLocale: job.sourceLocale, generatedAt: timestamp }, quality: { status: 'validated', reviewNotes: candidate.culinaryReview?.notes || null }, createdAt: timestamp
       };
+      if (referenceIndex) assertSemanticReferences({ index: referenceIndex, ingredientRevisions: usedRevisions, recipeVersions: [version], ingredientIds: ingredientFamilies.map(item => item.ingredientId) });
       version.searchTokens = searchTokensFor(version, usedRevisions);
       if (comparison.some(existing => nearDuplicate(version, existing, policy, job.requiredLocales))) { rejected.push(reject(candidate, 'near_duplicate')); continue; }
       version.contentHash = await sha256Json({ ...version, contentHash: '' });

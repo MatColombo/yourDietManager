@@ -5,7 +5,7 @@
     {
       "id": "pref-eggs",
       "targetType": "foodCategory",
-      "targetId": "eggs",
+      "targetId": "food_group_eggs",
       "level": "rarely",
       "autoExclude": false,
       "frequency": {
@@ -16,7 +16,7 @@
     {
       "id": "pref-legumes",
       "targetType": "foodCategory",
-      "targetId": "legumes",
+      "targetId": "food_group_legumes",
       "level": "more_often",
       "autoExclude": false,
       "frequency": null

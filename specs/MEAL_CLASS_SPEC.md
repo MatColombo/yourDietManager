@@ -53,14 +53,16 @@ avoid = -3
 
 ## 4. Vincoli per categorie/ingredienti
 
-Usare ID tassonomici, non string matching libero, quando possibile.
+Usare sempre ID canonici per target semantici. `foodCategory`, `tag` e `flavor` devono risolvere al Reference Data Registry; `ingredient` deve risolvere a un Ingredient ID. String matching libero non e ammesso al service boundary.
+
+Nel Pass B gli stessi vincoli sono anticipati dalla UI: categoria/ingrediente/tag/flavor sono selector ricercabili guidati. L'utente vede label localizzate e non inserisce manualmente `target`; un valore digitato ma non selezionato non e valido.
 
 Esempio:
 
 ```json
 {
   "ruleType":"foodCategory",
-  "target":"fish",
+  "target":"food_group_fish_seafood",
   "strength":"avoid"
 }
 ```

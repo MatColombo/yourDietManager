@@ -29,15 +29,15 @@
   },
   "maxTotalMinutes": 20,
   "recipeFamilies": [
-    "yogurt_breakfast_bowl",
-    "porridge",
-    "wrap_sandwich",
-    "snack_combo"
+    "recipe_family_yogurt_bowl",
+    "recipe_family_porridge",
+    "recipe_family_sandwich_wrap",
+    "recipe_family_snack_plate"
   ],
   "cuisineFocus": [],
   "practicalityTargets": [
-    "portable",
-    "quick"
+    "practical_portable",
+    "practical_quick"
   ],
   "requiredTags": [],
   "forbiddenTags": [],
@@ -59,7 +59,7 @@
     },
     {
       "targetId": "practical-portable-density",
-      "key": "portable",
+      "key": "practical_portable",
       "desiredAcceptedGain": 80
     }
   ],
@@ -88,5 +88,7 @@
       "breakfast remains under desired count",
       "selected ingredient subset improves primary-ingredient diversity"
     ]
-  }
+  },
+  "referenceDataVersion": "1.0.0",
+  "referenceDataDigest": "56f3949bd1c0348f8fe65861ebcda23c2a198805cd2e9f70b00610a328753b52"
 }

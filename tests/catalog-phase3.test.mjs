@@ -51,18 +51,18 @@ test('pack uninstall hides recipes without deleting immutable versions', async (
 
 test('personal ingredient edits create immutable revisions and advance the family pointer', async () => {
   const { repo, registry } = await fixture();
-  const first = await saveUserIngredient({ nameIt: 'Tofu test', nameEn: 'Test tofu', basisUnit: 'g', state: 'ready_to_eat', energyKcal: 120, proteinG: 13, carbsG: 3, fatG: 6, fiberG: 1, foodGroup: 'legumes', foodSubgroup: 'soy_products', flavorProfile: 'savory', mealArchetypes: ['lunch','dinner'], allergenIds: ['soy'] }, { repo, registry });
-  const second = await saveUserIngredient({ ingredientId: first.family.ingredientId, nameIt: 'Tofu test', nameEn: 'Test tofu', basisUnit: 'g', state: 'ready_to_eat', energyKcal: 125, proteinG: 14, carbsG: 3, fatG: 6, fiberG: 1, foodGroup: 'legumes', foodSubgroup: 'soy_products', flavorProfile: 'savory', mealArchetypes: ['lunch','dinner'], allergenIds: ['soy'] }, { repo, registry });
+  const first = await saveUserIngredient({ nameIt: 'Tofu test', nameEn: 'Test tofu', basisUnit: 'g', state: 'ready_to_eat', energyKcal: 120, proteinG: 13, carbsG: 3, fatG: 6, fiberG: 1, foodGroup: 'food_group_legumes', foodSubgroup: 'food_subgroup_soy_products', flavorProfile: 'flavor_savory', mealArchetypes: ['lunch','dinner'], allergenIds: ['soy'] }, { repo, registry });
+  const second = await saveUserIngredient({ ingredientId: first.family.ingredientId, nameIt: 'Tofu test', nameEn: 'Test tofu', basisUnit: 'g', state: 'ready_to_eat', energyKcal: 125, proteinG: 14, carbsG: 3, fatG: 6, fiberG: 1, foodGroup: 'food_group_legumes', foodSubgroup: 'food_subgroup_soy_products', flavorProfile: 'flavor_savory', mealArchetypes: ['lunch','dinner'], allergenIds: ['soy'] }, { repo, registry });
   assert.equal(second.revision.revisionNumber, 2);
   assert.notEqual(first.revision.ingredientRevisionId, second.revision.ingredientRevisionId);
   assert.ok(await repo.get('ingredientRevisions', first.revision.ingredientRevisionId));
   assert.equal((await repo.get('ingredients', first.family.ingredientId)).currentRevisionId, second.revision.ingredientRevisionId);
-  await assert.rejects(() => saveUserIngredient({ ingredientId: 'ing_salmon' }, { repo, registry }), /Base ingredients cannot be edited/);
+  assert.equal((await repo.get('ingredients', 'ing_salmon')).origin, 'base'); // Pass D covers bundled-family promotion on edit.
 });
 
 test('personal recipe nutrition and allergens are derived from frozen ingredient revisions and edits create versions', async () => {
   const { repo, registry } = await fixture();
-  const ingredient = await saveUserIngredient({ nameIt: 'Tofu test', nameEn: 'Test tofu', basisUnit: 'g', state: 'ready_to_eat', energyKcal: 120, proteinG: 13, carbsG: 3, fatG: 6, fiberG: 1, foodGroup: 'legumes', foodSubgroup: 'soy_products', flavorProfile: 'savory', mealArchetypes: ['lunch'], allergenIds: ['soy'] }, { repo, registry });
+  const ingredient = await saveUserIngredient({ nameIt: 'Tofu test', nameEn: 'Test tofu', basisUnit: 'g', state: 'ready_to_eat', energyKcal: 120, proteinG: 13, carbsG: 3, fatG: 6, fiberG: 1, foodGroup: 'food_group_legumes', foodSubgroup: 'food_subgroup_soy_products', flavorProfile: 'flavor_savory', mealArchetypes: ['lunch'], allergenIds: ['soy'] }, { repo, registry });
   const payload = { titleIt: 'Tofu semplice', titleEn: 'Simple tofu', instructionsIt: ['Servi.'], instructionsEn: ['Serve.'], mealArchetypes: ['lunch'], ingredientLines: [{ ingredientId: ingredient.family.ingredientId, ingredientRevisionId: ingredient.revision.ingredientRevisionId, amount: 200, unit: 'g', optional: false }], prepMinutes: 2, cookMinutes: 0, portable: true, coldSuitable: true, fridgeRequired: true, mealPrepSuitable: true };
   const first = await saveUserRecipe(payload, { repo, registry });
   assert.deepEqual(first.version.calculatedNutrition, { energyKcal: 240, proteinG: 26, carbsG: 6, fatG: 12, fiberG: 2 });
@@ -74,7 +74,7 @@ test('personal recipe nutrition and allergens are derived from frozen ingredient
 
 test('personal catalog export/import preserves user family+version records with checksum', async () => {
   const { repo, registry } = await fixture();
-  await saveUserIngredient({ nameIt: 'Ingrediente export', nameEn: 'Export ingredient', basisUnit: 'g', state: 'raw', energyKcal: 10, proteinG: 1, carbsG: 1, fatG: 0, fiberG: 1, foodGroup: 'vegetables', foodSubgroup: 'other', flavorProfile: 'neutral', mealArchetypes: ['lunch'], allergenIds: [] }, { repo, registry });
+  await saveUserIngredient({ nameIt: 'Ingrediente export', nameEn: 'Export ingredient', basisUnit: 'g', state: 'raw', energyKcal: 10, proteinG: 1, carbsG: 1, fatG: 0, fiberG: 1, foodGroup: 'food_group_vegetables', foodSubgroup: null, flavorProfile: 'flavor_neutral', mealArchetypes: ['lunch'], allergenIds: [] }, { repo, registry });
   const doc = await createCustomCatalogExport({ repo }); assert.equal(doc.payload.ingredients.length, 1);
   const target = new MemoryRepository();
   // Base catalog is required because personal recipes may reference base revisions; import this fixture's base data first.

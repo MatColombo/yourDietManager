@@ -31,14 +31,18 @@ Modificare ingredienti, quantita, istruzioni, practical metadata o qualsiasi dat
 
 Il titolo tradotto non determina l'identita.
 
-## 5. Record base e user
+## 5. Provenienza e gestione locale
 
-Ogni famiglia ha `origin = base | user`.
+Ogni famiglia ha `origin = base | user`. `origin` descrive la provenienza/gestione corrente e non e un permesso di modifica.
 
-- base: gestita dai catalog update, non editabile direttamente;
-- user: creabile/modificabile dall'utente tramite nuove revisioni/versioni.
+- `base`: famiglia fornita dal catalogo distribuito e aggiornata dai catalog update finche non esiste un override locale;
+- `user`: famiglia creata dall'utente oppure famiglia di catalogo promossa a gestione locale dopo la prima modifica.
 
-Duplicare un record base crea una nuova famiglia `origin=user`.
+Qualunque famiglia corrente e modificabile dall'utente. La prima modifica di una famiglia `base` mantiene lo stesso `ingredientId`/`recipeId`, crea una nuova `IngredientRevision`/`RecipeVersion` con `origin=user`, avanza il current pointer e promuove la famiglia a `origin=user`. Le revisioni/versioni storiche `base` restano immutate e risolvibili.
+
+Un catalog update successivo non puo sovrascrivere il current pointer di una famiglia promossa localmente. Le nuove versioni base possono essere importate nello storico, ma l'override locale resta autorevole finche l'utente non sceglie esplicitamente un'azione futura di ripristino/adozione catalogo.
+
+`Duplica` e un'azione distinta: crea una nuova famiglia `origin=user` con un nuovo ID stabile. Non e il meccanismo necessario per modificare contenuto di catalogo.
 
 ## 6. Riferimenti storici
 

@@ -158,3 +158,8 @@ Until those conditions are met, Phase 5 should not assume the smoke corpus is th
 ## Environment limitation
 
 The official USDA FoodData Central pages are reachable through web research, but the execution container used for this build could not fetch the external binary archive. The implementation therefore stops at a production-ready source adapter/review workflow instead of inventing data. Browser E2E retains the Phase 2–3 managed-environment limitation for local HTTP origins; domain/integration/build/HTTP smoke validation remain available.
+
+## Post-RC amendment — reference-data prerequisite
+
+After the UI/data audit, the production Phase 4 gate has an additional prerequisite: complete the canonical Reference Data Registry and migrate semantic free-text fields before resuming the 3,000–5,000 recipe build. The orchestrator/pipeline must be reference-data-aware: it may propose/materialize extensible taxonomy terms and curate missing ingredients first, but accepted recipes may contain only canonical IDs. This amendment does not invalidate the existing engine tests; it tightens the production-data contract before final materialization.
+

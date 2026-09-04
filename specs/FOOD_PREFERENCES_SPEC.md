@@ -23,10 +23,14 @@ Gestita separatamente da `ALLERGY_INTOLERANCE_SPEC.md`; e un hard constraint di 
 
 Una preferenza puo riferirsi a:
 
-- ingredientId;
-- foodGroup/foodSubgroup;
-- recipe tag;
-- cuisine tag.
+- `ingredient` -> `Ingredient.ingredientId`;
+- `foodCategory` -> term ID `food_category` (gruppo o sottogruppo canonico);
+- `recipeTag` -> term ID di una tassonomia tag compatibile con il consumer;
+- `cuisine` -> term ID `cuisine`.
+
+Il form non accetta un target semantico arbitrario: usa autocomplete/search sul registry o sul catalogo ingredienti e persiste esclusivamente `targetId`. Alias e label servono a trovare la voce ma non vengono persistiti come target. Il service boundary ripete la validazione e rifiuta ID sconosciuti.
+
+Il limite frequenza deve essere presentato come due quantità esplicitamente etichettate (`maxOccurrences`, `windowDays`), non come due input anonimi.
 
 ## 3. Frequenza
 

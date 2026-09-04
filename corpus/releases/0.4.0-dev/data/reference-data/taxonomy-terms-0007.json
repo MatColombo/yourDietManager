@@ -1,0 +1,164 @@
+[
+  {
+    "schemaVersion": 1,
+    "termId": "food_subgroup_molluscs",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": "food_group_fish_seafood",
+    "i18n": {
+      "it": {
+        "label": "Molluschi",
+        "description": ""
+      },
+      "en": {
+        "label": "Molluscs",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "molluscs"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "subgroup",
+      "molluscs",
+      "molluschi"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "food_subgroup_rice",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": "food_group_pasta_rice_cereals",
+    "i18n": {
+      "it": {
+        "label": "Riso",
+        "description": ""
+      },
+      "en": {
+        "label": "Rice",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "rice"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "subgroup",
+      "rice",
+      "riso"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "food_subgroup_pasta",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": "food_group_pasta_rice_cereals",
+    "i18n": {
+      "it": {
+        "label": "Pasta",
+        "description": ""
+      },
+      "en": {
+        "label": "Pasta",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "pasta"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "subgroup",
+      "pasta"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "food_subgroup_breakfast_cereals",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": "food_group_pasta_rice_cereals",
+    "i18n": {
+      "it": {
+        "label": "Cereali da colazione",
+        "description": ""
+      },
+      "en": {
+        "label": "Breakfast cereals",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "breakfast_cereals"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "subgroup",
+      "breakfast",
+      "cereals",
+      "cereali",
+      "da",
+      "colazione"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  }
+]

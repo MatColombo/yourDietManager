@@ -1,0 +1,188 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/taxonomy-term.schema.json",
+  "title": "TaxonomyTerm",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "termId",
+    "taxonomyId",
+    "origin",
+    "parentTermId",
+    "i18n",
+    "aliases",
+    "legacyKeys",
+    "status",
+    "supersedesTermId",
+    "provenance",
+    "searchTokens",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "termId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "taxonomyId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "origin": {
+      "enum": [
+        "base",
+        "user"
+      ]
+    },
+    "parentTermId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "i18n": {
+      "type": "object",
+      "required": [
+        "it",
+        "en"
+      ],
+      "properties": {
+        "it": {
+          "$ref": "#/$defs/text"
+        },
+        "en": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/text"
+      }
+    },
+    "aliases": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "minLength": 1
+        },
+        "uniqueItems": true
+      },
+      "required": [
+        "it",
+        "en"
+      ],
+      "properties": {
+        "it": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        },
+        "en": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      }
+    },
+    "legacyKeys": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "status": {
+      "enum": [
+        "active",
+        "deprecated"
+      ]
+    },
+    "supersedesTermId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceType",
+        "sourceLabel",
+        "reference",
+        "rationale"
+      ],
+      "properties": {
+        "sourceType": {
+          "enum": [
+            "system_seed",
+            "curated",
+            "pipeline",
+            "user",
+            "migration"
+          ]
+        },
+        "sourceLabel": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reference": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "searchTokens": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "text": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label"
+      ],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

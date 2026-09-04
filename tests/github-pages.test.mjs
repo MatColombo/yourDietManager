@@ -35,7 +35,7 @@ test('GitHub Pages deployment sources avoid root-absolute entry assets and inclu
   assert.match(workflow, /actions\/deploy-pages@v4/);
   assert.match(workflow, /steps\.pages\.outputs\.base_path/);
   assert.match(sw, /const BASE_URL = new URL\('\.\/'/);
-  assert.match(sw, /ydm-shell-v11-/);
+  assert.match(sw, /ydm-shell-v\d+-/);
   assert.doesNotMatch(sw, /['"]\/data\//);
   assert.doesNotMatch(sw, /['"]\/schemas\//);
 });

@@ -1,0 +1,134 @@
+[
+  {
+    "schemaVersion": 1,
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "hierarchical": true,
+    "extensibleBy": [
+      "user",
+      "editorial_pipeline"
+    ],
+    "allowedConsumers": [
+      "ingredient",
+      "recipe",
+      "meal_class",
+      "food_preferences",
+      "allergy_profile",
+      "corpus_policy",
+      "corpus_pipeline",
+      "search"
+    ],
+    "status": "active",
+    "i18n": {
+      "it": {
+        "label": "Categorie alimentari",
+        "description": ""
+      },
+      "en": {
+        "label": "Food categories",
+        "description": ""
+      }
+    },
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "taxonomyId": "cuisine",
+    "origin": "base",
+    "hierarchical": false,
+    "extensibleBy": [
+      "user",
+      "editorial_pipeline"
+    ],
+    "allowedConsumers": [
+      "ingredient",
+      "recipe",
+      "meal_class",
+      "food_preferences",
+      "allergy_profile",
+      "corpus_policy",
+      "corpus_pipeline",
+      "search"
+    ],
+    "status": "active",
+    "i18n": {
+      "it": {
+        "label": "Cucine",
+        "description": ""
+      },
+      "en": {
+        "label": "Cuisines",
+        "description": ""
+      }
+    },
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "taxonomyId": "recipe_family",
+    "origin": "base",
+    "hierarchical": false,
+    "extensibleBy": [
+      "user",
+      "editorial_pipeline"
+    ],
+    "allowedConsumers": [
+      "ingredient",
+      "recipe",
+      "meal_class",
+      "food_preferences",
+      "allergy_profile",
+      "corpus_policy",
+      "corpus_pipeline",
+      "search"
+    ],
+    "status": "active",
+    "i18n": {
+      "it": {
+        "label": "Famiglie di ricette",
+        "description": ""
+      },
+      "en": {
+        "label": "Recipe families",
+        "description": ""
+      }
+    },
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "taxonomyId": "diet_tag",
+    "origin": "base",
+    "hierarchical": false,
+    "extensibleBy": [
+      "user",
+      "editorial_pipeline"
+    ],
+    "allowedConsumers": [
+      "ingredient",
+      "recipe",
+      "meal_class",
+      "food_preferences",
+      "allergy_profile",
+      "corpus_policy",
+      "corpus_pipeline",
+      "search"
+    ],
+    "status": "active",
+    "i18n": {
+      "it": {
+        "label": "Tag alimentari",
+        "description": ""
+      },
+      "en": {
+        "label": "Diet tags",
+        "description": ""
+      }
+    },
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  }
+]

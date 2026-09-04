@@ -2,6 +2,7 @@ import { repositories } from '../repositories/repositoryHub.js';
 import { fetchCatalogManifest, loadCatalogSelection, validateCatalogReferences } from './catalogDataSource.js';
 import { cachePackOffline } from './offlineCatalog.js';
 import { collectStorageMetrics } from './storageMetrics.js';
+import { referenceDataDigest } from './referenceDataService.js';
 
 function packRecord(pack, catalogVersion, status, now, previous = null) {
   return {
@@ -34,7 +35,11 @@ export class CatalogImporter {
     let completed = 0;
     const onShard = () => { completed += 1; this.emit(listener, 'validating', completed, Math.max(1, completed), 'catalog.status.validating'); };
     const selected = await loadCatalogSelection(manifest, wantedIds, { fetcher: this.fetcher, registry: this.registry, onShard });
-    validateCatalogReferences({ ...selected, packs: requiredPacks });
+    validateCatalogReferences({ ...selected, packs: requiredPacks }, this.registry);
+    if (manifest.referenceDataDigest) {
+      const digest = await referenceDataDigest(selected.taxonomies, selected.taxonomyTerms);
+      if (digest !== manifest.referenceDataDigest) throw new Error('Reference-data digest mismatch');
+    }
     return { manifest, requiredPacks, ...selected };
   }
 
@@ -44,7 +49,7 @@ export class CatalogImporter {
       const active = await this.repo.getMeta('activeCatalogVersion');
       if (active) { this.emit(listener, 'complete', 1, 1, 'catalog.status.ready'); return active; }
       const catalog = await this.loadAndValidate(listener);
-      const total = catalog.ingredientFamilies.length + catalog.ingredientRevisions.length + catalog.recipeFamilies.length + catalog.recipeVersions.length + catalog.manifest.packs.length;
+      const total = catalog.taxonomies.length + catalog.taxonomyTerms.length + catalog.ingredientFamilies.length + catalog.ingredientRevisions.length + catalog.recipeFamilies.length + catalog.recipeVersions.length + catalog.manifest.packs.length;
       let done = 0;
       const stage = async (store, values) => {
         await this.repo.putMany(store, values, 250, progress => {
@@ -52,6 +57,8 @@ export class CatalogImporter {
         });
         done += values.length;
       };
+      await stage('taxonomies', catalog.taxonomies);
+      await stage('taxonomyTerms', catalog.taxonomyTerms);
       await stage('ingredientRevisions', catalog.ingredientRevisions);
       await stage('recipeVersions', catalog.recipeVersions);
       const now = new Date().toISOString();
@@ -61,7 +68,9 @@ export class CatalogImporter {
         catalogManifest: catalog.manifest,
         [`catalogManifest:${catalog.manifest.catalogVersion}`]: catalog.manifest,
         activeCatalogVersion: catalog.manifest.catalogVersion,
-        catalogImportedAt: now
+        catalogImportedAt: now,
+        referenceDataVersion: catalog.manifest.referenceDataVersion || null,
+        referenceDataDigest: catalog.manifest.referenceDataDigest || null
       });
       for (const pack of catalog.requiredPacks) {
         const offline = await cachePackOffline(catalog.manifest, pack, catalog.recipeVersions, { serviceWorker: this.serviceWorker });

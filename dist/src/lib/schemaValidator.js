@@ -7,7 +7,7 @@ const SCHEMA_FILES = [
   'ingredient.schema.json', 'meal-class.schema.json', 'nutrition-profile.schema.json', 'operation.schema.json',
   'plan-instance.schema.json', 'recipe-corpus-orchestration-run.schema.json', 'recipe-corpus-policy.schema.json',
   'recipe-corpus-snapshot.schema.json', 'recipe-generation-job.schema.json', 'recipe-version.schema.json',
-  'recipe.schema.json', 'shopping-checklist.schema.json', 'theme-profile.schema.json'
+  'recipe.schema.json', 'shopping-checklist.schema.json', 'taxonomy.schema.json', 'taxonomy-term.schema.json', 'reference-data-proposal.schema.json', 'theme-profile.schema.json'
 ];
 
 export const SCHEMA_BY_NAME = {
@@ -19,7 +19,7 @@ export const SCHEMA_BY_NAME = {
   planInstance: 'plan-instance.schema.json', calendarDay: 'calendar-day.schema.json', generationRun: 'generation-run.schema.json',
   recipeCorpusPolicy: 'recipe-corpus-policy.schema.json', recipeCorpusSnapshot: 'recipe-corpus-snapshot.schema.json',
   recipeCorpusOrchestrationRun: 'recipe-corpus-orchestration-run.schema.json', recipeGenerationJob: 'recipe-generation-job.schema.json',
-  operation: 'operation.schema.json', shoppingChecklist: 'shopping-checklist.schema.json', backup: 'backup.schema.json'
+  operation: 'operation.schema.json', shoppingChecklist: 'shopping-checklist.schema.json', taxonomy: 'taxonomy.schema.json', taxonomyTerm: 'taxonomy-term.schema.json', referenceDataProposal: 'reference-data-proposal.schema.json', backup: 'backup.schema.json'
 };
 
 function isObject(value) { return value !== null && typeof value === 'object' && !Array.isArray(value); }

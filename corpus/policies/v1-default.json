@@ -256,7 +256,7 @@
     {
       "targetId": "practical-portable-coverage",
       "dimension": "practicality",
-      "key": "portable",
+      "key": "practical_portable",
       "minCount": 300,
       "desiredCount": 450,
       "weight": 1,
@@ -265,7 +265,7 @@
     {
       "targetId": "practical-quick-density",
       "dimension": "practicality",
-      "key": "quick",
+      "key": "practical_quick",
       "desiredShare": 0.3,
       "weight": 0.65,
       "hardForRelease": false
@@ -273,7 +273,7 @@
     {
       "targetId": "practical-cold-density",
       "dimension": "practicality",
-      "key": "cold",
+      "key": "practical_cold_suitable",
       "desiredShare": 0.2,
       "weight": 0.65,
       "hardForRelease": false
@@ -281,7 +281,7 @@
     {
       "targetId": "practical-meal_prep-density",
       "dimension": "practicality",
-      "key": "meal_prep",
+      "key": "practical_meal_prep",
       "desiredShare": 0.25,
       "weight": 0.65,
       "hardForRelease": false
@@ -289,15 +289,15 @@
     {
       "targetId": "diet-vegetarian-density",
       "dimension": "diet",
-      "key": "vegetarian",
+      "key": "diet_vegetarian",
       "desiredShare": 0.3,
       "weight": 0.55,
       "hardForRelease": false
     },
     {
-      "targetId": "family-soup_stew-soft",
+      "targetId": "family-soup-soft",
       "dimension": "recipe_family",
-      "key": "soup_stew",
+      "key": "recipe_family_soup",
       "desiredShare": 0.08,
       "weight": 0.4,
       "hardForRelease": false
@@ -305,15 +305,15 @@
     {
       "targetId": "family-grain_bowl-soft",
       "dimension": "recipe_family",
-      "key": "grain_bowl",
+      "key": "recipe_family_grain_bowl",
       "desiredShare": 0.1,
       "weight": 0.4,
       "hardForRelease": false
     },
     {
-      "targetId": "family-side_component-soft",
+      "targetId": "family-side-dish-soft",
       "dimension": "recipe_family",
-      "key": "side_component",
+      "key": "recipe_family_side_dish",
       "desiredShare": 0.08,
       "weight": 0.4,
       "hardForRelease": false
@@ -321,7 +321,7 @@
     {
       "targetId": "cuisine-italian-soft",
       "dimension": "cuisine",
-      "key": "italian",
+      "key": "cuisine_italian",
       "desiredShare": 0.12,
       "weight": 0.35,
       "hardForRelease": false
@@ -329,31 +329,31 @@
     {
       "targetId": "cuisine-mediterranean-soft",
       "dimension": "cuisine",
-      "key": "mediterranean",
+      "key": "cuisine_mediterranean",
       "desiredShare": 0.12,
       "weight": 0.35,
       "hardForRelease": false
     },
     {
-      "targetId": "cuisine-east_asian-soft",
+      "targetId": "cuisine-japanese-soft",
       "dimension": "cuisine",
-      "key": "east_asian",
+      "key": "cuisine_japanese",
       "desiredShare": 0.08,
       "weight": 0.35,
       "hardForRelease": false
     },
     {
-      "targetId": "cuisine-south_asian-soft",
+      "targetId": "cuisine-indian-soft",
       "dimension": "cuisine",
-      "key": "south_asian",
+      "key": "cuisine_indian",
       "desiredShare": 0.06,
       "weight": 0.35,
       "hardForRelease": false
     },
     {
-      "targetId": "cuisine-middle_eastern-soft",
+      "targetId": "cuisine-middle-eastern-soft",
       "dimension": "cuisine",
-      "key": "middle_eastern",
+      "key": "cuisine_middle_eastern",
       "desiredShare": 0.06,
       "weight": 0.35,
       "hardForRelease": false
@@ -361,7 +361,7 @@
     {
       "targetId": "ingredient-category-vegetables-soft",
       "dimension": "ingredient_category",
-      "key": "vegetables",
+      "key": "food_group_vegetables",
       "desiredShare": 0.45,
       "weight": 0.45,
       "hardForRelease": false
@@ -369,7 +369,7 @@
     {
       "targetId": "ingredient-category-legumes-soft",
       "dimension": "ingredient_category",
-      "key": "legumes",
+      "key": "food_group_legumes",
       "desiredShare": 0.15,
       "weight": 0.45,
       "hardForRelease": false
@@ -377,7 +377,7 @@
     {
       "targetId": "ingredient-category-fish_seafood-soft",
       "dimension": "ingredient_category",
-      "key": "fish_seafood",
+      "key": "food_group_fish_seafood",
       "desiredShare": 0.12,
       "weight": 0.45,
       "hardForRelease": false
@@ -1279,7 +1279,7 @@
         },
         {
           "dimension": "practicality",
-          "key": "quick"
+          "key": "practical_quick"
         }
       ],
       "desiredCount": 30,
@@ -1301,7 +1301,7 @@
         },
         {
           "dimension": "practicality",
-          "key": "quick"
+          "key": "practical_quick"
         }
       ],
       "desiredCount": 30,
@@ -1323,7 +1323,7 @@
         },
         {
           "dimension": "practicality",
-          "key": "quick"
+          "key": "practical_quick"
         }
       ],
       "desiredCount": 30,
@@ -1345,7 +1345,7 @@
         },
         {
           "dimension": "practicality",
-          "key": "quick"
+          "key": "practical_quick"
         }
       ],
       "desiredCount": 30,
@@ -1367,7 +1367,7 @@
         },
         {
           "dimension": "practicality",
-          "key": "quick"
+          "key": "practical_quick"
         }
       ],
       "desiredCount": 30,
@@ -1389,7 +1389,7 @@
         },
         {
           "dimension": "practicality",
-          "key": "quick"
+          "key": "practical_quick"
         }
       ],
       "desiredCount": 30,
@@ -1411,7 +1411,7 @@
         },
         {
           "dimension": "practicality",
-          "key": "quick"
+          "key": "practical_quick"
         }
       ],
       "desiredCount": 30,
@@ -1433,7 +1433,7 @@
         },
         {
           "dimension": "practicality",
-          "key": "quick"
+          "key": "practical_quick"
         }
       ],
       "desiredCount": 30,
@@ -1455,7 +1455,7 @@
         },
         {
           "dimension": "practicality",
-          "key": "quick"
+          "key": "practical_quick"
         }
       ],
       "desiredCount": 30,
@@ -1477,7 +1477,7 @@
         },
         {
           "dimension": "practicality",
-          "key": "quick"
+          "key": "practical_quick"
         }
       ],
       "desiredCount": 30,
@@ -1495,7 +1495,7 @@
         },
         {
           "dimension": "diet",
-          "key": "vegetarian"
+          "key": "diet_vegetarian"
         }
       ],
       "desiredCount": 80,
@@ -1513,7 +1513,7 @@
         },
         {
           "dimension": "diet",
-          "key": "vegetarian"
+          "key": "diet_vegetarian"
         }
       ],
       "desiredCount": 80,
@@ -1531,7 +1531,7 @@
         },
         {
           "dimension": "diet",
-          "key": "vegetarian"
+          "key": "diet_vegetarian"
         }
       ],
       "desiredCount": 80,
@@ -1549,7 +1549,7 @@
         },
         {
           "dimension": "diet",
-          "key": "vegetarian"
+          "key": "diet_vegetarian"
         }
       ],
       "desiredCount": 80,
@@ -1567,7 +1567,7 @@
         },
         {
           "dimension": "practicality",
-          "key": "portable"
+          "key": "practical_portable"
         }
       ],
       "desiredCount": 80,
@@ -1585,7 +1585,7 @@
         },
         {
           "dimension": "practicality",
-          "key": "portable"
+          "key": "practical_portable"
         }
       ],
       "desiredCount": 80,
@@ -1603,7 +1603,7 @@
         },
         {
           "dimension": "practicality",
-          "key": "portable"
+          "key": "practical_portable"
         }
       ],
       "desiredCount": 80,

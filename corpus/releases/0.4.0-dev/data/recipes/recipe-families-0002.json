@@ -1,36 +1,36 @@
 [
   {
     "schemaVersion": 1,
-    "recipeId": "rec_a01ebdf0dcaf3c139fac",
+    "recipeId": "rec_3c041eb74ce166e74b6b",
     "origin": "base",
-    "currentVersionId": "recver_a01ebdf0dcaf3c139fac37a2_v1",
+    "currentVersionId": "recver_3c041eb74ce166e74b6be057_v1",
     "status": "active",
     "createdAt": "2026-09-03T14:07:00Z",
     "updatedAt": "2026-09-03T14:07:00Z"
   },
   {
     "schemaVersion": 1,
-    "recipeId": "rec_49aa3237f33c228c2d03",
+    "recipeId": "rec_25de5a970e1949872547",
     "origin": "base",
-    "currentVersionId": "recver_49aa3237f33c228c2d03cdb1_v1",
+    "currentVersionId": "recver_25de5a970e19498725476948_v1",
     "status": "active",
     "createdAt": "2026-09-03T14:07:00Z",
     "updatedAt": "2026-09-03T14:07:00Z"
   },
   {
     "schemaVersion": 1,
-    "recipeId": "rec_56854b1f020fbcb205ec",
+    "recipeId": "rec_8b60977c2e6bced10cec",
     "origin": "base",
-    "currentVersionId": "recver_56854b1f020fbcb205ec234a_v1",
+    "currentVersionId": "recver_8b60977c2e6bced10cecbfab_v1",
     "status": "active",
     "createdAt": "2026-09-03T14:07:00Z",
     "updatedAt": "2026-09-03T14:07:00Z"
   },
   {
     "schemaVersion": 1,
-    "recipeId": "rec_ff90a5fa76c9fd090506",
+    "recipeId": "rec_600bf1026ec5c8d159bc",
     "origin": "base",
-    "currentVersionId": "recver_ff90a5fa76c9fd090506efd4_v1",
+    "currentVersionId": "recver_600bf1026ec5c8d159bce680_v1",
     "status": "active",
     "createdAt": "2026-09-03T14:07:00Z",
     "updatedAt": "2026-09-03T14:07:00Z"

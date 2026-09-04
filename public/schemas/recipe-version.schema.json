@@ -213,7 +213,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "minLength": 1
+            "pattern": "^[a-z][a-z0-9_]*$"
           },
           "uniqueItems": true
         },
@@ -221,7 +221,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "minLength": 1
+            "pattern": "^[a-z][a-z0-9_]*$"
           },
           "uniqueItems": true
         },
@@ -229,7 +229,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "minLength": 1
+            "pattern": "^[a-z][a-z0-9_]*$"
           },
           "uniqueItems": true
         },
@@ -237,7 +237,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "minLength": 1
+            "pattern": "^[a-z][a-z0-9_]*$"
           },
           "uniqueItems": true
         },
@@ -245,7 +245,15 @@
           "type": "array",
           "items": {
             "type": "string",
-            "minLength": 1
+            "pattern": "^[a-z][a-z0-9_]*$"
+          },
+          "uniqueItems": true
+        },
+        "preparation": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$"
           },
           "uniqueItems": true
         }

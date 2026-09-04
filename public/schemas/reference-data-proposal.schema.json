@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/reference-data-proposal.schema.json",
+  "title": "ReferenceDataProposal",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "proposalId",
+    "taxonomyId",
+    "proposedTermId",
+    "parentTermId",
+    "i18n",
+    "aliases",
+    "rationale",
+    "provenance",
+    "status",
+    "collisionCandidateTermIds",
+    "createdAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "proposalId": {
+      "type": "string",
+      "pattern": "^[a-z0-9][a-z0-9._-]{2,127}$"
+    },
+    "taxonomyId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{1,63}$"
+    },
+    "proposedTermId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]{2,127}$"
+    },
+    "parentTermId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "i18n": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "it",
+        "en"
+      ],
+      "properties": {
+        "it": {
+          "$ref": "taxonomy-term.schema.json#/$defs/text"
+        },
+        "en": {
+          "$ref": "taxonomy-term.schema.json#/$defs/text"
+        }
+      }
+    },
+    "aliases": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "it",
+        "en"
+      ],
+      "properties": {
+        "it": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "en": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "rationale": {
+      "type": "string",
+      "minLength": 1
+    },
+    "provenance": {
+      "$ref": "taxonomy-term.schema.json#/properties/provenance"
+    },
+    "status": {
+      "enum": [
+        "proposed",
+        "needs_review",
+        "approved",
+        "rejected",
+        "materialized"
+      ]
+    },
+    "collisionCandidateTermIds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string"
+      }
+    },
+    "reviewNotes": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "materializedTermId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "reviewedAt": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  }
+}

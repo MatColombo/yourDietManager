@@ -45,9 +45,21 @@ La configurazione e generabile solo se:
 - target energia >0;
 - esiste almeno una ricetta compatibile per gli archetipi richiesti oppure viene mostrata una diagnostica prima della generazione.
 
-## 5. Template iniziali
+## 5. Bootstrap standard e template iniziali
 
-L'onboarding puo offrire template modificabili, ma non deve trattarli come configurazioni speciali nel codice.
+Nel release candidate V1 il wizard onboarding e temporaneamente disabilitato. Una nuova installazione viene attivata direttamente con un bundle standard neutro, trattato come normale configurazione persistita e non come caso speciale del dominio. Il bootstrap standard deve avere almeno:
+
+- zero regole allergia/intolleranza preimpostate;
+- zero preferenze alimentari preimpostate;
+- `shoppingPeopleMultiplier = 1`;
+- un set standard di MealClass utilizzabile subito;
+- una DayClass standard e un Cycle di un giorno;
+- vincoli nutrizionali opzionali disabilitati (`enabled=false`, limiti null, `weight=0`) salvo l'energia giornaliera necessaria al funzionamento di base;
+- timezone risolta dall'ambiente quando possibile invece di assumere il fuso del fixture.
+
+Un vecchio bootstrap puo essere aggiornato automaticamente al nuovo standard soltanto se non risulta mai modificato o importato esplicitamente dall'utente. Una configurazione salvata/importata dall'utente ha sempre precedenza e non viene sovrascritta dal bootstrap.
+
+Quando l'onboarding verra ridisegnato potra offrire template modificabili, ma non deve trattarli come configurazioni speciali nel codice.
 
 Esempi:
 
@@ -62,6 +74,10 @@ Un template e semplicemente JSON precompilato che crea DayClass/MealClass/Cycle 
 
 Consentire export della sola configurazione separato dal backup completo. Questo permette di condividere un setup di ciclo/tema senza condividere storico, allergie o dati personali non desiderati.
 
-## 7. Persistenza e atomicita
+## 7. Persistenza, validazione e atomicita
 
-I record configurazione sono salvati tramite repository in IndexedDB. Un onboarding multi-step puo salvare bozze, ma il passaggio a configurazione `active` deve avvenire atomicamente dopo validazione referenziale. Il backup JSON rimane il formato portabile.
+I record configurazione sono salvati tramite repository in IndexedDB. Un onboarding multi-step futuro potra salvare bozze, ma il passaggio a configurazione `active` deve avvenire atomicamente dopo validazione referenziale. Il backup JSON rimane il formato portabile.
+
+Gli editor di configurazione devono validare live il draft usando lo stesso contratto applicato al save: JSON Schema, invarianti cross-record e reference-data canonici. Save resta disabilitato finche il draft non puo essere persistito validamente. Gli input obbligatori vuoti non vengono coerciti a valori di fallback. Ogni save esplicito deve produrre feedback success/failure visibile anche se l'app esegue successivamente un rerender.
+
+Le strutture annidate devono essere modificate nel nodo previsto dallo schema. In particolare le capacita di una DayClass (`fridge`, `reheating`, `cooking`, `complexSnack`, `portabilityRequired`, `maxPrepMinutes`) appartengono sempre a `DayClass.capabilities` e non sono proprieta top-level. Una DayClass diversa da `free` deve avere almeno un meal slot prima di poter essere salvata.

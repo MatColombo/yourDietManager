@@ -50,13 +50,13 @@
     },
     "tags": {
       "families": [
-        "fish_side"
+        "recipe_family_side_dish"
       ],
       "cuisines": [
-        "mediterranean"
+        "cuisine_mediterranean"
       ],
       "practical": [
-        "portable"
+        "practical_portable"
       ]
     },
     "culinaryReview": {
@@ -115,13 +115,13 @@
     },
     "tags": {
       "families": [
-        "grain_bowl"
+        "recipe_family_grain_bowl"
       ],
       "cuisines": [
-        "mediterranean"
+        "cuisine_mediterranean"
       ],
       "practical": [
-        "portable"
+        "practical_portable"
       ]
     },
     "culinaryReview": {
@@ -180,13 +180,13 @@
     },
     "tags": {
       "families": [
-        "grain_bowl"
+        "recipe_family_grain_bowl"
       ],
       "cuisines": [
-        "mediterranean"
+        "cuisine_mediterranean"
       ],
       "practical": [
-        "portable"
+        "practical_portable"
       ]
     },
     "culinaryReview": {
@@ -245,13 +245,13 @@
     },
     "tags": {
       "families": [
-        "grain_side"
+        "recipe_family_side_dish"
       ],
       "cuisines": [
-        "mediterranean"
+        "cuisine_mediterranean"
       ],
       "practical": [
-        "portable"
+        "practical_portable"
       ]
     },
     "culinaryReview": {
@@ -310,13 +310,13 @@
     },
     "tags": {
       "families": [
-        "vegetable_side"
+        "recipe_family_side_dish"
       ],
       "cuisines": [
-        "mediterranean"
+        "cuisine_mediterranean"
       ],
       "practical": [
-        "portable"
+        "practical_portable"
       ]
     },
     "culinaryReview": {
@@ -375,13 +375,13 @@
     },
     "tags": {
       "families": [
-        "fish_component"
+        "recipe_family_protein_plate"
       ],
       "cuisines": [
-        "mediterranean"
+        "cuisine_mediterranean"
       ],
       "practical": [
-        "portable"
+        "practical_portable"
       ]
     },
     "culinaryReview": {
@@ -440,13 +440,13 @@
     },
     "tags": {
       "families": [
-        "grain_side"
+        "recipe_family_side_dish"
       ],
       "cuisines": [
-        "mediterranean"
+        "cuisine_mediterranean"
       ],
       "practical": [
-        "portable"
+        "practical_portable"
       ]
     },
     "culinaryReview": {

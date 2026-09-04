@@ -16,7 +16,7 @@ const registry = new SchemaRegistry(async file => readJson(path.join('schemas', 
 const [corpus, policy, job, candidates] = await Promise.all([loadCorpusInput(corpusInput), readJson(policyFile), readJson(jobFile), readJson(candidatesFile)]);
 registry.assert('recipeCorpusPolicy', policy); registry.assert('recipeGenerationJob', job);
 if (!Array.isArray(candidates)) throw new Error('Candidate file must contain a JSON array');
-const result = await processCandidateBatch({ job, candidates, policy, ingredientFamilies: corpus.ingredientFamilies, ingredientRevisions: corpus.ingredientRevisions, existingRecipeVersions: currentRecipeVersions(corpus), registry });
+const result = await processCandidateBatch({ job, candidates, policy, ingredientFamilies: corpus.ingredientFamilies, ingredientRevisions: corpus.ingredientRevisions, existingRecipeVersions: currentRecipeVersions(corpus), taxonomies: corpus.taxonomies || [], taxonomyTerms: corpus.taxonomyTerms || [], registry });
 await writeJson(output, result);
 console.log(JSON.stringify({ jobId: result.jobId, candidateCount: result.candidateCount, acceptedCount: result.acceptedCount, rejectedCount: result.rejectedCount, targetMet: result.targetMet, diversityPassed: result.diversityPassed, rejectedByCode: Object.fromEntries([...new Set(result.rejected.map(item => item.code))].sort().map(code => [code, result.rejected.filter(item => item.code === code).length])) }, null, 2));
 if (!result.targetMet || !result.diversityPassed) process.exitCode = 3;

@@ -2,10 +2,11 @@ import { APP_VERSION } from '../db/constants.js';
 import { sha256Text } from '../lib/crypto.js';
 import { compareSemver } from '../lib/semver.js';
 import { assetPath } from '../lib/appBase.js';
+import { assertReferenceData, assertSemanticReferences } from './referenceDataService.js';
 
 const catalogUrl = path => assetPath(`/data/${String(path).replace(/^\/+/, '')}`);
 const PART_SCHEMAS = {
-  ingredientFamilies: 'ingredient', ingredientRevisions: 'ingredientRevision', recipeFamilies: 'recipe', recipeVersions: 'recipeVersion'
+  taxonomies: 'taxonomy', taxonomyTerms: 'taxonomyTerm', ingredientFamilies: 'ingredient', ingredientRevisions: 'ingredientRevision', recipeFamilies: 'recipe', recipeVersions: 'recipeVersion'
 };
 
 export function assertCatalogCompatibility(manifest) {
@@ -51,7 +52,11 @@ async function readShard(fetcher, shard, idKey) {
   return data;
 }
 
-function idKeyForPart(key) { return key === 'recipeVersions' ? 'recipeVersionId' : key === 'recipeFamilies' ? 'recipeId' : key === 'ingredientRevisions' ? 'ingredientRevisionId' : 'ingredientId'; }
+function idKeyForPart(key) {
+  if (key === 'taxonomies') return 'taxonomyId';
+  if (key === 'taxonomyTerms') return 'termId';
+  return key === 'recipeVersions' ? 'recipeVersionId' : key === 'recipeFamilies' ? 'recipeId' : key === 'ingredientRevisions' ? 'ingredientRevisionId' : 'ingredientId';
+}
 
 export async function loadCatalogPart(manifest, key, { fetcher = fetch, registry, wantedIds = null, onShard } = {}) {
   const part = manifest[key]; const schema = PART_SCHEMAS[key]; const idKey = idKeyForPart(key);
@@ -79,7 +84,9 @@ export async function loadCatalogPart(manifest, key, { fetcher = fetch, registry
   return filtered;
 }
 
-export function validateCatalogReferences({ ingredientFamilies, ingredientRevisions, recipeFamilies, recipeVersions, packs = [] }) {
+export function validateCatalogReferences({ taxonomies = [], taxonomyTerms = [], ingredientFamilies, ingredientRevisions, recipeFamilies, recipeVersions, packs = [] }, registry = null) {
+  let referenceIndex = null;
+  if (taxonomies.length || taxonomyTerms.length) referenceIndex = assertReferenceData(taxonomies, taxonomyTerms, registry);
   const revisions = new Set(ingredientRevisions.map(record => record.ingredientRevisionId));
   const ingredients = new Set(ingredientFamilies.map(record => record.ingredientId));
   const recipeVersionIds = new Set(recipeVersions.map(record => record.recipeVersionId));
@@ -97,15 +104,20 @@ export function validateCatalogReferences({ ingredientFamilies, ingredientRevisi
     }
   }
   for (const pack of packs) for (const id of pack.recipeVersionIds) if (!recipeVersionIds.has(id)) throw new Error(`Pack ${pack.packId} references missing recipe version ${id}`);
+  if (referenceIndex) assertSemanticReferences({ index: referenceIndex, ingredientRevisions, recipeVersions, ingredientIds: [...ingredients] });
 }
 
 export async function loadCatalogSelection(manifest, recipeVersionIds, options = {}) {
   const recipeVersions = await loadCatalogPart(manifest, 'recipeVersions', { ...options, wantedIds: recipeVersionIds });
   const recipeIds = [...new Set(recipeVersions.map(record => record.recipeId))];
-  const [ingredientFamilies, ingredientRevisions, recipeFamilies] = await Promise.all([
+  const referencePromise = manifest.taxonomies && manifest.taxonomyTerms
+    ? Promise.all([loadCatalogPart(manifest, 'taxonomies', options), loadCatalogPart(manifest, 'taxonomyTerms', options)])
+    : Promise.resolve([[], []]);
+  const [[taxonomies, taxonomyTerms], ingredientFamilies, ingredientRevisions, recipeFamilies] = await Promise.all([
+    referencePromise,
     loadCatalogPart(manifest, 'ingredientFamilies', options),
     loadCatalogPart(manifest, 'ingredientRevisions', options),
     loadCatalogPart(manifest, 'recipeFamilies', { ...options, wantedIds: recipeIds })
   ]);
-  return { ingredientFamilies, ingredientRevisions, recipeFamilies, recipeVersions };
+  return { taxonomies, taxonomyTerms, ingredientFamilies, ingredientRevisions, recipeFamilies, recipeVersions };
 }

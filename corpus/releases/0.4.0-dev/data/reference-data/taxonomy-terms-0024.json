@@ -1,0 +1,161 @@
+[
+  {
+    "schemaVersion": 1,
+    "termId": "practical_one_pan",
+    "taxonomyId": "practical_tag",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Una sola padella",
+        "description": ""
+      },
+      "en": {
+        "label": "One-pan",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "one_pan"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "practical",
+      "one",
+      "pan",
+      "una",
+      "sola",
+      "padella"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "flavor_sweet",
+    "taxonomyId": "flavor_profile",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Dolce",
+        "description": ""
+      },
+      "en": {
+        "label": "Sweet",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "sweet"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "flavor",
+      "sweet",
+      "dolce"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "flavor_savory",
+    "taxonomyId": "flavor_profile",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Salato",
+        "description": ""
+      },
+      "en": {
+        "label": "Savory",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "savory"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "flavor",
+      "savory",
+      "salato"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "flavor_neutral",
+    "taxonomyId": "flavor_profile",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Neutro",
+        "description": ""
+      },
+      "en": {
+        "label": "Neutral",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "neutral"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "flavor",
+      "neutral",
+      "neutro"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  }
+]

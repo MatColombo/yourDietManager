@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "snapshotId": "snapshot-0.4.0-dev-e71c65323c79",
+  "snapshotId": "snapshot-0.4.0-dev-f85fc5945342",
   "catalogVersion": "0.4.0-dev",
   "policyId": "corpus-policy-phase4-smoke",
   "policyVersion": "1.0.0",
@@ -75,79 +75,67 @@
     ],
     "practicality": [
       {
-        "key": "cold",
+        "key": "practical_cold_suitable",
         "count": 7
       },
       {
-        "key": "hot",
-        "count": 1
-      },
-      {
-        "key": "meal_prep",
+        "key": "practical_meal_prep",
         "count": 8
       },
       {
-        "key": "portable",
+        "key": "practical_portable",
         "count": 7
       },
       {
-        "key": "quick",
+        "key": "practical_quick",
         "count": 6
       }
     ],
     "diet": [
       {
-        "key": "high_protein",
+        "key": "diet_high_protein",
         "count": 2
       },
       {
-        "key": "vegetarian",
+        "key": "diet_vegetarian",
         "count": 3
       }
     ],
     "recipeFamilies": [
       {
-        "key": "fish_component",
-        "count": 1
-      },
-      {
-        "key": "fish_side",
-        "count": 1
-      },
-      {
-        "key": "grain_bowl",
+        "key": "recipe_family_grain_bowl",
         "count": 3
       },
       {
-        "key": "grain_side",
+        "key": "recipe_family_protein_plate",
         "count": 2
       },
       {
-        "key": "protein_plate",
-        "count": 1
+        "key": "recipe_family_side_dish",
+        "count": 3
       }
     ],
     "cuisines": [
       {
-        "key": "mediterranean",
+        "key": "cuisine_mediterranean",
         "count": 8
       }
     ],
     "ingredientCategories": [
       {
-        "key": "fats_oils",
+        "key": "food_group_fats_oils",
         "count": 5
       },
       {
-        "key": "fish_seafood",
+        "key": "food_group_fish_seafood",
         "count": 5
       },
       {
-        "key": "grains",
+        "key": "food_group_pasta_rice_cereals",
         "count": 5
       },
       {
-        "key": "vegetables",
+        "key": "food_group_vegetables",
         "count": 5
       }
     ]
@@ -233,6 +221,6 @@
     "missingRequiredLocaleFields": 0
   },
   "undercoveredTargetIds": [],
-  "contentDigest": "sha256:e71c65323c79920cdbf27cf3757996c9680689ad61e3c4f7bc042e372ff615fb",
+  "contentDigest": "sha256:f85fc5945342251ad175bd12f2f4c69fd02a95682abaa77aed5c52e958cf0a86",
   "createdAt": "2026-09-03T14:08:00Z"
 }

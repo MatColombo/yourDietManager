@@ -1,0 +1,159 @@
+[
+  {
+    "schemaVersion": 1,
+    "termId": "cuisine_thai",
+    "taxonomyId": "cuisine",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Thailandese",
+        "description": ""
+      },
+      "en": {
+        "label": "Thai",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "thai"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "cuisine",
+      "thai",
+      "thailandese"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "cuisine_vietnamese",
+    "taxonomyId": "cuisine",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Vietnamita",
+        "description": ""
+      },
+      "en": {
+        "label": "Vietnamese",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "vietnamese"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "cuisine",
+      "vietnamese",
+      "vietnamita"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "cuisine_mexican",
+    "taxonomyId": "cuisine",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Messicana",
+        "description": ""
+      },
+      "en": {
+        "label": "Mexican",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "mexican"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "cuisine",
+      "mexican",
+      "messicana"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "cuisine_latin_american",
+    "taxonomyId": "cuisine",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Latinoamericana",
+        "description": ""
+      },
+      "en": {
+        "label": "Latin American",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "latin_american"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "cuisine",
+      "latin",
+      "american",
+      "latinoamericana"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  }
+]

@@ -27,8 +27,11 @@ export function stripAppPath(pathname, basePath = APP_BASE_PATH) {
 }
 
 export function routePath(pathname = globalThis.location?.pathname || '/') {
-  return stripAppPath(pathname, APP_BASE_PATH);
+  const stripped = stripAppPath(pathname, APP_BASE_PATH);
+  if (stripped === '/') return '/';
+  return stripped.replace(/\/+$/, '') || '/';
 }
+
 
 export function assetPath(value) {
   return prefixAppPath(value, APP_BASE_PATH);

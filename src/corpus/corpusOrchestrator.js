@@ -1,5 +1,38 @@
 import { bandIdFor, clamp, deterministicHash, round, unique } from './corpusMath.js';
 import { evaluateReleaseGates } from './corpusScanner.js';
+import { TAXONOMY_IDS } from '../services/referenceDataService.js';
+
+
+const SEMANTIC_DIMENSION_TAXONOMY = Object.freeze({
+  practicality: TAXONOMY_IDS.practicalTag,
+  diet: TAXONOMY_IDS.dietTag,
+  recipe_family: TAXONOMY_IDS.recipeFamily,
+  cuisine: TAXONOMY_IDS.cuisine,
+  ingredient_category: TAXONOMY_IDS.foodCategory
+});
+function assertCanonicalCriterion(index, criterion, path) {
+  const taxonomyId = SEMANTIC_DIMENSION_TAXONOMY[criterion?.dimension];
+  if (!taxonomyId) return;
+  try { index.assertTerm(criterion.key, taxonomyId); }
+  catch (error) { throw new Error(`${path}: ${error.message}`); }
+}
+function assertCorpusReferenceInputs(policy, goal, index) {
+  if (!index) throw new Error('Recipe corpus planning requires the frozen Reference Data Registry snapshot');
+  for (const target of policy.coverageTargets || []) {
+    const criteria = target.criteria?.length ? target.criteria : [{ dimension: target.dimension, key: target.key }];
+    criteria.forEach((criterion, i) => assertCanonicalCriterion(index, criterion, `coverageTarget:${target.targetId}.criteria[${i}]`));
+  }
+  const focusMap = {
+    cuisines: TAXONOMY_IDS.cuisine, recipeFamilies: TAXONOMY_IDS.recipeFamily, practicalityTags: TAXONOMY_IDS.practicalTag,
+    dietTags: TAXONOMY_IDS.dietTag, ingredientCategoryIds: TAXONOMY_IDS.foodCategory
+  };
+  for (const [key, taxonomyId] of Object.entries(focusMap)) {
+    for (const value of goal?.focus?.[key] || []) {
+      try { index.assertTerm(value, taxonomyId); }
+      catch (error) { throw new Error(`goal.focus.${key}: ${error.message}`); }
+    }
+  }
+}
 
 const DIMENSION_TO_SCORE = {
   meal_archetype: 'meal', energy_band: 'nutrition', protein_band: 'nutrition', fiber_band: 'nutrition', practicality: 'practicality',
@@ -153,7 +186,10 @@ function stopEvaluation(mode, goal, policy, snapshot) {
   return { stop: false, gates };
 }
 
-export async function planNextBatch({ policy, snapshot, ingredientFamilies = [], ingredientRevisions = [], mode = 'build', goal = {}, seed = 'corpus-seed', targetCatalogVersion = '0.4.0-dev', runId = null, createdAt = null }) {
+export async function planNextBatch({ policy, snapshot, ingredientFamilies = [], ingredientRevisions = [], mode = 'build', goal = {}, seed = 'corpus-seed', targetCatalogVersion = '0.4.0-dev', referenceDataVersion = null, referenceDataDigest = null, referenceIndex = null, runId = null, createdAt = null }) {
+  if (!referenceDataVersion || !referenceDataDigest) throw new Error('Recipe corpus planning requires referenceDataVersion and referenceDataDigest');
+  if (!/^[a-f0-9]{64}$/.test(String(referenceDataDigest))) throw new Error('Recipe corpus planning requires a valid SHA-256 referenceDataDigest');
+  assertCorpusReferenceInputs(policy, goal, referenceIndex);
   const normalizedGoal = {
     targetRecipeCount: goal.targetRecipeCount ?? null,
     acceptedAddCount: goal.acceptedAddCount ?? null,
@@ -199,12 +235,12 @@ export async function planNextBatch({ policy, snapshot, ingredientFamilies = [],
   if (!reasons.length) reasons.push('selected by deterministic corpus priority');
   const jobHash = await deterministicHash(seed, `${actualRunId}:${chosen.key}:${targetAcceptedCount}`); const jobId = `batch-${jobHash.slice(0, 14)}`;
   const job = {
-    schemaVersion: 1, jobId, pipelineVersion: 'recipe-pipeline-1', seed: `${seed}:${jobHash.slice(0,16)}`, targetCatalogVersion, sourceLocale: 'it', requiredLocales: ['it','en'], targetAcceptedCount, candidateCount,
+    schemaVersion: 1, jobId, pipelineVersion: 'recipe-pipeline-1', referenceDataVersion, referenceDataDigest, seed: `${seed}:${jobHash.slice(0,16)}`, targetCatalogVersion, sourceLocale: 'it', requiredLocales: ['it','en'], targetAcceptedCount, candidateCount,
     mealArchetypes: unique(meals),
     energyKcal: rangeById(policy.energyBands, intent.energyBandId, defaultEnergyForMeals(meals)),
     proteinG: intent.proteinBandId ? rangeById(policy.proteinBands, intent.proteinBandId, null) : null,
     fiberG: intent.fiberBandId ? rangeById(policy.fiberBands, intent.fiberBandId, null) : null,
-    maxTotalMinutes: intent.practicality.includes('quick') ? 20 : null,
+    maxTotalMinutes: intent.practicality.includes('practical_quick') ? 20 : null,
     recipeFamilies: unique(intent.recipeFamilies), cuisineFocus: unique(intent.cuisines), practicalityTargets: unique(intent.practicality), requiredTags: unique(intent.dietTags), forbiddenTags: [], preferredUnderusedIngredientIds: preferred,
     diversityTargets: (() => { const eligiblePrimaryCount = Math.max(1, entries.filter(item => !(policy.diversity.exemptIngredientIds || []).includes(item.family.ingredientId)).length); const minPrimary = Math.max(1, Math.min(eligiblePrimaryCount, targetAcceptedCount, Math.ceil(Math.sqrt(targetAcceptedCount) * 2))); const minIngredients = Math.max(1, Math.min(entries.length, Math.ceil(Math.sqrt(targetAcceptedCount) * 4))); return { minDistinctPrimaryIngredients: minPrimary, minDistinctIngredientIds: minIngredients, maxPrimaryIngredientFrequency: Math.max(1, Math.ceil(targetAcceptedCount / minPrimary), Math.ceil(targetAcceptedCount * 0.15)), maxIngredientPairFrequency: Math.max(2, Math.ceil(targetAcceptedCount * 0.08)) }; })(),
     coverageTargets: intent.targetIds.map(targetId => { const target = targetById.get(targetId); return { targetId, key: target?.key || targetId, dimension: target?.dimension || null, criteria: target ? targetCriteria(target) : [], desiredAcceptedGain: Math.max(1, Math.min(targetAcceptedCount, Math.ceil(targetAcceptedCount / intent.targetIds.length))) }; }),

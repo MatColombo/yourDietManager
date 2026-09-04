@@ -1,0 +1,76 @@
+{
+  "version": 1,
+  "generatedAt": "2026-09-04T12:30:20.080Z",
+  "candidateAppVersion": "1.0.0-rc.6",
+  "requiredBrowser": false,
+  "browserStatus": "skipped",
+  "checks": [
+    {
+      "id": "app-version-sync",
+      "pass": true,
+      "detail": "package=1.0.0-rc.6, runtime=1.0.0-rc.6"
+    },
+    {
+      "id": "revision-pass-e-documented",
+      "pass": true,
+      "detail": "DATA_UX_HARDENING_REVISION.md declares Pass E Final Acceptance"
+    },
+    {
+      "id": "roadmap-pass-e-documented",
+      "pass": true,
+      "detail": "ROADMAP_V1.md contains Pass E acceptance closure"
+    },
+    {
+      "id": "test-strategy-pass-e-documented",
+      "pass": true,
+      "detail": "TEST_STRATEGY.md assigns editor interaction acceptance to Pass E"
+    },
+    {
+      "id": "skill-pass-e-invariant",
+      "pass": true,
+      "detail": "project Skill contains the final-acceptance invariant"
+    },
+    {
+      "id": "skill-quality-pass-e",
+      "pass": true,
+      "detail": "Skill quality gates contain Pass E browser acceptance"
+    },
+    {
+      "id": "browser-covers-form-schema",
+      "pass": true,
+      "detail": "browser harness checks required numeric blank -> Save disabled"
+    },
+    {
+      "id": "browser-covers-disclosure",
+      "pass": true,
+      "detail": "browser harness checks disclosure preservation after local rerender"
+    },
+    {
+      "id": "browser-covers-dirty-navigation",
+      "pass": true,
+      "detail": "browser harness checks reject/accept dirty navigation"
+    },
+    {
+      "id": "browser-covers-save-feedback",
+      "pass": true,
+      "detail": "browser harness checks persistent success feedback"
+    },
+    {
+      "id": "ci-browser-required",
+      "pass": true,
+      "detail": "GitHub Pages verification requires a real browser pass"
+    },
+    {
+      "id": "closure-in-main-check",
+      "pass": true,
+      "detail": "check order browser=186, closure=215"
+    },
+    {
+      "id": "browser-run-status",
+      "pass": true,
+      "detail": "status=skipped, reason=local-http-blocked-by-environment, required=false"
+    }
+  ],
+  "passed": true,
+  "failures": []
+}

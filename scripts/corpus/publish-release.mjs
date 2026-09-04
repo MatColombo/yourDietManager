@@ -14,11 +14,11 @@ if (!corpusInput || !catalogVersion || !outputDir) {
 }
 const registry = new SchemaRegistry(async file => readJson(path.join('schemas', file))); await registry.loadAll();
 const [corpus, policy] = await Promise.all([loadCorpusInput(corpusInput), readJson(policyFile)]); registry.assert('recipeCorpusPolicy', policy);
-const validation = await validateReleaseData({ policy, catalogVersion, ingredientFamilies: corpus.ingredientFamilies, ingredientRevisions: corpus.ingredientRevisions, recipeFamilies: corpus.recipeFamilies, recipeVersions: corpus.recipeVersions, registry, requireCuratedIngredients: !allowDevelopmentIngredients });
+const validation = await validateReleaseData({ policy, catalogVersion, taxonomies: corpus.taxonomies || [], taxonomyTerms: corpus.taxonomyTerms || [], ingredientFamilies: corpus.ingredientFamilies, ingredientRevisions: corpus.ingredientRevisions, recipeFamilies: corpus.recipeFamilies, recipeVersions: corpus.recipeVersions, registry, requireCuratedIngredients: !allowDevelopmentIngredients });
 const validationFile = path.join('corpus/reports', `release-${catalogVersion}-validation.json`); await writeJson(validationFile, validation);
 if (!validation.valid) {
   console.error(JSON.stringify({ valid: false, issues: validation.issues, releaseGates: validation.releaseGates }, null, 2));
   process.exit(3);
 }
-const manifest = await publishCatalogRelease({ outputDir, catalogVersion, ingredientFamilies: corpus.ingredientFamilies, ingredientRevisions: corpus.ingredientRevisions, recipeFamilies: corpus.recipeFamilies, recipeVersions: corpus.recipeVersions, registry });
+const manifest = await publishCatalogRelease({ outputDir, catalogVersion, taxonomies: corpus.taxonomies || [], taxonomyTerms: corpus.taxonomyTerms || [], referenceDataVersion: corpus.manifest?.referenceDataVersion || '1.0.0', ingredientFamilies: corpus.ingredientFamilies, ingredientRevisions: corpus.ingredientRevisions, recipeFamilies: corpus.recipeFamilies, recipeVersions: corpus.recipeVersions, registry });
 console.log(JSON.stringify({ valid: true, outputDir, validationFile, manifest }, null, 2));

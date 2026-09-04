@@ -26,6 +26,8 @@ Recipe
 
 Un piano non punta a una generica ricetta corrente: punta sempre a `recipeVersionId`. Una RecipeVersion punta sempre a specifici `ingredientRevisionId`.
 
+La mutabilita percepita dall'utente vive sulla family/current pointer, non sugli immutable record. Qualunque family puo essere modificata: il sistema crea una nuova revision/version. Se la family proveniva dal catalogo (`origin=base`), la prima modifica mantiene lo stable family ID e promuove la family a gestione locale (`origin=user`), preservando tutti gli immutable record precedenti.
+
 Vedere `IDENTITY_VERSIONING_SPEC.md`.
 
 ## 3. Entita configurazione
@@ -282,3 +284,67 @@ Entita utente persistita con range civile, moltiplicatore, timestamp del piano s
 ## 14. Continuita piani
 
 `PlanInstance.continuationPolicy` rende esplicito il comportamento a fine orizzonte. Segmenti successivi sono nuovi PlanInstance/GenerationRun collegati, mai estensioni mutanti dello snapshot storico.
+
+## 15. Reference Data Registry (Data/UX Hardening Pass A)
+
+I campi semantici riutilizzati dal motore sono reference ID canonici, non stringhe libere. Il runtime persiste `Taxonomy` e `TaxonomyTerm` in due store dedicati e distribuisce gli stessi record come shard catalogo versionati.
+
+### 15.1 Taxonomy
+
+Chiave: `taxonomyId`. Campi principali: `origin`, `hierarchical`, `extensibleBy`, `allowedConsumers`, `status`, label/description IT/EN e timestamp.
+
+Le tassonomie V1 sono:
+
+- `food_category`;
+- `cuisine`;
+- `recipe_family`;
+- `diet_tag`;
+- `practical_tag`;
+- `flavor_profile`;
+- `preparation_technique`.
+
+### 15.2 TaxonomyTerm
+
+Chiave: `termId`. Ogni termine dichiara `taxonomyId`, parent opzionale, label/description IT/EN, alias, `legacyKeys`, status, provenance, eventuale supersede e search token. Alias e legacy key servono a risolvere input/import; i record di dominio persistono solo `termId`.
+
+### 15.3 IngredientRevision
+
+`taxonomy` usa:
+
+- `foodGroup` -> term ID `food_category`;
+- `foodSubgroup` -> figlio diretto del gruppo o `null`;
+- `flavorProfile` -> term ID `flavor_profile`;
+- `mealArchetypes` -> registry chiuso, almeno un valore.
+
+La gerarchia V1 valida la relazione group/subgroup; il matching delle regole resta esplicito: group confronta `foodGroup`, subgroup confronta `foodSubgroup`. Non esiste espansione ricorsiva implicita.
+
+### 15.4 RecipeVersion
+
+I tag semantici sono ID canonici per chiave:
+
+- `family` -> `recipe_family`;
+- `cuisine` -> `cuisine`;
+- `diet` -> `diet_tag`;
+- `flavor` -> `flavor_profile`;
+- `practical` -> `practical_tag`;
+- `preparation` -> `preparation_technique`.
+
+`mealArchetypes` richiede almeno un valore, con la stessa semantica di IngredientRevision.
+
+### 15.5 Configuration targets
+
+FoodPreferences, AllergyIntoleranceProfile e MealClass possono contenere target verso ingredienti, allergeni, archetipi o taxonomy term secondo il `targetType`. Il service boundary deve verificare che il target appartenga al registry/tassonomia prevista prima della persistenza.
+
+### 15.6 ReferenceDataProposal
+
+`ReferenceDataProposal` e un artifact editoriale/build-time. Non e uno store IndexedDB. Permette alla corpus pipeline di proporre un termine mancante con parent, label IT/EN, alias, rationale, provenance e collision candidates; solo un proposal `approved` senza collisioni puo essere materializzato come TaxonomyTerm.
+
+### 15.7 Versionamento e modifica ricette/ingredienti
+
+Le singole IngredientRevision/RecipeVersion storiche sono immutabili. Ingredient e Recipe correnti sono invece modificabili indipendentemente da `origin`: una modifica crea una nuova revisione/versione e avanza il current pointer. Questa distinzione preserva piani e shopping storici senza introdurre un divieto UX per il catalogo base.
+
+### 15.8 Migration 3
+
+`contentMigration:3` risolve i valori legacy come `resolved_exact`, `resolved_alias`, `resolved_manual` o `unresolved`. `unresolved > 0` blocca la migrazione. Per record versionati crea nuove revisioni/versioni, preservando byte-for-byte le versioni storiche; le configurazioni mutabili vengono migrate atomicamente in place.
+
+Vedere `REFERENCE_DATA_TAXONOMY_SPEC.md` e `../REFERENCE_DATA_FIELD_INVENTORY.md`.

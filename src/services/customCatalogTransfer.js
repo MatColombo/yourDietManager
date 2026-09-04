@@ -46,8 +46,12 @@ export async function importCustomCatalogExport(document, { repo = repositories,
     const existing = await repo.getMany(store, records.map(record => record[key]));
     const incoming = new Map(records.map(record => [record[key], record]));
     for (const record of existing) {
-      if (record.origin !== 'user') throw new Error(`Personal catalog ID collides with base record ${record[key]}`);
       const next = incoming.get(record[key]);
+      const familyStore = store === 'ingredients' || store === 'recipes';
+      if (record.origin !== 'user' && !familyStore) throw new Error(`Personal catalog immutable ID collides with base record ${record[key]}`);
+      // A locally managed family may intentionally replace the base family pointer
+      // with the same stable family ID. Immutable revisions/versions still never
+      // overwrite base records.
       if ((store === 'ingredientRevisions' || store === 'recipeVersions') && record.contentHash !== next.contentHash) throw new Error(`Immutable personal record collision ${record[key]}`);
     }
   }

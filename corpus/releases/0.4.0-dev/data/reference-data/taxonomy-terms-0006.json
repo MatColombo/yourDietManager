@@ -1,0 +1,166 @@
+[
+  {
+    "schemaVersion": 1,
+    "termId": "food_group_other",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": null,
+    "i18n": {
+      "it": {
+        "label": "Altro",
+        "description": ""
+      },
+      "en": {
+        "label": "Other",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "other"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "group",
+      "other",
+      "altro"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "food_subgroup_fatty_fish",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": "food_group_fish_seafood",
+    "i18n": {
+      "it": {
+        "label": "Pesce grasso",
+        "description": ""
+      },
+      "en": {
+        "label": "Fatty fish",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "fatty_fish"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "subgroup",
+      "fatty",
+      "fish",
+      "pesce",
+      "grasso"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "food_subgroup_lean_fish",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": "food_group_fish_seafood",
+    "i18n": {
+      "it": {
+        "label": "Pesce magro",
+        "description": ""
+      },
+      "en": {
+        "label": "Lean fish",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "lean_fish"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "subgroup",
+      "lean",
+      "fish",
+      "pesce",
+      "magro"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "food_subgroup_crustaceans",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": "food_group_fish_seafood",
+    "i18n": {
+      "it": {
+        "label": "Crostacei",
+        "description": ""
+      },
+      "en": {
+        "label": "Crustaceans",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "crustaceans"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "subgroup",
+      "crustaceans",
+      "crostacei"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  }
+]

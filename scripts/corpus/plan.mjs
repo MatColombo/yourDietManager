@@ -1,6 +1,7 @@
 import path from 'node:path';
 import { SchemaRegistry } from '../../src/lib/schemaValidator.js';
 import { planNextBatch } from '../../src/corpus/corpusOrchestrator.js';
+import { assertReferenceData } from '../../src/services/referenceDataService.js';
 import { loadCorpusInput, readJson, writeJson } from './io-lib.mjs';
 
 const snapshotFile = process.argv[2] || 'corpus/snapshots/latest.json';
@@ -22,7 +23,8 @@ else if (mode === 'expand') goal = { acceptedAddCount: policy.batchPlanning.defa
 else if (mode === 'improve') goal = { maxJobs: 1, allowRetire: false };
 else throw new Error('focused_expansion requires an explicit goal JSON file with focus/focusMode');
 const seed = explicitSeed || `cli-${mode}-${snapshot.contentDigest}`;
-const planned = await planNextBatch({ policy, snapshot, ingredientFamilies: corpus.ingredientFamilies, ingredientRevisions: corpus.ingredientRevisions, mode, goal, seed, targetCatalogVersion });
+const referenceIndex = assertReferenceData(corpus.taxonomies || [], corpus.taxonomyTerms || []);
+const planned = await planNextBatch({ policy, snapshot, ingredientFamilies: corpus.ingredientFamilies, ingredientRevisions: corpus.ingredientRevisions, mode, goal, seed, targetCatalogVersion, referenceDataVersion: corpus.manifest?.referenceDataVersion || null, referenceDataDigest: corpus.manifest?.referenceDataDigest || null, referenceIndex });
 registry.assert('recipeCorpusOrchestrationRun', planned.run); for (const job of planned.jobs) registry.assert('recipeGenerationJob', job);
 await writeJson(`corpus/runs/${planned.run.runId}.json`, planned.run); for (const job of planned.jobs) await writeJson(`corpus/jobs/${job.jobId}.json`, job);
 console.log(JSON.stringify({ run: planned.run, jobs: planned.jobs, rankedIntents: planned.rankedIntents || [] }, null, 2));

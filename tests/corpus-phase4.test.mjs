@@ -12,6 +12,7 @@ import { planNextBatch } from '../src/corpus/corpusOrchestrator.js';
 import { processCandidateBatch } from '../src/corpus/recipePipeline.js';
 import { loadCatalogPart } from '../src/services/catalogDataSource.js';
 import { CatalogImporter } from '../src/services/catalogImporter.js';
+import { assertReferenceData, referenceDataDigest } from '../src/services/referenceDataService.js';
 import { loadLocalCatalog, readJson } from '../scripts/corpus/io-lib.mjs';
 import { validateReleaseData } from '../scripts/corpus/release-lib.mjs';
 import { MemoryRepository, fileFetch, fileLoader } from './helpers.mjs';
@@ -38,13 +39,14 @@ async function phase4Fixture() {
     readJson(path.join(root, 'corpus/jobs/phase4-smoke-job.json')),
     readJson(path.join(root, 'corpus/staging/phase4-smoke-result.json'))
   ]);
-  return { registry, policy, catalog, before, after, run, job, result };
+  const referenceIndex = assertReferenceData(catalog.taxonomies || [], catalog.taxonomyTerms || [], registry);
+  return { registry, policy, catalog, before, after, run, job, result, referenceIndex };
 }
 
 
 async function loadCorpusInputForTest(file) {
   const doc = await readJson(file);
-  return { ...doc, manifest: { catalogVersion: doc.catalogVersion } };
+  return { ...doc, manifest: { ...(doc.manifest || {}), catalogVersion: doc.catalogVersion || doc.manifest?.catalogVersion } };
 }
 test('Phase 4 orchestrator schemas are addressable by runtime aliases and canonical artifacts validate', async () => {
   const { registry, policy, before, after, run, job } = await phase4Fixture();
@@ -60,6 +62,8 @@ test('corpus scanner reproduces the smoke release snapshot quality and release g
   const snapshot = await scanCorpus({
     policy,
     catalogVersion: catalog.manifest.catalogVersion,
+    taxonomies: catalog.taxonomies,
+    taxonomyTerms: catalog.taxonomyTerms,
     ingredientFamilies: catalog.ingredientFamilies,
     ingredientRevisions: catalog.ingredientRevisions,
     recipeFamilies: catalog.recipeFamilies,
@@ -98,7 +102,7 @@ test('corpus scanner treats inputDigest drift as a nutrition/provenance quality 
 });
 
 test('orchestrator produces deterministic jobs for the same policy, snapshot, seed and goal', async () => {
-  const { policy, before, catalog } = await phase4Fixture();
+  const { policy, before, catalog, referenceIndex } = await phase4Fixture();
   const args = {
     policy,
     snapshot: before,
@@ -108,6 +112,9 @@ test('orchestrator produces deterministic jobs for the same policy, snapshot, se
     goal: { targetRecipeCount: 8 },
     seed: 'phase4-determinism-test',
     targetCatalogVersion: '0.4.0-dev',
+    referenceDataVersion: catalog.manifest.referenceDataVersion,
+    referenceDataDigest: catalog.manifest.referenceDataDigest,
+    referenceIndex,
     createdAt: '2026-09-03T15:02:00Z'
   };
   const a = await planNextBatch(args);
@@ -119,20 +126,23 @@ test('orchestrator produces deterministic jobs for the same policy, snapshot, se
 });
 
 test('focused expansion turns user focus into a constraint while retaining automatic batch planning', async () => {
-  const { policy, before, catalog } = await phase4Fixture();
+  const { policy, before, catalog, referenceIndex } = await phase4Fixture();
   const planned = await planNextBatch({
     policy,
     snapshot: before,
     ingredientFamilies: catalog.ingredientFamilies,
     ingredientRevisions: catalog.ingredientRevisions,
     mode: 'focused_expansion',
-    goal: { acceptedAddCount: 3, focusMode: 'restrict', focus: { cuisines: ['mediterranean'] } },
+    goal: { acceptedAddCount: 3, focusMode: 'restrict', focus: { cuisines: ['cuisine_mediterranean'] } },
     seed: 'phase4-focus-test',
     targetCatalogVersion: '0.4.0-dev',
+    referenceDataVersion: catalog.manifest.referenceDataVersion,
+    referenceDataDigest: catalog.manifest.referenceDataDigest,
+    referenceIndex,
     createdAt: '2026-09-03T15:03:00Z'
   });
   assert.equal(planned.jobs.length, 1);
-  assert.deepEqual(planned.jobs[0].cuisineFocus, ['mediterranean']);
+  assert.deepEqual(planned.jobs[0].cuisineFocus, ['cuisine_mediterranean']);
   assert.equal(planned.jobs[0].targetAcceptedCount, 3);
   assert.ok(planned.run.plannedJobs[0].reasons.some(reason => reason.includes('user focus')));
 });
@@ -181,6 +191,8 @@ test('production release gate refuses development ingredient fixtures when curat
   const validation = await validateReleaseData({
     policy,
     catalogVersion: catalog.manifest.catalogVersion,
+    taxonomies: catalog.taxonomies,
+    taxonomyTerms: catalog.taxonomyTerms,
     ingredientFamilies: catalog.ingredientFamilies,
     ingredientRevisions: catalog.ingredientRevisions,
     recipeFamilies: catalog.recipeFamilies,
@@ -239,7 +251,8 @@ test('production planner keeps compound target criteria mutually compatible and 
   const policy = await readJson(path.join(root, 'corpus/policies/v1-default.json'));
   const corpus = await loadCorpusInputForTest(path.join(root, 'corpus/staging/phase4-smoke-base-bundle.json'));
   const snapshot = await scanCorpus({ policy, catalogVersion: corpus.manifest.catalogVersion, ingredientFamilies: corpus.ingredientFamilies, ingredientRevisions: corpus.ingredientRevisions, recipeFamilies: corpus.recipeFamilies, recipeVersions: corpus.recipeVersions, registry, createdAt: '2026-09-03T15:20:00Z' });
-  const planned = await planNextBatch({ policy, snapshot, ingredientFamilies: corpus.ingredientFamilies, ingredientRevisions: corpus.ingredientRevisions, mode: 'build', goal: { targetRecipeCount: 4000 }, seed: 'production-compatibility-test', targetCatalogVersion: '1.0.0', createdAt: '2026-09-03T15:21:00Z' });
+  const referenceIndex = assertReferenceData(corpus.taxonomies || [], corpus.taxonomyTerms || [], registry);
+  const planned = await planNextBatch({ policy, snapshot, ingredientFamilies: corpus.ingredientFamilies, ingredientRevisions: corpus.ingredientRevisions, mode: 'build', goal: { targetRecipeCount: 4000 }, seed: 'production-compatibility-test', targetCatalogVersion: '1.0.0', referenceDataVersion: corpus.manifest.referenceDataVersion || '1.0.0', referenceDataDigest: corpus.manifest.referenceDataDigest || await referenceDataDigest(corpus.taxonomies || [], corpus.taxonomyTerms || []), referenceIndex, createdAt: '2026-09-03T15:21:00Z' });
   assert.equal(planned.jobs.length, 1);
   const job = planned.jobs[0];
   assert.ok(job.coverageTargets.length <= policy.batchPlanning.maxCoverageTargetsPerJob);
@@ -263,10 +276,10 @@ test('recipe pipeline enforces ingredient-category coverage criteria carried by 
   const categoryJob = structuredClone(job);
   categoryJob.jobId = 'ingredient-category-gate-test'; categoryJob.targetAcceptedCount = 1; categoryJob.candidateCount = 1; categoryJob.energyKcal = { min: 0, max: 1000 }; categoryJob.proteinG = null; categoryJob.fiberG = null; categoryJob.recipeFamilies = []; categoryJob.cuisineFocus = []; categoryJob.practicalityTargets = []; categoryJob.requiredTags = [];
   categoryJob.diversityTargets = { minDistinctPrimaryIngredients: 1, minDistinctIngredientIds: 1, maxPrimaryIngredientFrequency: 1, maxIngredientPairFrequency: 2 };
-  categoryJob.coverageTargets = [{ targetId: 'must-use-fish', key: 'fish_seafood', dimension: 'ingredient_category', criteria: [{ dimension: 'ingredient_category', key: 'fish_seafood' }], desiredAcceptedGain: 1 }];
+  categoryJob.coverageTargets = [{ targetId: 'must-use-fish', key: 'food_group_fish_seafood', dimension: 'ingredient_category', criteria: [{ dimension: 'ingredient_category', key: 'food_group_fish_seafood' }], desiredAcceptedGain: 1 }];
   registry.assert('recipeGenerationJob', categoryJob);
   const nonFish = candidates.find(candidate => candidate.candidateId === 'p4-c');
-  const result = await processCandidateBatch({ job: categoryJob, candidates: [nonFish], policy, ingredientFamilies: corpus.ingredientFamilies, ingredientRevisions: corpus.ingredientRevisions, existingRecipeVersions: [], registry, generatedAt: '2026-09-03T15:22:00Z' });
+  const result = await processCandidateBatch({ job: categoryJob, candidates: [nonFish], policy, ingredientFamilies: corpus.ingredientFamilies, ingredientRevisions: corpus.ingredientRevisions, existingRecipeVersions: [], taxonomies: corpus.taxonomies || [], taxonomyTerms: corpus.taxonomyTerms || [], registry, generatedAt: '2026-09-03T15:22:00Z' });
   assert.equal(result.acceptedCount, 0);
   assert.equal(result.rejected[0].code, 'coverage_target_missed');
   assert.equal(result.rejected[0].detail, 'must-use-fish');

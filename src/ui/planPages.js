@@ -1,6 +1,5 @@
 import { element } from './dom.js';
 import { addCivilDays } from '../planner/planMath.js';
-import { prefixAppPath } from '../lib/appBase.js';
 import {
   civilDateInTimeZone, loadEffectivePlanState, loadCalendarRange, createInitialPreview, createExtensionPreview, commitGeneratedPreview,
   createReplacementPreview, commitReplacement, updateAdherence, createRebalancePreview, commitRebalancePreview,
@@ -9,7 +8,7 @@ import {
 
 function t(state, key, vars = {}) { let value = state.i18n.t(key); for (const [name, replacement] of Object.entries(vars)) value = value.replace(`{${name}}`, String(replacement)); return value; }
 function page(state, titleKey, leadKey, eyebrow = 'PLAN') { return element('section', { className: 'page-card page-card--wide plan-page' }, [element('p', { className: 'eyebrow', text: eyebrow }), element('h1', { text: t(state, titleKey) }), element('p', { className: 'lead', text: t(state, leadKey) })]); }
-function nav(state, url) { history.pushState({}, '', prefixAppPath(url)); state.render(); }
+function nav(state, url) { return state.navigate(url); }
 function localeTitle(state, recipe) { return recipe?.i18n?.[state.i18n.locale]?.title || recipe?.i18n?.en?.title || recipe?.i18n?.it?.title || recipe?.recipeId || 'Recipe'; }
 function dayClass(state, id) { return state.configuration?.dayClasses?.find(item => item.id === id) || null; }
 function mealClass(state, id) { return state.configuration?.mealClasses?.find(item => item.id === id) || null; }
@@ -25,7 +24,7 @@ function planFailure(state, failure) {
 
 function recipePills(recipe) {
   const n = recipe.calculatedNutrition || {};
-  return element('div', { className: 'recipe-metrics' }, [element('span', { text: `${Math.round(n.energyKcal || 0)} kcal` }), element('span', { text: `${Math.round((n.proteinG || 0) * 10) / 10} g P` }), element('span', { text: `${recipe.practical?.prepMinutes || 0} min` })]);
+  return element('div', { className: 'recipe-metrics' }, [element('span', { text: `${Math.round(n.energyKcal || 0)} kcal` }), element('span', { text: `${Math.round((n.proteinG || 0) * 10) / 10} g ${t(state, 'nutrient.protein')}` }), element('span', { text: `${recipe.practical?.prepMinutes || 0} min` })]);
 }
 
 function previewDays(state, preview, { selectable = false } = {}) {
@@ -88,7 +87,7 @@ function mealCard(state, day, slot, recipes, { manage = false, rerender = null }
 
 function nutritionPanel(state, day) {
   if (!day?.nutritionSummary) return null; const n = day.nutritionSummary.knownPlanned; const target = day.nutritionSummary.target;
-  return element('section', { className: 'nutrition-panel' }, [element('div', { className: 'section-heading' }, [element('h2', { text: t(state, 'plan.nutrition.title') }), element('span', { className: 'muted', text: `${Math.round(n.energyKcal)} / ${Math.round(target.plannedEnergyKcal)} kcal` })]), element('div', { className: 'nutrition-metrics' }, [metric('P', `${n.proteinG} g`), metric('C', `${n.carbsG} g`), metric('F', `${n.fatG} g`), metric(t(state, 'plan.fiber'), `${n.fiberG} g`)])]);
+  return element('section', { className: 'nutrition-panel' }, [element('div', { className: 'section-heading' }, [element('h2', { text: t(state, 'plan.nutrition.title') }), element('span', { className: 'muted', text: `${Math.round(n.energyKcal)} / ${Math.round(target.plannedEnergyKcal)} kcal` })]), element('div', { className: 'nutrition-metrics' }, [metric(t(state, 'nutrient.protein'), `${n.proteinG} g`), metric(t(state, 'nutrient.carbs'), `${n.carbsG} g`), metric(t(state, 'nutrient.fat'), `${n.fatG} g`), metric(t(state, 'nutrient.fiber'), `${n.fiberG} g`)])]);
 }
 function metric(label, value) { return element('div', { className: 'metric-box' }, [element('span', { className: 'muted', text: label }), element('strong', { text: value })]); }
 

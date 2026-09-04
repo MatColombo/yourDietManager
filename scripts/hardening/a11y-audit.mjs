@@ -8,7 +8,7 @@ const [app, css, index, dom, itRaw, enRaw] = await Promise.all([
   read('public/data/locales/it.json'), read('public/data/locales/en.json')
 ]);
 const it = JSON.parse(itRaw); const en = JSON.parse(enRaw);
-const srcFiles = ['src/ui/app.js','src/ui/catalogPages.js','src/ui/configurationPages.js','src/ui/planPages.js','src/ui/shoppingPages.js','src/ui/dom.js'];
+const srcFiles = ['src/ui/app.js','src/ui/catalogPages.js','src/ui/configurationPages.js','src/ui/referenceDataPages.js','src/ui/guidedControls.js','src/ui/planPages.js','src/ui/shoppingPages.js','src/ui/dom.js'];
 const srcText = (await Promise.all(srcFiles.map(read))).join('\n');
 const checks = [
   ['html-lang', /<html lang="it">/.test(index)],

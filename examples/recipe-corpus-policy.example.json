@@ -32,23 +32,75 @@
     "pairRepetitionPenalty": 0.8
   },
   "energyBands": [
-    {"bandId": "kcal-100-199", "min": 100, "max": 199},
-    {"bandId": "kcal-200-299", "min": 200, "max": 299},
-    {"bandId": "kcal-300-399", "min": 300, "max": 399},
-    {"bandId": "kcal-400-499", "min": 400, "max": 499},
-    {"bandId": "kcal-500-599", "min": 500, "max": 599},
-    {"bandId": "kcal-600-699", "min": 600, "max": 699},
-    {"bandId": "kcal-700-799", "min": 700, "max": 799}
+    {
+      "bandId": "kcal-100-199",
+      "min": 100,
+      "max": 199
+    },
+    {
+      "bandId": "kcal-200-299",
+      "min": 200,
+      "max": 299
+    },
+    {
+      "bandId": "kcal-300-399",
+      "min": 300,
+      "max": 399
+    },
+    {
+      "bandId": "kcal-400-499",
+      "min": 400,
+      "max": 499
+    },
+    {
+      "bandId": "kcal-500-599",
+      "min": 500,
+      "max": 599
+    },
+    {
+      "bandId": "kcal-600-699",
+      "min": 600,
+      "max": 699
+    },
+    {
+      "bandId": "kcal-700-799",
+      "min": 700,
+      "max": 799
+    }
   ],
   "proteinBands": [
-    {"bandId": "protein-low", "min": 0, "max": 19.9},
-    {"bandId": "protein-medium", "min": 20, "max": 34.9},
-    {"bandId": "protein-high", "min": 35, "max": 80}
+    {
+      "bandId": "protein-low",
+      "min": 0,
+      "max": 19.9
+    },
+    {
+      "bandId": "protein-medium",
+      "min": 20,
+      "max": 34.9
+    },
+    {
+      "bandId": "protein-high",
+      "min": 35,
+      "max": 80
+    }
   ],
   "fiberBands": [
-    {"bandId": "fiber-low", "min": 0, "max": 4.9},
-    {"bandId": "fiber-moderate", "min": 5, "max": 9.9},
-    {"bandId": "fiber-high", "min": 10, "max": 30}
+    {
+      "bandId": "fiber-low",
+      "min": 0,
+      "max": 4.9
+    },
+    {
+      "bandId": "fiber-moderate",
+      "min": 5,
+      "max": 9.9
+    },
+    {
+      "bandId": "fiber-high",
+      "min": 10,
+      "max": 30
+    }
   ],
   "coverageTargets": [
     {
@@ -89,7 +141,7 @@
     {
       "targetId": "practical-portable-density",
       "dimension": "practicality",
-      "key": "portable",
+      "key": "practical_portable",
       "minCount": 300,
       "desiredCount": 450,
       "weight": 0.9,
@@ -98,7 +150,7 @@
     {
       "targetId": "family-soup-diversity",
       "dimension": "recipe_family",
-      "key": "soup_stew",
+      "key": "recipe_family_soup",
       "desiredShare": 0.08,
       "maxShare": 0.16,
       "weight": 0.5,
@@ -107,7 +159,7 @@
     {
       "targetId": "cuisine-east-asia-soft",
       "dimension": "cuisine",
-      "key": "east_asian",
+      "key": "cuisine_japanese",
       "desiredShare": 0.08,
       "weight": 0.4,
       "hardForRelease": false

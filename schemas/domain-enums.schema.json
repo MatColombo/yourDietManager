@@ -55,6 +55,14 @@
         "post_shift",
         "night_meal"
       ]
+    },
+    "nutrientRole": {
+      "enum": [
+        "none",
+        "low",
+        "medium",
+        "high"
+      ]
     }
   }
 }

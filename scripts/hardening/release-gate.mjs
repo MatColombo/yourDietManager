@@ -1,16 +1,38 @@
 import { readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { APP_VERSION } from '../../src/db/constants.js';
+import { assertReferenceData, referenceDataDigest } from '../../src/services/referenceDataService.js';
 
 const root = process.cwd();
 const pkg = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
 const manifest = JSON.parse(await readFile(path.join(root, 'public/data/catalog-manifest.json'), 'utf8'));
 const ingredientFiles = manifest.ingredientRevisions.shards.map(shard => path.join(root, 'public/data', shard.path));
 const ingredientRevisions = (await Promise.all(ingredientFiles.map(async file => JSON.parse(await readFile(file, 'utf8'))))).flat();
+
+const referencePart = async part => {
+  if (!manifest[part]?.shards?.length) return [];
+  const values = [];
+  for (const shard of manifest[part].shards) values.push(...JSON.parse(await readFile(path.join(root, 'public/data', shard.path), 'utf8')));
+  return values;
+};
+const taxonomies = await referencePart('taxonomies');
+const taxonomyTerms = await referencePart('taxonomyTerms');
+let referenceDataValid = true;
+let actualReferenceDigest = null;
+try {
+  assertReferenceData(taxonomies, taxonomyTerms);
+  actualReferenceDigest = await referenceDataDigest(taxonomies, taxonomyTerms);
+} catch {
+  referenceDataValid = false;
+}
 const blockers = [];
 const checks = [];
 const check = (id, pass, detail, blocker = true) => { checks.push({ id, pass, detail }); if (!pass && blocker) blockers.push({ id, detail }); };
 
+
+check('reference-data-present', Boolean(manifest.referenceDataVersion && manifest.referenceDataDigest && taxonomies.length && taxonomyTerms.length), `version=${manifest.referenceDataVersion || 'missing'}, taxonomies=${taxonomies.length}, terms=${taxonomyTerms.length}`);
+check('reference-data-valid', referenceDataValid, `valid=${referenceDataValid}`);
+check('reference-data-digest', Boolean(actualReferenceDigest && actualReferenceDigest === manifest.referenceDataDigest), `manifest=${manifest.referenceDataDigest || 'missing'}, actual=${actualReferenceDigest || 'invalid'}`);
 check('app-version-sync', pkg.version === APP_VERSION, `package=${pkg.version}, runtime=${APP_VERSION}`);
 check('recipe-corpus-minimum', manifest.recipeVersions.count >= 3000, `recipeVersions=${manifest.recipeVersions.count}, required>=3000`);
 check('production-pipeline', !/fixture|smoke|dev/i.test(manifest.pipelineVersion || ''), `pipelineVersion=${manifest.pipelineVersion}`);

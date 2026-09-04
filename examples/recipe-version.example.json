@@ -95,13 +95,13 @@
   },
   "tags": {
     "families": [
-      "grain_bowl"
+      "recipe_family_grain_bowl"
     ],
     "cuisines": [
-      "mediterranean"
+      "cuisine_mediterranean"
     ],
     "diet": [
-      "high_protein"
+      "diet_high_protein"
     ]
   },
   "allergenIds": [
@@ -118,7 +118,7 @@
   ],
   "calculationAlgorithmVersion": "nutrition-core-1",
   "inputDigest": "22222222222222222222222222222222",
-  "contentHash": "33333333333333333333333333333333",
+  "contentHash": "1a7d674daf4e8822aab004575d0c9e7b12b33f52ee5635cdc1160e2ce1e86360",
   "generation": {
     "jobId": "batch-lunch-001",
     "pipelineVersion": "recipe-pipeline-1",

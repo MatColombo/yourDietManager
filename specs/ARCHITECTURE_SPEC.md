@@ -69,6 +69,9 @@ data/
   recipes/
     recipe-families-0001.json
     recipe-versions-0001.json
+  reference-data/
+    taxonomies-0001.json
+    taxonomy-terms-0001.json
   locales/
     it.json
     en.json
@@ -82,8 +85,8 @@ Database:
 
 ```text
 name: yourDietManager
-DB_VERSION: 1 iniziale
-contentSchemaVersion: 1 iniziale
+DB_VERSION: 4
+contentSchemaVersion: 3
 ```
 
 Store V1 raccomandati:
@@ -98,6 +101,8 @@ themeProfiles
 mealClasses
 dayClasses
 cycles
+taxonomies
+taxonomyTerms
 
 ingredients
 ingredientRevisions
@@ -117,6 +122,15 @@ La separazione famiglia/versione per ingredienti e ricette e obbligatoria; veder
 ## 5. Indici minimi
 
 Definire indici prima della UI, per evitare scansioni dell'intero catalogo.
+
+### taxonomyTerms
+
+- `taxonomyId`
+- `parentTermId`
+- `status`
+- `origin`
+- `[taxonomyId, status]`
+- `searchTokens` multiEntry
 
 ### ingredientRevisions
 
@@ -244,10 +258,13 @@ Non sono ammessi hardcoded:
 Una sola vista dinamica:
 
 ```text
-/recipes/?id=<recipeId>
+/recipes/<recipeId>
+/recipes/<recipeId>/edit
+/configure/ingredients/<ingredientId>
+/configure/ingredients/<ingredientId>/edit
 ```
 
-Il record viene risolto da `RecipeRepository`, che restituisce la famiglia e la versione corrente o una `recipeVersionId` esplicita per lo storico.
+I record vengono risolti dai repository catalogo direttamente dalle family/version/revision. Le route di dettaglio non dipendono da PlanInstance/CalendarDay. Una `recipeVersionId`/`ingredientRevisionId` esplicita puo risolvere lo storico senza cambiare i current pointer.
 
 ## 12. Offline
 
@@ -301,10 +318,35 @@ I descrittori shard del `CatalogManifest` possono includere `recordIds`. Il Cata
 
 ## Phase 8 amendment — persistence, offline pack cache and rollback
 
-The Phase 8 implementation advances the runtime database to `DB_VERSION=3` and the content migration level to `contentSchemaVersion=2`. Structural upgrades are additive: user stores are never dropped. Immutable ingredient/recipe revision stores add an `originAndCatalogVersion` compound index to support bounded catalog maintenance queries.
+The Phase 8 implementation advanced the runtime database to `DB_VERSION=3` and the content migration level to `contentSchemaVersion=2`. The V1 Data/UX Hardening Pass A advances them again to `DB_VERSION=4` and `contentSchemaVersion=3`, adding the canonical `taxonomies` and `taxonomyTerms` stores. Structural upgrades are additive: user stores are never dropped. Immutable ingredient/recipe revision stores retain the `originAndCatalogVersion` compound index introduced in Phase 8.
 
 Catalog pack offline availability uses Cache Storage/service-worker transport for manifest/schema/shard bytes and IndexedDB for runtime entities. Cache Storage is not an application index or source of record identity.
 
 Catalog updates maintain a journal and a rollback snapshot of mutable activation state. An update may stage immutable records before activation; failed or rolled-back updates must preserve those immutable records because historical plans can reference them. Rollback restores family pointers, pack activation and the previous manifest/version atomically; newly introduced families are retired rather than hard-deleted.
 
 Runtime storage/integrity metrics are persisted in `meta`, including active catalog version, per-store counts, import duration, approximate storage usage/quota where available, and the last successful integrity check.
+
+## 14. Reference-data architecture (RC hardening)
+
+La toolchain editoriale deve trattare il Reference Data Registry come input versionato della corpus pipeline. Il flusso di release e:
+
+```text
+reference-data source/configurators
+        -> registry validation/version/digest
+        -> ingredient curation
+        -> corpus orchestration/jobs
+        -> recipe pipeline
+        -> catalog shards/manifest
+```
+
+I recipe job non possono creare valori semantici direttamente nei record. Se serve una nuova tassonomia/term, la pipeline la propone/materializza prima e aggiorna il registry snapshot. Il runtime usera selector/autocomplete contro i repository del registry; nessuna UI deve conoscere spelling canonici a memoria.
+
+La definizione esatta e in `REFERENCE_DATA_TAXONOMY_SPEC.md`. Il Pass A implementa gli store `taxonomies`/`taxonomyTerms`, gli indici, il seed canonico, il digest/versioning e `contentMigration:3`. Il Pass B implementa sopra questi repository un layer UI riusabile di configuratori, autocomplete, chip e selector gerarchici; l'architettura continua a considerare il service/reference registry, non il widget, come boundary autorevole di validazione.
+## 15. Local catalog override semantics (Pass D)
+
+`origin=base` indica contenuto distribuito, non read-only. La prima modifica utente di una Ingredient/Recipe family distribuita mantiene l'ID stabile della family, crea una nuova immutable revision/version `origin=user`, avanza il current pointer e promuove la family a gestione locale.
+
+Catalog updater, rollback e pack installer devono applicare una regola di merge asimmetrica: immutable record nuovi possono essere staged/importati, ma una family gia `origin=user` non puo essere sovrascritta da una family `origin=base` con lo stesso ID. Il current pointer locale resta autorevole finche non esiste un'azione utente esplicita di ripristino.
+
+Backup/export include la family locale promossa e le sue revisioni/versioni user. Import e restore possono quindi sovrapporre una family locale a una base con lo stesso stable ID, mentre collisioni sugli immutable revision/version ID restano vietate.
+

@@ -1,0 +1,101 @@
+[
+  {
+    "schemaVersion": 1,
+    "taxonomyId": "practical_tag",
+    "origin": "base",
+    "hierarchical": false,
+    "extensibleBy": [
+      "user",
+      "editorial_pipeline"
+    ],
+    "allowedConsumers": [
+      "ingredient",
+      "recipe",
+      "meal_class",
+      "food_preferences",
+      "allergy_profile",
+      "corpus_policy",
+      "corpus_pipeline",
+      "search"
+    ],
+    "status": "active",
+    "i18n": {
+      "it": {
+        "label": "Tag pratici",
+        "description": ""
+      },
+      "en": {
+        "label": "Practical tags",
+        "description": ""
+      }
+    },
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "taxonomyId": "flavor_profile",
+    "origin": "base",
+    "hierarchical": false,
+    "extensibleBy": [
+      "user",
+      "editorial_pipeline"
+    ],
+    "allowedConsumers": [
+      "ingredient",
+      "recipe",
+      "meal_class",
+      "food_preferences",
+      "allergy_profile",
+      "corpus_policy",
+      "corpus_pipeline",
+      "search"
+    ],
+    "status": "active",
+    "i18n": {
+      "it": {
+        "label": "Profili di sapore",
+        "description": ""
+      },
+      "en": {
+        "label": "Flavor profiles",
+        "description": ""
+      }
+    },
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "taxonomyId": "preparation_technique",
+    "origin": "base",
+    "hierarchical": false,
+    "extensibleBy": [
+      "user",
+      "editorial_pipeline"
+    ],
+    "allowedConsumers": [
+      "ingredient",
+      "recipe",
+      "meal_class",
+      "food_preferences",
+      "allergy_profile",
+      "corpus_policy",
+      "corpus_pipeline",
+      "search"
+    ],
+    "status": "active",
+    "i18n": {
+      "it": {
+        "label": "Tecniche di preparazione",
+        "description": ""
+      },
+      "en": {
+        "label": "Preparation techniques",
+        "description": ""
+      }
+    },
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  }
+]

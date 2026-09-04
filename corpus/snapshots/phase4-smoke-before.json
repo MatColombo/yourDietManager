@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "snapshotId": "snapshot-0.3.0-dev-fb65d3d79779",
+  "snapshotId": "snapshot-0.3.0-dev-82a94580d4f8",
   "catalogVersion": "0.3.0-dev",
   "policyId": "corpus-policy-phase4-smoke",
   "policyVersion": "1.0.0",
@@ -75,67 +75,63 @@
     ],
     "practicality": [
       {
-        "key": "cold",
+        "key": "practical_cold_suitable",
         "count": 2
       },
       {
-        "key": "hot",
-        "count": 1
-      },
-      {
-        "key": "meal_prep",
+        "key": "practical_meal_prep",
         "count": 3
       },
       {
-        "key": "portable",
+        "key": "practical_portable",
         "count": 2
       },
       {
-        "key": "quick",
+        "key": "practical_quick",
         "count": 1
       }
     ],
     "diet": [
       {
-        "key": "high_protein",
+        "key": "diet_high_protein",
         "count": 2
       },
       {
-        "key": "vegetarian",
+        "key": "diet_vegetarian",
         "count": 1
       }
     ],
     "recipeFamilies": [
       {
-        "key": "grain_bowl",
+        "key": "recipe_family_grain_bowl",
         "count": 2
       },
       {
-        "key": "protein_plate",
+        "key": "recipe_family_protein_plate",
         "count": 1
       }
     ],
     "cuisines": [
       {
-        "key": "mediterranean",
+        "key": "cuisine_mediterranean",
         "count": 3
       }
     ],
     "ingredientCategories": [
       {
-        "key": "fats_oils",
+        "key": "food_group_fats_oils",
         "count": 3
       },
       {
-        "key": "fish_seafood",
+        "key": "food_group_fish_seafood",
         "count": 2
       },
       {
-        "key": "grains",
+        "key": "food_group_pasta_rice_cereals",
         "count": 2
       },
       {
-        "key": "vegetables",
+        "key": "food_group_vegetables",
         "count": 3
       }
     ]
@@ -225,6 +221,6 @@
     "smoke-dinner",
     "smoke-portable"
   ],
-  "contentDigest": "sha256:fb65d3d79779051c89fa436a30f2c17815322a0bf555519420687b5d08d61d99",
+  "contentDigest": "sha256:82a94580d4f89d7ef4f5da8a971a21f162b10cdef9b6b27a00b6a59fea9b8242",
   "createdAt": "2026-09-03T14:05:00Z"
 }

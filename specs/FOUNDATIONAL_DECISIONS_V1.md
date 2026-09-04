@@ -64,3 +64,13 @@ Separare rebuild catalogo base da delete user data. Il catalogo base deve poter 
 - product barcode catalog completo;
 - clinical recommendation engine;
 - commercial packaging optimization avanzata.
+
+
+## Hardening reference-data (decisione RC)
+
+- Nessun campo semantico usato da filtri/planner/pipeline deve dipendere da testo libero o memoria dell'utente.
+- Introdurre un Reference Data Registry con ID canonici, label/alias localizzati e tassonomie gerarchiche dove necessario.
+- I registry di sistema chiusi non sono estendibili dalla recipe pipeline; le tassonomie curate possono esserlo secondo policy e audit.
+- La recipe pipeline puo creare/proporre tassonomie e ingredienti necessari **prima** della generazione delle ricette, mai come stringhe implicite dentro i candidati.
+- Ingredienti e ricette condividono la stessa regola MealArchetype: tutti selezionati per default, minimo uno.
+- Ingredienti/ricette di qualunque origine sono modificabili tramite nuova revisione/versione; le revisioni/versioni storiche restano immutabili.

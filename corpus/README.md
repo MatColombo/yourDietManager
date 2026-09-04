@@ -62,3 +62,10 @@ The importer creates a review queue and never silently turns heuristics into pro
 ## Release invariant
 
 A production V1 corpus is releasable only when trusted ingredient provenance is present, all quality gates pass, hard compound coverage cells pass, diversity/similarity thresholds pass, and the resulting catalog imports successfully through the Phase 3 runtime engine. Development fixtures must never be relabeled as production nutrition data.
+
+
+## Taxonomy/reference-data growth
+
+Pass A makes reference data a frozen input of every recipe job. `RecipeGenerationJob` requires `referenceDataVersion` + `referenceDataDigest`, and the planner/pipeline require the matching registry snapshot. Corpus coverage policies use canonical term IDs for cuisine, recipe family, diet/practical tags and ingredient categories.
+
+Corpus generation is also responsible for surfacing missing reference data. It must create a `ReferenceDataProposal`, resolve collision/review status, materialize the approved extensible term, update the registry snapshot/digest, and only then generate candidates that reference the new ID. Missing ingredients must likewise be curated from verifiable source data before use. Closed registries cannot be extended. See `../specs/REFERENCE_DATA_TAXONOMY_SPEC.md`.

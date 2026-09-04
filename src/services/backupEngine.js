@@ -9,6 +9,7 @@ function array(payload, key) {
   if (!Array.isArray(value)) throw new Error(`Backup payload ${key} must be an array`);
   return value;
 }
+function optionalArray(payload, key) { const value = payload[key]; return value === undefined ? [] : array(payload, key); }
 
 async function configurationPayload(repo) {
   return {
@@ -34,6 +35,8 @@ export async function createBackup({ repo = repositories, registry } = {}) {
     createdAt: new Date().toISOString(),
     payload: {
       configuration: await configurationPayload(repo),
+      customTaxonomies: userOnly(await repo.getAll('taxonomies')),
+      customTaxonomyTerms: userOnly(await repo.getAll('taxonomyTerms')),
       customIngredients: userOnly(await repo.getAll('ingredients')),
       customIngredientRevisions: userOnly(await repo.getAll('ingredientRevisions')),
       customRecipes: userOnly(await repo.getAll('recipes')),
@@ -76,10 +79,10 @@ export async function validateBackup(document, { repo = repositories, registry }
   const payload = document.payload;
   validateConfiguration(registry, payload.configuration);
   const mapping = {
-    customIngredients: 'ingredient', customIngredientRevisions: 'ingredientRevision', customRecipes: 'recipe', customRecipeVersions: 'recipeVersion',
+    customTaxonomies: 'taxonomy', customTaxonomyTerms: 'taxonomyTerm', customIngredients: 'ingredient', customIngredientRevisions: 'ingredientRevision', customRecipes: 'recipe', customRecipeVersions: 'recipeVersion',
     plans: 'planInstance', calendarDays: 'calendarDay', generationRuns: 'generationRun', operations: 'operation', shoppingChecklists: 'shoppingChecklist'
   };
-  for (const [key, schema] of Object.entries(mapping)) for (const record of array(payload, key)) registry.assert(schema, record);
+  for (const [key, schema] of Object.entries(mapping)) for (const record of (key === 'customTaxonomies' || key === 'customTaxonomyTerms' ? optionalArray(payload, key) : array(payload, key))) registry.assert(schema, record);
   return document;
 }
 
@@ -88,6 +91,8 @@ export async function importBackup(document, { repo = repositories, registry } =
   const preImportBackup = await createBackup({ repo, registry });
   const payload = backup.payload;
   const config = payload.configuration;
+  const baseTaxonomies = (await repo.getAll('taxonomies')).filter(record => record.origin !== 'user');
+  const baseTaxonomyTerms = (await repo.getAll('taxonomyTerms')).filter(record => record.origin !== 'user');
   const baseIngredients = (await repo.getAll('ingredients')).filter(record => record.origin !== 'user');
   const baseIngredientRevisions = (await repo.getAll('ingredientRevisions')).filter(record => record.origin !== 'user');
   const baseRecipes = (await repo.getAll('recipes')).filter(record => record.origin !== 'user');
@@ -101,6 +106,8 @@ export async function importBackup(document, { repo = repositories, registry } =
     mealClasses: config.mealClasses || [],
     dayClasses: config.dayClasses || [],
     cycles: config.cycles || [],
+    taxonomies: [...baseTaxonomies, ...optionalArray(payload, 'customTaxonomies')],
+    taxonomyTerms: [...baseTaxonomyTerms, ...optionalArray(payload, 'customTaxonomyTerms')],
     ingredients: [...baseIngredients, ...array(payload, 'customIngredients')],
     ingredientRevisions: [...baseIngredientRevisions, ...array(payload, 'customIngredientRevisions')],
     recipes: [...baseRecipes, ...array(payload, 'customRecipes')],

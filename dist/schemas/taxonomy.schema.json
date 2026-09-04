@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/taxonomy.schema.json",
+  "title": "Taxonomy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "taxonomyId",
+    "origin",
+    "hierarchical",
+    "extensibleBy",
+    "allowedConsumers",
+    "status",
+    "i18n",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "taxonomyId": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_]*$"
+    },
+    "origin": {
+      "enum": [
+        "base",
+        "user"
+      ]
+    },
+    "hierarchical": {
+      "type": "boolean"
+    },
+    "extensibleBy": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "user",
+          "editorial_pipeline"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "allowedConsumers": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "enum": [
+          "ingredient",
+          "recipe",
+          "meal_class",
+          "food_preferences",
+          "allergy_profile",
+          "corpus_policy",
+          "corpus_pipeline",
+          "search"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "status": {
+      "enum": [
+        "active",
+        "deprecated"
+      ]
+    },
+    "i18n": {
+      "type": "object",
+      "required": [
+        "it",
+        "en"
+      ],
+      "properties": {
+        "it": {
+          "$ref": "#/$defs/text"
+        },
+        "en": {
+          "$ref": "#/$defs/text"
+        }
+      },
+      "additionalProperties": {
+        "$ref": "#/$defs/text"
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "text": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label"
+      ],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "description": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

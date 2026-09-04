@@ -32,6 +32,8 @@ jobs:
 
       - name: Verify application
         run: npm run check
+        env:
+          YDM_BROWSER_REQUIRED: '1'
 
       - name: Build for GitHub Pages
         run: npm run build

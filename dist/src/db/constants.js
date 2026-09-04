@@ -1,8 +1,8 @@
 export const DB_NAME = 'yourDietManager';
-export const DB_VERSION = 3;
-export const CONTENT_SCHEMA_VERSION = 2;
+export const DB_VERSION = 4;
+export const CONTENT_SCHEMA_VERSION = 3;
 export const BACKUP_FORMAT_VERSION = 1;
-export const APP_VERSION = '1.0.0-rc.1';
+export const APP_VERSION = '1.0.0-rc.6';
 
 export const STORE_DEFINITIONS = {
   meta: { keyPath: 'key', indexes: [] },
@@ -14,6 +14,24 @@ export const STORE_DEFINITIONS = {
   mealClasses: { keyPath: 'id', indexes: [] },
   dayClasses: { keyPath: 'id', indexes: [] },
   cycles: { keyPath: 'id', indexes: [] },
+  taxonomies: {
+    keyPath: 'taxonomyId',
+    indexes: [
+      { name: 'status', keyPath: 'status' },
+      { name: 'origin', keyPath: 'origin' }
+    ]
+  },
+  taxonomyTerms: {
+    keyPath: 'termId',
+    indexes: [
+      { name: 'taxonomyId', keyPath: 'taxonomyId' },
+      { name: 'parentTermId', keyPath: 'parentTermId' },
+      { name: 'status', keyPath: 'status' },
+      { name: 'origin', keyPath: 'origin' },
+      { name: 'taxonomyAndStatus', keyPath: ['taxonomyId', 'status'] },
+      { name: 'searchTokens', keyPath: 'searchTokens', options: { multiEntry: true } }
+    ]
+  },
   ingredients: {
     keyPath: 'ingredientId',
     indexes: [

@@ -3,7 +3,7 @@ import path from 'node:path';
 
 const KEY_FIELDS = {
   nutritionProfiles: 'id', allergyIntoleranceProfiles: 'id', foodPreferences: 'id', themeProfiles: 'id', mealClasses: 'id', dayClasses: 'id', cycles: 'id',
-  ingredients: 'ingredientId', ingredientRevisions: 'ingredientRevisionId', recipes: 'recipeId', recipeVersions: 'recipeVersionId',
+  taxonomies: 'taxonomyId', taxonomyTerms: 'termId', ingredients: 'ingredientId', ingredientRevisions: 'ingredientRevisionId', recipes: 'recipeId', recipeVersions: 'recipeVersionId',
   planInstances: 'planInstanceId', calendarDays: 'calendarDayId', generationRuns: 'generationRunId', operations: 'operationId', shoppingChecklists: 'checklistId'
 };
 
@@ -22,7 +22,7 @@ export class MemoryRepository {
     const values = [...this.store(store).values()];
     const at = (obj, path) => path.split('.').reduce((v, key) => v?.[key], obj);
     const indexPaths = {
-      origin: 'origin', status: 'status', originAndStatus: null, currentVersionId: 'currentVersionId', ingredientId: 'ingredientId', recipeId: 'recipeId', catalogVersion: 'catalogVersion',
+      origin: 'origin', status: 'status', originAndStatus: null, currentVersionId: 'currentVersionId', ingredientId: 'ingredientId', recipeId: 'recipeId', catalogVersion: 'catalogVersion', taxonomyId: 'taxonomyId', parentTermId: 'parentTermId', taxonomyAndStatus: null,
       originAndCatalogVersion: null,
       'taxonomy.foodGroup': 'taxonomy.foodGroup', allergenIds: 'allergenIds', mealArchetypes: 'mealArchetypes',
       'calculatedNutrition.energyKcal': 'calculatedNutrition.energyKcal', 'calculatedNutrition.proteinG': 'calculatedNutrition.proteinG',
@@ -53,6 +53,7 @@ export class MemoryRepository {
     let out = values.filter(record => {
       if (indexName === 'originAndStatus') return matchScalar([record.origin, record.status]);
       if (indexName === 'originAndCatalogVersion') return matchScalar([record.origin, record.catalogVersion]);
+      if (indexName === 'taxonomyAndStatus') return matchScalar([record.taxonomyId, record.status]);
       if (indexName === 'planAndSequence') return matchScalar([record.planInstanceId, record.sequence]);
       const path = indexPaths[indexName] || indexName; const value = at(record, path);
       return Array.isArray(value) ? value.some(matchScalar) : matchScalar(value);
@@ -115,6 +116,19 @@ export class MemoryRepository {
   }
 }
 
+
+export async function bundledReferenceData(root, registry = null) {
+  const taxonomies = JSON.parse(await readFile(path.join(root, 'public/data/reference-data/taxonomies-0001.json'), 'utf8'));
+  const taxonomyTerms = JSON.parse(await readFile(path.join(root, 'public/data/reference-data/taxonomy-terms-0001.json'), 'utf8'));
+  return { taxonomies, taxonomyTerms };
+}
+
+export async function seedReferenceData(repo, root) {
+  const { taxonomies, taxonomyTerms } = await bundledReferenceData(root);
+  await repo.putMany('taxonomies', taxonomies);
+  await repo.putMany('taxonomyTerms', taxonomyTerms);
+  return { taxonomies, taxonomyTerms };
+}
 export function fileLoader(dir) {
   return async file => JSON.parse(await readFile(path.join(dir, file), 'utf8'));
 }

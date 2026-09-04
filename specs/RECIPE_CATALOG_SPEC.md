@@ -63,7 +63,9 @@ Per meal prep si possono aggiungere `batchHints`, ma il generatore del piano ass
 
 ## 6. Meal compatibility
 
-Ogni ricetta dichiara archetipi compatibili, per esempio:
+Ogni ricetta dichiara almeno un archetype compatibile. In creazione/edit tutti gli archetipi sono selezionati per default; almeno uno deve rimanere selezionato. La stessa regola vale per gli ingredienti. MealArchetype e un registry di sistema chiuso.
+
+Esempio:
 
 ```json
 "mealArchetypes":["lunch","dinner","during_shift"]
@@ -132,3 +134,26 @@ I catalog shard sono importati in IndexedDB. RecipeRepository deve risolvere sia
 La membership pack non vive in `RecipeVersion.tags` e non e dedotta da tag liberi. La fonte canonica e `CatalogManifest.packs[].recipeVersionIds`. Il runtime materializza lo stato di installazione in `catalogPacks` secondo `CATALOG_PACK_SPEC.md`.
 
 Un `recipeVersionId` puo comparire in piu pack senza duplicare il record RecipeVersion. L'importer verifica che ogni riferimento pack risolva a una versione inclusa nella release del manifest. Il campo `RecipeVersion.catalogVersion` indica la release in cui quella versione immutabile e stata introdotta: una release successiva puo includere e riusare lo stesso record senza crearne una copia o una nuova versione. Sono vietati solo record che dichiarano una `catalogVersion` futura rispetto al manifest.
+
+
+## 13. Reference-data IDs
+
+RecipeVersion non deve contenere valori semantici liberi per cuisine, family, diet/practical/flavor/preparation tag o altre tassonomie usate dal motore. I campi corrispondenti persistono term ID canonici del Reference Data Registry.
+
+L'editor Pass B usa un chip multi-select separato per ciascuna tassonomia. Le ingredient lines scelgono l'Ingredient family tramite ricerca e fissano la current/historical `ingredientRevisionId`; dopo la scelta, il selector di unita contiene soltanto basis unit e conversioni esplicite supportate da quella revisione. Non esiste fallback a unita digitate liberamente.
+
+La UI puo mostrare label/alias localizzati. La pipeline puo introdurre un nuovo termine solo completando prima il flusso reference-data definito in `REFERENCE_DATA_TAXONOMY_SPEC.md`.
+
+## 14. Modificabilita e versionamento
+
+Tutte le ricette, indipendentemente dall'origine, sono modificabili dall'utente. La modifica non sovrascrive la RecipeVersion storica: crea una nuova versione corrente della stessa famiglia. `origin`/provenance descrivono la provenienza, non un divieto di modifica.
+
+Alla prima modifica di una famiglia distribuita `origin=base`, il runtime mantiene lo stesso `recipeId`, crea una nuova RecipeVersion `origin=user`, avanza `currentVersionId` e promuove la famiglia a gestione locale. Gli update/rollback/install dei catalog pack devono preservare questo current pointer locale e non possono riattivare silenziosamente una versione base. Le RecipeVersion base precedenti restano disponibili per piani storici e audit.
+
+La duplicazione resta un'azione distinta dalla modifica: crea una nuova Recipe family con nuovo `recipeId`.
+
+## 15. Detail route e indipendenza dal piano
+
+Il catalogo usa una route dinamica canonica `/recipes/<recipeId>`. Il dettaglio risolve la Recipe family e la current RecipeVersion (oppure una `recipeVersionId` storica esplicita) direttamente dai repository catalogo; non dipende da PlanInstance, CalendarDay o GenerationRun e deve funzionare anche quando non esiste alcun piano.
+
+La route `/recipes/<recipeId>/edit` modifica la famiglia corrente tramite una nuova RecipeVersion. La UI puo mostrare origine, numero versione, storico e provenance, ma non puo nascondere l'azione Modifica in base a `origin`.

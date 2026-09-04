@@ -7,7 +7,8 @@ export async function writeJson(file, value) { await mkdir(path.dirname(file), {
 export async function loadLocalCatalog(dataDir) {
   const manifest = await readJson(path.join(dataDir, 'catalog-manifest.json'));
   const out = { manifest };
-  for (const part of ['ingredientFamilies', 'ingredientRevisions', 'recipeFamilies', 'recipeVersions']) {
+  for (const part of ['taxonomies', 'taxonomyTerms', 'ingredientFamilies', 'ingredientRevisions', 'recipeFamilies', 'recipeVersions']) {
+    if (!manifest[part]) { out[part] = []; continue; }
     const values = [];
     for (const shard of manifest[part].shards) values.push(...await readJson(path.join(dataDir, shard.path)));
     out[part] = values;
@@ -24,7 +25,7 @@ export async function loadCorpusInput(input) {
   }
   const catalogVersion = doc.catalogVersion || doc.manifest?.catalogVersion;
   if (!catalogVersion) throw new Error(`Corpus bundle ${input} is missing catalogVersion`);
-  return { ...doc, manifest: doc.manifest || { catalogVersion } };
+  return { ...doc, taxonomies: doc.taxonomies || [], taxonomyTerms: doc.taxonomyTerms || [], manifest: doc.manifest || { catalogVersion } };
 }
 
 export function currentRecipeVersions(corpus) {

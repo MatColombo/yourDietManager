@@ -105,7 +105,7 @@
     {
       "targetId": "smoke-portable",
       "dimension": "practicality",
-      "key": "portable",
+      "key": "practical_portable",
       "minCount": 4,
       "desiredCount": 6,
       "weight": 0.8,

@@ -3,6 +3,8 @@
     "schemaVersion": 1,
     "catalogVersion": "0.4.0-dev",
     "builtAt": "2026-09-03T14:09:00Z",
+    "referenceDataVersion": "1.0.0",
+    "referenceDataDigest": "56f3949bd1c0348f8fe65861ebcda23c2a198805cd2e9f70b00610a328753b52",
     "appCompatibility": {
       "minVersion": "0.4.0",
       "maxVersion": null
@@ -13,6 +15,353 @@
     ],
     "pipelineVersion": "recipe-pipeline-1",
     "calculationAlgorithmVersion": "nutrition-core-1",
+    "taxonomies": {
+      "count": 7,
+      "shards": [
+        {
+          "path": "reference-data/taxonomies-0001.json",
+          "count": 4,
+          "sha256": "61df49320692903a2a59036ae51a7b10ad5bd519423c2656801b0c15de5a281c",
+          "recordIds": [
+            "food_category",
+            "cuisine",
+            "recipe_family",
+            "diet_tag"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomies-0002.json",
+          "count": 3,
+          "sha256": "8962cd255310a4f81a67ef448bb2e27e4cb8691e911464c6e0c1ba0344a37506",
+          "recordIds": [
+            "practical_tag",
+            "flavor_profile",
+            "preparation_technique"
+          ]
+        }
+      ]
+    },
+    "taxonomyTerms": {
+      "count": 113,
+      "shards": [
+        {
+          "path": "reference-data/taxonomy-terms-0001.json",
+          "count": 4,
+          "sha256": "cccadbc116024a0a43f19440a9875ea9123bbce2f74a009c6d208c93eaee7289",
+          "recordIds": [
+            "food_group_grains",
+            "food_group_bread_bakery",
+            "food_group_pasta_rice_cereals",
+            "food_group_legumes"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0002.json",
+          "count": 4,
+          "sha256": "9d70960be093d7d32920067bccade5b7a2f096730446ad01fe1e6183e1dc0ef5",
+          "recordIds": [
+            "food_group_vegetables",
+            "food_group_fruit",
+            "food_group_nuts_seeds",
+            "food_group_meat"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0003.json",
+          "count": 4,
+          "sha256": "71f91cf7c56ea38f9a1af473d41574a23a5737d984165bc00afc4bc7dd001fb2",
+          "recordIds": [
+            "food_group_poultry",
+            "food_group_fish_seafood",
+            "food_group_eggs",
+            "food_group_dairy_milk_yogurt"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0004.json",
+          "count": 4,
+          "sha256": "7080c2c7f39db39c03ae02d97de4ec47f8fbc43f83ba2a383fed06627751f221",
+          "recordIds": [
+            "food_group_cheese",
+            "food_group_plant_dairy_alternative",
+            "food_group_fats_oils",
+            "food_group_sauces_condiments"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0005.json",
+          "count": 4,
+          "sha256": "71a1267597fc161c72617d15850f700b4e7364f55286f0a4c32057ecdec96e83",
+          "recordIds": [
+            "food_group_herbs_spices",
+            "food_group_sweets",
+            "food_group_beverages",
+            "food_group_convenience_food"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0006.json",
+          "count": 4,
+          "sha256": "7a5cecbcbd66e2cc9ad670ce241c2fe767abc967ba37ee39a8f5fed369ec63dd",
+          "recordIds": [
+            "food_group_other",
+            "food_subgroup_fatty_fish",
+            "food_subgroup_lean_fish",
+            "food_subgroup_crustaceans"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0007.json",
+          "count": 4,
+          "sha256": "5890798837912e6949fb0e662fb407983982446ea437dc79d95ec989be49c520",
+          "recordIds": [
+            "food_subgroup_molluscs",
+            "food_subgroup_rice",
+            "food_subgroup_pasta",
+            "food_subgroup_breakfast_cereals"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0008.json",
+          "count": 4,
+          "sha256": "16f5bf390e4447729c8cf692760367602181f4c33af0098d15096691c77fd70e",
+          "recordIds": [
+            "food_subgroup_soy_products",
+            "food_subgroup_beans",
+            "food_subgroup_lentils",
+            "food_subgroup_chickpeas"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0009.json",
+          "count": 4,
+          "sha256": "8c0830d4261334bc266ff32158b6a78b2ceb25c35c334288f1c0e2b14f3e0b55",
+          "recordIds": [
+            "food_subgroup_summer_vegetables",
+            "food_subgroup_leafy_greens",
+            "food_subgroup_cruciferous",
+            "food_subgroup_root_vegetables"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0010.json",
+          "count": 4,
+          "sha256": "0b0be40a28eeab54a39ba955ad33eeee465fefda698b24cac04ab40ae205fb9b",
+          "recordIds": [
+            "food_subgroup_plant_oils",
+            "food_subgroup_animal_fats",
+            "food_subgroup_whole_eggs",
+            "food_subgroup_milk"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0011.json",
+          "count": 4,
+          "sha256": "7d5191a8e90132319703774e291ff9df4ac882f8aea019ba568d637e036358ad",
+          "recordIds": [
+            "food_subgroup_yogurt",
+            "cuisine_mediterranean",
+            "cuisine_italian",
+            "cuisine_french"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0012.json",
+          "count": 4,
+          "sha256": "a334191f4c5467cdf843c78f8d19636888ff941a0fbe426fd8deae315d35292d",
+          "recordIds": [
+            "cuisine_spanish",
+            "cuisine_greek",
+            "cuisine_middle_eastern",
+            "cuisine_north_african"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0013.json",
+          "count": 4,
+          "sha256": "4ba3f2c7166bedb4ad2ec65cc4089d5e03db42df4c8378c6d2d72c677b581c83",
+          "recordIds": [
+            "cuisine_indian",
+            "cuisine_chinese",
+            "cuisine_japanese",
+            "cuisine_korean"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0014.json",
+          "count": 4,
+          "sha256": "f03c52290d98a345001f331b770634e90abbf961256651ad861bec0754871dc9",
+          "recordIds": [
+            "cuisine_thai",
+            "cuisine_vietnamese",
+            "cuisine_mexican",
+            "cuisine_latin_american"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0015.json",
+          "count": 4,
+          "sha256": "3a9581cc21a971cfcd89a22f2d78a5abb39ddba543eebf4034fdff7c5164b512",
+          "recordIds": [
+            "cuisine_north_american",
+            "cuisine_northern_european",
+            "cuisine_eastern_european",
+            "cuisine_international"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0016.json",
+          "count": 4,
+          "sha256": "d02e19e3e6f69a880f7ef12d7d878e5469e735cb1b1bcfc7a97477a337513d06",
+          "recordIds": [
+            "recipe_family_grain_bowl",
+            "recipe_family_protein_plate",
+            "recipe_family_salad",
+            "recipe_family_soup"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0017.json",
+          "count": 4,
+          "sha256": "e85347ecd768dca6bb125c7b367f5d82f5f181689ce21ff81e57c2ef6f02ef35",
+          "recordIds": [
+            "recipe_family_stew",
+            "recipe_family_pasta",
+            "recipe_family_risotto",
+            "recipe_family_sandwich_wrap"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0018.json",
+          "count": 4,
+          "sha256": "bbf8ba96634c301dc841a088e4d3b7f04c5b028d749870aa39b930bb6dc595a0",
+          "recordIds": [
+            "recipe_family_toast",
+            "recipe_family_egg_dish",
+            "recipe_family_yogurt_bowl",
+            "recipe_family_porridge"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0019.json",
+          "count": 4,
+          "sha256": "3810bfe008a7d3300ab7675e6aaf72e248691f3a5d530308c4326a2df177d7aa",
+          "recordIds": [
+            "recipe_family_smoothie",
+            "recipe_family_snack_plate",
+            "recipe_family_curry",
+            "recipe_family_stir_fry"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0020.json",
+          "count": 4,
+          "sha256": "6c0dd9d064a8d5b163129a2802691c601ee8d28ccd65ecd78540cf4f5b10ef83",
+          "recordIds": [
+            "recipe_family_baked_dish",
+            "recipe_family_one_pot",
+            "recipe_family_side_dish",
+            "recipe_family_dessert"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0021.json",
+          "count": 4,
+          "sha256": "174b13934c27561408d3f5930ea299228a2a6ea8800d5e837552b36d707288bd",
+          "recordIds": [
+            "diet_vegetarian",
+            "diet_vegan",
+            "diet_pescatarian",
+            "diet_high_protein"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0022.json",
+          "count": 4,
+          "sha256": "641c87fa3e8d23b350cd5787933ce6eddb0d654be2eb4766d5fcb312874f0a52",
+          "recordIds": [
+            "diet_high_fiber",
+            "practical_quick",
+            "practical_portable",
+            "practical_meal_prep"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0023.json",
+          "count": 4,
+          "sha256": "647390c9c61d92c3443742b74e14f1257e5edcd717c402ad5937a338bc3bb724",
+          "recordIds": [
+            "practical_freezer_friendly",
+            "practical_cold_suitable",
+            "practical_reheatable",
+            "practical_no_cook"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0024.json",
+          "count": 4,
+          "sha256": "0c9c97bf197329cf95ce7d3e8f46446a493dcad937efd6a8bb2687150bda4e47",
+          "recordIds": [
+            "practical_one_pan",
+            "flavor_sweet",
+            "flavor_savory",
+            "flavor_neutral"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0025.json",
+          "count": 4,
+          "sha256": "021b46507bcfb7e9fc5185176c43d20aa599f5f71636fe02a63212becbacac56",
+          "recordIds": [
+            "flavor_spicy",
+            "flavor_tangy",
+            "flavor_bitter",
+            "flavor_umami"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0026.json",
+          "count": 4,
+          "sha256": "1cae0e5660b27455169981d8e335e450bc0eaebb283d145b38775b6e493c4d19",
+          "recordIds": [
+            "flavor_fresh",
+            "prep_raw",
+            "prep_boiled",
+            "prep_steamed"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0027.json",
+          "count": 4,
+          "sha256": "de1f2e3703e812234353cde3982b8fb30e478da66ab86805e1a5b3f64129b699",
+          "recordIds": [
+            "prep_baked",
+            "prep_roasted",
+            "prep_grilled",
+            "prep_pan_fried"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0028.json",
+          "count": 4,
+          "sha256": "60b1c04585af88292ff1434b5119095739cd20a1be8c8c3a8322a6829a02b646",
+          "recordIds": [
+            "prep_sauteed",
+            "prep_stir_fried",
+            "prep_stewed",
+            "prep_blended"
+          ]
+        },
+        {
+          "path": "reference-data/taxonomy-terms-0029.json",
+          "count": 1,
+          "sha256": "fcf7aa0fe03c3697216a6484c8ebc1d28f01e7bb02958a5de5b1ae55ce3c25ef",
+          "recordIds": [
+            "prep_marinated"
+          ]
+        }
+      ]
+    },
     "ingredientFamilies": {
       "count": 4,
       "shards": [
@@ -35,7 +384,7 @@
         {
           "path": "ingredients/ingredient-revisions-0001.json",
           "count": 4,
-          "sha256": "aa7df13fb8b08e8cdb201594178b3f01226417d8f82384413d26ca84b81113b3",
+          "sha256": "8ac76280c9294a4161a378c37da02826568c7f02e3cac5e6d14a8d27b9c46c41",
           "recordIds": [
             "ingrev_salmon_raw_v2_p4",
             "ingrev_rice_cooked_v2_p4",
@@ -51,23 +400,23 @@
         {
           "path": "recipes/recipe-families-0001.json",
           "count": 4,
-          "sha256": "ed0415f47a6e172bd72a2619299d199c39d5874f5fa8290bb24929dff0235d56",
+          "sha256": "89a22bdff235c897587621f101579b75d4ba6d38573bf793b86ed2d8fffee0a0",
           "recordIds": [
             "rec_salmon_rice",
             "rec_zucchini_rice",
             "rec_salmon_zucchini",
-            "rec_128e8af23d3ecbded190"
+            "rec_4b7fe672e5b4ee6f8f2d"
           ]
         },
         {
           "path": "recipes/recipe-families-0002.json",
           "count": 4,
-          "sha256": "52b939841e684448f346738956b9e2ea2ddd2a4a8a018894c683ad80eaf783c5",
+          "sha256": "4a85aab60c9ddabfdab45ed5d96aaf0069323d518786ea0e973d887398ef3e64",
           "recordIds": [
-            "rec_a01ebdf0dcaf3c139fac",
-            "rec_49aa3237f33c228c2d03",
-            "rec_56854b1f020fbcb205ec",
-            "rec_ff90a5fa76c9fd090506"
+            "rec_3c041eb74ce166e74b6b",
+            "rec_25de5a970e1949872547",
+            "rec_8b60977c2e6bced10cec",
+            "rec_600bf1026ec5c8d159bc"
           ]
         }
       ]
@@ -78,23 +427,23 @@
         {
           "path": "recipes/recipe-versions-0001.json",
           "count": 4,
-          "sha256": "188cf71c30531f5a2123445b8233f2d16af69aac618c40b92f90d654171efa1b",
+          "sha256": "d5d75fbd47274994ed310dd9a616dc389dac645460d14336873f89f46e722f93",
           "recordIds": [
             "recver_salmon_rice_v2_p4",
             "recver_zucchini_rice_v1_p4",
             "recver_salmon_zucchini_v1_p4",
-            "recver_128e8af23d3ecbded19097a7_v1"
+            "recver_4b7fe672e5b4ee6f8f2df2fd_v1"
           ]
         },
         {
           "path": "recipes/recipe-versions-0002.json",
           "count": 4,
-          "sha256": "5b7de43ffd51e86bf1f43dec46592315df0c999b2c02a832c694fa6c692a8693",
+          "sha256": "93935cb84ec8b010dbe7ec2bae6a3d760b706cdb88184384d51fdb6a138f22f0",
           "recordIds": [
-            "recver_a01ebdf0dcaf3c139fac37a2_v1",
-            "recver_49aa3237f33c228c2d03cdb1_v1",
-            "recver_56854b1f020fbcb205ec234a_v1",
-            "recver_ff90a5fa76c9fd090506efd4_v1"
+            "recver_3c041eb74ce166e74b6be057_v1",
+            "recver_25de5a970e19498725476948_v1",
+            "recver_8b60977c2e6bced10cecbfab_v1",
+            "recver_600bf1026ec5c8d159bce680_v1"
           ]
         }
       ]
@@ -105,16 +454,16 @@
         "labelKey": "catalog.pack.core.label",
         "descriptionKey": "catalog.pack.core.description",
         "required": true,
-        "estimatedBytes": 27751,
+        "estimatedBytes": 28294,
         "recipeVersionIds": [
           "recver_salmon_rice_v2_p4",
           "recver_zucchini_rice_v1_p4",
           "recver_salmon_zucchini_v1_p4",
-          "recver_128e8af23d3ecbded19097a7_v1",
-          "recver_a01ebdf0dcaf3c139fac37a2_v1",
-          "recver_49aa3237f33c228c2d03cdb1_v1",
-          "recver_56854b1f020fbcb205ec234a_v1",
-          "recver_ff90a5fa76c9fd090506efd4_v1"
+          "recver_4b7fe672e5b4ee6f8f2df2fd_v1",
+          "recver_3c041eb74ce166e74b6be057_v1",
+          "recver_25de5a970e19498725476948_v1",
+          "recver_8b60977c2e6bced10cecbfab_v1",
+          "recver_600bf1026ec5c8d159bce680_v1"
         ]
       },
       {
@@ -125,11 +474,11 @@
         "estimatedBytes": 0,
         "recipeVersionIds": [
           "recver_zucchini_rice_v1_p4",
-          "recver_128e8af23d3ecbded19097a7_v1",
-          "recver_a01ebdf0dcaf3c139fac37a2_v1",
-          "recver_49aa3237f33c228c2d03cdb1_v1",
-          "recver_56854b1f020fbcb205ec234a_v1",
-          "recver_ff90a5fa76c9fd090506efd4_v1"
+          "recver_4b7fe672e5b4ee6f8f2df2fd_v1",
+          "recver_3c041eb74ce166e74b6be057_v1",
+          "recver_25de5a970e19498725476948_v1",
+          "recver_8b60977c2e6bced10cecbfab_v1",
+          "recver_600bf1026ec5c8d159bce680_v1"
         ]
       },
       {
@@ -140,7 +489,7 @@
         "estimatedBytes": 0,
         "recipeVersionIds": [
           "recver_salmon_zucchini_v1_p4",
-          "recver_a01ebdf0dcaf3c139fac37a2_v1"
+          "recver_3c041eb74ce166e74b6be057_v1"
         ]
       },
       {
@@ -151,14 +500,14 @@
         "estimatedBytes": 0,
         "recipeVersionIds": [
           "recver_zucchini_rice_v1_p4",
-          "recver_49aa3237f33c228c2d03cdb1_v1",
-          "recver_ff90a5fa76c9fd090506efd4_v1"
+          "recver_25de5a970e19498725476948_v1",
+          "recver_600bf1026ec5c8d159bce680_v1"
         ]
       }
     ]
   },
-  "initialSnapshotId": "snapshot-0.3.0-dev-fb65d3d79779",
-  "finalSnapshotId": "snapshot-0.4.0-dev-e71c65323c79",
+  "initialSnapshotId": "snapshot-0.3.0-dev-82a94580d4f8",
+  "finalSnapshotId": "snapshot-0.4.0-dev-f85fc5945342",
   "batch": {
     "candidateCount": 7,
     "acceptedCount": 5,

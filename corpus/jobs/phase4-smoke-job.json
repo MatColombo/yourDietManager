@@ -1,8 +1,10 @@
 {
   "schemaVersion": 1,
-  "jobId": "batch-04ef295dce73e0",
+  "jobId": "batch-3835cf4f7db191",
   "pipelineVersion": "recipe-pipeline-1",
-  "seed": "phase4-smoke-seed:04ef295dce73e013",
+  "referenceDataVersion": "1.0.0",
+  "referenceDataDigest": "56f3949bd1c0348f8fe65861ebcda23c2a198805cd2e9f70b00610a328753b52",
+  "seed": "phase4-smoke-seed:3835cf4f7db191ee",
   "targetCatalogVersion": "0.4.0-dev",
   "sourceLocale": "it",
   "requiredLocales": [
@@ -24,7 +26,7 @@
   "recipeFamilies": [],
   "cuisineFocus": [],
   "practicalityTargets": [
-    "portable"
+    "practical_portable"
   ],
   "requiredTags": [],
   "forbiddenTags": [],
@@ -54,12 +56,12 @@
     },
     {
       "targetId": "smoke-portable",
-      "key": "portable",
+      "key": "practical_portable",
       "dimension": "practicality",
       "criteria": [
         {
           "dimension": "practicality",
-          "key": "portable"
+          "key": "practical_portable"
         }
       ],
       "desiredAcceptedGain": 3
@@ -72,8 +74,8 @@
     "ing_zucchini"
   ],
   "orchestration": {
-    "runId": "orun-build-3e690a828774",
-    "inputSnapshotId": "snapshot-0.3.0-dev-fb65d3d79779",
+    "runId": "orun-build-cae6a8980f7f",
+    "inputSnapshotId": "snapshot-0.3.0-dev-82a94580d4f8",
     "policyId": "corpus-policy-phase4-smoke",
     "policyVersion": "1.0.0",
     "plannedPriority": 1.105567,
@@ -83,7 +85,7 @@
     ],
     "reasons": [
       "meal_archetype:dinner deficit=0.625",
-      "practicality:portable deficit=0.667"
+      "practicality:practical_portable deficit=0.667"
     ]
   }
 }

@@ -1,0 +1,3 @@
+interface:
+  display_name: "yourDietManager Builder"
+  short_description: "Build the configurable IndexedDB + JSON diet planner."

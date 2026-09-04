@@ -73,3 +73,7 @@ npm run release:gate
 ```
 
 It is expected to remain blocked until the Phase 4 production corpus replaces the development fixture.
+## Pass E final-acceptance browser gate
+
+The Pages workflow runs the application check with `YDM_BROWSER_REQUIRED=1`. This makes the Chromium/CDP final-acceptance suite a deployment gate in CI: a missing browser, blocked localhost navigation, failed recipe/ingredient detail/edit route, dirty-navigation regression, disclosure-state regression, form/schema mismatch, or missing save feedback blocks the Pages build instead of being accepted as a skipped test. Local developer environments may run `npm run hardening:browser` without this variable; if their organization blocks localhost, the result is recorded in `reports/pass-e-browser.json` as `skipped` (with `pass-d-browser.json` retained as a compatibility alias). `npm run hardening:revision` runs after the browser check and verifies the A-E closure contract.
+

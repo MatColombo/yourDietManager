@@ -14,6 +14,8 @@ Non generare una ricetta pubblicabile se uno dei suoi ingredienti non esiste nel
 
 Non inventare kcal o macro per colmare dati mancanti.
 
+Non scrivere mai direttamente valori semantici liberi (cuisine, family, food category, tag, technique, ecc.) dentro una ricetta o un ingrediente. Ogni valore deve risolvere a un ID canonico del Reference Data Registry. Se il concetto necessario non esiste, la pipeline deve creare/proporre prima il reference data secondo `REFERENCE_DATA_TAXONOMY_SPEC.md`.
+
 ## 3. Input
 
 Obbligatori:
@@ -36,6 +38,26 @@ Opzionali:
 - equipment constraints.
 
 ## 4. Pipeline
+
+### Step 0 — Resolve reference-data prerequisites
+
+Prima di creare candidati, il `RecipeGenerationJob` deve gia contenere `referenceDataVersion` e `referenceDataDigest`. La pipeline carica lo snapshot corrispondente e ne verifica il digest; se manca o non coincide, il job fallisce prima della generazione.
+
+Il Pass A implementa questo boundary tramite `referenceDataService` e `referenceDataProposalService`.
+
+1. caricare la versione/digest del Reference Data Registry;
+2. risolvere ogni cuisine, recipe family, food category, diet/practical/flavor/preparation tag e altra classificazione a un ID canonico;
+3. rilevare gap tassonomici richiesti dal job/coverage;
+4. per tassonomie estendibili, emettere `ReferenceDataProposal` con parent, label IT/EN, alias, rationale e provenance;
+5. validare collisioni, gerarchia e governance;
+6. materializzare il nuovo `TaxonomyTerm` solo se la policy consente auto-approval oppure dopo review editoriale;
+7. aggiornare registry version/digest;
+8. usare nelle fasi successive esclusivamente term ID canonici;
+9. eseguire `assertSemanticReferences` sul candidato strutturato prima dell'accettazione.
+
+Per registry di sistema chiusi (allergeni, MealArchetype, DayArchetype, ingredient state, enum tecnici), un valore mancante e un errore bloccante: non crearne uno nuovo.
+
+Se un batch richiede un ingrediente assente, la pipeline puo creare Ingredient + IngredientRevision solo partendo da una fonte verificabile e dopo i normali gate di nutrienti, allergeni, state/unit, tassonomia e provenance. Se tali dati non sono sufficienti, il candidato/job resta bloccato o viene ripianificato.
 
 ### Step 1 — Validate ingredient catalog
 
@@ -100,9 +122,9 @@ Generare:
 
 - ingredient IDs;
 - quantita realistiche per 1 serving;
-- family;
-- meal archetypes;
-- cuisine/flavor tags;
+- family term ID canonico;
+- meal archetypes (registry di sistema);
+- cuisine/flavor term IDs canonici;
 - prep steps;
 - practical metadata.
 
@@ -151,9 +173,9 @@ Derivare:
 - protein/fiber density;
 - allergens;
 - diet tags;
-- cold/portable/quick;
+- canonical practicality terms (`practical_cold_suitable`, `practical_portable`, `practical_quick`);
 - meal compatibility;
-- ingredient category fingerprint.
+- ingredient category fingerprint basato su term ID canonici.
 
 ### Step 9 — Culinary quality check
 
@@ -221,9 +243,9 @@ Tradurre il contenuto in IT/EN senza modificare:
 
 ### Step 15 — Export shard
 
-Esportare famiglie/versioni JSON validate in shard da 250–500 record. Il runtime importera gli shard in IndexedDB; la pipeline non scrive direttamente nel database del browser.
+Esportare prima gli shard/reference-data necessari alla release, poi famiglie/versioni JSON validate in shard da 250–500 record. Il runtime importera gli shard in IndexedDB; la pipeline non scrive direttamente nel database del browser.
 
-Aggiornare `catalog-manifest.json` con conteggi e checksum.
+Aggiornare `catalog-manifest.json` con conteggi, checksum, `referenceDataVersion` e digest del registry. Ogni RecipeGenerationJob/QA report deve registrare il digest reference-data usato.
 
 ## 5. Batch strategy e orchestrazione
 
@@ -262,7 +284,12 @@ Un batch non entra nel catalogo se:
 - hard allergen derivation errors >0;
 - exact duplicates >0;
 - recipe portion != 1 serving standard;
-- untranslated required locale fields >0 per release bilingual.
+- untranslated required locale fields >0 per release bilingual;
+- unresolved taxonomy/reference IDs >0;
+- semantic free-text values in reference-driven fields >0;
+- unreviewed/invalid reference-data proposals used by accepted recipes >0;
+- `RecipeGenerationJob.referenceDataVersion/referenceDataDigest` assenti o non coerenti con lo snapshot >0;
+- taxonomy hierarchy/collision validation errors >0.
 
 ## 7. Coverage report
 
@@ -287,3 +314,19 @@ Le ricette sono contenuto culinario e organizzativo. Non etichettare una ricetta
 ## 9. Runtime import gate
 
 Prima di pubblicare un catalog release, importare gli shard in un IndexedDB di test e verificare conteggi, indici, risoluzione ingredientRevisionId, query per meal archetype/energia e rollback su failure. La pipeline resta JSON-first; IndexedDB e il consumer runtime.
+
+
+## 10. Reference-data output del batch
+
+Ogni batch deve riportare separatamente:
+
+- `referenceDataProposalsCreated`;
+- `referenceDataTermsMaterialized`;
+- `referenceDataTermsReused`;
+- `missingIngredientProposals`;
+- `missingIngredientsMaterialized`;
+- `unresolvedReferenceData`;
+- `referenceDataVersionBefore/After`;
+- `referenceDataDigestBefore/After`.
+
+La crescita della tassonomia e quindi parte auditabile della pipeline, non un effetto collaterale nascosto nel testo delle ricette.

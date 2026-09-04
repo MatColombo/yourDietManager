@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "proposalId": "refprop_example_mexican_breakfast",
+  "taxonomyId": "recipe_family",
+  "proposedTermId": "recipe_family_breakfast_taco",
+  "parentTermId": null,
+  "i18n": {
+    "it": {
+      "label": "Taco da colazione"
+    },
+    "en": {
+      "label": "Breakfast taco"
+    }
+  },
+  "aliases": {
+    "it": [],
+    "en": [
+      "breakfast tacos"
+    ]
+  },
+  "rationale": "Needed to classify a distinct recurring recipe family during corpus expansion.",
+  "provenance": {
+    "sourceType": "pipeline",
+    "sourceLabel": "Recipe Corpus Orchestrator",
+    "reference": null,
+    "rationale": "Needed to classify a distinct recurring recipe family during corpus expansion."
+  },
+  "status": "proposed",
+  "collisionCandidateTermIds": [],
+  "reviewNotes": null,
+  "materializedTermId": null,
+  "createdAt": "2026-09-04T10:00:00Z",
+  "reviewedAt": null
+}

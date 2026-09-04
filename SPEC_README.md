@@ -4,7 +4,9 @@ Baseline di prodotto e architettura per una PWA local-first dedicata alla pianif
 
 ## Stato
 
-Questo repository di specifiche definisce **yourDietManager V1**. TataDiet V5.2.1 resta una applicazione legacy separata e una reference implementation per funzioni gia validate (calendario effettivo, compositore, spesa, backup, offline, undo/redo), ma nessun concetto specifico di TataDiet deve diventare un vincolo del nuovo dominio.
+Questo repository di specifiche definisce **yourDietManager V1**. Il V1 Data/UX Hardening **Pass A — Reference/Data Model Review**, **Pass B — Guided Form Infrastructure**, **Pass C — Editor/Navigation UX Hardening**, **Pass D — Recipe/Ingredient Detail & Editing UX** e **Pass E — Final Acceptance & Revision Closure** sono implementati: runtime DB v4/content v3, registry canonico persistito, migration legacy, pipeline reference-data-aware, form guidati da ID canonici, bootstrap neutro, stato editor stabile, dirty navigation guard, feedback persistente, detail/edit catalogo indipendente dal piano con versionamento storico trasparente e final acceptance browser machine-checkable.
+
+TataDiet V5.2.1 resta una applicazione legacy separata e una reference implementation per funzioni gia validate (calendario effettivo, compositore, spesa, backup, offline, undo/redo), ma nessun concetto specifico di TataDiet deve diventare un vincolo del nuovo dominio.
 
 ## Principio guida
 
@@ -27,7 +29,7 @@ Il motore non conosce turni da infermiera, matrici fisse, target calorici prefis
 - Allergie e intolleranze sono hard constraints.
 - Preferenze e obiettivi nutrizionali sono soft constraints, salvo esplicite esclusioni hard.
 - Il generatore automatico non usa moltiplicatori di porzione: ogni recipe component e una porzione standard.
-- Ingredienti e ricette usano famiglia stabile + revisioni/versioni immutabili.
+- Ingredienti e ricette usano famiglia stabile + revisioni/versioni storiche immutabili; qualunque entita corrente e modificabile creando una nuova revisione/versione.
 - I piani storici referenziano sempre `recipeVersionId`; le ricette referenziano `ingredientRevisionId`.
 - Solver seedato, versionato e spiegabile tramite GenerationRun.
 - IT e EN dalla prima release; architettura predisposta per altre lingue.
@@ -36,6 +38,8 @@ Il motore non conosce turni da infermiera, matrici fisse, target calorici prefis
 - Nessuna dipendenza da fotografie nel catalogo ricette V1.
 - Catalog update atomico con checksum/schema validation e rollback al catalogo precedente.
 - Corpus ricette governato da policy versionata + snapshot di coverage + orchestratore deterministico dei batch.
+- Reference Data Registry canonico: niente stringhe semantiche libere nei campi usati da planner/pipeline; tassonomie estendibili create/configurate prima dell'uso.
+- La corpus pipeline puo proporre/materializzare tassonomie e ingredienti necessari con provenance e gate, mai inventare valori direttamente nelle ricette.
 - Catalog pack con membership canonica nel manifest e stato installazione persistito.
 - Checklist spesa persistite con checked state, note e item manuali.
 - Rolling horizon esplicito tramite continuation policy e segmenti di piano concatenati.
@@ -78,6 +82,7 @@ JSON backup
 | `specs/ALLERGY_INTOLERANCE_SPEC.md` | Vincoli hard di sicurezza alimentare |
 | `specs/FOOD_PREFERENCES_SPEC.md` | Preferenze soft, esclusioni e frequenze |
 | `specs/INGREDIENT_TAXONOMY_SPEC.md` | Tassonomia ingredienti |
+| `specs/REFERENCE_DATA_TAXONOMY_SPEC.md` | Registry canonici, tassonomie, configuratori e creazione reference data dalla pipeline |
 | `specs/RECIPE_CATALOG_SPEC.md` | Contratto famiglie/versioni ricetta |
 | `specs/RECIPE_CORPUS_ORCHESTRATOR_SPEC.md` | Orchestrazione coverage-driven dei batch BUILD/EXPAND/IMPROVE/FOCUSED_EXPANSION |
 | `specs/RECIPE_PIPELINE_GENERATOR.md` | Pipeline esecutiva per generare e validare singoli batch di ricette |
@@ -91,6 +96,16 @@ JSON backup
 | `specs/UX_SPEC.md` | UI compatta per utenti formati |
 | `specs/TEST_STRATEGY.md` | Quality gates e test |
 | `specs/ROADMAP_V1.md` | Fasi raccomandate della V1 |
+
+Documenti di hardening correnti:
+
+- `REFERENCE_DATA_FIELD_INVENTORY.md` - inventario completo dei campi semantici/reference;
+- `DATA_UX_HARDENING_REVISION.md` - decisioni e sequenza Pass A-E;
+- `DATA_UX_HARDENING_PASS_A_REPORT.md` - implementazione e gate del Pass A;
+- `DATA_UX_HARDENING_PASS_B_REPORT.md` - implementazione e gate del Pass B;
+- `DATA_UX_HARDENING_PASS_C_REPORT.md` - implementazione, form/schema audit e gate del Pass C;
+- `DATA_UX_HARDENING_PASS_D_REPORT.md` - detail/edit catalogo e local override semantics;
+- `DATA_UX_HARDENING_PASS_E_REPORT.md` - final acceptance browser, closure gate e allineamento Skill/spec.
 
 Gli esempi JSON sono in `examples/`; gli schemi JSON Schema Draft 2020-12 sono in `schemas/`.
 

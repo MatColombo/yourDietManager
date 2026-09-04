@@ -172,7 +172,7 @@
     },
     "taxonomy": {
       "type": "object",
-      "additionalProperties": true,
+      "additionalProperties": false,
       "required": [
         "foodGroup",
         "foodSubgroup",
@@ -181,24 +181,38 @@
       ],
       "properties": {
         "foodGroup": {
-          "type": "string"
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
         },
         "foodSubgroup": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "flavorProfile": {
-          "enum": [
-            "sweet",
-            "savory",
-            "neutral"
-          ]
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
         },
         "mealArchetypes": {
           "type": "array",
+          "minItems": 1,
           "items": {
             "$ref": "domain-enums.schema.json#/$defs/mealArchetype"
           },
           "uniqueItems": true
+        },
+        "proteinRole": {
+          "$ref": "domain-enums.schema.json#/$defs/nutrientRole"
+        },
+        "carbRole": {
+          "$ref": "domain-enums.schema.json#/$defs/nutrientRole"
+        },
+        "fatRole": {
+          "$ref": "domain-enums.schema.json#/$defs/nutrientRole"
+        },
+        "fiberRole": {
+          "$ref": "domain-enums.schema.json#/$defs/nutrientRole"
         }
       }
     },

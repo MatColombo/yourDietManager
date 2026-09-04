@@ -1,13 +1,28 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-03T14:24:51.632Z",
-  "candidateAppVersion": "1.0.0-rc.1",
+  "generatedAt": "2026-09-04T12:28:44.643Z",
+  "candidateAppVersion": "1.0.0-rc.6",
   "catalogVersion": "0.3.0-dev",
   "checks": [
     {
+      "id": "reference-data-present",
+      "pass": true,
+      "detail": "version=1.0.0, taxonomies=7, terms=113"
+    },
+    {
+      "id": "reference-data-valid",
+      "pass": true,
+      "detail": "valid=true"
+    },
+    {
+      "id": "reference-data-digest",
+      "pass": true,
+      "detail": "manifest=56f3949bd1c0348f8fe65861ebcda23c2a198805cd2e9f70b00610a328753b52, actual=56f3949bd1c0348f8fe65861ebcda23c2a198805cd2e9f70b00610a328753b52"
+    },
+    {
       "id": "app-version-sync",
       "pass": true,
-      "detail": "package=1.0.0-rc.1, runtime=1.0.0-rc.1"
+      "detail": "package=1.0.0-rc.6, runtime=1.0.0-rc.6"
     },
     {
       "id": "recipe-corpus-minimum",

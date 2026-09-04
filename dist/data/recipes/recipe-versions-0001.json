@@ -96,13 +96,13 @@
     },
     "tags": {
       "families": [
-        "grain_bowl"
+        "recipe_family_grain_bowl"
       ],
       "cuisines": [
-        "mediterranean"
+        "cuisine_mediterranean"
       ],
       "diet": [
-        "high_protein"
+        "diet_high_protein"
       ]
     },
     "allergenIds": [
@@ -136,7 +136,7 @@
     ],
     "calculationAlgorithmVersion": "nutrition-core-1",
     "inputDigest": "b1e079bc5ef34e5f21db2d326e581739a07cd58825e4a1b4f36601317dc7aef2",
-    "contentHash": "be5d37d54b908a79b89053fe25c79d27e0c4cba5598c9f269b168f7ed1c4ff0e",
+    "contentHash": "49d0764ad33b3b5e85a2588ac279ec11d92d6b5c6ca7e2c273a4e1f0cadd2e93",
     "generation": {
       "jobId": "phase3-fixture",
       "pipelineVersion": "phase3-fixture",
@@ -236,16 +236,16 @@
     },
     "tags": {
       "families": [
-        "grain_bowl"
+        "recipe_family_grain_bowl"
       ],
       "cuisines": [
-        "mediterranean"
+        "cuisine_mediterranean"
       ],
       "diet": [
-        "vegetarian"
+        "diet_vegetarian"
       ],
       "practical": [
-        "quick"
+        "practical_quick"
       ]
     },
     "allergenIds": [],
@@ -274,7 +274,7 @@
     ],
     "calculationAlgorithmVersion": "nutrition-core-1",
     "inputDigest": "f3b9c24796c0c77bae623724334b9d39a595fbef9bfe34a7124e2d05df058a31",
-    "contentHash": "5331045cdff5c0e3a88732054a5e2d5a8241dd4012aaf6a0450266120d4aba02",
+    "contentHash": "912e57af444429591d03008b3d76f9cfc480fa44c3c9fc20a14df49b6d7b4069",
     "generation": {
       "jobId": "phase3-fixture",
       "pipelineVersion": "phase3-fixture",
@@ -374,13 +374,13 @@
     },
     "tags": {
       "families": [
-        "protein_plate"
+        "recipe_family_protein_plate"
       ],
       "cuisines": [
-        "mediterranean"
+        "cuisine_mediterranean"
       ],
       "diet": [
-        "high_protein"
+        "diet_high_protein"
       ]
     },
     "allergenIds": [
@@ -408,7 +408,7 @@
     ],
     "calculationAlgorithmVersion": "nutrition-core-1",
     "inputDigest": "9bea04467e02bfb131c3bed0738f1758cdcd64b8863ca928e26ccb3d6fcd095d",
-    "contentHash": "b56bdbdd11baae0c4fe74dc053ebb93a25cf065b19614f83f76b4dc98272432c",
+    "contentHash": "dca9cdda9bf8426ce17d3f97dcedf5bb077304d4dfd3cc422efc3978d0d2bce7",
     "generation": {
       "jobId": "phase3-fixture",
       "pipelineVersion": "phase3-fixture",

@@ -19,49 +19,77 @@ Opzionali raccomandati:
 - saltG
 - sodiumMg
 
-## 3. Tassonomia
+## 3. Tassonomia canonica IngredientRevision
 
-Campi raccomandati:
+La tassonomia non e un insieme di stringhe libere. Ogni valore semantico riutilizzato da planner, filtri, preferenze o corpus pipeline deve risolvere a un ID canonico definito dal Reference Data Registry (`REFERENCE_DATA_TAXONOMY_SPEC.md`).
 
-- `foodGroup`
-- `foodSubgroup`
-- `proteinRole`: none/low/medium/high
-- `carbRole`
-- `fatRole`
-- `fiberRole`
-- `flavorProfile`: sweet/savory/neutral
-- `mealArchetypes`
-- `cuisineTags`
-- `dietTags`
-- `allergenIds`
-- `processingLevel`
-- `defaultState`
-- `seasonTags`
-- `storageTags`
-- `preparationTags`
+Il contratto V1 `IngredientRevision.taxonomy` contiene:
 
-## 4. Gruppi base suggeriti
+- `foodGroup` -> `TaxonomyTerm.termId` della tassonomia `food_category`;
+- `foodSubgroup` -> `TaxonomyTerm.termId` figlio diretto del gruppo, oppure `null`;
+- `flavorProfile` -> `TaxonomyTerm.termId` della tassonomia `flavor_profile`;
+- `mealArchetypes` -> uno o piu valori del registry chiuso MealArchetype;
+- `proteinRole`, `carbRole`, `fatRole`, `fiberRole` -> enum tecnico `none | low | medium | high`.
 
-- grains
-- bread_bakery
-- pasta_rice_cereals
-- legumes
-- vegetables
-- fruit
-- nuts_seeds
-- meat
-- poultry
-- fish_seafood
-- eggs
-- dairy_milk_yogurt
-- cheese
-- plant_dairy_alternative
-- fats_oils
-- sauces_condiments
-- herbs_spices
-- sweets
-- beverages
-- convenience_food
+Le label IT/EN, gli alias e le legacy key appartengono al registry, non ai campi di matching. Alias/label possono essere usati per ricerca/import ma devono essere risolti a un `termId` prima della persistenza.
+
+Campi semantici aggiuntivi per ingredienti non vanno introdotti come array di stringhe ad hoc: se diventano necessari, devono essere aggiunti esplicitamente al contratto e associati a una tassonomia/registry.
+
+### 3.1 Gruppo/sottogruppo
+
+La gerarchia `food_category` valida il rapporto parent/child. In V1:
+
+- una regola gruppo confronta `foodGroup`;
+- una regola sottogruppo confronta `foodSubgroup`;
+- non si deduce matching ricorsivo da label/prefissi.
+
+Esempio:
+
+```text
+food_group_fish_seafood
+├── food_subgroup_fatty_fish
+├── food_subgroup_lean_fish
+├── food_subgroup_crustaceans
+└── food_subgroup_molluscs
+```
+
+### 3.2 Meal archetypes
+
+Ingrediente e ricetta condividono la stessa semantica:
+
+- tutti gli archetipi sono selezionati per default nel form di creazione;
+- almeno un archetype e obbligatorio;
+- tutti selezionati = compatibile con tutti;
+- array vuoto = invalido, non equivale a "tutti".
+
+MealArchetype e un registry di sistema chiuso e non viene creato dalla pipeline.
+
+## 4. Gruppi base V1
+
+I gruppi sono TaxonomyTerm canonici. Esempi del seed:
+
+- `food_group_grains`;
+- `food_group_bread_bakery`;
+- `food_group_pasta_rice_cereals`;
+- `food_group_legumes`;
+- `food_group_vegetables`;
+- `food_group_fruit`;
+- `food_group_nuts_seeds`;
+- `food_group_meat`;
+- `food_group_poultry`;
+- `food_group_fish_seafood`;
+- `food_group_eggs`;
+- `food_group_dairy_milk_yogurt`;
+- `food_group_cheese`;
+- `food_group_plant_dairy_alternative`;
+- `food_group_fats_oils`;
+- `food_group_sauces_condiments`;
+- `food_group_herbs_spices`;
+- `food_group_sweets`;
+- `food_group_beverages`;
+- `food_group_convenience_food`.
+
+Non ridigitare questi ID nei form: il Pass B li presenta tramite selector/search localizzato. `foodGroup` e `foodSubgroup` sono un controllo gerarchico; `flavorProfile` e un autocomplete della tassonomia omonima; `basis.state`, allergeni e MealArchetype sono registry chiusi con label localizzate.
 
 ## 5. Stati e resa
 
@@ -74,7 +102,7 @@ Ingredienti diversi per stato possono avere record distinti quando i nutrienti c
 - prepared
 - ready_to_eat
 
-Usare conversioni esplicite; non assumere automaticamente che 100 g crudi = 100 g cotti.
+Ingredient state e un registry/enum tecnico chiuso, mostrato con label localizzate. Usare conversioni esplicite; non assumere automaticamente che 100 g crudi = 100 g cotti.
 
 ## 6. Unita
 
@@ -84,7 +112,7 @@ Ogni ingrediente supporta `g` o `ml` canonici e conversioni opzionali:
 {"unit":"piece","grams":55}
 ```
 
-Le conversioni devono essere necessarie per usare unita custom nelle ricette.
+Le conversioni devono essere definite esplicitamente per usare unita custom nelle ricette. Il futuro editor guidato deve offrire solo unita realmente convertibili per l'ingrediente selezionato.
 
 ## 7. Provenienza
 
@@ -95,8 +123,12 @@ Ogni IngredientRevision deve dichiarare almeno:
 - `source.reference` opzionale;
 - `source.checkedAt` opzionale.
 
-La provenance e la qualita devono seguire `DATA_PROVENANCE_QUALITY_SPEC.md`. Il recipe generator non deve inventare nutrienti mancanti. Se un ingrediente non dispone dei nutrienti minimi, il candidato ricetta non puo essere pubblicato nel catalogo standard.
+La provenance e la qualita seguono `DATA_PROVENANCE_QUALITY_SPEC.md`. Il recipe generator non deve inventare nutrienti mancanti. Se un ingrediente non dispone dei nutrienti minimi, il candidato ricetta non puo essere pubblicato nel catalogo standard.
 
 ## 8. Revisioni e runtime
 
-La tassonomia/nutrizione vive in IngredientRevision immutabili. Ingredient punta alla revisione corrente; ricette e piani storici continuano a risolvere la revisione specifica usata al momento della creazione. Vedere `IDENTITY_VERSIONING_SPEC.md` e `UNITS_YIELD_SPEC.md`.
+Tassonomia e nutrizione vivono in IngredientRevision storiche immutabili. L'Ingredient corrente e modificabile indipendentemente da `origin`: il salvataggio crea una nuova revisione e avanza `currentRevisionId`. Ricette e piani storici continuano a risolvere la revisione specifica usata al momento della creazione.
+
+## 9. Creazione dati da pipeline
+
+La pipeline ricette puo proporre/creare nuovi termini nelle tassonomie estendibili e nuovi ingredienti curati quando necessari alla coverage, ma deve completare e validare tali reference data **prima** di generare/accettare una ricetta che li usa. Vedere `REFERENCE_DATA_TAXONOMY_SPEC.md` e `RECIPE_PIPELINE_GENERATOR.md`.

@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "runId": "orun-build-3e690a828774",
+  "runId": "orun-build-cae6a8980f7f",
   "mode": "build",
   "plannerVersion": "corpus-planner-1",
   "policyId": "corpus-policy-phase4-smoke",
   "policyVersion": "1.0.0",
-  "inputSnapshotId": "snapshot-0.3.0-dev-fb65d3d79779",
-  "outputSnapshotId": "snapshot-0.4.0-dev-e71c65323c79",
+  "inputSnapshotId": "snapshot-0.3.0-dev-82a94580d4f8",
+  "outputSnapshotId": "snapshot-0.4.0-dev-f85fc5945342",
   "seed": "phase4-smoke-seed",
   "goal": {
     "targetRecipeCount": 8,
@@ -20,7 +20,7 @@
   "stopReason": "target_reached",
   "plannedJobs": [
     {
-      "jobId": "batch-04ef295dce73e0",
+      "jobId": "batch-3835cf4f7db191",
       "priority": 1.105567,
       "scoreBreakdown": {
         "nutrition": 0,
@@ -40,7 +40,7 @@
       ],
       "reasons": [
         "meal_archetype:dinner deficit=0.625",
-        "practicality:portable deficit=0.667"
+        "practicality:practical_portable deficit=0.667"
       ],
       "expectedAcceptedCount": 5
     }

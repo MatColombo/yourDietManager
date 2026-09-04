@@ -7,13 +7,14 @@ import {
   completeOnboarding, configurationDiagnostics, getOnboardingDraft, loadConfigurationBundle,
   normalizeCycle, saveConfigurationBundle, saveOnboardingDraft
 } from '../src/services/configurationService.js';
-import { MemoryRepository, fileFetch, fileLoader } from './helpers.mjs';
+import { MemoryRepository, fileFetch, fileLoader, seedReferenceData } from './helpers.mjs';
 
 const root = process.cwd();
 
 async function fixture() {
   const repo = new MemoryRepository();
   const registry = new SchemaRegistry(fileLoader(path.join(root, 'schemas'))); await registry.loadAll();
+  await seedReferenceData(repo, root);
   await ensureBootstrapConfiguration({ repo, registry, fetcher: fileFetch(root) });
   return { repo, registry, bundle: await loadConfigurationBundle(repo) };
 }
@@ -27,7 +28,7 @@ test('bootstrap configuration passes Phase 2 semantic validation', async () => {
 test('nutrition semantic validation rejects inverted bounds and ambiguous enabled state', async () => {
   const { registry, bundle } = await fixture();
   const profile = bundle.nutritionProfiles[0];
-  profile.nutrients.proteinG.min = 140; profile.nutrients.proteinG.target = 120;
+  profile.nutrients.proteinG = { enabled: true, min: 140, target: 120, max: 180, weight: 1 };
   profile.nutrients.fiberG = { enabled: true, min: null, target: null, max: null, weight: 1 };
   const result = configurationDiagnostics(bundle, registry);
   assert.equal(result.valid, false);
@@ -59,10 +60,11 @@ test('configuration validation rejects missing cross-record references', async (
 
 test('cycle normalization creates a contiguous 1..N sequence', async () => {
   const { bundle } = await fixture();
-  const cycle = structuredClone(bundle.cycles[0]); cycle.length = 4; cycle.days = [{ cycleDay: 1, dayClassId: 'dc-work' }, { cycleDay: 3, dayClassId: 'dc-rest' }];
-  const normalized = normalizeCycle(cycle, 'dc-rest');
+  const dayClassId = bundle.dayClasses[0].id;
+  const cycle = structuredClone(bundle.cycles[0]); cycle.length = 4; cycle.days = [{ cycleDay: 1, dayClassId }, { cycleDay: 3, dayClassId }];
+  const normalized = normalizeCycle(cycle, dayClassId);
   assert.deepEqual(normalized.days.map(day => day.cycleDay), [1, 2, 3, 4]);
-  assert.equal(normalized.days[1].dayClassId, 'dc-rest');
+  assert.equal(normalized.days[1].dayClassId, dayClassId);
 });
 
 test('saveConfigurationBundle validates before atomic activation', async () => {
@@ -77,7 +79,7 @@ test('onboarding draft persists separately and completion activates atomically',
   const { repo, registry, bundle } = await fixture();
   const draft = structuredClone(bundle); draft.nutritionProfiles[0].dailyEnergyKcal = 2050;
   await saveOnboardingDraft(draft, 3, { repo });
-  assert.equal((await repo.get('nutritionProfiles', draft.nutritionProfiles[0].id)).dailyEnergyKcal, 1900);
+  assert.equal((await repo.get('nutritionProfiles', draft.nutritionProfiles[0].id)).dailyEnergyKcal, 2000);
   assert.equal((await getOnboardingDraft({ repo })).step, 3);
   await completeOnboarding(draft, { repo, registry });
   assert.equal((await repo.get('nutritionProfiles', draft.nutritionProfiles[0].id)).dailyEnergyKcal, 2050);
@@ -123,7 +125,7 @@ test('configuration export checksum detects tampering', async () => {
 test('cycle editor domain supports the V1 maximum of 31 contiguous days', async () => {
   const { registry, bundle } = await fixture();
   const cycle = bundle.cycles[0]; cycle.length = 31;
-  const normalized = normalizeCycle(cycle, 'dc-rest'); cycle.days = normalized.days;
+  const normalized = normalizeCycle(cycle, bundle.dayClasses[0].id); cycle.days = normalized.days;
   const result = configurationDiagnostics(bundle, registry);
   assert.equal(result.valid, true, result.errors.map(item => item.message).join('; '));
   assert.equal(cycle.days.length, 31);

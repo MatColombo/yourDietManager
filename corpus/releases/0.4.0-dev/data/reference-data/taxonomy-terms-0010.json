@@ -1,0 +1,168 @@
+[
+  {
+    "schemaVersion": 1,
+    "termId": "food_subgroup_plant_oils",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": "food_group_fats_oils",
+    "i18n": {
+      "it": {
+        "label": "Oli vegetali",
+        "description": ""
+      },
+      "en": {
+        "label": "Plant oils",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "plant_oils"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "subgroup",
+      "plant",
+      "oils",
+      "oli",
+      "vegetali"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "food_subgroup_animal_fats",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": "food_group_fats_oils",
+    "i18n": {
+      "it": {
+        "label": "Grassi animali",
+        "description": ""
+      },
+      "en": {
+        "label": "Animal fats",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "animal_fats"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "subgroup",
+      "animal",
+      "fats",
+      "grassi",
+      "animali"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "food_subgroup_whole_eggs",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": "food_group_eggs",
+    "i18n": {
+      "it": {
+        "label": "Uova intere",
+        "description": ""
+      },
+      "en": {
+        "label": "Whole eggs",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "whole_eggs"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "subgroup",
+      "whole",
+      "eggs",
+      "uova",
+      "intere"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "food_subgroup_milk",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": "food_group_dairy_milk_yogurt",
+    "i18n": {
+      "it": {
+        "label": "Latte",
+        "description": ""
+      },
+      "en": {
+        "label": "Milk",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "milk"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "subgroup",
+      "milk",
+      "latte"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  }
+]

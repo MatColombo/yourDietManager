@@ -97,6 +97,18 @@
           "items": {
             "$ref": "shopping-checklist.schema.json"
           }
+        },
+        "customTaxonomies": {
+          "type": "array",
+          "items": {
+            "$ref": "taxonomy.schema.json"
+          }
+        },
+        "customTaxonomyTerms": {
+          "type": "array",
+          "items": {
+            "$ref": "taxonomy-term.schema.json"
+          }
         }
       }
     },

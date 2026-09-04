@@ -8,6 +8,8 @@
     "schemaVersion",
     "jobId",
     "targetCatalogVersion",
+    "referenceDataVersion",
+    "referenceDataDigest",
     "seed",
     "pipelineVersion",
     "sourceLocale",
@@ -259,6 +261,14 @@
     "targetCatalogVersion": {
       "type": "string",
       "minLength": 1
+    },
+    "referenceDataVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "referenceDataDigest": {
+      "type": "string",
+      "minLength": 16
     }
   },
   "$defs": {

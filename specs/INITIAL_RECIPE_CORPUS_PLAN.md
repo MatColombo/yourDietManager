@@ -99,3 +99,10 @@ Ogni release del corpus produce:
 ## 9. Test di import runtime
 
 Ogni release corpus deve essere testata anche come import JSON -> IndexedDB: conteggi, checksum, indici, query campione e rollback su shard corrotto. Il catalogo non e accettato se valida solo come file ma fallisce il bootstrap runtime.
+
+## 9. Reference-data bootstrap prima del corpus production
+
+Prima del BUILD 3.000–5.000, completare il Reference Data Registry e la migrazione dei valori legacy. L'orchestratore deve poter ampliare tassonomie estendibili e creare ingredienti mancanti curati durante il BUILD, ma ogni nuovo reference data deve essere validato/materializzato prima delle ricette che lo usano.
+
+Il corpus target non e considerato completo se il conteggio ricette e raggiunto ma esistono semantic free-text values, taxonomy ID unresolved o ingredienti creati senza i normali gate di provenance.
+

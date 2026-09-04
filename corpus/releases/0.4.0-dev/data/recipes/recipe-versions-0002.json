@@ -1,8 +1,8 @@
 [
   {
     "schemaVersion": 1,
-    "recipeVersionId": "recver_a01ebdf0dcaf3c139fac37a2_v1",
-    "recipeId": "rec_a01ebdf0dcaf3c139fac",
+    "recipeVersionId": "recver_3c041eb74ce166e74b6be057_v1",
+    "recipeId": "rec_3c041eb74ce166e74b6b",
     "versionNumber": 1,
     "supersedesVersionId": null,
     "origin": "base",
@@ -74,13 +74,13 @@
     },
     "tags": {
       "families": [
-        "grain_bowl"
+        "recipe_family_grain_bowl"
       ],
       "cuisines": [
-        "mediterranean"
+        "cuisine_mediterranean"
       ],
       "practical": [
-        "portable"
+        "practical_portable"
       ],
       "diet": []
     },
@@ -98,10 +98,12 @@
       "cooked",
       "cotto",
       "crudo",
+      "cuisine",
       "cuoci",
       "development",
       "di",
       "e",
+      "family",
       "gli",
       "grain",
       "ingredienti",
@@ -114,6 +116,7 @@
       "phase",
       "pipeline",
       "portable",
+      "practical",
       "raw",
       "recipe",
       "rice",
@@ -133,9 +136,9 @@
     ],
     "calculationAlgorithmVersion": "nutrition-core-1",
     "inputDigest": "5b63dbb0c55977513873296c7a31605a49ebbe8c1d9347c4232a008ae277a234",
-    "contentHash": "ab9ffa7820e19a6ab83d388a1579f799791ceb241dc9e731cc303a09f840a747",
+    "contentHash": "17c89283609f18f5ec1b68b64ac601a09941cec019b14cfa4ee2e8d90d157c7f",
     "generation": {
-      "jobId": "batch-04ef295dce73e0",
+      "jobId": "batch-3835cf4f7db191",
       "pipelineVersion": "recipe-pipeline-1",
       "sourceLocale": "it",
       "generatedAt": "2026-09-03T14:07:00Z"
@@ -148,8 +151,8 @@
   },
   {
     "schemaVersion": 1,
-    "recipeVersionId": "recver_49aa3237f33c228c2d03cdb1_v1",
-    "recipeId": "rec_49aa3237f33c228c2d03",
+    "recipeVersionId": "recver_25de5a970e19498725476948_v1",
+    "recipeId": "rec_25de5a970e1949872547",
     "versionNumber": 1,
     "supersedesVersionId": null,
     "origin": "base",
@@ -221,16 +224,16 @@
     },
     "tags": {
       "families": [
-        "grain_side"
+        "recipe_family_side_dish"
       ],
       "cuisines": [
-        "mediterranean"
+        "cuisine_mediterranean"
       ],
       "practical": [
-        "portable"
+        "practical_portable"
       ],
       "diet": [
-        "vegetarian"
+        "diet_vegetarian"
       ]
     },
     "allergenIds": [],
@@ -244,12 +247,15 @@
       "cooked",
       "cotto",
       "crude",
+      "cuisine",
       "cuoci",
       "development",
       "di",
+      "diet",
+      "dish",
       "e",
+      "family",
       "gli",
-      "grain",
       "ingredienti",
       "ingredients",
       "la",
@@ -260,6 +266,7 @@
       "phase",
       "pipeline",
       "portable",
+      "practical",
       "raw",
       "recipe",
       "rice",
@@ -281,9 +288,9 @@
     ],
     "calculationAlgorithmVersion": "nutrition-core-1",
     "inputDigest": "97dfd4f98ac2b2e342b67f160605102da25d1aac7ce1634a05eb7a3c18623557",
-    "contentHash": "f76d24c5182a92d4f81b3dbf49a06ecb4a753f9f2d89994137d079cc3560bf78",
+    "contentHash": "12bf57195b7a0b4e17a53f7a4e77e51dc951651697e9473867bd8397424bb372",
     "generation": {
-      "jobId": "batch-04ef295dce73e0",
+      "jobId": "batch-3835cf4f7db191",
       "pipelineVersion": "recipe-pipeline-1",
       "sourceLocale": "it",
       "generatedAt": "2026-09-03T14:07:00Z"
@@ -296,8 +303,8 @@
   },
   {
     "schemaVersion": 1,
-    "recipeVersionId": "recver_56854b1f020fbcb205ec234a_v1",
-    "recipeId": "rec_56854b1f020fbcb205ec",
+    "recipeVersionId": "recver_8b60977c2e6bced10cecbfab_v1",
+    "recipeId": "rec_8b60977c2e6bced10cec",
     "versionNumber": 1,
     "supersedesVersionId": null,
     "origin": "base",
@@ -369,13 +376,13 @@
     },
     "tags": {
       "families": [
-        "fish_component"
+        "recipe_family_protein_plate"
       ],
       "cuisines": [
-        "mediterranean"
+        "cuisine_mediterranean"
       ],
       "practical": [
-        "portable"
+        "practical_portable"
       ],
       "diet": []
     },
@@ -389,14 +396,14 @@
       "as",
       "combina",
       "combine",
-      "component",
       "cook",
       "crudo",
+      "cuisine",
       "cuoci",
       "development",
       "di",
       "e",
-      "fish",
+      "family",
       "gli",
       "ingredienti",
       "ingredients",
@@ -411,7 +418,10 @@
       "per",
       "phase",
       "pipeline",
+      "plate",
       "portable",
+      "practical",
+      "protein",
       "raw",
       "recipe",
       "ricetta",
@@ -430,9 +440,9 @@
     ],
     "calculationAlgorithmVersion": "nutrition-core-1",
     "inputDigest": "0632486321f1bf1870782b5ae3a55d19c5a5f93c1dc53182ca2d8cd2b1ade9b8",
-    "contentHash": "0f6ceef1cef78424ae090a9abf4cc4c0558c178021e616d00eb527fca26e50fa",
+    "contentHash": "84ae69955433c727e9a612cc663114069b90f201154dfe6a000fab6bf6c9801f",
     "generation": {
-      "jobId": "batch-04ef295dce73e0",
+      "jobId": "batch-3835cf4f7db191",
       "pipelineVersion": "recipe-pipeline-1",
       "sourceLocale": "it",
       "generatedAt": "2026-09-03T14:07:00Z"
@@ -445,8 +455,8 @@
   },
   {
     "schemaVersion": 1,
-    "recipeVersionId": "recver_ff90a5fa76c9fd090506efd4_v1",
-    "recipeId": "rec_ff90a5fa76c9fd090506",
+    "recipeVersionId": "recver_600bf1026ec5c8d159bce680_v1",
+    "recipeId": "rec_600bf1026ec5c8d159bc",
     "versionNumber": 1,
     "supersedesVersionId": null,
     "origin": "base",
@@ -518,16 +528,16 @@
     },
     "tags": {
       "families": [
-        "grain_side"
+        "recipe_family_side_dish"
       ],
       "cuisines": [
-        "mediterranean"
+        "cuisine_mediterranean"
       ],
       "practical": [
-        "portable"
+        "practical_portable"
       ],
       "diet": [
-        "vegetarian"
+        "diet_vegetarian"
       ]
     },
     "allergenIds": [],
@@ -541,12 +551,15 @@
       "cook",
       "cooked",
       "cotto",
+      "cuisine",
       "cuoci",
       "development",
       "di",
+      "diet",
+      "dish",
       "e",
+      "family",
       "gli",
-      "grain",
       "ingredienti",
       "ingredients",
       "la",
@@ -561,6 +574,7 @@
       "phase",
       "pipeline",
       "portable",
+      "practical",
       "recipe",
       "rice",
       "ricetta",
@@ -580,9 +594,9 @@
     ],
     "calculationAlgorithmVersion": "nutrition-core-1",
     "inputDigest": "bf3b5e288f21df62a1c014052561876ec6fcae0ba2fc574b2d9c19d944bdb9fd",
-    "contentHash": "c84f5f8f0d7e8b392e070bac8fcdd6f7c54ba2013a48f9a8bb0a881e7817280a",
+    "contentHash": "ad7f1270d0aecf114236a83d9a1cd99c99b2a2c18b356f224387d161ac8bcce9",
     "generation": {
-      "jobId": "batch-04ef295dce73e0",
+      "jobId": "batch-3835cf4f7db191",
       "pipelineVersion": "recipe-pipeline-1",
       "sourceLocale": "it",
       "generatedAt": "2026-09-03T14:07:00Z"

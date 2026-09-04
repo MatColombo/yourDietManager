@@ -1,0 +1,165 @@
+[
+  {
+    "schemaVersion": 1,
+    "termId": "food_subgroup_soy_products",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": "food_group_legumes",
+    "i18n": {
+      "it": {
+        "label": "Prodotti di soia",
+        "description": ""
+      },
+      "en": {
+        "label": "Soy products",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "soy_products"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "subgroup",
+      "soy",
+      "products",
+      "prodotti",
+      "di",
+      "soia"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "food_subgroup_beans",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": "food_group_legumes",
+    "i18n": {
+      "it": {
+        "label": "Fagioli",
+        "description": ""
+      },
+      "en": {
+        "label": "Beans",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "beans"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "subgroup",
+      "beans",
+      "fagioli"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "food_subgroup_lentils",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": "food_group_legumes",
+    "i18n": {
+      "it": {
+        "label": "Lenticchie",
+        "description": ""
+      },
+      "en": {
+        "label": "Lentils",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "lentils"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "subgroup",
+      "lentils",
+      "lenticchie"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "food_subgroup_chickpeas",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": "food_group_legumes",
+    "i18n": {
+      "it": {
+        "label": "Ceci",
+        "description": ""
+      },
+      "en": {
+        "label": "Chickpeas",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "chickpeas"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "subgroup",
+      "chickpeas",
+      "ceci"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  }
+]

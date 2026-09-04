@@ -45,11 +45,13 @@ Persona gia motivata e sufficientemente formata nell'uso dell'app, che vuole:
 - controllare preferenze e alimenti esclusi;
 - ottenere pianificazione, lista della spesa e riequilibrio senza rifare manualmente ogni giorno.
 
-L'interfaccia ordinaria deve privilegiare velocita e densita informativa; le spiegazioni estese appartengono all'onboarding e alla documentazione.
+L'interfaccia ordinaria deve privilegiare velocita e densita informativa; finche l'onboarding e disabilitato, le spiegazioni essenziali devono essere contestuali o nella documentazione e nessuna funzione puo richiedere il completamento del wizard.
 
 ## 5. Onboarding
 
-Ordine raccomandato:
+**Stato V1 RC:** il wizard iniziale e temporaneamente disabilitato perche la sua prima versione non esponeva con sufficiente completezza allergie, DayClass e reference data. Le installazioni nuove partono da una configurazione standard neutra e accedono direttamente all'app; `/onboarding` mostra soltanto l'avviso di sospensione e rimanda a `Configura`. Il wizard verra ridisegnato dopo il Data/UX hardening e non costituisce un prerequisito per consultare catalogo o usare gli editor.
+
+Quando verra riattivato, l'ordine raccomandato resta:
 
 1. Lingua, unita e tema.
 2. Profilo nutrizionale.
@@ -62,7 +64,7 @@ Ordine raccomandato:
 9. Anteprima del piano.
 10. Generazione e conferma.
 
-L'onboarding puo salvare una bozza dopo ogni step.
+Il futuro onboarding potra salvare una bozza dopo ogni step; fino alla riattivazione la configurazione standard e gli editor `Configura` sono il percorso autorevole.
 
 ## 6. Navigazione ordinaria
 
@@ -107,6 +109,10 @@ Nessun cambio di preferenza deve riscrivere silenziosamente il piano gia generat
 
 V1 e una PWA senza backend ma non e data-less: usa IndexedDB come database locale strutturato. I cataloghi continuano a essere distribuiti in JSON e i dati utente restano esportabili/importabili in JSON. Nessun account o server e richiesto.
 
-## UX addition — gestione contenuti personali
+## UX addition — gestione contenuti catalogo
 
-La navigazione `Configura` mantiene Ingredienti per il catalogo personale. La sezione `Ricette` include invece il punto di ingresso `Nuova ricetta` e il filtro `Le mie ricette`, per evitare di nascondere l'authoring in configurazione avanzata. Le ricette utente seguono lo stesso modello family + immutable version delle ricette base.
+La navigazione `Configura` mantiene Ingredienti come punto di gestione del catalogo ingredienti. La sezione `Ricette` include il punto di ingresso `Nuova ricetta`, ricerca/filtri, dettaglio e modifica. La consultazione di ricette/ingredienti e indipendente dall'esistenza di un piano.
+
+Qualunque famiglia corrente, distribuita o creata localmente, e modificabile. La modifica e trasparente all'utente ma crea una nuova IngredientRevision/RecipeVersion e preserva lo storico. Alla prima modifica di una family distribuita, la family mantiene lo stesso ID stabile e passa a gestione locale; gli aggiornamenti del catalogo non devono sovrascrivere il current pointer locale.
+
+`Duplica` resta un'azione separata che crea una nuova family; non e un prerequisito per modificare contenuto del catalogo. I filtri di origine distinguono provenienza/gestione (`Catalogo`/`Locale`), non editabilita.

@@ -54,9 +54,9 @@ The candidate file is an array. Each object supplies editorial/culinary intent o
       "yieldNotes": null
     },
     "tags": {
-      "families": ["grain_bowl"],
-      "cuisines": ["mediterranean"],
-      "practical": ["portable"]
+      "families": ["recipe_family_grain_bowl"],
+      "cuisines": ["cuisine_mediterranean"],
+      "practical": ["practical_portable"]
     },
     "culinaryReview": {
       "status": "approved",
@@ -90,3 +90,19 @@ npm run corpus:apply -- <catalog-data-dir|bundle.json> <result.json> <new-bundle
 ```
 
 Re-run scan/plan after every applied batch. Do not pre-plan a long sequence against a stale snapshot.
+
+
+## Reference-data prerequisite protocol
+
+Before writing a candidate recipe:
+
+1. resolve every semantic classification against the canonical Reference Data Registry;
+2. require the job's `referenceDataVersion` / `referenceDataDigest` and use the exact matching snapshot;
+3. if an extensible taxonomy term is missing, emit a `ReferenceDataProposal`, resolve collisions/review, and materialize it first;
+4. if a required ingredient is missing, source and curate it first;
+5. never place provisional strings or proposal IDs in RecipeVersion;
+6. semantic-validate candidate references against the frozen registry before acceptance;
+7. record reference-data version/digest with the job/result;
+8. reject the batch if unresolved reference data remains.
+
+Closed registries such as allergens, MealArchetype, DayArchetype and ingredient state cannot be expanded by candidate generation.

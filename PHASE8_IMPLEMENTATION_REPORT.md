@@ -199,3 +199,8 @@ npm run release:gate
 ```
 
 Only a green release gate should be promoted from `1.0.0-rc.1` to `1.0.0`.
+
+## Post-RC release-gate amendment
+
+Before `1.0.0`, the Phase 4 production-data gate also requires the reference-data hardening pass: zero unresolved legacy semantic strings, canonical taxonomy IDs for engine-consumed classifications, and audited pipeline creation of any required extensible taxonomy terms/supporting ingredients. The release remains blocked until this is validated together with the existing 3,000+ corpus/provenance requirements.
+

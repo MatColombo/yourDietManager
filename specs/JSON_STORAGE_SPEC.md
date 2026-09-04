@@ -22,6 +22,9 @@ data/
   recipes/
     recipe-families-0001.json
     recipe-versions-0001.json
+  reference-data/
+    taxonomies-0001.json
+    taxonomy-terms-0001.json
   locales/
     it.json
     en.json
@@ -41,7 +44,9 @@ Il manifest dichiara almeno:
 - checksum SHA-256;
 - data build;
 - compatibilita minima/massima app quando necessario;
-- pipeline/calculation version usate per produrre il catalogo.
+- pipeline/calculation version usate per produrre il catalogo;
+- `referenceDataVersion` + `referenceDataDigest`;
+- shard `taxonomies` e `taxonomyTerms` quando il catalogo usa reference data canonici.
 
 ## 4. Sharding
 
@@ -77,14 +82,16 @@ Struttura concettuale:
   "format": "yourDietManager-backup",
   "formatVersion": 1,
   "appVersion": "1.x",
-  "dbSchemaVersion": 1,
-  "contentSchemaVersion": 1,
+  "dbSchemaVersion": 4,
+  "contentSchemaVersion": 3,
   "catalog": {
     "catalogVersion": "1.0.0"
   },
   "createdAt": "ISO-8601",
   "payload": {
     "configuration": {},
+    "customTaxonomies": [],
+    "customTaxonomyTerms": [],
     "customIngredients": [],
     "customIngredientRevisions": [],
     "customRecipes": [],
@@ -136,9 +143,9 @@ Migrazioni:
 - mai distruttive per default;
 - con journal/resume se richiedono piu transazioni.
 
-## 10. Cataloghi base immutabili
+## 10. Versioni catalogo storiche e editing
 
-I record base distribuiti sono immutabili per identita/versione. Ingredienti e ricette custom vivono negli stessi repository ma con `origin = user` e ID separati.
+Le singole `IngredientRevision`/`RecipeVersion` distribuite sono immutabili per identita/versione, ma **Ingredient e Recipe correnti sono modificabili indipendentemente da `origin`**. Una modifica crea una nuova revisione/versione e avanza il current pointer; non sovrascrive il record storico. `origin` descrive la provenienza, non un divieto UX di modifica.
 
 Il `catalogVersion` memorizzato su IngredientRevision/RecipeVersion base identifica la release di prima introduzione del record immutabile, non obbliga a ricreare quel record a ogni release. Un manifest successivo puo includere shard contenenti record introdotti in release precedenti, purche identita e `contentHash` restino invariati.
 
@@ -171,3 +178,12 @@ Prevedere azioni distinte:
 - delete all personal data.
 
 Mai usare "cancella tutto il database" come recovery ordinario.
+
+## 13. Reference-data distribution (Data/UX Hardening Pass A)
+
+Il runtime corrente usa `DB_VERSION=4` e `contentSchemaVersion=3`. Le release distribuiscono gli shard `taxonomies` e `taxonomyTerms` prima degli shard ingredienti/ricette e includono nel manifest `referenceDataVersion` + `referenceDataDigest`. `IngredientRevision`/`RecipeVersion` devono risolvere i term ID rispetto a quello snapshot.
+
+`contentMigration:3` migra i valori legacy con esito `resolved_exact | resolved_alias | resolved_manual | unresolved`. Se esiste anche un solo `unresolved`, la migrazione resta `blocked` e non modifica i current pointer. Per record catalogo storici la migrazione crea nuove revisioni/versioni invece di mutare quelle esistenti. Gli alias/legacy key non vengono mai persistiti al posto degli ID canonici.
+
+Il backup include `customTaxonomies` e `customTaxonomyTerms` per preservare reference data creati dall'utente; il catalogo base resta ricostruibile dagli shard.
+

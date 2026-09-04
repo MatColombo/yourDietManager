@@ -15,6 +15,8 @@ in una sequenza riproducibile di `RecipeGenerationJob` mirati, guidati dallo sta
 
 L'utente non deve scegliere manualmente ogni fascia calorica, family, cucina o gruppo di ingredienti. Questi dettagli sono pianificati dall'orchestratore salvo override espliciti.
 
+L'orchestratore e responsabile anche della **readiness dei dati di riferimento**. Se una coverage utile richiede cuisine/family/category/tag o ingredienti che non esistono ancora, non deve inventare stringhe nel job: pianifica prima la creazione/proposta dei reference data necessari secondo `REFERENCE_DATA_TAXONOMY_SPEC.md`, quindi emette il RecipeGenerationJob con soli ID canonici.
+
 ## 2. Confini di responsabilita
 
 ```text
@@ -117,7 +119,14 @@ Audit della decisione del planner. Registra:
 
 Resta il contratto esecutivo downstream. Ogni job generato dall'orchestratore deve includere `orchestration` con riferimenti a run, policy e snapshot.
 
-I tre artefatti dell'orchestratore sono **build-time catalog artifacts**. Non diventano store IndexedDB V1 e non entrano nel backup utente. Possono essere conservati nel repository/release workspace del catalogo.
+Il Pass A rende inoltre obbligatori:
+
+- `referenceDataVersion`;
+- `referenceDataDigest`.
+
+Questi campi congelano il Reference Data Registry usato per risolvere cuisine, family, diet/practical/flavor/preparation tag e categorie ingredienti. La pipeline deve rifiutare il job se non riceve lo snapshot che corrisponde a versione/digest, o se un criterio del job non risolve a un ID canonico attivo.
+
+Gli artefatti dell'orchestratore e `ReferenceDataProposal` sono **build-time catalog artifacts**. Non diventano store IndexedDB utente e non entrano nel backup. Possono essere conservati nel repository/release workspace del catalogo.
 
 ## 4. Modalita operative
 
@@ -181,6 +190,21 @@ L'agente/orchestratore deve prima leggere policy + snapshot e non chiedere all'u
 
 L'utente puo fornire override strategici, non micro-pianificazione obbligatoria.
 
+
+## 5.1 Reference-data readiness
+
+Prima di assegnare priorita a un batch, l'orchestratore deve verificare che i criteri dell'intento siano risolvibili rispetto allo snapshot del Reference Data Registry.
+
+Per ogni gap puo scegliere uno dei seguenti esiti:
+
+- `reuse_existing_term`: usare un termine canonico esistente;
+- `propose_taxonomy_term`: creare una proposta per tassonomia estendibile;
+- `materialize_taxonomy_term`: creare il termine se la policy consente auto-approval e i gate sono non ambigui;
+- `propose_ingredient`: avviare intake/curation di un ingrediente mancante;
+- `blocked_reference_data`: bloccare/ripianificare quando il dato e ambiguo, manca provenance o appartiene a un registry chiuso.
+
+Il job ricette nasce solo dopo che tutti i reference ID richiesti sono canonici e risolvibili. Lo snapshot/run registra `referenceDataVersion` e digest per riproducibilita.
+
 ## 6. Dimensioni di coverage
 
 V1 misura almeno:
@@ -189,7 +213,7 @@ V1 misura almeno:
 - energy band;
 - protein band;
 - fiber band;
-- practicality (`quick`, `portable`, `cold`, `hot`, `meal_prep` dove applicabile);
+- practicality tramite term ID `practical_tag` (`practical_quick`, `practical_portable`, `practical_cold_suitable`, `practical_meal_prep`, ecc.);
 - vegetarian/non-vegetarian o altri diet tag canonici disponibili;
 - recipe family;
 - cuisine;
@@ -303,10 +327,12 @@ Per ogni job il planner decide almeno:
 - massimo numero di coverage target simultanei per job (`batchPlanning.maxCoverageTargetsPerJob`, default implementativo 5 se assente) per evitare batch eccessivamente vincolati;
 - meal archetype;
 - energy/protein/fiber range;
-- recipe family focus;
-- cuisine focus se utile;
+- recipe family focus tramite term ID canonico;
+- cuisine focus tramite term ID canonico se utile;
 - practicality focus;
 - subset ingredienti ammessi;
+- eventuali reference-data prerequisites gia materializzati;
+- `referenceDataVersion`/digest usato;
 - ingredienti sottoutilizzati preferiti;
 - target minimi di diversita intra-batch;
 - coverage target IDs serviti dal batch.
@@ -391,3 +417,8 @@ Questi artifact consentono revisioni future basate su misure e non sulla memoria
 - ottimizzazione clinica;
 - quote obbligatorie per ogni cucina possibile;
 - machine learning necessario per decidere i batch.
+
+
+## 17. Regola anti-conoscenza-implicita
+
+Nessuna decisione dell'orchestratore puo dipendere dal ricordare spelling, alias o convenzioni testuali. Ogni criterio semantico viene scelto da registry/snapshot. Se il registry non contiene il concetto necessario, l'orchestratore crea un'azione reference-data esplicita e auditabile oppure blocca il batch.

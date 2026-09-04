@@ -1,6 +1,6 @@
 import { APP_BASE_PATH, cacheScopeKey, prefixAppPath } from '../lib/appBase.js';
 
-const DATA_CACHE = `ydm-data-v6-${cacheScopeKey(APP_BASE_PATH)}`;
+const DATA_CACHE = `ydm-data-v7-${cacheScopeKey(APP_BASE_PATH)}`;
 
 function shardMatches(shard, wantedIds) {
   if (!wantedIds || wantedIds.size === 0) return true;
@@ -22,6 +22,8 @@ export function offlineUrlsForPack(manifest, pack, recipeVersions = []) {
   return [...new Set([
     prefixAppPath('/data/catalog-manifest.json'),
     ...(manifest.locales || []).map(locale => prefixAppPath(`/data/locales/${locale}.json`)),
+    ...shardUrls(manifest, 'taxonomies'),
+    ...shardUrls(manifest, 'taxonomyTerms'),
     ...shardUrls(manifest, 'recipeVersions', recipeVersionIds),
     ...shardUrls(manifest, 'recipeFamilies', recipeIds),
     ...shardUrls(manifest, 'ingredientRevisions', ingredientRevisionIds),

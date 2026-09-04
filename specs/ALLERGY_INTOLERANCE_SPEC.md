@@ -17,6 +17,8 @@ Ogni regola contiene:
 - `enabled`;
 - `notes` opzionali.
 
+Quando `targetType=foodCategory`, `targetId` deve risolvere a un term ID della tassonomia `food_category`; quando `targetType=ingredient`, deve risolvere a un Ingredient ID. Nessun target semantico libero e accettato dal service boundary.
+
 ## 3. Allergeni base V1
 
 Gli ID canonici V1 sono **chiusi e case-sensitive**:
@@ -46,7 +48,7 @@ Le intolleranze possono riferirsi a:
 
 - allergen-like target (es. milk);
 - ingrediente specifico;
-- categoria definita nel catalogo.
+- categoria `food_category` definita nel Reference Data Registry tramite term ID canonico.
 
 V1 non tenta di dedurre automaticamente condizioni cliniche da sintomi.
 

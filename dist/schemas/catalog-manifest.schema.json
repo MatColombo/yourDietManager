@@ -119,6 +119,20 @@
         }
       },
       "uniqueItems": true
+    },
+    "referenceDataVersion": {
+      "type": "string",
+      "minLength": 1
+    },
+    "referenceDataDigest": {
+      "type": "string",
+      "minLength": 16
+    },
+    "taxonomies": {
+      "$ref": "#/$defs/catalogPart"
+    },
+    "taxonomyTerms": {
+      "$ref": "#/$defs/catalogPart"
     }
   },
   "$defs": {
@@ -169,5 +183,21 @@
         }
       }
     }
-  }
+  },
+  "allOf": [
+    {
+      "if": {
+        "required": [
+          "referenceDataVersion"
+        ]
+      },
+      "then": {
+        "required": [
+          "referenceDataDigest",
+          "taxonomies",
+          "taxonomyTerms"
+        ]
+      }
+    }
+  ]
 }

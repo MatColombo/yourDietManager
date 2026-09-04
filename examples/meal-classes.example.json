@@ -13,7 +13,7 @@
     "rules": [
       {
         "ruleType": "flavor",
-        "target": "sweet",
+        "target": "flavor_sweet",
         "strength": "prefer"
       }
     ]
@@ -53,12 +53,12 @@
     "rules": [
       {
         "ruleType": "foodCategory",
-        "target": "fish",
+        "target": "food_group_fish_seafood",
         "strength": "avoid"
       },
       {
         "ruleType": "tag",
-        "target": "spicy",
+        "target": "flavor_spicy",
         "strength": "avoid"
       }
     ]
@@ -77,7 +77,7 @@
     "rules": [
       {
         "ruleType": "tag",
-        "target": "portable",
+        "target": "practical_portable",
         "strength": "prefer"
       }
     ]

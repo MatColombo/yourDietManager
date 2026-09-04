@@ -2,7 +2,9 @@
 
 ## 1. Principio
 
-Dopo l'onboarding, assumere utente formato. Evitare card tutorial permanenti, paragrafi introduttivi ridondanti e spazi bianchi non funzionali.
+Dopo la configurazione iniziale, assumere utente formato. Evitare card tutorial permanenti, paragrafi introduttivi ridondanti e spazi bianchi non funzionali.
+
+Nel release candidate V1 l'onboarding guidato e temporaneamente disabilitato in attesa della revisione dedicata. Una nuova installazione parte da una configurazione standard neutra e puo essere modificata direttamente da `Configura`; nessuna funzione ordinaria deve dipendere dal completamento del wizard disabilitato.
 
 ## 2. Densita
 
@@ -27,6 +29,19 @@ Sempre preview selezionabile + confirm + undo atomico.
 
 Tenere configurazione avanzata in area dedicata, non nella toolbar primaria.
 
+### Editor integrity
+
+Gli editor devono preservare lo stato visuale e la bozza dell'utente:
+
+- aggiungere, rimuovere o riordinare un elemento non puo aprire/chiudere disclosure o accordion non coinvolti;
+- lo stato `open` delle disclosure e parte dello UI state e deve sopravvivere ai rerender locali/globali;
+- un aggiornamento asincrono dell'app non puo sostituire un editor dirty; il full rerender viene differito finche la bozza non e salvata/scartata o la navigazione e confermata;
+- qualunque route editabile registra dirty state per input/change e mutazioni programmatiche equivalenti;
+- link interni, Back/Forward e reload/chiusura tab chiedono conferma prima di perdere una bozza non salvata;
+- dopo un save esplicito deve comparire sempre un feedback success/failure persistente attraverso i rerender e annunciato con una region `aria-live`;
+- la validazione del form deve essere almeno restrittiva quanto JSON Schema + invarianti cross-record + reference-data. Se il draft non e valido, Save e disabilitato e l'errore viene mostrato prima del tentativo di persistenza;
+- un campo numerico obbligatorio vuoto resta invalido: non deve essere trasformato silenziosamente in `0` o in un default.
+
 ## 4. Home/Oggi
 
 Ordine consigliato:
@@ -43,7 +58,11 @@ Il calendario deve mostrare la DayClass con abbreviazione e colore definiti dall
 
 ## 6. Ricette
 
-Catalogo con ricerca/filter virtualizzabile e candidate retrieval indicizzato da IndexedDB. Una sola pagina dinamica di dettaglio; nessuna pagina statica per recipe.
+Catalogo con ricerca/filter virtualizzabile e candidate retrieval indicizzato da IndexedDB. Una sola pagina dinamica di dettaglio; nessuna pagina statica per recipe. La route canonica e `/recipes/<recipeId>`; `/recipes/<recipeId>/edit` apre l'editor.
+
+La consultazione della RecipeVersion corrente e indipendente dall'esistenza di PlanInstance/CalendarDay. Il catalogo e il dettaglio devono funzionare anche prima della prima generazione piano. Cliccare una card ricetta deve sempre aprire il dettaglio ricetta e non puo dipendere dallo stato del planner. Il dettaglio espone ingredienti, istruzioni, nutrienti, archetipi, tassonomie, allergeni, provenance e storico versioni.
+
+Ogni ricetta corrente mostra `Modifica` indipendentemente da `origin`. Una modifica crea una nuova RecipeVersion della stessa family; `Duplica ricetta` resta un'azione separata che crea una nuova family.
 
 ## 7. Errori
 
@@ -59,7 +78,7 @@ Durante primo import/aggiornamento catalogo la UI deve mostrare progresso e cons
 
 ## 9. Authoring ricette custom
 
-La sezione Ricette include azione `Nuova ricetta` e, per `origin=user`, `Modifica`/`Archivia`. L'editor crea una nuova Recipe family alla prima pubblicazione e una nuova RecipeVersion immutabile a ogni modifica successiva; non muta versioni gia referenziate da piani.
+La sezione Ricette include azione `Nuova ricetta` e rende `Modifica` disponibile per qualunque Recipe family corrente, indipendentemente da `origin`. L'editor crea una nuova Recipe family alla prima pubblicazione e una nuova RecipeVersion immutabile a ogni modifica successiva; non muta versioni gia referenziate da piani. La prima modifica di una family di catalogo la promuove a gestione locale mantenendo lo stesso recipeId; il current pointer locale non viene sovrascritto da catalog update successivi.
 
 Flusso minimo editor:
 
@@ -71,7 +90,26 @@ Flusso minimo editor:
 6. validazione allergeni derivati;
 7. salva nuova versione.
 
-Il dettaglio di una ricetta base non offre editing distruttivo; puo offrire `Duplica come ricetta personale`.
+`Duplica` resta un'azione distinta per creare una nuova family, non un prerequisito per modificare una ricetta base.
+
+### 9.1 Input semantici guidati
+
+I form non chiedono all'utente di conoscere ID o spelling canonici. Per qualunque valore riutilizzato dal motore:
+
+- mostra label localizzata + search/autocomplete e persisti l'ID della scelta;
+- usa chip multi-select per reference multiple;
+- usa group/subgroup selector per `food_category`;
+- usa select localizzate per registry chiusi;
+- limita le unità della recipe line alle conversioni dell'ingrediente scelto;
+- non usare input denominati CSV per cuisine/family/tag o target semantici.
+
+Digitare testo simile a una voce non equivale a selezionarla: un autocomplete senza scelta canonica resta invalido.
+
+## 9.2 Ingredient detail/edit
+
+`Configura -> Ingredienti` offre una route dettaglio canonica `/configure/ingredients/<ingredientId>` e una route editor `/configure/ingredients/<ingredientId>/edit`. Il dettaglio e consultabile senza piano e mostra stato/basis, nutrienti, tassonomia, archetipi, allergeni, provenance/quality e storico revisioni.
+
+Ogni ingrediente corrente e modificabile indipendentemente da `origin`: la modifica crea una nuova IngredientRevision della stessa family e, alla prima modifica di un record distribuito, promuove la family a gestione locale. Le revisioni precedenti non vengono mutate.
 
 ## 10. Aderenza
 

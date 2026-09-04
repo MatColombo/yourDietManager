@@ -56,3 +56,18 @@ Release catalogo bloccata se:
 ## 6. UI
 
 La UI ordinaria non deve mostrare provenance in modo invasivo. Deve pero essere disponibile in dettaglio ingrediente/ricetta e strumenti diagnostici.
+
+
+## Reference data e tassonomie
+
+Ogni TaxonomyTerm creato da processo editoriale o corpus pipeline deve registrare provenance/rationale sufficiente a spiegare:
+
+- chi/che processo lo ha proposto;
+- per quale taxonomy e parent;
+- quali label/alias sono stati verificati;
+- per quale corpus gap o source evidence e stato introdotto;
+- se e stato auto-approvato dalla policy o revisionato manualmente.
+
+Gli alias non diventano mai ID persistiti. Un termine senza provenance minima o con collisione semantica irrisolta non puo essere usato da un record production.
+
+Quando la pipeline materializza un ingrediente mancante, valgono gli stessi quality gate di ogni IngredientRevision production. L'esistenza di un RecipeGenerationJob non giustifica confidence inferiore o nutrienti/allergeni inferiti senza fonte.

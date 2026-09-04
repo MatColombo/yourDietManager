@@ -1,0 +1,28 @@
+# Architecture invariants
+
+- Product: yourDietManager, independent from TataDiet legacy.
+- Runtime: IndexedDB `yourDietManager`; static JSON shards remain canonical base catalog distribution.
+- Access: repositories/services isolate IndexedDB from UI/domain engines.
+- Backup/export: JSON; localStorage only non-authoritative theme/locale bootstrap if useful.
+- Catalogs: immutable historical revisions/versions with atomic staged updates; current base or user entities are editable by creating new versions, never by overwriting history.
+- Identity: stable Ingredient/Recipe family IDs + immutable IngredientRevision/RecipeVersion.
+- Historical refs: planned meals -> recipeVersionId; recipe lines -> ingredientRevisionId.
+- Cycle: 1–31 days, not tied to calendar month.
+- Time: AppConfig IANA timezone; carry-over from meal-slot dayOffset.
+- Closed system registries only: DayArchetype/MealArchetype, allergens, ingredient states, technical enums/limits. Engine-consumed extensible semantics live in canonical taxonomy registries, never free text.
+- External/mensa: reserve budget, no recipe/no invented actual nutrition, excluded from shopping.
+- Allergy/intolerance: hard filter.
+- Ordinary preferences: soft; voluntary auto-exclusion may be hard for auto-generation but user-overridable.
+- Recipe generation: exactly one standard serving per component; never automatic serving scaling.
+- Nutrition: deterministic from frozen IngredientRevision records.
+- Solver: seed + versions + catalog/config snapshot in GenerationRun.
+- i18n: IT/EN first; IDs language-neutral; canonical quantities metric.
+- UI: compact/task-oriented after initial configuration. The provisional onboarding wizard is disabled until redesign and cannot gate ordinary app use.
+- Shopping multiplier: decimal people equivalent affects quantities only.
+- Privacy: local by default; explicit backup/export/delete.
+- Corpus reference-data: detect missing taxonomy/ingredient prerequisites before recipe generation; create/curate them with audit/provenance or block the job.
+
+- Editor integrity: disclosure open state and unsaved drafts survive unrelated UI mutations/rerenders; feature pages use the shared UI-state layer.
+- Navigation integrity: editable routes are protected by one dirty guard for internal navigation, browser history and reload/close.
+- Save feedback: every explicit save reports success/failure persistently and accessibly; forms live-validate before persistence.
+- Bootstrap: fresh installs receive neutral standard configuration; bootstrap upgrades never overwrite explicitly saved/imported user configuration.

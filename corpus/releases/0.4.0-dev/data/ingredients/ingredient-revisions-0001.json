@@ -37,9 +37,9 @@
       "sodiumMg": 59
     },
     "taxonomy": {
-      "foodGroup": "fish_seafood",
-      "foodSubgroup": "fatty_fish",
-      "flavorProfile": "savory",
+      "foodGroup": "food_group_fish_seafood",
+      "foodSubgroup": "food_subgroup_fatty_fish",
+      "flavorProfile": "flavor_savory",
       "mealArchetypes": [
         "lunch",
         "dinner"
@@ -64,7 +64,7 @@
       "confidence": "low",
       "notes": "Development fixture normalized to current canonical digest rules; not production ingredient data."
     },
-    "contentHash": "571239cb70e86f202ace6340369e6c48310464260b64f34999e4625e70eb535f",
+    "contentHash": "1abb666eedac384ffa6a4f7cfec9a6427e7ad3b089f71ccad962a8f99025dfff",
     "createdAt": "2026-09-03T14:04:00Z"
   },
   {
@@ -101,9 +101,9 @@
       "sodiumMg": 4
     },
     "taxonomy": {
-      "foodGroup": "grains",
-      "foodSubgroup": "rice",
-      "flavorProfile": "neutral",
+      "foodGroup": "food_group_pasta_rice_cereals",
+      "foodSubgroup": "food_subgroup_rice",
+      "flavorProfile": "flavor_neutral",
       "mealArchetypes": [
         "lunch",
         "dinner"
@@ -126,7 +126,7 @@
       "confidence": "low",
       "notes": "Development fixture normalized to current canonical digest rules; not production ingredient data."
     },
-    "contentHash": "e542ab58677a2a4ca6e1c8e4a0c1b2257bdf5ed296a12fc98eaed9041f39d260",
+    "contentHash": "e6e5acc4435bd3d65cf2e2e40ea19ac6e1f62f5bd5b624339876ad5dec4ef14d",
     "createdAt": "2026-09-03T14:04:00Z"
   },
   {
@@ -163,9 +163,9 @@
       "sodiumMg": 8
     },
     "taxonomy": {
-      "foodGroup": "vegetables",
-      "foodSubgroup": "summer_vegetables",
-      "flavorProfile": "savory",
+      "foodGroup": "food_group_vegetables",
+      "foodSubgroup": "food_subgroup_summer_vegetables",
+      "flavorProfile": "flavor_savory",
       "mealArchetypes": [
         "lunch",
         "dinner"
@@ -188,7 +188,7 @@
       "confidence": "low",
       "notes": "Development fixture normalized to current canonical digest rules; not production ingredient data."
     },
-    "contentHash": "90384679b33a6ab0bf1f8248c742d050948fe0f5820e10c5fbaad04474ab32e4",
+    "contentHash": "52b3714629b1e1a0f80e082c38aba6a4f2a387b7ad04e091a85e99d3b38f2c58",
     "createdAt": "2026-09-03T14:04:00Z"
   },
   {
@@ -225,9 +225,9 @@
       "sodiumMg": 0
     },
     "taxonomy": {
-      "foodGroup": "fats_oils",
-      "foodSubgroup": "plant_oils",
-      "flavorProfile": "savory",
+      "foodGroup": "food_group_fats_oils",
+      "foodSubgroup": "food_subgroup_plant_oils",
+      "flavorProfile": "flavor_savory",
       "mealArchetypes": [
         "breakfast",
         "lunch",
@@ -252,7 +252,7 @@
       "confidence": "low",
       "notes": "Development fixture normalized to current canonical digest rules; not production ingredient data."
     },
-    "contentHash": "ce1ff7a154b35558402e2f83be297b72ec3c70a93324a695032d6d954c09cdc6",
+    "contentHash": "04114b4a9b1737a1b42da7173cc5c1a3c31aaf331263094e2d1d515e954e3c56",
     "createdAt": "2026-09-03T14:04:00Z"
   }
 ]

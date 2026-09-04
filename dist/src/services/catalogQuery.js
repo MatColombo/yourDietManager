@@ -42,8 +42,17 @@ export class CatalogQueryService {
 
   async browsableVersionIds(packId = '') {
     const base = await this.installedPackState(packId);
-    const user = packId ? [] : await this.currentUserVersionIds();
-    return [...new Set([...base.ids, ...user])];
+    if (packId) return [...new Set(base.ids)];
+    const userFamilies = await this.repo.getAllByIndex('recipes', 'originAndStatus', { kind: 'only', value: ['user', 'active'] });
+    const baseIds = new Set(base.ids);
+    // When a bundled recipe is edited, its stable family ID is promoted to local
+    // management. Remove historical installed base versions of that same family
+    // so browse/search expose only the current local version.
+    for (const family of userFamilies) {
+      const history = await this.repo.getAllByIndex('recipeVersions', 'recipeId', { kind: 'only', value: family.recipeId });
+      for (const version of history) if (version.origin === 'base') baseIds.delete(version.recipeVersionId);
+    }
+    return [...new Set([...baseIds, ...userFamilies.map(family => family.currentVersionId)])];
   }
 
   async seed(filters) {
@@ -134,6 +143,24 @@ export class CatalogQueryService {
     const byId = new Map(revisions.map(record => [record.ingredientRevisionId, record]));
     const installed = family.origin === 'user' ? true : (await this.installedRecipeVersionIds()).has(version.recipeVersionId);
     return { family, version, installed, ingredientLines: version.ingredientLines.map(line => ({ ...line, ingredientRevision: byId.get(line.ingredientRevisionId) || null })) };
+  }
+
+
+  async recipeHistory(recipeId) {
+    const rows = await this.repo.getAllByIndex('recipeVersions', 'recipeId', { kind: 'only', value: recipeId });
+    return rows.sort((a, b) => b.versionNumber - a.versionNumber || b.createdAt.localeCompare(a.createdAt));
+  }
+
+  async resolveIngredient(ingredientId, ingredientRevisionId = null) {
+    const family = await this.repo.get('ingredients', ingredientId); if (!family) return null;
+    const revisionId = ingredientRevisionId || family.currentRevisionId;
+    const revision = await this.repo.get('ingredientRevisions', revisionId); if (!revision || revision.ingredientId !== ingredientId) return null;
+    return { family, revision };
+  }
+
+  async ingredientHistory(ingredientId) {
+    const rows = await this.repo.getAllByIndex('ingredientRevisions', 'ingredientId', { kind: 'only', value: ingredientId });
+    return rows.sort((a, b) => b.revisionNumber - a.revisionNumber || b.createdAt.localeCompare(a.createdAt));
   }
 
   async listCurrentIngredients({ text = '', origin = '', foodGroup = '' } = {}) {

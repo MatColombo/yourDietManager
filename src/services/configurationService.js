@@ -1,5 +1,6 @@
 import { repositories } from '../repositories/repositoryHub.js';
 import { DAY_ARCHETYPES, MEAL_RULE_TARGET_REGISTRY, NUTRIENT_KEYS } from '../domain/configurationRules.js';
+import { loadReferenceDataIndex, assertSemanticReferences } from './referenceDataService.js';
 
 export const CONFIG_COLLECTIONS = Object.freeze({
   nutritionProfiles: 'nutritionProfile',
@@ -139,6 +140,8 @@ export async function saveConfigurationBundle(bundle, { repo = repositories, reg
   if (!registry) throw new Error('Schema registry is required');
   const clean = clone(bundle);
   assertConfigurationBundle(clean, registry);
+  const referenceIndex = await loadReferenceDataIndex(repo);
+  assertSemanticReferences({ index: referenceIndex, configuration: clean, ingredientIds: (await repo.getAll('ingredients')).map(item => item.ingredientId) });
   await repo.atomicReplace({
     appConfigs: [clean.appConfig],
     nutritionProfiles: clean.nutritionProfiles || [],

@@ -1,0 +1,171 @@
+[
+  {
+    "schemaVersion": 1,
+    "termId": "food_subgroup_summer_vegetables",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": "food_group_vegetables",
+    "i18n": {
+      "it": {
+        "label": "Verdure estive",
+        "description": ""
+      },
+      "en": {
+        "label": "Summer vegetables",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "summer_vegetables"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "subgroup",
+      "summer",
+      "vegetables",
+      "verdure",
+      "estive"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "food_subgroup_leafy_greens",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": "food_group_vegetables",
+    "i18n": {
+      "it": {
+        "label": "Verdure a foglia",
+        "description": ""
+      },
+      "en": {
+        "label": "Leafy greens",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "leafy_greens"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "subgroup",
+      "leafy",
+      "greens",
+      "verdure",
+      "a",
+      "foglia"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "food_subgroup_cruciferous",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": "food_group_vegetables",
+    "i18n": {
+      "it": {
+        "label": "Crucifere",
+        "description": ""
+      },
+      "en": {
+        "label": "Cruciferous vegetables",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "cruciferous"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "subgroup",
+      "cruciferous",
+      "crucifere",
+      "vegetables"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "termId": "food_subgroup_root_vegetables",
+    "taxonomyId": "food_category",
+    "origin": "base",
+    "parentTermId": "food_group_vegetables",
+    "i18n": {
+      "it": {
+        "label": "Ortaggi a radice",
+        "description": ""
+      },
+      "en": {
+        "label": "Root vegetables",
+        "description": ""
+      }
+    },
+    "aliases": {
+      "it": [],
+      "en": []
+    },
+    "legacyKeys": [
+      "root_vegetables"
+    ],
+    "status": "active",
+    "supersedesTermId": null,
+    "provenance": {
+      "sourceType": "system_seed",
+      "sourceLabel": "V1 Data/UX Hardening Pass A",
+      "reference": null,
+      "rationale": "V1 canonical reference-data seed"
+    },
+    "searchTokens": [
+      "food",
+      "subgroup",
+      "root",
+      "vegetables",
+      "ortaggi",
+      "a",
+      "radice"
+    ],
+    "createdAt": "2026-09-04T09:00:00Z",
+    "updatedAt": "2026-09-04T09:00:00Z"
+  }
+]

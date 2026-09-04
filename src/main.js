@@ -9,8 +9,11 @@ import { loadDictionaries, I18n } from './i18n/i18n.js';
 import { applyTheme } from './theme/themeEngine.js';
 import { renderApp } from './ui/app.js';
 import { installRouter } from './ui/router.js';
-import { loadConfigurationBundle, onboardingIsComplete, getOnboardingDraft } from './services/configurationService.js';
-import { APP_BASE_PATH, assetPath, prefixAppPath, restorePagesRedirect, routePath } from './lib/appBase.js';
+import { initializeUiState, installDraftTracking, shouldDeferRender, notify, clearDirty } from './ui/uiState.js';
+import { loadConfigurationBundle } from './services/configurationService.js';
+import { fetchBundledReferenceData } from './services/referenceDataService.js';
+import { loadReferenceDataBundle } from './services/referenceDataEditorService.js';
+import { APP_BASE_PATH, assetPath, restorePagesRedirect } from './lib/appBase.js';
 
 restorePagesRedirect();
 
@@ -27,11 +30,12 @@ async function refreshCatalogStats(state) {
     offlineCache: state.catalogVersion ? await repositories.getMeta(`offlinePack:${state.catalogVersion}:${pack.packId}`) : null
   })));
   state.catalogPacks.sort((a, b) => Number(b.required) - Number(a.required) || a.packId.localeCompare(b.packId));
+  if (state.catalogQuery) state.guidedIngredients = await state.catalogQuery.listCurrentIngredients();
 }
 
 async function start() {
   await registry.loadAll();
-  await runMigrations(repositories);
+  await runMigrations(repositories, { registry, referenceDataLoader: () => fetchBundledReferenceData({ registry }) });
   await ensureBootstrapConfiguration({ repo: repositories, registry });
   const configuration = await loadConfigurationBundle(repositories);
   const config = configuration.appConfig;
@@ -43,16 +47,31 @@ async function start() {
 
   const catalogUpdater = new CatalogUpdater({ repo: repositories, registry });
   await catalogUpdater.recoverIncompleteUpdate();
+  const referenceData = await loadReferenceDataBundle(repositories, registry);
   const state = {
     repo: repositories, registry, config, configuration, theme, i18n,
-    onboardingComplete: await onboardingIsComplete({ repo: repositories }), onboardingDraft: await getOnboardingDraft({ repo: repositories }),
+    onboardingEnabled: false, onboardingComplete: true, onboardingDraft: null,
     catalogProgress: { phase: 'idle', completed: 0, total: 1, messageKey: 'common.loading' },
     catalogVersion: null, ingredientCount: 0, recipeCount: 0, catalogPacks: [], catalogUpdateAvailable: false, catalogUpdateVersion: null,
-    catalogQuery: new CatalogQueryService({ repo: repositories }), notice: null, preImportBackup: null, planUi: {},
-    render: () => renderApp(root, state), retryCatalog: null, updateCatalog: null, installPack: null, uninstallPack: null, refreshCatalog: null
+    catalogQuery: new CatalogQueryService({ repo: repositories }), guidedIngredients: [], notice: null, preImportBackup: null, planUi: {},
+    referenceDataIndex: referenceData.index, referenceTaxonomies: referenceData.taxonomies, referenceTerms: referenceData.taxonomyTerms,
+    render: null, retryCatalog: null, updateCatalog: null, installPack: null, uninstallPack: null, refreshCatalog: null, refreshReferenceData: null
   };
 
+  initializeUiState(state);
+  state.notify = (type, message, options) => notify(state, type, message, options);
+  state.markSaved = () => clearDirty(state);
+  state.render = ({ force = false } = {}) => {
+    if (!force && shouldDeferRender(state)) { state.ui.pendingRender = true; return false; }
+    state.ui.pendingRender = false; renderApp(root, state); return true;
+  };
+  installDraftTracking(root, state);
+
   state.refreshCatalog = async () => { await refreshCatalogStats(state); };
+  state.refreshReferenceData = async () => {
+    const next = await loadReferenceDataBundle(repositories, registry);
+    state.referenceDataIndex = next.index; state.referenceTaxonomies = next.taxonomies; state.referenceTerms = next.taxonomyTerms;
+  };
   const bootstrapCatalog = async () => {
     const importer = new CatalogImporter({ repo: repositories, registry });
     try { await importer.bootstrap(progress => { state.catalogProgress = progress; state.render(); }); }
@@ -71,9 +90,8 @@ async function start() {
   state.installPack = async packId => { await catalogUpdater.installPack(packId, progress => { state.catalogProgress = progress; state.render(); }); await refreshCatalogStats(state); state.render(); };
   state.uninstallPack = async packId => { await catalogUpdater.uninstallPack(packId); await refreshCatalogStats(state); state.render(); };
 
-  installRouter(() => state.render()); await refreshCatalogStats(state);
-  if (!state.onboardingComplete && routePath() === '/') history.replaceState({}, '', prefixAppPath('/onboarding'));
-  state.render(); await bootstrapCatalog();
+  installRouter(state, () => state.render({ force: true })); await refreshCatalogStats(state);
+  state.render({ force: true }); await bootstrapCatalog();
 
   if (state.catalogVersion) void catalogUpdater.check().then(result => {
     state.catalogUpdateAvailable = result.updateAvailable; state.catalogUpdateVersion = result.updateAvailable ? result.manifest.catalogVersion : null; state.render();

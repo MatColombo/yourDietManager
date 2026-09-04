@@ -2,7 +2,7 @@ import { calculateRecipeNutrition, deriveAllergens } from '../domain/nutritionCo
 import { sha256Json } from '../lib/crypto.js';
 import { bandIdFor, countEntries, coverageDeficit, exactRecipeSignature, increment, jaccard, primaryIngredientId, recipeIngredientSet, round, targetIsUndercovered, textTokens, tokenSimilarity, unique } from './corpusMath.js';
 
-const PRACTICAL_KEYS = ['portable', 'quick', 'cold', 'hot', 'meal_prep'];
+const PRACTICAL_KEYS = ['practical_portable', 'practical_quick', 'practical_cold_suitable', 'practical_reheatable', 'practical_meal_prep'];
 function approxEqual(a, b, epsilon = 0.11) { return Math.abs(Number(a) - Number(b)) <= epsilon; }
 function pairKey(a, b) { return a < b ? `${a}\u0000${b}` : `${b}\u0000${a}`; }
 function targetCount(target, distributions, compoundCounts = null) {
@@ -23,10 +23,10 @@ function targetCount(target, distributions, compoundCounts = null) {
 function recipePracticality(recipe) {
   const values = new Set(recipe.tags?.practical || []);
   const total = Number(recipe.practical?.prepMinutes || 0) + Number(recipe.practical?.cookMinutes || 0);
-  if (total <= 20) values.add('quick');
-  if (recipe.practical?.portable) values.add('portable');
-  if (recipe.practical?.coldSuitable) values.add('cold'); else values.add('hot');
-  if (recipe.practical?.mealPrepSuitable) values.add('meal_prep');
+  if (total <= 20) values.add('practical_quick');
+  if (recipe.practical?.portable) values.add('practical_portable');
+  if (recipe.practical?.coldSuitable) values.add('practical_cold_suitable'); else if (recipe.practical?.reheatingRequired) values.add('practical_reheatable');
+  if (recipe.practical?.mealPrepSuitable) values.add('practical_meal_prep');
   return [...values].filter(value => PRACTICAL_KEYS.includes(value) || value);
 }
 function missingLocaleFields(recipe, locales) {

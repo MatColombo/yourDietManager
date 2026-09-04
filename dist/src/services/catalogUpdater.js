@@ -3,6 +3,7 @@ import { compareSemver } from '../lib/semver.js';
 import { fetchCatalogManifest, loadCatalogPart, loadCatalogSelection, validateCatalogReferences } from './catalogDataSource.js';
 import { cachePackOffline } from './offlineCatalog.js';
 import { collectStorageMetrics } from './storageMetrics.js';
+import { referenceDataDigest } from './referenceDataService.js';
 
 function packRecord(pack, catalogVersion, status, now, previous = null, error = null) {
   return {
@@ -25,6 +26,24 @@ async function stageImmutable(repo, store, records, idKey, onProgress = null) {
     if (old.contentHash && record.contentHash && old.contentHash !== record.contentHash) throw new Error(`Immutable catalog record changed in place: ${record[idKey]}`);
   }
   await repo.putMany(store, toWrite, 250, onProgress);
+}
+
+
+async function stageReferenceData(repo, store, records, idKey) {
+  if (!records.length) return;
+  const existing = new Map((await repo.getMany(store, records.map(record => record[idKey]))).map(record => [record[idKey], record]));
+  for (const record of records) {
+    const old = existing.get(record[idKey]);
+    if (old?.origin === 'user' && record.origin === 'base') throw new Error(`Catalog reference-data ID collides with user record ${record[idKey]}`);
+  }
+  await repo.putMany(store, records, 250);
+}
+
+
+async function preserveLocalFamilyOverrides(repo, store, incoming, idKey) {
+  if (!incoming.length) return incoming;
+  const existing = new Map((await repo.getMany(store, incoming.map(record => record[idKey]))).map(record => [record[idKey], record]));
+  return incoming.filter(record => existing.get(record[idKey])?.origin !== 'user');
 }
 
 function rollbackSnapshot(previousVersion, ingredientFamilies, recipeFamilies, packs) {
@@ -85,7 +104,13 @@ export class CatalogUpdater {
       }
       listener?.({ phase: 'validating', completed: 0, total: 1, messageKey: 'catalog.status.validating' });
       const selected = await loadCatalogSelection(manifest, wantedIds, { fetcher: this.fetcher, registry: this.registry });
-      validateCatalogReferences({ ...selected, packs: selectedPacks });
+      validateCatalogReferences({ ...selected, packs: selectedPacks }, this.registry);
+      if (manifest.referenceDataDigest) {
+        const digest = await referenceDataDigest(selected.taxonomies, selected.taxonomyTerms);
+        if (digest !== manifest.referenceDataDigest) throw new Error('Reference-data digest mismatch');
+      }
+      await stageReferenceData(this.repo, 'taxonomies', selected.taxonomies, 'taxonomyId');
+      await stageReferenceData(this.repo, 'taxonomyTerms', selected.taxonomyTerms, 'termId');
       const totalStage = selected.recipeVersions.length + selected.ingredientRevisions.length;
       let staged = 0;
       listener?.({ phase: 'importing', completed: staged, total: Math.max(1, totalStage), messageKey: 'catalog.status.importing' });
@@ -110,11 +135,13 @@ export class CatalogUpdater {
       const baseRecipes = previousRecipeFamilies.filter(record => record.origin === 'base');
       const newRecipeIds = new Set(selected.recipeFamilies.map(record => record.recipeId));
       const retiredRecipes = baseRecipes.filter(record => !newRecipeIds.has(record.recipeId)).map(record => ({ ...record, status: 'retired', updatedAt: now }));
+      const catalogIngredientFamilies = await preserveLocalFamilyOverrides(this.repo, 'ingredients', selected.ingredientFamilies, 'ingredientId');
+      const catalogRecipeFamilies = await preserveLocalFamilyOverrides(this.repo, 'recipes', selected.recipeFamilies, 'recipeId');
       const packs = manifest.packs.map(pack => packRecord(pack, manifest.catalogVersion, targetPackIds.has(pack.packId) ? 'installed' : 'available', now));
       for (const pack of packs) this.registry.assert('catalogPack', pack);
       await this.repo.atomicPut({
-        ingredients: [...retiredIngredients, ...selected.ingredientFamilies],
-        recipes: [...retiredRecipes, ...selected.recipeFamilies],
+        ingredients: [...retiredIngredients, ...catalogIngredientFamilies],
+        recipes: [...retiredRecipes, ...catalogRecipeFamilies],
         catalogPacks: packs
       }, {
         catalogManifest: manifest,
@@ -122,7 +149,9 @@ export class CatalogUpdater {
         activeCatalogVersion: manifest.catalogVersion,
         catalogImportedAt: now,
         catalogRollbackSnapshot: snapshot,
-        catalogUpdateState: { status: 'complete', previousVersion, targetVersion: manifest.catalogVersion, completedAt: now }
+        catalogUpdateState: { status: 'complete', previousVersion, targetVersion: manifest.catalogVersion, completedAt: now },
+        referenceDataVersion: manifest.referenceDataVersion || null,
+        referenceDataDigest: manifest.referenceDataDigest || null
       });
 
       for (const pack of selectedPacks) {
@@ -153,16 +182,20 @@ export class CatalogUpdater {
     const currentRecipes = (await this.repo.getAll('recipes')).filter(item => item.origin === 'base');
     const retiredNewIngredients = currentIngredients.filter(item => !oldIngredientIds.has(item.ingredientId)).map(item => ({ ...item, status: 'retired', updatedAt: now }));
     const retiredNewRecipes = currentRecipes.filter(item => !oldRecipeIds.has(item.recipeId)).map(item => ({ ...item, status: 'retired', updatedAt: now }));
+    const restoredIngredients = await preserveLocalFamilyOverrides(this.repo, 'ingredients', snapshot.ingredients, 'ingredientId');
+    const restoredRecipes = await preserveLocalFamilyOverrides(this.repo, 'recipes', snapshot.recipes, 'recipeId');
     await this.repo.atomicPut({
-      ingredients: [...retiredNewIngredients, ...snapshot.ingredients],
-      recipes: [...retiredNewRecipes, ...snapshot.recipes],
+      ingredients: [...retiredNewIngredients, ...restoredIngredients],
+      recipes: [...retiredNewRecipes, ...restoredRecipes],
       catalogPacks: snapshot.packs || []
     }, {
       catalogManifest: manifest,
       activeCatalogVersion: snapshot.previousVersion,
       catalogImportedAt: now,
       catalogUpdateState: { status: 'rolled_back', previousVersion: activeVersion, targetVersion: snapshot.previousVersion, completedAt: now },
-      catalogRollbackSnapshot: null
+      catalogRollbackSnapshot: null,
+      referenceDataVersion: manifest.referenceDataVersion || null,
+      referenceDataDigest: manifest.referenceDataDigest || null
     });
     await collectStorageMetrics({ repo: this.repo, storage: this.storage }).catch(() => null);
     return { rolledBack: true, catalogVersion: snapshot.previousVersion };
@@ -188,11 +221,13 @@ export class CatalogUpdater {
       const recipeIds = [...new Set(recipeVersions.map(record => record.recipeId))];
       const recipeFamilies = await loadCatalogPart(manifest, 'recipeFamilies', { fetcher: this.fetcher, registry: this.registry, wantedIds: recipeIds });
       const ingredients = await this.repo.getAll('ingredients'); const revisions = await this.repo.getAll('ingredientRevisions');
-      validateCatalogReferences({ ingredientFamilies: ingredients.filter(record => record.origin === 'base'), ingredientRevisions: revisions.filter(record => record.origin === 'base'), recipeFamilies, recipeVersions, packs: [definition] });
+      const taxonomies = await this.repo.getAll('taxonomies'); const taxonomyTerms = await this.repo.getAll('taxonomyTerms');
+      validateCatalogReferences({ taxonomies, taxonomyTerms, ingredientFamilies: ingredients, ingredientRevisions: revisions, recipeFamilies, recipeVersions, packs: [definition] }, this.registry);
       await stageImmutable(this.repo, 'recipeVersions', recipeVersions, 'recipeVersionId', progress => listener?.({ phase: 'importing', completed: progress.completed, total: progress.total, messageKey: 'catalog.status.importing' }));
       const installed = packRecord(definition, catalogVersion, 'installed', new Date().toISOString(), previous);
       this.registry.assert('catalogPack', installed);
-      await this.repo.atomicPut({ recipes: recipeFamilies, catalogPacks: [installed] });
+      const installableFamilies = await preserveLocalFamilyOverrides(this.repo, 'recipes', recipeFamilies, 'recipeId');
+      await this.repo.atomicPut({ recipes: installableFamilies, catalogPacks: [installed] });
       const offline = await cachePackOffline(manifest, definition, recipeVersions, { serviceWorker: this.serviceWorker });
       await this.repo.setMeta(`offlinePack:${catalogVersion}:${packId}`, { ...offline, cachedAt: new Date().toISOString() });
       await collectStorageMetrics({ repo: this.repo, storage: this.storage }).catch(() => null);
