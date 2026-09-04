@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-04T17:59:32.347Z",
-  "candidateAppVersion": "1.0.0-rc.17",
+  "generatedAt": "2026-09-04T18:31:25.983Z",
+  "candidateAppVersion": "1.0.0-rc.18",
   "requiredBrowser": false,
   "browserStatus": "skipped",
   "checks": [
     {
       "id": "app-version-sync",
       "pass": true,
-      "detail": "package=1.0.0-rc.17, runtime=1.0.0-rc.17"
+      "detail": "package=1.0.0-rc.18, runtime=1.0.0-rc.18"
     },
     {
       "id": "revision-pass-e-documented",

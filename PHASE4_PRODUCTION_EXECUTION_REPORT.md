@@ -1,7 +1,7 @@
 # Phase 4 Production Corpus — Missing-Step Execution Bridge Report
 
 Date: **2026-09-04**  
-Candidate: **`1.0.0-rc.17`**  
+Candidate: **`1.0.0-rc.18`**  
 Status: **EXECUTION CONTROL PLANE COMPLETE / SOURCE-BACKED RUN REQUIRED**
 
 ## 1. Objective
@@ -166,3 +166,7 @@ The missing-step **execution machinery** is complete. The missing-step **product
 Recommended first network run: dispatch **Build Production Corpus Working Set** with `target_ingredients=600` and `commit_results=false`. Review the uploaded acquisition/curation/pilot/scale evidence. Only after a clean artifact review should the same result be committed or the workflow be rerun with explicit `commit_results=true`.
 
 After a successful source-backed run, continue with **4P-D — Controlled Scale 500 -> 1500 -> 3000+**; do not start 4P-D from the bundled development baseline.
+
+### rc.18 first-scale candidate feasibility
+
+A later source-backed rc.17 run reduced first-batch review backlog to 2. The remaining candidates exposed the portable generator's hard-coded `0.55-1.8` amount scaling clamp. rc.18 replaces that heuristic with a deterministic feasibility solver over the frozen energy range and production amount bounds, retries alternate canonical triples when needed, and fails before batch processing for unsupported protein/fiber-constrained jobs. Zero-review-backlog remains mandatory.

@@ -216,6 +216,38 @@ function macroReliable(entry, tolerance = 0.15) {
 function energyFor(entries, amounts) {
   return entries.reduce((sum, entry, index) => sum + Number(entry.revision.nutrition?.energyKcal || 0) * Number(amounts[index] || 0) / 100, 0);
 }
+function rangeBound(range, key, fallback) {
+  if (!range || range[key] == null) return fallback;
+  const value=Number(range[key]);
+  return Number.isFinite(value) ? value : fallback;
+}
+function roundAmount(value) { return Math.round(value * 100) / 100; }
+function solvePortableAmounts(entries, baseAmounts, energyRange) {
+  const baseEnergy=energyFor(entries,baseAmounts);
+  if (!(baseEnergy > 0)) return null;
+  const baseTotal=baseAmounts.reduce((sum,value)=>sum+Number(value||0),0);
+  const minEnergy=rangeBound(energyRange,'min',0);
+  const maxEnergy=rangeBound(energyRange,'max',Number.POSITIVE_INFINITY);
+  const lower=Math.max(40/baseTotal,minEnergy>0?minEnergy/baseEnergy:0);
+  const lineUpper=Math.min(...baseAmounts.map(amount=>1500/Number(amount||1)));
+  const upper=Math.min(2500/baseTotal,lineUpper,Number.isFinite(maxEnergy)?maxEnergy/baseEnergy:Number.POSITIVE_INFINITY);
+  if (!Number.isFinite(lower) || !Number.isFinite(upper) || lower > upper) return null;
+  const finiteTargetMax=Number.isFinite(maxEnergy)?maxEnergy:Math.max(minEnergy,baseEnergy);
+  const targetEnergy=minEnergy>0 || Number.isFinite(maxEnergy) ? (minEnergy+finiteTargetMax)/2 : baseEnergy;
+  const preferred=targetEnergy/baseEnergy;
+  const candidates=[Math.min(upper,Math.max(lower,preferred)),lower+(upper-lower)*0.5,lower,upper];
+  for(const factor of candidates){
+    if(!Number.isFinite(factor) || factor<=0) continue;
+    const amounts=baseAmounts.map(amount=>roundAmount(amount*factor));
+    const total=amounts.reduce((sum,value)=>sum+value,0);
+    const energy=energyFor(entries,amounts);
+    if(total<40-1e-6 || total>2500+1e-6) continue;
+    if(amounts.some(amount=>amount<=0 || amount>1500+1e-6)) continue;
+    if(energy<minEnergy-0.05 || energy>maxEnergy+0.05) continue;
+    return {amounts,factor,energyKcal:energy,baseEnergyKcal:baseEnergy};
+  }
+  return null;
+}
 function portablePractical(job) {
   const targets = new Set(job.practicalityTargets || []);
   const quick = targets.has('practical_quick') || job.maxTotalMinutes != null;
@@ -231,6 +263,7 @@ function portablePractical(job) {
 }
 
 export function generatePortableScaleCandidates({ job, intake, corpus }) {
+  if (job.proteinG != null || job.fiberG != null) throw new Error('Portable scale generator requires unconstrained proteinG and fiberG; use a generator matching the job nutrition intent');
   const all = activeReadyEntries(corpus).filter(entry => job.allowedIngredientIds.includes(entry.family.ingredientId) && macroReliable(entry));
   const byGroup = new Map();
   for (const entry of all) {
@@ -249,21 +282,28 @@ export function generatePortableScaleCandidates({ job, intake, corpus }) {
   const cuisine=(job.cuisineFocus||[])[0] || 'cuisine_international';
   const practicalTagsSet=new Set([...practicalTags(practical), ...(job.practicalityTargets||[])]);
   const candidates=[];
+  let infeasibleCombinationAttempts=0;
+  let minScaleFactor=Number.POSITIVE_INFINITY; let maxScaleFactor=0; let minGeneratedEnergy=Number.POSITIVE_INFINITY; let maxGeneratedEnergy=0;
+  const baseAmounts=[150,28,100];
   for(let index=0; index<intake.records.length; index+=1){
     const record=intake.records[index];
-    const a=first[(index*7)%first.length];
-    let b=second[(index*11+3)%second.length];
-    let c=third[(index*13+5)%third.length];
-    const used=new Set([a.family.ingredientId]);
-    if(used.has(b.family.ingredientId)) b=second[(index*11+4)%second.length]; used.add(b.family.ingredientId);
-    if(used.has(c.family.ingredientId)) c=third[(index*13+6)%third.length];
-    const entries=[a,b,c];
-    let amounts=[150,28,100];
-    const currentEnergy=energyFor(entries,amounts);
-    if(currentEnergy>0){
-      const factor=Math.max(0.55,Math.min(1.8,targetEnergy/currentEnergy));
-      amounts=amounts.map(amount=>Math.round(amount*factor*10)/10);
+    let entries=null; let solved=null;
+    const maxAttempts=Math.max(32,Math.min(256,first.length+second.length+third.length));
+    for(let attempt=0; attempt<maxAttempts; attempt+=1){
+      const a=first[(index*7+attempt*3)%first.length];
+      const b=second[(index*11+3+attempt*5)%second.length];
+      const c=third[(index*13+5+attempt*7)%third.length];
+      const ids=[a.family.ingredientId,b.family.ingredientId,c.family.ingredientId];
+      if(new Set(ids).size!==ids.length){infeasibleCombinationAttempts+=1;continue;}
+      const candidateEntries=[a,b,c];
+      const candidateSolution=solvePortableAmounts(candidateEntries,baseAmounts,job.energyKcal);
+      if(!candidateSolution){infeasibleCombinationAttempts+=1;continue;}
+      entries=candidateEntries; solved=candidateSolution; break;
     }
+    if(!entries || !solved) throw new Error(`Portable scale candidate ${record.candidateId} has no feasible ingredient combination for energy ${job.energyKcal.min}-${job.energyKcal.max} kcal under production amount bounds`);
+    const amounts=solved.amounts;
+    minScaleFactor=Math.min(minScaleFactor,solved.factor); maxScaleFactor=Math.max(maxScaleFactor,solved.factor);
+    minGeneratedEnergy=Math.min(minGeneratedEnergy,solved.energyKcal); maxGeneratedEnergy=Math.max(maxGeneratedEnergy,solved.energyKcal);
     const total=amounts.reduce((x,y)=>x+y,0); practical.finalWeightG=total;
     const requiredMeals=unique(job.mealArchetypes||[]);
     const itNames=entries.map(entry=>labels(entry).it); const enNames=entries.map(entry=>labels(entry).en);
@@ -277,9 +317,13 @@ export function generatePortableScaleCandidates({ job, intake, corpus }) {
       ingredientLines:entries.map((entry,i)=>({ingredientId:entry.family.ingredientId,amount:amounts[i],unit:'g',optional:false})),
       practical:{...practical,finalWeightG:total},
       tags:{families:[family],cuisines:[cuisine],flavor:['flavor_neutral'],practical:[...practicalTagsSet].sort(),preparation:['prep_raw'],...(job.requiredTags?.length?{diet:[...job.requiredTags]}:{})},
-      culinaryReview:{status:'approved',notes:'Deterministic focused scale candidate; canonical curated/high ingredients; portable mini-meal structure reviewed by recipe-scale-generator-v1.'}
+      culinaryReview:{status:'approved',notes:'Deterministic focused scale candidate; canonical curated/high ingredients; amounts solved against frozen job energy and production normalization bounds by recipe-scale-generator-v2.'}
     };
     candidates.push(candidate);
   }
-  return {candidates,diagnostics:{eligibleMacroReliableIngredients:all.length,poolSizes:{first:first.length,second:second.length,third:third.length},targetEnergyKcal:targetEnergy}};
+  return {candidates,diagnostics:{
+    generatorVersion:'recipe-scale-generator-v2',eligibleMacroReliableIngredients:all.length,poolSizes:{first:first.length,second:second.length,third:third.length},targetEnergyKcal:targetEnergy,
+    infeasibleCombinationAttempts,minScaleFactor:Number.isFinite(minScaleFactor)?minScaleFactor:null,maxScaleFactor:maxScaleFactor||null,
+    generatedEnergyRangeKcal:{min:Number.isFinite(minGeneratedEnergy)?Math.round(minGeneratedEnergy*100)/100:null,max:maxGeneratedEnergy?Math.round(maxGeneratedEnergy*100)/100:null}
+  }};
 }

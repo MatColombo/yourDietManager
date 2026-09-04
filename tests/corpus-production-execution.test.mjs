@@ -63,3 +63,35 @@ test('portable scale generator can feed a 100-accepted industrialized batch with
   const processed=await processIndustrializedProductionBatch({job,candidates:generated.candidates,corpusPolicy:policy,pipelinePolicy,ingredientFamilies:corpus.ingredientFamilies,ingredientRevisions:corpus.ingredientRevisions,existingRecipeVersions:[],taxonomies:corpus.taxonomies,taxonomyTerms:corpus.taxonomyTerms,registry,productionContext:{contractId:contract.contractId,contractVersion:contract.contractVersion,intakeId:intake.intakeId},generatedAt:'2026-09-04T16:41:00Z'});
   assert.equal(processed.report.batchGate.status,'pass',JSON.stringify(processed.report.batchGate)); assert.equal(processed.result.acceptedCount,100); assert.equal(processed.report.reviewBacklogCount,0);
 });
+
+
+test('portable scale generator solves high-density USDA-style combinations without creating nutrition review backlog',async()=>{
+  const {registry,contract,policy,corpus}=await fixture();
+  const denseGroups=new Map([
+    ['food_group_vegetables',400],['food_group_fruit',400],['food_group_nuts_seeds',700],['food_group_legumes',700],
+    ['food_group_dairy_milk_yogurt',600],['food_group_eggs',600],['food_group_grains',600]
+  ]);
+  for(const revision of corpus.ingredientRevisions){
+    const energy=denseGroups.get(revision.taxonomy.foodGroup); if(!energy) continue;
+    revision.nutrition={energyKcal:energy,proteinG:0,carbsG:0,fatG:energy/9,fiberG:0};
+    revision.source={...revision.source,energyBasis:'atwater_general'};
+  }
+  const job={schemaVersion:1,jobId:'test-scale-dense-001',targetCatalogVersion:'test-production',referenceDataVersion:corpus.manifest.referenceDataVersion,referenceDataDigest:corpus.manifest.referenceDataDigest,seed:'test-scale-dense',pipelineVersion:contract.pipelineVersion,sourceLocale:'en',requiredLocales:['it','en'],targetAcceptedCount:100,candidateCount:125,mealArchetypes:['mini_meal'],energyKcal:{min:150,max:499},proteinG:null,fiberG:null,maxTotalMinutes:null,recipeFamilies:[],cuisineFocus:[],practicalityTargets:['practical_portable'],requiredTags:[],forbiddenTags:[],preferredUnderusedIngredientIds:[],diversityTargets:{minDistinctPrimaryIngredients:15,minDistinctIngredientIds:40,maxPrimaryIngredientFrequency:15,maxIngredientPairFrequency:8},coverageTargets:[{targetId:'meal-mini_meal-coverage',key:'mini_meal',dimension:'meal_archetype',criteria:[{dimension:'meal_archetype',key:'mini_meal'}],desiredAcceptedGain:100},{targetId:'practical-portable-coverage',key:'practical_portable',dimension:'practicality',criteria:[{dimension:'practicality',key:'practical_portable'}],desiredAcceptedGain:100}],allowedIngredientIds:corpus.ingredientFamilies.map(f=>f.ingredientId),orchestration:{runId:'test-run-dense',inputSnapshotId:'test-snapshot-dense',policyId:policy.policyId,policyVersion:policy.policyVersion,plannedPriority:1,targetIds:['meal-mini_meal-coverage','practical-portable-coverage'],reasons:['dense regression']},productionContract:{contractId:contract.contractId,contractVersion:contract.contractVersion,contractDigest:'c'.repeat(64)}}; registry.assert('recipeGenerationJob',job);
+  const intake={schemaVersion:1,intakeId:'scale-test-dense-intake',contractId:contract.contractId,contractVersion:contract.contractVersion,seed:job.seed,referenceDataVersion:job.referenceDataVersion,referenceDataDigest:job.referenceDataDigest,targetCandidateCount:125,records:Array.from({length:125},(_,i)=>({candidateId:`scale-dense-${String(i+1).padStart(3,'0')}`,stratumId:job.jobId,state:'ready_for_generation',referenceScanStatus:'complete',concept:{mealArchetypes:['mini_meal'],focus:['dense'],rationale:'dense regression'},referenceRequests:[],jobId:null,generatedAt:null,outcome:null,audit:[]})),createdAt:'2026-09-04T19:50:00Z',updatedAt:'2026-09-04T19:50:00Z'}; registry.assert('productionCorpusIntake',intake);
+  const generated=generatePortableScaleCandidates({job,intake,corpus});
+  assert.equal(generated.diagnostics.generatorVersion,'recipe-scale-generator-v2');
+  assert.ok(generated.diagnostics.minScaleFactor < 0.55,JSON.stringify(generated.diagnostics));
+  assert.ok(generated.diagnostics.generatedEnergyRangeKcal.min>=150 && generated.diagnostics.generatedEnergyRangeKcal.max<=499,JSON.stringify(generated.diagnostics));
+  const pipelinePolicy=await readJson(path.join(root,'corpus/production/v1-recipe-pipeline-policy.json'));
+  const processed=await processIndustrializedProductionBatch({job,candidates:generated.candidates,corpusPolicy:policy,pipelinePolicy,ingredientFamilies:corpus.ingredientFamilies,ingredientRevisions:corpus.ingredientRevisions,existingRecipeVersions:[],taxonomies:corpus.taxonomies,taxonomyTerms:corpus.taxonomyTerms,registry,productionContext:{contractId:contract.contractId,contractVersion:contract.contractVersion,intakeId:intake.intakeId},generatedAt:'2026-09-04T19:51:00Z'});
+  assert.equal(processed.report.reviewBacklogCount,0,JSON.stringify(processed.report.dispositionCounts));
+  assert.equal(processed.result.acceptedCount,100,JSON.stringify(processed.report.batchGate));
+  assert.equal(processed.report.batchGate.status,'pass',JSON.stringify(processed.report.batchGate));
+});
+
+test('portable scale generator fails before batch execution when job requires unsupported protein or fiber bands',async()=>{
+  const {contract,policy,corpus}=await fixture();
+  const job={schemaVersion:1,jobId:'test-scale-protein-band',targetCatalogVersion:'test-production',referenceDataVersion:corpus.manifest.referenceDataVersion,referenceDataDigest:corpus.manifest.referenceDataDigest,seed:'test-scale-protein',pipelineVersion:contract.pipelineVersion,sourceLocale:'en',requiredLocales:['it','en'],targetAcceptedCount:1,candidateCount:1,mealArchetypes:['mini_meal'],energyKcal:{min:150,max:499},proteinG:{min:20,max:40},fiberG:null,maxTotalMinutes:null,recipeFamilies:[],cuisineFocus:[],practicalityTargets:['practical_portable'],requiredTags:[],forbiddenTags:[],preferredUnderusedIngredientIds:[],diversityTargets:{minDistinctPrimaryIngredients:1,minDistinctIngredientIds:1,maxPrimaryIngredientFrequency:1,maxIngredientPairFrequency:1},coverageTargets:[],allowedIngredientIds:corpus.ingredientFamilies.map(f=>f.ingredientId),orchestration:{runId:'test-run-protein',inputSnapshotId:'test-snapshot-protein',policyId:policy.policyId,policyVersion:policy.policyVersion,plannedPriority:1,targetIds:[],reasons:['unsupported band regression']},productionContract:{contractId:contract.contractId,contractVersion:contract.contractVersion,contractDigest:'d'.repeat(64)}};
+  const intake={records:[{candidateId:'scale-protein-001'}]};
+  assert.throws(()=>generatePortableScaleCandidates({job,intake,corpus}),/requires unconstrained proteinG and fiberG/);
+});

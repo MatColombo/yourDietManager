@@ -35,6 +35,7 @@ const preVerifySummary={schemaVersion:1,batchId:job.jobId,generatedAt:new Date()
 await Promise.all([
   writeJson(path.join(outputRoot,'input-snapshot.json'),snapshot),writeJson(path.join(outputRoot,'orchestration-run.json'),planned.run),writeJson(path.join(outputRoot,'job.json'),job),writeJson(path.join(outputRoot,'intake.json'),updatedIntake),writeJson(path.join(outputRoot,'candidates.json'),generated.candidates),writeJson(path.join(outputRoot,'result.json'),result),writeJson(path.join(outputRoot,'batch-report.json'),report),writeJson(path.join(outputRoot,'pre-verify-summary.json'),preVerifySummary)
 ]);
+console.log(JSON.stringify({phase:'first-scale-pre-verify',...preVerifySummary},null,2));
 await verifyIndustrializedBatchReport({result,report,pipelinePolicy,registry});
 const outputBundle={...corpus,catalogVersion:job.targetCatalogVersion,manifest:{...corpus.manifest,catalogVersion:job.targetCatalogVersion},recipeFamilies:[...corpus.recipeFamilies,...result.families],recipeVersions:[...corpus.recipeVersions,...result.versions]};
 const afterReadiness=await assessProductionReadiness({contract,policy:corpusPolicy,corpus:outputBundle,registry});

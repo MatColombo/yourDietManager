@@ -2,7 +2,7 @@
 
 Local-first PWA implementation through **Phase 8 — Hardening & V1 release gates**.
 
-Candidate version: **`1.0.0-rc.17`**.
+Candidate version: **`1.0.0-rc.18`**.
 
 Phases 1–7 remain fully present: IndexedDB persistence, onboarding/configuration, backup/import, IT/EN, theme engine, indexed catalog/search/packs, versioned catalog authoring, corpus-orchestration tooling, deterministic seeded plan generation, effective-plan UX with history/undo, shopping checklists and preparation horizon.
 
@@ -176,6 +176,11 @@ npm run corpus:pilot-execute -- <clean-foundation-bundle.json> <out-dir> --canon
 npm run corpus:first-scale-batch -- <pilot-corpus-bundle.json> <out-dir> --canonical
 npm run corpus:production-execution
 ```
+
+
+## Phase 4 production execution — rc.18 feasible amount solver
+
+A source-backed rc.17 run reached the first industrialized batch with only `reviewBacklogCount=2`, proving the `focus_only` contract fix removed the broad planner/generator mismatch. The two remaining non-terminal candidates exposed a second generator defect: amount scaling toward the job energy midpoint was artificially clamped to `0.55-1.8`, so dense USDA combinations could remain outside the frozen `150-499 kcal` band. rc.18 replaces that heuristic with a deterministic feasibility solver derived from the actual production constraints: job energy range, `<=1500 g` per ingredient line, and `40-2500 g` total normalized portion. Infeasible combinations are retried deterministically; unsupported protein/fiber bands fail before batch execution. The zero-review-backlog gate remains unchanged.
 
 ## Phase 4 production execution — rc.17 first-scale intent contract
 
