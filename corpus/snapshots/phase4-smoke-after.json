@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "snapshotId": "snapshot-0.4.0-dev-f85fc5945342",
+  "snapshotId": "snapshot-0.4.0-dev-4ed4b6a2ec5d",
   "catalogVersion": "0.4.0-dev",
   "policyId": "corpus-policy-phase4-smoke",
   "policyVersion": "1.0.0",
@@ -221,6 +221,6 @@
     "missingRequiredLocaleFields": 0
   },
   "undercoveredTargetIds": [],
-  "contentDigest": "sha256:f85fc5945342251ad175bd12f2f4c69fd02a95682abaa77aed5c52e958cf0a86",
+  "contentDigest": "sha256:4ed4b6a2ec5df9a497372224df3a9af24c457b4661ea56a5e3d0476138e0c09e",
   "createdAt": "2026-09-03T14:08:00Z"
 }

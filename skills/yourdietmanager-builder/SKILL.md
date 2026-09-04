@@ -33,6 +33,9 @@ Preserve these rules:
 22. Guard every editable route with one dirty-navigation mechanism covering internal links, browser Back/Forward and reload/close. Explicit save/discard clears dirty state; programmatic field changes must mark dirty too.
 23. Every explicit save must produce persistent visible success/failure feedback. Live form validation should prevent ordinary schema/cross-record/reference-data errors from being deferred until persistence.
 24. Treat Pass E final acceptance as a release invariant: browser interaction coverage must exercise required-field/schema parity, disclosure preservation across local rerenders, dirty-navigation reject/accept, persistent save feedback, and plan-independent recipe/ingredient detail/edit. A skipped browser run is never equivalent to passed when the environment marks browser verification required.
+25. Treat Phase 4 production corpus as a contract-bound data pipeline. Before production recipe generation require the versioned ProductionCorpusContract, >=400 current curated/high ingredients, a frozen reference-data snapshot, explicit pilot intake states, and zero unresolved taxonomy/ingredient requests. Production candidates may only enter deterministic processing from `ready_for_generation`; never bypass intake by using development fixtures or provisional semantic strings.
+26. Treat 4P-B ingredient import as review intake, never publication. Use the frozen trusted-source policy (Foundation primary, SR Legacy supplemental, no Branded), require source/input digests and explicit review fields for labels, taxonomy, state, allergens, culinary suitability, duplicates, nutrition and provenance before `curated/high` materialization. A deterministic reviewer may populate those checks only for strict generic, nutrient-complete, rule-mappable USDA records under the execution companion spec; it must reject ambiguous records, never fuzzy-merge concepts or create taxonomy terms, and must preserve reviewer/FDC/source audit data. Never implicitly retire fixtures. Execute the production pilot only in ordered 20-candidate waves; do not start the next wave until the previous one is terminal with zero unresolved references/proposals.
+27. Treat 4P-C scale execution as gated industrial production. Do not create scale job intake or run post-pilot batches while Scale Gate 500 is blocked by unfinished 4P-B data/pilot. For each scale job use a deterministic ProductionCorpusIntake, require a fresh matching snapshot, classify every candidate into explicit accepted/rejected/duplicate/reference-review/recipe-review/nutrition-outlier disposition, keep review findings non-terminal, verify the result/report digest before apply, cap retries, and re-scan/re-plan after each applied batch.
 
 Read `references/invariants.md` and `references/persistence.md` when architecture, storage, identity, catalog updates or migrations are involved. Read `references/reference-data-taxonomy.md` whenever a field can affect matching, filtering, scoring, generation or catalog classification.
 
@@ -51,16 +54,18 @@ Read `references/invariants.md` and `references/persistence.md` when architectur
 
 1. Read `references/recipe-pipeline.md` and `references/reference-data-taxonomy.md`; for corpus-level BUILD/EXPAND/IMPROVE requests also read `references/corpus-orchestrator.md`.
 2. For corpus-level requests, derive the next batch from versioned corpus policy + fresh snapshot instead of asking the user to micro-plan bands/families/cuisines.
-3. Resolve all semantic criteria to canonical registry IDs. If an extensible taxonomy term or ingredient is missing, create/propose and validate that prerequisite before recipe candidates.
-4. Require IngredientRevision records with complete minimum nutrition and provenance.
-5. Record mode/goal/seed, reference-data version/digest and emit a traceable RecipeGenerationJob before candidate generation.
-6. Generate structured ingredient IDs/revision IDs/amounts and canonical taxonomy term IDs first.
-7. Calculate nutrition deterministically.
-8. Validate hard constraints, units, taxonomy references and culinary plausibility.
-9. Deduplicate against accepted RecipeVersion records and enforce diversity targets.
-10. Generate/localize text only after structure is frozen.
-11. Emit reference-data changes first, then Recipe/RecipeVersion JSON shards plus coverage/QA report, rebuild the snapshot, then choose the next batch.
-12. Run a test JSON -> IndexedDB import and query gate before catalog release.
+3. Load the versioned ProductionCorpusContract for production targets and resolve all semantic criteria to canonical registry IDs. If an extensible taxonomy term or ingredient is missing, record it in ProductionCorpusIntake, create/propose and validate that prerequisite before recipe candidates.
+4. For production ingredient prerequisites, load the 4P-B curation policy and `PRODUCTION_CORPUS_EXECUTION_SPEC.md` when executing the missing data steps. Acquire only declared trusted source data, preserve archive/input digests, treat importer mappings as pending suggestions, and require all eight review checks before materializing `curated/high`. Foundation is primary and SR Legacy is supplemental; do not use Branded or fuzzy source merges. Deterministic review is allowed only after import and only inside the bounded generic/rule-mappable criteria; otherwise leave the record for explicit human review.
+5. Require IngredientRevision records with complete minimum nutrition and provenance.
+6. Record mode/goal/seed, reference-data version/digest and production contract ID/version/digest in a traceable RecipeGenerationJob before production candidate generation.
+7. Generate structured ingredient IDs/revision IDs/amounts and canonical taxonomy term IDs first.
+8. Calculate nutrition deterministically.
+9. Validate hard constraints, units, taxonomy references and culinary plausibility.
+10. Deduplicate against accepted RecipeVersion records and enforce diversity targets.
+11. Generate/localize text only after structure is frozen.
+12. For production, process only intake records in `ready_for_generation`; emit reference-data changes first, then Recipe/RecipeVersion JSON shards plus acceptance/coverage/QA report, update intake outcomes, rebuild the snapshot, then choose the next batch.
+13. After the 4P-B pilot, require the 4P-C pipeline policy and Scale Gate 500. Create one deterministic intake per RecipeGenerationJob, reject stale snapshots, preserve explicit non-terminal review dispositions, and apply only digest-verified batches with zero review backlog and passing target/diversity gates. For the rc.13 execution bridge, require the exact sequence official-source acquisition -> bounded review -> materialization -> explicit fixture retirement -> 120/120 pilot -> Scale Gate `ready` -> first 100-accepted industrialized batch; never treat the network workflow itself as a V1 release.
+14. Run a test JSON -> IndexedDB import and query gate before catalog release.
 
 Never generate thousands of recipes in one unreviewed blob. Use adaptive targeted batches selected by coverage/diversity/similarity scoring.
 

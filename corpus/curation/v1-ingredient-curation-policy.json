@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "policyId": "ingredient-curation-v1",
+  "policyVersion": "1.0.0",
+  "productionContract": {
+    "contractId": "ydm-v1-production-corpus",
+    "contractVersion": "1.0.0"
+  },
+  "sourcePriority": [
+    {
+      "sourceId": "usda-foundation-2026-04",
+      "provider": "USDA FoodData Central",
+      "dataset": "Foundation Foods",
+      "release": "2026-04",
+      "role": "primary",
+      "officialPublishedCount": 394,
+      "reference": "https://fdc.nal.usda.gov/download-datasets/",
+      "archive": "https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_foundation_food_json_2026-04-30.zip",
+      "license": "CC0 1.0 Universal",
+      "genericOnly": true
+    },
+    {
+      "sourceId": "usda-sr-legacy-2018-04",
+      "provider": "USDA FoodData Central",
+      "dataset": "SR Legacy",
+      "release": "2018-04",
+      "role": "supplemental",
+      "officialPublishedCount": 7793,
+      "reference": "https://fdc.nal.usda.gov/download-datasets/",
+      "archive": "https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_sr_legacy_food_json_2018-04.zip",
+      "license": "CC0 1.0 Universal",
+      "genericOnly": true
+    }
+  ],
+  "sourceRules": {
+    "forbiddenDatasets": [
+      "Branded"
+    ],
+    "primaryWinsExactConcept": true,
+    "automaticFuzzyMerge": false,
+    "requireSourceRecordId": true,
+    "requireInputDigest": true
+  },
+  "reviewRequirements": {
+    "requireItalianLabel": true,
+    "requireTaxonomyReview": true,
+    "requireStateReview": true,
+    "requireAllergenReview": true,
+    "requireCulinarySuitabilityReview": true,
+    "requireDuplicateReview": true,
+    "allowUnknownState": false,
+    "approvedDecision": "approved"
+  },
+  "nutritionBoundsPer100g": {
+    "energyKcal": {
+      "min": 0,
+      "max": 1000
+    },
+    "proteinG": {
+      "min": 0,
+      "max": 100
+    },
+    "carbsG": {
+      "min": 0,
+      "max": 100
+    },
+    "fatG": {
+      "min": 0,
+      "max": 100
+    },
+    "fiberG": {
+      "min": 0,
+      "max": 100
+    },
+    "sodiumMg": {
+      "min": 0,
+      "max": 100000
+    }
+  },
+  "pilotExecution": {
+    "waveSize": 20,
+    "requireReadinessBeforeWave1": true,
+    "requirePreviousWaveGateBeforeNext": true,
+    "maxUnresolvedReferencesAtWaveClose": 0,
+    "maxUnhandledTaxonomyProposalsAtWaveClose": 0
+  }
+}

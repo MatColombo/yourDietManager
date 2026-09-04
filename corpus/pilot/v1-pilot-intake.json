@@ -1,0 +1,3334 @@
+{
+  "schemaVersion": 1,
+  "intakeId": "pilot-4c63b1f9a9981a075b62",
+  "contractId": "ydm-v1-production-corpus",
+  "contractVersion": "1.0.0",
+  "seed": "phase4-production-pilot-v1",
+  "referenceDataVersion": "1.0.0",
+  "referenceDataDigest": "56f3949bd1c0348f8fe65861ebcda23c2a198805cd2e9f70b00610a328753b52",
+  "targetCandidateCount": 120,
+  "records": [
+    {
+      "candidateId": "pilot-breakfast_quick-001",
+      "stratumId": "breakfast_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "breakfast"
+        ],
+        "focus": [
+          "quick",
+          "simple"
+        ],
+        "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum breakfast_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-breakfast_quick-002",
+      "stratumId": "breakfast_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "breakfast"
+        ],
+        "focus": [
+          "quick",
+          "simple"
+        ],
+        "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum breakfast_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-breakfast_quick-003",
+      "stratumId": "breakfast_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "breakfast"
+        ],
+        "focus": [
+          "quick",
+          "simple"
+        ],
+        "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum breakfast_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-breakfast_quick-004",
+      "stratumId": "breakfast_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "breakfast"
+        ],
+        "focus": [
+          "quick",
+          "simple"
+        ],
+        "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum breakfast_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-breakfast_quick-005",
+      "stratumId": "breakfast_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "breakfast"
+        ],
+        "focus": [
+          "quick",
+          "simple"
+        ],
+        "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum breakfast_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-breakfast_quick-006",
+      "stratumId": "breakfast_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "breakfast"
+        ],
+        "focus": [
+          "quick",
+          "simple"
+        ],
+        "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum breakfast_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-breakfast_quick-007",
+      "stratumId": "breakfast_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "breakfast"
+        ],
+        "focus": [
+          "quick",
+          "simple"
+        ],
+        "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum breakfast_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-breakfast_quick-008",
+      "stratumId": "breakfast_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "breakfast"
+        ],
+        "focus": [
+          "quick",
+          "simple"
+        ],
+        "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum breakfast_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-breakfast_quick-009",
+      "stratumId": "breakfast_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "breakfast"
+        ],
+        "focus": [
+          "quick",
+          "simple"
+        ],
+        "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum breakfast_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-breakfast_quick-010",
+      "stratumId": "breakfast_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "breakfast"
+        ],
+        "focus": [
+          "quick",
+          "simple"
+        ],
+        "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum breakfast_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-breakfast_protein-001",
+      "stratumId": "breakfast_protein",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "breakfast"
+        ],
+        "focus": [
+          "protein",
+          "savory_and_sweet"
+        ],
+        "rationale": "Exercise breakfast protein diversity without relying on one ingredient family."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum breakfast_protein"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-breakfast_protein-002",
+      "stratumId": "breakfast_protein",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "breakfast"
+        ],
+        "focus": [
+          "protein",
+          "savory_and_sweet"
+        ],
+        "rationale": "Exercise breakfast protein diversity without relying on one ingredient family."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum breakfast_protein"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-breakfast_protein-003",
+      "stratumId": "breakfast_protein",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "breakfast"
+        ],
+        "focus": [
+          "protein",
+          "savory_and_sweet"
+        ],
+        "rationale": "Exercise breakfast protein diversity without relying on one ingredient family."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum breakfast_protein"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-breakfast_protein-004",
+      "stratumId": "breakfast_protein",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "breakfast"
+        ],
+        "focus": [
+          "protein",
+          "savory_and_sweet"
+        ],
+        "rationale": "Exercise breakfast protein diversity without relying on one ingredient family."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum breakfast_protein"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-breakfast_protein-005",
+      "stratumId": "breakfast_protein",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "breakfast"
+        ],
+        "focus": [
+          "protein",
+          "savory_and_sweet"
+        ],
+        "rationale": "Exercise breakfast protein diversity without relying on one ingredient family."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum breakfast_protein"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-breakfast_protein-006",
+      "stratumId": "breakfast_protein",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "breakfast"
+        ],
+        "focus": [
+          "protein",
+          "savory_and_sweet"
+        ],
+        "rationale": "Exercise breakfast protein diversity without relying on one ingredient family."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum breakfast_protein"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-breakfast_protein-007",
+      "stratumId": "breakfast_protein",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "breakfast"
+        ],
+        "focus": [
+          "protein",
+          "savory_and_sweet"
+        ],
+        "rationale": "Exercise breakfast protein diversity without relying on one ingredient family."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum breakfast_protein"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-breakfast_protein-008",
+      "stratumId": "breakfast_protein",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "breakfast"
+        ],
+        "focus": [
+          "protein",
+          "savory_and_sweet"
+        ],
+        "rationale": "Exercise breakfast protein diversity without relying on one ingredient family."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum breakfast_protein"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-breakfast_protein-009",
+      "stratumId": "breakfast_protein",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "breakfast"
+        ],
+        "focus": [
+          "protein",
+          "savory_and_sweet"
+        ],
+        "rationale": "Exercise breakfast protein diversity without relying on one ingredient family."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum breakfast_protein"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-breakfast_protein-010",
+      "stratumId": "breakfast_protein",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "breakfast"
+        ],
+        "focus": [
+          "protein",
+          "savory_and_sweet"
+        ],
+        "rationale": "Exercise breakfast protein diversity without relying on one ingredient family."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum breakfast_protein"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-snack_portable-001",
+      "stratumId": "snack_portable",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "portable",
+          "mini_meal"
+        ],
+        "rationale": "Exercise portable/cold snack semantics and compact servings."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum snack_portable"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-snack_portable-002",
+      "stratumId": "snack_portable",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "portable",
+          "mini_meal"
+        ],
+        "rationale": "Exercise portable/cold snack semantics and compact servings."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum snack_portable"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-snack_portable-003",
+      "stratumId": "snack_portable",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "portable",
+          "mini_meal"
+        ],
+        "rationale": "Exercise portable/cold snack semantics and compact servings."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum snack_portable"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-snack_portable-004",
+      "stratumId": "snack_portable",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "portable",
+          "mini_meal"
+        ],
+        "rationale": "Exercise portable/cold snack semantics and compact servings."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum snack_portable"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-snack_portable-005",
+      "stratumId": "snack_portable",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "portable",
+          "mini_meal"
+        ],
+        "rationale": "Exercise portable/cold snack semantics and compact servings."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum snack_portable"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-snack_portable-006",
+      "stratumId": "snack_portable",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "portable",
+          "mini_meal"
+        ],
+        "rationale": "Exercise portable/cold snack semantics and compact servings."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum snack_portable"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-snack_portable-007",
+      "stratumId": "snack_portable",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "portable",
+          "mini_meal"
+        ],
+        "rationale": "Exercise portable/cold snack semantics and compact servings."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum snack_portable"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-snack_portable-008",
+      "stratumId": "snack_portable",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "portable",
+          "mini_meal"
+        ],
+        "rationale": "Exercise portable/cold snack semantics and compact servings."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum snack_portable"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-snack_portable-009",
+      "stratumId": "snack_portable",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "portable",
+          "mini_meal"
+        ],
+        "rationale": "Exercise portable/cold snack semantics and compact servings."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum snack_portable"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-snack_portable-010",
+      "stratumId": "snack_portable",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "portable",
+          "mini_meal"
+        ],
+        "rationale": "Exercise portable/cold snack semantics and compact servings."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum snack_portable"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-lunch_quick-001",
+      "stratumId": "lunch_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch"
+        ],
+        "focus": [
+          "quick",
+          "balanced"
+        ],
+        "rationale": "Exercise fast lunch coverage across several ingredient groups."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum lunch_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-lunch_quick-002",
+      "stratumId": "lunch_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch"
+        ],
+        "focus": [
+          "quick",
+          "balanced"
+        ],
+        "rationale": "Exercise fast lunch coverage across several ingredient groups."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum lunch_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-lunch_quick-003",
+      "stratumId": "lunch_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch"
+        ],
+        "focus": [
+          "quick",
+          "balanced"
+        ],
+        "rationale": "Exercise fast lunch coverage across several ingredient groups."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum lunch_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-lunch_quick-004",
+      "stratumId": "lunch_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch"
+        ],
+        "focus": [
+          "quick",
+          "balanced"
+        ],
+        "rationale": "Exercise fast lunch coverage across several ingredient groups."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum lunch_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-lunch_quick-005",
+      "stratumId": "lunch_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch"
+        ],
+        "focus": [
+          "quick",
+          "balanced"
+        ],
+        "rationale": "Exercise fast lunch coverage across several ingredient groups."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum lunch_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-lunch_quick-006",
+      "stratumId": "lunch_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch"
+        ],
+        "focus": [
+          "quick",
+          "balanced"
+        ],
+        "rationale": "Exercise fast lunch coverage across several ingredient groups."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum lunch_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-lunch_quick-007",
+      "stratumId": "lunch_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch"
+        ],
+        "focus": [
+          "quick",
+          "balanced"
+        ],
+        "rationale": "Exercise fast lunch coverage across several ingredient groups."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum lunch_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-lunch_quick-008",
+      "stratumId": "lunch_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch"
+        ],
+        "focus": [
+          "quick",
+          "balanced"
+        ],
+        "rationale": "Exercise fast lunch coverage across several ingredient groups."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum lunch_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-lunch_quick-009",
+      "stratumId": "lunch_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch"
+        ],
+        "focus": [
+          "quick",
+          "balanced"
+        ],
+        "rationale": "Exercise fast lunch coverage across several ingredient groups."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum lunch_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-lunch_quick-010",
+      "stratumId": "lunch_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch"
+        ],
+        "focus": [
+          "quick",
+          "balanced"
+        ],
+        "rationale": "Exercise fast lunch coverage across several ingredient groups."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum lunch_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-lunch_standard-001",
+      "stratumId": "lunch_standard",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch"
+        ],
+        "focus": [
+          "standard_prep",
+          "balanced"
+        ],
+        "rationale": "Exercise ordinary lunch recipes with broader preparation methods."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum lunch_standard"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-lunch_standard-002",
+      "stratumId": "lunch_standard",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch"
+        ],
+        "focus": [
+          "standard_prep",
+          "balanced"
+        ],
+        "rationale": "Exercise ordinary lunch recipes with broader preparation methods."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum lunch_standard"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-lunch_standard-003",
+      "stratumId": "lunch_standard",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch"
+        ],
+        "focus": [
+          "standard_prep",
+          "balanced"
+        ],
+        "rationale": "Exercise ordinary lunch recipes with broader preparation methods."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum lunch_standard"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-lunch_standard-004",
+      "stratumId": "lunch_standard",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch"
+        ],
+        "focus": [
+          "standard_prep",
+          "balanced"
+        ],
+        "rationale": "Exercise ordinary lunch recipes with broader preparation methods."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum lunch_standard"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-lunch_standard-005",
+      "stratumId": "lunch_standard",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch"
+        ],
+        "focus": [
+          "standard_prep",
+          "balanced"
+        ],
+        "rationale": "Exercise ordinary lunch recipes with broader preparation methods."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum lunch_standard"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-lunch_standard-006",
+      "stratumId": "lunch_standard",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch"
+        ],
+        "focus": [
+          "standard_prep",
+          "balanced"
+        ],
+        "rationale": "Exercise ordinary lunch recipes with broader preparation methods."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum lunch_standard"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-lunch_standard-007",
+      "stratumId": "lunch_standard",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch"
+        ],
+        "focus": [
+          "standard_prep",
+          "balanced"
+        ],
+        "rationale": "Exercise ordinary lunch recipes with broader preparation methods."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum lunch_standard"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-lunch_standard-008",
+      "stratumId": "lunch_standard",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch"
+        ],
+        "focus": [
+          "standard_prep",
+          "balanced"
+        ],
+        "rationale": "Exercise ordinary lunch recipes with broader preparation methods."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum lunch_standard"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-lunch_standard-009",
+      "stratumId": "lunch_standard",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch"
+        ],
+        "focus": [
+          "standard_prep",
+          "balanced"
+        ],
+        "rationale": "Exercise ordinary lunch recipes with broader preparation methods."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum lunch_standard"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-lunch_standard-010",
+      "stratumId": "lunch_standard",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch"
+        ],
+        "focus": [
+          "standard_prep",
+          "balanced"
+        ],
+        "rationale": "Exercise ordinary lunch recipes with broader preparation methods."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum lunch_standard"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-dinner_quick-001",
+      "stratumId": "dinner_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "dinner"
+        ],
+        "focus": [
+          "quick",
+          "balanced"
+        ],
+        "rationale": "Exercise quick dinner practicality and nutrition bands."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum dinner_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-dinner_quick-002",
+      "stratumId": "dinner_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "dinner"
+        ],
+        "focus": [
+          "quick",
+          "balanced"
+        ],
+        "rationale": "Exercise quick dinner practicality and nutrition bands."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum dinner_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-dinner_quick-003",
+      "stratumId": "dinner_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "dinner"
+        ],
+        "focus": [
+          "quick",
+          "balanced"
+        ],
+        "rationale": "Exercise quick dinner practicality and nutrition bands."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum dinner_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-dinner_quick-004",
+      "stratumId": "dinner_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "dinner"
+        ],
+        "focus": [
+          "quick",
+          "balanced"
+        ],
+        "rationale": "Exercise quick dinner practicality and nutrition bands."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum dinner_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-dinner_quick-005",
+      "stratumId": "dinner_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "dinner"
+        ],
+        "focus": [
+          "quick",
+          "balanced"
+        ],
+        "rationale": "Exercise quick dinner practicality and nutrition bands."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum dinner_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-dinner_quick-006",
+      "stratumId": "dinner_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "dinner"
+        ],
+        "focus": [
+          "quick",
+          "balanced"
+        ],
+        "rationale": "Exercise quick dinner practicality and nutrition bands."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum dinner_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-dinner_quick-007",
+      "stratumId": "dinner_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "dinner"
+        ],
+        "focus": [
+          "quick",
+          "balanced"
+        ],
+        "rationale": "Exercise quick dinner practicality and nutrition bands."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum dinner_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-dinner_quick-008",
+      "stratumId": "dinner_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "dinner"
+        ],
+        "focus": [
+          "quick",
+          "balanced"
+        ],
+        "rationale": "Exercise quick dinner practicality and nutrition bands."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum dinner_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-dinner_quick-009",
+      "stratumId": "dinner_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "dinner"
+        ],
+        "focus": [
+          "quick",
+          "balanced"
+        ],
+        "rationale": "Exercise quick dinner practicality and nutrition bands."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum dinner_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-dinner_quick-010",
+      "stratumId": "dinner_quick",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "dinner"
+        ],
+        "focus": [
+          "quick",
+          "balanced"
+        ],
+        "rationale": "Exercise quick dinner practicality and nutrition bands."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum dinner_quick"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-dinner_standard-001",
+      "stratumId": "dinner_standard",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "dinner"
+        ],
+        "focus": [
+          "standard_prep",
+          "balanced"
+        ],
+        "rationale": "Exercise standard dinner structure and more varied techniques."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum dinner_standard"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-dinner_standard-002",
+      "stratumId": "dinner_standard",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "dinner"
+        ],
+        "focus": [
+          "standard_prep",
+          "balanced"
+        ],
+        "rationale": "Exercise standard dinner structure and more varied techniques."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum dinner_standard"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-dinner_standard-003",
+      "stratumId": "dinner_standard",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "dinner"
+        ],
+        "focus": [
+          "standard_prep",
+          "balanced"
+        ],
+        "rationale": "Exercise standard dinner structure and more varied techniques."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum dinner_standard"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-dinner_standard-004",
+      "stratumId": "dinner_standard",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "dinner"
+        ],
+        "focus": [
+          "standard_prep",
+          "balanced"
+        ],
+        "rationale": "Exercise standard dinner structure and more varied techniques."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum dinner_standard"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-dinner_standard-005",
+      "stratumId": "dinner_standard",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "dinner"
+        ],
+        "focus": [
+          "standard_prep",
+          "balanced"
+        ],
+        "rationale": "Exercise standard dinner structure and more varied techniques."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum dinner_standard"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-dinner_standard-006",
+      "stratumId": "dinner_standard",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "dinner"
+        ],
+        "focus": [
+          "standard_prep",
+          "balanced"
+        ],
+        "rationale": "Exercise standard dinner structure and more varied techniques."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum dinner_standard"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-dinner_standard-007",
+      "stratumId": "dinner_standard",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "dinner"
+        ],
+        "focus": [
+          "standard_prep",
+          "balanced"
+        ],
+        "rationale": "Exercise standard dinner structure and more varied techniques."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum dinner_standard"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-dinner_standard-008",
+      "stratumId": "dinner_standard",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "dinner"
+        ],
+        "focus": [
+          "standard_prep",
+          "balanced"
+        ],
+        "rationale": "Exercise standard dinner structure and more varied techniques."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum dinner_standard"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-dinner_standard-009",
+      "stratumId": "dinner_standard",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "dinner"
+        ],
+        "focus": [
+          "standard_prep",
+          "balanced"
+        ],
+        "rationale": "Exercise standard dinner structure and more varied techniques."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum dinner_standard"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-dinner_standard-010",
+      "stratumId": "dinner_standard",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "dinner"
+        ],
+        "focus": [
+          "standard_prep",
+          "balanced"
+        ],
+        "rationale": "Exercise standard dinner structure and more varied techniques."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum dinner_standard"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-vegetarian_legume-001",
+      "stratumId": "vegetarian_legume",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "vegetarian",
+          "legume_heavy"
+        ],
+        "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum vegetarian_legume"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-vegetarian_legume-002",
+      "stratumId": "vegetarian_legume",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "vegetarian",
+          "legume_heavy"
+        ],
+        "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum vegetarian_legume"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-vegetarian_legume-003",
+      "stratumId": "vegetarian_legume",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "vegetarian",
+          "legume_heavy"
+        ],
+        "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum vegetarian_legume"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-vegetarian_legume-004",
+      "stratumId": "vegetarian_legume",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "vegetarian",
+          "legume_heavy"
+        ],
+        "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum vegetarian_legume"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-vegetarian_legume-005",
+      "stratumId": "vegetarian_legume",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "vegetarian",
+          "legume_heavy"
+        ],
+        "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum vegetarian_legume"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-vegetarian_legume-006",
+      "stratumId": "vegetarian_legume",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "vegetarian",
+          "legume_heavy"
+        ],
+        "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum vegetarian_legume"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-vegetarian_legume-007",
+      "stratumId": "vegetarian_legume",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "vegetarian",
+          "legume_heavy"
+        ],
+        "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum vegetarian_legume"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-vegetarian_legume-008",
+      "stratumId": "vegetarian_legume",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "vegetarian",
+          "legume_heavy"
+        ],
+        "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum vegetarian_legume"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-vegetarian_legume-009",
+      "stratumId": "vegetarian_legume",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "vegetarian",
+          "legume_heavy"
+        ],
+        "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum vegetarian_legume"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-vegetarian_legume-010",
+      "stratumId": "vegetarian_legume",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "vegetarian",
+          "legume_heavy"
+        ],
+        "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum vegetarian_legume"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-fish_seafood-001",
+      "stratumId": "fish_seafood",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "fish",
+          "seafood"
+        ],
+        "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum fish_seafood"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-fish_seafood-002",
+      "stratumId": "fish_seafood",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "fish",
+          "seafood"
+        ],
+        "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum fish_seafood"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-fish_seafood-003",
+      "stratumId": "fish_seafood",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "fish",
+          "seafood"
+        ],
+        "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum fish_seafood"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-fish_seafood-004",
+      "stratumId": "fish_seafood",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "fish",
+          "seafood"
+        ],
+        "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum fish_seafood"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-fish_seafood-005",
+      "stratumId": "fish_seafood",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "fish",
+          "seafood"
+        ],
+        "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum fish_seafood"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-fish_seafood-006",
+      "stratumId": "fish_seafood",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "fish",
+          "seafood"
+        ],
+        "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum fish_seafood"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-fish_seafood-007",
+      "stratumId": "fish_seafood",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "fish",
+          "seafood"
+        ],
+        "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum fish_seafood"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-fish_seafood-008",
+      "stratumId": "fish_seafood",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "fish",
+          "seafood"
+        ],
+        "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum fish_seafood"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-fish_seafood-009",
+      "stratumId": "fish_seafood",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "fish",
+          "seafood"
+        ],
+        "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum fish_seafood"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-fish_seafood-010",
+      "stratumId": "fish_seafood",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "fish",
+          "seafood"
+        ],
+        "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum fish_seafood"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-soups_stews-001",
+      "stratumId": "soups_stews",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "soup",
+          "stew",
+          "batch"
+        ],
+        "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum soups_stews"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-soups_stews-002",
+      "stratumId": "soups_stews",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "soup",
+          "stew",
+          "batch"
+        ],
+        "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum soups_stews"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-soups_stews-003",
+      "stratumId": "soups_stews",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "soup",
+          "stew",
+          "batch"
+        ],
+        "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum soups_stews"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-soups_stews-004",
+      "stratumId": "soups_stews",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "soup",
+          "stew",
+          "batch"
+        ],
+        "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum soups_stews"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-soups_stews-005",
+      "stratumId": "soups_stews",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "soup",
+          "stew",
+          "batch"
+        ],
+        "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum soups_stews"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-soups_stews-006",
+      "stratumId": "soups_stews",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "soup",
+          "stew",
+          "batch"
+        ],
+        "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum soups_stews"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-soups_stews-007",
+      "stratumId": "soups_stews",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "soup",
+          "stew",
+          "batch"
+        ],
+        "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum soups_stews"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-soups_stews-008",
+      "stratumId": "soups_stews",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "soup",
+          "stew",
+          "batch"
+        ],
+        "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum soups_stews"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-soups_stews-009",
+      "stratumId": "soups_stews",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "soup",
+          "stew",
+          "batch"
+        ],
+        "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum soups_stews"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-soups_stews-010",
+      "stratumId": "soups_stews",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "soup",
+          "stew",
+          "batch"
+        ],
+        "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum soups_stews"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-cold_portable-001",
+      "stratumId": "cold_portable",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "snack"
+        ],
+        "focus": [
+          "cold",
+          "portable",
+          "meal_prep"
+        ],
+        "rationale": "Stress cold suitability, storage and portable meal constraints."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum cold_portable"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-cold_portable-002",
+      "stratumId": "cold_portable",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "snack"
+        ],
+        "focus": [
+          "cold",
+          "portable",
+          "meal_prep"
+        ],
+        "rationale": "Stress cold suitability, storage and portable meal constraints."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum cold_portable"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-cold_portable-003",
+      "stratumId": "cold_portable",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "snack"
+        ],
+        "focus": [
+          "cold",
+          "portable",
+          "meal_prep"
+        ],
+        "rationale": "Stress cold suitability, storage and portable meal constraints."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum cold_portable"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-cold_portable-004",
+      "stratumId": "cold_portable",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "snack"
+        ],
+        "focus": [
+          "cold",
+          "portable",
+          "meal_prep"
+        ],
+        "rationale": "Stress cold suitability, storage and portable meal constraints."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum cold_portable"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-cold_portable-005",
+      "stratumId": "cold_portable",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "snack"
+        ],
+        "focus": [
+          "cold",
+          "portable",
+          "meal_prep"
+        ],
+        "rationale": "Stress cold suitability, storage and portable meal constraints."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum cold_portable"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-cold_portable-006",
+      "stratumId": "cold_portable",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "snack"
+        ],
+        "focus": [
+          "cold",
+          "portable",
+          "meal_prep"
+        ],
+        "rationale": "Stress cold suitability, storage and portable meal constraints."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum cold_portable"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-cold_portable-007",
+      "stratumId": "cold_portable",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "snack"
+        ],
+        "focus": [
+          "cold",
+          "portable",
+          "meal_prep"
+        ],
+        "rationale": "Stress cold suitability, storage and portable meal constraints."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum cold_portable"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-cold_portable-008",
+      "stratumId": "cold_portable",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "snack"
+        ],
+        "focus": [
+          "cold",
+          "portable",
+          "meal_prep"
+        ],
+        "rationale": "Stress cold suitability, storage and portable meal constraints."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum cold_portable"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-cold_portable-009",
+      "stratumId": "cold_portable",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "snack"
+        ],
+        "focus": [
+          "cold",
+          "portable",
+          "meal_prep"
+        ],
+        "rationale": "Stress cold suitability, storage and portable meal constraints."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum cold_portable"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-cold_portable-010",
+      "stratumId": "cold_portable",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "snack"
+        ],
+        "focus": [
+          "cold",
+          "portable",
+          "meal_prep"
+        ],
+        "rationale": "Stress cold suitability, storage and portable meal constraints."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum cold_portable"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-components_sides-001",
+      "stratumId": "components_sides",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "component",
+          "side",
+          "simple"
+        ],
+        "rationale": "Exercise reusable simple components and side-dish recipe families."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum components_sides"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-components_sides-002",
+      "stratumId": "components_sides",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "component",
+          "side",
+          "simple"
+        ],
+        "rationale": "Exercise reusable simple components and side-dish recipe families."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum components_sides"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-components_sides-003",
+      "stratumId": "components_sides",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "component",
+          "side",
+          "simple"
+        ],
+        "rationale": "Exercise reusable simple components and side-dish recipe families."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum components_sides"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-components_sides-004",
+      "stratumId": "components_sides",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "component",
+          "side",
+          "simple"
+        ],
+        "rationale": "Exercise reusable simple components and side-dish recipe families."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum components_sides"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-components_sides-005",
+      "stratumId": "components_sides",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "component",
+          "side",
+          "simple"
+        ],
+        "rationale": "Exercise reusable simple components and side-dish recipe families."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum components_sides"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-components_sides-006",
+      "stratumId": "components_sides",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "component",
+          "side",
+          "simple"
+        ],
+        "rationale": "Exercise reusable simple components and side-dish recipe families."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum components_sides"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-components_sides-007",
+      "stratumId": "components_sides",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "component",
+          "side",
+          "simple"
+        ],
+        "rationale": "Exercise reusable simple components and side-dish recipe families."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum components_sides"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-components_sides-008",
+      "stratumId": "components_sides",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "component",
+          "side",
+          "simple"
+        ],
+        "rationale": "Exercise reusable simple components and side-dish recipe families."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum components_sides"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-components_sides-009",
+      "stratumId": "components_sides",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "component",
+          "side",
+          "simple"
+        ],
+        "rationale": "Exercise reusable simple components and side-dish recipe families."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum components_sides"
+        }
+      ]
+    },
+    {
+      "candidateId": "pilot-components_sides-010",
+      "stratumId": "components_sides",
+      "state": "discovered",
+      "referenceScanStatus": "pending",
+      "concept": {
+        "mealArchetypes": [
+          "lunch",
+          "dinner"
+        ],
+        "focus": [
+          "component",
+          "side",
+          "simple"
+        ],
+        "rationale": "Exercise reusable simple components and side-dish recipe families."
+      },
+      "referenceRequests": [],
+      "jobId": null,
+      "generatedAt": null,
+      "outcome": null,
+      "audit": [
+        {
+          "at": "2026-09-04T13:44:21.789Z",
+          "action": "pilot_slot_created",
+          "detail": "Created from production contract stratum components_sides"
+        }
+      ]
+    }
+  ],
+  "createdAt": "2026-09-04T13:44:21.789Z",
+  "updatedAt": "2026-09-04T13:44:21.789Z"
+}

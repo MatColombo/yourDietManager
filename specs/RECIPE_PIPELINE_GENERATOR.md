@@ -330,3 +330,20 @@ Ogni batch deve riportare separatamente:
 - `referenceDataDigestBefore/After`.
 
 La crescita della tassonomia e quindi parte auditabile della pipeline, non un effetto collaterale nascosto nel testo delle ricette.
+
+
+## 11. Production intake gate (4P-A)
+
+Production candidate processing uses `scripts/corpus/process-production-batch.mjs`, not the generic development processor.
+
+Before invoking `processCandidateBatch` it requires:
+
+- matching ProductionCorpusContract;
+- matching intake/job/catalog referenceDataVersion + referenceDataDigest;
+- matching production pipelineVersion;
+- a ledger record for every candidateId;
+- `referenceScanStatus = complete`;
+- `state = ready_for_generation`;
+- every taxonomy/ingredient request resolved to a canonical ID.
+
+A candidate failing these conditions is rejected before nutrition or recipe acceptance logic runs. Accepted versions retain `candidateId`, `intakeId`, `productionContractId` and `productionContractVersion` in generation provenance.

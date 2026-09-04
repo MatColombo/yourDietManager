@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/production-recipe-review-decisions.schema.json",
+  "title": "ProductionRecipeReviewDecisions",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "batchReportId", "batchResultDigest", "reviewer", "reviewedAt", "decisions"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "batchReportId": { "type": "string", "minLength": 3 },
+    "batchResultDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "reviewer": { "type": "string", "minLength": 1 },
+    "reviewedAt": { "type": "string", "format": "date-time" },
+    "decisions": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["candidateId", "action", "notes"],
+        "properties": {
+          "candidateId": { "type": "string", "minLength": 1 },
+          "action": { "enum": ["retry", "reject"] },
+          "notes": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

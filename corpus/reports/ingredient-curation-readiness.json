@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "policyId": "ingredient-curation-v1",
+  "policyVersion": "1.0.0",
+  "contractId": "ydm-v1-production-corpus",
+  "contractVersion": "1.0.0",
+  "generatedAt": "2026-09-04T14:12:54.395Z",
+  "sourcePlan": {
+    "primaryPublishedCount": 394,
+    "contractMinimum": 400,
+    "minimumSupplementalFromPublishedCount": 6,
+    "note": "The primary published inventory alone cannot satisfy the 400-ingredient gate; at least 6 supplemental approved concepts are required before nutrient-completeness and duplicate filtering."
+  },
+  "batch": {
+    "present": false,
+    "batchId": null,
+    "sourceId": null,
+    "inputFoodCount": 0,
+    "eligibleFoodCount": 0
+  },
+  "counts": {
+    "pending": 0,
+    "approved": 0,
+    "rejected": 0,
+    "materializable": 0,
+    "blockedApproved": 0
+  },
+  "issueCounts": {},
+  "checks": [
+    {
+      "id": "reference-data-valid",
+      "status": "pass",
+      "detail": "taxonomies=7, terms=113"
+    },
+    {
+      "id": "primary-source-capacity",
+      "status": "warning",
+      "detail": "The primary published inventory alone cannot satisfy the 400-ingredient gate; at least 6 supplemental approved concepts are required before nutrient-completeness and duplicate filtering."
+    },
+    {
+      "id": "curation-batch-present",
+      "status": "blocked",
+      "detail": "No trusted source curation batch is vendored; acquire/import the official source before editorial approval."
+    },
+    {
+      "id": "ingredient-foundation-count",
+      "status": "blocked",
+      "detail": "projectedReady=0, required>=400"
+    }
+  ],
+  "readyToMaterialize": false,
+  "readyForPilotFoundation": false,
+  "blockers": [
+    "curation-batch-present: No trusted source curation batch is vendored; acquire/import the official source before editorial approval.",
+    "ingredient-foundation-count: projectedReady=0, required>=400"
+  ]
+}

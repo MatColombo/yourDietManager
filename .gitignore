@@ -1,0 +1,5 @@
+# Runtime-only FoodData Central source archives and extracted bulk files.
+corpus/sources/cache/
+
+# Network-enabled production execution scratch space.
+corpus/staging/runtime/

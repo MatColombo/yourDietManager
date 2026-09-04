@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "pass": true,
+  "currentScaleGateStatus": "blocked",
+  "checks": [
+    {
+      "id": "pipeline-policy",
+      "status": "pass",
+      "detail": "recipe-production-pipeline-v1@1.0.0"
+    },
+    {
+      "id": "scale-gate-schema",
+      "status": "pass",
+      "detail": "scale-500 current=blocked"
+    },
+    {
+      "id": "spec-policy",
+      "status": "pass",
+      "detail": "present"
+    },
+    {
+      "id": "spec-scale-500",
+      "status": "pass",
+      "detail": "present"
+    },
+    {
+      "id": "spec-no-bypass",
+      "status": "pass",
+      "detail": "present"
+    },
+    {
+      "id": "protocol-runner",
+      "status": "pass",
+      "detail": "present"
+    },
+    {
+      "id": "protocol-review",
+      "status": "pass",
+      "detail": "present"
+    },
+    {
+      "id": "protocol-apply",
+      "status": "pass",
+      "detail": "present"
+    }
+  ],
+  "blockers": [],
+  "generatedAt": "2026-09-04T15:42:07.711Z"
+}

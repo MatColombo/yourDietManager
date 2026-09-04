@@ -1,0 +1,13 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://yourdietmanager.local/schemas/pilot-wave-report.schema.json",
+  "title":"PilotWaveReport",
+  "type":"object","additionalProperties":false,
+  "required":["schemaVersion","waveId","waveNumber","intakeId","generatedAt","state","candidateIds","metrics","gate","blockers"],
+  "properties":{
+    "schemaVersion":{"const":1},"waveId":{"type":"string","minLength":1},"waveNumber":{"type":"integer","minimum":1},"intakeId":{"type":"string","minLength":1},"generatedAt":{"type":"string","format":"date-time"},"state":{"enum":["blocked","ready","in_progress","closed"]},
+    "candidateIds":{"type":"array","uniqueItems":true,"items":{"type":"string"}},
+    "metrics":{"type":"object","additionalProperties":false,"required":["records","pendingScan","needsReferenceReview","needsIngredientReview","readyForGeneration","generated","accepted","rejected","unresolvedRequests","unhandledTaxonomyProposals"],"properties":{"records":{"type":"integer","minimum":0},"pendingScan":{"type":"integer","minimum":0},"needsReferenceReview":{"type":"integer","minimum":0},"needsIngredientReview":{"type":"integer","minimum":0},"readyForGeneration":{"type":"integer","minimum":0},"generated":{"type":"integer","minimum":0},"accepted":{"type":"integer","minimum":0},"rejected":{"type":"integer","minimum":0},"unresolvedRequests":{"type":"integer","minimum":0},"unhandledTaxonomyProposals":{"type":"integer","minimum":0}}},
+    "gate":{"enum":["blocked","pass","review_required"]},"blockers":{"type":"array","items":{"type":"string"}}
+  }
+}

@@ -1,14 +1,24 @@
 # USDA FoodData Central Foundation Foods — April 2026
 
-Canonical upstream candidate source for Phase 4 ingredient curation.
+Primary trusted upstream source for the 4P-B V1 generic ingredient foundation.
 
-- Provider: U.S. Department of Agriculture, Agricultural Research Service — FoodData Central.
-- Dataset: Foundation Foods, April 2026 release (verified on the USDA download page on 2026-09-03).
-- Download page: https://fdc.nal.usda.gov/download-datasets/
-- Expected JSON archive: https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_foundation_food_json_2026-04-30.zip
-- License: CC0 1.0 Universal as stated by the FoodData Central API guide.
-- Intended use: source nutrient values and source metadata for generic/minimally processed ingredients.
+Frozen source identity in `corpus/curation/v1-ingredient-curation-policy.json`:
 
-The upstream binary dataset is intentionally not fabricated or vendored when it cannot be fetched. Run `npm run corpus:import-usda -- <extracted-json-file>` after downloading and extracting the official archive. The importer creates a review queue; it does not silently publish source records as production ingredients.
+- source ID: `usda-foundation-2026-04`;
+- provider: USDA FoodData Central;
+- dataset: Foundation Foods;
+- release: April 2026;
+- published inventory recorded by the policy: 394 foods;
+- license: CC0 1.0 Universal;
+- archive: `FoodData_Central_foundation_food_json_2026-04-30.zip`.
 
-If the curated Foundation subset is below the V1 ingredient target (400–800), supplement only with another explicitly versioned, documented trusted source or editorially curated generic components. Do not fill the gap with invented nutrient values.
+The frozen production contract requires at least 400 active `curated/high` ingredient families before pilot execution. Therefore Foundation Foods alone cannot reach the minimum even if all 394 rows were nutritionally complete, unique and culinary-suitable. 4P-B freezes USDA SR Legacy as a generic-only supplemental source; at least six supplemental approved concepts are structurally required and the actual number may be higher after review.
+
+The upstream archive is not fabricated or replaced when network acquisition is unavailable. In an internet-connected environment:
+
+```bash
+npm run corpus:fetch-fdc -- usda-foundation-2026-04
+npm run corpus:import-usda -- <extracted-json-file> corpus/staging/usda-foundation-review.json
+```
+
+The importer stores an input digest and creates a pending review queue. Heuristic label/taxonomy/state/allergen suggestions are proposals only. No imported row becomes production data until every 4P-B editorial check is explicit and the materializer validates it.

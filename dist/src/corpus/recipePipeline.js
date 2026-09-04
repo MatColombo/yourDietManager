@@ -75,8 +75,13 @@ function missedCoverageTarget(job, context) {
   return null;
 }
 
-export async function processCandidateBatch({ job, candidates, policy, ingredientFamilies, ingredientRevisions, existingRecipeVersions = [], taxonomies = [], taxonomyTerms = [], registry = null, generatedAt = null }) {
+export async function processCandidateBatch({ job, candidates, policy, ingredientFamilies, ingredientRevisions, existingRecipeVersions = [], taxonomies = [], taxonomyTerms = [], registry = null, productionContext = null, generatedAt = null }) {
   if (!Array.isArray(candidates)) throw new Error('Candidates must be an array');
+  if (productionContext) {
+    if (!job.productionContract) throw new Error('Production candidate processing requires RecipeGenerationJob.productionContract');
+    if (job.productionContract.contractId !== productionContext.contractId || job.productionContract.contractVersion !== productionContext.contractVersion) throw new Error('Production candidate context does not match RecipeGenerationJob contract');
+    if (!productionContext.intakeId) throw new Error('Production candidate processing requires intakeId');
+  }
   if (candidates.length > job.candidateCount) throw new Error(`Received ${candidates.length} candidates but job allows ${job.candidateCount}`);
   const referenceIndex = taxonomies.length || taxonomyTerms.length ? assertReferenceData(taxonomies, taxonomyTerms, registry) : null;
   if ((job.referenceDataVersion || job.referenceDataDigest) && !referenceIndex) throw new Error('RecipeGenerationJob freezes reference data but no taxonomy snapshot was supplied');
@@ -129,7 +134,7 @@ export async function processCandidateBatch({ job, candidates, policy, ingredien
       const inputDigest = await sha256Json({ calculationAlgorithmVersion: CALCULATION_ALGORITHM_VERSION, ingredientLines: lines.map(line => ({ ingredientRevisionId: line.ingredientRevisionId, normalizedAmount: line.normalizedAmount, normalizedUnit: line.normalizedUnit })) });
       const version = {
         schemaVersion: 1, recipeVersionId, recipeId, versionNumber: 1, supersedesVersionId: null, origin: 'base', catalogVersion: job.targetCatalogVersion, i18n, servingCount: 1, mealArchetypes: candidateMeals, ingredientLines: lines, calculatedNutrition: nutrition, practical, tags, allergenIds,
-        searchTokens: [], calculationAlgorithmVersion: CALCULATION_ALGORITHM_VERSION, inputDigest, contentHash: '', generation: { jobId: job.jobId, pipelineVersion: job.pipelineVersion, sourceLocale: job.sourceLocale, generatedAt: timestamp }, quality: { status: 'validated', reviewNotes: candidate.culinaryReview?.notes || null }, createdAt: timestamp
+        searchTokens: [], calculationAlgorithmVersion: CALCULATION_ALGORITHM_VERSION, inputDigest, contentHash: '', generation: { jobId: job.jobId, candidateId: candidate.candidateId, pipelineVersion: job.pipelineVersion, sourceLocale: job.sourceLocale, generatedAt: timestamp, ...(productionContext ? { intakeId: productionContext.intakeId, productionContractId: productionContext.contractId, productionContractVersion: productionContext.contractVersion } : {}) }, quality: { status: 'validated', reviewNotes: candidate.culinaryReview?.notes || null }, createdAt: timestamp
       };
       if (referenceIndex) assertSemanticReferences({ index: referenceIndex, ingredientRevisions: usedRevisions, recipeVersions: [version], ingredientIds: ingredientFamilies.map(item => item.ingredientId) });
       version.searchTokens = searchTokensFor(version, usedRevisions);

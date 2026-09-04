@@ -26,3 +26,7 @@
 - Navigation integrity: editable routes are protected by one dirty guard for internal navigation, browser history and reload/close.
 - Save feedback: every explicit save reports success/failure persistently and accessibly; forms live-validate before persistence.
 - Bootstrap: fresh installs receive neutral standard configuration; bootstrap upgrades never overwrite explicitly saved/imported user configuration.
+- Production corpus: every production generation job is bound to the versioned production corpus contract, policy and frozen reference-data digest; no unresolved intake can enter Recipe Pipeline.
+- Production ingredient quality: only the current IngredientRevision meeting the production contract's curated/high provenance requirements is eligible; fixture/draft revisions are never silently promoted.
+- Corpus taxonomy growth: generators may propose missing extensible reference data, but only an explicitly approved ReferenceDataProposal may materialize a canonical term; normal authoring never falls back to implicit aliases/free text.
+- Production provenance: accepted RecipeVersion records freeze candidateId, intakeId and production contract identity so catalog publication is traceable back to accepted intake.

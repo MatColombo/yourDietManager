@@ -1,0 +1,279 @@
+{
+  "schemaVersion": 1,
+  "gateId": "scale-500",
+  "policyId": "recipe-production-pipeline-v1",
+  "policyVersion": "1.0.0",
+  "contractId": "ydm-v1-production-corpus",
+  "contractVersion": "1.0.0",
+  "snapshotId": "snapshot-0.3.0-dev-82a94580d4f8",
+  "activeRecipeCount": 3,
+  "targetActiveRecipes": 500,
+  "pilot": {
+    "target": 120,
+    "terminal": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "unresolvedReferenceRequests": 0,
+    "unhandledReferenceDataProposals": 0,
+    "complete": false
+  },
+  "checks": [
+    {
+      "id": "pilot-production-readiness",
+      "status": "blocked",
+      "detail": "readyForPilot=false"
+    },
+    {
+      "id": "pilot-terminal-count",
+      "status": "blocked",
+      "detail": "terminal=0, target=120"
+    },
+    {
+      "id": "pilot-unresolved-references",
+      "status": "pass",
+      "detail": "unresolved=0"
+    },
+    {
+      "id": "pilot-reference-data-proposals",
+      "status": "pass",
+      "detail": "unhandled=0"
+    },
+    {
+      "id": "snapshot-schema-errors",
+      "status": "pass",
+      "detail": "schemaErrors=0"
+    },
+    {
+      "id": "snapshot-unknown-ingredients",
+      "status": "pass",
+      "detail": "unknownIngredientReferences=0"
+    },
+    {
+      "id": "snapshot-nutrition-errors",
+      "status": "blocked",
+      "detail": "nutritionErrors=3"
+    },
+    {
+      "id": "snapshot-allergen-errors",
+      "status": "pass",
+      "detail": "allergenDerivationErrors=0"
+    },
+    {
+      "id": "snapshot-locale-errors",
+      "status": "pass",
+      "detail": "missingRequiredLocaleFields=0"
+    },
+    {
+      "id": "snapshot-exact-duplicates",
+      "status": "pass",
+      "detail": "exactDuplicateCount=0"
+    },
+    {
+      "id": "snapshot-near-duplicates",
+      "status": "pass",
+      "detail": "nearDuplicateCount=0, max=0"
+    }
+  ],
+  "coverageChecks": [
+    {
+      "targetId": "meal-breakfast-coverage",
+      "releaseMinimum": 500,
+      "requiredAtGate": 84,
+      "actual": 0,
+      "status": "blocked"
+    },
+    {
+      "targetId": "meal-lunch-coverage",
+      "releaseMinimum": 700,
+      "requiredAtGate": 117,
+      "actual": 3,
+      "status": "blocked"
+    },
+    {
+      "targetId": "meal-dinner-coverage",
+      "releaseMinimum": 700,
+      "requiredAtGate": 117,
+      "actual": 3,
+      "status": "blocked"
+    },
+    {
+      "targetId": "meal-snack-coverage",
+      "releaseMinimum": 350,
+      "requiredAtGate": 59,
+      "actual": 0,
+      "status": "blocked"
+    },
+    {
+      "targetId": "meal-mini_meal-coverage",
+      "releaseMinimum": 150,
+      "requiredAtGate": 25,
+      "actual": 0,
+      "status": "blocked"
+    },
+    {
+      "targetId": "practical-portable-coverage",
+      "releaseMinimum": 300,
+      "requiredAtGate": 50,
+      "actual": 2,
+      "status": "blocked"
+    },
+    {
+      "targetId": "cell-lunch-kcal-300-399",
+      "releaseMinimum": 75,
+      "requiredAtGate": 13,
+      "actual": 1,
+      "status": "blocked"
+    },
+    {
+      "targetId": "cell-lunch-kcal-400-499",
+      "releaseMinimum": 75,
+      "requiredAtGate": 13,
+      "actual": 1,
+      "status": "blocked"
+    },
+    {
+      "targetId": "cell-lunch-kcal-500-599",
+      "releaseMinimum": 75,
+      "requiredAtGate": 13,
+      "actual": 1,
+      "status": "blocked"
+    },
+    {
+      "targetId": "cell-lunch-kcal-600-699",
+      "releaseMinimum": 75,
+      "requiredAtGate": 13,
+      "actual": 0,
+      "status": "blocked"
+    },
+    {
+      "targetId": "cell-lunch-kcal-700-799",
+      "releaseMinimum": 75,
+      "requiredAtGate": 13,
+      "actual": 0,
+      "status": "blocked"
+    },
+    {
+      "targetId": "cell-dinner-kcal-300-399",
+      "releaseMinimum": 75,
+      "requiredAtGate": 13,
+      "actual": 1,
+      "status": "blocked"
+    },
+    {
+      "targetId": "cell-dinner-kcal-400-499",
+      "releaseMinimum": 75,
+      "requiredAtGate": 13,
+      "actual": 1,
+      "status": "blocked"
+    },
+    {
+      "targetId": "cell-dinner-kcal-500-599",
+      "releaseMinimum": 75,
+      "requiredAtGate": 13,
+      "actual": 1,
+      "status": "blocked"
+    },
+    {
+      "targetId": "cell-dinner-kcal-600-699",
+      "releaseMinimum": 75,
+      "requiredAtGate": 13,
+      "actual": 0,
+      "status": "blocked"
+    },
+    {
+      "targetId": "cell-dinner-kcal-700-799",
+      "releaseMinimum": 75,
+      "requiredAtGate": 13,
+      "actual": 0,
+      "status": "blocked"
+    },
+    {
+      "targetId": "cell-breakfast-kcal-100-199",
+      "releaseMinimum": 50,
+      "requiredAtGate": 9,
+      "actual": 0,
+      "status": "blocked"
+    },
+    {
+      "targetId": "cell-breakfast-kcal-200-299",
+      "releaseMinimum": 50,
+      "requiredAtGate": 9,
+      "actual": 0,
+      "status": "blocked"
+    },
+    {
+      "targetId": "cell-breakfast-kcal-300-399",
+      "releaseMinimum": 50,
+      "requiredAtGate": 9,
+      "actual": 0,
+      "status": "blocked"
+    },
+    {
+      "targetId": "cell-breakfast-kcal-400-499",
+      "releaseMinimum": 50,
+      "requiredAtGate": 9,
+      "actual": 0,
+      "status": "blocked"
+    },
+    {
+      "targetId": "cell-snack-kcal-100-199",
+      "releaseMinimum": 50,
+      "requiredAtGate": 9,
+      "actual": 0,
+      "status": "blocked"
+    },
+    {
+      "targetId": "cell-snack-kcal-200-299",
+      "releaseMinimum": 50,
+      "requiredAtGate": 9,
+      "actual": 0,
+      "status": "blocked"
+    },
+    {
+      "targetId": "cell-snack-kcal-300-399",
+      "releaseMinimum": 50,
+      "requiredAtGate": 9,
+      "actual": 0,
+      "status": "blocked"
+    },
+    {
+      "targetId": "cell-snack-kcal-400-499",
+      "releaseMinimum": 50,
+      "requiredAtGate": 9,
+      "actual": 0,
+      "status": "blocked"
+    }
+  ],
+  "status": "blocked",
+  "blockers": [
+    "pilot-production-readiness: readyForPilot=false",
+    "pilot-terminal-count: terminal=0, target=120",
+    "snapshot-nutrition-errors: nutritionErrors=3",
+    "coverage:meal-breakfast-coverage: actual=0, required>=84",
+    "coverage:meal-lunch-coverage: actual=3, required>=117",
+    "coverage:meal-dinner-coverage: actual=3, required>=117",
+    "coverage:meal-snack-coverage: actual=0, required>=59",
+    "coverage:meal-mini_meal-coverage: actual=0, required>=25",
+    "coverage:practical-portable-coverage: actual=2, required>=50",
+    "coverage:cell-lunch-kcal-300-399: actual=1, required>=13",
+    "coverage:cell-lunch-kcal-400-499: actual=1, required>=13",
+    "coverage:cell-lunch-kcal-500-599: actual=1, required>=13",
+    "coverage:cell-lunch-kcal-600-699: actual=0, required>=13",
+    "coverage:cell-lunch-kcal-700-799: actual=0, required>=13",
+    "coverage:cell-dinner-kcal-300-399: actual=1, required>=13",
+    "coverage:cell-dinner-kcal-400-499: actual=1, required>=13",
+    "coverage:cell-dinner-kcal-500-599: actual=1, required>=13",
+    "coverage:cell-dinner-kcal-600-699: actual=0, required>=13",
+    "coverage:cell-dinner-kcal-700-799: actual=0, required>=13",
+    "coverage:cell-breakfast-kcal-100-199: actual=0, required>=9",
+    "coverage:cell-breakfast-kcal-200-299: actual=0, required>=9",
+    "coverage:cell-breakfast-kcal-300-399: actual=0, required>=9",
+    "coverage:cell-breakfast-kcal-400-499: actual=0, required>=9",
+    "coverage:cell-snack-kcal-100-199: actual=0, required>=9",
+    "coverage:cell-snack-kcal-200-299: actual=0, required>=9",
+    "coverage:cell-snack-kcal-300-399: actual=0, required>=9",
+    "coverage:cell-snack-kcal-400-499: actual=0, required>=9",
+    "active-recipe-count: active=3, required>=500"
+  ],
+  "evaluatedAt": "2026-09-04T15:43:05.949Z"
+}

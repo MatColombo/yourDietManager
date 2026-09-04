@@ -1,0 +1,66 @@
+{
+  "schemaVersion": 1,
+  "contractId": "ydm-v1-production-corpus",
+  "contractVersion": "1.0.0",
+  "policyId": "corpus-policy-v1-default",
+  "policyVersion": "1.1.0",
+  "pipelineVersion": "recipe-pipeline-2-production-intake",
+  "requiredLocales": ["it", "en"],
+  "productionTarget": {
+    "minRecipes": 3000,
+    "targetRecipes": 4000,
+    "maxRecipes": 5000
+  },
+  "pilot": {
+    "minCandidates": 100,
+    "targetCandidates": 120,
+    "maxCandidates": 150,
+    "waveSize": 20,
+    "strata": [
+      { "stratumId": "breakfast_quick", "count": 10, "mealArchetypes": ["breakfast"], "focus": ["quick", "simple"], "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations." },
+      { "stratumId": "breakfast_protein", "count": 10, "mealArchetypes": ["breakfast"], "focus": ["protein", "savory_and_sweet"], "rationale": "Exercise breakfast protein diversity without relying on one ingredient family." },
+      { "stratumId": "snack_portable", "count": 10, "mealArchetypes": ["snack"], "focus": ["portable", "mini_meal"], "rationale": "Exercise portable/cold snack semantics and compact servings." },
+      { "stratumId": "lunch_quick", "count": 10, "mealArchetypes": ["lunch"], "focus": ["quick", "balanced"], "rationale": "Exercise fast lunch coverage across several ingredient groups." },
+      { "stratumId": "lunch_standard", "count": 10, "mealArchetypes": ["lunch"], "focus": ["standard_prep", "balanced"], "rationale": "Exercise ordinary lunch recipes with broader preparation methods." },
+      { "stratumId": "dinner_quick", "count": 10, "mealArchetypes": ["dinner"], "focus": ["quick", "balanced"], "rationale": "Exercise quick dinner practicality and nutrition bands." },
+      { "stratumId": "dinner_standard", "count": 10, "mealArchetypes": ["dinner"], "focus": ["standard_prep", "balanced"], "rationale": "Exercise standard dinner structure and more varied techniques." },
+      { "stratumId": "vegetarian_legume", "count": 10, "mealArchetypes": ["lunch", "dinner"], "focus": ["vegetarian", "legume_heavy"], "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations." },
+      { "stratumId": "fish_seafood", "count": 10, "mealArchetypes": ["lunch", "dinner"], "focus": ["fish", "seafood"], "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants." },
+      { "stratumId": "soups_stews", "count": 10, "mealArchetypes": ["lunch", "dinner"], "focus": ["soup", "stew", "batch"], "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics." },
+      { "stratumId": "cold_portable", "count": 10, "mealArchetypes": ["lunch", "snack"], "focus": ["cold", "portable", "meal_prep"], "rationale": "Stress cold suitability, storage and portable meal constraints." },
+      { "stratumId": "components_sides", "count": 10, "mealArchetypes": ["lunch", "dinner"], "focus": ["component", "side", "simple"], "rationale": "Exercise reusable simple components and side-dish recipe families." }
+    ]
+  },
+  "ingredientReadiness": {
+    "minActiveIngredients": 400,
+    "targetActiveIngredients": 600,
+    "maxActiveIngredients": 800,
+    "qualityStatus": "curated",
+    "confidence": "high",
+    "requiredNutritionFields": ["energyKcal", "proteinG", "carbsG", "fatG", "fiberG"],
+    "requireSourceLabel": true
+  },
+  "referenceData": {
+    "maxUnresolved": 0,
+    "requireFrozenSnapshot": true,
+    "requireBilingualLabels": true,
+    "proposalMaterialization": "review_before_materialize",
+    "closedRegistries": ["meal_archetype", "day_archetype", "allergen_id", "ingredient_state"]
+  },
+  "candidateLifecycle": {
+    "states": ["discovered", "needs_reference_review", "needs_ingredient_review", "ready_for_generation", "generated", "accepted", "rejected"],
+    "readyState": "ready_for_generation",
+    "terminalStates": ["accepted", "rejected"]
+  },
+  "acceptance": {
+    "requireCulinaryApproval": true,
+    "requireCanonicalReferences": true,
+    "requireResolvedIntake": true,
+    "requireDeterministicNutrition": true,
+    "requireDeterministicAllergens": true,
+    "requireNoExactDuplicate": true,
+    "requireNoNearDuplicate": true,
+    "requireCoverageFit": true,
+    "requireSchemaValidity": true
+  }
+}

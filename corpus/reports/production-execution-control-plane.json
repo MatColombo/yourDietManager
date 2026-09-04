@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "controlPlanePass": true,
+  "currentLocalExecutionStatus": "blocked_waiting_for_production_data",
+  "currentReadyForPilot": false,
+  "currentProductionReadyIngredientCount": 0,
+  "officialSourceCachePresent": false,
+  "checks": [
+    {
+      "id": "workflow-actions-node24",
+      "status": "pass"
+    },
+    {
+      "id": "workflow-foundation",
+      "status": "pass"
+    },
+    {
+      "id": "workflow-sr-legacy",
+      "status": "pass"
+    },
+    {
+      "id": "workflow-auto-curation",
+      "status": "pass"
+    },
+    {
+      "id": "workflow-explicit-retirement",
+      "status": "pass"
+    },
+    {
+      "id": "workflow-pilot",
+      "status": "pass"
+    },
+    {
+      "id": "workflow-scale-gate",
+      "status": "pass"
+    },
+    {
+      "id": "workflow-first-scale",
+      "status": "pass"
+    },
+    {
+      "id": "workflow-no-source-commit",
+      "status": "pass"
+    },
+    {
+      "id": "spec-no-threshold-relaxation",
+      "status": "pass"
+    },
+    {
+      "id": "spec-deterministic-review-bounds",
+      "status": "pass"
+    },
+    {
+      "id": "script-auto-curation",
+      "status": "pass"
+    },
+    {
+      "id": "script-pilot-execute",
+      "status": "pass"
+    },
+    {
+      "id": "script-first-scale-batch",
+      "status": "pass"
+    }
+  ],
+  "blockers": [],
+  "generatedAt": "2026-09-04T15:42:07.873Z"
+}

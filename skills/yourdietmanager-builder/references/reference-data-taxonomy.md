@@ -106,3 +106,24 @@ Enumerate every legacy semantic value and classify it as `resolved_exact`, `reso
 `contentMigration:3` must not mutate historical IngredientRevision/RecipeVersion rows. Create new current revisions/versions when canonical references change, and migrate mutable configuration records atomically.
 
 Production release additionally requires zero unresolved taxonomy IDs, a manifest digest matching the distributed reference-data shards, and provenance for pipeline-created reference data.
+
+
+## Production intake proposal lifecycle
+
+Build-time ProductionCorpusIntake may hold descriptive IT/EN labels only to request missing reference data. These labels never become domain references.
+
+For an extensible taxonomy request:
+
+1. reuse a unique canonical ID/label/alias match;
+2. otherwise create ReferenceDataProposal;
+3. collision -> `needs_review`;
+4. explicit approval -> materialize TaxonomyTerm;
+5. recalculate the reference-data digest;
+6. keep the candidate blocked until the intake contains the materialized canonical ID.
+
+For ingredient requests, a textual match is insufficient if the current revision is not `curated/high`; keep the record in `needs_ingredient_review`.
+
+
+## Taxonomy proposals discovered during 4P-B ingredient review
+
+Ingredient source review may discover a missing semantic term, but source taxonomy text is not canonical reference data. For an extensible taxonomy, create a governed ReferenceDataProposal, resolve collisions, approve/materialize it, recalculate the registry digest, and then finish the ingredient review using the new canonical ID. Closed taxonomies remain blockers. Never use fuzzy matching to force an unknown source concept into a nearby canonical term.

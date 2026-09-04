@@ -1,0 +1,22 @@
+import path from 'node:path';
+import { SchemaRegistry } from '../../src/lib/schemaValidator.js';
+import { assessProductionReadiness, assertProductionContract } from '../../src/corpus/productionCorpus.js';
+import { loadCorpusInput, readJson, writeJson } from './io-lib.mjs';
+
+const args = process.argv.slice(2);
+const positional = args.filter(arg => !arg.startsWith('--'));
+const corpusInput = positional[0] || 'public/data';
+const contractFile = positional[1] || 'corpus/contracts/v1-production.json';
+const policyFile = positional[2] || 'corpus/policies/v1-default.json';
+const outputFile = positional[3] || 'corpus/reports/production-readiness.json';
+const strict = args.includes('--strict');
+const pilotStrict = args.includes('--pilot-strict');
+const registry = new SchemaRegistry(async file => readJson(path.join('schemas', file)));
+await registry.loadAll();
+const [corpus, contract, policy] = await Promise.all([loadCorpusInput(corpusInput), readJson(contractFile), readJson(policyFile)]);
+assertProductionContract(contract, policy, registry);
+const report = await assessProductionReadiness({ contract, policy, corpus, registry });
+await writeJson(outputFile, report);
+console.log(JSON.stringify(report, null, 2));
+if (pilotStrict && !report.readyForPilot) process.exitCode = 2;
+if (strict && !report.readyForProduction) process.exitCode = 2;

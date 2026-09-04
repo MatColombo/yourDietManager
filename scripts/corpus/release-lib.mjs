@@ -4,6 +4,7 @@ import { CALCULATION_ALGORITHM_VERSION, calculateRecipeNutrition, deriveAllergen
 import { sha256Json, sha256Text } from '../../src/lib/crypto.js';
 import { evaluateReleaseGates, scanCorpus } from '../../src/corpus/corpusScanner.js';
 import { assertReferenceData, assertSemanticReferences, referenceDataDigest } from '../../src/services/referenceDataService.js';
+import { productionContractDigest } from '../../src/corpus/productionCorpus.js';
 
 function chunk(values, size) { const out=[]; for(let i=0;i<values.length;i+=size) out.push(values.slice(i,i+size)); return out; }
 function jsonText(value) { return `${JSON.stringify(value, null, 2)}\n`; }
@@ -11,7 +12,7 @@ function idKey(part) { return ({ taxonomies:'taxonomyId', taxonomyTerms:'termId'
 function partDir(part) { if (part === 'taxonomies' || part === 'taxonomyTerms') return 'reference-data'; return part.startsWith('ingredient') ? 'ingredients' : 'recipes'; }
 function partStem(part) { return ({ taxonomies:'taxonomies', taxonomyTerms:'taxonomy-terms', ingredientFamilies:'ingredient-families', ingredientRevisions:'ingredient-revisions', recipeFamilies:'recipe-families', recipeVersions:'recipe-versions' })[part]; }
 
-export async function validateReleaseData({ policy, catalogVersion, taxonomies = [], taxonomyTerms = [], ingredientFamilies, ingredientRevisions, recipeFamilies, recipeVersions, registry, requiredLocales = ['it','en'], requireCuratedIngredients = false }) {
+export async function validateReleaseData({ policy, catalogVersion, taxonomies = [], taxonomyTerms = [], ingredientFamilies, ingredientRevisions, recipeFamilies, recipeVersions, registry, requiredLocales = ['it','en'], requireCuratedIngredients = false, productionContract = null }) {
   const issues=[];
   let referenceIndex = null;
   try { referenceIndex = assertReferenceData(taxonomies, taxonomyTerms, registry); } catch (error) { issues.push({ code:'reference_data_invalid', detail:error.message }); }
@@ -25,6 +26,7 @@ export async function validateReleaseData({ policy, catalogVersion, taxonomies =
     const expected = await sha256Json({ ...revision, contentHash:'' }); if(revision.contentHash !== expected) issues.push({code:'ingredient_content_hash_mismatch',id:revision.ingredientRevisionId});
   }
   for(const family of recipeFamilies) { try{registry?.assert('recipe',family);}catch(error){issues.push({code:'recipe_schema',id:family.recipeId,detail:error.message});} if(!versionIds.has(family.currentVersionId)) issues.push({code:'missing_current_recipe_version',id:family.recipeId}); }
+  const activeCurrentVersionIds = new Set(recipeFamilies.filter(family => family.status === 'active').map(family => family.currentVersionId));
   for(const version of recipeVersions) {
     try{registry?.assert('recipeVersion',version);}catch(error){issues.push({code:'recipe_version_schema',id:version.recipeVersionId,detail:error.message});}
     if(!recipeIds.has(version.recipeId)) issues.push({code:'missing_recipe_family',id:version.recipeVersionId});
@@ -36,6 +38,17 @@ export async function validateReleaseData({ policy, catalogVersion, taxonomies =
     for(const locale of requiredLocales) if(!version.i18n?.[locale]?.title?.trim() || !version.i18n?.[locale]?.instructions?.length) issues.push({code:'missing_locale',id:version.recipeVersionId,locale});
     const contentHash=await sha256Json({ ...version, contentHash:'' }); if(contentHash!==version.contentHash) issues.push({code:'recipe_content_hash_mismatch',id:version.recipeVersionId});
   }
+  if (productionContract) {
+    registry?.assert('productionCorpusContract', productionContract);
+    if (policy.policyId !== productionContract.policyId || policy.policyVersion !== productionContract.policyVersion) issues.push({ code:'production_contract_policy_mismatch' });
+    const activeCount = activeCurrentVersionIds.size;
+    if (activeCount < productionContract.productionTarget.minRecipes) issues.push({ code:'production_recipe_count_below_min', actual:activeCount, required:productionContract.productionTarget.minRecipes });
+    for (const version of recipeVersions.filter(item => activeCurrentVersionIds.has(item.recipeVersionId))) {
+      if (version.generation?.pipelineVersion !== productionContract.pipelineVersion || version.generation?.productionContractId !== productionContract.contractId || version.generation?.productionContractVersion !== productionContract.contractVersion || !version.generation?.intakeId || !version.generation?.candidateId) {
+        issues.push({ code:'missing_production_intake_provenance', id:version.recipeVersionId });
+      }
+    }
+  }
   if (referenceIndex) {
     try { assertSemanticReferences({ index: referenceIndex, ingredientRevisions, recipeVersions, ingredientIds: ingredientFamilies.map(item => item.ingredientId) }); }
     catch (error) { issues.push({ code:'semantic_reference_invalid', detail:error.message }); }
@@ -44,7 +57,7 @@ export async function validateReleaseData({ policy, catalogVersion, taxonomies =
   return { valid:issues.length===0 && gates.passed, issues, snapshot, releaseGates:gates };
 }
 
-export async function publishCatalogRelease({ outputDir, catalogVersion, taxonomies = [], taxonomyTerms = [], referenceDataVersion = '1.0.0', ingredientFamilies, ingredientRevisions, recipeFamilies, recipeVersions, builtAt = new Date().toISOString(), appMinVersion = '0.4.0', locales = ['it','en'], pipelineVersion = 'recipe-pipeline-1', shardSize = 250, packs = null, registry = null }) {
+export async function publishCatalogRelease({ outputDir, catalogVersion, taxonomies = [], taxonomyTerms = [], referenceDataVersion = '1.0.0', ingredientFamilies, ingredientRevisions, recipeFamilies, recipeVersions, builtAt = new Date().toISOString(), appMinVersion = '0.4.0', locales = ['it','en'], pipelineVersion = 'recipe-pipeline-1', productionContract = null, shardSize = 250, packs = null, registry = null }) {
   await rm(outputDir,{recursive:true,force:true}); const dataDir=path.join(outputDir,'data'); await mkdir(dataDir,{recursive:true});
   const referenceIndex = assertReferenceData(taxonomies, taxonomyTerms, registry);
   assertSemanticReferences({ index: referenceIndex, ingredientRevisions, recipeVersions, ingredientIds: ingredientFamilies.map(item => item.ingredientId) });
@@ -61,5 +74,6 @@ export async function publishCatalogRelease({ outputDir, catalogVersion, taxonom
     {packId:'high_protein',labelKey:'catalog.pack.highProtein.label',descriptionKey:'catalog.pack.highProtein.description',required:false,estimatedBytes:0,recipeVersionIds:recipeVersions.filter(v=>v.calculatedNutrition.proteinG>=35).map(v=>v.recipeVersionId)},
     {packId:'vegetarian',labelKey:'catalog.pack.vegetarian.label',descriptionKey:'catalog.pack.vegetarian.description',required:false,estimatedBytes:0,recipeVersionIds:recipeVersions.filter(v=>(v.tags.diet||[]).includes('diet_vegetarian')).map(v=>v.recipeVersionId)}
   ];
-  const manifest={schemaVersion:1,catalogVersion,builtAt,referenceDataVersion,referenceDataDigest:refDigest,appCompatibility:{minVersion:appMinVersion,maxVersion:null},locales,pipelineVersion,calculationAlgorithmVersion:CALCULATION_ALGORITHM_VERSION,...manifestParts,packs:derivedPacks}; registry?.assert('catalogManifest',manifest); await writeFile(path.join(dataDir,'catalog-manifest.json'),jsonText(manifest)); return manifest;
+  const productionCorpus = productionContract ? { contractId:productionContract.contractId, contractVersion:productionContract.contractVersion, contractDigest:await productionContractDigest(productionContract), policyId:productionContract.policyId, policyVersion:productionContract.policyVersion } : null;
+  const manifest={schemaVersion:1,catalogVersion,builtAt,referenceDataVersion,referenceDataDigest:refDigest,appCompatibility:{minVersion:appMinVersion,maxVersion:null},locales,pipelineVersion:productionContract?.pipelineVersion || pipelineVersion,calculationAlgorithmVersion:CALCULATION_ALGORITHM_VERSION,...manifestParts,packs:derivedPacks,...(productionCorpus?{productionCorpus}:{})}; registry?.assert('catalogManifest',manifest); await writeFile(path.join(dataDir,'catalog-manifest.json'),jsonText(manifest)); return manifest;
 }

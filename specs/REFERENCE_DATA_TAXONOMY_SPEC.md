@@ -382,3 +382,19 @@ Nei form operativi:
 - le righe ingrediente di RecipeVersion offrono solo unità supportate dalla basis/conversion dell'IngredientRevision selezionata;
 - ingredient state, allergeni e MealArchetype mostrano label localizzate ma persistono ID chiusi;
 - gli alias restano testo descrittivo/search e usano un token editor, non un campo semantico CSV.
+
+
+## 15. 4P-A production intake resolver
+
+The production pilot ledger may contain descriptive labels only as build-time `referenceRequests`; these labels are never persisted as domain references.
+
+For taxonomy requests the resolver must:
+
+1. reuse exactly one existing canonical term when ID/label/alias resolves uniquely;
+2. create a `ReferenceDataProposal` only for an active taxonomy extensible by `editorial_pipeline`;
+3. set `needs_review` on collisions instead of choosing a term heuristically;
+4. require explicit proposal approval before materialization;
+5. recalculate the registry digest after materialization;
+6. keep the recipe candidate blocked until the intake references the materialized canonical ID.
+
+Ingredient requests use the same no-implicit-resolution principle, but additionally require the resolved current IngredientRevision to pass the production `curated/high` gate.

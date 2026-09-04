@@ -422,3 +422,18 @@ Questi artifact consentono revisioni future basate su misure e non sulla memoria
 ## 17. Regola anti-conoscenza-implicita
 
 Nessuna decisione dell'orchestratore puo dipendere dal ricordare spelling, alias o convenzioni testuali. Ogni criterio semantico viene scelto da registry/snapshot. Se il registry non contiene il concetto necessario, l'orchestratore crea un'azione reference-data esplicita e auditabile oppure blocca il batch.
+
+
+## 11. Production contract binding (4P-A)
+
+For a non-development target catalog, the normal CLI planner loads `corpus/contracts/v1-production.json` and passes it to the orchestrator.
+
+When a production contract is present the planner must:
+
+- verify policy ID/version compatibility;
+- filter `allowedIngredientIds` to current revisions meeting the contract's `curated/high` ingredient readiness gate;
+- use the contract `pipelineVersion`;
+- freeze `{contractId, contractVersion, contractDigest}` into `RecipeGenerationJob.productionContract`;
+- return `blocked / no_feasible_batch_intent` when no production-ready ingredient set can satisfy the chosen intent.
+
+It is forbidden to fall back to draft/low-confidence ingredients in order to keep BUILD progressing.

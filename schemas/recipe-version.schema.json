@@ -312,6 +312,30 @@
         "generatedAt": {
           "type": "string",
           "format": "date-time"
+        },
+        "candidateId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "intakeId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productionContractId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "productionContractVersion": {
+          "type": [
+            "string",
+            "null"
+          ]
         }
       }
     },

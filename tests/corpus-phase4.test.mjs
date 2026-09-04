@@ -310,9 +310,14 @@ test('USDA Foundation intake stays review-only until explicit approval, then mat
   const review = await readJson(reviewFile);
   assert.equal(review.records.length, 1);
   assert.equal(review.records[0].review.approved, false);
+  assert.equal(review.records[0].review.decision, 'pending');
   assert.equal(review.records[0].suggested.nameIt, '');
   review.records[0].review.approved = true;
+  review.records[0].review.decision = 'approved';
   review.records[0].review.notes = 'Reviewed for test fixture.';
+  review.records[0].review.reviewer = 'test-editor';
+  review.records[0].review.reviewedAt = '2026-09-04T14:05:00Z';
+  for (const key of Object.keys(review.records[0].review.checks)) review.records[0].review.checks[key] = true;
   review.records[0].suggested.nameIt = 'Zucchina cruda';
   review.records[0].suggested.state = 'raw';
   await writeFile(reviewFile, `${JSON.stringify(review, null, 2)}\n`);

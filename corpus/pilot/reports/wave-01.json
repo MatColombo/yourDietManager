@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "waveId": "pilot-4c63b1f9a9981a075b62-wave-01",
+  "waveNumber": 1,
+  "intakeId": "pilot-4c63b1f9a9981a075b62",
+  "generatedAt": "2026-09-04T14:00:00Z",
+  "state": "blocked",
+  "candidateIds": [
+    "pilot-breakfast_quick-001",
+    "pilot-breakfast_quick-002",
+    "pilot-breakfast_quick-003",
+    "pilot-breakfast_quick-004",
+    "pilot-breakfast_quick-005",
+    "pilot-breakfast_quick-006",
+    "pilot-breakfast_quick-007",
+    "pilot-breakfast_quick-008",
+    "pilot-breakfast_quick-009",
+    "pilot-breakfast_quick-010",
+    "pilot-breakfast_protein-001",
+    "pilot-breakfast_protein-002",
+    "pilot-breakfast_protein-003",
+    "pilot-breakfast_protein-004",
+    "pilot-breakfast_protein-005",
+    "pilot-breakfast_protein-006",
+    "pilot-breakfast_protein-007",
+    "pilot-breakfast_protein-008",
+    "pilot-breakfast_protein-009",
+    "pilot-breakfast_protein-010"
+  ],
+  "metrics": {
+    "records": 20,
+    "pendingScan": 20,
+    "needsReferenceReview": 0,
+    "needsIngredientReview": 0,
+    "readyForGeneration": 0,
+    "generated": 0,
+    "accepted": 0,
+    "rejected": 0,
+    "unresolvedRequests": 0,
+    "unhandledTaxonomyProposals": 0
+  },
+  "gate": "blocked",
+  "blockers": [
+    "production-readiness: ingredient-production-quality: ready=0, blocked=4",
+    "production-readiness: ingredient-production-count: ready=0, required>=400"
+  ]
+}

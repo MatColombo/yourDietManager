@@ -1,0 +1,11 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://yourdietmanager.local/schemas/ingredient-retirement-map.schema.json",
+  "title":"IngredientRetirementMap",
+  "type":"object","additionalProperties":false,
+  "required":["schemaVersion","mapId","retirements"],
+  "properties":{
+    "schemaVersion":{"const":1},"mapId":{"type":"string","minLength":1},
+    "retirements":{"type":"array","items":{"type":"object","additionalProperties":false,"required":["ingredientId","replacementIngredientId","rationale","approvedBy","approvedAt"],"properties":{"ingredientId":{"type":"string","minLength":1},"replacementIngredientId":{"type":"string","minLength":1},"rationale":{"type":"string","minLength":1},"approvedBy":{"type":"string","minLength":1},"approvedAt":{"type":"string","format":"date-time"}}}}
+  }
+}

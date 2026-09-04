@@ -1,0 +1,79 @@
+{
+  "schemaVersion": 1,
+  "policyId": "recipe-production-pipeline-v1",
+  "policyVersion": "1.0.0",
+  "productionContract": {
+    "contractId": "ydm-v1-production-corpus",
+    "contractVersion": "1.0.0"
+  },
+  "corpusPolicy": {
+    "policyId": "corpus-policy-v1-default",
+    "policyVersion": "1.1.0"
+  },
+  "ingredientCurationPolicy": {
+    "policyId": "ingredient-curation-v1",
+    "policyVersion": "1.0.0"
+  },
+  "pipelineVersion": "recipe-pipeline-2-production-intake",
+  "stageOrder": [
+    "intake",
+    "structure_localization",
+    "ingredient_normalization",
+    "nutrition",
+    "semantic_references",
+    "culinary_review",
+    "duplicate_diversity",
+    "schema_provenance"
+  ],
+  "qualityScore": {
+    "maxScore": 100,
+    "minAcceptedScore": 100,
+    "stageWeights": {
+      "intake": 10,
+      "structure_localization": 15,
+      "ingredient_normalization": 20,
+      "nutrition": 15,
+      "semantic_references": 15,
+      "culinary_review": 10,
+      "duplicate_diversity": 10,
+      "schema_provenance": 5
+    }
+  },
+  "classification": {
+    "duplicateCodes": ["exact_duplicate", "near_duplicate"],
+    "nutritionOutlierCodes": ["ingredient_amount_implausible", "portion_size_implausible", "nutrition_outside_job"],
+    "recipeReviewCodes": ["culinary_review_not_approved", "missing_required_locale_fields"],
+    "referenceErrorPatterns": ["Semantic reference validation failed", "Unknown taxonomy term", "Unknown ingredient"],
+    "blockingWarningCodes": ["macro_energy_mismatch"]
+  },
+  "dispositions": {
+    "accepted": { "terminal": true, "intakeState": "accepted" },
+    "rejected": { "terminal": true, "intakeState": "rejected" },
+    "duplicate": { "terminal": true, "intakeState": "rejected" },
+    "needs_reference_review": { "terminal": false, "intakeState": "needs_reference_review" },
+    "needs_recipe_review": { "terminal": false, "intakeState": "generated" },
+    "nutrition_outlier": { "terminal": false, "intakeState": "generated" }
+  },
+  "execution": {
+    "requireFreshSnapshot": true,
+    "requireBatchResultDigest": true,
+    "requireZeroReviewBacklogBeforeApply": true,
+    "maxAttemptsPerCandidate": 3
+  },
+  "scaleGate500": {
+    "gateId": "scale-500",
+    "targetActiveRecipes": 500,
+    "releaseReferenceRecipeCount": 3000,
+    "hardCoverageMode": "prorata_min_count",
+    "requireZeroExactDuplicates": true,
+    "maxNearDuplicateCount": 0,
+    "requireZeroSchemaErrors": true,
+    "requireZeroUnknownIngredientReferences": true,
+    "requireZeroNutritionErrors": true,
+    "requireZeroAllergenDerivationErrors": true,
+    "requireZeroMissingRequiredLocaleFields": true,
+    "requirePilotComplete": true,
+    "requireZeroUnresolvedReferenceRequests": true,
+    "requireZeroUnhandledReferenceDataProposals": true
+  }
+}

@@ -6,7 +6,7 @@
   "policyId": "corpus-policy-phase4-smoke",
   "policyVersion": "1.0.0",
   "inputSnapshotId": "snapshot-0.3.0-dev-82a94580d4f8",
-  "outputSnapshotId": "snapshot-0.4.0-dev-f85fc5945342",
+  "outputSnapshotId": "snapshot-0.4.0-dev-4ed4b6a2ec5d",
   "seed": "phase4-smoke-seed",
   "goal": {
     "targetRecipeCount": 8,

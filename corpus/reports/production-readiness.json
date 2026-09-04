@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "contractId": "ydm-v1-production-corpus",
+  "contractVersion": "1.0.0",
+  "catalogVersion": "0.3.0-dev",
+  "generatedAt": "2026-09-04T15:43:05.775Z",
+  "checks": [
+    {
+      "id": "contract-policy-sync",
+      "status": "pass",
+      "detail": "ydm-v1-production-corpus@1.0.0 matches corpus-policy-v1-default@1.1.0"
+    },
+    {
+      "id": "reference-data-valid",
+      "status": "pass",
+      "detail": "taxonomies=7, terms=113"
+    },
+    {
+      "id": "reference-data-digest",
+      "status": "pass",
+      "detail": "manifest=56f3949bd1c0348f8fe65861ebcda23c2a198805cd2e9f70b00610a328753b52, actual=56f3949bd1c0348f8fe65861ebcda23c2a198805cd2e9f70b00610a328753b52"
+    },
+    {
+      "id": "ingredient-production-quality",
+      "status": "blocked",
+      "detail": "ready=0, blocked=4"
+    },
+    {
+      "id": "ingredient-production-count",
+      "status": "blocked",
+      "detail": "ready=0, required>=400"
+    },
+    {
+      "id": "recipe-production-count",
+      "status": "blocked",
+      "detail": "active=3, required>=3000"
+    },
+    {
+      "id": "production-manifest-contract",
+      "status": "blocked",
+      "detail": "productionCorpus metadata missing"
+    }
+  ],
+  "referenceData": {
+    "valid": true,
+    "manifestDigest": "56f3949bd1c0348f8fe65861ebcda23c2a198805cd2e9f70b00610a328753b52",
+    "actualDigest": "56f3949bd1c0348f8fe65861ebcda23c2a198805cd2e9f70b00610a328753b52",
+    "taxonomyCount": 7,
+    "termCount": 113
+  },
+  "ingredients": {
+    "activeFamilies": 4,
+    "productionReadyFamilies": 0,
+    "blockedFamilies": 4,
+    "blockedByReason": {
+      "quality_not_curated": 4,
+      "confidence_not_high": 4
+    }
+  },
+  "recipes": {
+    "activeRecipes": 3,
+    "requiredMinimum": 3000,
+    "target": 4000
+  },
+  "readyForPilot": false,
+  "readyForProduction": false,
+  "pilotBlockers": [
+    "ingredient-production-quality: ready=0, blocked=4",
+    "ingredient-production-count: ready=0, required>=400"
+  ],
+  "blockers": [
+    "ingredient-production-quality: ready=0, blocked=4",
+    "ingredient-production-count: ready=0, required>=400",
+    "recipe-production-count: active=3, required>=3000",
+    "production-manifest-contract: productionCorpus metadata missing"
+  ]
+}

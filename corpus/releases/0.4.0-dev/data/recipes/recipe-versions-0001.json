@@ -557,9 +557,10 @@
     ],
     "calculationAlgorithmVersion": "nutrition-core-1",
     "inputDigest": "a83690594635ed65b1745763dae93ba6a7df5133c3871cb85fa3b085ac2d7f56",
-    "contentHash": "9ec142dd8524d57cd328ad104e10dea84d83bbbad404f42a583773c965e4055a",
+    "contentHash": "db0df918c1cefff9bb5b2ad4cb79494dd68f3645f7c7c861dfd88e10794b7528",
     "generation": {
       "jobId": "batch-3835cf4f7db191",
+      "candidateId": "p4-a",
       "pipelineVersion": "recipe-pipeline-1",
       "sourceLocale": "it",
       "generatedAt": "2026-09-03T14:07:00Z"

@@ -1,0 +1,16 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"https://yourdietmanager.local/schemas/ingredient-curation-report.schema.json",
+  "title":"IngredientCurationReport",
+  "type":"object","additionalProperties":false,
+  "required":["schemaVersion","policyId","policyVersion","contractId","contractVersion","generatedAt","sourcePlan","batch","counts","issueCounts","checks","readyToMaterialize","readyForPilotFoundation","blockers"],
+  "properties":{
+    "schemaVersion":{"const":1},"policyId":{"type":"string"},"policyVersion":{"type":"string"},"contractId":{"type":"string"},"contractVersion":{"type":"string"},"generatedAt":{"type":"string","format":"date-time"},
+    "sourcePlan":{"type":"object","additionalProperties":false,"required":["primaryPublishedCount","contractMinimum","minimumSupplementalFromPublishedCount","note"],"properties":{"primaryPublishedCount":{"type":"integer","minimum":0},"contractMinimum":{"type":"integer","minimum":1},"minimumSupplementalFromPublishedCount":{"type":"integer","minimum":0},"note":{"type":"string"}}},
+    "batch":{"type":"object","additionalProperties":false,"required":["present","batchId","sourceId","inputFoodCount","eligibleFoodCount"],"properties":{"present":{"type":"boolean"},"batchId":{"type":["string","null"]},"sourceId":{"type":["string","null"]},"inputFoodCount":{"type":"integer","minimum":0},"eligibleFoodCount":{"type":"integer","minimum":0}}},
+    "counts":{"type":"object","additionalProperties":false,"required":["pending","approved","rejected","materializable","blockedApproved"],"properties":{"pending":{"type":"integer","minimum":0},"approved":{"type":"integer","minimum":0},"rejected":{"type":"integer","minimum":0},"materializable":{"type":"integer","minimum":0},"blockedApproved":{"type":"integer","minimum":0}}},
+    "issueCounts":{"type":"object","additionalProperties":{"type":"integer","minimum":0}},
+    "checks":{"type":"array","items":{"type":"object","additionalProperties":false,"required":["id","status","detail"],"properties":{"id":{"type":"string"},"status":{"enum":["pass","blocked","warning"]},"detail":{"type":"string"}}}},
+    "readyToMaterialize":{"type":"boolean"},"readyForPilotFoundation":{"type":"boolean"},"blockers":{"type":"array","items":{"type":"string"}}
+  }
+}

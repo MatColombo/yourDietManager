@@ -114,3 +114,60 @@
 - `reports/pass-e-browser.json` is the canonical acceptance artifact; environment-policy skips are recorded as `skipped`, never `passed`.
 - CI/release verification uses `YDM_BROWSER_REQUIRED=1`; in that mode only a passed browser report is acceptable.
 - Run `npm run hardening:revision` after the browser gate to verify code/spec/Skill/CI alignment before declaring the correction revision closed.
+
+
+## Phase 4 production corpus / 4P-A
+
+- ProductionCorpusContract schema-valid and aligned with RecipeCorpusPolicy.
+- Pilot target exactly 120 slots (100-150 allowed range), processed in waves rather than one unreviewed blob.
+- At least 400 active current IngredientRevision records are production-ready (`curated/high`) before `readyForPilot=true`.
+- Production planner excludes every ingredient that fails the production readiness contract.
+- Every production candidate has a ProductionCorpusIntake record with completed reference scan.
+- Zero unresolved taxonomy/ingredient requests before `ready_for_generation`.
+- ReferenceDataProposal collisions never auto-resolve; materialization requires explicit approval.
+- Job/intake/catalog referenceDataVersion and digest match exactly.
+- Accepted RecipeVersion records retain candidate/intake/production-contract provenance.
+- Production manifest records production contract/policy digest metadata.
+- Release validation rejects current active RecipeVersion records missing production-intake provenance.
+
+
+## 4P-B curation and pilot wave gates
+
+- Curation policy validates and is bound to the production contract.
+- Trusted source IDs, source record IDs and input digests are present.
+- Branded source data is rejected for the V1 generic foundation.
+- Imported mappings are pending suggestions; none of the editorial checks are inferred complete.
+- Approved rows require all explicit review dimensions complete.
+- Materialized revisions are `curated/high`, schema-valid and canonical-reference-valid.
+- Existing ingredient family ID collisions fail merge; fixture retirement requires an explicit replacement map.
+- At least 400 active production-ready ingredient families are required before pilot wave 1.
+- Do not gate pilot wave 1 on the final 3,000-recipe count or production manifest; those belong to `readyForProduction`, not `readyForPilot`.
+- Pilot waves contain 20 deterministic candidate slots.
+- Wave N+1 cannot start until wave N is terminal.
+- Wave close requires zero unresolved reference requests and zero unhandled taxonomy proposals.
+- Missing trusted source data or an absent curation batch is `blocked`, never skipped/passed.
+
+
+## 4P-C / Scale Gate 500
+
+- Never create/run scale intake while 4P-B pilot/reference/ingredient prerequisites leave Scale Gate 500 `blocked`.
+- Require fresh snapshot identity/content before every post-pilot production batch.
+- Require one explicit disposition per candidate; review dispositions are non-terminal and block apply.
+- Require objective quality score 100/100 for accepted V1 recipes.
+- Require result/report digest verification before apply.
+- Require targetMet + diversityPassed + zero review backlog before production apply.
+- Limit recipe/nutrition retry attempts to the pipeline policy maximum.
+- At 500 active recipes require zero schema, ingredient-reference, nutrition, allergen, locale, exact-duplicate and near-duplicate errors.
+- Require pro-rata hard coverage minima derived from the 3,000-recipe release floor.
+- `corpus:scale-gate-500 -- --strict` remains non-zero until the real 500 gate passes.
+
+
+## Phase 4 production execution bridge
+
+- Treat importer output as pending review intake; deterministic approval is a separate reviewer step, never an importer side effect.
+- Allow `ydm-deterministic-fdc-curator-v1` only for frozen USDA sources and only when generic-category, required-nutrient, taxonomy, allergen, state, duplicate and provenance rules are all deterministic and explicit.
+- Reject gross macro/declared-energy mismatch during deterministic ingredient curation; do not repair nutrient values.
+- Require explicit curated/high replacements for salmon, cooked rice, zucchini and olive oil before retiring Phase 1 ingredient fixtures; retire the three Phase 1 recipe fixtures only afterward and preserve all history.
+- Require `readyForPilot=true` before pilot generation; require all six 20-candidate waves to close 120/120 accepted with zero unresolved references/proposals.
+- Require Scale Gate 500 state `ready` before creating the first 4P-C batch; require that batch to pass its immutable digest/review/apply gate.
+- Network/source unavailability is a blocked execution prerequisite, not a skipped/pass production-data gate.

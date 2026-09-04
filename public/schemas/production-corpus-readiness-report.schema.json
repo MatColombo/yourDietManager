@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/production-corpus-readiness-report.schema.json",
+  "title": "ProductionCorpusReadinessReport",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "contractId", "contractVersion", "catalogVersion", "generatedAt",
+    "checks", "referenceData", "ingredients", "recipes", "readyForPilot", "readyForProduction", "pilotBlockers", "blockers"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "contractId": { "type": "string" },
+    "contractVersion": { "type": "string" },
+    "catalogVersion": { "type": "string" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "status", "detail"],
+        "properties": {
+          "id": { "type": "string" },
+          "status": { "enum": ["pass", "blocked", "warning"] },
+          "detail": { "type": "string" }
+        }
+      }
+    },
+    "referenceData": {
+      "type": "object", "additionalProperties": false,
+      "required": ["valid", "manifestDigest", "actualDigest", "taxonomyCount", "termCount"],
+      "properties": {
+        "valid": { "type": "boolean" },
+        "manifestDigest": { "type": ["string", "null"] },
+        "actualDigest": { "type": ["string", "null"] },
+        "taxonomyCount": { "type": "integer", "minimum": 0 },
+        "termCount": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "ingredients": {
+      "type": "object", "additionalProperties": false,
+      "required": ["activeFamilies", "productionReadyFamilies", "blockedFamilies", "blockedByReason"],
+      "properties": {
+        "activeFamilies": { "type": "integer", "minimum": 0 },
+        "productionReadyFamilies": { "type": "integer", "minimum": 0 },
+        "blockedFamilies": { "type": "integer", "minimum": 0 },
+        "blockedByReason": {
+          "type": "object",
+          "additionalProperties": { "type": "integer", "minimum": 0 }
+        }
+      }
+    },
+    "recipes": {
+      "type": "object", "additionalProperties": false,
+      "required": ["activeRecipes", "requiredMinimum", "target"],
+      "properties": {
+        "activeRecipes": { "type": "integer", "minimum": 0 },
+        "requiredMinimum": { "type": "integer", "minimum": 1 },
+        "target": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "readyForPilot": { "type": "boolean" },
+    "readyForProduction": { "type": "boolean" },
+    "pilotBlockers": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "blockers": {
+      "type": "array",
+      "items": { "type": "string" }
+    }
+  }
+}

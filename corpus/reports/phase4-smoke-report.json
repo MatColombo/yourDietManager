@@ -427,7 +427,7 @@
         {
           "path": "recipes/recipe-versions-0001.json",
           "count": 4,
-          "sha256": "d5d75fbd47274994ed310dd9a616dc389dac645460d14336873f89f46e722f93",
+          "sha256": "587174fd9576575c5765f4c772a752ca29049050259e4ecbe5b702baafbe1e30",
           "recordIds": [
             "recver_salmon_rice_v2_p4",
             "recver_zucchini_rice_v1_p4",
@@ -438,7 +438,7 @@
         {
           "path": "recipes/recipe-versions-0002.json",
           "count": 4,
-          "sha256": "93935cb84ec8b010dbe7ec2bae6a3d760b706cdb88184384d51fdb6a138f22f0",
+          "sha256": "36d19a3465a18aed8ab0ee46c2d61bdfd9b00a20621de9e629e8f49ee15afad3",
           "recordIds": [
             "recver_3c041eb74ce166e74b6be057_v1",
             "recver_25de5a970e19498725476948_v1",
@@ -454,7 +454,7 @@
         "labelKey": "catalog.pack.core.label",
         "descriptionKey": "catalog.pack.core.description",
         "required": true,
-        "estimatedBytes": 28294,
+        "estimatedBytes": 28439,
         "recipeVersionIds": [
           "recver_salmon_rice_v2_p4",
           "recver_zucchini_rice_v1_p4",
@@ -507,7 +507,7 @@
     ]
   },
   "initialSnapshotId": "snapshot-0.3.0-dev-82a94580d4f8",
-  "finalSnapshotId": "snapshot-0.4.0-dev-f85fc5945342",
+  "finalSnapshotId": "snapshot-0.4.0-dev-4ed4b6a2ec5d",
   "batch": {
     "candidateCount": 7,
     "acceptedCount": 5,

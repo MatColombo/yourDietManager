@@ -106,3 +106,18 @@ Prima del BUILD 3.000–5.000, completare il Reference Data Registry e la migraz
 
 Il corpus target non e considerato completo se il conteggio ricette e raggiunto ma esistono semantic free-text values, taxonomy ID unresolved o ingredienti creati senza i normali gate di provenance.
 
+
+
+## 10. Phase 4 production Pass A gate
+
+Before the first production recipe candidate, `corpus/contracts/v1-production.json` is authoritative for readiness and pilot lifecycle.
+
+Hard prerequisites:
+
+- at least 400 active Ingredient families whose current revisions are `curated/high` and pass nutrition/reference/provenance gates;
+- valid canonical Reference Data Registry with manifest digest match;
+- zero unresolved reference requests for any candidate entering generation;
+- production job frozen to the same reference-data version/digest and production-contract digest;
+- production candidate intake state `ready_for_generation`.
+
+The first pilot is 120 candidate slots in waves of 20. It exists to discover missing taxonomy/ingredient concepts and measure acceptance/duplication/coverage before scaling. Reaching 120 candidates is not a release criterion; resolving the data gaps discovered by those candidates is.

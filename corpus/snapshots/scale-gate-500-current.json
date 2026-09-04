@@ -1,0 +1,1080 @@
+{
+  "schemaVersion": 1,
+  "snapshotId": "snapshot-0.3.0-dev-82a94580d4f8",
+  "catalogVersion": "0.3.0-dev",
+  "policyId": "corpus-policy-v1-default",
+  "policyVersion": "1.1.0",
+  "recipeCount": 3,
+  "activeRecipeCount": 3,
+  "coverageCells": [
+    {
+      "targetId": "meal-breakfast-coverage",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 1
+    },
+    {
+      "targetId": "meal-lunch-coverage",
+      "currentCount": 3,
+      "denominator": 3,
+      "currentShare": 1,
+      "normalizedDeficit": 0.9963,
+      "weightedDeficit": 0.9963
+    },
+    {
+      "targetId": "meal-dinner-coverage",
+      "currentCount": 3,
+      "denominator": 3,
+      "currentShare": 1,
+      "normalizedDeficit": 0.9963,
+      "weightedDeficit": 0.9963
+    },
+    {
+      "targetId": "meal-snack-coverage",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 1
+    },
+    {
+      "targetId": "meal-mini_meal-coverage",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 1
+    },
+    {
+      "targetId": "energy-kcal-100-199-density",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.85
+    },
+    {
+      "targetId": "energy-kcal-200-299-density",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.85
+    },
+    {
+      "targetId": "energy-kcal-300-399-density",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0,
+      "weightedDeficit": 0
+    },
+    {
+      "targetId": "energy-kcal-400-499-density",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0,
+      "weightedDeficit": 0
+    },
+    {
+      "targetId": "energy-kcal-500-599-density",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0,
+      "weightedDeficit": 0
+    },
+    {
+      "targetId": "energy-kcal-600-699-density",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.85
+    },
+    {
+      "targetId": "energy-kcal-700-799-density",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.85
+    },
+    {
+      "targetId": "protein-protein-low-density",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0,
+      "weightedDeficit": 0
+    },
+    {
+      "targetId": "protein-protein-medium-density",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0.2063,
+      "weightedDeficit": 0.1548
+    },
+    {
+      "targetId": "protein-protein-high-density",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0,
+      "weightedDeficit": 0
+    },
+    {
+      "targetId": "fiber-fiber-low-density",
+      "currentCount": 3,
+      "denominator": 3,
+      "currentShare": 1,
+      "normalizedDeficit": 0,
+      "weightedDeficit": 0
+    },
+    {
+      "targetId": "fiber-fiber-moderate-density",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.65
+    },
+    {
+      "targetId": "fiber-fiber-high-density",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.65
+    },
+    {
+      "targetId": "practical-portable-coverage",
+      "currentCount": 2,
+      "denominator": 3,
+      "currentShare": 0.6667,
+      "normalizedDeficit": 0.9956,
+      "weightedDeficit": 0.9956
+    },
+    {
+      "targetId": "practical-quick-density",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0,
+      "weightedDeficit": 0
+    },
+    {
+      "targetId": "practical-cold-density",
+      "currentCount": 2,
+      "denominator": 3,
+      "currentShare": 0.6667,
+      "normalizedDeficit": 0,
+      "weightedDeficit": 0
+    },
+    {
+      "targetId": "practical-meal_prep-density",
+      "currentCount": 3,
+      "denominator": 3,
+      "currentShare": 1,
+      "normalizedDeficit": 0,
+      "weightedDeficit": 0
+    },
+    {
+      "targetId": "diet-vegetarian-density",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0,
+      "weightedDeficit": 0
+    },
+    {
+      "targetId": "family-soup-soft",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.4
+    },
+    {
+      "targetId": "family-grain_bowl-soft",
+      "currentCount": 2,
+      "denominator": 3,
+      "currentShare": 0.6667,
+      "normalizedDeficit": 0,
+      "weightedDeficit": 0
+    },
+    {
+      "targetId": "family-side-dish-soft",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.4
+    },
+    {
+      "targetId": "cuisine-italian-soft",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.35
+    },
+    {
+      "targetId": "cuisine-mediterranean-soft",
+      "currentCount": 3,
+      "denominator": 3,
+      "currentShare": 1,
+      "normalizedDeficit": 0,
+      "weightedDeficit": 0
+    },
+    {
+      "targetId": "cuisine-japanese-soft",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.35
+    },
+    {
+      "targetId": "cuisine-indian-soft",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.35
+    },
+    {
+      "targetId": "cuisine-middle-eastern-soft",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.35
+    },
+    {
+      "targetId": "ingredient-category-vegetables-soft",
+      "currentCount": 3,
+      "denominator": 3,
+      "currentShare": 1,
+      "normalizedDeficit": 0,
+      "weightedDeficit": 0
+    },
+    {
+      "targetId": "ingredient-category-legumes-soft",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.45
+    },
+    {
+      "targetId": "ingredient-category-fish_seafood-soft",
+      "currentCount": 2,
+      "denominator": 3,
+      "currentShare": 0.6667,
+      "normalizedDeficit": 0,
+      "weightedDeficit": 0
+    },
+    {
+      "targetId": "cell-lunch-kcal-300-399",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0.9909,
+      "weightedDeficit": 1.1395
+    },
+    {
+      "targetId": "cell-lunch-kcal-400-499",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0.9909,
+      "weightedDeficit": 1.1395
+    },
+    {
+      "targetId": "cell-lunch-kcal-500-599",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0.9909,
+      "weightedDeficit": 1.1395
+    },
+    {
+      "targetId": "cell-lunch-kcal-600-699",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 1.15
+    },
+    {
+      "targetId": "cell-lunch-kcal-700-799",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 1.15
+    },
+    {
+      "targetId": "cell-dinner-kcal-300-399",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0.9909,
+      "weightedDeficit": 1.1395
+    },
+    {
+      "targetId": "cell-dinner-kcal-400-499",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0.9909,
+      "weightedDeficit": 1.1395
+    },
+    {
+      "targetId": "cell-dinner-kcal-500-599",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0.9909,
+      "weightedDeficit": 1.1395
+    },
+    {
+      "targetId": "cell-dinner-kcal-600-699",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 1.15
+    },
+    {
+      "targetId": "cell-dinner-kcal-700-799",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 1.15
+    },
+    {
+      "targetId": "cell-breakfast-kcal-100-199",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 1.05
+    },
+    {
+      "targetId": "cell-breakfast-kcal-200-299",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 1.05
+    },
+    {
+      "targetId": "cell-breakfast-kcal-300-399",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 1.05
+    },
+    {
+      "targetId": "cell-breakfast-kcal-400-499",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 1.05
+    },
+    {
+      "targetId": "cell-snack-kcal-100-199",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 1.05
+    },
+    {
+      "targetId": "cell-snack-kcal-200-299",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 1.05
+    },
+    {
+      "targetId": "cell-snack-kcal-300-399",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 1.05
+    },
+    {
+      "targetId": "cell-snack-kcal-400-499",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 1.05
+    },
+    {
+      "targetId": "cell-kcal-300-399-protein-low",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0.99,
+      "weightedDeficit": 0.792
+    },
+    {
+      "targetId": "cell-kcal-300-399-protein-medium",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.8
+    },
+    {
+      "targetId": "cell-kcal-300-399-protein-high",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.8
+    },
+    {
+      "targetId": "cell-kcal-400-499-protein-low",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.8
+    },
+    {
+      "targetId": "cell-kcal-400-499-protein-medium",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.8
+    },
+    {
+      "targetId": "cell-kcal-400-499-protein-high",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0.99,
+      "weightedDeficit": 0.792
+    },
+    {
+      "targetId": "cell-kcal-500-599-protein-low",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.8
+    },
+    {
+      "targetId": "cell-kcal-500-599-protein-medium",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0.99,
+      "weightedDeficit": 0.792
+    },
+    {
+      "targetId": "cell-kcal-500-599-protein-high",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.8
+    },
+    {
+      "targetId": "cell-kcal-600-699-protein-low",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.8
+    },
+    {
+      "targetId": "cell-kcal-600-699-protein-medium",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.8
+    },
+    {
+      "targetId": "cell-kcal-600-699-protein-high",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.8
+    },
+    {
+      "targetId": "cell-kcal-700-799-protein-low",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.8
+    },
+    {
+      "targetId": "cell-kcal-700-799-protein-medium",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.8
+    },
+    {
+      "targetId": "cell-kcal-700-799-protein-high",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.8
+    },
+    {
+      "targetId": "cell-kcal-300-399-fiber-low",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0.9875,
+      "weightedDeficit": 0.6419
+    },
+    {
+      "targetId": "cell-kcal-300-399-fiber-moderate",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.65
+    },
+    {
+      "targetId": "cell-kcal-300-399-fiber-high",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.65
+    },
+    {
+      "targetId": "cell-kcal-400-499-fiber-low",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0.9875,
+      "weightedDeficit": 0.6419
+    },
+    {
+      "targetId": "cell-kcal-400-499-fiber-moderate",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.65
+    },
+    {
+      "targetId": "cell-kcal-400-499-fiber-high",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.65
+    },
+    {
+      "targetId": "cell-kcal-500-599-fiber-low",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0.9875,
+      "weightedDeficit": 0.6419
+    },
+    {
+      "targetId": "cell-kcal-500-599-fiber-moderate",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.65
+    },
+    {
+      "targetId": "cell-kcal-500-599-fiber-high",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.65
+    },
+    {
+      "targetId": "cell-kcal-600-699-fiber-low",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.65
+    },
+    {
+      "targetId": "cell-kcal-600-699-fiber-moderate",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.65
+    },
+    {
+      "targetId": "cell-kcal-600-699-fiber-high",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.65
+    },
+    {
+      "targetId": "cell-kcal-700-799-fiber-low",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.65
+    },
+    {
+      "targetId": "cell-kcal-700-799-fiber-moderate",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.65
+    },
+    {
+      "targetId": "cell-kcal-700-799-fiber-high",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.65
+    },
+    {
+      "targetId": "cell-lunch-kcal-300-399-quick",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0.9667,
+      "weightedDeficit": 0.5317
+    },
+    {
+      "targetId": "cell-lunch-kcal-400-499-quick",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.55
+    },
+    {
+      "targetId": "cell-lunch-kcal-500-599-quick",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.55
+    },
+    {
+      "targetId": "cell-lunch-kcal-600-699-quick",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.55
+    },
+    {
+      "targetId": "cell-lunch-kcal-700-799-quick",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.55
+    },
+    {
+      "targetId": "cell-dinner-kcal-300-399-quick",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0.9667,
+      "weightedDeficit": 0.5317
+    },
+    {
+      "targetId": "cell-dinner-kcal-400-499-quick",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.55
+    },
+    {
+      "targetId": "cell-dinner-kcal-500-599-quick",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.55
+    },
+    {
+      "targetId": "cell-dinner-kcal-600-699-quick",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.55
+    },
+    {
+      "targetId": "cell-dinner-kcal-700-799-quick",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.55
+    },
+    {
+      "targetId": "cell-kcal-300-399-vegetarian",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0.9875,
+      "weightedDeficit": 0.4938
+    },
+    {
+      "targetId": "cell-kcal-400-499-vegetarian",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.5
+    },
+    {
+      "targetId": "cell-kcal-500-599-vegetarian",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.5
+    },
+    {
+      "targetId": "cell-kcal-600-699-vegetarian",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.5
+    },
+    {
+      "targetId": "cell-kcal-300-399-portable",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0.9875,
+      "weightedDeficit": 0.4938
+    },
+    {
+      "targetId": "cell-kcal-400-499-portable",
+      "currentCount": 0,
+      "denominator": 3,
+      "currentShare": 0,
+      "normalizedDeficit": 1,
+      "weightedDeficit": 0.5
+    },
+    {
+      "targetId": "cell-kcal-500-599-portable",
+      "currentCount": 1,
+      "denominator": 3,
+      "currentShare": 0.3333,
+      "normalizedDeficit": 0.9875,
+      "weightedDeficit": 0.4938
+    }
+  ],
+  "distributions": {
+    "mealArchetypes": [
+      {
+        "key": "dinner",
+        "count": 3
+      },
+      {
+        "key": "lunch",
+        "count": 3
+      }
+    ],
+    "energyBands": [
+      {
+        "key": "kcal-300-399",
+        "count": 1
+      },
+      {
+        "key": "kcal-400-499",
+        "count": 1
+      },
+      {
+        "key": "kcal-500-599",
+        "count": 1
+      }
+    ],
+    "proteinBands": [
+      {
+        "key": "protein-high",
+        "count": 1
+      },
+      {
+        "key": "protein-low",
+        "count": 1
+      },
+      {
+        "key": "protein-medium",
+        "count": 1
+      }
+    ],
+    "fiberBands": [
+      {
+        "key": "fiber-low",
+        "count": 3
+      }
+    ],
+    "practicality": [
+      {
+        "key": "practical_cold_suitable",
+        "count": 2
+      },
+      {
+        "key": "practical_meal_prep",
+        "count": 3
+      },
+      {
+        "key": "practical_portable",
+        "count": 2
+      },
+      {
+        "key": "practical_quick",
+        "count": 1
+      }
+    ],
+    "diet": [
+      {
+        "key": "diet_high_protein",
+        "count": 2
+      },
+      {
+        "key": "diet_vegetarian",
+        "count": 1
+      }
+    ],
+    "recipeFamilies": [
+      {
+        "key": "recipe_family_grain_bowl",
+        "count": 2
+      },
+      {
+        "key": "recipe_family_protein_plate",
+        "count": 1
+      }
+    ],
+    "cuisines": [
+      {
+        "key": "cuisine_mediterranean",
+        "count": 3
+      }
+    ],
+    "ingredientCategories": [
+      {
+        "key": "food_group_fats_oils",
+        "count": 3
+      },
+      {
+        "key": "food_group_fish_seafood",
+        "count": 2
+      },
+      {
+        "key": "food_group_pasta_rice_cereals",
+        "count": 2
+      },
+      {
+        "key": "food_group_vegetables",
+        "count": 3
+      }
+    ]
+  },
+  "ingredientUsage": [
+    {
+      "ingredientId": "ing_olive_oil",
+      "recipeCount": 3,
+      "primaryCount": 0,
+      "recipeShare": 1,
+      "primaryShare": 0
+    },
+    {
+      "ingredientId": "ing_rice_cooked",
+      "recipeCount": 2,
+      "primaryCount": 1,
+      "recipeShare": 0.6667,
+      "primaryShare": 0.3333
+    },
+    {
+      "ingredientId": "ing_salmon",
+      "recipeCount": 2,
+      "primaryCount": 0,
+      "recipeShare": 0.6667,
+      "primaryShare": 0
+    },
+    {
+      "ingredientId": "ing_zucchini",
+      "recipeCount": 3,
+      "primaryCount": 2,
+      "recipeShare": 1,
+      "primaryShare": 0.6667
+    }
+  ],
+  "ingredientPairUsage": [
+    {
+      "ingredientIdA": "ing_olive_oil",
+      "ingredientIdB": "ing_zucchini",
+      "coOccurrenceCount": 3,
+      "share": 1
+    },
+    {
+      "ingredientIdA": "ing_olive_oil",
+      "ingredientIdB": "ing_rice_cooked",
+      "coOccurrenceCount": 2,
+      "share": 0.6667
+    },
+    {
+      "ingredientIdA": "ing_olive_oil",
+      "ingredientIdB": "ing_salmon",
+      "coOccurrenceCount": 2,
+      "share": 0.6667
+    },
+    {
+      "ingredientIdA": "ing_rice_cooked",
+      "ingredientIdB": "ing_zucchini",
+      "coOccurrenceCount": 2,
+      "share": 0.6667
+    },
+    {
+      "ingredientIdA": "ing_salmon",
+      "ingredientIdB": "ing_zucchini",
+      "coOccurrenceCount": 2,
+      "share": 0.6667
+    },
+    {
+      "ingredientIdA": "ing_rice_cooked",
+      "ingredientIdB": "ing_salmon",
+      "coOccurrenceCount": 1,
+      "share": 0.3333
+    }
+  ],
+  "similarity": {
+    "exactDuplicateCount": 0,
+    "nearDuplicateCount": 0,
+    "nearDuplicateShare": 0
+  },
+  "quality": {
+    "schemaErrors": 0,
+    "unknownIngredientReferences": 0,
+    "nutritionErrors": 3,
+    "allergenDerivationErrors": 0,
+    "missingRequiredLocaleFields": 0
+  },
+  "undercoveredTargetIds": [
+    "meal-breakfast-coverage",
+    "meal-lunch-coverage",
+    "meal-dinner-coverage",
+    "meal-snack-coverage",
+    "meal-mini_meal-coverage",
+    "energy-kcal-100-199-density",
+    "energy-kcal-200-299-density",
+    "energy-kcal-600-699-density",
+    "energy-kcal-700-799-density",
+    "protein-protein-medium-density",
+    "fiber-fiber-moderate-density",
+    "fiber-fiber-high-density",
+    "practical-portable-coverage",
+    "family-soup-soft",
+    "family-side-dish-soft",
+    "cuisine-italian-soft",
+    "cuisine-japanese-soft",
+    "cuisine-indian-soft",
+    "cuisine-middle-eastern-soft",
+    "ingredient-category-legumes-soft",
+    "cell-lunch-kcal-300-399",
+    "cell-lunch-kcal-400-499",
+    "cell-lunch-kcal-500-599",
+    "cell-lunch-kcal-600-699",
+    "cell-lunch-kcal-700-799",
+    "cell-dinner-kcal-300-399",
+    "cell-dinner-kcal-400-499",
+    "cell-dinner-kcal-500-599",
+    "cell-dinner-kcal-600-699",
+    "cell-dinner-kcal-700-799",
+    "cell-breakfast-kcal-100-199",
+    "cell-breakfast-kcal-200-299",
+    "cell-breakfast-kcal-300-399",
+    "cell-breakfast-kcal-400-499",
+    "cell-snack-kcal-100-199",
+    "cell-snack-kcal-200-299",
+    "cell-snack-kcal-300-399",
+    "cell-snack-kcal-400-499",
+    "cell-kcal-300-399-protein-low",
+    "cell-kcal-300-399-protein-medium",
+    "cell-kcal-300-399-protein-high",
+    "cell-kcal-400-499-protein-low",
+    "cell-kcal-400-499-protein-medium",
+    "cell-kcal-400-499-protein-high",
+    "cell-kcal-500-599-protein-low",
+    "cell-kcal-500-599-protein-medium",
+    "cell-kcal-500-599-protein-high",
+    "cell-kcal-600-699-protein-low",
+    "cell-kcal-600-699-protein-medium",
+    "cell-kcal-600-699-protein-high",
+    "cell-kcal-700-799-protein-low",
+    "cell-kcal-700-799-protein-medium",
+    "cell-kcal-700-799-protein-high",
+    "cell-kcal-300-399-fiber-low",
+    "cell-kcal-300-399-fiber-moderate",
+    "cell-kcal-300-399-fiber-high",
+    "cell-kcal-400-499-fiber-low",
+    "cell-kcal-400-499-fiber-moderate",
+    "cell-kcal-400-499-fiber-high",
+    "cell-kcal-500-599-fiber-low",
+    "cell-kcal-500-599-fiber-moderate",
+    "cell-kcal-500-599-fiber-high",
+    "cell-kcal-600-699-fiber-low",
+    "cell-kcal-600-699-fiber-moderate",
+    "cell-kcal-600-699-fiber-high",
+    "cell-kcal-700-799-fiber-low",
+    "cell-kcal-700-799-fiber-moderate",
+    "cell-kcal-700-799-fiber-high",
+    "cell-lunch-kcal-300-399-quick",
+    "cell-lunch-kcal-400-499-quick",
+    "cell-lunch-kcal-500-599-quick",
+    "cell-lunch-kcal-600-699-quick",
+    "cell-lunch-kcal-700-799-quick",
+    "cell-dinner-kcal-300-399-quick",
+    "cell-dinner-kcal-400-499-quick",
+    "cell-dinner-kcal-500-599-quick",
+    "cell-dinner-kcal-600-699-quick",
+    "cell-dinner-kcal-700-799-quick",
+    "cell-kcal-300-399-vegetarian",
+    "cell-kcal-400-499-vegetarian",
+    "cell-kcal-500-599-vegetarian",
+    "cell-kcal-600-699-vegetarian",
+    "cell-kcal-300-399-portable",
+    "cell-kcal-400-499-portable",
+    "cell-kcal-500-599-portable"
+  ],
+  "contentDigest": "sha256:82a94580d4f89d7ef4f5da8a971a21f162b10cdef9b6b27a00b6a59fea9b8242",
+  "createdAt": "2026-09-04T15:43:05.942Z"
+}

@@ -390,3 +390,44 @@ Questi artifact consentono revisioni future basate su misure e non sulla memoria
 ## Reference-data planning
 
 Before emitting a RecipeGenerationJob, inspect the canonical registry snapshot. If a high-value intent needs a missing extensible term, schedule a reference-data proposal/materialization first; if it needs a missing ingredient, schedule source intake/curation first. Closed registry gaps are blockers. Store the registry version/digest in the orchestration run/job and never rely on remembered spellings or aliases.
+
+
+## Production contract binding (4P-A)
+
+For a production target catalog:
+
+- load `ydm-v1-production-corpus@1.0.0` (or its explicit successor);
+- require policy ID/version match;
+- filter planning ingredients to current revisions meeting the contract's `curated/high` and minimum-nutrition readiness gate;
+- freeze production contract ID/version/digest into every RecipeGenerationJob;
+- use the contract pipeline version;
+- return `blocked/no_feasible_batch_intent` when the curated ingredient set is insufficient.
+
+Never fall back to draft/low-confidence ingredient fixtures to keep BUILD moving.
+
+The first production pilot is 120 candidate slots in waves of 20. Re-scan and resolve taxonomy/ingredient gaps between waves before scaling.
+
+
+## 4P-B ingredient foundation and wave gate
+
+The orchestrator must consider ingredient foundation readiness before planning production recipe work. `readyForPilot=false` is a hard block, not a soft score.
+
+Use the frozen curation source hierarchy: Foundation primary, SR Legacy supplemental, no Branded, no automatic fuzzy merge. Because the primary published inventory is below the frozen 400-family minimum, plan for supplemental reviewed concepts rather than pretending primary capacity is sufficient.
+
+Once readiness passes, process the 120 pilot slots in six waves of 20. Re-scan the intake, taxonomy proposals, ingredient foundation and corpus after every wave. Do not schedule wave N+1 until the previous wave report has every record terminal and both unresolved-reference and unhandled-proposal counts equal zero.
+
+
+## rc.13 source-backed execution bridge
+
+When the user asks to complete the production-data steps after 4P-C control-plane work, execute in this order and fail closed at each transition:
+
+1. acquire the two frozen USDA source archives and record SHA-256;
+2. import as pending review batches;
+3. run bounded deterministic review only for unambiguous generic records; do not fuzzily merge or extend taxonomy;
+4. materialize curated/high ingredients and explicitly retire development fixtures;
+5. require >=400 current curated/high ingredients;
+6. execute six pilot waves to 120/120 terminal/accepted with zero unresolved semantic prerequisites;
+7. re-scan and require Scale Gate 500 `ready`;
+8. run the first 100-accepted industrialized batch and re-scan again.
+
+Use `.github/workflows/production-corpus.yml` when the local runtime cannot download the USDA archives. The workflow output is a working production bundle/evidence set, not a release catalog.

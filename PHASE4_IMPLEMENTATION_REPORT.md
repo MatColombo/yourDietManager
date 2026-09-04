@@ -163,3 +163,46 @@ The official USDA FoodData Central pages are reachable through web research, but
 
 After the UI/data audit, the production Phase 4 gate has an additional prerequisite: complete the canonical Reference Data Registry and migrate semantic free-text fields before resuming the 3,000–5,000 recipe build. The orchestrator/pipeline must be reference-data-aware: it may propose/materialize extensible taxonomy terms and curate missing ingredients first, but accepted recipes may contain only canonical IDs. This amendment does not invalidate the existing engine tests; it tightens the production-data contract before final materialization.
 
+
+
+## Phase 4 production Pass A — contract/pilot hardening
+
+4P-A is implemented in `PHASE4_PRODUCTION_PASS_A_REPORT.md` and `specs/PRODUCTION_CORPUS_CONTRACT.md`.
+
+The production path is now contract-bound rather than recipe-count-only:
+
+- 3,000/4,000/5,000 recipe target and 400/600/800 ingredient readiness are machine-checkable;
+- a deterministic 120-slot pilot ledger exists;
+- production planning excludes non-`curated/high` ingredient revisions;
+- taxonomy gaps create/reuse governed ReferenceDataProposal artifacts before candidate generation;
+- unresolved intake records cannot enter the production recipe processor;
+- accepted versions carry candidate/intake/contract provenance;
+- production manifest/release gates require the production contract and pipeline version.
+
+The current development catalog correctly remains `readyForPilot=false`: 0 of 4 active ingredient families are production-ready. This replaces the prior vague “curate ingredients first” prerequisite with a measurable gate.
+
+
+## Phase 4 production Pass B — ingredient curation/pilot execution
+
+4P-B extends the production path with a source-governed ingredient curation layer and ordered pilot waves. The implementation is normative in `specs/INGREDIENT_CURATION_PILOT_SPEC.md`.
+
+Implemented control-plane behavior:
+
+- Foundation Foods April 2026 primary source and SR Legacy supplemental source are frozen in a schema-valid curation policy;
+- source acquisition records archive/input digest provenance;
+- source importers produce pending editorial review records, not canonical ingredients;
+- explicit review is required for Italian label, taxonomy, state, allergens, culinary suitability, duplicate status, nutrition and provenance;
+- materialization emits only reviewed `curated/high` IngredientRevision records;
+- existing fixture retirement requires an explicit approved replacement map;
+- pilot wave reports enforce 20-record ordered waves and no unresolved references/proposals at wave close.
+
+The production-data portion is **not marked complete** in this candidate. The execution sandbox could not acquire the trusted external USDA archive, so no nutrition values were fabricated and wave 1 remains blocked. A trusted source batch must be acquired and editorially reviewed before the 400-family pilot gate can become green.
+
+
+## Phase 4 production Pass C addendum — rc.12
+
+4P-C industrializes the post-pilot production recipe path without authorizing execution before 4P-B closes. The companion policy `recipe-production-pipeline-v1@1.0.0` adds deterministic per-job intake, ordered objective stages, explicit candidate dispositions, review/retry governance, immutable result/report digests, stale-snapshot rejection and Scale Gate 500.
+
+Current execution remains intentionally blocked because the bundled development fixture has 0/400 production-ready ingredient families, pilot terminal count 0/120, three production nutrition errors and only 3 active recipes. The scale CLI refuses to create a production job intake while this gate is blocked.
+
+The 4P-C control plane is covered by dedicated schemas, CLI tools and automated tests. Scale execution is complete only after the 4P-B data/pilot gate closes and the cumulative corpus reaches >=500 clean recipes with the pro-rata hard coverage floors.

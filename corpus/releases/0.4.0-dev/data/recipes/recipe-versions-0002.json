@@ -136,9 +136,10 @@
     ],
     "calculationAlgorithmVersion": "nutrition-core-1",
     "inputDigest": "5b63dbb0c55977513873296c7a31605a49ebbe8c1d9347c4232a008ae277a234",
-    "contentHash": "17c89283609f18f5ec1b68b64ac601a09941cec019b14cfa4ee2e8d90d157c7f",
+    "contentHash": "7241dff1b2275b7ad6607ff5516f9be2496d40f4df4495233f94f4973ee46533",
     "generation": {
       "jobId": "batch-3835cf4f7db191",
+      "candidateId": "p4-b",
       "pipelineVersion": "recipe-pipeline-1",
       "sourceLocale": "it",
       "generatedAt": "2026-09-03T14:07:00Z"
@@ -288,9 +289,10 @@
     ],
     "calculationAlgorithmVersion": "nutrition-core-1",
     "inputDigest": "97dfd4f98ac2b2e342b67f160605102da25d1aac7ce1634a05eb7a3c18623557",
-    "contentHash": "12bf57195b7a0b4e17a53f7a4e77e51dc951651697e9473867bd8397424bb372",
+    "contentHash": "7f9e5d0122caba05ff4c6b6498269743b9fe201fa42d0d5ee49a8847d974da96",
     "generation": {
       "jobId": "batch-3835cf4f7db191",
+      "candidateId": "p4-c",
       "pipelineVersion": "recipe-pipeline-1",
       "sourceLocale": "it",
       "generatedAt": "2026-09-03T14:07:00Z"
@@ -440,9 +442,10 @@
     ],
     "calculationAlgorithmVersion": "nutrition-core-1",
     "inputDigest": "0632486321f1bf1870782b5ae3a55d19c5a5f93c1dc53182ca2d8cd2b1ade9b8",
-    "contentHash": "84ae69955433c727e9a612cc663114069b90f201154dfe6a000fab6bf6c9801f",
+    "contentHash": "c4752722624a9dc2d7fbf49368595600925f16e4e1895ff538dfea25cf4025b6",
     "generation": {
       "jobId": "batch-3835cf4f7db191",
+      "candidateId": "p4-d",
       "pipelineVersion": "recipe-pipeline-1",
       "sourceLocale": "it",
       "generatedAt": "2026-09-03T14:07:00Z"
@@ -594,9 +597,10 @@
     ],
     "calculationAlgorithmVersion": "nutrition-core-1",
     "inputDigest": "bf3b5e288f21df62a1c014052561876ec6fcae0ba2fc574b2d9c19d944bdb9fd",
-    "contentHash": "ad7f1270d0aecf114236a83d9a1cd99c99b2a2c18b356f224387d161ac8bcce9",
+    "contentHash": "d0708bc2811db8001a4cce886e9246522df2a0c7473febb3c65eeac9b8ad8866",
     "generation": {
       "jobId": "batch-3835cf4f7db191",
+      "candidateId": "p4-e",
       "pipelineVersion": "recipe-pipeline-1",
       "sourceLocale": "it",
       "generatedAt": "2026-09-03T14:07:00Z"

@@ -2,6 +2,7 @@
   "schemaVersion": 1,
   "jobId": "batch-3835cf4f7db191",
   "pipelineVersion": "recipe-pipeline-1",
+  "productionContract": null,
   "referenceDataVersion": "1.0.0",
   "referenceDataDigest": "56f3949bd1c0348f8fe65861ebcda23c2a198805cd2e9f70b00610a328753b52",
   "seed": "phase4-smoke-seed:3835cf4f7db191ee",

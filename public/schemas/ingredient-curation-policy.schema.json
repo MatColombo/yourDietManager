@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/ingredient-curation-policy.schema.json",
+  "title": "IngredientCurationPolicy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion","policyId","policyVersion","productionContract","sourcePriority","sourceRules","reviewRequirements","nutritionBoundsPer100g","pilotExecution"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "policyId": {"type":"string","minLength":1},
+    "policyVersion": {"type":"string","minLength":1},
+    "productionContract": {
+      "type":"object","additionalProperties":false,"required":["contractId","contractVersion"],
+      "properties":{"contractId":{"type":"string","minLength":1},"contractVersion":{"type":"string","minLength":1}}
+    },
+    "sourcePriority": {
+      "type":"array","minItems":2,
+      "items":{"type":"object","additionalProperties":false,"required":["sourceId","provider","dataset","release","role","officialPublishedCount","reference","archive","license","genericOnly"],"properties":{
+        "sourceId":{"type":"string","minLength":1},"provider":{"type":"string","minLength":1},"dataset":{"type":"string","minLength":1},"release":{"type":"string","minLength":1},
+        "role":{"enum":["primary","supplemental"]},"officialPublishedCount":{"type":"integer","minimum":0},"reference":{"type":"string","minLength":1},"archive":{"type":["string","null"]},"license":{"type":"string","minLength":1},"genericOnly":{"type":"boolean"}
+      }}
+    },
+    "sourceRules": {
+      "type":"object","additionalProperties":false,"required":["forbiddenDatasets","primaryWinsExactConcept","automaticFuzzyMerge","requireSourceRecordId","requireInputDigest"],
+      "properties":{"forbiddenDatasets":{"type":"array","uniqueItems":true,"items":{"type":"string","minLength":1}},"primaryWinsExactConcept":{"type":"boolean"},"automaticFuzzyMerge":{"const":false},"requireSourceRecordId":{"type":"boolean"},"requireInputDigest":{"type":"boolean"}}
+    },
+    "reviewRequirements": {
+      "type":"object","additionalProperties":false,"required":["requireItalianLabel","requireTaxonomyReview","requireStateReview","requireAllergenReview","requireCulinarySuitabilityReview","requireDuplicateReview","allowUnknownState","approvedDecision"],
+      "properties":{"requireItalianLabel":{"type":"boolean"},"requireTaxonomyReview":{"type":"boolean"},"requireStateReview":{"type":"boolean"},"requireAllergenReview":{"type":"boolean"},"requireCulinarySuitabilityReview":{"type":"boolean"},"requireDuplicateReview":{"type":"boolean"},"allowUnknownState":{"type":"boolean"},"approvedDecision":{"const":"approved"}}
+    },
+    "nutritionBoundsPer100g": {
+      "type":"object","additionalProperties":false,"required":["energyKcal","proteinG","carbsG","fatG","fiberG","sodiumMg"],
+      "properties":{"energyKcal":{"$ref":"#/$defs/bound"},"proteinG":{"$ref":"#/$defs/bound"},"carbsG":{"$ref":"#/$defs/bound"},"fatG":{"$ref":"#/$defs/bound"},"fiberG":{"$ref":"#/$defs/bound"},"sodiumMg":{"$ref":"#/$defs/bound"}}
+    },
+    "pilotExecution": {
+      "type":"object","additionalProperties":false,"required":["waveSize","requireReadinessBeforeWave1","requirePreviousWaveGateBeforeNext","maxUnresolvedReferencesAtWaveClose","maxUnhandledTaxonomyProposalsAtWaveClose"],
+      "properties":{"waveSize":{"type":"integer","minimum":1},"requireReadinessBeforeWave1":{"type":"boolean"},"requirePreviousWaveGateBeforeNext":{"type":"boolean"},"maxUnresolvedReferencesAtWaveClose":{"type":"integer","minimum":0},"maxUnhandledTaxonomyProposalsAtWaveClose":{"type":"integer","minimum":0}}
+    }
+  },
+  "$defs":{"bound":{"type":"object","additionalProperties":false,"required":["min","max"],"properties":{"min":{"type":"number","minimum":0},"max":{"type":"number","minimum":0}}}}
+}

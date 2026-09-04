@@ -1,0 +1,124 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/production-corpus-contract.schema.json",
+  "title": "ProductionCorpusContract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "contractId", "contractVersion", "policyId", "policyVersion",
+    "requiredLocales", "productionTarget", "pilot", "ingredientReadiness",
+    "referenceData", "candidateLifecycle", "acceptance", "pipelineVersion"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "contractId": { "type": "string", "minLength": 3 },
+    "contractVersion": { "type": "string", "minLength": 1 },
+    "policyId": { "type": "string", "minLength": 1 },
+    "policyVersion": { "type": "string", "minLength": 1 },
+    "pipelineVersion": { "type": "string", "minLength": 1 },
+    "requiredLocales": {
+      "type": "array", "minItems": 2, "uniqueItems": true,
+      "items": { "type": "string", "minLength": 2 }
+    },
+    "productionTarget": {
+      "type": "object", "additionalProperties": false,
+      "required": ["minRecipes", "targetRecipes", "maxRecipes"],
+      "properties": {
+        "minRecipes": { "type": "integer", "minimum": 1 },
+        "targetRecipes": { "type": "integer", "minimum": 1 },
+        "maxRecipes": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "pilot": {
+      "type": "object", "additionalProperties": false,
+      "required": ["minCandidates", "targetCandidates", "maxCandidates", "waveSize", "strata"],
+      "properties": {
+        "minCandidates": { "type": "integer", "minimum": 1 },
+        "targetCandidates": { "type": "integer", "minimum": 1 },
+        "maxCandidates": { "type": "integer", "minimum": 1 },
+        "waveSize": { "type": "integer", "minimum": 1 },
+        "strata": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["stratumId", "count", "mealArchetypes", "focus", "rationale"],
+            "properties": {
+              "stratumId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9_-]*$" },
+              "count": { "type": "integer", "minimum": 1 },
+              "mealArchetypes": {
+                "type": "array", "minItems": 1, "uniqueItems": true,
+                "items": { "$ref": "domain-enums.schema.json#/$defs/mealArchetype" }
+              },
+              "focus": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+              "rationale": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    "ingredientReadiness": {
+      "type": "object", "additionalProperties": false,
+      "required": ["minActiveIngredients", "targetActiveIngredients", "maxActiveIngredients", "qualityStatus", "confidence", "requiredNutritionFields", "requireSourceLabel"],
+      "properties": {
+        "minActiveIngredients": { "type": "integer", "minimum": 1 },
+        "targetActiveIngredients": { "type": "integer", "minimum": 1 },
+        "maxActiveIngredients": { "type": "integer", "minimum": 1 },
+        "qualityStatus": { "const": "curated" },
+        "confidence": { "const": "high" },
+        "requiredNutritionFields": {
+          "type": "array", "minItems": 5, "uniqueItems": true,
+          "items": { "enum": ["energyKcal", "proteinG", "carbsG", "fatG", "fiberG"] }
+        },
+        "requireSourceLabel": { "type": "boolean" }
+      }
+    },
+    "referenceData": {
+      "type": "object", "additionalProperties": false,
+      "required": ["maxUnresolved", "requireFrozenSnapshot", "requireBilingualLabels", "proposalMaterialization", "closedRegistries"],
+      "properties": {
+        "maxUnresolved": { "const": 0 },
+        "requireFrozenSnapshot": { "const": true },
+        "requireBilingualLabels": { "const": true },
+        "proposalMaterialization": { "enum": ["review_before_materialize"] },
+        "closedRegistries": {
+          "type": "array", "uniqueItems": true,
+          "items": { "enum": ["meal_archetype", "day_archetype", "allergen_id", "ingredient_state"] }
+        }
+      }
+    },
+    "candidateLifecycle": {
+      "type": "object", "additionalProperties": false,
+      "required": ["states", "readyState", "terminalStates"],
+      "properties": {
+        "states": {
+          "type": "array", "minItems": 7, "uniqueItems": true,
+          "items": { "enum": ["discovered", "needs_reference_review", "needs_ingredient_review", "ready_for_generation", "generated", "accepted", "rejected"] }
+        },
+        "readyState": { "const": "ready_for_generation" },
+        "terminalStates": {
+          "type": "array", "minItems": 2, "uniqueItems": true,
+          "items": { "enum": ["accepted", "rejected"] }
+        }
+      }
+    },
+    "acceptance": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "requireCulinaryApproval", "requireCanonicalReferences", "requireResolvedIntake",
+        "requireDeterministicNutrition", "requireDeterministicAllergens", "requireNoExactDuplicate",
+        "requireNoNearDuplicate", "requireCoverageFit", "requireSchemaValidity"
+      ],
+      "properties": {
+        "requireCulinaryApproval": { "const": true },
+        "requireCanonicalReferences": { "const": true },
+        "requireResolvedIntake": { "const": true },
+        "requireDeterministicNutrition": { "const": true },
+        "requireDeterministicAllergens": { "const": true },
+        "requireNoExactDuplicate": { "const": true },
+        "requireNoNearDuplicate": { "const": true },
+        "requireCoverageFit": { "const": true },
+        "requireSchemaValidity": { "const": true }
+      }
+    }
+  }
+}

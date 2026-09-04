@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/production-corpus-intake.schema.json",
+  "title": "ProductionCorpusIntake",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "intakeId", "contractId", "contractVersion", "seed",
+    "referenceDataVersion", "referenceDataDigest", "targetCandidateCount",
+    "records", "createdAt", "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "intakeId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{2,127}$" },
+    "contractId": { "type": "string", "minLength": 3 },
+    "contractVersion": { "type": "string", "minLength": 1 },
+    "seed": { "type": "string", "minLength": 1 },
+    "referenceDataVersion": { "type": "string", "minLength": 1 },
+    "referenceDataDigest": { "type": "string", "minLength": 16 },
+    "targetCandidateCount": { "type": "integer", "minimum": 1 },
+    "records": {
+      "type": "array", "minItems": 1,
+      "items": { "$ref": "#/$defs/record" }
+    },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "record": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "candidateId", "stratumId", "state", "referenceScanStatus", "concept",
+        "referenceRequests", "jobId", "generatedAt", "outcome", "audit"
+      ],
+      "properties": {
+        "candidateId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9._-]{2,127}$" },
+        "stratumId": { "type": "string", "minLength": 1 },
+        "state": { "enum": ["discovered", "needs_reference_review", "needs_ingredient_review", "ready_for_generation", "generated", "accepted", "rejected"] },
+        "referenceScanStatus": { "enum": ["pending", "complete"] },
+        "concept": {
+          "type": "object", "additionalProperties": false,
+          "required": ["mealArchetypes", "focus", "rationale"],
+          "properties": {
+            "mealArchetypes": {
+              "type": "array", "minItems": 1, "uniqueItems": true,
+              "items": { "$ref": "domain-enums.schema.json#/$defs/mealArchetype" }
+            },
+            "focus": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+            "rationale": { "type": "string", "minLength": 1 }
+          }
+        },
+        "referenceRequests": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/referenceRequest" }
+        },
+        "jobId": { "type": ["string", "null"] },
+        "generatedAt": { "type": ["string", "null"], "format": "date-time" },
+        "outcome": {
+          "oneOf": [
+            { "type": "null" },
+            {
+              "type": "object", "additionalProperties": false,
+              "required": ["status", "code", "recipeVersionId", "processedAt"],
+              "properties": {
+                "status": { "enum": ["accepted", "rejected"] },
+                "code": { "type": ["string", "null"] },
+                "recipeVersionId": { "type": ["string", "null"] },
+                "processedAt": { "type": "string", "format": "date-time" }
+              }
+            }
+          ]
+        },
+        "audit": {
+          "type": "array",
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["at", "action", "detail"],
+            "properties": {
+              "at": { "type": "string", "format": "date-time" },
+              "action": { "type": "string", "minLength": 1 },
+              "detail": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    "referenceRequest": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "requestId", "kind", "taxonomyId", "labels", "proposedTermId", "parentTermId",
+        "rationale", "status", "proposalId", "resolvedId", "notes"
+      ],
+      "properties": {
+        "requestId": { "type": "string", "minLength": 1 },
+        "kind": { "enum": ["taxonomy_term", "ingredient"] },
+        "taxonomyId": { "type": ["string", "null"] },
+        "labels": {
+          "type": "object", "additionalProperties": false,
+          "required": ["it", "en"],
+          "properties": {
+            "it": { "type": "string", "minLength": 1 },
+            "en": { "type": "string", "minLength": 1 }
+          }
+        },
+        "proposedTermId": { "type": ["string", "null"] },
+        "parentTermId": { "type": ["string", "null"] },
+        "rationale": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["unresolved", "reused", "proposed", "needs_review", "approved", "materialized", "resolved", "rejected"] },
+        "proposalId": { "type": ["string", "null"] },
+        "resolvedId": { "type": ["string", "null"] },
+        "notes": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

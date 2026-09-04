@@ -16,6 +16,24 @@ The user gives a high-level intent such as BUILD, EXPAND, IMPROVE or FOCUSED_EXP
 8. Repeat until the run stop condition is reached.
 9. Publish only through the release validator.
 
+
+## Production 4P-A intake protocol
+
+For production catalog work, do not generate recipe candidate JSON directly from a conceptual slot.
+
+1. Create/read the `ProductionCorpusIntake` ledger (`corpus/pilot/v1-pilot-intake.json` for the first pilot).
+2. Inspect each slot and explicitly set `referenceScanStatus = complete` only after checking taxonomy and ingredient prerequisites.
+3. Add `referenceRequests[]` for every missing/ambiguous taxonomy term or ingredient.
+4. Run `npm run corpus:pilot-resolve`.
+5. Reuse canonical terms when uniquely resolved; review/materialize new `ReferenceDataProposal` records before continuing.
+6. Curate missing ingredients to production `curated/high` before use.
+7. Generate candidate JSON only for records in `ready_for_generation`.
+8. Use the record's stable `candidateId` unchanged in the generated candidate.
+9. Process with `npm run corpus:production-process -- ...`; the generic `corpus:process` command is development/editorial tooling and does not satisfy production intake provenance.
+10. Accepted RecipeVersion records must carry the intake and production-contract provenance emitted by the production processor.
+
+The production processor fails before recipe calculations if a candidate ledger record is unresolved. Never bypass this by deleting reference requests or substituting a text label for a canonical ID.
+
 ## Candidate JSON contract
 
 The candidate file is an array. Each object supplies editorial/culinary intent only; authoritative nutrition, allergens, normalized amounts, hashes and immutable IDs are derived by code.
@@ -85,7 +103,11 @@ The candidate file is an array. Each object supplies editorial/culinary intent o
 ```bash
 npm run corpus:scan -- <catalog-data-dir|bundle.json> <policy.json> <snapshot.json>
 npm run corpus:plan -- <snapshot.json> <build|expand|improve|focused_expansion> <policy.json> <catalog-data-dir|bundle.json> [goal.json] [targetCatalogVersion] [seed]
+# Development/smoke processor
 npm run corpus:process -- <catalog-data-dir|bundle.json> <policy.json> <job.json> <candidates.json> <result.json>
+
+# Production processor
+npm run corpus:production-process -- <catalog-data-dir|bundle.json> <policy.json> <contract.json> <job.json> <intake.json> <candidates.json> <result.json> [updated-intake.json]
 npm run corpus:apply -- <catalog-data-dir|bundle.json> <result.json> <new-bundle.json> <targetCatalogVersion>
 ```
 
@@ -106,3 +128,21 @@ Before writing a candidate recipe:
 8. reject the batch if unresolved reference data remains.
 
 Closed registries such as allergens, MealArchetype, DayArchetype and ingredient state cannot be expanded by candidate generation.
+
+## Production 4P-C industrialized scale protocol
+
+After the 4P-B pilot is actually complete, post-pilot production batches use the 4P-C control plane.
+
+1. Generate `corpus/reports/scale-gate-500.json`. If its status is `blocked`, stop; do not plan/generate scale candidates.
+2. Scan the complete current corpus and plan exactly one next production `RecipeGenerationJob` from that fresh snapshot.
+3. Create a deterministic job-specific intake with `npm run corpus:production-job-intake`; every record starts `discovered/pending`.
+4. Complete reference scanning and resolve every reference/ingredient request before setting records `ready_for_generation`.
+5. Generate exactly the job candidate IDs; do not substitute ad-hoc IDs.
+6. Execute with `npm run corpus:production-run-batch`, not the development processor.
+7. Inspect the `ProductionRecipeBatchReport`: accepted, rejected, duplicate, needs_reference_review, needs_recipe_review and nutrition_outlier are distinct dispositions.
+8. Resolve `needs_reference_review` through canonical reference-data/ingredient governance. Resolve recipe/nutrition review through `npm run corpus:production-review`; never edit the report to make it pass.
+9. Apply only with `npm run corpus:production-apply`; it requires zero review backlog, target/diversity pass and matching result digest.
+10. Re-scan the full applied corpus. Never run the next job against the previous snapshot.
+11. Continue until Scale Gate 500 passes. Do not continue to later scale checkpoints while the 500 gate is not passed.
+
+A 4P-C control-plane implementation is not evidence that 4P-B or Scale Gate 500 is complete. Current blocked data gates must remain visible in reports.

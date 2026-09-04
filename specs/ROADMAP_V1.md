@@ -137,3 +137,59 @@ See `../DATA_UX_HARDENING_PASS_B_REPORT.md`.
 - machine-checkable revision closure across code, reports, specs, project Skill and CI browser requirement.
 
 Passes A-E are implemented. The production corpus build can resume only after the Pass E final-acceptance browser regression is green in an unrestricted Chromium/localhost environment; the GitHub Pages workflow sets this browser gate as required. The remaining V1 release blocker is then the 3,000–5,000 curated production corpus and its provenance/quality requirements.
+
+## Phase 4 production corpus — controlled scale-up
+
+### 4P-A — Production Contract & Pilot Pipeline ✅ DONE
+
+- versioned production corpus contract bound to policy, pipeline and reference-data snapshot;
+- deterministic 120-slot pilot intake across 12 coverage strata;
+- explicit candidate lifecycle with `needs_reference_review`, `needs_ingredient_review` and `ready_for_generation` states;
+- audited `ReferenceDataProposal` reuse/propose/review/materialize lifecycle for taxonomy growth;
+- production ingredient readiness requires current `IngredientRevision` `curated/high` with minimum nutrition/provenance fields;
+- production processor rejects unresolved intake before Recipe Pipeline execution;
+- accepted RecipeVersion records freeze candidate/intake/production-contract provenance;
+- production release publication and final release gate require production-contract traceability;
+- current bundled fixture remains intentionally blocked: 0/4 production-ready ingredient families versus the 400-family pilot floor.
+
+### 4P-B — Ingredient Curation & Pilot Execution 🟡 CONTROL PLANE DONE / DATA BLOCKED
+
+- frozen `ingredient-curation-v1@1.0.0` policy bound to the 4P-A production contract;
+- trusted-source hierarchy: Foundation Foods April 2026 primary, SR Legacy supplemental, Branded forbidden;
+- source archive/input digest and source-record provenance required;
+- imported source mappings remain `pending` until every editorial review dimension is explicit;
+- only fully approved records can materialize as `curated/high`;
+- duplicate handling and retirement of development fixtures require explicit mappings, never fuzzy replacement;
+- pilot is six ordered waves of 20; a later wave cannot start before the previous wave closes with zero unresolved references/proposals;
+- current baseline is intentionally blocked because no trusted USDA source batch is vendored and the production-ready foundation remains below 400.
+
+4P-B is complete only at the control-plane level in this candidate. **Do not execute 4P-C scale-up** until >=400 production-ready ingredient families exist and all 120 pilot slots have been executed/reviewed to terminal states.
+
+### 4P-C — Industrialized Corpus Generation & Scale Gate 500 🟡 CONTROL PLANE DONE / EXECUTION BLOCKED
+
+- companion policy `recipe-production-pipeline-v1@1.0.0` bound to production contract, corpus policy and 4P-B curation policy;
+- deterministic per-job scale intake, never direct candidate generation from a job without a ledger;
+- explicit post-generation dispositions: accepted/rejected/duplicate/reference review/recipe review/nutrition outlier;
+- objective ordered 100-point quality stages; V1 production acceptance requires 100/100;
+- stale-snapshot guard between job planning and execution;
+- immutable result/report digest;
+- explicit review/retry with maximum three attempts;
+- production apply refuses review backlog, digest mismatch, target failure or diversity failure;
+- Scale Gate 500 derives hard coverage floors pro-rata from the frozen 3,000-recipe release minima.
+
+The 4P-C execution gate remains intentionally blocked in the bundled fixture until the 4P-B data/pilot prerequisites are real. Control-plane availability does not authorize generation with fixture ingredients or unfinished pilot intake.
+
+### 4P execution bridge — rc.13 🟢 IMPLEMENTED / NETWORK RUN REQUIRED
+
+- `.github/workflows/production-corpus.yml` executes the missing source-backed chain on a network-enabled GitHub runner;
+- official USDA source acquisition is digest-pinned in evidence manifests and source archives remain uncommitted;
+- deterministic high-confidence review can approve only strict generic/rule-mappable records after import; import itself remains pending/unapproved;
+- curation must preserve explicit replacements for salmon, cooked rice, zucchini and olive oil before Phase 1 fixtures can retire;
+- recipe fixtures retire only after their ingredient fixtures are explicitly retired, with history preserved;
+- six deterministic pilot waves must close at 120/120 accepted with zero unresolved references/proposals;
+- the first 4P-C 100-accepted batch is created only after Scale Gate 500 becomes `ready`;
+- generated working data is staging/evidence, not a V1 release; 4P-D remains gated by the real output of this run.
+
+The local build environment cannot fetch the USDA ZIPs, so rc.13 validates this execution path with synthetic production fixtures and leaves the local production-data gate red rather than fabricating source data.
+
+Next after the source-backed workflow reaches a clean Scale Gate 500 trajectory: **4P-D — Controlled Scale 500 -> 1500 -> 3000+**.

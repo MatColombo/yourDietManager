@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-04T13:17:21.176Z",
-  "candidateAppVersion": "1.0.0-rc.9",
+  "generatedAt": "2026-09-04T15:43:06.102Z",
+  "candidateAppVersion": "1.0.0-rc.13",
   "catalogVersion": "0.3.0-dev",
   "checks": [
     {
@@ -22,7 +22,7 @@
     {
       "id": "app-version-sync",
       "pass": true,
-      "detail": "package=1.0.0-rc.9, runtime=1.0.0-rc.9"
+      "detail": "package=1.0.0-rc.13, runtime=1.0.0-rc.13"
     },
     {
       "id": "recipe-corpus-minimum",
@@ -30,9 +30,14 @@
       "detail": "recipeVersions=3, required>=3000"
     },
     {
+      "id": "production-contract-traceability",
+      "pass": false,
+      "detail": "manifest=missing, expected=ydm-v1-production-corpus@1.0.0"
+    },
+    {
       "id": "production-pipeline",
       "pass": false,
-      "detail": "pipelineVersion=phase3-fixture"
+      "detail": "pipelineVersion=phase3-fixture, expected=recipe-pipeline-2-production-intake"
     },
     {
       "id": "curated-high-confidence-ingredients",
@@ -52,8 +57,12 @@
       "detail": "recipeVersions=3, required>=3000"
     },
     {
+      "id": "production-contract-traceability",
+      "detail": "manifest=missing, expected=ydm-v1-production-corpus@1.0.0"
+    },
+    {
       "id": "production-pipeline",
-      "detail": "pipelineVersion=phase3-fixture"
+      "detail": "pipelineVersion=phase3-fixture, expected=recipe-pipeline-2-production-intake"
     },
     {
       "id": "curated-high-confidence-ingredients",

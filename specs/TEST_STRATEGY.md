@@ -205,3 +205,74 @@ Pass E extends the browser harness so the final acceptance run on an unrestricte
 `npm run hardening:revision` then verifies version sync, Pass E documentation/Skill coverage, the CI-required browser setting, presence of all acceptance checks and the status of the latest Pass E browser report. With `YDM_BROWSER_REQUIRED=1`, only `status=passed` is acceptable; recognized environment-policy skips are acceptable only for local non-release verification.
 
 CI browser startup must not rely on a guessed fixed debugging port. The Pages workflow selects an executable stable Chrome when available, exports it through `CHROMIUM_PATH`, and the harness uses a temporary profile plus `--remote-debugging-port=0`, discovering the assigned DevTools endpoint before starting acceptance navigation. Browser spawn/early-exit diagnostics are release-gate failures, not silent skips.
+
+## 9. Phase 4 production corpus gates
+
+### 4P-A — contract and pilot infrastructure
+
+The 4P-A suite must verify:
+
+- the production corpus contract validates and is bound exactly to the active `RecipeCorpusPolicy` ID/version;
+- contract digest is deterministic and frozen into every production `RecipeGenerationJob`;
+- the pilot planner produces exactly 120 deterministic intake slots across the 12 declared strata;
+- a production job can use only current IngredientRevision records meeting the contract's `curated/high` quality/provenance requirements;
+- draft/low fixture ingredients cannot become production job inputs merely because they exist in the catalog;
+- reference-data intake reuses a unique canonical term, proposes only on extensible taxonomies, blocks collisions and never materializes without explicit approval;
+- `referenceScanStatus` must be complete and unresolved prerequisite counts must be zero before an intake can become `ready_for_generation`;
+- the production processor rejects unresolved or contract/snapshot-mismatched intake before invoking the Recipe Pipeline;
+- accepted production RecipeVersion records freeze `candidateId`, `intakeId`, production contract ID/version and the contract-bound pipeline version;
+- release publication includes production contract/policy traceability and the final release gate rejects catalogs without that provenance;
+- current development fixtures are reported as blocked rather than silently promoted to production-ready data.
+
+
+### 4P-B — ingredient curation and pilot execution
+
+The 4P-B suite must verify:
+
+- the curation policy is bound exactly to the production contract and source-count assumptions are explicit;
+- the primary Foundation source count alone cannot satisfy the 400-family floor, and the supplemental floor is computed rather than hidden;
+- source import writes an input digest and every source row remains pending/unapproved by default;
+- heuristic suggestions never satisfy editorial review checks automatically;
+- `approved=true` with any incomplete review dimension is rejected;
+- Foundation and SR Legacy imports are source-bound and schema-valid; Branded datasets are forbidden;
+- source nutrition rows missing required macronutrient fields are excluded from the eligible review batch rather than filled with invented values;
+- materialization produces only schema-valid `curated/high` IngredientRevision records with source-record and batch provenance;
+- ingredient family ID collisions are rejected and development fixture retirement requires a schema-valid explicit replacement map;
+- wave 1 is blocked when production ingredient readiness fails;
+- wave 1 is not blocked by final 3,000-recipe/production-manifest release checks once `readyForPilot` is green;
+- wave N+1 is blocked until wave N is fully terminal;
+- wave close requires zero unresolved reference requests and zero unhandled taxonomy proposals;
+- the current repository baseline reports `readyForPilotFoundation=false` rather than treating missing trusted source data as a skip/pass.
+
+
+## 4P-C industrialized production pipeline / Scale Gate 500
+
+- `recipe-production-pipeline-v1@1.0.0` schema-valid and bound to ProductionCorpusContract, RecipeCorpusPolicy and ingredient curation policy.
+- Job-specific scale intake is deterministic and starts all records `discovered` with `referenceScanStatus=pending`.
+- 4P-C scale intake/run is impossible while Scale Gate 500 is `blocked` by unfinished 4P-B prerequisites.
+- Production batch execution requires a fresh snapshot matching `job.orchestration.inputSnapshotId`; catalog mutation after planning is a hard failure.
+- Every candidate receives exactly one explicit disposition: accepted, rejected, duplicate, needs_reference_review, needs_recipe_review or nutrition_outlier.
+- `needs_reference_review`, `needs_recipe_review` and `nutrition_outlier` are non-terminal and create review backlog; batch apply is forbidden while backlog >0.
+- `macro_energy_mismatch` is a blocking production nutrition outlier, never warning-only acceptance.
+- Objective stage weights total 100; V1 accepted candidates require score 100.
+- Batch result/report digest detects tampering or mismatched result artifacts.
+- Recipe/nutrition retry requires explicit reviewer identity/notes and cannot exceed three candidate attempts.
+- Exact/near duplicates are explicit duplicate dispositions and never produce accepted RecipeVersion records.
+- Production apply requires gate=pass, targetMet, diversityPassed, zero review backlog and matching digest.
+- Scale Gate 500 requires 4P-B pilot completion, >=500 active recipes, zero schema/reference/nutrition/allergen/locale errors, zero exact/near duplicates and pro-rata hard coverage floors derived from the 3,000-recipe release minima.
+- `npm run corpus:scale-gate-500 -- --strict` must exit non-zero until the 500 gate actually passes.
+
+
+### 4P execution bridge — source-backed missing-step execution
+
+The rc.13 execution suite must verify:
+
+- the GitHub workflow preserves the strict order Foundation/SR acquisition -> review intake -> deterministic bounded review -> materialization -> explicit fixture retirement -> pilot readiness -> six pilot waves -> Scale Gate 500 -> first industrialized scale batch;
+- source archives are never included in the commit set and acquisition manifests retain SHA-256 plus source identity;
+- deterministic review rejects non-generic/forbidden records, missing required nutrient fields and gross macro/energy mismatch; no fuzzy semantic merge is introduced;
+- deterministic review preserves eligible USDA replacements for salmon, cooked rice, zucchini and olive oil before the legacy retirement map is generated;
+- the deterministic pilot generator produces exactly 120 unique candidates using only active `curated/high` ingredients;
+- all six synthetic production pilot waves can close 120/120 accepted through the real Recipe Pipeline with zero unresolved references;
+- the deterministic focused scale generator can feed a 125-candidate industrialized batch that reaches the 100-accepted target with zero review backlog under a clean production fixture;
+- `--pilot-strict` fails closed when the real ingredient foundation is not ready;
+- source/network unavailability is reported as a blocked execution prerequisite, never converted into a passing data gate.

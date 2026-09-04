@@ -303,3 +303,71 @@ Prima di pubblicare un catalog release, importare gli shard in un IndexedDB di t
 ## Reference-data gate
 
 Accepted recipe count is irrelevant if unresolved taxonomy/reference IDs remain. Batch QA must report reference-data proposals/materializations and before/after registry version/digest separately from recipe acceptance.
+
+
+## Production corpus intake (4P-A)
+
+Production recipe work must use `corpus/contracts/v1-production.json` and `ProductionCorpusIntake`.
+
+Lifecycle:
+
+```text
+discovered
+  -> needs_reference_review | needs_ingredient_review
+  -> ready_for_generation
+  -> generated
+  -> accepted | rejected
+```
+
+Rules:
+
+- do not generate a production candidate while `referenceScanStatus` is pending;
+- record missing taxonomy/ingredient concepts as `referenceRequests`, never provisional RecipeVersion values;
+- taxonomy requests reuse a unique canonical term or create a governed ReferenceDataProposal; proposal approval is explicit before materialization;
+- ingredient requests resolve only to a current `curated/high` IngredientRevision;
+- `corpus:production-process` requires every candidate ID to have an intake record in `ready_for_generation` with zero unresolved requests;
+- job, intake and catalog must share the exact referenceDataVersion/digest;
+- accepted RecipeVersion generation provenance includes candidateId, intakeId and production contract ID/version.
+
+The generic corpus processor is acceptable for smoke/development fixtures but does not satisfy production intake provenance.
+
+
+## Ingredient curation before production pilot (4P-B)
+
+Before any production pilot candidate can be generated, load `ingredient-curation-v1@1.0.0` and enforce its source/review gates.
+
+- Foundation Foods April 2026 is the primary generic source; SR Legacy is supplemental. Do not substitute Branded Foods.
+- Preserve source record ID and input digest for every imported candidate.
+- Treat importer food-group/state/allergen/name mappings as review suggestions only. Imported rows start pending and unapproved.
+- Require explicit checks for Italian label, taxonomy, physical state, allergens, culinary suitability, duplicate status, nutrition and source.
+- An approval with any incomplete check is invalid and must block materialization.
+- Materialize only `curated/high` IngredientRevision records.
+- Do not overwrite an existing family or retire a fixture through fuzzy/exact-name inference; use an explicit approved retirement map.
+- Pilot execution is six ordered waves of 20. Wave N+1 requires wave N terminal plus zero unresolved reference requests and zero unhandled taxonomy proposals.
+
+If trusted source acquisition is unavailable, stop with a blocked readiness report. Never fill the foundation with invented nutrition values to satisfy the 400-family threshold.
+
+
+## 4P-C industrialized production batches
+
+Do not execute post-pilot scale batches until Scale Gate 500 reports `ready` or `pass`; `blocked` means 4P-B data/pilot is incomplete or corpus quality is invalid.
+
+Use `recipe-production-pipeline-v1@1.0.0`. Create a deterministic job-specific `ProductionCorpusIntake`, complete reference scanning, then process only `ready_for_generation` records against the exact fresh snapshot that planned the job.
+
+Keep these outcomes distinct:
+
+- `accepted`: terminal and materializable;
+- `rejected`: terminal hard failure;
+- `duplicate`: terminal duplicate, no recipe emitted;
+- `needs_reference_review`: non-terminal and routed back to reference-data/ingredient governance;
+- `needs_recipe_review`: non-terminal editorial/culinary correction;
+- `nutrition_outlier`: non-terminal quantitative/nutrition correction.
+
+V1 objective quality stages total 100 and accepted candidates require 100. Treat `macro_energy_mismatch` as a blocking nutrition outlier in production. Never edit a report to turn a review disposition into accepted.
+
+Before applying, verify the batch result/report digest, require zero review backlog, target met and diversity passed. Re-scan and re-plan after every applied batch; never run a stale planned job after corpus mutation.
+
+
+## Deterministic production execution after 4P-C control-plane completion
+
+For the source-backed 4P-B/4P-C bridge, generate pilot candidates only from active current `curated/high` ingredients after explicit source review/materialization and legacy-fixture retirement. Close six waves of 20 through the same Recipe Pipeline used by production; do not create a bespoke acceptance path. After 120/120 pilot acceptance, require Scale Gate 500 to be `ready` before generating the first focused 4P-C batch. The first scale batch still uses ProductionCorpusIntake, fresh snapshot binding, industrialized dispositions, result digest, review backlog and apply verification.

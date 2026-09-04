@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/production-recipe-pipeline-policy.schema.json",
+  "title": "ProductionRecipePipelinePolicy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "policyId", "policyVersion", "productionContract", "corpusPolicy", "ingredientCurationPolicy", "pipelineVersion", "stageOrder", "qualityScore", "classification", "dispositions", "execution", "scaleGate500"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "policyId": { "type": "string", "minLength": 3 },
+    "policyVersion": { "type": "string", "minLength": 1 },
+    "productionContract": { "$ref": "#/$defs/idVersionContract" },
+    "corpusPolicy": { "$ref": "#/$defs/idVersionPolicy" },
+    "ingredientCurationPolicy": { "$ref": "#/$defs/idVersionPolicy" },
+    "pipelineVersion": { "type": "string", "minLength": 1 },
+    "stageOrder": {
+      "type": "array", "minItems": 8, "maxItems": 8, "uniqueItems": true,
+      "items": { "enum": ["intake", "structure_localization", "ingredient_normalization", "nutrition", "semantic_references", "culinary_review", "duplicate_diversity", "schema_provenance"] }
+    },
+    "qualityScore": {
+      "type": "object", "additionalProperties": false,
+      "required": ["maxScore", "minAcceptedScore", "stageWeights"],
+      "properties": {
+        "maxScore": { "const": 100 },
+        "minAcceptedScore": { "type": "integer", "minimum": 1, "maximum": 100 },
+        "stageWeights": {
+          "type": "object", "additionalProperties": false,
+          "required": ["intake", "structure_localization", "ingredient_normalization", "nutrition", "semantic_references", "culinary_review", "duplicate_diversity", "schema_provenance"],
+          "properties": {
+            "intake": { "$ref": "#/$defs/positiveWeight" },
+            "structure_localization": { "$ref": "#/$defs/positiveWeight" },
+            "ingredient_normalization": { "$ref": "#/$defs/positiveWeight" },
+            "nutrition": { "$ref": "#/$defs/positiveWeight" },
+            "semantic_references": { "$ref": "#/$defs/positiveWeight" },
+            "culinary_review": { "$ref": "#/$defs/positiveWeight" },
+            "duplicate_diversity": { "$ref": "#/$defs/positiveWeight" },
+            "schema_provenance": { "$ref": "#/$defs/positiveWeight" }
+          }
+        }
+      }
+    },
+    "classification": {
+      "type": "object", "additionalProperties": false,
+      "required": ["duplicateCodes", "nutritionOutlierCodes", "recipeReviewCodes", "referenceErrorPatterns", "blockingWarningCodes"],
+      "properties": {
+        "duplicateCodes": { "$ref": "#/$defs/stringSet" },
+        "nutritionOutlierCodes": { "$ref": "#/$defs/stringSet" },
+        "recipeReviewCodes": { "$ref": "#/$defs/stringSet" },
+        "referenceErrorPatterns": { "$ref": "#/$defs/stringSet" },
+        "blockingWarningCodes": { "$ref": "#/$defs/stringSet" }
+      }
+    },
+    "dispositions": {
+      "type": "object", "additionalProperties": false,
+      "required": ["accepted", "rejected", "duplicate", "needs_reference_review", "needs_recipe_review", "nutrition_outlier"],
+      "properties": {
+        "accepted": { "$ref": "#/$defs/disposition" },
+        "rejected": { "$ref": "#/$defs/disposition" },
+        "duplicate": { "$ref": "#/$defs/disposition" },
+        "needs_reference_review": { "$ref": "#/$defs/disposition" },
+        "needs_recipe_review": { "$ref": "#/$defs/disposition" },
+        "nutrition_outlier": { "$ref": "#/$defs/disposition" }
+      }
+    },
+    "execution": {
+      "type": "object", "additionalProperties": false,
+      "required": ["requireFreshSnapshot", "requireBatchResultDigest", "requireZeroReviewBacklogBeforeApply", "maxAttemptsPerCandidate"],
+      "properties": {
+        "requireFreshSnapshot": { "const": true },
+        "requireBatchResultDigest": { "const": true },
+        "requireZeroReviewBacklogBeforeApply": { "const": true },
+        "maxAttemptsPerCandidate": { "type": "integer", "minimum": 1, "maximum": 10 }
+      }
+    },
+    "scaleGate500": {
+      "type": "object", "additionalProperties": false,
+      "required": ["gateId", "targetActiveRecipes", "releaseReferenceRecipeCount", "hardCoverageMode", "requireZeroExactDuplicates", "maxNearDuplicateCount", "requireZeroSchemaErrors", "requireZeroUnknownIngredientReferences", "requireZeroNutritionErrors", "requireZeroAllergenDerivationErrors", "requireZeroMissingRequiredLocaleFields", "requirePilotComplete", "requireZeroUnresolvedReferenceRequests", "requireZeroUnhandledReferenceDataProposals"],
+      "properties": {
+        "gateId": { "const": "scale-500" },
+        "targetActiveRecipes": { "const": 500 },
+        "releaseReferenceRecipeCount": { "type": "integer", "minimum": 500 },
+        "hardCoverageMode": { "const": "prorata_min_count" },
+        "requireZeroExactDuplicates": { "const": true },
+        "maxNearDuplicateCount": { "type": "integer", "minimum": 0 },
+        "requireZeroSchemaErrors": { "const": true },
+        "requireZeroUnknownIngredientReferences": { "const": true },
+        "requireZeroNutritionErrors": { "const": true },
+        "requireZeroAllergenDerivationErrors": { "const": true },
+        "requireZeroMissingRequiredLocaleFields": { "const": true },
+        "requirePilotComplete": { "const": true },
+        "requireZeroUnresolvedReferenceRequests": { "const": true },
+        "requireZeroUnhandledReferenceDataProposals": { "const": true }
+      }
+    }
+  },
+  "$defs": {
+    "positiveWeight": { "type": "integer", "minimum": 1, "maximum": 100 },
+    "stringSet": { "type": "array", "items": { "type": "string", "minLength": 1 }, "uniqueItems": true },
+    "idVersionContract": {
+      "type": "object", "additionalProperties": false, "required": ["contractId", "contractVersion"],
+      "properties": { "contractId": { "type": "string", "minLength": 3 }, "contractVersion": { "type": "string", "minLength": 1 } }
+    },
+    "idVersionPolicy": {
+      "type": "object", "additionalProperties": false, "required": ["policyId", "policyVersion"],
+      "properties": { "policyId": { "type": "string", "minLength": 3 }, "policyVersion": { "type": "string", "minLength": 1 } }
+    },
+    "disposition": {
+      "type": "object", "additionalProperties": false, "required": ["terminal", "intakeState"],
+      "properties": {
+        "terminal": { "type": "boolean" },
+        "intakeState": { "enum": ["accepted", "rejected", "needs_reference_review", "generated"] }
+      }
+    }
+  }
+}

@@ -133,6 +133,39 @@
     },
     "taxonomyTerms": {
       "$ref": "#/$defs/catalogPart"
+    },
+    "productionCorpus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "contractId",
+        "contractVersion",
+        "contractDigest",
+        "policyId",
+        "policyVersion"
+      ],
+      "properties": {
+        "contractId": {
+          "type": "string",
+          "minLength": 3
+        },
+        "contractVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "contractDigest": {
+          "type": "string",
+          "minLength": 16
+        },
+        "policyId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "policyVersion": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
     }
   },
   "$defs": {

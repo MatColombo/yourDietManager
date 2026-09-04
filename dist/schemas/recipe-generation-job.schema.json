@@ -269,6 +269,32 @@
     "referenceDataDigest": {
       "type": "string",
       "minLength": 16
+    },
+    "productionContract": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "contractId",
+        "contractVersion",
+        "contractDigest"
+      ],
+      "properties": {
+        "contractId": {
+          "type": "string",
+          "minLength": 3
+        },
+        "contractVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "contractDigest": {
+          "type": "string",
+          "minLength": 16
+        }
+      }
     }
   },
   "$defs": {

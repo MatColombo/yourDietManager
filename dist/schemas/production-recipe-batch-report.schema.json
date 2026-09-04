@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/production-recipe-batch-report.schema.json",
+  "title": "ProductionRecipeBatchReport",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "reportId", "policyId", "policyVersion", "contractId", "contractVersion", "jobId", "intakeId", "inputSnapshotId", "referenceDataVersion", "referenceDataDigest", "candidateCount", "acceptedCount", "terminalCount", "reviewBacklogCount", "dispositionCounts", "candidates", "batchGate", "resultDigest", "processedAt"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "reportId": { "type": "string", "minLength": 3 },
+    "policyId": { "type": "string", "minLength": 3 },
+    "policyVersion": { "type": "string", "minLength": 1 },
+    "contractId": { "type": "string", "minLength": 3 },
+    "contractVersion": { "type": "string", "minLength": 1 },
+    "jobId": { "type": "string", "minLength": 1 },
+    "intakeId": { "type": "string", "minLength": 1 },
+    "inputSnapshotId": { "type": "string", "minLength": 1 },
+    "referenceDataVersion": { "type": "string", "minLength": 1 },
+    "referenceDataDigest": { "type": "string", "minLength": 16 },
+    "candidateCount": { "type": "integer", "minimum": 0 },
+    "acceptedCount": { "type": "integer", "minimum": 0 },
+    "terminalCount": { "type": "integer", "minimum": 0 },
+    "reviewBacklogCount": { "type": "integer", "minimum": 0 },
+    "dispositionCounts": {
+      "type": "object", "additionalProperties": false,
+      "required": ["accepted", "rejected", "duplicate", "needs_reference_review", "needs_recipe_review", "nutrition_outlier"],
+      "properties": {
+        "accepted": { "type": "integer", "minimum": 0 },
+        "rejected": { "type": "integer", "minimum": 0 },
+        "duplicate": { "type": "integer", "minimum": 0 },
+        "needs_reference_review": { "type": "integer", "minimum": 0 },
+        "needs_recipe_review": { "type": "integer", "minimum": 0 },
+        "nutrition_outlier": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "candidates": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["candidateId", "disposition", "terminal", "intakeState", "code", "detail", "failedStage", "qualityScore", "recipeVersionId", "warnings"],
+        "properties": {
+          "candidateId": { "type": "string", "minLength": 1 },
+          "disposition": { "enum": ["accepted", "rejected", "duplicate", "needs_reference_review", "needs_recipe_review", "nutrition_outlier"] },
+          "terminal": { "type": "boolean" },
+          "intakeState": { "enum": ["accepted", "rejected", "needs_reference_review", "generated"] },
+          "code": { "type": ["string", "null"] },
+          "detail": {},
+          "failedStage": { "type": ["string", "null"] },
+          "qualityScore": { "type": "number", "minimum": 0, "maximum": 100 },
+          "recipeVersionId": { "type": ["string", "null"] },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "object", "additionalProperties": true,
+              "required": ["code"], "properties": { "code": { "type": "string", "minLength": 1 } }
+            }
+          }
+        }
+      }
+    },
+    "batchGate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "targetMet", "diversityPassed", "reviewBacklogCount", "blockers"],
+      "properties": {
+        "status": { "enum": ["pass", "blocked", "review_required"] },
+        "targetMet": { "type": "boolean" },
+        "diversityPassed": { "type": "boolean" },
+        "reviewBacklogCount": { "type": "integer", "minimum": 0 },
+        "blockers": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "resultDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "processedAt": { "type": "string", "format": "date-time" }
+  }
+}

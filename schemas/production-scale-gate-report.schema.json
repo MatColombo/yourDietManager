@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/production-scale-gate-report.schema.json",
+  "title": "ProductionScaleGateReport",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "gateId", "policyId", "policyVersion", "contractId", "contractVersion", "snapshotId", "activeRecipeCount", "targetActiveRecipes", "pilot", "checks", "coverageChecks", "status", "blockers", "evaluatedAt"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "gateId": { "const": "scale-500" },
+    "policyId": { "type": "string", "minLength": 3 },
+    "policyVersion": { "type": "string", "minLength": 1 },
+    "contractId": { "type": "string", "minLength": 3 },
+    "contractVersion": { "type": "string", "minLength": 1 },
+    "snapshotId": { "type": "string", "minLength": 1 },
+    "activeRecipeCount": { "type": "integer", "minimum": 0 },
+    "targetActiveRecipes": { "const": 500 },
+    "pilot": {
+      "type": "object", "additionalProperties": false,
+      "required": ["target", "terminal", "accepted", "rejected", "unresolvedReferenceRequests", "unhandledReferenceDataProposals", "complete"],
+      "properties": {
+        "target": { "type": "integer", "minimum": 1 },
+        "terminal": { "type": "integer", "minimum": 0 },
+        "accepted": { "type": "integer", "minimum": 0 },
+        "rejected": { "type": "integer", "minimum": 0 },
+        "unresolvedReferenceRequests": { "type": "integer", "minimum": 0 },
+        "unhandledReferenceDataProposals": { "type": "integer", "minimum": 0 },
+        "complete": { "type": "boolean" }
+      }
+    },
+    "checks": { "type": "array", "items": { "$ref": "#/$defs/check" } },
+    "coverageChecks": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["targetId", "releaseMinimum", "requiredAtGate", "actual", "status"],
+        "properties": {
+          "targetId": { "type": "string", "minLength": 1 },
+          "releaseMinimum": { "type": "integer", "minimum": 0 },
+          "requiredAtGate": { "type": "integer", "minimum": 0 },
+          "actual": { "type": "integer", "minimum": 0 },
+          "status": { "enum": ["pass", "blocked"] }
+        }
+      }
+    },
+    "status": { "enum": ["blocked", "ready", "pass"] },
+    "blockers": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "evaluatedAt": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "check": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "status", "detail"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["pass", "blocked"] },
+        "detail": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}
