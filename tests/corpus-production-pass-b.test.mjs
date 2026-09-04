@@ -46,13 +46,20 @@ test('USDA curation import produces a source-digested review batch whose heurist
     { nutrient: { id: 1003, name: 'Protein' }, amount: 8.9 }, { nutrient: { id: 1005, name: 'Carbohydrate, by difference' }, amount: 23.7 },
     { nutrient: { id: 1004, name: 'Total lipid (fat)' }, amount: 0.5 }, { nutrient: { id: 1079, name: 'Fiber, total dietary' }, amount: 8.7 }
   ]};
-  await writeFile(sourceFile, `${JSON.stringify({ FoundationFoods: [food] }, null, 2)}\n`);
+  food.foodNutrients.unshift(null);
+  await writeFile(sourceFile, `${JSON.stringify({ FoundationFoods: [null, { description: 'Malformed record without FDC id', foodNutrients: [] }, food] }, null, 2)}\n`);
   await execFileAsync(process.execPath, ['scripts/corpus/import-usda-foundation.mjs', sourceFile, batchFile], { cwd: root });
   const batch = await readJson(batchFile); registry.assert('ingredientCurationBatch', batch);
   assert.equal(batch.records[0].review.decision, 'pending'); assert.equal(batch.records[0].review.approved, false);
   assert.ok(batch.source.inputDigest.length >= 16); assert.equal(batch.source.sourceId, 'usda-foundation-2026-04');
+  assert.equal(batch.inputFoodCount, 3);
+  assert.equal(batch.completeRequiredNutrientCount, 1);
+  assert.equal(batch.incompleteRequiredNutrientCount, 0);
+  assert.equal(batch.structurallyInvalidFoodCount, 2);
+  assert.deepEqual(batch.structurallyInvalidFoodExamples, [{ index: 0, reason: 'null_food_record' }, { index: 1, reason: 'missing_fdc_id' }]);
   const report = assessIngredientCurationBatch({ batch, policy: curationPolicy, contract, taxonomies: corpus.taxonomies, taxonomyTerms: corpus.taxonomyTerms, registry, generatedAt: '2026-09-04T14:10:00Z' });
   assert.equal(report.counts.pending, 1); assert.equal(report.counts.materializable, 0); assert.equal(report.readyForPilotFoundation, false);
+  assert.equal(report.checks.find(item => item.id === 'source-structural-invalid-records')?.status, 'warning');
 });
 
 test('approved curation record remains blocked unless every editorial review dimension is explicitly complete', async () => {

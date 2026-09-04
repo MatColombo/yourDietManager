@@ -2,7 +2,7 @@
 
 Local-first PWA implementation through **Phase 8 — Hardening & V1 release gates**.
 
-Candidate version: **`1.0.0-rc.13`**.
+Candidate version: **`1.0.0-rc.14`**.
 
 Phases 1–7 remain fully present: IndexedDB persistence, onboarding/configuration, backup/import, IT/EN, theme engine, indexed catalog/search/packs, versioned catalog authoring, corpus-orchestration tooling, deterministic seeded plan generation, effective-plan UX with history/undo, shopping checklists and preparation horizon.
 
@@ -31,6 +31,10 @@ Pass D makes recipe/ingredient detail independent from planning, adds canonical 
 
 Pass E turns the final interaction acceptance into an explicit gate. rc.7 hardened GitHub Actions browser startup; rc.8 corrected the dirty-navigation acceptance and CDP diagnostics; rc.9 fixes a real legacy-upgrade bootstrap failure by explicitly migrating non-hard `ingredient:uova` FoodPreferences to canonical `foodCategory:food_group_eggs` and adds a pre-app Service Worker recovery bootstrap so a fatal application bootstrap cannot pin stale cached modules. Browser coverage includes required-field/schema parity, disclosure preservation after local rerenders, dirty-navigation reject/accept, persistent save feedback, and the existing recipe/ingredient detail/edit path. `npm run hardening:revision` verifies that code, docs, Skill guidance, CI browser requirements and the latest browser report stay aligned. See `DATA_UX_HARDENING_PASS_E_REPORT.md`.
 
+
+## Phase 4 production execution — rc.14 importer resilience
+
+The USDA review-intake boundary is null-safe for real FoodData Central JSON payloads. Null/non-object food elements and records without an FDC ID are skipped with explicit audit counts; null nutrient entries are ignored without discarding other valid nutrients on the same food. These skips do not relax curation, pilot, or production thresholds. See `PHASE4_PRODUCTION_EXECUTION_REPORT.md`.
 
 ## GitHub Pages
 

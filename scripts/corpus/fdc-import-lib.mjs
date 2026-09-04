@@ -5,9 +5,13 @@ const N = {
   protein: ['1003', '203', 'protein'], carbs: ['1005', '205', 'carbohydrate'], fat: ['1004', '204', 'total lipid', 'total fat'],
   fiber: ['1079', '291', 'fiber'], sugars: ['2000', '269', 'sugars'], satFat: ['1258', '606', 'saturated'], sodium: ['1093', '307', 'sodium']
 };
+function isRecord(value) { return Boolean(value) && typeof value === 'object' && !Array.isArray(value); }
 function nutrient(food, aliases) {
-  for (const item of food.foodNutrients || []) {
-    const n = item.nutrient || {};
+  if (!isRecord(food)) return null;
+  const nutrients = Array.isArray(food.foodNutrients) ? food.foodNutrients : [];
+  for (const item of nutrients) {
+    if (!isRecord(item)) continue;
+    const n = isRecord(item.nutrient) ? item.nutrient : {};
     const keys = [String(n.id || ''), String(n.number || ''), String(n.name || '').toLowerCase()];
     if (aliases.some(alias => keys.some(key => key === alias || (typeof alias === 'string' && key.includes(alias))))) {
       const value = Number(item.amount); if (Number.isFinite(value)) return value;
@@ -53,8 +57,20 @@ function allergens(description = '', category = '') {
 
 export async function prepareFdcCurationBatch({ raw, foods, sourcePolicy, policy, importedAt = null }) {
   if (!Array.isArray(foods)) throw new Error(`${sourcePolicy.dataset} JSON does not contain the expected food array`);
-  const rows = []; let incomplete = 0;
-  for (const food of foods) {
+  const rows = []; let incomplete = 0; let structurallyInvalid = 0;
+  const structurallyInvalidExamples = [];
+  for (let index = 0; index < foods.length; index += 1) {
+    const food = foods[index];
+    if (!isRecord(food)) {
+      structurallyInvalid += 1;
+      if (structurallyInvalidExamples.length < 20) structurallyInvalidExamples.push({ index, reason: food == null ? 'null_food_record' : 'non_object_food_record' });
+      continue;
+    }
+    if (food.fdcId == null || String(food.fdcId).trim() === '') {
+      structurallyInvalid += 1;
+      if (structurallyInvalidExamples.length < 20) structurallyInvalidExamples.push({ index, reason: 'missing_fdc_id' });
+      continue;
+    }
     const required = { energyKcal: nutrient(food, N.energy), proteinG: nutrient(food, N.protein), carbsG: nutrient(food, N.carbs), fatG: nutrient(food, N.fat), fiberG: nutrient(food, N.fiber) };
     if (Object.values(required).some(value => value == null)) { incomplete += 1; continue; }
     const category = food.foodCategory?.description || food.foodCategory?.code || '';
@@ -71,6 +87,7 @@ export async function prepareFdcCurationBatch({ raw, foods, sourcePolicy, policy
   return {
     schemaVersion: 1, batchId, policyId: policy.policyId, policyVersion: policy.policyVersion,
     source: { sourceId: sourcePolicy.sourceId, provider: sourcePolicy.provider, dataset: sourcePolicy.dataset, release: sourcePolicy.release, reference: sourcePolicy.reference, archive: sourcePolicy.archive, license: sourcePolicy.license, inputDigest, importedAt: importedAt || new Date().toISOString() },
-    inputFoodCount: foods.length, completeRequiredNutrientCount: rows.length, incompleteRequiredNutrientCount: incomplete, records: rows
+    inputFoodCount: foods.length, completeRequiredNutrientCount: rows.length, incompleteRequiredNutrientCount: incomplete,
+    structurallyInvalidFoodCount: structurallyInvalid, structurallyInvalidFoodExamples: structurallyInvalidExamples, records: rows
   };
 }

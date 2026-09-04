@@ -101,6 +101,7 @@ export function assessIngredientCurationBatch({ batch = null, policy, contract, 
   if (batch) {
     registry?.assert('ingredientCurationBatch', batch);
     batchSummary = { present: true, batchId: batch.batchId, sourceId: batch.source?.sourceId || null, inputFoodCount: batch.inputFoodCount, eligibleFoodCount: batch.completeRequiredNutrientCount };
+    if ((batch.structurallyInvalidFoodCount || 0) > 0) checks.push(check('source-structural-invalid-records', false, `skipped=${batch.structurallyInvalidFoodCount}; examples=${JSON.stringify(batch.structurallyInvalidFoodExamples || [])}`, 'warning'));
     const sourcePolicy = (policy.sourcePriority || []).find(source => source.sourceId === batch.source?.sourceId);
     checks.push(check('source-approved', Boolean(sourcePolicy), sourcePolicy ? `${batch.source.sourceId} is allowed by ${policy.policyId}` : `Unknown source ${batch.source?.sourceId}`));
     checks.push(check('source-digest-present', Boolean(batch.source?.inputDigest), batch.source?.inputDigest ? `digest=${batch.source.inputDigest}` : 'input digest missing'));

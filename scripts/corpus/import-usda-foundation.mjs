@@ -10,4 +10,4 @@ const sourcePolicy = policy.sourcePriority.find(item => item.sourceId === 'usda-
 if (!sourcePolicy) throw new Error('Ingredient curation policy does not define usda-foundation-2026-04');
 const foods = doc.FoundationFoods || doc.foundationFoods || (Array.isArray(doc) ? doc : null);
 const result = await prepareFdcCurationBatch({ raw, foods, sourcePolicy, policy });
-await writeJson(output, result); console.log(`Prepared ${result.completeRequiredNutrientCount}/${result.inputFoodCount} USDA Foundation records for explicit editorial review -> ${path.resolve(output)}`);
+await writeJson(output, result); console.log(`Prepared ${result.completeRequiredNutrientCount}/${result.inputFoodCount} USDA Foundation records for explicit editorial review (incomplete=${result.incompleteRequiredNutrientCount}, structurallyInvalid=${result.structurallyInvalidFoodCount}) -> ${path.resolve(output)}`);

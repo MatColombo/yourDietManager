@@ -10,6 +10,8 @@
       "sourceId":{"type":"string","minLength":1},"provider":{"type":"string","minLength":1},"dataset":{"type":"string","minLength":1},"release":{"type":"string","minLength":1},"reference":{"type":"string","minLength":1},"archive":{"type":["string","null"]},"license":{"type":"string","minLength":1},"inputDigest":{"type":"string","minLength":16},"importedAt":{"type":"string","format":"date-time"}
     }},
     "inputFoodCount":{"type":"integer","minimum":0},"completeRequiredNutrientCount":{"type":"integer","minimum":0},"incompleteRequiredNutrientCount":{"type":"integer","minimum":0},
+    "structurallyInvalidFoodCount":{"type":"integer","minimum":0},
+    "structurallyInvalidFoodExamples":{"type":"array","maxItems":20,"items":{"type":"object","additionalProperties":false,"required":["index","reason"],"properties":{"index":{"type":"integer","minimum":0},"reason":{"enum":["null_food_record","non_object_food_record","missing_fdc_id"]}}}},
     "records":{"type":"array","items":{"$ref":"#/$defs/record"}}
   },
   "$defs":{

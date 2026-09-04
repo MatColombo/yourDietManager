@@ -10,4 +10,4 @@ const sourcePolicy = policy.sourcePriority.find(item => item.sourceId === 'usda-
 if (!sourcePolicy) throw new Error('Ingredient curation policy does not define usda-sr-legacy-2018-04');
 const foods = doc.SRLegacyFoods || doc.srLegacyFoods || doc.SRLegacy || (Array.isArray(doc) ? doc : null);
 const result = await prepareFdcCurationBatch({ raw, foods, sourcePolicy, policy });
-await writeJson(output, result); console.log(`Prepared ${result.completeRequiredNutrientCount}/${result.inputFoodCount} USDA SR Legacy records for explicit supplemental review -> ${path.resolve(output)}`);
+await writeJson(output, result); console.log(`Prepared ${result.completeRequiredNutrientCount}/${result.inputFoodCount} USDA SR Legacy records for explicit supplemental review (incomplete=${result.incompleteRequiredNutrientCount}, structurallyInvalid=${result.structurallyInvalidFoodCount}) -> ${path.resolve(output)}`);

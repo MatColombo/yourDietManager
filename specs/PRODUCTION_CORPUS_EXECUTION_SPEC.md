@@ -41,6 +41,12 @@ For the production foundation, `ydm-deterministic-fdc-curator-v1` is permitted t
 
 Rows outside those conditions remain rejected/pending for later human review. The deterministic reviewer is not authorized to create new taxonomy terms. A missing semantic term still enters the `ReferenceDataProposal` lifecycle.
 
+## 2.1 USDA source-structure tolerance
+
+The import boundary must tolerate structurally invalid array elements in otherwise valid official USDA payloads without crashing the run. A `null`/primitive food element or a food record without `fdcId` is never converted into a review record. It is skipped, counted as structurally invalid, and sampled in the curation-batch audit metadata. Null/non-object entries inside `foodNutrients` are ignored while valid nutrient entries on the same food remain usable.
+
+Structural skips are warnings, not approvals. Nutrient-incomplete foods remain counted separately. Downstream pilot/production thresholds are still evaluated only against valid materializable `curated/high` records, so importer tolerance cannot make a deficient source pass a readiness gate.
+
 ## 3. Foundation coverage required for the pilot generator
 
 The deterministic review must meet both the global production-foundation target and minimum inventory by food group. The current execution target is 600 approved ingredients. The pilot cannot start unless at least 400 remain active and `curated/high` after deduplication/retirement.

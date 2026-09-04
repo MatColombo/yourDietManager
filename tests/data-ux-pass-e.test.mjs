@@ -36,7 +36,6 @@ test('Pass E closure gate runs after the browser gate and CI requires a real bro
   const workflow = await text('.github/workflows/pages.yml');
   const closure = await text('scripts/hardening/revision-closure.mjs');
   assert.equal(pkg.version, APP_VERSION);
-  assert.equal(pkg.version, '1.0.0-rc.13');
   assert.ok(pkg.scripts.check.indexOf('hardening:browser') < pkg.scripts.check.indexOf('hardening:revision'));
   assert.match(workflow, /YDM_BROWSER_REQUIRED:\s*'1'/);
   assert.match(workflow, /CHROMIUM_PATH=\$browser/);

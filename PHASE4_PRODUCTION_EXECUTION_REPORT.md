@@ -1,12 +1,12 @@
 # Phase 4 Production Corpus — Missing-Step Execution Bridge Report
 
 Date: **2026-09-04**  
-Candidate: **`1.0.0-rc.13`**  
+Candidate: **`1.0.0-rc.14`**  
 Status: **EXECUTION CONTROL PLANE COMPLETE / SOURCE-BACKED RUN REQUIRED**
 
 ## 1. Objective
 
-rc.13 implements the missing executable path between the completed 4P-B/4P-C control planes and real corpus production. It does **not** declare the production corpus complete and does not substitute synthetic nutrition data for USDA source records.
+rc.14 implements the missing executable path between the completed 4P-B/4P-C control planes and real corpus production. It does **not** declare the production corpus complete and does not substitute synthetic nutrition data for USDA source records.
 
 The required order is now executable and fail-closed:
 
@@ -23,6 +23,19 @@ The curation policy remains bound to the frozen trusted-source hierarchy:
 The execution target is **600 curated/high ingredient families**, while the pilot floor remains **>=400**. Source acquisition writes SHA-256 and extracted-file provenance. Raw source archives are runtime-only and are ignored by Git/source commits.
 
 Import remains review intake only. Every imported record starts pending/unapproved. The later reviewer `ydm-deterministic-fdc-curator-v1` may approve a row only when all bounded source/category/nutrient/taxonomy/safety rules are satisfied and all eight review dimensions are persisted explicitly. There is no fuzzy duplicate merge, guessed taxonomy value, or automatic taxonomy creation.
+
+## 2.1 rc.14 USDA importer resilience fix
+
+A real GitHub Actions run against `FoodData_Central_foundation_food_json_2026-04-30.json` exposed at least one `null` element in the USDA food array. rc.13 dereferenced `food.foodNutrients` unconditionally and failed before review intake. rc.14 makes the import boundary null-safe without weakening review or readiness requirements:
+
+- non-object/null food elements are skipped and counted as structurally invalid;
+- food records without `fdcId` are skipped and counted separately from nutrient-incomplete foods;
+- null/non-object entries inside `foodNutrients` are ignored while valid nutrient entries remain usable;
+- importer output records `structurallyInvalidFoodCount` plus up to 20 indexed reason samples;
+- curation assessment exposes structural skips as a warning, never as materializable data;
+- the production target is still evaluated only from valid reviewed/materialized ingredients.
+
+A regression test now reproduces null food records, missing-FDC-ID records and null nutrient entries.
 
 ## 3. Deterministic curation hardening
 
