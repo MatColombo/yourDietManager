@@ -19,10 +19,15 @@ async function report(payload) {
 
 function findChromium() {
   const explicit = process.env.CHROMIUM_PATH;
-  if (explicit) return explicit;
-  for (const cmd of ['chromium', 'chromium-browser', 'google-chrome', 'google-chrome-stable']) {
-    const found = spawnSync('sh', ['-lc', `command -v ${cmd}`], { encoding: 'utf8' }).stdout.trim();
-    if (found) return found;
+  const candidates = explicit
+    ? [explicit]
+    : ['google-chrome', 'google-chrome-stable', 'chromium', 'chromium-browser'];
+
+  for (const candidate of candidates) {
+    const probe = spawnSync(candidate, ['--version'], { encoding: 'utf8', timeout: 5000 });
+    if (!probe.error && probe.status === 0) {
+      return { path: candidate, version: (probe.stdout || probe.stderr || '').trim() || 'unknown' };
+    }
   }
   return null;
 }
@@ -77,13 +82,46 @@ class CDP {
   close() { this.ws.close(); }
 }
 
-async function waitForDevtools(port, maxMs = 12000) {
+async function waitForDevtools(profile, browserState, maxMs = 30000) {
   const started = Date.now();
+  const activePortFile = path.join(profile, 'DevToolsActivePort');
+  let lastDetail = '';
+
   while (Date.now() - started < maxMs) {
-    try { const response = await fetch(`http://127.0.0.1:${port}/json/version`); if (response.ok) return response.json(); } catch {}
+    if (browserState.error) throw new Error(`Chromium failed to spawn: ${browserState.error.message}`);
+    if (browserState.exit) {
+      const { code, signal } = browserState.exit;
+      throw new Error(`Chromium exited before DevTools was ready (code=${code ?? 'null'}, signal=${signal ?? 'none'})`);
+    }
+
+    let port = null;
+    try {
+      const active = await readFile(activePortFile, 'utf8');
+      const firstLine = active.split(/\r?\n/, 1)[0]?.trim();
+      if (/^\d+$/.test(firstLine || '')) port = Number(firstLine);
+    } catch (error) {
+      if (error?.code !== 'ENOENT') lastDetail = error.message || String(error);
+    }
+
+    if (!port) {
+      const match = browserState.stderr.match(/DevTools listening on ws:\/\/[^:]+:(\d+)\//);
+      if (match) port = Number(match[1]);
+    }
+
+    if (port) {
+      try {
+        const response = await fetch(`http://127.0.0.1:${port}/json/version`);
+        if (response.ok) return { port, version: await response.json() };
+        lastDetail = `HTTP ${response.status} from DevTools version endpoint`;
+      } catch (error) {
+        lastDetail = error.message || String(error);
+      }
+    }
     await timeout(120);
   }
-  throw new Error('Chromium DevTools endpoint did not start');
+
+  const suffix = lastDetail ? `; last detail: ${lastDetail}` : '';
+  throw new Error(`Chromium DevTools endpoint did not start within ${maxMs} ms${suffix}`);
 }
 
 async function waitExpression(cdp, expression, maxMs = 15000) {
@@ -103,24 +141,32 @@ async function evaluate(cdp, expression) {
 }
 
 const required = process.env.YDM_BROWSER_REQUIRED === '1';
-const chromium = findChromium();
-if (!chromium) {
-  console.log('Browser regression SKIPPED: Chromium not installed.');
+const browserChoice = findChromium();
+if (!browserChoice) {
+  console.log('Browser regression SKIPPED: Chromium/Chrome not installed or not executable.');
   await report({ status: 'skipped', reason: 'chromium-not-installed' });
   process.exit(required ? 1 : 0);
 }
 
 const { server, origin } = await createStaticServer();
 const profile = await mkdtemp(path.join(os.tmpdir(), 'ydm-browser-'));
-const debugPort = 9300 + Math.floor(Math.random() * 400);
-const browser = spawn(chromium, [
-  '--headless=new', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage', '--disable-background-networking', '--disable-component-update',
-  `--remote-debugging-port=${debugPort}`, `--user-data-dir=${profile}`, 'about:blank'
+const browserState = { error: null, exit: null, stderr: '' };
+const browser = spawn(browserChoice.path, [
+  '--headless', '--no-sandbox', '--disable-gpu', '--disable-dev-shm-usage', '--disable-background-networking', '--disable-component-update',
+  '--no-first-run', '--no-default-browser-check', '--remote-debugging-address=127.0.0.1', '--remote-debugging-port=0',
+  `--user-data-dir=${profile}`, 'about:blank'
 ], { stdio: ['ignore', 'ignore', 'pipe'] });
-let stderr = ''; browser.stderr.on('data', chunk => { stderr += chunk.toString(); if (stderr.length > 8000) stderr = stderr.slice(-8000); });
+browser.once('error', error => { browserState.error = error; });
+browser.once('exit', (code, signal) => { browserState.exit = { code, signal }; });
+browser.stderr.on('data', chunk => {
+  browserState.stderr += chunk.toString();
+  if (browserState.stderr.length > 12000) browserState.stderr = browserState.stderr.slice(-12000);
+});
 
 try {
-  await waitForDevtools(debugPort);
+  const devtools = await waitForDevtools(profile, browserState);
+  const debugPort = devtools.port;
+  console.log(`Browser regression using ${browserChoice.version} (${browserChoice.path}), DevTools port ${debugPort}`);
   const targetResponse = await fetch(`http://127.0.0.1:${debugPort}/json/new?about:blank`, { method: 'PUT' });
   if (!targetResponse.ok) throw new Error(`Unable to create browser target: HTTP ${targetResponse.status}`);
   const target = await targetResponse.json(); const cdp = new CDP(target.webSocketDebuggerUrl); await cdp.ready;
@@ -211,18 +257,18 @@ try {
     saveFeedbackVisible: true
   };
   console.log(`Browser regression PASS: recipe=${recipeState.path}, ingredient=${ingredientState.path}, passE=accepted`);
-  await report({ status: 'passed', recipePath: recipeState.path, ingredientPath: ingredientState.path, acceptance });
+  await report({ status: 'passed', browserPath: browserChoice.path, browserVersion: browserChoice.version, recipePath: recipeState.path, ingredientPath: ingredientState.path, acceptance });
   cdp.close();
 } catch (error) {
   const blocked = /is blocked|organization.*allow/i.test(error.message || String(error));
   if (blocked) {
     console.log('Browser regression SKIPPED: local HTTP navigation is blocked by the execution environment policy.');
-    await report({ status: 'skipped', reason: 'local-http-blocked-by-environment', detail: error.message || String(error) });
+    await report({ status: 'skipped', reason: 'local-http-blocked-by-environment', detail: error.message || String(error), browserPath: browserChoice.path, browserVersion: browserChoice.version });
     if (required) process.exitCode = 1;
   } else {
     console.error(error.stack || error);
-    if (stderr.trim()) console.error(`Chromium stderr:\n${stderr}`);
-    await report({ status: 'failed', reason: error.message || String(error) });
+    if (browserState.stderr.trim()) console.error(`Chromium stderr:\n${browserState.stderr}`);
+    await report({ status: 'failed', reason: error.message || String(error), browserPath: browserChoice.path, browserVersion: browserChoice.version, chromiumStderr: browserState.stderr.slice(-4000) });
     process.exitCode = 1;
   }
 } finally {

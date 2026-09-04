@@ -2,7 +2,7 @@
 
 Local-first PWA implementation through **Phase 8 — Hardening & V1 release gates**.
 
-Candidate version: **`1.0.0-rc.6`**.
+Candidate version: **`1.0.0-rc.7`**.
 
 Phases 1–7 remain fully present: IndexedDB persistence, onboarding/configuration, backup/import, IT/EN, theme engine, indexed catalog/search/packs, versioned catalog authoring, corpus-orchestration tooling, deterministic seeded plan generation, effective-plan UX with history/undo, shopping checklists and preparation horizon.
 
@@ -29,7 +29,7 @@ Pass C disables the provisional onboarding UI and boots fresh installs with a ne
 
 Pass D makes recipe/ingredient detail independent from planning, adds canonical dynamic detail/edit routes, exposes Edit for both catalog and local families, and keeps internal revision/version history immutable. Editing a catalog family promotes that stable family ID to local management; later catalog updates/pack installs cannot overwrite its local current pointer. Duplicate remains a distinct new-family action. A dependency-free Chromium/CDP regression harness is included and is required by the GitHub Pages workflow; local environments that block localhost are reported as skipped rather than passed. See `DATA_UX_HARDENING_PASS_D_REPORT.md`.
 
-Pass E turns the final interaction acceptance into an explicit gate: browser coverage now includes required-field/schema parity, disclosure preservation after local rerenders, dirty-navigation reject/accept, persistent save feedback, and the existing recipe/ingredient detail/edit path. `npm run hardening:revision` verifies that code, docs, Skill guidance, CI browser requirements and the latest browser report stay aligned. See `DATA_UX_HARDENING_PASS_E_REPORT.md`.
+Pass E turns the final interaction acceptance into an explicit gate; rc.7 also hardens GitHub Actions browser startup by preferring stable Chrome and using a browser-assigned DevTools port: browser coverage now includes required-field/schema parity, disclosure preservation after local rerenders, dirty-navigation reject/accept, persistent save feedback, and the existing recipe/ingredient detail/edit path. `npm run hardening:revision` verifies that code, docs, Skill guidance, CI browser requirements and the latest browser report stay aligned. See `DATA_UX_HARDENING_PASS_E_REPORT.md`.
 
 
 ## GitHub Pages

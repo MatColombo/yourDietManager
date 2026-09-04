@@ -203,3 +203,5 @@ Pass E extends the browser harness so the final acceptance run on an unrestricte
 - the Pass D recipe card -> detail -> edit and ingredient detail -> edit paths.
 
 `npm run hardening:revision` then verifies version sync, Pass E documentation/Skill coverage, the CI-required browser setting, presence of all acceptance checks and the status of the latest Pass E browser report. With `YDM_BROWSER_REQUIRED=1`, only `status=passed` is acceptable; recognized environment-policy skips are acceptable only for local non-release verification.
+
+CI browser startup must not rely on a guessed fixed debugging port. The Pages workflow selects an executable stable Chrome when available, exports it through `CHROMIUM_PATH`, and the harness uses a temporary profile plus `--remote-debugging-port=0`, discovering the assigned DevTools endpoint before starting acceptance navigation. Browser spawn/early-exit diagnostics are release-gate failures, not silent skips.

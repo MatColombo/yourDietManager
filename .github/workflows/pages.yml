@@ -26,6 +26,18 @@ jobs:
         with:
           node-version: 22
 
+      - name: Select browser for acceptance gate
+        shell: bash
+        run: |
+          browser="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$browser" ]; then
+            echo "No Chrome/Chromium executable found on the runner" >&2
+            exit 1
+          fi
+          echo "CHROMIUM_PATH=$browser" >> "$GITHUB_ENV"
+          echo "Browser acceptance executable: $browser"
+          "$browser" --version
+
       - name: Configure GitHub Pages
         id: pages
         uses: actions/configure-pages@v5

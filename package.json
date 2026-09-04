@@ -1,7 +1,7 @@
 {
   "name": "yourdietmanager",
   "private": true,
-  "version": "1.0.0-rc.6",
+  "version": "1.0.0-rc.7",
   "type": "module",
   "scripts": {
     "dev": "node scripts/dev-server.mjs",

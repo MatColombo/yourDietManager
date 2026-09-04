@@ -2,7 +2,7 @@
 
 ## Stato
 
-**DONE (implementation)** — candidate `1.0.0-rc.6`.
+**DONE (implementation)** — candidate `1.0.0-rc.7`.
 
 Pass E chiude formalmente la V1 Data/UX Hardening Revision con un final acceptance gate end-to-end. Non aggiunge nuovi concetti di dominio e non anticipa la materializzazione del corpus production Phase 4: rende invece verificabili, nello stesso flusso automatico, le invarianti UX introdotte nei Pass C-D che prima erano coperte solo da audit source/domain o da una browser regression limitata al detail/edit catalogo.
 
@@ -55,6 +55,12 @@ Dopo il controllo del required numeric blank, il gate ripristina un valore valid
 
 Il profilo Chromium usato dal gate e temporaneo e viene eliminato al termine della run.
 
+## 5.1 GitHub Actions browser bootstrap hardening (rc.7)
+
+The first required GitHub Actions run exposed a CI-only bootstrap failure before any browser acceptance assertion executed: `Chromium DevTools endpoint did not start`. The application build and all 108 tests were already green. The harness no longer chooses the separately installed Chromium snapshot ahead of stable Chrome, no longer guesses a port in the 9300-9699 range, and no longer treats a 12-second polling timeout as the only startup signal.
+
+For rc.7 the workflow resolves and exports `CHROMIUM_PATH` with stable Google Chrome preferred. The harness validates the executable with `--version`, launches a temporary profile with `--remote-debugging-port=0`, reads Chromium's `DevToolsActivePort` file (falling back to the emitted DevTools URL), waits up to 30 seconds, and fails immediately with process exit/spawn diagnostics when the browser cannot initialize. Failure reports now retain browser path/version and a bounded stderr tail.
+
 ## 6. Browser report Pass E
 
 `scripts/hardening/browser-regression.mjs` produce ora:
@@ -97,7 +103,7 @@ La Skill ora tratta la final acceptance browser come invariante del workflow di 
 
 ## 9. Versione candidate
 
-La candidate passa da `1.0.0-rc.5` a **`1.0.0-rc.6`**. Non cambia `DB_VERSION=4` ne `CONTENT_SCHEMA_VERSION=3`: Pass E non introduce migrazioni dati.
+La candidate passa da `1.0.0-rc.6` a **`1.0.0-rc.7`** per il solo hardening del bootstrap browser CI; non cambia il contratto funzionale Pass E. Non cambia `DB_VERSION=4` ne `CONTENT_SCHEMA_VERSION=3`: Pass E non introduce migrazioni dati.
 
 ## 10. Release blocker residuo
 

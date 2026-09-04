@@ -1,7 +1,9 @@
 {
   "suite": "data-ux-hardening-pass-e",
-  "checkedAt": "2026-09-04T12:30:19.948Z",
+  "checkedAt": "2026-09-04T12:47:16.902Z",
   "status": "skipped",
   "reason": "local-http-blocked-by-environment",
-  "detail": "Browser condition timed out: document.querySelectorAll('.recipe-card').length > 0; browser={\"href\":\"chrome-error://chromewebdata/\",\"title\":\"127.0.0.1\",\"body\":\"127.0.0.1 is blocked\\n\\nYour organization doesn’t allow you to view this site\"}; exceptions="
+  "detail": "Browser condition timed out: document.querySelectorAll('.recipe-card').length > 0; browser={\"href\":\"chrome-error://chromewebdata/\",\"title\":\"127.0.0.1\",\"body\":\"127.0.0.1 is blocked\\n\\nYour organization doesn’t allow you to view this site\"}; exceptions=",
+  "browserPath": "chromium",
+  "browserVersion": "Chromium 144.0.7559.96 built on Debian GNU/Linux 13 (trixie)"
 }
