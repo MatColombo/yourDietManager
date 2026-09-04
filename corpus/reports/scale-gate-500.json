@@ -275,5 +275,5 @@
     "coverage:cell-snack-kcal-400-499: actual=0, required>=9",
     "active-recipe-count: active=3, required>=500"
   ],
-  "evaluatedAt": "2026-09-04T16:18:36.379Z"
+  "evaluatedAt": "2026-09-04T16:32:32.296Z"
 }

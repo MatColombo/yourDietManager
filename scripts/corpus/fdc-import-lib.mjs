@@ -15,7 +15,7 @@ function nutrientMatch(food, aliases) {
     const keys = [String(n.id || ''), String(n.number || ''), String(n.name || '').toLowerCase()];
     if (aliases.some(alias => keys.some(key => key === alias || (typeof alias === 'string' && key.includes(alias))))) {
       const value = Number(item.amount);
-      if (Number.isFinite(value)) return { value, nutrientId: String(n.id || n.number || ''), nutrientName: String(n.name || '') };
+      if (Number.isFinite(value)) return { value, nutrientId: String(n.id || n.number || ''), nutrientName: String(n.name || ''), unitName: String(n.unitName || item.unitName || '') };
     }
   }
   return null;
@@ -34,9 +34,21 @@ function energyNutrient(food, dataset = '') {
         { aliases:['2047','metabolizable energy (atwater general factor)'], basis:'atwater_general' },
         { aliases:['2048','metabolizable energy (atwater specific factor)'], basis:'atwater_specific' }
       ];
+  const knownKcalIds = new Set(['2047','2048','1008','208']);
   for (const candidate of priority) {
     const match = nutrientMatch(food, candidate.aliases);
-    if (match) return { ...match, basis: candidate.basis };
+    if (!match) continue;
+    const unit = String(match.unitName || '').trim().toLowerCase().replace(/\s+/g, '');
+    if (unit === 'kcal' || unit === 'calorie' || unit === 'calories') {
+      return { ...match, basis: candidate.basis, sourceUnit: 'kcal', originalValue: match.value, conversion: 'none' };
+    }
+    if (unit === 'kj' || unit === 'kilojoule' || unit === 'kilojoules') {
+      return { ...match, value: match.value / 4.184, basis: candidate.basis, sourceUnit: 'kJ', originalValue: match.value, conversion: 'kj_to_kcal' };
+    }
+    if (!unit && knownKcalIds.has(String(match.nutrientId))) {
+      return { ...match, basis: candidate.basis, sourceUnit: 'unknown', originalValue: match.value, conversion: 'assumed_kcal_by_nutrient_id' };
+    }
+    // Generic Energy with unknown/unsupported units is not safe to label as kcal.
   }
   return null;
 }
@@ -99,7 +111,7 @@ export async function prepareFdcCurationBatch({ raw, foods, sourcePolicy, policy
     const description = food.description || food.commonName || `FDC ${food.fdcId}`;
     rows.push({
       sourceRecordId: String(food.fdcId), description, commonName: food.commonName || null, category,
-      nutrition: { ...required, energyBasis: energy?.basis || 'unknown', energyNutrientId: energy?.nutrientId || null, sugarsG: nutrient(food, N.sugars), saturatedFatG: nutrient(food, N.satFat), sodiumMg: nutrient(food, N.sodium) },
+      nutrition: { ...required, energyBasis: energy?.basis || 'unknown', energyNutrientId: energy?.nutrientId || null, energySourceUnit: energy?.sourceUnit || 'unknown', energyOriginalValue: energy?.originalValue ?? null, energyConversion: energy?.conversion || 'none', sugarsG: nutrient(food, N.sugars), saturatedFatG: nutrient(food, N.satFat), sodiumMg: nutrient(food, N.sodium) },
       suggested: { ingredientId: `ing_fdc_${food.fdcId}`, nameEn: food.commonName || food.description || '', nameIt: '', aliasesEn: [], aliasesIt: [], foodGroup: foodGroup(category), foodSubgroup: null, flavorProfile: 'flavor_neutral', mealArchetypes: ['breakfast','lunch','dinner','snack'], state: suggestedState(description), allergenIds: allergens(description, category), conversions: [] },
       review: { decision: 'pending', approved: false, checks: { italianLabel: false, taxonomy: false, state: false, allergens: false, culinarySuitability: false, duplicate: false, nutrition: false, source: false }, reviewer: null, reviewedAt: null, notes: 'Review every suggested mapping explicitly before approval. Heuristics are proposals, not canonical data.', duplicateOfIngredientId: null }
     });

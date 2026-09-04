@@ -42,7 +42,7 @@ export function ingredientSourcePlan(policy, contract) {
   };
 }
 
-function boundedNutritionIssues(nutrition, bounds) {
+export function ingredientNutritionBoundIssues(nutrition, bounds) {
   const issues = [];
   for (const [field, rule] of Object.entries(bounds || {})) {
     const value = nutrition?.[field];
@@ -67,7 +67,7 @@ export function ingredientCurationRecordIssues(record, { policy, referenceIndex 
   if (!record.review?.reviewedAt) issues.push('missing_reviewed_at');
   if (record.review?.duplicateOfIngredientId) issues.push('approved_record_marked_duplicate');
   if (!record.sourceRecordId) issues.push('missing_source_record_id');
-  issues.push(...boundedNutritionIssues(record.nutrition, policy.nutritionBoundsPer100g));
+  issues.push(...ingredientNutritionBoundIssues(record.nutrition, policy.nutritionBoundsPer100g));
 
   if (referenceIndex) {
     try { referenceIndex.assertTerm(record.suggested?.foodGroup, TAXONOMY_IDS.foodCategory); } catch { issues.push('invalid_food_group'); }

@@ -309,6 +309,27 @@
             "string",
             "null"
           ]
+        },
+        "energySourceUnit": {
+          "enum": [
+            "kcal",
+            "kJ",
+            "unknown"
+          ]
+        },
+        "energyOriginalValue": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "energyConversion": {
+          "enum": [
+            "none",
+            "kj_to_kcal",
+            "assumed_kcal_by_nutrient_id"
+          ]
         }
       }
     },

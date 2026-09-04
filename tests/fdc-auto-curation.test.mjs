@@ -126,3 +126,13 @@ test('frozen group minimum selection can use valid USDA specific/legacy energy w
   assert.equal(result.diagnostics.byGroup.food_group_eggs,2);
   assert.equal(result.diagnostics.byGroup.food_group_herbs_spices,2);
 });
+
+
+test('auto curation applies the same frozen nutrition bounds as materialization before approval', () => {
+  const r = record(746768,'Test over-bound energy','Cereal Grains and Pasta','as_sold');
+  r.nutrition = {...r.nutrition, energyKcal: 1500, proteinG: 10, carbsG: 60, fatG: 8, fiberG: 5, energyBasis:'atwater_specific', energyNutrientId:'2048'};
+  const bounds = {energyKcal:{min:0,max:1000},proteinG:{min:0,max:100},carbsG:{min:0,max:100},fatG:{min:0,max:100},fiberG:{min:0,max:100},sodiumMg:{min:0,max:100000}};
+  const result = autoCurateBatches({batches:[batch('usda-foundation-2026-04',[r]),batch('usda-sr-legacy-2018-04',[])],targetCount:1,groupMinimums:{},nutritionBounds:bounds,reviewedAt:'2026-09-04T00:00:00Z'});
+  assert.equal(result.diagnostics.approved,0);
+  assert.ok((result.diagnostics.ineligible.nutrition_out_of_bounds_energyKcal || 0) >= 1);
+});

@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-04T15:43:06.102Z",
-  "candidateAppVersion": "1.0.0-rc.13",
+  "generatedAt": "2026-09-04T16:33:22.498Z",
+  "candidateAppVersion": "1.0.0-rc.16",
   "catalogVersion": "0.3.0-dev",
   "checks": [
     {
@@ -22,7 +22,7 @@
     {
       "id": "app-version-sync",
       "pass": true,
-      "detail": "package=1.0.0-rc.13, runtime=1.0.0-rc.13"
+      "detail": "package=1.0.0-rc.16, runtime=1.0.0-rc.16"
     },
     {
       "id": "recipe-corpus-minimum",

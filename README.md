@@ -2,7 +2,7 @@
 
 Local-first PWA implementation through **Phase 8 — Hardening & V1 release gates**.
 
-Candidate version: **`1.0.0-rc.15`**.
+Candidate version: **`1.0.0-rc.16`**.
 
 Phases 1–7 remain fully present: IndexedDB persistence, onboarding/configuration, backup/import, IT/EN, theme engine, indexed catalog/search/packs, versioned catalog authoring, corpus-orchestration tooling, deterministic seeded plan generation, effective-plan UX with history/undo, shopping checklists and preparation horizon.
 
@@ -176,3 +176,7 @@ npm run corpus:pilot-execute -- <clean-foundation-bundle.json> <out-dir> --canon
 npm run corpus:first-scale-batch -- <pilot-corpus-bundle.json> <out-dir> --canonical
 npm run corpus:production-execution
 ```
+
+## Phase 4 production execution — rc.16 curation/materialization nutrition contract
+
+A real production run reached materialization with an auto-approved USDA record (`FDC 746768`) that violated the frozen `nutritionBoundsPer100g` energy gate. rc.16 removes the contract split: deterministic auto-curation now applies the exact curation-policy nutrition bounds before approval, so a record that cannot materialize cannot be marked approved. The FDC importer is also unit-aware for Energy: kcal is preserved, kJ is converted explicitly to kcal, and original value/unit/conversion provenance is carried through the curation batch into the materialized IngredientRevision source metadata. Generic Energy with an unknown unsupported unit is not relabeled as kcal. Frozen nutrition bounds and pilot quotas are unchanged.

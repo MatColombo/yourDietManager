@@ -1,7 +1,7 @@
 # Phase 4 Production Corpus — Missing-Step Execution Bridge Report
 
 Date: **2026-09-04**  
-Candidate: **`1.0.0-rc.15`**  
+Candidate: **`1.0.0-rc.16`**  
 Status: **EXECUTION CONTROL PLANE COMPLETE / SOURCE-BACKED RUN REQUIRED**
 
 ## 1. Objective
@@ -50,6 +50,21 @@ rc.15:
 - expands conservative descriptor refinement for common pasta forms and herbs/spices that can live in broader USDA categories;
 - adds unique eligibility/capacity diagnostics by group and energy basis;
 - keeps all frozen group minimums unchanged.
+
+## 2.3 rc.16 USDA curation/materialization nutrition-contract fix
+
+The first rc.15 source-backed run reached `corpus:materialize-usda` and failed on auto-approved FDC record `746768` with `nutrition_out_of_bounds_energyKcal`. This exposed a contract split: materialization enforced `ingredient-curation-v1.nutritionBoundsPer100g`, while deterministic auto-curation did not.
+
+rc.16 makes the gate single-source and fail-closed:
+
+- `ingredientNutritionBoundIssues()` is the shared bound checker used by materialization readiness and auto-curation;
+- `corpus:auto-curate-fdc` loads the frozen curation policy and passes its exact nutrition bounds into candidate eligibility;
+- out-of-bound rows are rejected before approval and therefore cannot fail later merely because materialization applies stricter bounds;
+- the FDC importer records the Energy unit, preserves kcal, converts kJ to kcal with `value / 4.184`, and records original value/unit/conversion metadata;
+- unknown generic Energy units are not silently interpreted as kcal;
+- the provenance fields are carried into the materialized IngredientRevision source record.
+
+No nutrition bound or group quota is relaxed.
 
 ## 3. Deterministic curation hardening
 

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-04T16:18:42.963Z",
+  "generatedAt": "2026-09-04T16:32:39.979Z",
   "environment": {
     "node": "v22.16.0",
     "platform": "linux",
@@ -13,9 +13,9 @@
     "operations": 10000
   },
   "measurementsMs": {
-    "unfilteredPage50": 7.86,
-    "indexedFilteredPage50": 62.08,
-    "recentOperations100": 13.11
+    "unfilteredPage50": 8.27,
+    "indexedFilteredPage50": 60.46,
+    "recentOperations100": 12.69
   },
   "boundedness": {
     "unfilteredRecipeGetManyMax": 50,

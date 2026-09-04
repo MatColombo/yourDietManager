@@ -42,8 +42,8 @@ test('USDA curation import produces a source-digested review batch whose heurist
   const temp = await mkdtemp(path.join(os.tmpdir(), 'ydm-4pb-import-'));
   const sourceFile = path.join(temp, 'foundation.json'); const batchFile = path.join(temp, 'batch.json');
   const food = { fdcId: 777001, description: 'Beans, black, cooked', foodCategory: { description: 'Legumes and Legume Products' }, foodNutrients: [
-    { nutrient: { id: 2048, name: 'Metabolizable Energy (Atwater Specific Factor)' }, amount: 118 },
-    { nutrient: { id: 2047, name: 'Metabolizable Energy (Atwater General Factor)' }, amount: 132 },
+    { nutrient: { id: 2048, name: 'Metabolizable Energy (Atwater Specific Factor)', unitName: 'kcal' }, amount: 118 },
+    { nutrient: { id: 2047, name: 'Metabolizable Energy (Atwater General Factor)', unitName: 'kcal' }, amount: 132 },
     { nutrient: { id: 1003, name: 'Protein' }, amount: 8.9 }, { nutrient: { id: 1005, name: 'Carbohydrate, by difference' }, amount: 23.7 },
     { nutrient: { id: 1004, name: 'Total lipid (fat)' }, amount: 0.5 }, { nutrient: { id: 1079, name: 'Fiber, total dietary' }, amount: 8.7 }
   ]};
@@ -58,12 +58,39 @@ test('USDA curation import produces a source-digested review batch whose heurist
   assert.equal(batch.records[0].nutrition.energyKcal, 132);
   assert.equal(batch.records[0].nutrition.energyBasis, 'atwater_general');
   assert.equal(batch.records[0].nutrition.energyNutrientId, '2047');
+  assert.equal(batch.records[0].nutrition.energySourceUnit, 'kcal');
+  assert.equal(batch.records[0].nutrition.energyOriginalValue, 132);
+  assert.equal(batch.records[0].nutrition.energyConversion, 'none');
   assert.equal(batch.incompleteRequiredNutrientCount, 0);
   assert.equal(batch.structurallyInvalidFoodCount, 2);
   assert.deepEqual(batch.structurallyInvalidFoodExamples, [{ index: 0, reason: 'null_food_record' }, { index: 1, reason: 'missing_fdc_id' }]);
   const report = assessIngredientCurationBatch({ batch, policy: curationPolicy, contract, taxonomies: corpus.taxonomies, taxonomyTerms: corpus.taxonomyTerms, registry, generatedAt: '2026-09-04T14:10:00Z' });
   assert.equal(report.counts.pending, 1); assert.equal(report.counts.materializable, 0); assert.equal(report.readyForPilotFoundation, false);
   assert.equal(report.checks.find(item => item.id === 'source-structural-invalid-records')?.status, 'warning');
+});
+
+
+test('USDA importer converts kJ-only Energy to kcal instead of relabeling the numeric value', async () => {
+  const { registry } = await fixture();
+  const temp = await mkdtemp(path.join(os.tmpdir(), 'ydm-4pb-kj-import-'));
+  const sourceFile = path.join(temp, 'foundation.json'); const batchFile = path.join(temp, 'batch.json');
+  const food = { fdcId: 746768, description: 'Test energy in kJ', foodCategory: { description: 'Cereal Grains and Pasta' }, foodNutrients: [
+    { nutrient: { id: 1062, name: 'Energy', unitName: 'kJ' }, amount: 1500 },
+    { nutrient: { id: 1003, name: 'Protein', unitName: 'g' }, amount: 10 },
+    { nutrient: { id: 1005, name: 'Carbohydrate, by difference', unitName: 'g' }, amount: 60 },
+    { nutrient: { id: 1004, name: 'Total lipid (fat)', unitName: 'g' }, amount: 8 },
+    { nutrient: { id: 1079, name: 'Fiber, total dietary', unitName: 'g' }, amount: 5 }
+  ]};
+  await writeFile(sourceFile, `${JSON.stringify({ FoundationFoods: [food] }, null, 2)}
+`);
+  await execFileAsync(process.execPath, ['scripts/corpus/import-usda-foundation.mjs', sourceFile, batchFile], { cwd: root });
+  const batch = await readJson(batchFile); registry.assert('ingredientCurationBatch', batch);
+  const nutrition = batch.records[0].nutrition;
+  assert.ok(Math.abs(nutrition.energyKcal - (1500 / 4.184)) < 1e-9);
+  assert.equal(nutrition.energySourceUnit, 'kJ');
+  assert.equal(nutrition.energyOriginalValue, 1500);
+  assert.equal(nutrition.energyConversion, 'kj_to_kcal');
+  assert.equal(nutrition.energyNutrientId, '1062');
 });
 
 test('approved curation record remains blocked unless every editorial review dimension is explicitly complete', async () => {

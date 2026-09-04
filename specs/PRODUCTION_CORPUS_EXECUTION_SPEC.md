@@ -47,6 +47,12 @@ The import boundary must tolerate structurally invalid array elements in otherwi
 
 Structural skips are warnings, not approvals. Nutrient-incomplete foods remain counted separately. Downstream pilot/production thresholds are still evaluated only against valid materializable `curated/high` records, so importer tolerance cannot make a deficient source pass a readiness gate.
 
+## 2.2 Energy-unit and nutrition-bound parity
+
+The USDA import boundary must treat nutrient unit metadata as semantic data, not presentation metadata. Energy is normalized to kcal before curation. Values already expressed in kcal are preserved; kJ values are converted with `kcal = kJ / 4.184`; the original value, source unit and conversion mode remain auditable in the curation record and materialized source provenance. A generic Energy nutrient with an unknown unsupported unit must not be relabeled as kcal.
+
+Deterministic review and materialization must apply the same frozen `ingredient-curation-v1.nutritionBoundsPer100g`. A record outside any bound is ineligible for automatic approval. It must never be possible for `ydm-deterministic-fdc-curator-v1` to mark a record approved that the materializer will reject solely because of those same bounds.
+
 ## 3. Foundation coverage required for the pilot generator
 
 The deterministic review must meet both the global production-foundation target and minimum inventory by food group. The current execution target is 600 approved ingredients. The pilot cannot start unless at least 400 remain active and `curated/high` after deduplication/retirement.

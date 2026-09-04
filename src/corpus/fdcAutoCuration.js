@@ -1,3 +1,5 @@
+import { ingredientNutritionBoundIssues } from './ingredientCuration.js';
+
 const GROUP_LABEL_IT = {
   food_group_vegetables: 'Verdure',
   food_group_fruit: 'Frutta',
@@ -149,7 +151,7 @@ export function conservativeItalianLabel(record, state = null) {
   return `${prefix} — ${source}`;
 }
 
-export function curationEligibility(record, { allowFallbackCategories = false } = {}) {
+export function curationEligibility(record, { allowFallbackCategories = false, nutritionBounds = null } = {}) {
   const description = String(record.description || '');
   const category = String(record.category || '');
   const reasons = [];
@@ -160,6 +162,7 @@ export function curationEligibility(record, { allowFallbackCategories = false } 
   if (!primaryCategory && !fallbackCategory) reasons.push('category_not_ingredient_foundation');
   const n = record.nutrition || {};
   for (const key of ['energyKcal','proteinG','carbsG','fatG','fiberG']) if (!Number.isFinite(n[key])) reasons.push(`missing_${key}`);
+  if (nutritionBounds) reasons.push(...ingredientNutritionBoundIssues(n, nutritionBounds));
   if (Number.isFinite(n.energyKcal) && n.energyKcal > 0 && ['proteinG','carbsG','fatG'].every(key => Number.isFinite(n[key]))) {
     const macroEnergy = n.proteinG * 4 + n.carbsG * 4 + n.fatG * 9;
     const basis = n.energyBasis || 'unknown';
@@ -170,7 +173,7 @@ export function curationEligibility(record, { allowFallbackCategories = false } 
   return { eligible: reasons.length === 0, reasons };
 }
 
-export function autoCurateBatches({ batches, targetCount = 600, reviewedAt = null, reviewer = 'ydm-deterministic-fdc-curator-v1', groupMinimums = null } = {}) {
+export function autoCurateBatches({ batches, targetCount = 600, reviewedAt = null, reviewer = 'ydm-deterministic-fdc-curator-v1', groupMinimums = null, nutritionBounds = null } = {}) {
   const now = reviewedAt || new Date().toISOString();
   const copies = batches.map(batch => structuredClone(batch));
   const selectedKeys = new Set();
@@ -190,7 +193,7 @@ export function autoCurateBatches({ batches, targetCount = 600, reviewedAt = nul
   for (const item of priority) {
     const basis = item.record.nutrition?.energyBasis || 'unknown';
     diagnostics.energyBasisCounts[basis] = (diagnostics.energyBasisCounts[basis] || 0) + 1;
-    const eligibility = curationEligibility(item.record);
+    const eligibility = curationEligibility(item.record, { nutritionBounds });
     if (eligibility.eligible) {
       const group = refinedFoodGroup(item.record);
       diagnostics.eligibleCapacityByGroup[group] = (diagnostics.eligibleCapacityByGroup[group] || 0) + 1;
@@ -204,7 +207,7 @@ export function autoCurateBatches({ batches, targetCount = 600, reviewedAt = nul
     const { batchIndex, recordIndex, record } = item;
     if (copies[batchIndex].records[recordIndex].review?.decision !== 'pending') return false;
     diagnostics.considered += 1;
-    const eligibility = curationEligibility(record, { allowFallbackCategories });
+    const eligibility = curationEligibility(record, { allowFallbackCategories, nutritionBounds });
     if (!eligibility.eligible) {
       for (const reason of eligibility.reasons) diagnostics.ineligible[reason] = (diagnostics.ineligible[reason] || 0) + 1;
       return false;
@@ -241,7 +244,7 @@ export function autoCurateBatches({ batches, targetCount = 600, reviewedAt = nul
 
   // Preserve explicit replacements for the four Phase 1 development fixtures before generic filling.
   for (const requirement of LEGACY_REPLACEMENT_REQUIREMENTS) {
-    const candidate = priority.find(item => requirement.pattern.test(String(item.record.description || item.record.commonName || '')) && curationEligibility(item.record).eligible);
+    const candidate = priority.find(item => requirement.pattern.test(String(item.record.description || item.record.commonName || '')) && curationEligibility(item.record, { nutritionBounds }).eligible);
     if (candidate && tryApprove(candidate)) diagnostics.protectedConcepts[requirement.key] = candidate.record.suggested?.ingredientId || `ing_fdc_${candidate.record.sourceRecordId}`;
     else diagnostics.protectedConceptFailures.push(requirement.key);
   }

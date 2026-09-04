@@ -12,9 +12,9 @@ if (!foundationFile || !srFile) {
   process.exit(2);
 }
 const registry = new SchemaRegistry(async file => readJson(path.join('schemas', file))); await registry.loadAll();
-const batches = await Promise.all([readJson(foundationFile), readJson(srFile)]);
+const [batches, policy] = await Promise.all([Promise.all([readJson(foundationFile), readJson(srFile)]), readJson('corpus/curation/v1-ingredient-curation-policy.json')]);
 for (const batch of batches) registry.assert('ingredientCurationBatch', batch);
-const result = autoCurateBatches({ batches, targetCount });
+const result = autoCurateBatches({ batches, targetCount, nutritionBounds: policy.nutritionBoundsPer100g });
 for (const batch of result.batches) registry.assert('ingredientCurationBatch', batch);
 await writeJson(path.join(outputDir, 'usda-foundation-reviewed.json'), result.batches[0]);
 await writeJson(path.join(outputDir, 'usda-sr-legacy-reviewed.json'), result.batches[1]);
