@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "batchId": "batch-babbabe1ef9ac3",
+  "generatedAt": "2026-09-04T19:43:49.891Z",
+  "before": {
+    "activeRecipes": 120,
+    "scaleGate": "ready"
+  },
+  "candidateCount": 125,
+  "accepted": 100,
+  "rejected": 25,
+  "reviewBacklog": 0,
+  "batchGate": "pass",
+  "after": {
+    "activeRecipes": 220,
+    "scaleGate": "ready"
+  },
+  "generatorDiagnostics": {
+    "generatorVersion": "recipe-scale-generator-v2",
+    "eligibleMacroReliableIngredients": 568,
+    "poolSizes": {
+      "first": 164,
+      "second": 70,
+      "third": 73
+    },
+    "targetEnergyKcal": 324.5,
+    "infeasibleCombinationAttempts": 0,
+    "minScaleFactor": 0.35055031194843583,
+    "maxScaleFactor": 1.930503972745318,
+    "generatedEnergyRangeKcal": {
+      "min": 324.45,
+      "max": 324.55
+    }
+  }
+}

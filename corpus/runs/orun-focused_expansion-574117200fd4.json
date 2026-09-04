@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "runId": "orun-focused_expansion-574117200fd4",
+  "mode": "focused_expansion",
+  "plannerVersion": "corpus-planner-1",
+  "policyId": "corpus-policy-v1-default",
+  "policyVersion": "1.1.0",
+  "inputSnapshotId": "snapshot-1.0.0-production-pilot-0447f3306fcb",
+  "outputSnapshotId": null,
+  "seed": "scale-batch-001-sha256:0447f3306fcbce5f1b9371f3953186527947332672f10b2769d81e98be56d4e5",
+  "goal": {
+    "targetRecipeCount": null,
+    "acceptedAddCount": 100,
+    "maxJobs": null,
+    "allowRetire": false,
+    "focusMode": "restrict",
+    "intentStrategy": "focus_only",
+    "focus": {
+      "mealArchetypes": [
+        "mini_meal"
+      ],
+      "practicalityTags": [
+        "practical_portable"
+      ]
+    }
+  },
+  "status": "planned",
+  "stopReason": null,
+  "plannedJobs": [
+    {
+      "jobId": "batch-babbabe1ef9ac3",
+      "priority": 3.3889,
+      "scoreBreakdown": {
+        "nutrition": 0,
+        "meal": 1,
+        "practicality": 0.8444,
+        "cuisine": 0,
+        "ingredientDiversity": 0.3125,
+        "recipeFamily": 0,
+        "focusBoost": 1,
+        "similarityPenalty": 0,
+        "ingredientOverusePenalty": 0,
+        "pairRepetitionPenalty": 0.585
+      },
+      "targetIds": [
+        "meal-mini_meal-coverage",
+        "practical-portable-coverage"
+      ],
+      "reasons": [
+        "meal_archetype:mini_meal deficit=1",
+        "practicality:practical_portable deficit=0.844",
+        "user focus mode=restrict"
+      ],
+      "expectedAcceptedCount": 100
+    }
+  ],
+  "createdAt": "2026-09-04T19:43:48.770Z",
+  "completedAt": null
+}

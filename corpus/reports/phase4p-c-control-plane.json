@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "pass": true,
-  "currentScaleGateStatus": "blocked",
+  "currentScaleGateStatus": "ready",
   "checks": [
     {
       "id": "pipeline-policy",
@@ -11,7 +11,7 @@
     {
       "id": "scale-gate-schema",
       "status": "pass",
-      "detail": "scale-500 current=blocked"
+      "detail": "scale-500 current=ready"
     },
     {
       "id": "spec-policy",
@@ -45,5 +45,5 @@
     }
   ],
   "blockers": [],
-  "generatedAt": "2026-09-04T19:21:06.788Z"
+  "generatedAt": "2026-09-04T19:43:56.356Z"
 }

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "combinedAt": "2026-09-04T19:43:46.708Z",
+  "ingredientCount": 600,
+  "sourceManifests": [
+    {
+      "batchId": "curation-usda-foundation-2026-04-eb3af101d0fbf878",
+      "sourceId": "usda-foundation-2026-04",
+      "sourceInputDigest": "27d1fe3fd89edfbe528ed915da5619320e1d004d4594603a1b19bdb1511590cc",
+      "ingredientCount": 132
+    },
+    {
+      "batchId": "curation-usda-sr-legacy-2018-04-e88655db05d9c3d8",
+      "sourceId": "usda-sr-legacy-2018-04",
+      "sourceInputDigest": "70d4235ae3a2bdf48a7b9eaa1286a83fa67b6f3270436c9ce8b008213f500129",
+      "ingredientCount": 468
+    }
+  ]
+}

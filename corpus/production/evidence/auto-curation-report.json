@@ -1,0 +1,87 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-04T19:43:45.902Z",
+  "considered": 30936,
+  "sourceRecords": 7406,
+  "approved": 600,
+  "rejected": 6806,
+  "duplicateConcepts": 3,
+  "ineligible": {
+    "category_not_ingredient_foundation": 11097,
+    "forbidden_description": 1465,
+    "macro_energy_mismatch": 510
+  },
+  "uniqueIneligible": {
+    "category_not_ingredient_foundation": 2584,
+    "forbidden_description": 345,
+    "macro_energy_mismatch": 34
+  },
+  "eligibleCapacityByGroup": {
+    "food_group_legumes": 269,
+    "food_group_vegetables": 754,
+    "food_group_nuts_seeds": 117,
+    "food_group_herbs_spices": 85,
+    "food_group_fruit": 354,
+    "food_group_dairy_milk_yogurt": 193,
+    "food_group_eggs": 38,
+    "food_group_grains": 276,
+    "food_group_pasta_rice_cereals": 82,
+    "food_group_fats_oils": 200,
+    "food_group_cheese": 106,
+    "food_group_poultry": 368,
+    "food_group_meat": 1688,
+    "food_group_fish_seafood": 255
+  },
+  "energyBasisCounts": {
+    "legacy_energy": 7270,
+    "atwater_general": 136
+  },
+  "bySource": {
+    "usda-sr-legacy-2018-04": 468,
+    "usda-foundation-2026-04": 132
+  },
+  "byGroup": {
+    "food_group_fish_seafood": 40,
+    "food_group_pasta_rice_cereals": 40,
+    "food_group_vegetables": 60,
+    "food_group_fats_oils": 20,
+    "food_group_fruit": 119,
+    "food_group_grains": 30,
+    "food_group_legumes": 40,
+    "food_group_poultry": 30,
+    "food_group_meat": 111,
+    "food_group_dairy_milk_yogurt": 30,
+    "food_group_cheese": 15,
+    "food_group_eggs": 15,
+    "food_group_nuts_seeds": 30,
+    "food_group_herbs_spices": 20
+  },
+  "groupMinimums": {
+    "food_group_vegetables": 60,
+    "food_group_fruit": 40,
+    "food_group_pasta_rice_cereals": 40,
+    "food_group_grains": 30,
+    "food_group_legumes": 40,
+    "food_group_fish_seafood": 40,
+    "food_group_poultry": 30,
+    "food_group_meat": 30,
+    "food_group_dairy_milk_yogurt": 30,
+    "food_group_cheese": 15,
+    "food_group_eggs": 15,
+    "food_group_nuts_seeds": 30,
+    "food_group_fats_oils": 20,
+    "food_group_herbs_spices": 20
+  },
+  "protectedConcepts": {
+    "salmon": "ing_fdc_171985",
+    "cooked_rice": "ing_fdc_168875",
+    "zucchini": "ing_fdc_2685568",
+    "olive_oil": "ing_fdc_171413"
+  },
+  "protectedConceptFailures": [],
+  "targetCount": 600,
+  "targetMet": true,
+  "groupMinimumFailures": [],
+  "pilotGroupMinimumsMet": true,
+  "protectedConceptsMet": true
+}

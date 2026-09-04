@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "sourceId": "usda-sr-legacy-2018-04",
+  "provider": "USDA FoodData Central",
+  "dataset": "SR Legacy",
+  "release": "2018-04",
+  "archive": "https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_sr_legacy_food_json_2018-04.zip",
+  "downloadedAt": "2026-09-04T19:43:42.624Z",
+  "archiveBytes": 13456312,
+  "archiveSha256": "0fe8ae486a2c8eb42cb96413f058deb51863a46c8fb8eeb4b1fb45006dd338ef",
+  "primaryJsonFile": "corpus/sources/cache/usda-sr-legacy-2018-04/FoodData_Central_sr_legacy_food_json_2018-04.json",
+  "extractedJsonFiles": [
+    "corpus/sources/cache/usda-sr-legacy-2018-04/FoodData_Central_sr_legacy_food_json_2018-04.json"
+  ],
+  "extractedJson": [
+    {
+      "file": "corpus/sources/cache/usda-sr-legacy-2018-04/FoodData_Central_sr_legacy_food_json_2018-04.json",
+      "bytes": 210758826
+    }
+  ]
+}

@@ -11,8 +11,8 @@
     {
       "candidateId": "pilot-breakfast_quick-001",
       "stratumId": "breakfast_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "breakfast"
@@ -24,22 +24,37 @@
         "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-01",
+      "generatedAt": "2026-09-04T19:43:47.702Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_8bdc75e4819c53e52168214a_v1",
+        "processedAt": "2026-09-04T19:43:47.702Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum breakfast_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.702Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-01"
         }
       ]
     },
     {
       "candidateId": "pilot-breakfast_quick-002",
       "stratumId": "breakfast_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "breakfast"
@@ -51,22 +66,37 @@
         "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-01",
+      "generatedAt": "2026-09-04T19:43:47.702Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_c8aca26a6b010568da79f696_v1",
+        "processedAt": "2026-09-04T19:43:47.702Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum breakfast_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.702Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-01"
         }
       ]
     },
     {
       "candidateId": "pilot-breakfast_quick-003",
       "stratumId": "breakfast_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "breakfast"
@@ -78,22 +108,37 @@
         "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-01",
+      "generatedAt": "2026-09-04T19:43:47.702Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_74c32415001433ea3ecd6851_v1",
+        "processedAt": "2026-09-04T19:43:47.702Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum breakfast_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.702Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-01"
         }
       ]
     },
     {
       "candidateId": "pilot-breakfast_quick-004",
       "stratumId": "breakfast_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "breakfast"
@@ -105,22 +150,37 @@
         "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-01",
+      "generatedAt": "2026-09-04T19:43:47.702Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_44f68aa4bedeaebc38f3526f_v1",
+        "processedAt": "2026-09-04T19:43:47.702Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum breakfast_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.702Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-01"
         }
       ]
     },
     {
       "candidateId": "pilot-breakfast_quick-005",
       "stratumId": "breakfast_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "breakfast"
@@ -132,22 +192,37 @@
         "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-01",
+      "generatedAt": "2026-09-04T19:43:47.702Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_f8f647fcdb4af18a3851be77_v1",
+        "processedAt": "2026-09-04T19:43:47.702Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum breakfast_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.702Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-01"
         }
       ]
     },
     {
       "candidateId": "pilot-breakfast_quick-006",
       "stratumId": "breakfast_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "breakfast"
@@ -159,22 +234,37 @@
         "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-01",
+      "generatedAt": "2026-09-04T19:43:47.702Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_02daac042910f2989965aea1_v1",
+        "processedAt": "2026-09-04T19:43:47.702Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum breakfast_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.702Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-01"
         }
       ]
     },
     {
       "candidateId": "pilot-breakfast_quick-007",
       "stratumId": "breakfast_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "breakfast"
@@ -186,22 +276,37 @@
         "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-01",
+      "generatedAt": "2026-09-04T19:43:47.702Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_0314e496c6f95536f5148f4d_v1",
+        "processedAt": "2026-09-04T19:43:47.702Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum breakfast_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.702Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-01"
         }
       ]
     },
     {
       "candidateId": "pilot-breakfast_quick-008",
       "stratumId": "breakfast_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "breakfast"
@@ -213,22 +318,37 @@
         "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-01",
+      "generatedAt": "2026-09-04T19:43:47.702Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_fa13d6c806f2984bdea9947c_v1",
+        "processedAt": "2026-09-04T19:43:47.702Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum breakfast_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.702Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-01"
         }
       ]
     },
     {
       "candidateId": "pilot-breakfast_quick-009",
       "stratumId": "breakfast_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "breakfast"
@@ -240,22 +360,37 @@
         "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-01",
+      "generatedAt": "2026-09-04T19:43:47.702Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_a8e7f7f75062f06efb035ebc_v1",
+        "processedAt": "2026-09-04T19:43:47.702Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum breakfast_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.702Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-01"
         }
       ]
     },
     {
       "candidateId": "pilot-breakfast_quick-010",
       "stratumId": "breakfast_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "breakfast"
@@ -267,22 +402,37 @@
         "rationale": "Stress fast breakfast structure, unit handling and low-complexity ingredient combinations."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-01",
+      "generatedAt": "2026-09-04T19:43:47.702Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_bb9ebbd8d1f928efdcd4817f_v1",
+        "processedAt": "2026-09-04T19:43:47.702Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum breakfast_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.702Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-01"
         }
       ]
     },
     {
       "candidateId": "pilot-breakfast_protein-001",
       "stratumId": "breakfast_protein",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "breakfast"
@@ -294,22 +444,37 @@
         "rationale": "Exercise breakfast protein diversity without relying on one ingredient family."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-01",
+      "generatedAt": "2026-09-04T19:43:47.702Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_ef0db0c54b54a661e66b9417_v1",
+        "processedAt": "2026-09-04T19:43:47.702Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum breakfast_protein"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.702Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-01"
         }
       ]
     },
     {
       "candidateId": "pilot-breakfast_protein-002",
       "stratumId": "breakfast_protein",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "breakfast"
@@ -321,22 +486,37 @@
         "rationale": "Exercise breakfast protein diversity without relying on one ingredient family."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-01",
+      "generatedAt": "2026-09-04T19:43:47.702Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_8ca3a35a448f580096b6f01a_v1",
+        "processedAt": "2026-09-04T19:43:47.702Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum breakfast_protein"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.702Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-01"
         }
       ]
     },
     {
       "candidateId": "pilot-breakfast_protein-003",
       "stratumId": "breakfast_protein",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "breakfast"
@@ -348,22 +528,37 @@
         "rationale": "Exercise breakfast protein diversity without relying on one ingredient family."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-01",
+      "generatedAt": "2026-09-04T19:43:47.702Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_3fde64b324e9963729d7e283_v1",
+        "processedAt": "2026-09-04T19:43:47.702Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum breakfast_protein"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.702Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-01"
         }
       ]
     },
     {
       "candidateId": "pilot-breakfast_protein-004",
       "stratumId": "breakfast_protein",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "breakfast"
@@ -375,22 +570,37 @@
         "rationale": "Exercise breakfast protein diversity without relying on one ingredient family."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-01",
+      "generatedAt": "2026-09-04T19:43:47.702Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_f7248bc5aecd5bcc48287518_v1",
+        "processedAt": "2026-09-04T19:43:47.702Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum breakfast_protein"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.702Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-01"
         }
       ]
     },
     {
       "candidateId": "pilot-breakfast_protein-005",
       "stratumId": "breakfast_protein",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "breakfast"
@@ -402,22 +612,37 @@
         "rationale": "Exercise breakfast protein diversity without relying on one ingredient family."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-01",
+      "generatedAt": "2026-09-04T19:43:47.702Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_2b4e6e58a7bcf9bcd5ac54fe_v1",
+        "processedAt": "2026-09-04T19:43:47.702Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum breakfast_protein"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.702Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-01"
         }
       ]
     },
     {
       "candidateId": "pilot-breakfast_protein-006",
       "stratumId": "breakfast_protein",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "breakfast"
@@ -429,22 +654,37 @@
         "rationale": "Exercise breakfast protein diversity without relying on one ingredient family."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-01",
+      "generatedAt": "2026-09-04T19:43:47.702Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_f1c4fc0d09abc64dc1298b6a_v1",
+        "processedAt": "2026-09-04T19:43:47.702Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum breakfast_protein"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.702Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-01"
         }
       ]
     },
     {
       "candidateId": "pilot-breakfast_protein-007",
       "stratumId": "breakfast_protein",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "breakfast"
@@ -456,22 +696,37 @@
         "rationale": "Exercise breakfast protein diversity without relying on one ingredient family."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-01",
+      "generatedAt": "2026-09-04T19:43:47.702Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_4946c9969455c113dd1319b8_v1",
+        "processedAt": "2026-09-04T19:43:47.702Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum breakfast_protein"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.702Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-01"
         }
       ]
     },
     {
       "candidateId": "pilot-breakfast_protein-008",
       "stratumId": "breakfast_protein",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "breakfast"
@@ -483,22 +738,37 @@
         "rationale": "Exercise breakfast protein diversity without relying on one ingredient family."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-01",
+      "generatedAt": "2026-09-04T19:43:47.702Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_5551de1117eace42096114f5_v1",
+        "processedAt": "2026-09-04T19:43:47.702Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum breakfast_protein"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.702Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-01"
         }
       ]
     },
     {
       "candidateId": "pilot-breakfast_protein-009",
       "stratumId": "breakfast_protein",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "breakfast"
@@ -510,22 +780,37 @@
         "rationale": "Exercise breakfast protein diversity without relying on one ingredient family."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-01",
+      "generatedAt": "2026-09-04T19:43:47.702Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_302f232143bd0915f74c13ae_v1",
+        "processedAt": "2026-09-04T19:43:47.702Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum breakfast_protein"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.702Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-01"
         }
       ]
     },
     {
       "candidateId": "pilot-breakfast_protein-010",
       "stratumId": "breakfast_protein",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "breakfast"
@@ -537,22 +822,37 @@
         "rationale": "Exercise breakfast protein diversity without relying on one ingredient family."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-01",
+      "generatedAt": "2026-09-04T19:43:47.702Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_6c2023937f3b87818ad66774_v1",
+        "processedAt": "2026-09-04T19:43:47.702Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum breakfast_protein"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.702Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-01"
         }
       ]
     },
     {
       "candidateId": "pilot-snack_portable-001",
       "stratumId": "snack_portable",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "snack"
@@ -564,22 +864,37 @@
         "rationale": "Exercise portable/cold snack semantics and compact servings."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-02",
+      "generatedAt": "2026-09-04T19:43:47.736Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_6150c41ceff34119f7d4cee8_v1",
+        "processedAt": "2026-09-04T19:43:47.736Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum snack_portable"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.736Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-02"
         }
       ]
     },
     {
       "candidateId": "pilot-snack_portable-002",
       "stratumId": "snack_portable",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "snack"
@@ -591,22 +906,37 @@
         "rationale": "Exercise portable/cold snack semantics and compact servings."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-02",
+      "generatedAt": "2026-09-04T19:43:47.736Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_3226eee9d2075273f6c8c631_v1",
+        "processedAt": "2026-09-04T19:43:47.736Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum snack_portable"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.736Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-02"
         }
       ]
     },
     {
       "candidateId": "pilot-snack_portable-003",
       "stratumId": "snack_portable",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "snack"
@@ -618,22 +948,37 @@
         "rationale": "Exercise portable/cold snack semantics and compact servings."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-02",
+      "generatedAt": "2026-09-04T19:43:47.736Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_52909269d8153df33e5d5949_v1",
+        "processedAt": "2026-09-04T19:43:47.736Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum snack_portable"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.736Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-02"
         }
       ]
     },
     {
       "candidateId": "pilot-snack_portable-004",
       "stratumId": "snack_portable",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "snack"
@@ -645,22 +990,37 @@
         "rationale": "Exercise portable/cold snack semantics and compact servings."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-02",
+      "generatedAt": "2026-09-04T19:43:47.736Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_b0e858fc6eb653a7a474477a_v1",
+        "processedAt": "2026-09-04T19:43:47.736Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum snack_portable"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.736Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-02"
         }
       ]
     },
     {
       "candidateId": "pilot-snack_portable-005",
       "stratumId": "snack_portable",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "snack"
@@ -672,22 +1032,37 @@
         "rationale": "Exercise portable/cold snack semantics and compact servings."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-02",
+      "generatedAt": "2026-09-04T19:43:47.736Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_1d7274926ed1b9128da54e2e_v1",
+        "processedAt": "2026-09-04T19:43:47.736Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum snack_portable"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.736Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-02"
         }
       ]
     },
     {
       "candidateId": "pilot-snack_portable-006",
       "stratumId": "snack_portable",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "snack"
@@ -699,22 +1074,37 @@
         "rationale": "Exercise portable/cold snack semantics and compact servings."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-02",
+      "generatedAt": "2026-09-04T19:43:47.736Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_79bf8b4832c4542e93ee0a54_v1",
+        "processedAt": "2026-09-04T19:43:47.736Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum snack_portable"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.736Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-02"
         }
       ]
     },
     {
       "candidateId": "pilot-snack_portable-007",
       "stratumId": "snack_portable",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "snack"
@@ -726,22 +1116,37 @@
         "rationale": "Exercise portable/cold snack semantics and compact servings."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-02",
+      "generatedAt": "2026-09-04T19:43:47.736Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_66b7a4726bfee6c591e32c2e_v1",
+        "processedAt": "2026-09-04T19:43:47.736Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum snack_portable"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.736Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-02"
         }
       ]
     },
     {
       "candidateId": "pilot-snack_portable-008",
       "stratumId": "snack_portable",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "snack"
@@ -753,22 +1158,37 @@
         "rationale": "Exercise portable/cold snack semantics and compact servings."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-02",
+      "generatedAt": "2026-09-04T19:43:47.736Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_dfe6997c553ffbd02d29d91e_v1",
+        "processedAt": "2026-09-04T19:43:47.736Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum snack_portable"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.736Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-02"
         }
       ]
     },
     {
       "candidateId": "pilot-snack_portable-009",
       "stratumId": "snack_portable",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "snack"
@@ -780,22 +1200,37 @@
         "rationale": "Exercise portable/cold snack semantics and compact servings."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-02",
+      "generatedAt": "2026-09-04T19:43:47.736Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_bfa2901f7019794811682b2d_v1",
+        "processedAt": "2026-09-04T19:43:47.736Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum snack_portable"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.736Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-02"
         }
       ]
     },
     {
       "candidateId": "pilot-snack_portable-010",
       "stratumId": "snack_portable",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "snack"
@@ -807,22 +1242,37 @@
         "rationale": "Exercise portable/cold snack semantics and compact servings."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-02",
+      "generatedAt": "2026-09-04T19:43:47.736Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_da257324c45b9ffa05f0e781_v1",
+        "processedAt": "2026-09-04T19:43:47.736Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum snack_portable"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.736Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-02"
         }
       ]
     },
     {
       "candidateId": "pilot-lunch_quick-001",
       "stratumId": "lunch_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch"
@@ -834,22 +1284,37 @@
         "rationale": "Exercise fast lunch coverage across several ingredient groups."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-02",
+      "generatedAt": "2026-09-04T19:43:47.736Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_251138f35e0e569c526cc20c_v1",
+        "processedAt": "2026-09-04T19:43:47.736Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum lunch_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.736Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-02"
         }
       ]
     },
     {
       "candidateId": "pilot-lunch_quick-002",
       "stratumId": "lunch_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch"
@@ -861,22 +1326,37 @@
         "rationale": "Exercise fast lunch coverage across several ingredient groups."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-02",
+      "generatedAt": "2026-09-04T19:43:47.736Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_14b2c20518e5d1ea07aa35d1_v1",
+        "processedAt": "2026-09-04T19:43:47.736Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum lunch_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.736Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-02"
         }
       ]
     },
     {
       "candidateId": "pilot-lunch_quick-003",
       "stratumId": "lunch_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch"
@@ -888,22 +1368,37 @@
         "rationale": "Exercise fast lunch coverage across several ingredient groups."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-02",
+      "generatedAt": "2026-09-04T19:43:47.736Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_34d20433d5612bb74e81e5f9_v1",
+        "processedAt": "2026-09-04T19:43:47.736Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum lunch_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.736Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-02"
         }
       ]
     },
     {
       "candidateId": "pilot-lunch_quick-004",
       "stratumId": "lunch_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch"
@@ -915,22 +1410,37 @@
         "rationale": "Exercise fast lunch coverage across several ingredient groups."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-02",
+      "generatedAt": "2026-09-04T19:43:47.736Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_a1b7b5bd1ebacaa93484d3bd_v1",
+        "processedAt": "2026-09-04T19:43:47.736Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum lunch_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.736Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-02"
         }
       ]
     },
     {
       "candidateId": "pilot-lunch_quick-005",
       "stratumId": "lunch_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch"
@@ -942,22 +1452,37 @@
         "rationale": "Exercise fast lunch coverage across several ingredient groups."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-02",
+      "generatedAt": "2026-09-04T19:43:47.736Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_49bd5053ed4f1baedf6e1829_v1",
+        "processedAt": "2026-09-04T19:43:47.736Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum lunch_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.736Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-02"
         }
       ]
     },
     {
       "candidateId": "pilot-lunch_quick-006",
       "stratumId": "lunch_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch"
@@ -969,22 +1494,37 @@
         "rationale": "Exercise fast lunch coverage across several ingredient groups."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-02",
+      "generatedAt": "2026-09-04T19:43:47.736Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_57be78f8b0ba2ba9cc85b873_v1",
+        "processedAt": "2026-09-04T19:43:47.736Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum lunch_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.736Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-02"
         }
       ]
     },
     {
       "candidateId": "pilot-lunch_quick-007",
       "stratumId": "lunch_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch"
@@ -996,22 +1536,37 @@
         "rationale": "Exercise fast lunch coverage across several ingredient groups."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-02",
+      "generatedAt": "2026-09-04T19:43:47.736Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_753e1327b318d644f1802619_v1",
+        "processedAt": "2026-09-04T19:43:47.736Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum lunch_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.736Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-02"
         }
       ]
     },
     {
       "candidateId": "pilot-lunch_quick-008",
       "stratumId": "lunch_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch"
@@ -1023,22 +1578,37 @@
         "rationale": "Exercise fast lunch coverage across several ingredient groups."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-02",
+      "generatedAt": "2026-09-04T19:43:47.736Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_d0b935f38a6b9885591251f9_v1",
+        "processedAt": "2026-09-04T19:43:47.736Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum lunch_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.736Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-02"
         }
       ]
     },
     {
       "candidateId": "pilot-lunch_quick-009",
       "stratumId": "lunch_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch"
@@ -1050,22 +1620,37 @@
         "rationale": "Exercise fast lunch coverage across several ingredient groups."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-02",
+      "generatedAt": "2026-09-04T19:43:47.736Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_debb11a2c3539b9c3bcbc6f6_v1",
+        "processedAt": "2026-09-04T19:43:47.736Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum lunch_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.736Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-02"
         }
       ]
     },
     {
       "candidateId": "pilot-lunch_quick-010",
       "stratumId": "lunch_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch"
@@ -1077,22 +1662,37 @@
         "rationale": "Exercise fast lunch coverage across several ingredient groups."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-02",
+      "generatedAt": "2026-09-04T19:43:47.736Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_9d76632afde01bec1cb1f3ff_v1",
+        "processedAt": "2026-09-04T19:43:47.736Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum lunch_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.736Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-02"
         }
       ]
     },
     {
       "candidateId": "pilot-lunch_standard-001",
       "stratumId": "lunch_standard",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch"
@@ -1104,22 +1704,37 @@
         "rationale": "Exercise ordinary lunch recipes with broader preparation methods."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-03",
+      "generatedAt": "2026-09-04T19:43:47.770Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_ae2ac057af6d46bf8730e791_v1",
+        "processedAt": "2026-09-04T19:43:47.770Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum lunch_standard"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.770Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-03"
         }
       ]
     },
     {
       "candidateId": "pilot-lunch_standard-002",
       "stratumId": "lunch_standard",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch"
@@ -1131,22 +1746,37 @@
         "rationale": "Exercise ordinary lunch recipes with broader preparation methods."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-03",
+      "generatedAt": "2026-09-04T19:43:47.770Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_a34979f47606b000167bef5b_v1",
+        "processedAt": "2026-09-04T19:43:47.770Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum lunch_standard"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.770Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-03"
         }
       ]
     },
     {
       "candidateId": "pilot-lunch_standard-003",
       "stratumId": "lunch_standard",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch"
@@ -1158,22 +1788,37 @@
         "rationale": "Exercise ordinary lunch recipes with broader preparation methods."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-03",
+      "generatedAt": "2026-09-04T19:43:47.770Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_6fce5f24caaaef09d8353807_v1",
+        "processedAt": "2026-09-04T19:43:47.770Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum lunch_standard"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.770Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-03"
         }
       ]
     },
     {
       "candidateId": "pilot-lunch_standard-004",
       "stratumId": "lunch_standard",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch"
@@ -1185,22 +1830,37 @@
         "rationale": "Exercise ordinary lunch recipes with broader preparation methods."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-03",
+      "generatedAt": "2026-09-04T19:43:47.770Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_d98dd55fa7233de479f47e6f_v1",
+        "processedAt": "2026-09-04T19:43:47.770Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum lunch_standard"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.770Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-03"
         }
       ]
     },
     {
       "candidateId": "pilot-lunch_standard-005",
       "stratumId": "lunch_standard",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch"
@@ -1212,22 +1872,37 @@
         "rationale": "Exercise ordinary lunch recipes with broader preparation methods."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-03",
+      "generatedAt": "2026-09-04T19:43:47.770Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_f15399fb18e3bc177d0505dc_v1",
+        "processedAt": "2026-09-04T19:43:47.770Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum lunch_standard"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.770Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-03"
         }
       ]
     },
     {
       "candidateId": "pilot-lunch_standard-006",
       "stratumId": "lunch_standard",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch"
@@ -1239,22 +1914,37 @@
         "rationale": "Exercise ordinary lunch recipes with broader preparation methods."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-03",
+      "generatedAt": "2026-09-04T19:43:47.770Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_7d84cc210376336d27a7921d_v1",
+        "processedAt": "2026-09-04T19:43:47.770Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum lunch_standard"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.770Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-03"
         }
       ]
     },
     {
       "candidateId": "pilot-lunch_standard-007",
       "stratumId": "lunch_standard",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch"
@@ -1266,22 +1956,37 @@
         "rationale": "Exercise ordinary lunch recipes with broader preparation methods."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-03",
+      "generatedAt": "2026-09-04T19:43:47.770Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_6aab2a48b290d29f89f54461_v1",
+        "processedAt": "2026-09-04T19:43:47.770Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum lunch_standard"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.770Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-03"
         }
       ]
     },
     {
       "candidateId": "pilot-lunch_standard-008",
       "stratumId": "lunch_standard",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch"
@@ -1293,22 +1998,37 @@
         "rationale": "Exercise ordinary lunch recipes with broader preparation methods."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-03",
+      "generatedAt": "2026-09-04T19:43:47.770Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_405fd42702c9b7be390878e1_v1",
+        "processedAt": "2026-09-04T19:43:47.770Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum lunch_standard"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.770Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-03"
         }
       ]
     },
     {
       "candidateId": "pilot-lunch_standard-009",
       "stratumId": "lunch_standard",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch"
@@ -1320,22 +2040,37 @@
         "rationale": "Exercise ordinary lunch recipes with broader preparation methods."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-03",
+      "generatedAt": "2026-09-04T19:43:47.770Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_d3225bef7891b56c2d5b558d_v1",
+        "processedAt": "2026-09-04T19:43:47.770Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum lunch_standard"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.770Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-03"
         }
       ]
     },
     {
       "candidateId": "pilot-lunch_standard-010",
       "stratumId": "lunch_standard",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch"
@@ -1347,22 +2082,37 @@
         "rationale": "Exercise ordinary lunch recipes with broader preparation methods."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-03",
+      "generatedAt": "2026-09-04T19:43:47.770Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_50ce10649f6403e5862c5c4d_v1",
+        "processedAt": "2026-09-04T19:43:47.770Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum lunch_standard"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.770Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-03"
         }
       ]
     },
     {
       "candidateId": "pilot-dinner_quick-001",
       "stratumId": "dinner_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "dinner"
@@ -1374,22 +2124,37 @@
         "rationale": "Exercise quick dinner practicality and nutrition bands."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-03",
+      "generatedAt": "2026-09-04T19:43:47.770Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_82dca5fb21b59c7917fb611d_v1",
+        "processedAt": "2026-09-04T19:43:47.770Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum dinner_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.770Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-03"
         }
       ]
     },
     {
       "candidateId": "pilot-dinner_quick-002",
       "stratumId": "dinner_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "dinner"
@@ -1401,22 +2166,37 @@
         "rationale": "Exercise quick dinner practicality and nutrition bands."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-03",
+      "generatedAt": "2026-09-04T19:43:47.770Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_7366960dca75cbe9eec58a05_v1",
+        "processedAt": "2026-09-04T19:43:47.770Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum dinner_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.770Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-03"
         }
       ]
     },
     {
       "candidateId": "pilot-dinner_quick-003",
       "stratumId": "dinner_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "dinner"
@@ -1428,22 +2208,37 @@
         "rationale": "Exercise quick dinner practicality and nutrition bands."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-03",
+      "generatedAt": "2026-09-04T19:43:47.770Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_c164486aec85f69c7ce009bc_v1",
+        "processedAt": "2026-09-04T19:43:47.770Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum dinner_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.770Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-03"
         }
       ]
     },
     {
       "candidateId": "pilot-dinner_quick-004",
       "stratumId": "dinner_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "dinner"
@@ -1455,22 +2250,37 @@
         "rationale": "Exercise quick dinner practicality and nutrition bands."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-03",
+      "generatedAt": "2026-09-04T19:43:47.770Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_52f0688b1b2d678489dd29df_v1",
+        "processedAt": "2026-09-04T19:43:47.770Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum dinner_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.770Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-03"
         }
       ]
     },
     {
       "candidateId": "pilot-dinner_quick-005",
       "stratumId": "dinner_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "dinner"
@@ -1482,22 +2292,37 @@
         "rationale": "Exercise quick dinner practicality and nutrition bands."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-03",
+      "generatedAt": "2026-09-04T19:43:47.770Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_613dee46f7566fef3a6b0e39_v1",
+        "processedAt": "2026-09-04T19:43:47.770Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum dinner_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.770Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-03"
         }
       ]
     },
     {
       "candidateId": "pilot-dinner_quick-006",
       "stratumId": "dinner_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "dinner"
@@ -1509,22 +2334,37 @@
         "rationale": "Exercise quick dinner practicality and nutrition bands."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-03",
+      "generatedAt": "2026-09-04T19:43:47.770Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_fe15100d5cc155df60da490f_v1",
+        "processedAt": "2026-09-04T19:43:47.770Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum dinner_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.770Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-03"
         }
       ]
     },
     {
       "candidateId": "pilot-dinner_quick-007",
       "stratumId": "dinner_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "dinner"
@@ -1536,22 +2376,37 @@
         "rationale": "Exercise quick dinner practicality and nutrition bands."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-03",
+      "generatedAt": "2026-09-04T19:43:47.770Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_fb3b341728e7d219eed87985_v1",
+        "processedAt": "2026-09-04T19:43:47.770Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum dinner_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.770Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-03"
         }
       ]
     },
     {
       "candidateId": "pilot-dinner_quick-008",
       "stratumId": "dinner_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "dinner"
@@ -1563,22 +2418,37 @@
         "rationale": "Exercise quick dinner practicality and nutrition bands."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-03",
+      "generatedAt": "2026-09-04T19:43:47.770Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_f0aab12d4e45ba07163d9c34_v1",
+        "processedAt": "2026-09-04T19:43:47.770Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum dinner_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.770Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-03"
         }
       ]
     },
     {
       "candidateId": "pilot-dinner_quick-009",
       "stratumId": "dinner_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "dinner"
@@ -1590,22 +2460,37 @@
         "rationale": "Exercise quick dinner practicality and nutrition bands."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-03",
+      "generatedAt": "2026-09-04T19:43:47.770Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_26a3231898a47826d6f80841_v1",
+        "processedAt": "2026-09-04T19:43:47.770Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum dinner_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.770Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-03"
         }
       ]
     },
     {
       "candidateId": "pilot-dinner_quick-010",
       "stratumId": "dinner_quick",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "dinner"
@@ -1617,22 +2502,37 @@
         "rationale": "Exercise quick dinner practicality and nutrition bands."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-03",
+      "generatedAt": "2026-09-04T19:43:47.770Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_f28c11218b8165378a861ccd_v1",
+        "processedAt": "2026-09-04T19:43:47.770Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum dinner_quick"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.770Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-03"
         }
       ]
     },
     {
       "candidateId": "pilot-dinner_standard-001",
       "stratumId": "dinner_standard",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "dinner"
@@ -1644,22 +2544,37 @@
         "rationale": "Exercise standard dinner structure and more varied techniques."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-04",
+      "generatedAt": "2026-09-04T19:43:47.809Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_73f52fb26ac57ff12e20d616_v1",
+        "processedAt": "2026-09-04T19:43:47.809Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum dinner_standard"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.809Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-04"
         }
       ]
     },
     {
       "candidateId": "pilot-dinner_standard-002",
       "stratumId": "dinner_standard",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "dinner"
@@ -1671,22 +2586,37 @@
         "rationale": "Exercise standard dinner structure and more varied techniques."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-04",
+      "generatedAt": "2026-09-04T19:43:47.809Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_1cfd494f1823cac27f04d862_v1",
+        "processedAt": "2026-09-04T19:43:47.809Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum dinner_standard"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.809Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-04"
         }
       ]
     },
     {
       "candidateId": "pilot-dinner_standard-003",
       "stratumId": "dinner_standard",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "dinner"
@@ -1698,22 +2628,37 @@
         "rationale": "Exercise standard dinner structure and more varied techniques."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-04",
+      "generatedAt": "2026-09-04T19:43:47.809Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_11a6dd74c09a4c2f7acf4a29_v1",
+        "processedAt": "2026-09-04T19:43:47.809Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum dinner_standard"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.809Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-04"
         }
       ]
     },
     {
       "candidateId": "pilot-dinner_standard-004",
       "stratumId": "dinner_standard",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "dinner"
@@ -1725,22 +2670,37 @@
         "rationale": "Exercise standard dinner structure and more varied techniques."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-04",
+      "generatedAt": "2026-09-04T19:43:47.809Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_d77cc033816026426a31be0b_v1",
+        "processedAt": "2026-09-04T19:43:47.809Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum dinner_standard"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.809Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-04"
         }
       ]
     },
     {
       "candidateId": "pilot-dinner_standard-005",
       "stratumId": "dinner_standard",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "dinner"
@@ -1752,22 +2712,37 @@
         "rationale": "Exercise standard dinner structure and more varied techniques."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-04",
+      "generatedAt": "2026-09-04T19:43:47.809Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_8d593e17267c86f3593af06d_v1",
+        "processedAt": "2026-09-04T19:43:47.809Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum dinner_standard"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.809Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-04"
         }
       ]
     },
     {
       "candidateId": "pilot-dinner_standard-006",
       "stratumId": "dinner_standard",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "dinner"
@@ -1779,22 +2754,37 @@
         "rationale": "Exercise standard dinner structure and more varied techniques."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-04",
+      "generatedAt": "2026-09-04T19:43:47.809Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_fa93bed7076d7c234c7aad66_v1",
+        "processedAt": "2026-09-04T19:43:47.809Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum dinner_standard"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.809Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-04"
         }
       ]
     },
     {
       "candidateId": "pilot-dinner_standard-007",
       "stratumId": "dinner_standard",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "dinner"
@@ -1806,22 +2796,37 @@
         "rationale": "Exercise standard dinner structure and more varied techniques."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-04",
+      "generatedAt": "2026-09-04T19:43:47.809Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_fd1d92f79b451390b6ea29ae_v1",
+        "processedAt": "2026-09-04T19:43:47.809Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum dinner_standard"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.809Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-04"
         }
       ]
     },
     {
       "candidateId": "pilot-dinner_standard-008",
       "stratumId": "dinner_standard",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "dinner"
@@ -1833,22 +2838,37 @@
         "rationale": "Exercise standard dinner structure and more varied techniques."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-04",
+      "generatedAt": "2026-09-04T19:43:47.809Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_c240a08d8d628c585753a304_v1",
+        "processedAt": "2026-09-04T19:43:47.809Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum dinner_standard"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.809Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-04"
         }
       ]
     },
     {
       "candidateId": "pilot-dinner_standard-009",
       "stratumId": "dinner_standard",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "dinner"
@@ -1860,22 +2880,37 @@
         "rationale": "Exercise standard dinner structure and more varied techniques."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-04",
+      "generatedAt": "2026-09-04T19:43:47.809Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_f1045c54e3823d2911d2dc6b_v1",
+        "processedAt": "2026-09-04T19:43:47.809Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum dinner_standard"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.809Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-04"
         }
       ]
     },
     {
       "candidateId": "pilot-dinner_standard-010",
       "stratumId": "dinner_standard",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "dinner"
@@ -1887,22 +2922,37 @@
         "rationale": "Exercise standard dinner structure and more varied techniques."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-04",
+      "generatedAt": "2026-09-04T19:43:47.809Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_6463a6dd04358de07fbb7731_v1",
+        "processedAt": "2026-09-04T19:43:47.809Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum dinner_standard"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.809Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-04"
         }
       ]
     },
     {
       "candidateId": "pilot-vegetarian_legume-001",
       "stratumId": "vegetarian_legume",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -1915,22 +2965,37 @@
         "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-04",
+      "generatedAt": "2026-09-04T19:43:47.809Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_77a6d9c62cf3aa4205dc92c4_v1",
+        "processedAt": "2026-09-04T19:43:47.809Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum vegetarian_legume"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.809Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-04"
         }
       ]
     },
     {
       "candidateId": "pilot-vegetarian_legume-002",
       "stratumId": "vegetarian_legume",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -1943,22 +3008,37 @@
         "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-04",
+      "generatedAt": "2026-09-04T19:43:47.809Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_de843694656dd1ad42b279af_v1",
+        "processedAt": "2026-09-04T19:43:47.809Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum vegetarian_legume"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.809Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-04"
         }
       ]
     },
     {
       "candidateId": "pilot-vegetarian_legume-003",
       "stratumId": "vegetarian_legume",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -1971,22 +3051,37 @@
         "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-04",
+      "generatedAt": "2026-09-04T19:43:47.809Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_723f89f0f37cdc79cd4604d6_v1",
+        "processedAt": "2026-09-04T19:43:47.809Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum vegetarian_legume"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.809Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-04"
         }
       ]
     },
     {
       "candidateId": "pilot-vegetarian_legume-004",
       "stratumId": "vegetarian_legume",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -1999,22 +3094,37 @@
         "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-04",
+      "generatedAt": "2026-09-04T19:43:47.809Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_56c48718d27cb6091f6e43c2_v1",
+        "processedAt": "2026-09-04T19:43:47.809Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum vegetarian_legume"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.809Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-04"
         }
       ]
     },
     {
       "candidateId": "pilot-vegetarian_legume-005",
       "stratumId": "vegetarian_legume",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2027,22 +3137,37 @@
         "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-04",
+      "generatedAt": "2026-09-04T19:43:47.809Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_529d0a356d9ba3ccfb604594_v1",
+        "processedAt": "2026-09-04T19:43:47.809Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum vegetarian_legume"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.809Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-04"
         }
       ]
     },
     {
       "candidateId": "pilot-vegetarian_legume-006",
       "stratumId": "vegetarian_legume",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2055,22 +3180,37 @@
         "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-04",
+      "generatedAt": "2026-09-04T19:43:47.809Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_55017dc7ac269bb2bd625d6f_v1",
+        "processedAt": "2026-09-04T19:43:47.809Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum vegetarian_legume"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.809Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-04"
         }
       ]
     },
     {
       "candidateId": "pilot-vegetarian_legume-007",
       "stratumId": "vegetarian_legume",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2083,22 +3223,37 @@
         "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-04",
+      "generatedAt": "2026-09-04T19:43:47.809Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_4cfc97b336fc8ff2ca57cdab_v1",
+        "processedAt": "2026-09-04T19:43:47.809Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum vegetarian_legume"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.809Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-04"
         }
       ]
     },
     {
       "candidateId": "pilot-vegetarian_legume-008",
       "stratumId": "vegetarian_legume",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2111,22 +3266,37 @@
         "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-04",
+      "generatedAt": "2026-09-04T19:43:47.809Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_90bca66f8e5384818b9fd41e_v1",
+        "processedAt": "2026-09-04T19:43:47.809Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum vegetarian_legume"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.809Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-04"
         }
       ]
     },
     {
       "candidateId": "pilot-vegetarian_legume-009",
       "stratumId": "vegetarian_legume",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2139,22 +3309,37 @@
         "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-04",
+      "generatedAt": "2026-09-04T19:43:47.809Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_251b636ccca71d865c240b24_v1",
+        "processedAt": "2026-09-04T19:43:47.809Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum vegetarian_legume"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.809Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-04"
         }
       ]
     },
     {
       "candidateId": "pilot-vegetarian_legume-010",
       "stratumId": "vegetarian_legume",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2167,22 +3352,37 @@
         "rationale": "Stress vegetarian classification, legumes and fiber-oriented combinations."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-04",
+      "generatedAt": "2026-09-04T19:43:47.809Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_6221c62e4efbd9545744e066_v1",
+        "processedAt": "2026-09-04T19:43:47.809Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum vegetarian_legume"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.809Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-04"
         }
       ]
     },
     {
       "candidateId": "pilot-fish_seafood-001",
       "stratumId": "fish_seafood",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2195,22 +3395,37 @@
         "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-05",
+      "generatedAt": "2026-09-04T19:43:47.854Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_9b8643554072e41640a3d998_v1",
+        "processedAt": "2026-09-04T19:43:47.854Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum fish_seafood"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.854Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-05"
         }
       ]
     },
     {
       "candidateId": "pilot-fish_seafood-002",
       "stratumId": "fish_seafood",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2223,22 +3438,37 @@
         "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-05",
+      "generatedAt": "2026-09-04T19:43:47.854Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_f9c3edcff94bf33838159d54_v1",
+        "processedAt": "2026-09-04T19:43:47.854Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum fish_seafood"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.854Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-05"
         }
       ]
     },
     {
       "candidateId": "pilot-fish_seafood-003",
       "stratumId": "fish_seafood",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2251,22 +3481,37 @@
         "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-05",
+      "generatedAt": "2026-09-04T19:43:47.854Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_8c2449e48f7d71084ff78148_v1",
+        "processedAt": "2026-09-04T19:43:47.854Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum fish_seafood"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.854Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-05"
         }
       ]
     },
     {
       "candidateId": "pilot-fish_seafood-004",
       "stratumId": "fish_seafood",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2279,22 +3524,37 @@
         "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-05",
+      "generatedAt": "2026-09-04T19:43:47.854Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_b14c3989e0c742214f41f9b3_v1",
+        "processedAt": "2026-09-04T19:43:47.854Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum fish_seafood"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.854Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-05"
         }
       ]
     },
     {
       "candidateId": "pilot-fish_seafood-005",
       "stratumId": "fish_seafood",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2307,22 +3567,37 @@
         "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-05",
+      "generatedAt": "2026-09-04T19:43:47.854Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_e6aa1cf375b94c3287d26956_v1",
+        "processedAt": "2026-09-04T19:43:47.854Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum fish_seafood"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.854Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-05"
         }
       ]
     },
     {
       "candidateId": "pilot-fish_seafood-006",
       "stratumId": "fish_seafood",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2335,22 +3610,37 @@
         "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-05",
+      "generatedAt": "2026-09-04T19:43:47.854Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_a28e8b935bde5a796f452f46_v1",
+        "processedAt": "2026-09-04T19:43:47.854Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum fish_seafood"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.854Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-05"
         }
       ]
     },
     {
       "candidateId": "pilot-fish_seafood-007",
       "stratumId": "fish_seafood",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2363,22 +3653,37 @@
         "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-05",
+      "generatedAt": "2026-09-04T19:43:47.854Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_74e572aef569ad6c228624b3_v1",
+        "processedAt": "2026-09-04T19:43:47.854Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum fish_seafood"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.854Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-05"
         }
       ]
     },
     {
       "candidateId": "pilot-fish_seafood-008",
       "stratumId": "fish_seafood",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2391,22 +3696,37 @@
         "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-05",
+      "generatedAt": "2026-09-04T19:43:47.854Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_9320c03ea2001a9c37318c63_v1",
+        "processedAt": "2026-09-04T19:43:47.854Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum fish_seafood"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.854Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-05"
         }
       ]
     },
     {
       "candidateId": "pilot-fish_seafood-009",
       "stratumId": "fish_seafood",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2419,22 +3739,37 @@
         "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-05",
+      "generatedAt": "2026-09-04T19:43:47.854Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_a6fb3e9281cb5950f1bd0422_v1",
+        "processedAt": "2026-09-04T19:43:47.854Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum fish_seafood"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.854Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-05"
         }
       ]
     },
     {
       "candidateId": "pilot-fish_seafood-010",
       "stratumId": "fish_seafood",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2447,22 +3782,37 @@
         "rationale": "Stress fish/seafood taxonomy, allergens and preparation variants."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-05",
+      "generatedAt": "2026-09-04T19:43:47.854Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_33321d4e84b81280898ad59f_v1",
+        "processedAt": "2026-09-04T19:43:47.854Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum fish_seafood"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.854Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-05"
         }
       ]
     },
     {
       "candidateId": "pilot-soups_stews-001",
       "stratumId": "soups_stews",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2476,22 +3826,37 @@
         "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-05",
+      "generatedAt": "2026-09-04T19:43:47.854Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_afe6f46d3a9fb98ecb7401f7_v1",
+        "processedAt": "2026-09-04T19:43:47.854Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum soups_stews"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.854Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-05"
         }
       ]
     },
     {
       "candidateId": "pilot-soups_stews-002",
       "stratumId": "soups_stews",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2505,22 +3870,37 @@
         "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-05",
+      "generatedAt": "2026-09-04T19:43:47.854Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_a624f93c38caa1fce6d8ccaa_v1",
+        "processedAt": "2026-09-04T19:43:47.854Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum soups_stews"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.854Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-05"
         }
       ]
     },
     {
       "candidateId": "pilot-soups_stews-003",
       "stratumId": "soups_stews",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2534,22 +3914,37 @@
         "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-05",
+      "generatedAt": "2026-09-04T19:43:47.854Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_a611cd6957d8580bc4eb0b4e_v1",
+        "processedAt": "2026-09-04T19:43:47.854Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum soups_stews"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.854Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-05"
         }
       ]
     },
     {
       "candidateId": "pilot-soups_stews-004",
       "stratumId": "soups_stews",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2563,22 +3958,37 @@
         "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-05",
+      "generatedAt": "2026-09-04T19:43:47.854Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_87c083b70600aa3c78377199_v1",
+        "processedAt": "2026-09-04T19:43:47.854Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum soups_stews"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.854Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-05"
         }
       ]
     },
     {
       "candidateId": "pilot-soups_stews-005",
       "stratumId": "soups_stews",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2592,22 +4002,37 @@
         "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-05",
+      "generatedAt": "2026-09-04T19:43:47.854Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_125eeccf9da77d23d150f894_v1",
+        "processedAt": "2026-09-04T19:43:47.854Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum soups_stews"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.854Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-05"
         }
       ]
     },
     {
       "candidateId": "pilot-soups_stews-006",
       "stratumId": "soups_stews",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2621,22 +4046,37 @@
         "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-05",
+      "generatedAt": "2026-09-04T19:43:47.854Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_148302b84582624a71c3db73_v1",
+        "processedAt": "2026-09-04T19:43:47.854Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum soups_stews"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.854Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-05"
         }
       ]
     },
     {
       "candidateId": "pilot-soups_stews-007",
       "stratumId": "soups_stews",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2650,22 +4090,37 @@
         "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-05",
+      "generatedAt": "2026-09-04T19:43:47.854Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_e4c15e74be967f185dcbb861_v1",
+        "processedAt": "2026-09-04T19:43:47.854Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum soups_stews"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.854Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-05"
         }
       ]
     },
     {
       "candidateId": "pilot-soups_stews-008",
       "stratumId": "soups_stews",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2679,22 +4134,37 @@
         "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-05",
+      "generatedAt": "2026-09-04T19:43:47.854Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_93768994270cef83e5110182_v1",
+        "processedAt": "2026-09-04T19:43:47.854Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum soups_stews"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.854Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-05"
         }
       ]
     },
     {
       "candidateId": "pilot-soups_stews-009",
       "stratumId": "soups_stews",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2708,22 +4178,37 @@
         "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-05",
+      "generatedAt": "2026-09-04T19:43:47.854Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_910d45aefcfebd19949550c5_v1",
+        "processedAt": "2026-09-04T19:43:47.854Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum soups_stews"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.854Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-05"
         }
       ]
     },
     {
       "candidateId": "pilot-soups_stews-010",
       "stratumId": "soups_stews",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2737,22 +4222,37 @@
         "rationale": "Exercise liquids, yield metadata, batch preparation and reheating semantics."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-05",
+      "generatedAt": "2026-09-04T19:43:47.854Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_6bc838942459389d0f2f6bec_v1",
+        "processedAt": "2026-09-04T19:43:47.854Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum soups_stews"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.854Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-05"
         }
       ]
     },
     {
       "candidateId": "pilot-cold_portable-001",
       "stratumId": "cold_portable",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2766,22 +4266,37 @@
         "rationale": "Stress cold suitability, storage and portable meal constraints."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-06",
+      "generatedAt": "2026-09-04T19:43:47.901Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_dc2019765486edef85596f91_v1",
+        "processedAt": "2026-09-04T19:43:47.901Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum cold_portable"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.901Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-06"
         }
       ]
     },
     {
       "candidateId": "pilot-cold_portable-002",
       "stratumId": "cold_portable",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2795,22 +4310,37 @@
         "rationale": "Stress cold suitability, storage and portable meal constraints."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-06",
+      "generatedAt": "2026-09-04T19:43:47.901Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_752ea282513451dc2178fabe_v1",
+        "processedAt": "2026-09-04T19:43:47.901Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum cold_portable"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.901Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-06"
         }
       ]
     },
     {
       "candidateId": "pilot-cold_portable-003",
       "stratumId": "cold_portable",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2824,22 +4354,37 @@
         "rationale": "Stress cold suitability, storage and portable meal constraints."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-06",
+      "generatedAt": "2026-09-04T19:43:47.901Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_2d3fa066c1458d8daeda9eed_v1",
+        "processedAt": "2026-09-04T19:43:47.901Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum cold_portable"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.901Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-06"
         }
       ]
     },
     {
       "candidateId": "pilot-cold_portable-004",
       "stratumId": "cold_portable",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2853,22 +4398,37 @@
         "rationale": "Stress cold suitability, storage and portable meal constraints."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-06",
+      "generatedAt": "2026-09-04T19:43:47.901Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_8e6b8e65a1cdb500fe749cc5_v1",
+        "processedAt": "2026-09-04T19:43:47.901Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum cold_portable"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.901Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-06"
         }
       ]
     },
     {
       "candidateId": "pilot-cold_portable-005",
       "stratumId": "cold_portable",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2882,22 +4442,37 @@
         "rationale": "Stress cold suitability, storage and portable meal constraints."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-06",
+      "generatedAt": "2026-09-04T19:43:47.901Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_6614a61268efb4e0a328f9e6_v1",
+        "processedAt": "2026-09-04T19:43:47.901Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum cold_portable"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.901Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-06"
         }
       ]
     },
     {
       "candidateId": "pilot-cold_portable-006",
       "stratumId": "cold_portable",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2911,22 +4486,37 @@
         "rationale": "Stress cold suitability, storage and portable meal constraints."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-06",
+      "generatedAt": "2026-09-04T19:43:47.901Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_4dcdd619d55f7a50c2e27da8_v1",
+        "processedAt": "2026-09-04T19:43:47.901Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum cold_portable"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.901Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-06"
         }
       ]
     },
     {
       "candidateId": "pilot-cold_portable-007",
       "stratumId": "cold_portable",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2940,22 +4530,37 @@
         "rationale": "Stress cold suitability, storage and portable meal constraints."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-06",
+      "generatedAt": "2026-09-04T19:43:47.901Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_f3e0a7e4661f5ac3a445bc58_v1",
+        "processedAt": "2026-09-04T19:43:47.901Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum cold_portable"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.901Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-06"
         }
       ]
     },
     {
       "candidateId": "pilot-cold_portable-008",
       "stratumId": "cold_portable",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2969,22 +4574,37 @@
         "rationale": "Stress cold suitability, storage and portable meal constraints."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-06",
+      "generatedAt": "2026-09-04T19:43:47.901Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_8063295d127ca36a8e60f03e_v1",
+        "processedAt": "2026-09-04T19:43:47.901Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum cold_portable"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.901Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-06"
         }
       ]
     },
     {
       "candidateId": "pilot-cold_portable-009",
       "stratumId": "cold_portable",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -2998,22 +4618,37 @@
         "rationale": "Stress cold suitability, storage and portable meal constraints."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-06",
+      "generatedAt": "2026-09-04T19:43:47.901Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_0666751307bf61d132fe917b_v1",
+        "processedAt": "2026-09-04T19:43:47.901Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum cold_portable"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.901Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-06"
         }
       ]
     },
     {
       "candidateId": "pilot-cold_portable-010",
       "stratumId": "cold_portable",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -3027,22 +4662,37 @@
         "rationale": "Stress cold suitability, storage and portable meal constraints."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-06",
+      "generatedAt": "2026-09-04T19:43:47.901Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_3c287b94b26ea69b034eddaa_v1",
+        "processedAt": "2026-09-04T19:43:47.901Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum cold_portable"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.901Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-06"
         }
       ]
     },
     {
       "candidateId": "pilot-components_sides-001",
       "stratumId": "components_sides",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -3056,22 +4706,37 @@
         "rationale": "Exercise reusable simple components and side-dish recipe families."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-06",
+      "generatedAt": "2026-09-04T19:43:47.901Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_4687866d261874caf2db13dc_v1",
+        "processedAt": "2026-09-04T19:43:47.901Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum components_sides"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.901Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-06"
         }
       ]
     },
     {
       "candidateId": "pilot-components_sides-002",
       "stratumId": "components_sides",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -3085,22 +4750,37 @@
         "rationale": "Exercise reusable simple components and side-dish recipe families."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-06",
+      "generatedAt": "2026-09-04T19:43:47.901Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_161b646be19bb311ae37081b_v1",
+        "processedAt": "2026-09-04T19:43:47.901Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum components_sides"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.901Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-06"
         }
       ]
     },
     {
       "candidateId": "pilot-components_sides-003",
       "stratumId": "components_sides",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -3114,22 +4794,37 @@
         "rationale": "Exercise reusable simple components and side-dish recipe families."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-06",
+      "generatedAt": "2026-09-04T19:43:47.901Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_e817132cc2318f0114cae387_v1",
+        "processedAt": "2026-09-04T19:43:47.901Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum components_sides"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.901Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-06"
         }
       ]
     },
     {
       "candidateId": "pilot-components_sides-004",
       "stratumId": "components_sides",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -3143,22 +4838,37 @@
         "rationale": "Exercise reusable simple components and side-dish recipe families."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-06",
+      "generatedAt": "2026-09-04T19:43:47.901Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_ab26c6e5537522bd323d4a83_v1",
+        "processedAt": "2026-09-04T19:43:47.901Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum components_sides"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.901Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-06"
         }
       ]
     },
     {
       "candidateId": "pilot-components_sides-005",
       "stratumId": "components_sides",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -3172,22 +4882,37 @@
         "rationale": "Exercise reusable simple components and side-dish recipe families."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-06",
+      "generatedAt": "2026-09-04T19:43:47.901Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_02e69a15bf4814198dcff6f8_v1",
+        "processedAt": "2026-09-04T19:43:47.901Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum components_sides"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.901Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-06"
         }
       ]
     },
     {
       "candidateId": "pilot-components_sides-006",
       "stratumId": "components_sides",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -3201,22 +4926,37 @@
         "rationale": "Exercise reusable simple components and side-dish recipe families."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-06",
+      "generatedAt": "2026-09-04T19:43:47.901Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_a154f1134c5f5fe1647aa593_v1",
+        "processedAt": "2026-09-04T19:43:47.901Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum components_sides"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.901Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-06"
         }
       ]
     },
     {
       "candidateId": "pilot-components_sides-007",
       "stratumId": "components_sides",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -3230,22 +4970,37 @@
         "rationale": "Exercise reusable simple components and side-dish recipe families."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-06",
+      "generatedAt": "2026-09-04T19:43:47.901Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_db94b73f6cec842e85db0a2c_v1",
+        "processedAt": "2026-09-04T19:43:47.901Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum components_sides"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.901Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-06"
         }
       ]
     },
     {
       "candidateId": "pilot-components_sides-008",
       "stratumId": "components_sides",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -3259,22 +5014,37 @@
         "rationale": "Exercise reusable simple components and side-dish recipe families."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-06",
+      "generatedAt": "2026-09-04T19:43:47.901Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_6b2e844d9cb8fe2cf3aba3cc_v1",
+        "processedAt": "2026-09-04T19:43:47.901Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum components_sides"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.901Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-06"
         }
       ]
     },
     {
       "candidateId": "pilot-components_sides-009",
       "stratumId": "components_sides",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -3288,22 +5058,37 @@
         "rationale": "Exercise reusable simple components and side-dish recipe families."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-06",
+      "generatedAt": "2026-09-04T19:43:47.901Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_f1f6eb76008a34d929b4c57e_v1",
+        "processedAt": "2026-09-04T19:43:47.901Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum components_sides"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.901Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-06"
         }
       ]
     },
     {
       "candidateId": "pilot-components_sides-010",
       "stratumId": "components_sides",
-      "state": "discovered",
-      "referenceScanStatus": "pending",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
       "concept": {
         "mealArchetypes": [
           "lunch",
@@ -3317,18 +5102,33 @@
         "rationale": "Exercise reusable simple components and side-dish recipe families."
       },
       "referenceRequests": [],
-      "jobId": null,
-      "generatedAt": null,
-      "outcome": null,
+      "jobId": "pilot-production-wave-06",
+      "generatedAt": "2026-09-04T19:43:47.901Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_a47ad2ce92bee08f576fb04c_v1",
+        "processedAt": "2026-09-04T19:43:47.901Z"
+      },
       "audit": [
         {
-          "at": "2026-09-04T13:44:21.789Z",
+          "at": "2026-09-04T19:43:47.651Z",
           "action": "pilot_slot_created",
           "detail": "Created from production contract stratum components_sides"
+        },
+        {
+          "at": "2026-09-04T19:43:47.659Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-04T19:43:47.901Z",
+          "action": "production_candidate_accepted",
+          "detail": "Accepted by pilot-production-wave-06"
         }
       ]
     }
   ],
-  "createdAt": "2026-09-04T13:44:21.789Z",
-  "updatedAt": "2026-09-04T13:44:21.789Z"
+  "createdAt": "2026-09-04T19:43:47.651Z",
+  "updatedAt": "2026-09-04T19:43:47.901Z"
 }

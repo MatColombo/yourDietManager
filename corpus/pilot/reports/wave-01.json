@@ -3,8 +3,8 @@
   "waveId": "pilot-4c63b1f9a9981a075b62-wave-01",
   "waveNumber": 1,
   "intakeId": "pilot-4c63b1f9a9981a075b62",
-  "generatedAt": "2026-09-04T14:00:00Z",
-  "state": "blocked",
+  "generatedAt": "2026-09-04T19:43:47.705Z",
+  "state": "closed",
   "candidateIds": [
     "pilot-breakfast_quick-001",
     "pilot-breakfast_quick-002",
@@ -29,19 +29,16 @@
   ],
   "metrics": {
     "records": 20,
-    "pendingScan": 20,
+    "pendingScan": 0,
     "needsReferenceReview": 0,
     "needsIngredientReview": 0,
     "readyForGeneration": 0,
     "generated": 0,
-    "accepted": 0,
+    "accepted": 20,
     "rejected": 0,
     "unresolvedRequests": 0,
     "unhandledTaxonomyProposals": 0
   },
-  "gate": "blocked",
-  "blockers": [
-    "production-readiness: ingredient-production-quality: ready=0, blocked=4",
-    "production-readiness: ingredient-production-count: ready=0, required>=400"
-  ]
+  "gate": "pass",
+  "blockers": []
 }

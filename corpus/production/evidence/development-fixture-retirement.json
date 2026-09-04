@@ -1,7 +1,8 @@
 {
   "schemaVersion": 1,
-  "mapId": "phase4-production-legacy-fixture-retirement-v1",
-  "retirements": [
+  "retirementId": "phase4-production-development-fixture-retirement-v1",
+  "retiredAt": "2026-09-04T19:43:47.224Z",
+  "ingredientRetirements": [
     {
       "ingredientId": "ing_salmon",
       "replacementIngredientId": "ing_fdc_171985",
@@ -30,5 +31,11 @@
       "approvedBy": "ydm-deterministic-fdc-curator-v1",
       "approvedAt": "2026-09-04T19:43:46.900Z"
     }
-  ]
+  ],
+  "retiredRecipeIds": [
+    "rec_salmon_rice",
+    "rec_salmon_zucchini",
+    "rec_zucchini_rice"
+  ],
+  "historyPreserved": true
 }

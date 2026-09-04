@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "sourceId": "usda-foundation-2026-04",
+  "provider": "USDA FoodData Central",
+  "dataset": "Foundation Foods",
+  "release": "2026-04",
+  "archive": "https://fdc.nal.usda.gov/fdc-datasets/FoodData_Central_foundation_food_json_2026-04-30.zip",
+  "downloadedAt": "2026-09-04T19:43:40.424Z",
+  "archiveBytes": 469303,
+  "archiveSha256": "186e988ec542e913f51ef62b86a47758e8cdd0d1dc3889e7b055581f3c09c77a",
+  "primaryJsonFile": "corpus/sources/cache/usda-foundation-2026-04/FoodData_Central_foundation_food_json_2026-04-30.json",
+  "extractedJsonFiles": [
+    "corpus/sources/cache/usda-foundation-2026-04/FoodData_Central_foundation_food_json_2026-04-30.json"
+  ],
+  "extractedJson": [
+    {
+      "file": "corpus/sources/cache/usda-foundation-2026-04/FoodData_Central_foundation_food_json_2026-04-30.json",
+      "bytes": 6721650
+    }
+  ]
+}

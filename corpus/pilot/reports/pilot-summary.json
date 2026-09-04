@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "pilotId": "pilot-4c63b1f9a9981a075b62",
+  "generatedAt": "2026-09-04T19:43:47.906Z",
+  "target": 120,
+  "accepted": 120,
+  "rejected": 0,
+  "terminal": 120,
+  "waveCount": 6,
+  "allWavesPassed": true,
+  "unresolvedReferenceRequests": 0,
+  "generatorDiagnostics": {
+    "readyIngredientCount": 600,
+    "groupCounts": {
+      "food_group_vegetables": 60,
+      "food_group_legumes": 40,
+      "food_group_fruit": 119,
+      "food_group_fats_oils": 20,
+      "food_group_dairy_milk_yogurt": 30,
+      "food_group_cheese": 15,
+      "food_group_poultry": 30,
+      "food_group_meat": 111,
+      "food_group_grains": 30,
+      "food_group_fish_seafood": 40,
+      "food_group_herbs_spices": 20,
+      "food_group_nuts_seeds": 30,
+      "food_group_pasta_rice_cereals": 40,
+      "food_group_eggs": 15
+    },
+    "missingGroups": []
+  }
+}
