@@ -81,3 +81,48 @@ test('deterministic curation protects explicit replacements for all four Phase 1
   assert.deepEqual(result.diagnostics.protectedConceptFailures,[]);
   assert.equal(result.diagnostics.approved,4);
 });
+
+
+test('Atwater Specific and SR legacy energy are not rejected by a General-factor-only 4/4/9 check', () => {
+  const specific = record(91,'Eggs, whole, cooked','Dairy and Egg Products','cooked');
+  specific.nutrition = {...specific.nutrition, energyKcal: 60, proteinG: 10, carbsG: 1, fatG: 8, energyBasis:'atwater_specific', energyNutrientId:'2048'};
+  const legacy = record(92,'Parsley, dried','Spices and Herbs','dry');
+  legacy.nutrition = {...legacy.nutrition, energyKcal: 40, proteinG: 8, carbsG: 20, fatG: 5, energyBasis:'legacy_energy', energyNutrientId:'1008'};
+  const result = autoCurateBatches({batches:[batch('usda-foundation-2026-04',[specific]),batch('usda-sr-legacy-2018-04',[legacy])],targetCount:2,groupMinimums:{},reviewedAt:'2026-09-04T00:00:00Z'});
+  assert.equal(result.diagnostics.approved,2);
+  assert.equal(result.diagnostics.ineligible.macro_energy_mismatch || 0,0);
+});
+
+test('USDA descriptor refinement covers common pasta forms and herb/spice foods outside narrow category labels', () => {
+  assert.equal(refinedFoodGroup(record(201,'Macaroni, cooked','Cereal Grains and Pasta')),'food_group_pasta_rice_cereals');
+  assert.equal(refinedFoodGroup(record(202,'Semolina, dry','Cereal Grains and Pasta')),'food_group_pasta_rice_cereals');
+  assert.equal(refinedFoodGroup(record(203,'Parsley, fresh','Vegetables and Vegetable Products')),'food_group_herbs_spices');
+  assert.equal(refinedFoodGroup(record(204,'Dill weed, fresh','Vegetables and Vegetable Products')),'food_group_herbs_spices');
+});
+
+test('frozen group minimum selection can use valid USDA specific/legacy energy without lowering quotas', () => {
+  const rows = [
+    record(301,'Rice, white, cooked','Cereal Grains and Pasta','cooked'),
+    record(302,'Macaroni, cooked','Cereal Grains and Pasta','cooked'),
+    record(303,'Eggs, whole, raw','Dairy and Egg Products','raw'),
+    record(304,'Egg, yolk, cooked','Dairy and Egg Products','cooked'),
+    record(305,'Parsley, fresh','Vegetables and Vegetable Products','raw'),
+    record(306,'Dill weed, fresh','Vegetables and Vegetable Products','raw')
+  ];
+  for (const [index, row] of rows.entries()) {
+    if (index % 2 === 1) row.nutrition = { ...row.nutrition, energyKcal: 35, proteinG: 9, carbsG: 20, fatG: 8, energyBasis: index === 3 ? 'legacy_energy' : 'atwater_specific', energyNutrientId: index === 3 ? '1008' : '2048' };
+    else row.nutrition = { ...row.nutrition, energyBasis: 'atwater_general', energyNutrientId: '2047' };
+  }
+  const result = autoCurateBatches({
+    batches:[batch('usda-foundation-2026-04',rows),batch('usda-sr-legacy-2018-04',[])],
+    targetCount:6,
+    groupMinimums:{food_group_pasta_rice_cereals:2,food_group_eggs:2,food_group_herbs_spices:2},
+    reviewedAt:'2026-09-04T00:00:00Z'
+  });
+  assert.equal(result.diagnostics.targetMet,true);
+  assert.equal(result.diagnostics.pilotGroupMinimumsMet,true);
+  assert.deepEqual(result.diagnostics.groupMinimumFailures,[]);
+  assert.equal(result.diagnostics.byGroup.food_group_pasta_rice_cereals,2);
+  assert.equal(result.diagnostics.byGroup.food_group_eggs,2);
+  assert.equal(result.diagnostics.byGroup.food_group_herbs_spices,2);
+});

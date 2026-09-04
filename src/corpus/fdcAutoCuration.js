@@ -78,7 +78,8 @@ export function refinedFoodGroup(record) {
   if (/\begg(s)?\b/.test(d)) return 'food_group_eggs';
   if (/\bcheese\b|parmesan|cheddar|mozzarella|ricotta|feta|gouda/.test(d)) return 'food_group_cheese';
   if (/\byogurt\b|\bmilk\b|\bkefir\b/.test(d)) return 'food_group_dairy_milk_yogurt';
-  if (/\brice\b|\bpasta\b|\bnoodle|\bcouscous\b|\bbulgur\b/.test(d)) return 'food_group_pasta_rice_cereals';
+  if (/\brice\b|\bpasta\b|\bnoodle|\bcouscous\b|\bbulgur\b|\bspaghetti\b|\bmacaroni\b|\bvermicelli\b|\blinguine\b|\bfettuccine\b|\bpenne\b|\bsemolina\b/.test(d)) return 'food_group_pasta_rice_cereals';
+  if (/\bparsley\b|\bbasil\b|\boregano\b|\bthyme\b|\brosemary\b|\bsage\b|\bcilantro\b|\bcoriander\b|\bcinnamon\b|\bpaprika\b|\bturmeric\b|\bginger\b|\bcumin\b|\bblack pepper\b|\bcloves?\b|\bnutmeg\b|\bdill\b/.test(d)) return 'food_group_herbs_spices';
   if (c.includes('vegetable')) return 'food_group_vegetables';
   if (c.includes('fruit')) return 'food_group_fruit';
   if (c.includes('finfish') || c.includes('shellfish')) return 'food_group_fish_seafood';
@@ -161,7 +162,10 @@ export function curationEligibility(record, { allowFallbackCategories = false } 
   for (const key of ['energyKcal','proteinG','carbsG','fatG','fiberG']) if (!Number.isFinite(n[key])) reasons.push(`missing_${key}`);
   if (Number.isFinite(n.energyKcal) && n.energyKcal > 0 && ['proteinG','carbsG','fatG'].every(key => Number.isFinite(n[key]))) {
     const macroEnergy = n.proteinG * 4 + n.carbsG * 4 + n.fatG * 9;
-    if (Math.abs(macroEnergy - n.energyKcal) / n.energyKcal > 0.2) reasons.push('macro_energy_mismatch');
+    const basis = n.energyBasis || 'unknown';
+    // 4/4/9 is a valid blocking comparison only for Atwater General (2047) or legacy rows with no basis metadata.
+    // USDA Atwater Specific (2048) and SR Legacy energy may intentionally use food-specific factors.
+    if ((basis === 'atwater_general' || basis === 'unknown') && Math.abs(macroEnergy - n.energyKcal) / n.energyKcal > 0.2) reasons.push('macro_energy_mismatch');
   }
   return { eligible: reasons.length === 0, reasons };
 }
@@ -172,7 +176,7 @@ export function autoCurateBatches({ batches, targetCount = 600, reviewedAt = nul
   const selectedKeys = new Set();
   let approved = 0;
   const groupCounts = {};
-  const diagnostics = { considered: 0, approved: 0, rejected: 0, duplicateConcepts: 0, ineligible: {}, bySource: {}, byGroup: {}, groupMinimums: groupMinimums || {}, protectedConcepts: {}, protectedConceptFailures: [] };
+  const diagnostics = { considered: 0, sourceRecords: 0, approved: 0, rejected: 0, duplicateConcepts: 0, ineligible: {}, uniqueIneligible: {}, eligibleCapacityByGroup: {}, energyBasisCounts: {}, bySource: {}, byGroup: {}, groupMinimums: groupMinimums || {}, protectedConcepts: {}, protectedConceptFailures: [] };
   const defaultMinimums = {
     food_group_vegetables: 60, food_group_fruit: 40, food_group_pasta_rice_cereals: 40, food_group_grains: 30,
     food_group_legumes: 40, food_group_fish_seafood: 40, food_group_poultry: 30, food_group_meat: 30,
@@ -182,6 +186,18 @@ export function autoCurateBatches({ batches, targetCount = 600, reviewedAt = nul
   const minimums = groupMinimums || defaultMinimums;
   diagnostics.groupMinimums = minimums;
   const priority = copies.flatMap((batch, batchIndex) => (batch.records || []).map((record, recordIndex) => ({ batchIndex, recordIndex, record })));
+  diagnostics.sourceRecords = priority.length;
+  for (const item of priority) {
+    const basis = item.record.nutrition?.energyBasis || 'unknown';
+    diagnostics.energyBasisCounts[basis] = (diagnostics.energyBasisCounts[basis] || 0) + 1;
+    const eligibility = curationEligibility(item.record);
+    if (eligibility.eligible) {
+      const group = refinedFoodGroup(item.record);
+      diagnostics.eligibleCapacityByGroup[group] = (diagnostics.eligibleCapacityByGroup[group] || 0) + 1;
+    } else {
+      for (const reason of eligibility.reasons) diagnostics.uniqueIneligible[reason] = (diagnostics.uniqueIneligible[reason] || 0) + 1;
+    }
+  }
 
   function tryApprove(item, { allowFallbackCategories = false, enforceMinimum = null } = {}) {
     if (approved >= targetCount) return false;

@@ -42,6 +42,7 @@ test('USDA curation import produces a source-digested review batch whose heurist
   const temp = await mkdtemp(path.join(os.tmpdir(), 'ydm-4pb-import-'));
   const sourceFile = path.join(temp, 'foundation.json'); const batchFile = path.join(temp, 'batch.json');
   const food = { fdcId: 777001, description: 'Beans, black, cooked', foodCategory: { description: 'Legumes and Legume Products' }, foodNutrients: [
+    { nutrient: { id: 2048, name: 'Metabolizable Energy (Atwater Specific Factor)' }, amount: 118 },
     { nutrient: { id: 2047, name: 'Metabolizable Energy (Atwater General Factor)' }, amount: 132 },
     { nutrient: { id: 1003, name: 'Protein' }, amount: 8.9 }, { nutrient: { id: 1005, name: 'Carbohydrate, by difference' }, amount: 23.7 },
     { nutrient: { id: 1004, name: 'Total lipid (fat)' }, amount: 0.5 }, { nutrient: { id: 1079, name: 'Fiber, total dietary' }, amount: 8.7 }
@@ -54,6 +55,9 @@ test('USDA curation import produces a source-digested review batch whose heurist
   assert.ok(batch.source.inputDigest.length >= 16); assert.equal(batch.source.sourceId, 'usda-foundation-2026-04');
   assert.equal(batch.inputFoodCount, 3);
   assert.equal(batch.completeRequiredNutrientCount, 1);
+  assert.equal(batch.records[0].nutrition.energyKcal, 132);
+  assert.equal(batch.records[0].nutrition.energyBasis, 'atwater_general');
+  assert.equal(batch.records[0].nutrition.energyNutrientId, '2047');
   assert.equal(batch.incompleteRequiredNutrientCount, 0);
   assert.equal(batch.structurallyInvalidFoodCount, 2);
   assert.deepEqual(batch.structurallyInvalidFoodExamples, [{ index: 0, reason: 'null_food_record' }, { index: 1, reason: 'missing_fdc_id' }]);

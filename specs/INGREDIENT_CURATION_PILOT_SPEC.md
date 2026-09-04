@@ -146,6 +146,10 @@ Additionally:
 
 An `approved=true` flag with any incomplete review dimension is an invalid approval and must block materialization.
 
+### 6.1a USDA energy basis
+
+FoodData Central energy values are source semantics, not interchangeable fields. Importers must preserve the selected energy basis and nutrient ID. For Foundation Foods the deterministic preference is `2047` Atwater General, then `2048` Atwater Specific, then legacy `1008` only as fallback. For SR Legacy, `1008` remains the primary historical energy field. A blocking `4/4/9` macro-energy comparison is valid only for Atwater General values (or legacy records with no basis metadata); Atwater Specific and SR Legacy energy must not be rejected merely because they differ from General factors. Broad nutrition bounds, provenance, and downstream recipe gates still apply.
+
 ### 6.1 Deterministic bounded reviewer (rc.13 execution amendment)
 
 The requirement for explicit review does **not** require a human click for every source row. After import has created only `pending` review intake, the later reviewer `ydm-deterministic-fdc-curator-v1` may write an explicit approval when—and only when—the source row satisfies every bounded rule in `PRODUCTION_CORPUS_EXECUTION_SPEC.md`. The reviewer must persist all eight review dimensions, reviewer identity, review timestamp, source ID/FDC ID, exact rule-based taxonomy mapping and provenance notes.

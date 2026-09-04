@@ -142,7 +142,10 @@ export async function processCandidateBatch({ job, candidates, policy, ingredien
       version.contentHash = await sha256Json({ ...version, contentHash: '' });
       const family = { schemaVersion: 1, recipeId, origin: 'base', currentVersionId: recipeVersionId, status: 'active', createdAt: timestamp, updatedAt: timestamp };
       if (registry) { registry.assert('recipeVersion', version); registry.assert('recipe', family); }
-      const macroEnergy = nutrition.proteinG*4 + nutrition.carbsG*4 + nutrition.fatG*9; if (nutrition.energyKcal > 0 && Math.abs(macroEnergy - nutrition.energyKcal) / nutrition.energyKcal > 0.2) warnings.push({ candidateId: candidate.candidateId, code: 'macro_energy_mismatch', calculatedFromMacros: Math.round(macroEnergy), energyKcal: nutrition.energyKcal });
+      const macroEnergy = nutrition.proteinG*4 + nutrition.carbsG*4 + nutrition.fatG*9;
+      const energyBases = unique(usedRevisions.map(revision => revision.source?.energyBasis || 'unknown'));
+      const generalComparable = energyBases.every(basis => basis === 'atwater_general' || basis === 'unknown');
+      if (generalComparable && nutrition.energyKcal > 0 && Math.abs(macroEnergy - nutrition.energyKcal) / nutrition.energyKcal > 0.2) warnings.push({ candidateId: candidate.candidateId, code: 'macro_energy_mismatch', calculatedFromMacros: Math.round(macroEnergy), energyKcal: nutrition.energyKcal, energyBases });
       acceptedFamilies.push(family); acceptedVersions.push(version); comparison.push(version); signatures.add(signature);
       for (const line of lines) distinctIngredientIds.add(line.ingredientId); if (primary) { distinctPrimary.add(primary); primaryCounts.set(primary,(primaryCounts.get(primary)||0)+1); } for(const key of pairs) pairCounts.set(key,(pairCounts.get(key)||0)+1);
     } catch (error) { rejected.push(reject(candidate, 'pipeline_exception', error instanceof Error ? error.message : String(error))); }

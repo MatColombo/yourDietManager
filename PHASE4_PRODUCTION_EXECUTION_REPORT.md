@@ -1,7 +1,7 @@
 # Phase 4 Production Corpus — Missing-Step Execution Bridge Report
 
 Date: **2026-09-04**  
-Candidate: **`1.0.0-rc.14`**  
+Candidate: **`1.0.0-rc.15`**  
 Status: **EXECUTION CONTROL PLANE COMPLETE / SOURCE-BACKED RUN REQUIRED**
 
 ## 1. Objective
@@ -36,6 +36,20 @@ A real GitHub Actions run against `FoodData_Central_foundation_food_json_2026-04
 - the production target is still evaluated only from valid reviewed/materialized ingredients.
 
 A regression test now reproduces null food records, missing-FDC-ID records and null nutrient entries.
+
+
+## 2.2 rc.15 USDA energy-basis and coverage fix
+
+A GitHub Actions production run reached `corpus:auto-curate-fdc` with `targetMet=true` at 600 ingredients but failed frozen pilot group minimums for pasta/rice/cereals (27/40), eggs (13/15), and herbs/spices (12/20). Diagnostics also showed a very large `macro_energy_mismatch` rejection count. The root cause was source semantics: rc.14 selected whichever energy nutrient appeared first in each USDA JSON record and then applied a universal General-factor 4/4/9 comparison. FoodData Central can expose both nutrient 2047 (Atwater General) and 2048 (Atwater Specific), and SR Legacy uses nutrient 1008.
+
+rc.15:
+
+- deterministically prefers 2047 over 2048 for Foundation Foods, independent of JSON order;
+- preserves `energyBasis` and `energyNutrientId` in review intake and materialized IngredientRevision provenance;
+- applies the blocking 4/4/9 mismatch rule only to Atwater General/unknown-basis records, not Atwater Specific or SR Legacy energy;
+- expands conservative descriptor refinement for common pasta forms and herbs/spices that can live in broader USDA categories;
+- adds unique eligibility/capacity diagnostics by group and energy basis;
+- keeps all frozen group minimums unchanged.
 
 ## 3. Deterministic curation hardening
 

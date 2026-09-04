@@ -6,7 +6,7 @@ const N = {
   fiber: ['1079', '291', 'fiber'], sugars: ['2000', '269', 'sugars'], satFat: ['1258', '606', 'saturated'], sodium: ['1093', '307', 'sodium']
 };
 function isRecord(value) { return Boolean(value) && typeof value === 'object' && !Array.isArray(value); }
-function nutrient(food, aliases) {
+function nutrientMatch(food, aliases) {
   if (!isRecord(food)) return null;
   const nutrients = Array.isArray(food.foodNutrients) ? food.foodNutrients : [];
   for (const item of nutrients) {
@@ -14,8 +14,29 @@ function nutrient(food, aliases) {
     const n = isRecord(item.nutrient) ? item.nutrient : {};
     const keys = [String(n.id || ''), String(n.number || ''), String(n.name || '').toLowerCase()];
     if (aliases.some(alias => keys.some(key => key === alias || (typeof alias === 'string' && key.includes(alias))))) {
-      const value = Number(item.amount); if (Number.isFinite(value)) return value;
+      const value = Number(item.amount);
+      if (Number.isFinite(value)) return { value, nutrientId: String(n.id || n.number || ''), nutrientName: String(n.name || '') };
     }
+  }
+  return null;
+}
+function nutrient(food, aliases) { return nutrientMatch(food, aliases)?.value ?? null; }
+function energyNutrient(food, dataset = '') {
+  const foundation = /foundation/i.test(String(dataset));
+  const priority = foundation
+    ? [
+        { aliases:['2047','metabolizable energy (atwater general factor)'], basis:'atwater_general' },
+        { aliases:['2048','metabolizable energy (atwater specific factor)'], basis:'atwater_specific' },
+        { aliases:['1008','208','energy'], basis:'legacy_energy' }
+      ]
+    : [
+        { aliases:['1008','208','energy'], basis:'legacy_energy' },
+        { aliases:['2047','metabolizable energy (atwater general factor)'], basis:'atwater_general' },
+        { aliases:['2048','metabolizable energy (atwater specific factor)'], basis:'atwater_specific' }
+      ];
+  for (const candidate of priority) {
+    const match = nutrientMatch(food, candidate.aliases);
+    if (match) return { ...match, basis: candidate.basis };
   }
   return null;
 }
@@ -71,13 +92,14 @@ export async function prepareFdcCurationBatch({ raw, foods, sourcePolicy, policy
       if (structurallyInvalidExamples.length < 20) structurallyInvalidExamples.push({ index, reason: 'missing_fdc_id' });
       continue;
     }
-    const required = { energyKcal: nutrient(food, N.energy), proteinG: nutrient(food, N.protein), carbsG: nutrient(food, N.carbs), fatG: nutrient(food, N.fat), fiberG: nutrient(food, N.fiber) };
+    const energy = energyNutrient(food, sourcePolicy.dataset);
+    const required = { energyKcal: energy?.value ?? null, proteinG: nutrient(food, N.protein), carbsG: nutrient(food, N.carbs), fatG: nutrient(food, N.fat), fiberG: nutrient(food, N.fiber) };
     if (Object.values(required).some(value => value == null)) { incomplete += 1; continue; }
     const category = food.foodCategory?.description || food.foodCategory?.code || '';
     const description = food.description || food.commonName || `FDC ${food.fdcId}`;
     rows.push({
       sourceRecordId: String(food.fdcId), description, commonName: food.commonName || null, category,
-      nutrition: { ...required, sugarsG: nutrient(food, N.sugars), saturatedFatG: nutrient(food, N.satFat), sodiumMg: nutrient(food, N.sodium) },
+      nutrition: { ...required, energyBasis: energy?.basis || 'unknown', energyNutrientId: energy?.nutrientId || null, sugarsG: nutrient(food, N.sugars), saturatedFatG: nutrient(food, N.satFat), sodiumMg: nutrient(food, N.sodium) },
       suggested: { ingredientId: `ing_fdc_${food.fdcId}`, nameEn: food.commonName || food.description || '', nameIt: '', aliasesEn: [], aliasesIt: [], foodGroup: foodGroup(category), foodSubgroup: null, flavorProfile: 'flavor_neutral', mealArchetypes: ['breakfast','lunch','dinner','snack'], state: suggestedState(description), allergenIds: allergens(description, category), conversions: [] },
       review: { decision: 'pending', approved: false, checks: { italianLabel: false, taxonomy: false, state: false, allergens: false, culinarySuitability: false, duplicate: false, nutrition: false, source: false }, reviewer: null, reviewedAt: null, notes: 'Review every suggested mapping explicitly before approval. Heuristics are proposals, not canonical data.', duplicateOfIngredientId: null }
     });

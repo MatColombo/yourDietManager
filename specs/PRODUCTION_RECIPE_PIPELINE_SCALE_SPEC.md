@@ -94,7 +94,7 @@ Weights sum to 100. V1 production acceptance requires the full score **100/100**
 
 This score is an audit/triage metric, not an LLM opinion score. Culinary plausibility remains an explicit reviewed field.
 
-`macro_energy_mismatch` is a blocking warning in production and is routed to `nutrition_outlier`; it is not silently accepted as a warning-only recipe.
+`macro_energy_mismatch` is a blocking warning in production when all contributing ingredient energy values are comparable under Atwater General (or have no explicit source-basis metadata). USDA Atwater Specific and SR Legacy energy values must not be forced through a General-factor 4/4/9 comparison; provenance and the remaining nutrition gates still apply.
 
 ## 6. Batch report and immutable digest
 

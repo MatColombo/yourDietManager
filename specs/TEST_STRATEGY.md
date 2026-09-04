@@ -253,7 +253,7 @@ The 4P-B suite must verify:
 - Production batch execution requires a fresh snapshot matching `job.orchestration.inputSnapshotId`; catalog mutation after planning is a hard failure.
 - Every candidate receives exactly one explicit disposition: accepted, rejected, duplicate, needs_reference_review, needs_recipe_review or nutrition_outlier.
 - `needs_reference_review`, `needs_recipe_review` and `nutrition_outlier` are non-terminal and create review backlog; batch apply is forbidden while backlog >0.
-- `macro_energy_mismatch` is a blocking production nutrition outlier, never warning-only acceptance.
+- `macro_energy_mismatch` is a blocking production nutrition outlier when the underlying ingredient energy is Atwater General (or lacks source-basis metadata). Do not apply a General-factor 4/4/9 mismatch gate to USDA Atwater Specific or SR Legacy energy values; those remain subject to source provenance and bounded nutrition validation.
 - Objective stage weights total 100; V1 accepted candidates require score 100.
 - Batch result/report digest detects tampering or mismatched result artifacts.
 - Recipe/nutrition retry requires explicit reviewer identity/notes and cannot exceed three candidate attempts.

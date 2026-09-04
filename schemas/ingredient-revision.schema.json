@@ -295,6 +295,20 @@
             "string",
             "null"
           ]
+        },
+        "energyBasis": {
+          "enum": [
+            "atwater_general",
+            "atwater_specific",
+            "legacy_energy",
+            "unknown"
+          ]
+        },
+        "energyNutrientId": {
+          "type": [
+            "string",
+            "null"
+          ]
         }
       }
     },

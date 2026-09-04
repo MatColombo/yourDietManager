@@ -55,7 +55,7 @@ for (const row of doc.records || []) {
     nutrition: { energyKcal: row.nutrition.energyKcal, proteinG: row.nutrition.proteinG, carbsG: row.nutrition.carbsG, fatG: row.nutrition.fatG, fiberG: row.nutrition.fiberG, ...Object.fromEntries(Object.entries({ sugarsG: row.nutrition.sugarsG, saturatedFatG: row.nutrition.saturatedFatG, sodiumMg: row.nutrition.sodiumMg }).filter(([, value]) => value != null)) },
     taxonomy: { foodGroup, foodSubgroup, flavorProfile, mealArchetypes },
     allergenIds: row.suggested.allergenIds || [], conversions: row.suggested.conversions || [],
-    source: { type: 'imported', label: `${doc.source.provider} ${doc.source.dataset} ${doc.source.release}`, reference: doc.source.reference, sourceRecordId: row.sourceRecordId, checkedAt: row.review.reviewedAt || createdAt, licenseNote: `${doc.source.license}; source batch ${doc.batchId}; input digest ${doc.source.inputDigest}` },
+    source: { type: 'imported', label: `${doc.source.provider} ${doc.source.dataset} ${doc.source.release}`, reference: doc.source.reference, sourceRecordId: row.sourceRecordId, checkedAt: row.review.reviewedAt || createdAt, licenseNote: `${doc.source.license}; source batch ${doc.batchId}; input digest ${doc.source.inputDigest}`, energyBasis: row.nutrition.energyBasis || 'unknown', energyNutrientId: row.nutrition.energyNutrientId || null },
     quality: { status: 'curated', confidence: 'high', notes: row.review.notes || null }, contentHash: '', createdAt
   };
   revision.contentHash = await sha256Json({ ...revision, contentHash: '' });
