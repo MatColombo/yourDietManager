@@ -1,4 +1,5 @@
 import { repositories } from '../repositories/repositoryHub.js';
+import { assetPath } from '../lib/appBase.js';
 import { assertConfigurationBundle, CONFIG_COLLECTIONS } from './configurationService.js';
 
 export async function ensureBootstrapConfiguration({ repo = repositories, registry, fetcher = fetch } = {}) {
@@ -6,7 +7,7 @@ export async function ensureBootstrapConfiguration({ repo = repositories, regist
   if (existing) return existing;
   if (!registry) throw new Error('Schema registry is required');
 
-  const response = await fetcher('/data/bootstrap/default-configuration.json');
+  const response = await fetcher(assetPath('/data/bootstrap/default-configuration.json'));
   if (!response.ok) throw new Error(`Unable to load bootstrap configuration: HTTP ${response.status}`);
   const bundle = await response.json();
   registry.assert('appConfig', bundle.appConfig);

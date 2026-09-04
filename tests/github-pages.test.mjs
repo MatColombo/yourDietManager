@@ -35,6 +35,15 @@ test('GitHub Pages deployment sources avoid root-absolute entry assets and inclu
   assert.match(workflow, /actions\/deploy-pages@v4/);
   assert.match(workflow, /steps\.pages\.outputs\.base_path/);
   assert.match(sw, /const BASE_URL = new URL\('\.\/'/);
+  assert.match(sw, /ydm-shell-v11-/);
   assert.doesNotMatch(sw, /['"]\/data\//);
   assert.doesNotMatch(sw, /['"]\/schemas\//);
+});
+
+
+test('bootstrap configuration fetch is deployment-base aware', async () => {
+  const source = await readFile(path.join(root, 'src/services/configurationBootstrap.js'), 'utf8');
+  assert.match(source, /import \{ assetPath \} from '\.\.\/lib\/appBase\.js';/);
+  assert.match(source, /fetcher\(assetPath\('\/data\/bootstrap\/default-configuration\.json'\)\)/);
+  assert.doesNotMatch(source, /fetcher\('\/data\/bootstrap\/default-configuration\.json'\)/);
 });

@@ -13,11 +13,12 @@ async function mustFile(relative) {
 
 for (const file of ['index.html', '404.html', '.nojekyll', 'manifest.webmanifest', 'service-worker.js', 'src/lib/appBase.js', 'src/main.js']) await mustFile(file);
 
-const [index, fallback, manifestRaw, sw] = await Promise.all([
+const [index, fallback, manifestRaw, sw, configurationBootstrap] = await Promise.all([
   readFile(path.join(dist, 'index.html'), 'utf8'),
   readFile(path.join(dist, '404.html'), 'utf8'),
   readFile(path.join(dist, 'manifest.webmanifest'), 'utf8'),
-  readFile(path.join(dist, 'service-worker.js'), 'utf8')
+  readFile(path.join(dist, 'service-worker.js'), 'utf8'),
+  readFile(path.join(dist, 'src/services/configurationBootstrap.js'), 'utf8')
 ]);
 const manifest = JSON.parse(manifestRaw);
 
@@ -31,6 +32,8 @@ if (!fallback.includes(`var base = ${JSON.stringify(base)};`)) failures.push(`40
 if (!fallback.includes('__ydm_route')) failures.push('404.html does not preserve SPA route');
 if (!sw.includes("const BASE_URL = new URL('./', self.location.href);")) failures.push('service worker does not derive its deployment base dynamically');
 if (/['"]\/data\//.test(sw) || /['"]\/schemas\//.test(sw)) failures.push('service worker still contains root-absolute data/schema paths');
+if (/fetcher\(['"]\/data\/bootstrap\//.test(configurationBootstrap)) failures.push('configuration bootstrap still contains a root-absolute fetch');
+if (!configurationBootstrap.includes("assetPath('/data/bootstrap/default-configuration.json')")) failures.push('configuration bootstrap does not resolve through assetPath');
 
 if (failures.length) {
   console.error('GitHub Pages artifact audit failed:');
