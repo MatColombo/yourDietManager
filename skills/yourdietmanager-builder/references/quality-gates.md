@@ -171,3 +171,11 @@
 - Require `readyForPilot=true` before pilot generation; require all six 20-candidate waves to close 120/120 accepted with zero unresolved references/proposals.
 - Require Scale Gate 500 state `ready` before creating the first 4P-C batch; require that batch to pass its immutable digest/review/apply gate.
 - Network/source unavailability is a blocked execution prerequisite, not a skipped/pass production-data gate.
+
+
+## Production workflow test isolation
+
+- Development-baseline tests must use immutable fixtures, not canonical `corpus/pilot`, retirement, reports, snapshots, runs/jobs/intake, or other paths mutated by production execution.
+- Recreate a fresh pilot intake from the frozen contract/reference-data snapshot when testing pre-pilot behavior.
+- Generated-production tests must take the generated bundle/artifact as explicit input.
+- Require the full test suite to pass both on the pristine development tree and after canonical production execution artifacts are populated.

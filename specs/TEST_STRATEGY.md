@@ -278,3 +278,8 @@ The rc.13 execution suite must verify:
 - first-scale failure evidence (`job.json`, `batch-report.json`, `pre-verify-summary.json`) is written before the zero-backlog verification and uploaded even when verification fails;
 - `--pilot-strict` fails closed when the real ingredient foundation is not ready;
 - source/network unavailability is reported as a blocked execution prerequisite, never converted into a passing data gate.
+
+
+## Production-workflow test isolation
+
+The source-backed production workflow mutates canonical corpus execution artifacts during the same job (`corpus/pilot`, retirement mappings, reports, snapshots, runs/jobs/intake). Tests that assert a development baseline must not read those mutable paths. Use an immutable test corpus such as `corpus/staging/phase4-smoke-base-bundle.json` and create fresh pilot intake state with `planPilotIntake()` from the frozen reference-data digest. Tests of generated production state must receive or load the generated working bundle explicitly. The complete `npm test` suite must pass both before production execution and after canonical production artifacts have been populated.

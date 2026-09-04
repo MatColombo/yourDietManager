@@ -8,21 +8,28 @@ import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
 import { SchemaRegistry } from '../src/lib/schemaValidator.js';
 import { ingredientSourcePlan, assertIngredientCurationPolicy, assessIngredientCurationBatch, buildPilotWaveReport } from '../src/corpus/ingredientCuration.js';
-import { assessProductionReadiness } from '../src/corpus/productionCorpus.js';
-import { readJson, loadCorpusInput } from '../scripts/corpus/io-lib.mjs';
+import { assessProductionReadiness, planPilotIntake } from '../src/corpus/productionCorpus.js';
+import { readJson } from '../scripts/corpus/io-lib.mjs';
 
 const execFileAsync = promisify(execFile);
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 async function fixture() {
   const registry = new SchemaRegistry(async file => readJson(path.join(root, 'schemas', file))); await registry.loadAll();
-  const [contract, corpusPolicy, curationPolicy, corpus, intake, proposals] = await Promise.all([
+  const [contract, corpusPolicy, curationPolicy, corpus] = await Promise.all([
     readJson(path.join(root, 'corpus/contracts/v1-production.json')),
     readJson(path.join(root, 'corpus/policies/v1-default.json')),
     readJson(path.join(root, 'corpus/curation/v1-ingredient-curation-policy.json')),
-    loadCorpusInput(path.join(root, 'public/data')),
-    readJson(path.join(root, 'corpus/pilot/v1-pilot-intake.json')),
-    readJson(path.join(root, 'corpus/pilot/v1-reference-data-proposals.json'))
+    readJson(path.join(root, 'corpus/staging/phase4-smoke-base-bundle.json'))
   ]);
+  const intake = await planPilotIntake({
+    contract,
+    referenceDataVersion: corpus.manifest.referenceDataVersion,
+    referenceDataDigest: corpus.manifest.referenceDataDigest,
+    seed: 'test-4pb-development-baseline',
+    createdAt: '2026-09-04T14:00:00Z',
+    registry
+  });
+  const proposals = [];
   return { registry, contract, corpusPolicy, curationPolicy, corpus, intake, proposals };
 }
 
@@ -154,7 +161,15 @@ test('legacy fixture retirement is an explicit schema-governed map, never an imp
   const { registry } = await fixture();
   const retirement = await readJson(path.join(root, 'corpus/curation/v1-legacy-fixture-retirement.json'));
   registry.assert('ingredientRetirementMap', retirement);
-  assert.deepEqual(retirement.retirements, []);
+  for (const row of retirement.retirements) {
+    assert.ok(row.ingredientId);
+    assert.ok(row.replacementIngredientId);
+    assert.ok(row.rationale);
+    assert.ok(row.approvedBy);
+    assert.ok(row.approvedAt);
+  }
+  const empty = { ...retirement, retirements: [] };
+  assert.doesNotThrow(() => registry.assert('ingredientRetirementMap', empty));
   const invalid = { ...retirement, retirements: [{ ingredientId: 'ing_salmon', replacementIngredientId: '', rationale: 'implicit', approvedBy: 'editor', approvedAt: '2026-09-04T14:30:00Z' }] };
   assert.throws(() => registry.assert('ingredientRetirementMap', invalid), /schema validation failed/);
 });

@@ -206,3 +206,8 @@ The production-data portion is **not marked complete** in this candidate. The ex
 Current execution remains intentionally blocked because the bundled development fixture has 0/400 production-ready ingredient families, pilot terminal count 0/120, three production nutrition errors and only 3 active recipes. The scale CLI refuses to create a production job intake while this gate is blocked.
 
 The 4P-C control plane is covered by dedicated schemas, CLI tools and automated tests. Scale execution is complete only after the 4P-B data/pilot gate closes and the cumulative corpus reaches >=500 clean recipes with the pro-rata hard coverage floors.
+
+
+## Phase 4 production verification addendum — rc.20
+
+The source-backed GitHub run reached 600 production-ready ingredient families, pilot 120/120 terminal and 220 active recipes before post-generation verification. The four failing tests were development-baseline assertions coupled to mutable canonical pilot/retirement state. rc.20 isolates those tests on the immutable Phase 4 smoke bundle and fresh deterministic pilot intake. Production workflow semantics and gates are unchanged. The full suite is additionally verified against a simulated post-workflow canonical state.

@@ -3,7 +3,7 @@
   "contractId": "ydm-v1-production-corpus",
   "contractVersion": "1.0.0",
   "catalogVersion": "0.3.0-dev",
-  "generatedAt": "2026-09-04T18:31:09.240Z",
+  "generatedAt": "2026-09-04T19:22:42.442Z",
   "checks": [
     {
       "id": "contract-policy-sync",

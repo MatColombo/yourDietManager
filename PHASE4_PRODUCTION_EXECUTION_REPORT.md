@@ -1,7 +1,7 @@
 # Phase 4 Production Corpus — Missing-Step Execution Bridge Report
 
 Date: **2026-09-04**  
-Candidate: **`1.0.0-rc.19`**  
+Candidate: **`1.0.0-rc.20`**
 Status: **EXECUTION CONTROL PLANE COMPLETE / SOURCE-BACKED RUN REQUIRED**
 
 ## 1. Objective
@@ -175,3 +175,8 @@ A later source-backed rc.17 run reduced first-batch review backlog to 2. The rem
 ## rc.19 focused coverage-target correction
 
 The first real scale run proved that `focus_only` must not attach compound coverage cells on a partial criterion match. A focus of `mini_meal + practical_portable` previously matched every portable energy cell because the planner used any-criterion matching; the recipe pipeline then correctly rejected every candidate for `coverage_target_missed` because no recipe can simultaneously satisfy the 300–399, 400–499 and 500–599 kcal portable cells. rc.19 changes focused compound matching to all-criteria matching. The first portable job therefore freezes only `meal-mini_meal-coverage` and `practical-portable-coverage` unless an energy band is explicitly part of the focus. Zero-backlog, target and diversity gates are unchanged.
+
+
+## rc.20 mutable-working-set test isolation
+
+The real rc.19 production workflow reached `productionReadyFamilies=600`, pilot 120/120 terminal, and 220 active recipes after the first industrialized batch. The subsequent verification failure came from four tests that read canonical mutable corpus state and asserted development-only expectations. rc.20 isolates those baseline tests from workflow side effects: 4P-B and 4P-C fixtures read the immutable `phase4-smoke-base-bundle.json`, generate a fresh pilot intake deterministically, and use an empty in-memory proposals list. The legacy retirement test validates explicit schema-governed mappings whether the canonical map is empty or already populated. No production readiness, pilot, scale, review, or release gate is changed.

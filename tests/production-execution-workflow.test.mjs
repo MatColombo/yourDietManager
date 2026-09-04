@@ -45,3 +45,17 @@ test('pilot-strict readiness flag works with default corpus paths and fails clos
   assert.equal(run.status, 2, run.stderr || run.stdout);
   assert.match(run.stdout, /\"readyForPilot\": false/);
 });
+
+
+test('development-baseline production tests are isolated from canonical workflow mutations', async () => {
+  const [passB, passC] = await Promise.all([
+    readFile('tests/corpus-production-pass-b.test.mjs','utf8'),
+    readFile('tests/corpus-production-pass-c.test.mjs','utf8')
+  ]);
+  for (const source of [passB, passC]) {
+    assert.match(source,/corpus\/staging\/phase4-smoke-base-bundle\.json/);
+    assert.match(source,/planPilotIntake/);
+    assert.doesNotMatch(source,/loadCorpusInput\(path\.join\(root, 'public\/data'\)\)/);
+    assert.doesNotMatch(source,/readJson\(path\.join\(root, 'corpus\/pilot\/v1-pilot-intake\.json'\)\)/);
+  }
+});

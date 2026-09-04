@@ -2,7 +2,7 @@
 
 Local-first PWA implementation through **Phase 8 — Hardening & V1 release gates**.
 
-Candidate version: **`1.0.0-rc.19`**.
+Candidate version: **`1.0.0-rc.20`**.
 
 Phases 1–7 remain fully present: IndexedDB persistence, onboarding/configuration, backup/import, IT/EN, theme engine, indexed catalog/search/packs, versioned catalog authoring, corpus-orchestration tooling, deterministic seeded plan generation, effective-plan UX with history/undo, shopping checklists and preparation horizon.
 
@@ -177,6 +177,11 @@ npm run corpus:first-scale-batch -- <pilot-corpus-bundle.json> <out-dir> --canon
 npm run corpus:production-execution
 ```
 
+
+
+## Phase 4 production execution — rc.20 mutable-working-set test isolation
+
+The source-backed rc.19 workflow reached 600 curated/high ingredients, closed the 120/120 pilot, applied the first 100-recipe scale batch, and then failed only when `npm test` ran against canonical files already mutated by that same workflow. Four tests were incorrectly stateful: they assumed development `public/data`, an open pilot intake, an empty fixture-retirement map, and a 0/120 Scale Gate baseline. rc.20 makes 4P-B/4P-C baseline tests load the immutable `corpus/staging/phase4-smoke-base-bundle.json` and regenerate a fresh pilot intake with `planPilotIntake()`. The retirement-map test now validates explicit approval semantics whether the canonical map is empty or populated. Production execution remains unchanged; this is test isolation, not a gate relaxation. The application shell cache advances to `ydm-shell-v22`; the data cache remains `ydm-data-v10`.
 
 ## Phase 4 production execution — rc.19 exact focus coverage matching
 

@@ -91,6 +91,7 @@ JSON backup
 | `specs/INGREDIENT_CURATION_PILOT_SPEC.md` | Contratto operativo 4P-B: trusted sources, review ingredienti, materializzazione, retirement e pilot waves |
 | `specs/PRODUCTION_RECIPE_PIPELINE_SCALE_SPEC.md` | Contratto operativo 4P-C: batch industrializzati, disposition/review, stale-snapshot guard e Scale Gate 500 |
 | `specs/PRODUCTION_CORPUS_EXECUTION_SPEC.md` | Esecuzione rc.13: acquisizione USDA, deterministic review bounded, retirement fixture, pilot 120/120 e primo batch 4P-C |
+| `PHASE4_PRODUCTION_TEST_ISOLATION_RC20_REPORT.md` | rc.20: isolamento dei test baseline dalle mutazioni canoniche della workflow production |
 | `specs/PLAN_GENERATOR_SPEC.md` | Generatore del piano e solver |
 | `specs/SHOPPING_SPEC.md` | Spesa e moltiplicatore persone |
 | `specs/SHOPPING_CHECKLIST_SPEC.md` | Contratto checklist persistita e refresh |
@@ -123,3 +124,7 @@ La directory `skills/yourdietmanager-builder/` contiene una Skill ChatGPT riutil
 The missing 4P-B/4P-C execution steps are now encoded in `specs/PRODUCTION_CORPUS_EXECUTION_SPEC.md` and `.github/workflows/production-corpus.yml`. The workflow acquires the frozen USDA archives, performs bounded deterministic review after pending import, materializes a 600-target ingredient foundation, retires the Phase 1 fixtures explicitly, executes six pilot waves to 120/120, requires Scale Gate 500 to become `ready`, and runs the first 100-accepted industrialized batch. Generated source archives remain runtime-only; the working bundle/evidence can be committed only through an explicit workflow input.
 
 The local sandbox used for this package cannot download the USDA ZIPs. Therefore no source-derived ingredient records are claimed as executed locally; the repository gate remains red on production content until the network workflow completes successfully.
+
+## Phase 4 production verification — rc.20 test isolation
+
+The network-enabled production workflow intentionally mutates canonical pilot, retirement, report and scale artifacts before its final verification step. Baseline regression tests must therefore never infer the development starting state from those mutable canonical files. rc.20 binds 4P-B/4P-C baseline tests to the immutable Phase 4 smoke bundle and regenerates fresh pilot intake state in-memory. Production-state tests remain free to inspect generated working artifacts explicitly.

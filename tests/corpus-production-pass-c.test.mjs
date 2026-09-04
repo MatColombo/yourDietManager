@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import path from 'node:path';
 import { SchemaRegistry } from '../src/lib/schemaValidator.js';
 import { scanCorpus } from '../src/corpus/corpusScanner.js';
-import { assessProductionReadiness, productionContractDigest } from '../src/corpus/productionCorpus.js';
+import { assessProductionReadiness, planPilotIntake, productionContractDigest } from '../src/corpus/productionCorpus.js';
 import {
   applyIndustrializedBatchToIntake,
   applyProductionRecipeReviewDecisions,
@@ -15,21 +15,28 @@ import {
   verifyIndustrializedBatchReport
 } from '../src/corpus/productionRecipePipeline.js';
 import { referenceDataDigest } from '../src/services/referenceDataService.js';
-import { loadCorpusInput, readJson } from '../scripts/corpus/io-lib.mjs';
+import { readJson } from '../scripts/corpus/io-lib.mjs';
 import { fileLoader } from './helpers.mjs';
 
 const root = process.cwd();
 async function fixture() {
   const registry = new SchemaRegistry(fileLoader(path.join(root, 'schemas'))); await registry.loadAll();
-  const [contract, corpusPolicy, curationPolicy, pipelinePolicy, corpus, pilotIntake, proposals] = await Promise.all([
+  const [contract, corpusPolicy, curationPolicy, pipelinePolicy, corpus] = await Promise.all([
     readJson(path.join(root, 'corpus/contracts/v1-production.json')),
     readJson(path.join(root, 'corpus/policies/v1-default.json')),
     readJson(path.join(root, 'corpus/curation/v1-ingredient-curation-policy.json')),
     readJson(path.join(root, 'corpus/production/v1-recipe-pipeline-policy.json')),
-    loadCorpusInput(path.join(root, 'public/data')),
-    readJson(path.join(root, 'corpus/pilot/v1-pilot-intake.json')),
-    readJson(path.join(root, 'corpus/pilot/v1-reference-data-proposals.json'))
+    readJson(path.join(root, 'corpus/staging/phase4-smoke-base-bundle.json'))
   ]);
+  const pilotIntake = await planPilotIntake({
+    contract,
+    referenceDataVersion: corpus.manifest.referenceDataVersion,
+    referenceDataDigest: corpus.manifest.referenceDataDigest,
+    seed: 'test-4pc-development-baseline',
+    createdAt: '2026-09-04T15:00:00Z',
+    registry
+  });
+  const proposals = [];
   return { registry, contract, corpusPolicy, curationPolicy, pipelinePolicy, corpus, pilotIntake, proposals };
 }
 
