@@ -82,6 +82,8 @@ test('Pass C source audit centralizes disclosure state, guarded navigation, feed
   const config = sources['configurationPages.js'];
   const main = await readFile(path.join(root, 'src/main.js'), 'utf8');
   const sw = await readFile(path.join(root, 'public/service-worker.js'), 'utf8');
+  const recovery = await readFile(path.join(root, 'src/recoveryBootstrap.js'), 'utf8');
+  const index = await readFile(path.join(root, 'index.html'), 'utf8');
 
   assert.match(config, /capabilitiesEditor\(state, day\.capabilities\)/);
   assert.doesNotMatch(config, /capabilitiesEditor\(state, day\)(?!\.)/);
@@ -97,6 +99,10 @@ test('Pass C source audit centralizes disclosure state, guarded navigation, feed
   assert.match(sources['uiState.js'], /ydm:draft-change/);
   assert.match(main, /onboardingEnabled: false/);
   assert.doesNotMatch(main, /location\.pathname\s*=.*onboarding|navigate\(['"]\/onboarding/);
-  assert.match(sw, /ydm-shell-v15/);
+  assert.match(sw, /ydm-shell-v16/);
+  assert.match(sw, /src\/recoveryBootstrap\.js/);
+  assert.match(index, /src\/recoveryBootstrap\.js/);
+  assert.match(recovery, /updateViaCache: 'none'/);
+  assert.match(recovery, /registration\.update\(\)/);
   assert.match(sw, /src\/ui\/uiState\.js/);
 });

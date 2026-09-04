@@ -123,7 +123,7 @@ async function runMigration3(repo, options = {}) {
   for (const version of currentVersions) for (const line of version.ingredientLines || []) revisionIds.add(line.ingredientRevisionId);
   const revisionsToInspect = [...revisionIds].map(id => revisionById.get(id)).filter(Boolean);
 
-  const firstPass = migrateLegacySemanticRecords({ index, ingredientRevisions: revisionsToInspect, recipeVersions: currentVersions, configuration: config.appConfig ? config : null });
+  const firstPass = migrateLegacySemanticRecords({ index, ingredientRevisions: revisionsToInspect, recipeVersions: currentVersions, configuration: config.appConfig ? config : null, ingredientIds: ingredientFamilies.map(item => item.ingredientId) });
   if (firstPass.unresolved.length) {
     await repo.setMeta('contentMigration:3', { status: 'blocked', startedAt, attempts, blockedAt: now(), reason: 'unresolved_legacy_values', unresolved: firstPass.unresolved.slice(0, 100) });
     throw new Error(`Reference-data migration has ${firstPass.unresolved.length} unresolved semantic value(s): ${firstPass.unresolved.slice(0, 5).map(item => `${item.path}=${item.value}`).join(', ')}`);
@@ -191,7 +191,7 @@ async function runMigration3(repo, options = {}) {
     for (const key of ['nutritionProfiles','allergyIntoleranceProfiles','foodPreferences','themeProfiles','mealClasses','dayClasses','cycles']) puts[key] = migratedConfig[key] || [];
   }
   const digest = await referenceDataDigest(taxonomies, taxonomyTerms);
-  const mappingSummary = firstPass.mappings.reduce((summary, item) => { summary[item.status] = (summary[item.status] || 0) + 1; return summary; }, { resolved_exact: 0, resolved_alias: 0, resolved_manual: 0, unresolved: 0 });
+  const mappingSummary = firstPass.mappings.reduce((summary, item) => { summary[item.status] = (summary[item.status] || 0) + 1; return summary; }, { resolved_exact: 0, resolved_alias: 0, resolved_manual: 0, resolved_retyped_legacy: 0, unresolved: 0 });
   await repo.atomicPut(puts, {
     referenceDataVersion: '1.0.0', referenceDataDigest: digest,
     'contentMigration:3': { status: 'complete', startedAt, completedAt: now(), attempts, checkpoint: 'complete', migratedIngredientRevisions: newRevisions.length, migratedRecipeVersions: newVersions.length, mappingSummary, mappingSample: firstPass.mappings.slice(0, 200), unresolved: [] }

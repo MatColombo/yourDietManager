@@ -119,6 +119,8 @@ Non dedurre mai l'ID dalla label visualizzata. Usare il registry.
 
 Gli alias e `legacyKeys` non sono valori alternativi persistibili nei record di dominio. Risolvono sempre a `termId`.
 
+Durante una migrazione legacy e ammesso un cambio esplicito di `targetType` solo quando il valore storico non e valido per il tipo dichiarato, risolve senza ambiguita a un registry canonico compatibile con l'intento non-hard e la trasformazione viene registrata come `resolved_retyped_legacy`. Questo meccanismo non e un fallback runtime e non puo ampliare automaticamente regole hard/esclusive.
+
 ### 4.3 ReferenceDataProposal
 
 `schemas/reference-data-proposal.schema.json` e un **artifact editoriale/build-time**, non un object store utente. Registra:

@@ -1,7 +1,7 @@
 const BASE_URL = new URL('./', self.location.href);
 const BASE_PATH = BASE_URL.pathname.endsWith('/') ? BASE_URL.pathname : `${BASE_URL.pathname}/`;
 const CACHE_SCOPE_KEY = BASE_PATH.replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '') || 'root';
-const SHELL_CACHE = `ydm-shell-v15-${CACHE_SCOPE_KEY}`;
+const SHELL_CACHE = `ydm-shell-v16-${CACHE_SCOPE_KEY}`;
 const DATA_CACHE = `ydm-data-v7-${CACHE_SCOPE_KEY}`;
 const scoped = path => new URL(String(path || '').replace(/^\/+/, ''), BASE_URL).pathname;
 const DATA_PREFIX = scoped('data/');
@@ -11,7 +11,7 @@ const INDEX_PATH = scoped('index.html');
 
 const SHELL = [
   '', 'index.html', 'manifest.webmanifest', 'icons/icon.svg',
-  'src/bootstrapVisual.js', 'src/db/constants.js', 'src/db/database.js', 'src/domain/configurationRules.js', 'src/domain/catalogEnums.js', 'src/domain/nutritionCore.js',
+  'src/bootstrapVisual.js', 'src/recoveryBootstrap.js', 'src/db/constants.js', 'src/db/database.js', 'src/domain/configurationRules.js', 'src/domain/catalogEnums.js', 'src/domain/nutritionCore.js',
   'src/i18n/i18n.js', 'src/lib/appBase.js', 'src/lib/crypto.js', 'src/lib/schemaValidator.js', 'src/lib/semver.js', 'src/main.js',
   'src/repositories/domainRepositories.js', 'src/repositories/repositoryHub.js',
   'src/services/backupEngine.js', 'src/services/catalogDataSource.js', 'src/services/catalogImporter.js', 'src/services/catalogUpdater.js', 'src/services/catalogQuery.js',

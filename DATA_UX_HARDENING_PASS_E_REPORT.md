@@ -2,7 +2,7 @@
 
 ## Stato
 
-**DONE (implementation)** — candidate `1.0.0-rc.8`.
+**DONE (implementation)** — candidate `1.0.0-rc.9`.
 
 Pass E chiude formalmente la V1 Data/UX Hardening Revision con un final acceptance gate end-to-end. Non aggiunge nuovi concetti di dominio e non anticipa la materializzazione del corpus production Phase 4: rende invece verificabili, nello stesso flusso automatico, le invarianti UX introdotte nei Pass C-D che prima erano coperte solo da audit source/domain o da una browser regression limitata al detail/edit catalogo.
 
@@ -109,7 +109,7 @@ La Skill ora tratta la final acceptance browser come invariante del workflow di 
 
 ## 9. Versione candidate
 
-La candidate corrente e **`1.0.0-rc.8`**. rc.7 ha corretto il bootstrap browser CI; rc.8 corregge esclusivamente il percorso della dirty-navigation acceptance e la diagnostica CDP. Il contratto funzionale Pass E resta invariato. Non cambia `DB_VERSION=4` ne `CONTENT_SCHEMA_VERSION=3`: Pass E non introduce migrazioni dati.
+La candidate corrente e **`1.0.0-rc.9`**. rc.7 ha corretto il bootstrap browser CI; rc.8 ha corretto il percorso della dirty-navigation acceptance e la diagnostica CDP; rc.9 chiude un difetto di upgrade emerso sul deploy reale: `contentMigration:3` ora recupera la FoodPreference legacy non-hard `ingredient:uova` come `foodCategory:food_group_eggs` con mapping auditato `resolved_retyped_legacy`, e una nuova `recoveryBootstrap.js` forza il check/update della Service Worker prima che il bootstrap applicativo possa fallire. `DB_VERSION=4` e `CONTENT_SCHEMA_VERSION=3` restano invariati.
 
 ## 10. Release blocker residuo
 
@@ -128,8 +128,8 @@ La V1 Data/UX Hardening Revision A-E e quindi chiusa a livello di implementazion
 Gate locale finale:
 
 - `npm run check` — PASS, con browser acceptance registrata `skipped` esclusivamente per `local-http-blocked-by-environment`;
-- **108/108 test** — PASS;
-- syntax check **97 file JavaScript** — PASS;
+- **110/110 test** — PASS;
+- syntax check **98 file JavaScript** — PASS;
 - accessibility source audit **16/16** — PASS;
 - form contract audit — PASS;
 - scale benchmark 10k — PASS;

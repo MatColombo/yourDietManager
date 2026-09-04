@@ -93,7 +93,7 @@ Implementato:
 - `hardening:revision` machine-checkable per sincronizzazione versione, copertura documentale/Skill, presenza dei browser acceptance checks e requisito CI `YDM_BROWSER_REQUIRED=1`;
 - main `npm run check` ordinato come build -> browser -> revision closure -> Pages audit;
 - Skill, quality gates, roadmap e test strategy allineati al Pass E;
-- candidate `1.0.0-rc.8`, senza nuove migrazioni DB/content; rc.7 rende deterministico il bootstrap browser GitHub Actions, mentre rc.8 corregge la dirty-navigation acceptance per usare il percorso UI realmente renderizzato (`/configure/meals` -> `/configure` -> `/configure/days`) e rende diagnostiche le eccezioni `Runtime.evaluate`.
+- candidate `1.0.0-rc.9`; rc.7 rende deterministico il bootstrap browser GitHub Actions, rc.8 corregge la dirty-navigation acceptance e la diagnostica CDP, mentre rc.9 rende recuperabile una `contentMigration:3` gia bloccata da FoodPreference legacy `ingredient:uova` tramite retyping auditato verso `foodCategory:food_group_eggs` (solo non-hard) e anticipa il recovery/update della Service Worker prima del bootstrap applicativo. `DB_VERSION=4` e `CONTENT_SCHEMA_VERSION=3` restano invariati.
 
 ## Gate per riprendere Phase 4 production
 

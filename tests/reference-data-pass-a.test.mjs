@@ -107,6 +107,46 @@ test('Pass A migration maps legacy strings to canonical IDs without mutating his
   assert.equal(await repo.getMeta('contentSchemaVersion'), 3);
 });
 
+test('Pass A migration explicitly retypes legacy soft preference ingredient text when it resolves to a canonical food category', async () => {
+  const registry = await registryFixture();
+  const repo = new MemoryRepository();
+  await seedLegacyInstall(repo);
+  const prefs = (await repo.getAll('foodPreferences'))[0];
+  const eggs = prefs.rules.find(rule => rule.id === 'pref-eggs');
+  eggs.targetType = 'ingredient';
+  eggs.targetId = 'uova';
+  eggs.autoExclude = false;
+  await repo.put('foodPreferences', prefs);
+  await repo.setMeta('contentSchemaVersion', 2);
+  await repo.setMeta('contentMigration:3', { status: 'blocked', attempts: 1, reason: 'unresolved_legacy_values', unresolved: [{ path: 'foodPreferences:food-preferences-main.rule:pref-eggs.targetId', value: 'uova' }] });
+
+  await runMigrations(repo, { registry, referenceDataLoader: () => bundledReferenceData(root) });
+
+  const migrated = (await repo.getAll('foodPreferences'))[0].rules.find(rule => rule.id === 'pref-eggs');
+  assert.equal(migrated.targetType, 'foodCategory');
+  assert.equal(migrated.targetId, 'food_group_eggs');
+  const marker = await repo.getMeta('contentMigration:3');
+  assert.ok(marker.mappingSummary.resolved_retyped_legacy > 0);
+  assert.equal(marker.attempts, 2);
+  assert.equal(marker.unresolved.length, 0);
+});
+
+test('Pass A migration does not broaden legacy auto-exclude ingredient text into a food category', async () => {
+  const registry = await registryFixture();
+  const repo = new MemoryRepository();
+  await seedLegacyInstall(repo);
+  const prefs = (await repo.getAll('foodPreferences'))[0];
+  const eggs = prefs.rules.find(rule => rule.id === 'pref-eggs');
+  eggs.targetType = 'ingredient';
+  eggs.targetId = 'uova';
+  eggs.autoExclude = true;
+  await repo.put('foodPreferences', prefs);
+
+  await assert.rejects(() => runMigrations(repo, { registry, referenceDataLoader: () => bundledReferenceData(root) }), /unresolved semantic value/);
+  const marker = await repo.getMeta('contentMigration:3');
+  assert.ok(marker.unresolved.some(item => item.reason === 'unsafe_auto_exclude_retype'));
+});
+
 test('Pass A migration blocks unresolved legacy semantic text and leaves immutable pointer changes unapplied', async () => {
   const registry = await registryFixture();
   const repo = new MemoryRepository();

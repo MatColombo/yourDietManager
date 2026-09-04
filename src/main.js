@@ -13,7 +13,7 @@ import { initializeUiState, installDraftTracking, shouldDeferRender, notify, cle
 import { loadConfigurationBundle } from './services/configurationService.js';
 import { fetchBundledReferenceData } from './services/referenceDataService.js';
 import { loadReferenceDataBundle } from './services/referenceDataEditorService.js';
-import { APP_BASE_PATH, assetPath, restorePagesRedirect } from './lib/appBase.js';
+import { restorePagesRedirect } from './lib/appBase.js';
 
 restorePagesRedirect();
 
@@ -97,7 +97,6 @@ async function start() {
     state.catalogUpdateAvailable = result.updateAvailable; state.catalogUpdateVersion = result.updateAvailable ? result.manifest.catalogVersion : null; state.render();
   }).catch(() => { /* Offline is a valid Phase 3 state. */ });
 
-  if ('serviceWorker' in navigator) navigator.serviceWorker.register(assetPath('/service-worker.js'), { scope: `${APP_BASE_PATH || ''}/` }).catch(error => console.warn('Service worker registration failed', error));
 }
 
 start().catch(error => {

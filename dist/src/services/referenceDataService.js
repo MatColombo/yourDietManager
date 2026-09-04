@@ -252,9 +252,10 @@ function migrateGenericTag(index, value, path, unresolved, mappings) {
   return termId;
 }
 
-export function migrateLegacySemanticRecords({ index, ingredientRevisions = [], recipeVersions = [], configuration = null }) {
+export function migrateLegacySemanticRecords({ index, ingredientRevisions = [], recipeVersions = [], configuration = null, ingredientIds = [] }) {
   const unresolved = [];
   const mappings = [];
+  const ingredientSet = new Set(ingredientIds || []);
   const migratedIngredients = ingredientRevisions.map(original => {
     const record = clone(original); const tax = record.taxonomy || {};
     const base = `ingredientRevision:${record.ingredientRevisionId}.taxonomy`;
@@ -285,6 +286,23 @@ export function migrateLegacySemanticRecords({ index, ingredientRevisions = [], 
       if (rule.targetType === 'foodCategory') rule.targetId = migrateValue(index, TAXONOMY_IDS.foodCategory, rule.targetId, path, unresolved, mappings);
       else if (rule.targetType === 'cuisine') rule.targetId = migrateValue(index, TAXONOMY_IDS.cuisine, rule.targetId, path, unresolved, mappings);
       else if (rule.targetType === 'recipeTag') rule.targetId = migrateGenericTag(index, rule.targetId, path, unresolved, mappings);
+      else if (rule.targetType === 'ingredient' && !ingredientSet.has(rule.targetId)) {
+        // Pre-hardening preference editors allowed human-readable ingredient text.
+        // If that text is not a canonical Ingredient ID but resolves exactly to a
+        // curated food category, preserve the soft-preference intent by explicitly
+        // retyping the rule during migration. This is migration-only: runtime writes
+        // still require a canonical target for the selected targetType.
+        const resolvedCategory = index.resolveLegacy(TAXONOMY_IDS.foodCategory, rule.targetId);
+        if (resolvedCategory && rule.autoExclude !== true) {
+          const sourceValue = rule.targetId;
+          rule.targetType = 'foodCategory';
+          rule.targetId = resolvedCategory;
+          recordMapping(mappings, path, sourceValue, resolvedCategory, TAXONOMY_IDS.foodCategory, 'resolved_retyped_legacy');
+        } else {
+          unresolved.push({ path, value: rule.targetId, targetType: rule.targetType, reason: resolvedCategory ? 'unsafe_auto_exclude_retype' : 'unknown_ingredient' });
+          recordMapping(mappings, path, rule.targetId, null, null, 'unresolved');
+        }
+      }
     }
     for (const profile of migratedConfiguration.allergyIntoleranceProfiles || []) for (const rule of profile.rules || []) if (rule.targetType === 'foodCategory') rule.targetId = migrateValue(index, TAXONOMY_IDS.foodCategory, rule.targetId, `allergy:${profile.id}.rule:${rule.id}.targetId`, unresolved, mappings);
     for (const meal of migratedConfiguration.mealClasses || []) for (const [i, rule] of (meal.rules || []).entries()) {

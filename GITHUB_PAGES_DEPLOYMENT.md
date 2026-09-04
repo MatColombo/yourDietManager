@@ -79,3 +79,14 @@ The Pages workflow first resolves an executable browser and exports `CHROMIUM_PA
 
 The Pages workflow runs the application check with `YDM_BROWSER_REQUIRED=1`. This makes the Chromium/CDP final-acceptance suite a deployment gate in CI: a missing browser, blocked localhost navigation, failed recipe/ingredient detail/edit route, dirty-navigation regression, disclosure-state regression, form/schema mismatch, or missing save feedback blocks the Pages build instead of being accepted as a skipped test. The dirty-navigation check follows the rendered UI path (`/configure/meals` -> `/configure` -> `/configure/days`) rather than assuming a direct Day classes link exists on the Meal classes page. Local developer environments may run `npm run hardening:browser` without this variable; if their organization blocks localhost, the result is recorded in `reports/pass-e-browser.json` as `skipped` (with `pass-d-browser.json` retained as a compatibility alias). `npm run hardening:revision` runs after the browser check and verifies the A-E closure contract.
 
+
+
+## rc.9 — recovery da bootstrap/migration failure persistito
+
+La PWA registra/aggiorna ora la Service Worker tramite `src/recoveryBootstrap.js` **prima** di `src/main.js`. Questo evita che un errore di bootstrap applicativo impedisca al browser di ricevere una Service Worker nuova e continui quindi a servire moduli JS obsoleti dalla shell cache precedente.
+
+La shell cache rc.9 e `ydm-shell-v16-<scope>`. `updateViaCache: 'none'` e `registration.update()` forzano il controllo del worker dalla rete; al cambio controller viene eseguito un solo reload protetto da `sessionStorage`.
+
+Per upgrade da installazioni pre-hardening, `contentMigration:3` e resumable. Una FoodPreference legacy non-hard salvata come `ingredient:uova` viene re-tipizzata in modo auditato a `foodCategory:food_group_eggs`; non e un alias runtime e non modifica regole `autoExclude=true`.
+
+Se si sta testando una build precedente gia bloccata prima di rc.9, un hard refresh o la rimozione una tantum della vecchia Service Worker puo accelerare il primo caricamento della rc.9, ma non e parte del flusso normale dopo che `recoveryBootstrap.js` e stato ricevuto.

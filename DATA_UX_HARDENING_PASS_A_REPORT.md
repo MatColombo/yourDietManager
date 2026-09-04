@@ -85,11 +85,14 @@ Backup/export now includes user-created taxonomies and taxonomy terms while pres
 - `exact`;
 - `alias`;
 - `manual`;
+- `resolved_retyped_legacy` per un cambio di target type esplicito e auditato;
 - `unresolved`.
 
 There is no silent fallback. Any unresolved semantic reference blocks migration before active family/version pointers are advanced.
 
 A concrete legacy defect found during the audit was the MealClass target `fish`, while ingredient taxonomy used `fish_seafood`. Pass A maps the legacy value to canonical `food_group_fish_seafood` instead of relying on string equality.
+
+La rc.9 aggiunge il caso reale emerso dal deploy: una FoodPreference legacy non-hard salvata come `targetType=ingredient`, `targetId=uova` viene migrata esplicitamente a `targetType=foodCategory`, `targetId=food_group_eggs` solo perche `uova` non e un Ingredient ID e risolve senza ambiguita alla categoria canonica. Se la regola ha `autoExclude=true`, il cambio di tipo non viene effettuato automaticamente per evitare di ampliare un'esclusione: resta `unresolved` e blocca la migrazione.
 
 Historical IngredientRevision and RecipeVersion rows are never rewritten. If current semantic content needs canonicalization, migration creates a new revision/version and advances the current pointer. Mutable configuration references are migrated atomically in place.
 
