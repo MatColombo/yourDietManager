@@ -2,7 +2,7 @@
 
 Local-first PWA implementation through **Phase 8 — Hardening & V1 release gates**.
 
-Candidate version: **`1.0.0-rc.18`**.
+Candidate version: **`1.0.0-rc.19`**.
 
 Phases 1–7 remain fully present: IndexedDB persistence, onboarding/configuration, backup/import, IT/EN, theme engine, indexed catalog/search/packs, versioned catalog authoring, corpus-orchestration tooling, deterministic seeded plan generation, effective-plan UX with history/undo, shopping checklists and preparation horizon.
 
@@ -178,6 +178,10 @@ npm run corpus:production-execution
 ```
 
 
+## Phase 4 production execution — rc.19 exact focus coverage matching
+
+The source-backed rc.18 run reached Scale Gate 500 `ready` and generated 125 nutritionally feasible candidates, but all 125 were terminally rejected. Root cause: `focus_only` matched compound coverage cells when **any** criterion matched the focus, so `practical_portable` silently attached three mutually incompatible portable energy-band cells to the same job. rc.19 requires all criteria of a compound target to be explicitly present in the frozen focus. The first portable scale job therefore binds only `meal-mini_meal-coverage` and `practical-portable-coverage` unless an energy band is explicitly requested. `pre-verify-summary.json` also includes rejection counts by code.
+
 ## Phase 4 production execution — rc.18 feasible amount solver
 
 A source-backed rc.17 run reached the first industrialized batch with only `reviewBacklogCount=2`, proving the `focus_only` contract fix removed the broad planner/generator mismatch. The two remaining non-terminal candidates exposed a second generator defect: amount scaling toward the job energy midpoint was artificially clamped to `0.55-1.8`, so dense USDA combinations could remain outside the frozen `150-499 kcal` band. rc.18 replaces that heuristic with a deterministic feasibility solver derived from the actual production constraints: job energy range, `<=1500 g` per ingredient line, and `40-2500 g` total normalized portion. Infeasible combinations are retried deterministically; unsupported protein/fiber bands fail before batch execution. The zero-review-backlog gate remains unchanged.
@@ -186,7 +190,7 @@ A source-backed rc.17 run reached the first industrialized batch with only `revi
 
 A source-backed run reached the first industrialized 4P-C batch with `reviewBacklogCount=125`. The failure exposed a planner/generator contract mismatch: `focused_expansion` could enrich the requested `mini_meal + practical_portable` focus with global energy/protein/fiber deficits, while the specialized portable generator only targeted its portable mini-meal structure. rc.17 introduces `goal.intentStrategy=focus_only` for this first batch. The resulting job keeps the mini-meal default energy range `150-499 kcal`, leaves `proteinG` and `fiberG` unconstrained, and carries only focus-matching coverage targets. The zero-review-backlog apply gate remains unchanged.
 
-The first-scale runner now writes `job.json`, `batch-report.json` and `pre-verify-summary.json` before final verification, and the production workflow uploads those files on failure. The orchestration schema change is deploy-safe with `ydm-shell-v20` / `ydm-data-v10`.
+The first-scale runner writes `job.json`, `batch-report.json` and `pre-verify-summary.json` before final verification, and the production workflow uploads those files on failure. `pre-verify-summary.json` now also reports rejection counts by code. For `focus_only`, a compound coverage cell is attached to the job only when every criterion in that cell is explicitly present in the frozen focus; a portable focus alone must not silently attach mutually incompatible energy-band cells. The rc.19 planner-only application change is deploy-safe with `ydm-shell-v21` / `ydm-data-v10`.
 
 ## Phase 4 production execution — rc.16 curation/materialization nutrition contract
 

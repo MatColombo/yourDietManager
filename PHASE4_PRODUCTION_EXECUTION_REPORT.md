@@ -1,7 +1,7 @@
 # Phase 4 Production Corpus — Missing-Step Execution Bridge Report
 
 Date: **2026-09-04**  
-Candidate: **`1.0.0-rc.18`**  
+Candidate: **`1.0.0-rc.19`**  
 Status: **EXECUTION CONTROL PLANE COMPLETE / SOURCE-BACKED RUN REQUIRED**
 
 ## 1. Objective
@@ -170,3 +170,8 @@ After a successful source-backed run, continue with **4P-D — Controlled Scale 
 ### rc.18 first-scale candidate feasibility
 
 A later source-backed rc.17 run reduced first-batch review backlog to 2. The remaining candidates exposed the portable generator's hard-coded `0.55-1.8` amount scaling clamp. rc.18 replaces that heuristic with a deterministic feasibility solver over the frozen energy range and production amount bounds, retries alternate canonical triples when needed, and fails before batch processing for unsupported protein/fiber-constrained jobs. Zero-review-backlog remains mandatory.
+
+
+## rc.19 focused coverage-target correction
+
+The first real scale run proved that `focus_only` must not attach compound coverage cells on a partial criterion match. A focus of `mini_meal + practical_portable` previously matched every portable energy cell because the planner used any-criterion matching; the recipe pipeline then correctly rejected every candidate for `coverage_target_missed` because no recipe can simultaneously satisfy the 300–399, 400–499 and 500–599 kcal portable cells. rc.19 changes focused compound matching to all-criteria matching. The first portable job therefore freezes only `meal-mini_meal-coverage` and `practical-portable-coverage` unless an energy band is explicitly part of the focus. Zero-backlog, target and diversity gates are unchanged.

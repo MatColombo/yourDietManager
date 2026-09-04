@@ -7,7 +7,10 @@ import { planPilotIntake, productionContractDigest, resolveProductionIntake, mar
 import { buildPilotWaveReport } from '../src/corpus/ingredientCuration.js';
 import { buildPilotWaveJob, generatePilotCandidates, generatePortableScaleCandidates, pilotIngredientDiagnostics } from '../src/corpus/deterministicRecipeGenerator.js';
 import { processCandidateBatch } from '../src/corpus/recipePipeline.js';
-import { processIndustrializedProductionBatch } from '../src/corpus/productionRecipePipeline.js';
+import { planProductionJobIntake, processIndustrializedProductionBatch } from '../src/corpus/productionRecipePipeline.js';
+import { scanCorpus } from '../src/corpus/corpusScanner.js';
+import { planNextBatch } from '../src/corpus/corpusOrchestrator.js';
+import { assertReferenceData } from '../src/services/referenceDataService.js';
 import { readJson } from '../scripts/corpus/io-lib.mjs';
 
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
@@ -86,6 +89,27 @@ test('portable scale generator solves high-density USDA-style combinations witho
   const processed=await processIndustrializedProductionBatch({job,candidates:generated.candidates,corpusPolicy:policy,pipelinePolicy,ingredientFamilies:corpus.ingredientFamilies,ingredientRevisions:corpus.ingredientRevisions,existingRecipeVersions:[],taxonomies:corpus.taxonomies,taxonomyTerms:corpus.taxonomyTerms,registry,productionContext:{contractId:contract.contractId,contractVersion:contract.contractVersion,intakeId:intake.intakeId},generatedAt:'2026-09-04T19:51:00Z'});
   assert.equal(processed.report.reviewBacklogCount,0,JSON.stringify(processed.report.dispositionCounts));
   assert.equal(processed.result.acceptedCount,100,JSON.stringify(processed.report.batchGate));
+  assert.equal(processed.report.batchGate.status,'pass',JSON.stringify(processed.report.batchGate));
+});
+
+
+test('focus_only production planning excludes compound coverage cells unless every criterion is explicitly focused',async()=>{
+  const {registry,contract,policy,corpus}=await fixture();
+  const referenceIndex=assertReferenceData(corpus.taxonomies,corpus.taxonomyTerms,registry);
+  const snapshot=await scanCorpus({policy,catalogVersion:corpus.manifest.catalogVersion,taxonomies:corpus.taxonomies,taxonomyTerms:corpus.taxonomyTerms,ingredientFamilies:corpus.ingredientFamilies,ingredientRevisions:corpus.ingredientRevisions,recipeFamilies:[],recipeVersions:[],registry});
+  const planned=await planNextBatch({policy,snapshot,ingredientFamilies:corpus.ingredientFamilies,ingredientRevisions:corpus.ingredientRevisions,mode:'focused_expansion',goal:{acceptedAddCount:100,focusMode:'restrict',intentStrategy:'focus_only',focus:{mealArchetypes:['mini_meal'],practicalityTags:['practical_portable']}},seed:'focus-only-compound-regression',targetCatalogVersion:'test-production-scale',referenceDataVersion:corpus.manifest.referenceDataVersion,referenceDataDigest:corpus.manifest.referenceDataDigest,referenceIndex,productionContract:contract,createdAt:'2026-09-04T20:05:00Z'});
+  assert.equal(planned.jobs.length,1,JSON.stringify(planned.run));
+  const job=planned.jobs[0];
+  assert.deepEqual(job.coverageTargets.map(target=>target.targetId).sort(),['meal-mini_meal-coverage','practical-portable-coverage']);
+  assert.ok(job.coverageTargets.every(target=>target.criteria.length===1),JSON.stringify(job.coverageTargets));
+  const intake=await planProductionJobIntake({job,contract,createdAt:'2026-09-04T20:05:10Z',registry});
+  for(const record of intake.records){record.state='ready_for_generation';record.referenceScanStatus='complete';}
+  const generated=generatePortableScaleCandidates({job,intake,corpus});
+  const pipelinePolicy=await readJson(path.join(root,'corpus/production/v1-recipe-pipeline-policy.json'));
+  const processed=await processIndustrializedProductionBatch({job,candidates:generated.candidates,corpusPolicy:policy,pipelinePolicy,ingredientFamilies:corpus.ingredientFamilies,ingredientRevisions:corpus.ingredientRevisions,existingRecipeVersions:[],taxonomies:corpus.taxonomies,taxonomyTerms:corpus.taxonomyTerms,registry,productionContext:{contractId:contract.contractId,contractVersion:contract.contractVersion,intakeId:intake.intakeId},generatedAt:'2026-09-04T20:06:00Z'});
+  assert.equal(processed.result.rejected.filter(item=>item.code==='coverage_target_missed').length,0,JSON.stringify(processed.result.rejected.slice(0,5)));
+  assert.equal(processed.result.acceptedCount,100,JSON.stringify(processed.report.batchGate));
+  assert.equal(processed.report.reviewBacklogCount,0);
   assert.equal(processed.report.batchGate.status,'pass',JSON.stringify(processed.report.batchGate));
 });
 

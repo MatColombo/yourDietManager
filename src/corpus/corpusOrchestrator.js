@@ -124,7 +124,7 @@ function buildIntents(policy, snapshot, goal, ingredientFamilies = [], ingredien
     const matching = policy.coverageTargets.filter(target => {
       const map = { meal_archetype:'mealArchetypes', energy_band:'energyBandIds', protein_band:'proteinBandIds', fiber_band:'fiberBandIds', practicality:'practicalityTags', diet:'dietTags', recipe_family:'recipeFamilies', cuisine:'cuisines', ingredient_category:'ingredientCategoryIds' };
       const criteria = target.criteria?.length ? target.criteria : [{ dimension: target.dimension, key: target.key }];
-      return criteria.some(criterion => (goal.focus[map[criterion.dimension]] || []).includes(criterion.key));
+      return criteria.every(criterion => (goal.focus[map[criterion.dimension]] || []).includes(criterion.key));
     });
     intent.targetIds.push(...matching.map(target => target.targetId));
     if (!intent.targetIds.length) intent.targetIds.push(items[0].target.targetId);

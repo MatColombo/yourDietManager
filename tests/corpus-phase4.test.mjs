@@ -172,6 +172,7 @@ test('focus_only planning freezes the first portable scale batch to generator-su
   assert.equal(job.proteinG, null);
   assert.equal(job.fiberG, null);
   assert.equal(planned.run.goal.intentStrategy, 'focus_only');
+  assert.ok(job.coverageTargets.every(target => target.criteria.length === 1));
   assert.ok(job.coverageTargets.every(target => ['meal_archetype', 'practicality'].includes(target.dimension)));
 });
 
