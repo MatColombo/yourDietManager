@@ -274,5 +274,7 @@ The rc.13 execution suite must verify:
 - the deterministic pilot generator produces exactly 120 unique candidates using only active `curated/high` ingredients;
 - all six synthetic production pilot waves can close 120/120 accepted through the real Recipe Pipeline with zero unresolved references;
 - the deterministic focused scale generator can feed a 125-candidate industrialized batch that reaches the 100-accepted target with zero review backlog under a clean production fixture;
+- the first scale-batch planner uses `intentStrategy=focus_only`, so the portable generator receives only the meal/practicality dimensions it supports and does not inherit implicit protein/fiber bands;
+- first-scale failure evidence (`job.json`, `batch-report.json`, `pre-verify-summary.json`) is written before the zero-backlog verification and uploaded even when verification fails;
 - `--pilot-strict` fails closed when the real ingredient foundation is not ready;
 - source/network unavailability is reported as a blocked execution prerequisite, never converted into a passing data gate.

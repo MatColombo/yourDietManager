@@ -181,6 +181,7 @@ jobs:
             corpus/staging/runtime/production-pilot/wave-*-report.json
             corpus/staging/runtime/scale-gate-after-pilot.json
             corpus/staging/runtime/scale-batch-001/summary.json
+            corpus/staging/runtime/scale-batch-001/pre-verify-summary.json
             corpus/staging/runtime/scale-batch-001/batch-report.json
             corpus/sources/cache/usda-foundation-2026-04/acquisition-manifest.json
             corpus/sources/cache/usda-sr-legacy-2018-04/acquisition-manifest.json

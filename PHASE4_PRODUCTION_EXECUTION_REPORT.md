@@ -1,12 +1,14 @@
 # Phase 4 Production Corpus — Missing-Step Execution Bridge Report
 
 Date: **2026-09-04**  
-Candidate: **`1.0.0-rc.16`**  
+Candidate: **`1.0.0-rc.17`**  
 Status: **EXECUTION CONTROL PLANE COMPLETE / SOURCE-BACKED RUN REQUIRED**
 
 ## 1. Objective
 
 rc.14 implements the missing executable path between the completed 4P-B/4P-C control planes and real corpus production. It does **not** declare the production corpus complete and does not substitute synthetic nutrition data for USDA source records.
+
+A source-backed rc.16 run later reached the first industrialized scale batch and exposed a specialized-generator contract mismatch: all 125 oversampled candidates became non-terminal review backlog because the generic focused planner could enrich the portable mini-meal focus with nutrition dimensions not supported by that generator. rc.17 fixes the first-batch contract with `intentStrategy=focus_only`; it does not weaken the zero-backlog gate. Failure evidence is persisted before verification.
 
 The required order is now executable and fail-closed:
 

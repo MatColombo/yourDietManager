@@ -128,7 +128,9 @@ function buildIntents(policy, snapshot, goal, ingredientFamilies = [], ingredien
     });
     intent.targetIds.push(...matching.map(target => target.targetId));
     if (!intent.targetIds.length) intent.targetIds.push(items[0].target.targetId);
-    intents.unshift(normalizeIntent(intent));
+    const normalizedFocusIntent = normalizeIntent(intent);
+    if (goal.intentStrategy === 'focus_only') return [normalizedFocusIntent];
+    intents.unshift(normalizedFocusIntent);
   }
   const seen = new Set(); return intents.filter(intent => { const key = canonicalIntentKey(intent); if (seen.has(key)) return false; seen.add(key); return true; }).slice(0, policy.batchPlanning.candidateIntentLimit);
 }
@@ -214,6 +216,7 @@ export async function planNextBatch({ policy, snapshot, ingredientFamilies = [],
     maxJobs: goal.maxJobs ?? (mode === 'improve' ? 1 : null),
     allowRetire: Boolean(goal.allowRetire),
     focusMode: goal.focusMode || 'boost',
+    intentStrategy: goal.intentStrategy || 'adaptive',
     focus: goal.focus || null
   };
   if (mode === 'build' && normalizedGoal.targetRecipeCount == null) normalizedGoal.targetRecipeCount = policy.targetCorpus.target;

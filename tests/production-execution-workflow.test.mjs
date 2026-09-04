@@ -18,7 +18,16 @@ test('network-enabled production workflow preserves the frozen 4P-B -> pilot -> 
   assert.match(workflow,/actions\/checkout@v7/);
   assert.match(workflow,/actions\/setup-node@v7/);
   assert.match(workflow,/commit_results/);
+  assert.match(workflow,/pre-verify-summary\.json/);
   assert.doesNotMatch(workflow,/git add[^\n]*corpus\/sources\/cache/);
+});
+
+
+test('first scale runner binds the specialized portable generator to focus_only planning and persists failure evidence', async () => {
+  const runner = await readFile('scripts/corpus/execute-first-scale-batch.mjs','utf8');
+  assert.match(runner,/intentStrategy:'focus_only'/);
+  assert.match(runner,/pre-verify-summary\.json/);
+  assert.ok(runner.indexOf("writeJson(path.join(outputRoot,'batch-report.json')") < runner.indexOf('await verifyIndustrializedBatchReport'), 'batch report must be written before final verification');
 });
 
 test('production execution spec keeps deterministic review bounded and non-fuzzy', async () => {

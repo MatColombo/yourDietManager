@@ -147,6 +147,34 @@ test('focused expansion turns user focus into a constraint while retaining autom
   assert.ok(planned.run.plannedJobs[0].reasons.some(reason => reason.includes('user focus')));
 });
 
+
+test('focus_only planning freezes the first portable scale batch to generator-supported dimensions', async () => {
+  const { policy, before, catalog, referenceIndex } = await phase4Fixture();
+  const planned = await planNextBatch({
+    policy,
+    snapshot: before,
+    ingredientFamilies: catalog.ingredientFamilies,
+    ingredientRevisions: catalog.ingredientRevisions,
+    mode: 'focused_expansion',
+    goal: { acceptedAddCount: 3, focusMode: 'restrict', intentStrategy: 'focus_only', focus: { mealArchetypes: ['mini_meal'], practicalityTags: ['practical_portable'] } },
+    seed: 'phase4-focus-only-test',
+    targetCatalogVersion: '0.4.0-dev',
+    referenceDataVersion: catalog.manifest.referenceDataVersion,
+    referenceDataDigest: catalog.manifest.referenceDataDigest,
+    referenceIndex,
+    createdAt: '2026-09-03T15:03:30Z'
+  });
+  assert.equal(planned.jobs.length, 1);
+  const job = planned.jobs[0];
+  assert.deepEqual(job.mealArchetypes, ['mini_meal']);
+  assert.deepEqual(job.practicalityTargets, ['practical_portable']);
+  assert.deepEqual(job.energyKcal, { min: 150, max: 499 });
+  assert.equal(job.proteinG, null);
+  assert.equal(job.fiberG, null);
+  assert.equal(planned.run.goal.intentStrategy, 'focus_only');
+  assert.ok(job.coverageTargets.every(target => ['meal_archetype', 'practicality'].includes(target.dimension)));
+});
+
 test('smoke pipeline rejects an exact duplicate and a candidate outside the planned nutrition range before reaching target', async () => {
   const { result } = await phase4Fixture();
   assert.equal(result.candidateCount, 7);

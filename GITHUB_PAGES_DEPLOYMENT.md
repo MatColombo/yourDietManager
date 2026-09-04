@@ -85,7 +85,7 @@ The Pages workflow runs the application check with `YDM_BROWSER_REQUIRED=1`. Thi
 
 La PWA registra/aggiorna ora la Service Worker tramite `src/recoveryBootstrap.js` **prima** di `src/main.js`. Questo evita che un errore di bootstrap applicativo impedisca al browser di ricevere una Service Worker nuova e continui quindi a servire moduli JS obsoleti dalla shell cache precedente.
 
-Le cache correnti sono `ydm-shell-v19-<scope>` e `ydm-data-v9-<scope>`. `updateViaCache: 'none'` e `registration.update()` forzano il controllo del worker dalla rete; al cambio controller viene eseguito un solo reload protetto da `sessionStorage`.
+Le cache correnti sono `ydm-shell-v20-<scope>` e `ydm-data-v10-<scope>`. `updateViaCache: 'none'` e `registration.update()` forzano il controllo del worker dalla rete; al cambio controller viene eseguito un solo reload protetto da `sessionStorage`.
 
 Per upgrade da installazioni pre-hardening, `contentMigration:3` e resumable. Una FoodPreference legacy non-hard salvata come `ingredient:uova` viene re-tipizzata in modo auditato a `foodCategory:food_group_eggs`; non e un alias runtime e non modifica regole `autoExclude=true`.
 

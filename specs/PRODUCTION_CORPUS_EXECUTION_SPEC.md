@@ -76,7 +76,11 @@ Every wave is processed through the production Recipe Pipeline. A wave passes on
 
 After 120/120 pilot closure, Scale Gate 500 is re-evaluated. The first 4P-C batch is permitted only from gate state `ready`. It uses the frozen industrialized pipeline, stale-snapshot protection, result digest, review backlog rules and apply gate.
 
-The first scale batch targets 100 accepted recipes. Its output is a **working production bundle**, not a V1 release. The V1 release gate remains blocked until the frozen production minimum of 3,000 accepted recipes and all final release requirements are satisfied.
+The first scale batch targets 100 accepted recipes with a **focus-only planning contract** bound to the specialized deterministic generator: `mini_meal` + `practical_portable`, default mini-meal energy range `150-499 kcal`, and no implicit protein/fiber band enrichment. The planner records `goal.intentStrategy=focus_only`. This prevents the generic coverage planner from silently adding nutrition deficits that the specialized portable generator does not claim to solve. Later scale batches may use adaptive multi-dimension intents only when the selected generator explicitly supports those dimensions.
+
+The batch runner writes `job.json`, `batch-report.json` and `pre-verify-summary.json` before the zero-review-backlog apply verification. A failed batch therefore remains diagnosable from GitHub Actions artifacts instead of losing its disposition breakdown.
+
+The first scale batch output is a **working production bundle**, not a V1 release. The V1 release gate remains blocked until the frozen production minimum of 3,000 accepted recipes and all final release requirements are satisfied.
 
 ## 6. GitHub Actions execution
 

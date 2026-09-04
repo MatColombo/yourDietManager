@@ -2,7 +2,7 @@
 
 Local-first PWA implementation through **Phase 8 — Hardening & V1 release gates**.
 
-Candidate version: **`1.0.0-rc.16`**.
+Candidate version: **`1.0.0-rc.17`**.
 
 Phases 1–7 remain fully present: IndexedDB persistence, onboarding/configuration, backup/import, IT/EN, theme engine, indexed catalog/search/packs, versioned catalog authoring, corpus-orchestration tooling, deterministic seeded plan generation, effective-plan UX with history/undo, shopping checklists and preparation horizon.
 
@@ -176,6 +176,12 @@ npm run corpus:pilot-execute -- <clean-foundation-bundle.json> <out-dir> --canon
 npm run corpus:first-scale-batch -- <pilot-corpus-bundle.json> <out-dir> --canonical
 npm run corpus:production-execution
 ```
+
+## Phase 4 production execution — rc.17 first-scale intent contract
+
+A source-backed run reached the first industrialized 4P-C batch with `reviewBacklogCount=125`. The failure exposed a planner/generator contract mismatch: `focused_expansion` could enrich the requested `mini_meal + practical_portable` focus with global energy/protein/fiber deficits, while the specialized portable generator only targeted its portable mini-meal structure. rc.17 introduces `goal.intentStrategy=focus_only` for this first batch. The resulting job keeps the mini-meal default energy range `150-499 kcal`, leaves `proteinG` and `fiberG` unconstrained, and carries only focus-matching coverage targets. The zero-review-backlog apply gate remains unchanged.
+
+The first-scale runner now writes `job.json`, `batch-report.json` and `pre-verify-summary.json` before final verification, and the production workflow uploads those files on failure. The orchestration schema change is deploy-safe with `ydm-shell-v20` / `ydm-data-v10`.
 
 ## Phase 4 production execution — rc.16 curation/materialization nutrition contract
 
