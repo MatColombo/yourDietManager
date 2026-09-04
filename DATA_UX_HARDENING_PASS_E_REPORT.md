@@ -2,7 +2,7 @@
 
 ## Stato
 
-**DONE (implementation)** — candidate `1.0.0-rc.7`.
+**DONE (implementation)** — candidate `1.0.0-rc.8`.
 
 Pass E chiude formalmente la V1 Data/UX Hardening Revision con un final acceptance gate end-to-end. Non aggiunge nuovi concetti di dominio e non anticipa la materializzazione del corpus production Phase 4: rende invece verificabili, nello stesso flusso automatico, le invarianti UX introdotte nei Pass C-D che prima erano coperte solo da audit source/domain o da una browser regression limitata al detail/edit catalogo.
 
@@ -61,6 +61,12 @@ The first required GitHub Actions run exposed a CI-only bootstrap failure before
 
 For rc.7 the workflow resolves and exports `CHROMIUM_PATH` with stable Google Chrome preferred. The harness validates the executable with `--version`, launches a temporary profile with `--remote-debugging-port=0`, reads Chromium's `DevToolsActivePort` file (falling back to the emitted DevTools URL), waits up to 30 seconds, and fails immediately with process exit/spawn diagnostics when the browser cannot initialize. Failure reports now retain browser path/version and a bounded stderr tail.
 
+## 5.2 GitHub Actions dirty-navigation acceptance correction (rc.8)
+
+The next required GitHub Actions run proved that browser startup was fixed: Google Chrome 152 started and exposed a DevTools port. The failure then moved to the Pass E dirty-navigation assertion. The harness was querying a direct `/configure/days` anchor while still on `/configure/meals`, but that anchor is not part of that rendered view: the shell exposes `/configure`, and the `/configure/days` card is rendered only on the configuration index.
+
+rc.8 keeps the same acceptance invariant but follows the real UI path. With a dirty MealClass draft it clicks the visible `/configure` shell link once with `confirm=false` (navigation rejected) and once with `confirm=true` (draft discarded and navigation accepted), then clicks the real Day classes card from `/configure`. The browser gate therefore tests the router and user-visible navigation contract instead of assuming a DOM shortcut. `Runtime.evaluate` and polling failures now also surface the JavaScript exception description plus expression context rather than the generic CDP text `Uncaught`.
+
 ## 6. Browser report Pass E
 
 `scripts/hardening/browser-regression.mjs` produce ora:
@@ -103,7 +109,7 @@ La Skill ora tratta la final acceptance browser come invariante del workflow di 
 
 ## 9. Versione candidate
 
-La candidate passa da `1.0.0-rc.6` a **`1.0.0-rc.7`** per il solo hardening del bootstrap browser CI; non cambia il contratto funzionale Pass E. Non cambia `DB_VERSION=4` ne `CONTENT_SCHEMA_VERSION=3`: Pass E non introduce migrazioni dati.
+La candidate corrente e **`1.0.0-rc.8`**. rc.7 ha corretto il bootstrap browser CI; rc.8 corregge esclusivamente il percorso della dirty-navigation acceptance e la diagnostica CDP. Il contratto funzionale Pass E resta invariato. Non cambia `DB_VERSION=4` ne `CONTENT_SCHEMA_VERSION=3`: Pass E non introduce migrazioni dati.
 
 ## 10. Release blocker residuo
 

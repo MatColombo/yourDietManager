@@ -124,10 +124,20 @@ async function waitForDevtools(profile, browserState, maxMs = 30000) {
   throw new Error(`Chromium DevTools endpoint did not start within ${maxMs} ms${suffix}`);
 }
 
+function evaluationError(exceptionDetails, expression) {
+  const exception = exceptionDetails?.exception;
+  const description = exception?.description || exception?.value || exceptionDetails?.text || 'Browser evaluation failed';
+  const line = Number.isInteger(exceptionDetails?.lineNumber) ? ` line=${exceptionDetails.lineNumber + 1}` : '';
+  const column = Number.isInteger(exceptionDetails?.columnNumber) ? ` column=${exceptionDetails.columnNumber + 1}` : '';
+  const source = String(expression || '').replace(/\s+/g, ' ').trim().slice(0, 260);
+  return new Error(`${description}${line}${column}; expression=${source}`);
+}
+
 async function waitExpression(cdp, expression, maxMs = 15000) {
   const started = Date.now();
   while (Date.now() - started < maxMs) {
     const result = await cdp.send('Runtime.evaluate', { expression, returnByValue: true, awaitPromise: true });
+    if (result.exceptionDetails) throw evaluationError(result.exceptionDetails, expression);
     if (result.result?.value) return result.result.value;
     await timeout(120);
   }
@@ -136,7 +146,7 @@ async function waitExpression(cdp, expression, maxMs = 15000) {
 
 async function evaluate(cdp, expression) {
   const result = await cdp.send('Runtime.evaluate', { expression, returnByValue: true, awaitPromise: true });
-  if (result.exceptionDetails) throw new Error(result.exceptionDetails.text || 'Browser evaluation failed');
+  if (result.exceptionDetails) throw evaluationError(result.exceptionDetails, expression);
   return result.result?.value;
 }
 
@@ -233,17 +243,31 @@ try {
     const save = document.querySelector('[data-testid="editor-save"]');
     return details && details.open && save && save.disabled ? {open: true, invalidBlocked: true} : null;
   })()`);
+  // Use links that are actually present in the rendered UI. From /configure/meals the shell exposes
+  // /configure; the /configure/days card exists only after reaching the configuration index.
   const rejectedNavigation = await evaluate(cdp, `(() => {
     window.__ydmPassEConfirmCalls = 0;
     window.confirm = () => { window.__ydmPassEConfirmCalls += 1; return false; };
-    document.querySelector('a[data-route][href$="/configure/days"]').click();
+    const link = document.querySelector('a[data-route][href$="/configure"]');
+    if (!link) throw new Error('Expected Configure navigation link is missing');
+    link.click();
     return true;
   })()`);
   if (!rejectedNavigation) throw new Error('Dirty navigation rejection click did not execute');
   await waitExpression(cdp, `window.__ydmPassEConfirmCalls === 1 && location.pathname === '/configure/meals'`);
   await evaluate(cdp, `(() => {
     window.confirm = () => { window.__ydmPassEConfirmCalls += 1; return true; };
-    document.querySelector('a[data-route][href$="/configure/days"]').click();
+    const link = document.querySelector('a[data-route][href$="/configure"]');
+    if (!link) throw new Error('Expected Configure navigation link is missing');
+    link.click();
+    return true;
+  })()`);
+  await waitExpression(cdp, `location.pathname === '/configure' && window.__ydmPassEConfirmCalls === 2`);
+  await waitExpression(cdp, `!!document.querySelector('a.config-card[data-route][href$="/configure/days"]')`);
+  await evaluate(cdp, `(() => {
+    const link = document.querySelector('a.config-card[data-route][href$="/configure/days"]');
+    if (!link) throw new Error('Expected Day classes configuration card is missing');
+    link.click();
     return true;
   })()`);
   await waitExpression(cdp, `location.pathname === '/configure/days' && window.__ydmPassEConfirmCalls === 2`);

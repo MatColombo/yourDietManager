@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-04T12:47:42.796Z",
-  "candidateAppVersion": "1.0.0-rc.7",
+  "generatedAt": "2026-09-04T13:00:58.472Z",
+  "candidateAppVersion": "1.0.0-rc.8",
   "requiredBrowser": false,
   "browserStatus": "skipped",
   "checks": [
     {
       "id": "app-version-sync",
       "pass": true,
-      "detail": "package=1.0.0-rc.7, runtime=1.0.0-rc.7"
+      "detail": "package=1.0.0-rc.8, runtime=1.0.0-rc.8"
     },
     {
       "id": "revision-pass-e-documented",
@@ -48,7 +48,7 @@
     {
       "id": "browser-covers-dirty-navigation",
       "pass": true,
-      "detail": "browser harness checks reject/accept dirty navigation"
+      "detail": "browser harness checks reject/accept dirty navigation through links actually rendered by the configuration UI"
     },
     {
       "id": "browser-covers-save-feedback",

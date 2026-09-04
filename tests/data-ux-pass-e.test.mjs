@@ -13,6 +13,9 @@ test('Pass E browser harness covers the final editor interaction acceptance surf
   assert.match(configUi, /data-testid': 'nutrition-daily-energy'/);
   assert.match(configUi, /data-testid', 'editor-save'/);
   assert.match(configUi, /data-testid', 'meal-rule-add'/);
+  assert.match(configUi, /\['\/configure\/days', 'config\.card\.days\.title'/);
+  const appUi = await text('src/ui/app.js');
+  assert.match(appUi, /SECONDARY = \[\['\/configure', 'nav\.configure'/);
   assert.match(browser, /blockedWhenBlank/);
   assert.match(browser, /disclosurePreserved/);
   assert.match(browser, /__ydmPassEConfirmCalls/);
@@ -22,6 +25,10 @@ test('Pass E browser harness covers the final editor interaction acceptance surf
   assert.match(browser, /--remote-debugging-port=0/);
   assert.match(browser, /DevToolsActivePort/);
   assert.match(browser, /maxMs = 30000/);
+  assert.match(browser, /evaluationError\(exceptionDetails, expression\)/);
+  assert.match(browser, /a\[data-route\]\[href\$=\"\/configure\"\]/);
+  assert.match(browser, /a\.config-card\[data-route\]\[href\$=\"\/configure\/days\"\]/);
+  assert.doesNotMatch(browser, /a\[data-route\]\[href\$=\"\/configure\/days\"\]/);
 });
 
 test('Pass E closure gate runs after the browser gate and CI requires a real browser pass', async () => {
@@ -29,7 +36,7 @@ test('Pass E closure gate runs after the browser gate and CI requires a real bro
   const workflow = await text('.github/workflows/pages.yml');
   const closure = await text('scripts/hardening/revision-closure.mjs');
   assert.equal(pkg.version, APP_VERSION);
-  assert.equal(pkg.version, '1.0.0-rc.7');
+  assert.equal(pkg.version, '1.0.0-rc.8');
   assert.ok(pkg.scripts.check.indexOf('hardening:browser') < pkg.scripts.check.indexOf('hardening:revision'));
   assert.match(workflow, /YDM_BROWSER_REQUIRED:\s*'1'/);
   assert.match(workflow, /CHROMIUM_PATH=\$browser/);

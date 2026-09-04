@@ -30,7 +30,7 @@ check('skill-pass-e-invariant', /final acceptance|Pass E/i.test(skill), 'project
 check('skill-quality-pass-e', /Pass E[\s\S]*browser/i.test(skillQuality), 'Skill quality gates contain Pass E browser acceptance');
 check('browser-covers-form-schema', browserSource.includes('nutrition-daily-energy') && browserSource.includes('blockedWhenBlank'), 'browser harness checks required numeric blank -> Save disabled');
 check('browser-covers-disclosure', browserSource.includes('disclosurePreserved') && browserSource.includes('meal-rule-add'), 'browser harness checks disclosure preservation after local rerender');
-check('browser-covers-dirty-navigation', browserSource.includes('__ydmPassEConfirmCalls') && browserSource.includes('dirtyNavigationGuarded'), 'browser harness checks reject/accept dirty navigation');
+check('browser-covers-dirty-navigation', browserSource.includes('__ydmPassEConfirmCalls') && browserSource.includes('a[data-route][href$=\"/configure\"]') && browserSource.includes('a.config-card[data-route][href$=\"/configure/days\"]') && browserSource.includes('dirtyNavigationGuarded'), 'browser harness checks reject/accept dirty navigation through links actually rendered by the configuration UI');
 check('browser-covers-save-feedback', browserSource.includes(".toast-region .toast--success") && browserSource.includes('saveFeedbackVisible'), 'browser harness checks persistent success feedback');
 check('ci-browser-required', /YDM_BROWSER_REQUIRED:\s*['\"]1['\"]/i.test(workflow), 'GitHub Pages verification requires a real browser pass');
 

@@ -93,7 +93,7 @@ Implementato:
 - `hardening:revision` machine-checkable per sincronizzazione versione, copertura documentale/Skill, presenza dei browser acceptance checks e requisito CI `YDM_BROWSER_REQUIRED=1`;
 - main `npm run check` ordinato come build -> browser -> revision closure -> Pages audit;
 - Skill, quality gates, roadmap e test strategy allineati al Pass E;
-- candidate `1.0.0-rc.7`, senza nuove migrazioni DB/content; rc.7 rende deterministico il bootstrap browser GitHub Actions (stable Chrome preferito, DevTools port assegnata dal browser, diagnostica early-exit).
+- candidate `1.0.0-rc.8`, senza nuove migrazioni DB/content; rc.7 rende deterministico il bootstrap browser GitHub Actions, mentre rc.8 corregge la dirty-navigation acceptance per usare il percorso UI realmente renderizzato (`/configure/meals` -> `/configure` -> `/configure/days`) e rende diagnostiche le eccezioni `Runtime.evaluate`.
 
 ## Gate per riprendere Phase 4 production
 
