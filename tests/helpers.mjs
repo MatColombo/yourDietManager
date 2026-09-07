@@ -115,6 +115,12 @@ export class MemoryRepository {
       throw error;
     }
   }
+  async resetAll({ data = {}, meta = {} } = {}) {
+    this.stores = new Map();
+    this.meta = new Map();
+    for (const [store, values] of Object.entries(data)) for (const value of values || []) await this.put(store, value);
+    for (const [key, value] of Object.entries(meta)) await this.setMeta(key, value);
+  }
 }
 
 

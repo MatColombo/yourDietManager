@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "contractId": "yourdietmanager-v1-freeze",
+  "contractVersion": "1.0.0",
+  "status": "release_candidate",
+  "frozenAt": "2026-09-07T13:30:00.000Z",
+  "appCandidateVersion": "1.0.0-rc.27",
+  "catalogVersion": "1.0.0",
+  "persistence": {
+    "dbVersion": 5,
+    "contentSchemaVersion": 3,
+    "backupFormatVersion": 1,
+    "preV1DataEpoch": "v1-freeze-epoch-1"
+  },
+  "dataContract": {
+    "ingredientFamilies": 600,
+    "ingredientRevisions": 600,
+    "recipeFamilies": 500,
+    "recipeVersions": 500,
+    "coreRecipeVersions": 500,
+    "stratifiedReviewSampleSize": 60,
+    "stratifiedReviewStrata": 12
+  },
+  "compatibilityBoundary": "v1.0.0",
+  "manualAcceptance": {
+    "required": true,
+    "status": "pending",
+    "stablePromotionAllowed": false
+  },
+  "promotionRules": [
+    "Do not change catalog content, IDs, schemas or persistence formats after manual acceptance unless a release blocker is found.",
+    "Final promotion changes the application from 1.0.0-rc.27 to 1.0.0 and records manual acceptance; it does not regenerate the V1 catalog.",
+    "The v1-freeze-epoch-1 destructive reset is the final pre-V1 reset boundary and must not be incremented during stable promotion.",
+    "Any blocker that requires data/schema changes returns the candidate to Step 3 validation before stable promotion."
+  ],
+  "recipeDigest": "7416f74b668bf44f8c2abf0c77e3f659ffb145f0b0c5141b9d08a74304cd6780"
+}

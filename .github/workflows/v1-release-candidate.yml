@@ -1,0 +1,81 @@
+name: Verify V1 Release Candidate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: v1-release-candidate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify-v1-release-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      - name: Rebuild frozen V1 corpus
+        run: |
+          npm run corpus:build-v1-release
+          npm run corpus:review-v1-release
+          npm run catalog:publish-v1-release
+
+      - name: Verify frozen generated data has no drift
+        run: |
+          git diff --exit-code -- \
+            corpus/production/v1-release-bundle.json \
+            corpus/production/v1-release \
+            public/data/catalog-manifest.json \
+            public/data/ingredients \
+            public/data/recipes \
+            public/data/reference-data
+
+      - name: Select browser for acceptance gate
+        shell: bash
+        run: |
+          browser="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
+          if [ -z "$browser" ]; then
+            echo "No Chrome/Chromium executable found on the runner" >&2
+            exit 1
+          fi
+          echo "CHROMIUM_PATH=$browser" >> "$GITHUB_ENV"
+          "$browser" --version
+
+      - name: Verify release candidate
+        run: npm run check
+        env:
+          YDM_BROWSER_REQUIRED: '1'
+
+      - name: Verify Step 3 freeze explicitly
+        run: npm run v1:step3-gate
+
+      - name: Build GitHub Pages candidate
+        run: npm run build
+        env:
+          YDM_BASE_PATH: /yourDietManager/
+
+      - name: Audit GitHub Pages candidate
+        run: node scripts/hardening/pages-audit.mjs dist /yourDietManager/
+
+      - name: Upload release-candidate artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: yourdietmanager-v1-rc-${{ github.run_number }}
+          path: |
+            dist
+            corpus/production/v1-release/freeze-contract.json
+            corpus/production/v1-release/release-candidate-evidence.json
+            corpus/production/v1-release/stratified-review.json
+            V1_FREEZE_CONTRACT.md
+            V1_FINAL_TEST_CHECKLIST.md
+          if-no-files-found: error
+          retention-days: 14

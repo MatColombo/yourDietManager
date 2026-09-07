@@ -71,14 +71,11 @@ test('controlled-scale generator produces deterministic lunch candidates inside 
   }
 });
 
-test('controlled-scale workflow executes tranche checkpoints 1 -> 2 -> 3 and verifies the final strict Scale Gate', async()=>{
-  const workflow=await readFile(path.join(root,'.github/workflows/controlled-scale-500.yml'),'utf8');
-  const ordered=['--tranche=1','--tranche=2','--tranche=3','--strict']; let cursor=-1;
-  for(const token of ordered){ const next=workflow.indexOf(token,cursor+1); assert.ok(next>cursor,`workflow token missing/out of order: ${token}`); cursor=next; }
-  assert.match(workflow,/active !== 220/);
-  assert.equal((workflow.match(/--canonical/g)||[]).length,3);
-  assert.match(workflow,/controlled-scale-500-summary\.json/);
-  assert.match(workflow,/commit_results/);
+test('pre-freeze controlled-scale writer workflow is retired while the historical runner remains available in Git history/source', async()=>{
+  await assert.rejects(readFile(path.join(root,'.github/workflows/controlled-scale-500.yml'),'utf8'), /ENOENT/);
+  const runner=await readFile(path.join(root,'scripts/corpus/execute-controlled-scale-500.mjs'),'utf8');
+  assert.match(runner,/--tranche/);
+  assert.match(runner,/--canonical/);
 });
 
 test('split controlled-scale runner accumulates canonical tranche evidence instead of overwriting prior checkpoints', async()=>{

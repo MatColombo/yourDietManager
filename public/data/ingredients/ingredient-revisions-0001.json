@@ -1,262 +1,6 @@
 [
   {
     "schemaVersion": 1,
-    "ingredientRevisionId": "ingrev_salmon_raw_v2",
-    "ingredientId": "ing_salmon",
-    "revisionNumber": 2,
-    "origin": "base",
-    "catalogVersion": "0.3.0-dev",
-    "i18n": {
-      "it": {
-        "name": "Salmone crudo",
-        "aliases": [
-          "salmone"
-        ]
-      },
-      "en": {
-        "name": "Raw salmon",
-        "aliases": [
-          "salmon"
-        ]
-      }
-    },
-    "basis": {
-      "amount": 100,
-      "unit": "g",
-      "state": "raw"
-    },
-    "nutrition": {
-      "energyKcal": 208,
-      "proteinG": 20.4,
-      "carbsG": 0,
-      "fatG": 13.4,
-      "fiberG": 0,
-      "sugarsG": 0,
-      "saturatedFatG": 3.1,
-      "saltG": 0.15,
-      "sodiumMg": 59
-    },
-    "taxonomy": {
-      "foodGroup": "food_group_fish_seafood",
-      "foodSubgroup": "food_subgroup_fatty_fish",
-      "flavorProfile": "flavor_savory",
-      "mealArchetypes": [
-        "lunch",
-        "dinner"
-      ],
-      "proteinRole": "high",
-      "fatRole": "high"
-    },
-    "allergenIds": [
-      "fish"
-    ],
-    "conversions": [],
-    "source": {
-      "type": "curated",
-      "label": "Phase 1 development fixture",
-      "reference": null,
-      "sourceRecordId": null,
-      "checkedAt": "2026-09-03T12:00:00Z",
-      "licenseNote": "Development bootstrap fixture only; replace during Phase 4 catalog curation."
-    },
-    "quality": {
-      "status": "draft",
-      "confidence": "low",
-      "notes": "Development bootstrap fixture; replace during Phase 4 catalog curation."
-    },
-    "contentHash": "f8f85594abb5cc3d7bfe7c0d442e2dc1d9a8709a012f2cd407c48fa26a3bbe98",
-    "createdAt": "2026-09-03T12:00:00Z"
-  },
-  {
-    "schemaVersion": 1,
-    "ingredientRevisionId": "ingrev_rice_cooked_v2",
-    "ingredientId": "ing_rice_cooked",
-    "revisionNumber": 2,
-    "origin": "base",
-    "catalogVersion": "0.3.0-dev",
-    "i18n": {
-      "it": {
-        "name": "Riso cotto",
-        "aliases": []
-      },
-      "en": {
-        "name": "Cooked rice",
-        "aliases": []
-      }
-    },
-    "basis": {
-      "amount": 100,
-      "unit": "g",
-      "state": "cooked"
-    },
-    "nutrition": {
-      "energyKcal": 130,
-      "proteinG": 2.7,
-      "carbsG": 28.2,
-      "fatG": 0.3,
-      "fiberG": 0.4,
-      "sugarsG": 0.1,
-      "saturatedFatG": 0.1,
-      "saltG": 0.01,
-      "sodiumMg": 4
-    },
-    "taxonomy": {
-      "foodGroup": "food_group_pasta_rice_cereals",
-      "foodSubgroup": "food_subgroup_rice",
-      "flavorProfile": "flavor_neutral",
-      "mealArchetypes": [
-        "lunch",
-        "dinner"
-      ],
-      "proteinRole": "low",
-      "fatRole": "low"
-    },
-    "allergenIds": [],
-    "conversions": [],
-    "source": {
-      "type": "manual",
-      "label": "Phase 1 development fixture",
-      "reference": null,
-      "sourceRecordId": null,
-      "checkedAt": "2026-09-03T12:00:00Z",
-      "licenseNote": "Development bootstrap fixture only; replace during Phase 4 catalog curation."
-    },
-    "quality": {
-      "status": "draft",
-      "confidence": "low",
-      "notes": "Development bootstrap fixture; not production nutrition data."
-    },
-    "contentHash": "df5eb50b6429ef6e78d32897544a612fdd3f175d5058c5a574da1b091f1dcdb8",
-    "createdAt": "2026-09-03T12:00:00Z"
-  },
-  {
-    "schemaVersion": 1,
-    "ingredientRevisionId": "ingrev_zucchini_raw_v2",
-    "ingredientId": "ing_zucchini",
-    "revisionNumber": 2,
-    "origin": "base",
-    "catalogVersion": "0.3.0-dev",
-    "i18n": {
-      "it": {
-        "name": "Zucchine crude",
-        "aliases": []
-      },
-      "en": {
-        "name": "Raw zucchini",
-        "aliases": []
-      }
-    },
-    "basis": {
-      "amount": 100,
-      "unit": "g",
-      "state": "raw"
-    },
-    "nutrition": {
-      "energyKcal": 17,
-      "proteinG": 1.2,
-      "carbsG": 3.1,
-      "fatG": 0.3,
-      "fiberG": 1,
-      "sugarsG": 2.5,
-      "saturatedFatG": 0.1,
-      "saltG": 0.02,
-      "sodiumMg": 8
-    },
-    "taxonomy": {
-      "foodGroup": "food_group_vegetables",
-      "foodSubgroup": "food_subgroup_summer_vegetables",
-      "flavorProfile": "flavor_savory",
-      "mealArchetypes": [
-        "lunch",
-        "dinner"
-      ],
-      "proteinRole": "low",
-      "fatRole": "low"
-    },
-    "allergenIds": [],
-    "conversions": [],
-    "source": {
-      "type": "manual",
-      "label": "Phase 1 development fixture",
-      "reference": null,
-      "sourceRecordId": null,
-      "checkedAt": "2026-09-03T12:00:00Z",
-      "licenseNote": "Development bootstrap fixture only; replace during Phase 4 catalog curation."
-    },
-    "quality": {
-      "status": "draft",
-      "confidence": "low",
-      "notes": "Development bootstrap fixture; not production nutrition data."
-    },
-    "contentHash": "5bfb19998b92fc70e8949cc699292d679c5f7196812b3a6ee2f8eb24dd8b450f",
-    "createdAt": "2026-09-03T12:00:00Z"
-  },
-  {
-    "schemaVersion": 1,
-    "ingredientRevisionId": "ingrev_olive_oil_v2",
-    "ingredientId": "ing_olive_oil",
-    "revisionNumber": 2,
-    "origin": "base",
-    "catalogVersion": "0.3.0-dev",
-    "i18n": {
-      "it": {
-        "name": "Olio di oliva",
-        "aliases": []
-      },
-      "en": {
-        "name": "Olive oil",
-        "aliases": []
-      }
-    },
-    "basis": {
-      "amount": 100,
-      "unit": "g",
-      "state": "raw"
-    },
-    "nutrition": {
-      "energyKcal": 884,
-      "proteinG": 0,
-      "carbsG": 0,
-      "fatG": 100,
-      "fiberG": 0,
-      "sugarsG": 0,
-      "saturatedFatG": 14,
-      "saltG": 0,
-      "sodiumMg": 0
-    },
-    "taxonomy": {
-      "foodGroup": "food_group_fats_oils",
-      "foodSubgroup": "food_subgroup_plant_oils",
-      "flavorProfile": "flavor_savory",
-      "mealArchetypes": [
-        "breakfast",
-        "lunch",
-        "dinner",
-        "snack"
-      ],
-      "proteinRole": "low",
-      "fatRole": "high"
-    },
-    "allergenIds": [],
-    "conversions": [],
-    "source": {
-      "type": "manual",
-      "label": "Phase 1 development fixture",
-      "reference": null,
-      "sourceRecordId": null,
-      "checkedAt": "2026-09-03T12:00:00Z",
-      "licenseNote": "Development bootstrap fixture only; replace during Phase 4 catalog curation."
-    },
-    "quality": {
-      "status": "draft",
-      "confidence": "low",
-      "notes": "Development bootstrap fixture; not production nutrition data."
-    },
-    "contentHash": "8b012f36dc88ab5b5d91efbabea9a9c76e1053d2198b0e91574d41591c7621aa",
-    "createdAt": "2026-09-03T12:00:00Z"
-  },
-  {
-    "schemaVersion": 1,
     "ingredientRevisionId": "ing_fdc_1104647_r1",
     "ingredientId": "ing_fdc_1104647",
     "revisionNumber": 1,
@@ -16528,6 +16272,270 @@
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-sr-legacy-2018-04; FDC=168157."
     },
     "contentHash": "e53b19be1a9ad15e746d86a8967ab78a4addd6b3b76f69ca3dfdd588413904dd",
+    "createdAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientRevisionId": "ing_fdc_168158_r1",
+    "ingredientId": "ing_fdc_168158",
+    "revisionNumber": 1,
+    "origin": "base",
+    "catalogVersion": "1.0.0-production-foundation",
+    "i18n": {
+      "it": {
+        "name": "Mirtillo, secco — sweetened",
+        "aliases": []
+      },
+      "en": {
+        "name": "Blueberries, dried, sweetened",
+        "aliases": []
+      }
+    },
+    "basis": {
+      "amount": 100,
+      "unit": "g",
+      "state": "dry"
+    },
+    "nutrition": {
+      "energyKcal": 317.8776290630975,
+      "proteinG": 2.5,
+      "carbsG": 80,
+      "fatG": 2.5,
+      "fiberG": 7.5,
+      "sugarsG": 1.14,
+      "saturatedFatG": 0.2,
+      "sodiumMg": 3
+    },
+    "taxonomy": {
+      "foodGroup": "food_group_fruit",
+      "foodSubgroup": null,
+      "flavorProfile": "flavor_sweet",
+      "mealArchetypes": [
+        "breakfast",
+        "lunch",
+        "dinner",
+        "snack"
+      ]
+    },
+    "allergenIds": [],
+    "conversions": [],
+    "source": {
+      "type": "imported",
+      "label": "USDA FoodData Central SR Legacy 2018-04",
+      "reference": "https://fdc.nal.usda.gov/download-datasets/",
+      "sourceRecordId": "168158",
+      "checkedAt": "2026-09-04T19:43:45.522Z",
+      "licenseNote": "CC0 1.0 Universal; source batch curation-usda-sr-legacy-2018-04-e88655db05d9c3d8; input digest 70d4235ae3a2bdf48a7b9eaa1286a83fa67b6f3270436c9ce8b008213f500129",
+      "energyBasis": "legacy_energy",
+      "energyNutrientId": "1062",
+      "energySourceUnit": "kJ",
+      "energyOriginalValue": 1330,
+      "energyConversion": "kj_to_kcal"
+    },
+    "quality": {
+      "status": "curated",
+      "confidence": "high",
+      "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-sr-legacy-2018-04; FDC=168158."
+    },
+    "contentHash": "8eac97bd418b17d13e5ad116fee692dad364d82ac6e35a1ae0ec293260b2f173",
+    "createdAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientRevisionId": "ing_fdc_168159_r1",
+    "ingredientId": "ing_fdc_168159",
+    "revisionNumber": 1,
+    "origin": "base",
+    "catalogVersion": "1.0.0-production-foundation",
+    "i18n": {
+      "it": {
+        "name": "Frutta — Prunes, canned, heavy syrup pack, solids and liquids",
+        "aliases": []
+      },
+      "en": {
+        "name": "Prunes, canned, heavy syrup pack, solids and liquids",
+        "aliases": []
+      }
+    },
+    "basis": {
+      "amount": 100,
+      "unit": "g",
+      "state": "as_sold"
+    },
+    "nutrition": {
+      "energyKcal": 104.92351816443595,
+      "proteinG": 0.87,
+      "carbsG": 27.8,
+      "fatG": 0.2,
+      "fiberG": 3.8,
+      "sugarsG": 0.043,
+      "saturatedFatG": 0.13,
+      "sodiumMg": 3
+    },
+    "taxonomy": {
+      "foodGroup": "food_group_fruit",
+      "foodSubgroup": null,
+      "flavorProfile": "flavor_sweet",
+      "mealArchetypes": [
+        "breakfast",
+        "lunch",
+        "dinner",
+        "snack"
+      ]
+    },
+    "allergenIds": [],
+    "conversions": [],
+    "source": {
+      "type": "imported",
+      "label": "USDA FoodData Central SR Legacy 2018-04",
+      "reference": "https://fdc.nal.usda.gov/download-datasets/",
+      "sourceRecordId": "168159",
+      "checkedAt": "2026-09-04T19:43:45.522Z",
+      "licenseNote": "CC0 1.0 Universal; source batch curation-usda-sr-legacy-2018-04-e88655db05d9c3d8; input digest 70d4235ae3a2bdf48a7b9eaa1286a83fa67b6f3270436c9ce8b008213f500129",
+      "energyBasis": "legacy_energy",
+      "energyNutrientId": "1062",
+      "energySourceUnit": "kJ",
+      "energyOriginalValue": 439,
+      "energyConversion": "kj_to_kcal"
+    },
+    "quality": {
+      "status": "curated",
+      "confidence": "high",
+      "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-sr-legacy-2018-04; FDC=168159."
+    },
+    "contentHash": "2a44da9101b94694e7b1f04f9b8f0c87f2daec362ad042bc3ec58f3bc9f1a464",
+    "createdAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientRevisionId": "ing_fdc_168162_r1",
+    "ingredientId": "ing_fdc_168162",
+    "revisionNumber": 1,
+    "origin": "base",
+    "catalogVersion": "1.0.0-production-foundation",
+    "i18n": {
+      "it": {
+        "name": "Prugna, secco — (prunes), uncooked",
+        "aliases": []
+      },
+      "en": {
+        "name": "Plums, dried (prunes), uncooked",
+        "aliases": []
+      }
+    },
+    "basis": {
+      "amount": 100,
+      "unit": "g",
+      "state": "dry"
+    },
+    "nutrition": {
+      "energyKcal": 240,
+      "proteinG": 2.18,
+      "carbsG": 63.9,
+      "fatG": 0.38,
+      "fiberG": 7.1,
+      "sugarsG": 38.1,
+      "saturatedFatG": 0.053,
+      "sodiumMg": 2
+    },
+    "taxonomy": {
+      "foodGroup": "food_group_fruit",
+      "foodSubgroup": null,
+      "flavorProfile": "flavor_sweet",
+      "mealArchetypes": [
+        "breakfast",
+        "lunch",
+        "dinner",
+        "snack"
+      ]
+    },
+    "allergenIds": [],
+    "conversions": [],
+    "source": {
+      "type": "imported",
+      "label": "USDA FoodData Central SR Legacy 2018-04",
+      "reference": "https://fdc.nal.usda.gov/download-datasets/",
+      "sourceRecordId": "168162",
+      "checkedAt": "2026-09-04T19:43:45.522Z",
+      "licenseNote": "CC0 1.0 Universal; source batch curation-usda-sr-legacy-2018-04-e88655db05d9c3d8; input digest 70d4235ae3a2bdf48a7b9eaa1286a83fa67b6f3270436c9ce8b008213f500129",
+      "energyBasis": "legacy_energy",
+      "energyNutrientId": "1008",
+      "energySourceUnit": "kcal",
+      "energyOriginalValue": 240,
+      "energyConversion": "none"
+    },
+    "quality": {
+      "status": "curated",
+      "confidence": "high",
+      "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-sr-legacy-2018-04; FDC=168162."
+    },
+    "contentHash": "9f9b40fe9ade468b19a9d4b3ac7bb222b127da78122a1250332a82659febcd80",
+    "createdAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientRevisionId": "ing_fdc_168163_r1",
+    "ingredientId": "ing_fdc_168163",
+    "revisionNumber": 1,
+    "origin": "base",
+    "catalogVersion": "1.0.0-production-foundation",
+    "i18n": {
+      "it": {
+        "name": "Frutta — Quinces, raw",
+        "aliases": []
+      },
+      "en": {
+        "name": "Quinces, raw",
+        "aliases": []
+      }
+    },
+    "basis": {
+      "amount": 100,
+      "unit": "g",
+      "state": "raw"
+    },
+    "nutrition": {
+      "energyKcal": 56.883365200764814,
+      "proteinG": 0.4,
+      "carbsG": 15.3,
+      "fatG": 0.1,
+      "fiberG": 1.9,
+      "sugarsG": 0.049,
+      "saturatedFatG": 0.01,
+      "sodiumMg": 4
+    },
+    "taxonomy": {
+      "foodGroup": "food_group_fruit",
+      "foodSubgroup": null,
+      "flavorProfile": "flavor_sweet",
+      "mealArchetypes": [
+        "breakfast",
+        "lunch",
+        "dinner",
+        "snack"
+      ]
+    },
+    "allergenIds": [],
+    "conversions": [],
+    "source": {
+      "type": "imported",
+      "label": "USDA FoodData Central SR Legacy 2018-04",
+      "reference": "https://fdc.nal.usda.gov/download-datasets/",
+      "sourceRecordId": "168163",
+      "checkedAt": "2026-09-04T19:43:45.522Z",
+      "licenseNote": "CC0 1.0 Universal; source batch curation-usda-sr-legacy-2018-04-e88655db05d9c3d8; input digest 70d4235ae3a2bdf48a7b9eaa1286a83fa67b6f3270436c9ce8b008213f500129",
+      "energyBasis": "legacy_energy",
+      "energyNutrientId": "1062",
+      "energySourceUnit": "kJ",
+      "energyOriginalValue": 238,
+      "energyConversion": "kj_to_kcal"
+    },
+    "quality": {
+      "status": "curated",
+      "confidence": "high",
+      "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-sr-legacy-2018-04; FDC=168163."
+    },
+    "contentHash": "7d09e0d9990ee462b9beaf549db3e6cdba2035435198eefad69c2c5b5010fd90",
     "createdAt": "2026-09-04T19:43:46.435Z"
   }
 ]

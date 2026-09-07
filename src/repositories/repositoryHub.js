@@ -185,6 +185,25 @@ export class RepositoryHub {
     }
     await transactionDone(tx);
   }
+
+  async resetAll({ data = {}, meta = {} } = {}) {
+    const db = await this.dbProvider();
+    const stores = Array.from(db.objectStoreNames);
+    if (!stores.length) return;
+    const tx = db.transaction(stores, 'readwrite');
+    for (const storeName of stores) tx.objectStore(storeName).clear();
+    for (const [storeName, values] of Object.entries(data)) {
+      if (!stores.includes(storeName)) throw new Error(`Unknown reset store ${storeName}`);
+      const objectStore = tx.objectStore(storeName);
+      for (const value of values || []) putValue(storeName, objectStore, value);
+    }
+    if (stores.includes('meta')) {
+      const objectStore = tx.objectStore('meta');
+      const updatedAt = new Date().toISOString();
+      for (const [key, value] of Object.entries(meta)) objectStore.put({ key, value, updatedAt });
+    }
+    await transactionDone(tx);
+  }
 }
 
 export const repositories = new RepositoryHub();

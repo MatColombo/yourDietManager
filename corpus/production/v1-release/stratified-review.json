@@ -1,0 +1,2293 @@
+{
+  "schemaVersion": 1,
+  "policyId": "v1-stratified-semantic-review",
+  "policyVersion": "1.0.0",
+  "reviewedAt": "2026-09-07T12:30:00.000Z",
+  "sampleSize": 60,
+  "strata": [
+    {
+      "stratumId": "breakfast-cereal-grain",
+      "sampleCount": 5
+    },
+    {
+      "stratumId": "breakfast-egg",
+      "sampleCount": 5
+    },
+    {
+      "stratumId": "lunch-legume",
+      "sampleCount": 5
+    },
+    {
+      "stratumId": "lunch-poultry",
+      "sampleCount": 5
+    },
+    {
+      "stratumId": "lunch-meat",
+      "sampleCount": 5
+    },
+    {
+      "stratumId": "lunch-fish",
+      "sampleCount": 5
+    },
+    {
+      "stratumId": "dinner-legume",
+      "sampleCount": 5
+    },
+    {
+      "stratumId": "dinner-animal",
+      "sampleCount": 5
+    },
+    {
+      "stratumId": "snack-fruit-nuts",
+      "sampleCount": 5
+    },
+    {
+      "stratumId": "snack-yogurt-fruit",
+      "sampleCount": 5
+    },
+    {
+      "stratumId": "snack-savory",
+      "sampleCount": 5
+    },
+    {
+      "stratumId": "mini-meal",
+      "sampleCount": 5
+    }
+  ],
+  "automatedStatus": "passed",
+  "automatedIssues": [],
+  "samples": [
+    {
+      "stratum": "breakfast-cereal-grain",
+      "recipeVersionId": "recver_c8fa97ad48d9a78cdf85dcad_v1",
+      "profileId": "breakfast-yogurt-cereal",
+      "mealArchetype": "breakfast",
+      "titleIt": "Bowl di Yogurt con Pesca e Miglio",
+      "titleEn": "Yogurt bowl with Peaches and Millet",
+      "energyKcal": 399.8,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_167724",
+          "nameEn": "Millet, puffed",
+          "amount": 30,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_325430",
+          "nameEn": "Peaches, yellow, raw",
+          "amount": 140,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_169898",
+          "nameEn": "Yogurt, fruit variety, nonfat",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2346392",
+          "nameEn": "Nuts, pine nuts, raw",
+          "amount": 13.4,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "breakfast-cereal-grain",
+      "recipeVersionId": "recver_d00d5e8e91b3e620046a0ffd_v1",
+      "profileId": "breakfast-warm-grain",
+      "mealArchetype": "breakfast",
+      "titleIt": "Bowl di Avena con Kiwi e Latte",
+      "titleEn": "Oat bran bowl with Kiwifruit and Milk",
+      "energyKcal": 399.8,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_168873",
+          "nameEn": "Oat bran, cooked",
+          "amount": 280,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_327046",
+          "nameEn": "Kiwifruit, green, raw",
+          "amount": 140,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167697",
+          "nameEn": "Milk, buttermilk, fluid, cultured, reduced fat",
+          "amount": 120,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2346393",
+          "nameEn": "Nuts, almonds, whole, raw",
+          "amount": 22.3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "breakfast-cereal-grain",
+      "recipeVersionId": "recver_ec118f3ea6effec60d356a95_v1",
+      "profileId": "breakfast-yogurt-cereal",
+      "mealArchetype": "breakfast",
+      "titleIt": "Bowl di Yogurt con Anguria e Miglio",
+      "titleEn": "Yogurt bowl with Watermelon and Millet",
+      "energyKcal": 400,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_167724",
+          "nameEn": "Millet, puffed",
+          "amount": 35.8,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167765",
+          "nameEn": "Watermelon, raw",
+          "amount": 140,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_330415",
+          "nameEn": "Yogurt, Greek, strawberry, nonfat",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2515378",
+          "nameEn": "Nuts, macadamia nuts, raw",
+          "amount": 15,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "breakfast-cereal-grain",
+      "recipeVersionId": "recver_b7f685cd603dab63a50fda25_v1",
+      "profileId": "breakfast-yogurt-cereal",
+      "mealArchetype": "breakfast",
+      "titleIt": "Bowl di Latte con Pera e Cereali in chicco",
+      "titleEn": "Milk bowl with Pear and Shredded wheat",
+      "energyKcal": 399.8,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_167715",
+          "nameEn": "Cereals ready-to-eat, POST, Shredded Wheat n' Bran, spoon-size",
+          "amount": 38.5,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2710836",
+          "nameEn": "Pear, Anjou, green, with skin, raw",
+          "amount": 140,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167697",
+          "nameEn": "Milk, buttermilk, fluid, cultured, reduced fat",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2515375",
+          "nameEn": "Nuts, hazelnuts or filberts, raw",
+          "amount": 15,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "breakfast-cereal-grain",
+      "recipeVersionId": "recver_7ee31c885d86d0b073c0de74_v1",
+      "profileId": "breakfast-warm-grain",
+      "mealArchetype": "breakfast",
+      "titleIt": "Bowl di Miglio con Albicocca e Tofu",
+      "titleEn": "Millet bowl with Apricot and Tofu yogurt",
+      "energyKcal": 400.3,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_168871",
+          "nameEn": "Millet, cooked",
+          "amount": 140,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2710815",
+          "nameEn": "Apricot, with skin, raw",
+          "amount": 140,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167722",
+          "nameEn": "Tofu yogurt",
+          "amount": 120,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2515373",
+          "nameEn": "Nuts, brazilnuts, raw",
+          "amount": 8,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "breakfast-egg",
+      "recipeVersionId": "recver_13b55fe0a1dc60be29945dcc_v1",
+      "profileId": "breakfast-egg-grain",
+      "mealArchetype": "breakfast",
+      "titleIt": "Uovo con Pasta e Verdure",
+      "titleEn": "Eggs with Pasta and Brussels sprouts",
+      "energyKcal": 400,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_748967",
+          "nameEn": "Eggs, Grade A, Large, egg whole",
+          "amount": 106.7,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168900",
+          "nameEn": "Pasta, gluten-free, corn, cooked",
+          "amount": 100,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2685575",
+          "nameEn": "Brussels sprouts, raw",
+          "amount": 110,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_171413",
+          "nameEn": "Oil, olive, salad or cooking",
+          "amount": 5,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170924",
+          "nameEn": "Spices, curry powder",
+          "amount": 2,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "breakfast-egg",
+      "recipeVersionId": "recver_ccf4a8ec3baa10233b5e206f_v1",
+      "profileId": "breakfast-egg-grain",
+      "mealArchetype": "breakfast",
+      "titleIt": "Uovo con Pasta e Cavolo riccio",
+      "titleEn": "Eggs with Pasta and Kale",
+      "energyKcal": 400,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_748967",
+          "nameEn": "Eggs, Grade A, Large, egg whole",
+          "amount": 103.6,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168928",
+          "nameEn": "Pasta, cooked, unenriched, without added salt",
+          "amount": 100,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_323505",
+          "nameEn": "Kale, raw",
+          "amount": 110,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_171413",
+          "nameEn": "Oil, olive, salad or cooking",
+          "amount": 5,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170921",
+          "nameEn": "Spices, coriander leaf, dried",
+          "amount": 2,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "breakfast-egg",
+      "recipeVersionId": "recver_aef436509a5b53a7af735269_v1",
+      "profileId": "breakfast-egg-grain",
+      "mealArchetype": "breakfast",
+      "titleIt": "Uovo con Pasta e Asparagi",
+      "titleEn": "Eggs with Macaroni and Asparagus",
+      "energyKcal": 400,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_748967",
+          "nameEn": "Eggs, Grade A, Large, egg whole",
+          "amount": 120,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168904",
+          "nameEn": "Macaroni, vegetable, enriched, cooked",
+          "amount": 114.4,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2710823",
+          "nameEn": "Asparagus, green, raw",
+          "amount": 110,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_171413",
+          "nameEn": "Oil, olive, salad or cooking",
+          "amount": 5,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170416",
+          "nameEn": "Parsley, fresh",
+          "amount": 2,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "breakfast-egg",
+      "recipeVersionId": "recver_8bbf11e4413406908fc48175_v1",
+      "profileId": "breakfast-egg-grain",
+      "mealArchetype": "breakfast",
+      "titleIt": "Uovo con Pasta e Cavolo",
+      "titleEn": "Eggs with Pasta and Cabbage",
+      "energyKcal": 400,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_748967",
+          "nameEn": "Eggs, Grade A, Large, egg whole",
+          "amount": 117.5,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168928",
+          "nameEn": "Pasta, cooked, unenriched, without added salt",
+          "amount": 100,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2685572",
+          "nameEn": "Cabbage, bok choy, raw",
+          "amount": 110,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_171413",
+          "nameEn": "Oil, olive, salad or cooking",
+          "amount": 5,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_169231",
+          "nameEn": "Ginger root, raw",
+          "amount": 2,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "breakfast-egg",
+      "recipeVersionId": "recver_d03e66d72aba948066f78dba_v1",
+      "profileId": "breakfast-egg-grain",
+      "mealArchetype": "breakfast",
+      "titleIt": "Uovo con Cous cous e Verdure",
+      "titleEn": "Egg with Couscous and Peppers",
+      "energyKcal": 399.9,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_171287",
+          "nameEn": "Egg, whole, raw, fresh",
+          "amount": 120,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_169700",
+          "nameEn": "Couscous, cooked",
+          "amount": 141.4,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2258588",
+          "nameEn": "Peppers, bell, green, raw",
+          "amount": 110,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_171413",
+          "nameEn": "Oil, olive, salad or cooking",
+          "amount": 5,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_169997",
+          "nameEn": "Coriander (cilantro) leaves, raw",
+          "amount": 2,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "lunch-legume",
+      "recipeVersionId": "recver_5e14cfcba1b0181be0547262_v1",
+      "profileId": "lunch-legume-bowl",
+      "mealArchetype": "lunch",
+      "titleIt": "Fagioli con Pasta e Melanzana",
+      "titleEn": "Beans with Pasta and Eggplant",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_2644286",
+          "nameEn": "Beans, navy, canned, sodium added, drained and rinsed",
+          "amount": 180,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168928",
+          "nameEn": "Pasta, cooked, unenriched, without added salt",
+          "amount": 225.4,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2685577",
+          "nameEn": "Eggplant, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_171413",
+          "nameEn": "Oil, olive, salad or cooking",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170921",
+          "nameEn": "Spices, coriander leaf, dried",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "lunch-legume",
+      "recipeVersionId": "recver_f61e93a4602ad9e023cd1c7b_v1",
+      "profileId": "lunch-legume-bowl",
+      "mealArchetype": "lunch",
+      "titleIt": "Legumi con Pasta e Cavolfiore",
+      "titleEn": "Lima beans with Pasta and Cauliflower",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_172422",
+          "nameEn": "Lima beans, thin seeded (baby), mature seeds, cooked, boiled, without salt",
+          "amount": 180,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168916",
+          "nameEn": "Pasta, whole grain, 51% whole wheat, remaining unenriched semolina, cooked",
+          "amount": 214.8,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2685573",
+          "nameEn": "Cauliflower, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167737",
+          "nameEn": "Oil, corn, peanut, and olive",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170928",
+          "nameEn": "Spices, marjoram, dried",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "lunch-legume",
+      "recipeVersionId": "recver_91f593554ae82fa1b32da00d_v1",
+      "profileId": "lunch-legume-bowl",
+      "mealArchetype": "lunch",
+      "titleIt": "Ceci con Pasta e Cipolla",
+      "titleEn": "Chickpeas with Pasta and Onions",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_2644288",
+          "nameEn": "Chickpeas (garbanzo beans, bengal gram), canned, sodium added, drained and rinsed",
+          "amount": 180,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168900",
+          "nameEn": "Pasta, gluten-free, corn, cooked",
+          "amount": 240,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_790577",
+          "nameEn": "Onions, red, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167737",
+          "nameEn": "Oil, corn, peanut, and olive",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170416",
+          "nameEn": "Parsley, fresh",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "lunch-legume",
+      "recipeVersionId": "recver_d7b46b3e21dac11042d2d2df_v1",
+      "profileId": "lunch-legume-bowl",
+      "mealArchetype": "lunch",
+      "titleIt": "Fagioli con Riso e Zucca",
+      "titleEn": "Beans with Rice noodles and Squash",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_2644292",
+          "nameEn": "Beans, pinto, canned, sodium added, drained and rinsed",
+          "amount": 180,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168914",
+          "nameEn": "Rice noodles, cooked",
+          "amount": 298.2,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2685571",
+          "nameEn": "Squash, winter, acorn, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167737",
+          "nameEn": "Oil, corn, peanut, and olive",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170926",
+          "nameEn": "Spices, ginger, ground",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "lunch-legume",
+      "recipeVersionId": "recver_402da7441cc395c2d377fb6c_v1",
+      "profileId": "lunch-legume-salad-bowl",
+      "mealArchetype": "lunch",
+      "titleIt": "Legumi con Cous cous e Carota",
+      "titleEn": "Mungo beans with Couscous and Carrots",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_172427",
+          "nameEn": "Mungo beans, mature seeds, cooked, boiled, without salt",
+          "amount": 200.9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_169700",
+          "nameEn": "Couscous, cooked",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2258587",
+          "nameEn": "Carrots, baby, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_171413",
+          "nameEn": "Oil, olive, salad or cooking",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170928",
+          "nameEn": "Spices, marjoram, dried",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "lunch-poultry",
+      "recipeVersionId": "recver_9f1f3550bb97ac7e9530e0f8_v1",
+      "profileId": "lunch-poultry-plate",
+      "mealArchetype": "lunch",
+      "titleIt": "Pollo con Riso e Barbabietola",
+      "titleEn": "Chicken with Rice and Beets",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_171069",
+          "nameEn": "Chicken, broilers or fryers, dark meat, meat only, cooked, roasted",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168880",
+          "nameEn": "Rice, white, medium-grain, enriched, cooked",
+          "amount": 183.9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2685576",
+          "nameEn": "Beets, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167737",
+          "nameEn": "Oil, corn, peanut, and olive",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_169231",
+          "nameEn": "Ginger root, raw",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "lunch-poultry",
+      "recipeVersionId": "recver_b1f8d283e4afa9b20b267ebe_v1",
+      "profileId": "lunch-poultry-plate",
+      "mealArchetype": "lunch",
+      "titleIt": "Pollo con Pasta e Zucca",
+      "titleEn": "Chicken with Wild rice and Squash",
+      "energyKcal": 654.3,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_171052",
+          "nameEn": "Chicken, broilers or fryers, meat only, raw",
+          "amount": 190,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168897",
+          "nameEn": "Wild rice, cooked",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2685569",
+          "nameEn": "Squash, summer, yellow, includes skin, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167737",
+          "nameEn": "Oil, corn, peanut, and olive",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170926",
+          "nameEn": "Spices, ginger, ground",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "lunch-poultry",
+      "recipeVersionId": "recver_36c2a1f1d37dfab1e91da6b1_v1",
+      "profileId": "lunch-poultry-plate",
+      "mealArchetype": "lunch",
+      "titleIt": "Pollo con Riso e Melanzana",
+      "titleEn": "Chicken with Rice and Eggplant",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_171067",
+          "nameEn": "Chicken, broilers or fryers, dark meat, meat only, raw",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168880",
+          "nameEn": "Rice, white, medium-grain, enriched, cooked",
+          "amount": 294.6,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2685577",
+          "nameEn": "Eggplant, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167737",
+          "nameEn": "Oil, corn, peanut, and olive",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170928",
+          "nameEn": "Spices, marjoram, dried",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "lunch-poultry",
+      "recipeVersionId": "recver_e1787604e000ff662411c741_v1",
+      "profileId": "lunch-poultry-plate",
+      "mealArchetype": "lunch",
+      "titleIt": "Pollo con Riso e Cavolo riccio",
+      "titleEn": "Chicken with Rice and Kale",
+      "energyKcal": 700.1,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_171069",
+          "nameEn": "Chicken, broilers or fryers, dark meat, meat only, cooked, roasted",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168878",
+          "nameEn": "Rice, white, long-grain, regular, enriched, cooked",
+          "amount": 196.3,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_323505",
+          "nameEn": "Kale, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_171413",
+          "nameEn": "Oil, olive, salad or cooking",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170416",
+          "nameEn": "Parsley, fresh",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "lunch-poultry",
+      "recipeVersionId": "recver_cbba2e48f43d5750f7dd616c_v1",
+      "profileId": "lunch-poultry-plate",
+      "mealArchetype": "lunch",
+      "titleIt": "Pollo con Pasta e Fagioli",
+      "titleEn": "Chicken with Pasta and Beans",
+      "energyKcal": 700.1,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_171070",
+          "nameEn": "Chicken, broilers or fryers, dark meat, meat only, cooked, stewed",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168916",
+          "nameEn": "Pasta, whole grain, 51% whole wheat, remaining unenriched semolina, cooked",
+          "amount": 163.9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2346400",
+          "nameEn": "Beans, snap, green, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_171413",
+          "nameEn": "Oil, olive, salad or cooking",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170928",
+          "nameEn": "Spices, marjoram, dried",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "lunch-meat",
+      "recipeVersionId": "recver_4fa275aa21988b52427d8621_v1",
+      "profileId": "lunch-meat-plate",
+      "mealArchetype": "lunch",
+      "titleIt": "Maiale con Pasta e Verdure",
+      "titleEn": "Pork with Pasta and Brussels sprouts",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_167852",
+          "nameEn": "Pork, fresh, shoulder, blade, boston (roasts), separable lean only, cooked, roasted",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168916",
+          "nameEn": "Pasta, whole grain, 51% whole wheat, remaining unenriched semolina, cooked",
+          "amount": 105.1,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2685575",
+          "nameEn": "Brussels sprouts, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167737",
+          "nameEn": "Oil, corn, peanut, and olive",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170926",
+          "nameEn": "Spices, ginger, ground",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "lunch-meat",
+      "recipeVersionId": "recver_51e201d45f052f191ec19ac5_v1",
+      "profileId": "lunch-meat-plate",
+      "mealArchetype": "lunch",
+      "titleIt": "Maiale con Miglio e Mais",
+      "titleEn": "Pork with Millet and Corn",
+      "energyKcal": 699.9,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_167817",
+          "nameEn": "Pork, fresh, leg (ham), rump half, separable lean only, cooked, roasted",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168871",
+          "nameEn": "Millet, cooked",
+          "amount": 191.1,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2710826",
+          "nameEn": "Corn, sweet, yellow and white kernels,  fresh, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167737",
+          "nameEn": "Oil, corn, peanut, and olive",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170926",
+          "nameEn": "Spices, ginger, ground",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "lunch-meat",
+      "recipeVersionId": "recver_70d0ca433be4f3f1341cfaaf_v1",
+      "profileId": "lunch-meat-plate",
+      "mealArchetype": "lunch",
+      "titleIt": "Maiale con Pasta e Cavolfiore",
+      "titleEn": "Pork with Pasta and Cauliflower",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_167893",
+          "nameEn": "Pork, fresh, loin, center rib (chops), boneless, separable lean only, cooked, pan-fried",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168916",
+          "nameEn": "Pasta, whole grain, 51% whole wheat, remaining unenriched semolina, cooked",
+          "amount": 150.8,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2685573",
+          "nameEn": "Cauliflower, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167737",
+          "nameEn": "Oil, corn, peanut, and olive",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_169997",
+          "nameEn": "Coriander (cilantro) leaves, raw",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "lunch-meat",
+      "recipeVersionId": "recver_42dc8e49efe86195c60a1eff_v1",
+      "profileId": "lunch-meat-plate",
+      "mealArchetype": "lunch",
+      "titleIt": "Maiale con Pasta e Patata dolce",
+      "titleEn": "Pork with Pasta and Sweet potatoes",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_167894",
+          "nameEn": "Pork, fresh, loin, center rib (roasts), boneless, separable lean only, cooked, roasted",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168910",
+          "nameEn": "Pasta, whole-wheat, cooked (Includes foods for USDA's Food Distribution Program)",
+          "amount": 115.5,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2346404",
+          "nameEn": "Sweet potatoes, orange flesh, without skin, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_171413",
+          "nameEn": "Oil, olive, salad or cooking",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170416",
+          "nameEn": "Parsley, fresh",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "lunch-meat",
+      "recipeVersionId": "recver_c8612d355824882082482e4d_v1",
+      "profileId": "lunch-meat-plate",
+      "mealArchetype": "lunch",
+      "titleIt": "Maiale con Pasta e Barbabietola",
+      "titleEn": "Pork with Spaghetti and Beets",
+      "energyKcal": 699.9,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_167838",
+          "nameEn": "Pork, fresh, loin, sirloin (chops), bone-in, separable lean only, cooked, braised",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168934",
+          "nameEn": "Spaghetti, protein-fortified, cooked, enriched (n x 6.25)",
+          "amount": 151.9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2685576",
+          "nameEn": "Beets, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_171413",
+          "nameEn": "Oil, olive, salad or cooking",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170928",
+          "nameEn": "Spices, marjoram, dried",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "lunch-fish",
+      "recipeVersionId": "recver_65cff59a1fd0c5ba682e183f_v1",
+      "profileId": "lunch-fish-plate",
+      "mealArchetype": "lunch",
+      "titleIt": "Pesce e frutti di mare con Riso e Zucca",
+      "titleEn": "Clam with Rice noodles and Squash",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_171976",
+          "nameEn": "Mollusks, clam, mixed species, canned, drained solids",
+          "amount": 178,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168914",
+          "nameEn": "Rice noodles, cooked",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2685569",
+          "nameEn": "Squash, summer, yellow, includes skin, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_171413",
+          "nameEn": "Oil, olive, salad or cooking",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170928",
+          "nameEn": "Spices, marjoram, dried",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "lunch-fish",
+      "recipeVersionId": "recver_c399a0286fe018801c601722_v1",
+      "profileId": "lunch-fish-plate",
+      "mealArchetype": "lunch",
+      "titleIt": "Pesce e frutti di mare con Riso e Asparagi",
+      "titleEn": "Shrimp with Rice noodles and Asparagus",
+      "energyKcal": 682.3,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_171971",
+          "nameEn": "Crustaceans, shrimp, mixed species, cooked, moist heat (may contain additives to retain moisture)",
+          "amount": 190,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168914",
+          "nameEn": "Rice noodles, cooked",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2710823",
+          "nameEn": "Asparagus, green, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_171413",
+          "nameEn": "Oil, olive, salad or cooking",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170928",
+          "nameEn": "Spices, marjoram, dried",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "lunch-fish",
+      "recipeVersionId": "recver_f302c731c5a2319cd8aec051_v1",
+      "profileId": "lunch-fish-plate",
+      "mealArchetype": "lunch",
+      "titleIt": "Pesce e frutti di mare con Cous cous e Fagioli",
+      "titleEn": "Cod with Couscous and Beans",
+      "energyKcal": 645.4,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_171955",
+          "nameEn": "Fish, cod, Atlantic, raw",
+          "amount": 190,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_169700",
+          "nameEn": "Couscous, cooked",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2346400",
+          "nameEn": "Beans, snap, green, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167737",
+          "nameEn": "Oil, corn, peanut, and olive",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170924",
+          "nameEn": "Spices, curry powder",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "lunch-fish",
+      "recipeVersionId": "recver_f627ff73e934dd6fda528e83_v1",
+      "profileId": "lunch-fish-plate",
+      "mealArchetype": "lunch",
+      "titleIt": "Pesce e frutti di mare con Riso e Cipolla",
+      "titleEn": "Cod with Rice and Onions",
+      "energyKcal": 688.6,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_171955",
+          "nameEn": "Fish, cod, Atlantic, raw",
+          "amount": 190,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168935",
+          "nameEn": "Rice, white, long-grain, regular, cooked, unenriched, with salt",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_790646",
+          "nameEn": "Onions, yellow, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167737",
+          "nameEn": "Oil, corn, peanut, and olive",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_169231",
+          "nameEn": "Ginger root, raw",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "lunch-fish",
+      "recipeVersionId": "recver_57d2fa56f8f3c0c1547e45f4_v1",
+      "profileId": "lunch-fish-plate",
+      "mealArchetype": "lunch",
+      "titleIt": "Pesce e frutti di mare con Riso e Verdure",
+      "titleEn": "Clam with Rice and Peppers",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_171976",
+          "nameEn": "Mollusks, clam, mixed species, canned, drained solids",
+          "amount": 167,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168875",
+          "nameEn": "Rice, brown, medium-grain, cooked (Includes foods for USDA's Food Distribution Program)",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2258588",
+          "nameEn": "Peppers, bell, green, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167737",
+          "nameEn": "Oil, corn, peanut, and olive",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170926",
+          "nameEn": "Spices, ginger, ground",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "dinner-legume",
+      "recipeVersionId": "recver_6894b147510dedc40e008a66_v1",
+      "profileId": "dinner-legume-plate",
+      "mealArchetype": "dinner",
+      "titleIt": "Fagioli con Pasta e Mais",
+      "titleEn": "Beans with Macaroni and Corn",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_2644285",
+          "nameEn": "Beans, black, canned, sodium added, drained and rinsed",
+          "amount": 180,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168904",
+          "nameEn": "Macaroni, vegetable, enriched, cooked",
+          "amount": 206.5,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2710826",
+          "nameEn": "Corn, sweet, yellow and white kernels,  fresh, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_171413",
+          "nameEn": "Oil, olive, salad or cooking",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170928",
+          "nameEn": "Spices, marjoram, dried",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "dinner-legume",
+      "recipeVersionId": "recver_52afa2db57e0751b2243286d_v1",
+      "profileId": "dinner-legume-bowl",
+      "mealArchetype": "dinner",
+      "titleIt": "Fagioli con Riso e Broccoli",
+      "titleEn": "Beans with Rice and Broccoli",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_2644287",
+          "nameEn": "Beans, cannellini, canned, sodium added, drained and rinsed",
+          "amount": 180,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168880",
+          "nameEn": "Rice, white, medium-grain, enriched, cooked",
+          "amount": 272.7,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_747447",
+          "nameEn": "Broccoli, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_171413",
+          "nameEn": "Oil, olive, salad or cooking",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170921",
+          "nameEn": "Spices, coriander leaf, dried",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "dinner-legume",
+      "recipeVersionId": "recver_b983148191d424298f9f430a_v1",
+      "profileId": "dinner-legume-plate",
+      "mealArchetype": "dinner",
+      "titleIt": "Fagioli con Riso e Mais",
+      "titleEn": "Beans with Rice and Corn",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_2644294",
+          "nameEn": "Beans, great northern, canned, sodium added, drained and rinsed",
+          "amount": 180,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168878",
+          "nameEn": "Rice, white, long-grain, regular, enriched, cooked",
+          "amount": 204.8,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2710826",
+          "nameEn": "Corn, sweet, yellow and white kernels,  fresh, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167737",
+          "nameEn": "Oil, corn, peanut, and olive",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170928",
+          "nameEn": "Spices, marjoram, dried",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "dinner-legume",
+      "recipeVersionId": "recver_a7475e97fc2bba42760b6639_v1",
+      "profileId": "dinner-legume-plate",
+      "mealArchetype": "dinner",
+      "titleIt": "Fagioli con Riso e Fagioli",
+      "titleEn": "Beans with Rice and Beans",
+      "energyKcal": 699.9,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_2644287",
+          "nameEn": "Beans, cannellini, canned, sodium added, drained and rinsed",
+          "amount": 180,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168878",
+          "nameEn": "Rice, white, long-grain, regular, enriched, cooked",
+          "amount": 261.2,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2346400",
+          "nameEn": "Beans, snap, green, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167737",
+          "nameEn": "Oil, corn, peanut, and olive",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170924",
+          "nameEn": "Spices, curry powder",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "dinner-legume",
+      "recipeVersionId": "recver_48888d241538ffad39ae950f_v1",
+      "profileId": "dinner-legume-plate",
+      "mealArchetype": "dinner",
+      "titleIt": "Piselli con Cous cous e Cavolo",
+      "titleEn": "Peas with Couscous and Cabbage",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_172429",
+          "nameEn": "Peas, split, mature seeds, cooked, boiled, without salt",
+          "amount": 212.6,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_169700",
+          "nameEn": "Couscous, cooked",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2685572",
+          "nameEn": "Cabbage, bok choy, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_171413",
+          "nameEn": "Oil, olive, salad or cooking",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_169997",
+          "nameEn": "Coriander (cilantro) leaves, raw",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "dinner-animal",
+      "recipeVersionId": "recver_466189d225412e87b4c7756f_v1",
+      "profileId": "dinner-fish-plate",
+      "mealArchetype": "dinner",
+      "titleIt": "Pesce e frutti di mare con Miglio e Cipolla",
+      "titleEn": "Clam with Millet and Onions",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_171976",
+          "nameEn": "Mollusks, clam, mixed species, canned, drained solids",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168871",
+          "nameEn": "Millet, cooked",
+          "amount": 280.9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_790577",
+          "nameEn": "Onions, red, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167737",
+          "nameEn": "Oil, corn, peanut, and olive",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_169231",
+          "nameEn": "Ginger root, raw",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "dinner-animal",
+      "recipeVersionId": "recver_8398aa4f050697db023f2b5b_v1",
+      "profileId": "dinner-fish-plate",
+      "mealArchetype": "dinner",
+      "titleIt": "Pesce e frutti di mare con Pasta e Asparagi",
+      "titleEn": "Scallop with Macaroni and Asparagus",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_167742",
+          "nameEn": "Mollusks, scallop, (bay and sea), cooked, steamed",
+          "amount": 169.5,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168904",
+          "nameEn": "Macaroni, vegetable, enriched, cooked",
+          "amount": 300,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2710823",
+          "nameEn": "Asparagus, green, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_171413",
+          "nameEn": "Oil, olive, salad or cooking",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_169231",
+          "nameEn": "Ginger root, raw",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "dinner-animal",
+      "recipeVersionId": "recver_f56b34f426916d1ff0c32fce_v1",
+      "profileId": "dinner-meat-plate",
+      "mealArchetype": "dinner",
+      "titleIt": "Maiale con Cous cous e Fagioli",
+      "titleEn": "Pork with Couscous and Beans",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_167838",
+          "nameEn": "Pork, fresh, loin, sirloin (chops), bone-in, separable lean only, cooked, braised",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_169700",
+          "nameEn": "Couscous, cooked",
+          "amount": 235.1,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2346400",
+          "nameEn": "Beans, snap, green, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167737",
+          "nameEn": "Oil, corn, peanut, and olive",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170416",
+          "nameEn": "Parsley, fresh",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "dinner-animal",
+      "recipeVersionId": "recver_a158993e6e96e2d89a6a1fc6_v1",
+      "profileId": "dinner-meat-plate",
+      "mealArchetype": "dinner",
+      "titleIt": "Maiale con Miglio e Fagioli",
+      "titleEn": "Pork with Millet and Beans",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_167894",
+          "nameEn": "Pork, fresh, loin, center rib (roasts), boneless, separable lean only, cooked, roasted",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168871",
+          "nameEn": "Millet, cooked",
+          "amount": 188.5,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2346400",
+          "nameEn": "Beans, snap, green, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_171413",
+          "nameEn": "Oil, olive, salad or cooking",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170923",
+          "nameEn": "Spices, cumin seed",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "dinner-animal",
+      "recipeVersionId": "recver_ea7c2c912b7760ddde8ce91a_v1",
+      "profileId": "dinner-fish-plate",
+      "mealArchetype": "dinner",
+      "titleIt": "Pesce e frutti di mare con Pasta e Carota",
+      "titleEn": "Clam with Pasta and Carrots",
+      "energyKcal": 700,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_171976",
+          "nameEn": "Mollusks, clam, mixed species, canned, drained solids",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_168900",
+          "nameEn": "Pasta, gluten-free, corn, cooked",
+          "amount": 253.3,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2258586",
+          "nameEn": "Carrots, mature, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167737",
+          "nameEn": "Oil, corn, peanut, and olive",
+          "amount": 9,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170923",
+          "nameEn": "Spices, cumin seed",
+          "amount": 3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "snack-fruit-nuts",
+      "recipeVersionId": "recver_0488c0e976f068ce5ce993ae_v1",
+      "profileId": "snack-fruit-nuts",
+      "mealArchetype": "snack",
+      "titleIt": "Banana con Frutta a guscio e semi",
+      "titleEn": "Bananas with Brazilnuts",
+      "energyKcal": 199.7,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_1105073",
+          "nameEn": "Bananas, overripe, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2515373",
+          "nameEn": "Nuts, brazilnuts, raw",
+          "amount": 9.6,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "snack-fruit-nuts",
+      "recipeVersionId": "recver_8dfb8e0874392396e79a8f70_v1",
+      "profileId": "snack-fruit-nuts",
+      "mealArchetype": "snack",
+      "titleIt": "Kiwi con Mandorla",
+      "titleEn": "Kiwifruit with Almonds",
+      "energyKcal": 199.8,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_327046",
+          "nameEn": "Kiwifruit, green, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2346393",
+          "nameEn": "Nuts, almonds, whole, raw",
+          "amount": 17.1,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "snack-fruit-nuts",
+      "recipeVersionId": "recver_3ae80f3cfff674fcadb0cc5a_v1",
+      "profileId": "snack-fruit-nuts",
+      "mealArchetype": "snack",
+      "titleIt": "Mela con Semi di zucca",
+      "titleEn": "Apples with Pumpkin seeds (pepitas)",
+      "energyKcal": 200.1,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_1750340",
+          "nameEn": "Apples, fuji, with skin, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2515380",
+          "nameEn": "Seeds, pumpkin seeds (pepitas), raw",
+          "amount": 17.4,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "snack-fruit-nuts",
+      "recipeVersionId": "recver_eda165de0a63db83a74d3838_v1",
+      "profileId": "snack-fruit-nuts",
+      "mealArchetype": "snack",
+      "titleIt": "Mela con Pistacchio",
+      "titleEn": "Apples with Pistachio nuts",
+      "energyKcal": 199.8,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_1750340",
+          "nameEn": "Apples, fuji, with skin, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2515379",
+          "nameEn": "Nuts, pistachio nuts, raw",
+          "amount": 16.1,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "snack-fruit-nuts",
+      "recipeVersionId": "recver_7f5b4113511342561e77645b_v1",
+      "profileId": "snack-fruit-nuts",
+      "mealArchetype": "snack",
+      "titleIt": "Mela con Noce pecan",
+      "titleEn": "Apples with Pecans",
+      "energyKcal": 200.4,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_1750341",
+          "nameEn": "Apples, gala, with skin, raw",
+          "amount": 160,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2346395",
+          "nameEn": "Nuts, pecans, halves, raw",
+          "amount": 13.7,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "snack-yogurt-fruit",
+      "recipeVersionId": "recver_223e02d668a61fd8805e8582_v1",
+      "profileId": "snack-yogurt-fruit",
+      "mealArchetype": "snack",
+      "titleIt": "Latte con Mela e Semi di zucca",
+      "titleEn": "Milk with Apples and Pumpkin seeds (pepitas)",
+      "energyKcal": 200,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_167697",
+          "nameEn": "Milk, buttermilk, fluid, cultured, reduced fat",
+          "amount": 149.3,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_1750343",
+          "nameEn": "Apples, honeycrisp, with skin, raw",
+          "amount": 120,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2515380",
+          "nameEn": "Seeds, pumpkin seeds (pepitas), raw",
+          "amount": 8,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "snack-yogurt-fruit",
+      "recipeVersionId": "recver_5d6f12c2778500b880d284bd_v1",
+      "profileId": "snack-yogurt-fruit",
+      "mealArchetype": "snack",
+      "titleIt": "Tofu con Pesca e Pistacchio",
+      "titleEn": "Tofu yogurt with Peaches and Pistachio nuts",
+      "energyKcal": 200,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_167722",
+          "nameEn": "Tofu yogurt",
+          "amount": 108.3,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_325430",
+          "nameEn": "Peaches, yellow, raw",
+          "amount": 120,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2515379",
+          "nameEn": "Nuts, pistachio nuts, raw",
+          "amount": 8,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "snack-yogurt-fruit",
+      "recipeVersionId": "recver_ca0c761220cd1b56c2365361_v1",
+      "profileId": "snack-yogurt-fruit",
+      "mealArchetype": "snack",
+      "titleIt": "Yogurt con Lampone e Semi di girasole",
+      "titleEn": "Yogurt with Raspberries and Sunflower seed",
+      "energyKcal": 200,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_330415",
+          "nameEn": "Yogurt, Greek, strawberry, nonfat",
+          "amount": 106.2,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167755",
+          "nameEn": "Raspberries, raw",
+          "amount": 120,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2515381",
+          "nameEn": "Seeds, sunflower seed, kernel, raw",
+          "amount": 8,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "snack-yogurt-fruit",
+      "recipeVersionId": "recver_bf494ed46dafcde36e47f37b_v1",
+      "profileId": "snack-yogurt-fruit",
+      "mealArchetype": "snack",
+      "titleIt": "Latte con Mela e Frutta a guscio e semi",
+      "titleEn": "Milk with Apples and Macadamia nuts",
+      "energyKcal": 200,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_169868",
+          "nameEn": "Milk, fluid, nonfat, calcium fortified (fat free or skim)",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_1750339",
+          "nameEn": "Apples, red delicious, with skin, raw",
+          "amount": 120,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2515378",
+          "nameEn": "Nuts, macadamia nuts, raw",
+          "amount": 10.3,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "snack-yogurt-fruit",
+      "recipeVersionId": "recver_72047d20b8591abc72bb9666_v1",
+      "profileId": "snack-yogurt-fruit",
+      "mealArchetype": "snack",
+      "titleIt": "Yogurt con Pera e Frutta a guscio e semi",
+      "titleEn": "Yogurt with Pears and Pine nuts",
+      "energyKcal": 200.7,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_330415",
+          "nameEn": "Yogurt, Greek, strawberry, nonfat",
+          "amount": 80,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167779",
+          "nameEn": "Pears, raw, green anjou (Includes foods for USDA's Food Distribution Program)",
+          "amount": 120,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2346392",
+          "nameEn": "Nuts, pine nuts, raw",
+          "amount": 8,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "snack-savory",
+      "recipeVersionId": "recver_8278521e3f8a127d0f34b1ea_v1",
+      "profileId": "snack-bean-vegetable",
+      "mealArchetype": "snack",
+      "titleIt": "Insalata di Fagioli e Ravanello",
+      "titleEn": "Beans and Radishes salad",
+      "energyKcal": 200,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_2644287",
+          "nameEn": "Beans, cannellini, canned, sodium added, drained and rinsed",
+          "amount": 110.3,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2747665",
+          "nameEn": "Radishes, red, raw",
+          "amount": 120,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167737",
+          "nameEn": "Oil, corn, peanut, and olive",
+          "amount": 5,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170928",
+          "nameEn": "Spices, marjoram, dried",
+          "amount": 2,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "snack-savory",
+      "recipeVersionId": "recver_14726ab8a9755e0f9f35f61e_v1",
+      "profileId": "snack-bean-vegetable",
+      "mealArchetype": "snack",
+      "titleIt": "Insalata di Legumi e Verdure",
+      "titleEn": "Lima beans and Peppers salad",
+      "energyKcal": 200,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_172422",
+          "nameEn": "Lima beans, thin seeded (baby), mature seeds, cooked, boiled, without salt",
+          "amount": 93.8,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2258589",
+          "nameEn": "Peppers, bell, yellow, raw",
+          "amount": 120,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_171413",
+          "nameEn": "Oil, olive, salad or cooking",
+          "amount": 5,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170416",
+          "nameEn": "Parsley, fresh",
+          "amount": 2,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "snack-savory",
+      "recipeVersionId": "recver_73c75531131b9a4e373b84bb_v1",
+      "profileId": "snack-bean-vegetable",
+      "mealArchetype": "snack",
+      "titleIt": "Insalata di Lenticchie e Zucca",
+      "titleEn": "Lentils and Squash salad",
+      "energyKcal": 200,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_172421",
+          "nameEn": "Lentils, mature seeds, cooked, boiled, without salt",
+          "amount": 109.8,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2685569",
+          "nameEn": "Squash, summer, yellow, includes skin, raw",
+          "amount": 120,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167737",
+          "nameEn": "Oil, corn, peanut, and olive",
+          "amount": 5,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_169231",
+          "nameEn": "Ginger root, raw",
+          "amount": 2,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "snack-savory",
+      "recipeVersionId": "recver_f8704e49e3833c881ccfcb76_v1",
+      "profileId": "snack-bean-vegetable",
+      "mealArchetype": "snack",
+      "titleIt": "Insalata di Piselli e Carota",
+      "titleEn": "Peas and Carrots salad",
+      "energyKcal": 209.7,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_172429",
+          "nameEn": "Peas, split, mature seeds, cooked, boiled, without salt",
+          "amount": 90,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2258586",
+          "nameEn": "Carrots, mature, raw",
+          "amount": 120,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_167737",
+          "nameEn": "Oil, corn, peanut, and olive",
+          "amount": 5,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_169231",
+          "nameEn": "Ginger root, raw",
+          "amount": 2,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "snack-savory",
+      "recipeVersionId": "recver_38dde1b09424c132638956fa_v1",
+      "profileId": "snack-bean-vegetable",
+      "mealArchetype": "snack",
+      "titleIt": "Insalata di Ceci e Zucca",
+      "titleEn": "Chickpeas and Squash salad",
+      "energyKcal": 200,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_2644288",
+          "nameEn": "Chickpeas (garbanzo beans, bengal gram), canned, sodium added, drained and rinsed",
+          "amount": 92.3,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2685568",
+          "nameEn": "Squash, summer, green, zucchini, includes skin, raw",
+          "amount": 120,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_171413",
+          "nameEn": "Oil, olive, salad or cooking",
+          "amount": 5,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_170924",
+          "nameEn": "Spices, curry powder",
+          "amount": 2,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "mini-meal",
+      "recipeVersionId": "recver_1ffb2d830e2812c0707d6b2b_v1",
+      "profileId": "mini-fruit-nuts",
+      "mealArchetype": "mini_meal",
+      "titleIt": "Kiwi con Anacardo",
+      "titleEn": "Kiwifruit with Cashew nuts",
+      "energyKcal": 200,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_327046",
+          "nameEn": "Kiwifruit, green, raw",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2515374",
+          "nameEn": "Nuts, cashew nuts, raw",
+          "amount": 20,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "mini-meal",
+      "recipeVersionId": "recver_a7bd4675ba3bf42b5da4af94_v1",
+      "profileId": "mini-yogurt-fruit",
+      "mealArchetype": "mini_meal",
+      "titleIt": "Latte con Mela e Noce",
+      "titleEn": "Milk with Apples and Walnuts",
+      "energyKcal": 200,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_169868",
+          "nameEn": "Milk, fluid, nonfat, calcium fortified (fat free or skim)",
+          "amount": 139.4,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_1750339",
+          "nameEn": "Apples, red delicious, with skin, raw",
+          "amount": 110,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2346394",
+          "nameEn": "Nuts, walnuts, English, halves, raw",
+          "amount": 11.4,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "mini-meal",
+      "recipeVersionId": "recver_5f2ceb68630fd0b8ee129f00_v1",
+      "profileId": "mini-fruit-nuts",
+      "mealArchetype": "mini_meal",
+      "titleIt": "Banana con Noce",
+      "titleEn": "Bananas with Walnuts",
+      "energyKcal": 204.7,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_1105314",
+          "nameEn": "Bananas, ripe and slightly ripe, raw",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2346394",
+          "nameEn": "Nuts, walnuts, English, halves, raw",
+          "amount": 8,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "mini-meal",
+      "recipeVersionId": "recver_abc5f6e605b0388e1fc2e344_v1",
+      "profileId": "mini-fruit-nuts",
+      "mealArchetype": "mini_meal",
+      "titleIt": "Ananas con Pistacchio",
+      "titleEn": "Pineapple with Pistachio nuts",
+      "energyKcal": 200.2,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_2346398",
+          "nameEn": "Pineapple, raw",
+          "amount": 150,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2515379",
+          "nameEn": "Nuts, pistachio nuts, raw",
+          "amount": 18.4,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    },
+    {
+      "stratum": "mini-meal",
+      "recipeVersionId": "recver_b09eeb4782967ae65edb09d2_v1",
+      "profileId": "mini-yogurt-fruit",
+      "mealArchetype": "mini_meal",
+      "titleIt": "Tofu con Frutta e Pistacchio",
+      "titleEn": "Tofu yogurt with Melons and Pistachio nuts",
+      "energyKcal": 200,
+      "ingredients": [
+        {
+          "ingredientId": "ing_fdc_167722",
+          "nameEn": "Tofu yogurt",
+          "amount": 122.1,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_746770",
+          "nameEn": "Melons, cantaloupe, raw",
+          "amount": 110,
+          "unit": "g"
+        },
+        {
+          "ingredientId": "ing_fdc_2515379",
+          "nameEn": "Nuts, pistachio nuts, raw",
+          "amount": 8,
+          "unit": "g"
+        }
+      ],
+      "automatedIssues": []
+    }
+  ]
+}

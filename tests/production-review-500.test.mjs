@@ -112,16 +112,20 @@ test('legacy 5000 policy field is advisory: build planning can continue above 50
   assert.equal(planned.jobs[0].targetAcceptedCount, 100);
 });
 
-test('production review workflow publishes before testing and never marks the review catalog release-eligible', async () => {
-  const [workflow, publisher, spec] = await Promise.all([
-    readFile(path.join(root,'.github/workflows/production-review-500.yml'),'utf8'),
-    readFile(path.join(root,'scripts/corpus/publish-production-review-500.mjs'),'utf8'),
-    readFile(path.join(root,'specs/PRODUCTION_CATALOG_REVIEW_SPEC.md'),'utf8')
+test('V1 release-candidate workflow rebuilds and verifies the frozen 500-recipe catalog without a 500-of-500 human-review blocker', async () => {
+  const [workflow, publisher] = await Promise.all([
+    readFile(path.join(root,'.github/workflows/v1-release-candidate.yml'),'utf8'),
+    readFile(path.join(root,'scripts/corpus/publish-v1-release.mjs'),'utf8')
   ]);
-  assert.ok(workflow.indexOf('corpus:publish-review-500') < workflow.indexOf('npm run check'));
-  assert.match(workflow, /corpus:validate-review-publication[\s\S]*--strict/);
-  assert.match(publisher, /releaseEligible:false/);
-  assert.match(spec, /Further corpus scaling must not resume while the Human Review Gate is blocked/);
+  assert.ok(workflow.indexOf('corpus:build-v1-release') < workflow.indexOf('npm run check'));
+  assert.ok(workflow.indexOf('corpus:review-v1-release') < workflow.indexOf('npm run check'));
+  assert.ok(workflow.indexOf('catalog:publish-v1-release') < workflow.indexOf('npm run check'));
+  assert.match(workflow, /git diff --exit-code/);
+  assert.match(workflow, /YDM_BROWSER_REQUIRED: '1'/);
+  assert.match(publisher, /channel:'production_release'/);
+  assert.match(publisher, /requiredHumanReview:false/);
+  assert.match(publisher, /reviewRecipeCount:60/);
+  assert.match(publisher, /releaseEligible:true/);
 });
 
 

@@ -12,6 +12,7 @@ async function report(payload) {
   const body = JSON.stringify({ suite: 'data-ux-hardening-pass-e', checkedAt: new Date().toISOString(), ...payload }, null, 2) + '\n';
   await Promise.all([
     writeFile(path.join(root, 'reports/pass-e-browser.json'), body),
+    writeFile(path.join(root, 'reports/v1-step2-browser.json'), body),
     // Compatibility artifact retained for Pass D documentation/history.
     writeFile(path.join(root, 'reports/pass-d-browser.json'), body)
   ]);
@@ -42,6 +43,11 @@ async function createStaticServer() {
     try {
       const url = new URL(req.url, `http://${req.headers.host}`);
       const relative = decodeURIComponent(url.pathname).replace(/^\/+/, '');
+      if (relative === '__seed') {
+        res.writeHead(200, { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store' });
+        res.end('<!doctype html><html><body>seed</body></html>');
+        return;
+      }
       let file = path.join(dist, relative || 'index.html');
       try { if (!(await stat(file)).isFile()) throw new Error('not-file'); }
       catch { file = path.join(dist, 'index.html'); }
@@ -141,7 +147,15 @@ async function waitExpression(cdp, expression, maxMs = 15000) {
     if (result.result?.value) return result.result.value;
     await timeout(120);
   }
-  throw new Error(`Browser condition timed out: ${expression}`);
+  let browserDetail = '';
+  try {
+    const detail = await cdp.send('Runtime.evaluate', {
+      expression: `({href:location.href,title:document.title,body:(document.body?.innerText || '').slice(0,500)})`,
+      returnByValue: true
+    });
+    if (!detail.exceptionDetails && detail.result?.value) browserDetail = `; browser=${JSON.stringify(detail.result.value)}`;
+  } catch {}
+  throw new Error(`Browser condition timed out: ${expression}${browserDetail}`);
 }
 
 async function evaluate(cdp, expression) {
@@ -182,8 +196,29 @@ try {
   const target = await targetResponse.json(); const cdp = new CDP(target.webSocketDebuggerUrl); await cdp.ready;
   await cdp.send('Page.enable'); await cdp.send('Runtime.enable');
   const browserErrors = [];
+  const browserConsoleErrors = [];
   if (!cdp.events.has('Runtime.exceptionThrown')) cdp.events.set('Runtime.exceptionThrown', new Set());
   cdp.events.get('Runtime.exceptionThrown').add(params => browserErrors.push(params.exceptionDetails?.exception?.description || params.exceptionDetails?.text || 'runtime exception'));
+  if (!cdp.events.has('Runtime.consoleAPICalled')) cdp.events.set('Runtime.consoleAPICalled', new Set());
+  cdp.events.get('Runtime.consoleAPICalled').add(params => {
+    if (params.type === 'error') browserConsoleErrors.push((params.args || []).map(arg => arg.value || arg.description || '').join(' '));
+  });
+
+  // Step 1 acceptance starts from a deliberately stale pre-V1 browser state.
+  await cdp.send('Page.navigate', { url: `${origin}/__seed` });
+  await waitExpression(cdp, `location.pathname === '/__seed' && document.readyState === 'complete'`);
+  const seeded = await evaluate(cdp, `(async () => {
+    const { repositories } = await import('/src/repositories/repositoryHub.js');
+    await repositories.setMeta('preV1DataEpoch', 'legacy-rc-epoch');
+    await repositories.setMeta('activeCatalogVersion', '0.3.0-dev');
+    await repositories.put('ingredientRevisions', { ingredientRevisionId:'ingrev_salmon_raw_v2', ingredientId:'ing_salmon', origin:'base', contentHash:'legacy-browser-hash' });
+    localStorage.setItem('ydm:legacy-pre-v1', '1');
+    const cache = await caches.open('ydm-data-v12-root');
+    await cache.put('/data/legacy-pre-v1.json', new Response('{}', { headers:{ 'content-type':'application/json' } }));
+    return true;
+  })()`);
+  if (!seeded) throw new Error('Unable to seed stale pre-V1 browser state');
+
   await cdp.send('Page.navigate', { url: `${origin}/recipes` });
   const recipeBootstrapExpression = `(() => {
     if (document.querySelectorAll('.recipe-card').length > 0) return 'ready';
@@ -205,6 +240,22 @@ try {
       body:document.body?.innerText?.slice(0,2000) || ''
     })`).catch(() => null);
     throw new Error(`${error.message}; browser=${JSON.stringify(diagnostic)}; exceptions=${browserErrors.join(' | ')}`);
+  }
+
+  const recipeCatalogCount = await evaluate(cdp, `document.querySelector('.results-heading strong')?.textContent || ''`);
+  if (!/\b500\b/.test(recipeCatalogCount)) throw new Error(`V1 candidate catalog expected 500 recipes, got heading: ${recipeCatalogCount}`);
+
+  const resetState = await evaluate(cdp, `(async () => {
+    const { repositories } = await import('/src/repositories/repositoryHub.js');
+    const { PRE_V1_DATA_EPOCH } = await import('/src/db/constants.js');
+    const oldRevision = await repositories.get('ingredientRevisions', 'ingrev_salmon_raw_v2');
+    const epoch = await repositories.getMeta('preV1DataEpoch');
+    const activeCatalogVersion = await repositories.getMeta('activeCatalogVersion');
+    const cacheNames = await caches.keys();
+    return { epoch, expectedEpoch:PRE_V1_DATA_EPOCH, oldRevision:oldRevision || null, activeCatalogVersion, legacyLocalStorage:localStorage.getItem('ydm:legacy-pre-v1'), legacyCache:cacheNames.includes('ydm-data-v12-root') };
+  })()`);
+  if (resetState.epoch !== resetState.expectedEpoch || resetState.oldRevision || resetState.legacyLocalStorage || resetState.legacyCache || resetState.activeCatalogVersion !== '1.0.0') {
+    throw new Error(`Pre-V1 destructive reset regression: ${JSON.stringify(resetState)}`);
   }
 
   // Critical regression: clicking a recipe card must open catalog detail, not fall through to Today/Create plan.
@@ -302,15 +353,133 @@ try {
   })()`);
   await waitExpression(cdp, `location.pathname === '/configure/days' && window.__ydmPassEConfirmCalls === 2`);
 
+  // V1 Step 2 vertical product acceptance: real UI over real IndexedDB/catalog.
+  await cdp.send('Page.navigate', { url: `${origin}/` });
+  await waitExpression(cdp, `!!document.querySelector('[data-testid="plan-create"] [data-testid="plan-generate"]')`, 30000);
+  await evaluate(cdp, `(() => {
+    const days = document.querySelector('[data-testid="plan-days"]');
+    const seed = document.querySelector('[data-testid="plan-seed"]');
+    days.value = '7'; days.dispatchEvent(new Event('input', { bubbles:true }));
+    seed.value = 'v1-step2-browser'; seed.dispatchEvent(new Event('input', { bubbles:true }));
+    document.querySelector('[data-testid="plan-generate"]').click();
+    return true;
+  })()`);
+  await waitExpression(cdp, `document.querySelectorAll('[data-testid="plan-generation-preview"] .plan-preview-day').length === 7 && !!document.querySelector('[data-testid="plan-confirm"]')`, 30000);
+  await evaluate(cdp, `document.querySelector('[data-testid="plan-confirm"]').click(); true`);
+  await waitExpression(cdp, `!!document.querySelector('[data-testid="plan-manage-today"]') && document.querySelectorAll('[data-testid="plan-meal-card"]').length === 4`, 30000);
+  const planCreated = await evaluate(cdp, `(async () => {
+    const { repositories } = await import('/src/repositories/repositoryHub.js');
+    const planId = await repositories.getMeta('activePlanInstanceId');
+    const plan = await repositories.get('planInstances', planId);
+    const days = await repositories.getAllByIndex('calendarDays', 'planInstanceId', {kind:'only', value:planId});
+    return {planId, startDate:plan?.startDate, endDate:plan?.endDate, dayCount:days.length};
+  })()`);
+  if (!planCreated.planId || planCreated.dayCount !== 7) throw new Error(`Step2 plan creation regression: ${JSON.stringify(planCreated)}`);
+
+  // Recipe links from plan must resolve to canonical recipe detail route.
+  await evaluate(cdp, `document.querySelector('[data-testid="plan-recipe-link"]').click(); true`);
+  await waitExpression(cdp, `location.pathname.startsWith('/recipes/') && !!document.querySelector('[data-testid="recipe-detail"]')`);
+  const planRecipePath = await evaluate(cdp, `location.pathname`);
+  if (planRecipePath === '/recipes/' || planRecipePath === '/recipes') throw new Error(`Plan recipe route regression: ${planRecipePath}`);
+  await cdp.send('Page.navigate', { url: `${origin}/` });
+  await waitExpression(cdp, `!!document.querySelector('[data-testid="plan-manage-today"]')`);
+
+  // Manage day -> replace -> adherence -> rebalance.
+  await evaluate(cdp, `document.querySelector('[data-testid="plan-manage-today"]').click(); true`);
+  await waitExpression(cdp, `location.pathname === '/calendar/day' && !!document.querySelector('[data-testid="plan-replace"]')`, 20000);
+  const originalOccurrence = await evaluate(cdp, `(async () => {
+    const { repositories } = await import('/src/repositories/repositoryHub.js');
+    const date = new URLSearchParams(location.search).get('date');
+    const rows = await repositories.getAllByIndex('calendarDays', 'date', {kind:'only', value:date});
+    const day = rows.find(Boolean); const slot = day.mealSlots.find(item => item.mode === 'planned');
+    return {calendarDayId:day.calendarDayId, occurrenceId:slot.mealOccurrenceId, recipeVersionId:slot.recipeComponents[0].recipeVersionId};
+  })()`);
+  await evaluate(cdp, `document.querySelector('[data-testid="plan-replace"]').click(); true`);
+  await waitExpression(cdp, `document.querySelectorAll('[data-testid="replacement-preview"] [data-testid="replacement-confirm"]').length > 0`, 20000);
+  await evaluate(cdp, `document.querySelector('[data-testid="replacement-confirm"]').click(); true`);
+  const replaced = await waitExpression(cdp, `(async () => {
+    const { repositories } = await import('/src/repositories/repositoryHub.js');
+    const day = await repositories.get('calendarDays', '${originalOccurrence.calendarDayId}');
+    const slot = day?.mealSlots?.find(item => item.mealOccurrenceId === '${originalOccurrence.occurrenceId}');
+    const id = slot?.recipeComponents?.[0]?.recipeVersionId;
+    return id && id !== '${originalOccurrence.recipeVersionId}' ? id : '';
+  })()`, 20000);
+
+  await waitExpression(cdp, `!!document.querySelector('[data-testid="adherence-editor"] [data-testid="adherence-status"]')`);
+  await evaluate(cdp, `(() => {
+    const select = document.querySelector('[data-testid="adherence-editor"] [data-testid="adherence-status"]');
+    select.value = 'followed'; select.dispatchEvent(new Event('change', { bubbles:true }));
+    document.querySelector('[data-testid="adherence-editor"] [data-testid="adherence-save"]').click();
+    return true;
+  })()`);
+  await waitExpression(cdp, `(async () => {
+    const { repositories } = await import('/src/repositories/repositoryHub.js');
+    const day = await repositories.get('calendarDays', '${originalOccurrence.calendarDayId}');
+    return day?.mealSlots?.find(item => item.mealOccurrenceId === '${originalOccurrence.occurrenceId}')?.adherenceStatus === 'followed';
+  })()`, 15000);
+
+  await waitExpression(cdp, `!!document.querySelector('[data-testid="rebalance-day-preview"]')`);
+  await evaluate(cdp, `document.querySelector('[data-testid="rebalance-day-preview"]').click(); true`);
+  await waitExpression(cdp, `!!document.querySelector('[data-testid="rebalance-preview-card"] [data-testid="rebalance-confirm"]')`, 20000);
+  await evaluate(cdp, `document.querySelector('[data-testid="rebalance-confirm"]').click(); true`);
+  await waitExpression(cdp, `!document.querySelector('[data-testid="rebalance-preview-card"]')`, 20000);
+
+  // Undo + redo latest plan mutation through the visible history page.
+  await cdp.send('Page.navigate', { url: `${origin}/history` });
+  await waitExpression(cdp, `!!document.querySelector('[data-testid="plan-undo"]:not([disabled])')`);
+  await evaluate(cdp, `document.querySelector('[data-testid="plan-undo"]:not([disabled])').click(); true`);
+  await waitExpression(cdp, `!!document.querySelector('[data-testid="plan-redo"]:not([disabled])')`);
+  await evaluate(cdp, `document.querySelector('[data-testid="plan-redo"]:not([disabled])').click(); true`);
+  await waitExpression(cdp, `!!document.querySelector('[data-testid="plan-undo"]:not([disabled])')`);
+
+  // Shopping derives from the effective plan, checklist state persists across a full reload.
+  await cdp.send('Page.navigate', { url: `${origin}/shopping` });
+  await waitExpression(cdp, `!!document.querySelector('[data-testid="shopping-page"]') && document.querySelectorAll('[data-testid="shopping-calculated"] .shopping-item').length > 0`, 30000);
+  await evaluate(cdp, `document.querySelector('[data-testid="shopping-calculate"]').click(); true`);
+  await waitExpression(cdp, `!!document.querySelector('[data-testid="shopping-save-checklist"]:not([disabled])')`);
+  await evaluate(cdp, `document.querySelector('[data-testid="shopping-save-checklist"]').click(); true`);
+  await waitExpression(cdp, `!!document.querySelector('[data-testid="shopping-checklist"] [data-testid="shopping-check-item"]')`, 20000);
+  await evaluate(cdp, `document.querySelector('[data-testid="shopping-check-item"]').click(); true`);
+  const persistedBeforeReload = await waitExpression(cdp, `(async () => {
+    const { repositories } = await import('/src/repositories/repositoryHub.js');
+    const rows = await repositories.getAll('shoppingChecklists');
+    const checklist = rows.sort((a,b) => b.updatedAt.localeCompare(a.updatedAt))[0];
+    const item = checklist?.items?.find(row => row.checked);
+    return checklist && item ? {checklistId:checklist.checklistId, itemId:item.itemId, planId:checklist.planInstanceId} : null;
+  })()`);
+  await cdp.send('Page.reload', { ignoreCache: true });
+  await waitExpression(cdp, `!!document.querySelector('[data-testid="shopping-checklist"] [data-testid="shopping-check-item"]')`, 30000);
+  const persistedAfterReload = await evaluate(cdp, `(async () => {
+    const { repositories } = await import('/src/repositories/repositoryHub.js');
+    const checklist = await repositories.get('shoppingChecklists', '${persistedBeforeReload.checklistId}');
+    const activePlanId = await repositories.getMeta('activePlanInstanceId');
+    return {activePlanId, checked:checklist?.items?.some(item => item.itemId === '${persistedBeforeReload.itemId}' && item.checked) || false};
+  })()`);
+  if (!persistedAfterReload.checked || persistedAfterReload.activePlanId !== persistedBeforeReload.planId) throw new Error(`Step2 reload persistence regression: ${JSON.stringify({persistedBeforeReload,persistedAfterReload})}`);
+  if (browserErrors.length || browserConsoleErrors.length) throw new Error(`Step2 browser errors: ${[...browserErrors, ...browserConsoleErrors].join(' | ')}`);
+
+  const step2 = {
+    planCreated,
+    planRecipePath,
+    replacementChangedRecipe: Boolean(replaced),
+    adherenceSaved: true,
+    rebalanceCommitted: true,
+    undoRedo: true,
+    shoppingChecklistPersisted: persistedAfterReload.checked,
+    reloadPreservedPlan: persistedAfterReload.activePlanId === persistedBeforeReload.planId,
+    runtimeErrors: 0
+  };
+
   const acceptance = {
     formSchemaParity: formParity,
     disclosureKey,
     disclosurePreserved: Boolean(disclosureState?.open),
     invalidDraftBlocked: Boolean(disclosureState?.invalidBlocked),
     dirtyNavigationGuarded: true,
-    saveFeedbackVisible: true
+    saveFeedbackVisible: true,
+    step2
   };
-  console.log(`Browser regression PASS: recipe=${recipeState.path}, ingredient=${ingredientState.path}, passE=accepted`);
+  console.log(`Browser regression PASS: recipe=${recipeState.path}, ingredient=${ingredientState.path}, passE=accepted, step2=accepted`);
   await report({ status: 'passed', browserPath: browserChoice.path, browserVersion: browserChoice.version, recipePath: recipeState.path, ingredientPath: ingredientState.path, acceptance });
   cdp.close();
 } catch (error) {

@@ -1,6 +1,7 @@
 import { element, clear } from './dom.js';
 import { validateThemeContrast, applyTheme } from '../theme/themeEngine.js';
 import { createBackup, importBackup } from '../services/backupEngine.js';
+import { deleteAllLocalData } from '../services/localDataService.js';
 import { loadConfigurationBundle, saveConfigurationBundle } from '../services/configurationService.js';
 import {
   configurationIndexPage, cyclePage, dayClassesPage, mealClassesPage, nutritionPage,
@@ -137,6 +138,19 @@ function backupPage(state) {
     section.append(element('div', { className: 'validation-box', text: state.i18n.t('backup.preImport.ready') }));
     section.append(element('button', { className: 'button button--secondary', text: state.i18n.t('backup.preImport.download'), onClick: () => downloadJson(state.preImportBackup) }));
   }
+  section.append(element('hr', { className: 'section-divider' }));
+  section.append(element('h2', { text: state.i18n.t('backup.delete.title') }));
+  section.append(element('p', { className: 'muted', text: state.i18n.t('backup.delete.description') }));
+  section.append(element('button', {
+    className: 'button button--danger', 'data-testid': 'backup-delete-local-data', text: state.i18n.t('backup.delete.button'),
+    onClick: async () => {
+      if (!confirm(state.i18n.t('backup.delete.confirm'))) return;
+      try {
+        await deleteAllLocalData({ repo: state.repo });
+        window.location.reload();
+      } catch (error) { state.notify?.('error', `${state.i18n.t('backup.delete.error')}: ${error.message || error}`); }
+    }
+  }));
   return section;
 }
 

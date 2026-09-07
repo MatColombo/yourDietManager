@@ -1,0 +1,346 @@
+{
+  "schemaVersion": 1,
+  "policyId": "v1-release-recipe-eligibility",
+  "policyVersion": "1.0.0",
+  "description": "Explicit culinary-role allowlist for the V1 release recipe corpus. Food taxonomy membership alone is never sufficient for recipe generation.",
+  "roles": {
+    "fruitReady": {
+      "portionG": {
+        "min": 80,
+        "default": 140,
+        "max": 200
+      },
+      "ingredientIds": [
+        "ing_fdc_1105073",
+        "ing_fdc_1105314",
+        "ing_fdc_167755",
+        "ing_fdc_167762",
+        "ing_fdc_167765",
+        "ing_fdc_167776",
+        "ing_fdc_167777",
+        "ing_fdc_167778",
+        "ing_fdc_167779",
+        "ing_fdc_167793",
+        "ing_fdc_1750339",
+        "ing_fdc_1750340",
+        "ing_fdc_1750341",
+        "ing_fdc_1750342",
+        "ing_fdc_1750343",
+        "ing_fdc_2346398",
+        "ing_fdc_2710815",
+        "ing_fdc_2710836",
+        "ing_fdc_2710837",
+        "ing_fdc_325430",
+        "ing_fdc_327046",
+        "ing_fdc_746770",
+        "ing_fdc_746771",
+        "ing_fdc_746773"
+      ]
+    },
+    "vegetableCook": {
+      "portionG": {
+        "min": 80,
+        "default": 160,
+        "max": 240
+      },
+      "ingredientIds": [
+        "ing_fdc_2258586",
+        "ing_fdc_2258587",
+        "ing_fdc_2258588",
+        "ing_fdc_2258589",
+        "ing_fdc_2258590",
+        "ing_fdc_2258591",
+        "ing_fdc_2346400",
+        "ing_fdc_2346404",
+        "ing_fdc_2685568",
+        "ing_fdc_2685569",
+        "ing_fdc_2685570",
+        "ing_fdc_2685571",
+        "ing_fdc_2685572",
+        "ing_fdc_2685573",
+        "ing_fdc_2685574",
+        "ing_fdc_2685575",
+        "ing_fdc_2685576",
+        "ing_fdc_2685577",
+        "ing_fdc_2710823",
+        "ing_fdc_2710826",
+        "ing_fdc_2747655",
+        "ing_fdc_2747659",
+        "ing_fdc_321360",
+        "ing_fdc_323505",
+        "ing_fdc_747447",
+        "ing_fdc_790577",
+        "ing_fdc_790646"
+      ]
+    },
+    "vegetableRaw": {
+      "portionG": {
+        "min": 70,
+        "default": 120,
+        "max": 180
+      },
+      "ingredientIds": [
+        "ing_fdc_2258586",
+        "ing_fdc_2258587",
+        "ing_fdc_2258588",
+        "ing_fdc_2258589",
+        "ing_fdc_2258590",
+        "ing_fdc_2258591",
+        "ing_fdc_2685568",
+        "ing_fdc_2685569",
+        "ing_fdc_2710822",
+        "ing_fdc_2747655",
+        "ing_fdc_2747664",
+        "ing_fdc_2747665",
+        "ing_fdc_321360",
+        "ing_fdc_746769"
+      ]
+    },
+    "breakfastCereal": {
+      "portionG": {
+        "min": 30,
+        "default": 45,
+        "max": 65
+      },
+      "ingredientIds": [
+        "ing_fdc_167715",
+        "ing_fdc_167724",
+        "ing_fdc_167725"
+      ]
+    },
+    "warmBreakfastGrain": {
+      "portionG": {
+        "min": 140,
+        "default": 200,
+        "max": 280
+      },
+      "ingredientIds": [
+        "ing_fdc_168871",
+        "ing_fdc_168873"
+      ]
+    },
+    "carbCooked": {
+      "portionG": {
+        "min": 100,
+        "default": 200,
+        "max": 300
+      },
+      "ingredientIds": [
+        "ing_fdc_168871",
+        "ing_fdc_168875",
+        "ing_fdc_168878",
+        "ing_fdc_168880",
+        "ing_fdc_168897",
+        "ing_fdc_168900",
+        "ing_fdc_168904",
+        "ing_fdc_168910",
+        "ing_fdc_168914",
+        "ing_fdc_168916",
+        "ing_fdc_168928",
+        "ing_fdc_168934",
+        "ing_fdc_168935",
+        "ing_fdc_169700"
+      ]
+    },
+    "legumeCooked": {
+      "portionG": {
+        "min": 90,
+        "default": 170,
+        "max": 230
+      },
+      "ingredientIds": [
+        "ing_fdc_172421",
+        "ing_fdc_172422",
+        "ing_fdc_172424",
+        "ing_fdc_172427",
+        "ing_fdc_172429",
+        "ing_fdc_2644285",
+        "ing_fdc_2644286",
+        "ing_fdc_2644287",
+        "ing_fdc_2644288",
+        "ing_fdc_2644289",
+        "ing_fdc_2644290",
+        "ing_fdc_2644292",
+        "ing_fdc_2644293",
+        "ing_fdc_2644294"
+      ]
+    },
+    "nutsSeeds": {
+      "portionG": {
+        "min": 8,
+        "default": 20,
+        "max": 30
+      },
+      "ingredientIds": [
+        "ing_fdc_2346392",
+        "ing_fdc_2346393",
+        "ing_fdc_2346394",
+        "ing_fdc_2346395",
+        "ing_fdc_2515373",
+        "ing_fdc_2515374",
+        "ing_fdc_2515375",
+        "ing_fdc_2515378",
+        "ing_fdc_2515379",
+        "ing_fdc_2515380",
+        "ing_fdc_2515381"
+      ]
+    },
+    "dairyOrSoyYogurt": {
+      "portionG": {
+        "min": 80,
+        "default": 150,
+        "max": 200
+      },
+      "ingredientIds": [
+        "ing_fdc_167697",
+        "ing_fdc_167722",
+        "ing_fdc_169868",
+        "ing_fdc_169898",
+        "ing_fdc_330415"
+      ]
+    },
+    "eggWhole": {
+      "portionG": {
+        "min": 90,
+        "default": 120,
+        "max": 150
+      },
+      "ingredientIds": [
+        "ing_fdc_171287",
+        "ing_fdc_748967"
+      ]
+    },
+    "poultryLean": {
+      "portionG": {
+        "min": 100,
+        "default": 150,
+        "max": 190
+      },
+      "ingredientIds": [
+        "ing_fdc_171052",
+        "ing_fdc_171054",
+        "ing_fdc_171067",
+        "ing_fdc_171069",
+        "ing_fdc_171070"
+      ]
+    },
+    "meatLean": {
+      "portionG": {
+        "min": 90,
+        "default": 140,
+        "max": 180
+      },
+      "ingredientIds": [
+        "ing_fdc_167816",
+        "ing_fdc_167817",
+        "ing_fdc_167829",
+        "ing_fdc_167837",
+        "ing_fdc_167838",
+        "ing_fdc_167845",
+        "ing_fdc_167846",
+        "ing_fdc_167852",
+        "ing_fdc_167893",
+        "ing_fdc_167894",
+        "ing_fdc_167901",
+        "ing_fdc_167903"
+      ]
+    },
+    "fishSeafood": {
+      "portionG": {
+        "min": 100,
+        "default": 150,
+        "max": 190
+      },
+      "ingredientIds": [
+        "ing_fdc_167742",
+        "ing_fdc_171955",
+        "ing_fdc_171956",
+        "ing_fdc_171962",
+        "ing_fdc_171963",
+        "ing_fdc_171971",
+        "ing_fdc_171975",
+        "ing_fdc_171976"
+      ]
+    },
+    "oilCooking": {
+      "portionG": {
+        "min": 5,
+        "default": 9,
+        "max": 12
+      },
+      "ingredientIds": [
+        "ing_fdc_167737",
+        "ing_fdc_171413"
+      ]
+    },
+    "seasoning": {
+      "portionG": {
+        "min": 1,
+        "default": 3,
+        "max": 6
+      },
+      "ingredientIds": [
+        "ing_fdc_1104647",
+        "ing_fdc_169231",
+        "ing_fdc_169997",
+        "ing_fdc_170416",
+        "ing_fdc_170921",
+        "ing_fdc_170923",
+        "ing_fdc_170924",
+        "ing_fdc_170926",
+        "ing_fdc_170928"
+      ]
+    }
+  },
+  "mealTargets": {
+    "breakfast": {
+      "count": 100,
+      "energyKcal": {
+        "min": 330,
+        "target": 400,
+        "max": 470
+      }
+    },
+    "lunch": {
+      "count": 125,
+      "energyKcal": {
+        "min": 600,
+        "target": 700,
+        "max": 780
+      }
+    },
+    "dinner": {
+      "count": 125,
+      "energyKcal": {
+        "min": 600,
+        "target": 700,
+        "max": 780
+      }
+    },
+    "snack": {
+      "count": 75,
+      "energyKcal": {
+        "min": 160,
+        "target": 200,
+        "max": 260
+      }
+    },
+    "mini_meal": {
+      "count": 75,
+      "energyKcal": {
+        "min": 160,
+        "target": 200,
+        "max": 270
+      }
+    }
+  },
+  "releaseRules": {
+    "maxIngredientAmountG": 300,
+    "maxOilAmountG": 12,
+    "maxNutsSeedsAmountG": 30,
+    "maxSeasoningAmountG": 6,
+    "requireExplicitCulinaryRole": true,
+    "allowTaxonomyOnlyEligibility": false,
+    "allowNoCookRawAnimalProtein": false
+  }
+}

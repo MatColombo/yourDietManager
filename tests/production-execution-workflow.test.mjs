@@ -3,23 +3,11 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 
-test('network-enabled production workflow preserves the frozen 4P-B -> pilot -> 4P-C sequence', async () => {
-  const workflow = await readFile('.github/workflows/production-corpus.yml','utf8');
-  const ordered = [
-    'usda-foundation-2026-04','usda-sr-legacy-2018-04','corpus:auto-curate-fdc','corpus:materialize-usda',
-    'corpus:generate-fixture-retirement','corpus:retire-recipe-fixtures','--pilot-strict','corpus:pilot-execute','Scale Gate 500','corpus:first-scale-batch'
-  ];
-  let cursor = -1;
-  for (const token of ordered) {
-    const next = workflow.indexOf(token, cursor + 1);
-    assert.ok(next > cursor, `workflow token missing/out of order: ${token}`);
-    cursor = next;
-  }
-  assert.match(workflow,/actions\/checkout@v7/);
-  assert.match(workflow,/actions\/setup-node@v7/);
-  assert.match(workflow,/commit_results/);
-  assert.match(workflow,/pre-verify-summary\.json/);
-  assert.doesNotMatch(workflow,/git add[^\n]*corpus\/sources\/cache/);
+test('pre-freeze network corpus writer workflow is retired at the V1 freeze boundary', async () => {
+  await assert.rejects(readFile('.github/workflows/production-corpus.yml','utf8'), /ENOENT/);
+  const candidateWorkflow = await readFile('.github/workflows/v1-release-candidate.yml','utf8');
+  assert.match(candidateWorkflow,/corpus:build-v1-release/);
+  assert.match(candidateWorkflow,/git diff --exit-code/);
 });
 
 

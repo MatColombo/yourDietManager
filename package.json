@@ -1,7 +1,7 @@
 {
   "name": "yourdietmanager",
   "private": true,
-  "version": "1.0.0-rc.24",
+  "version": "1.0.0-rc.27",
   "type": "module",
   "scripts": {
     "dev": "node scripts/dev-server.mjs",
@@ -11,7 +11,7 @@
     "hardening:a11y": "node scripts/hardening/a11y-audit.mjs",
     "hardening:scale": "node scripts/hardening/scale-benchmark.mjs",
     "release:gate": "node scripts/hardening/release-gate.mjs",
-    "check": "npm run corpus:4pa && npm run corpus:4pb && npm run corpus:4pc && npm run corpus:production-execution && npm run corpus:4pd && npm run corpus:review500 && npm run corpus:smoke && npm run planner:smoke && npm run lint && npm run test && npm run hardening:a11y && npm run hardening:forms && npm run hardening:scale && npm run build && npm run hardening:browser && npm run hardening:revision && npm run pages:audit",
+    "check": "npm run v1:step1-gate && npm run v1:step2-gate && npm run v1:step3-gate && npm run planner:smoke && npm run lint && npm run test && npm run hardening:a11y && npm run hardening:forms && npm run build && npm run hardening:browser && npm run hardening:revision && npm run pages:audit",
     "corpus:scan": "node scripts/corpus/scan.mjs",
     "corpus:plan": "node scripts/corpus/plan.mjs",
     "corpus:smoke": "node scripts/corpus/build-phase4-smoke.mjs",
@@ -54,6 +54,13 @@
     "corpus:publish-review-500": "node scripts/corpus/publish-production-review-500.mjs",
     "corpus:validate-review-publication": "node scripts/corpus/validate-production-review-publication.mjs",
     "corpus:validate-human-review-500": "node scripts/corpus/validate-human-review-500.mjs",
-    "corpus:review500": "node scripts/corpus/validate-production-review-control-plane.mjs"
+    "corpus:review500": "node scripts/corpus/validate-production-review-control-plane.mjs",
+    "v1:step1-gate": "node scripts/hardening/v1-step1-gate.mjs",
+    "v1:step2-engine": "node --test tests/v1-step2.test.mjs",
+    "v1:step2-gate": "npm run v1:step2-engine && node scripts/hardening/v1-step2-gate.mjs",
+    "corpus:build-v1-release": "node scripts/corpus/build-v1-release-corpus.mjs",
+    "corpus:review-v1-release": "node scripts/corpus/v1-stratified-review.mjs",
+    "catalog:publish-v1-release": "node scripts/corpus/publish-v1-release.mjs --canonical",
+    "v1:step3-gate": "node scripts/hardening/v1-step3-gate.mjs"
   }
 }

@@ -158,9 +158,21 @@ async function metaBefore(repo, keys) {
 }
 
 export async function commitReplacement({ planInstanceId, calendarDayId, mealOccurrenceId, recipeVersionId, createdAt = null }, { repo = repositories, registry } = {}) {
-  const preview = await createReplacementPreview({ planInstanceId, calendarDayId, mealOccurrenceId, seed: `commit-${recipeVersionId}`, limit: 20 }, { repo, registry });
-  const selected = preview.candidates.find(item => item.recipe.recipeVersionId === recipeVersionId); if (!selected) throw new Error('Selected replacement is not an admissible candidate');
   const context = await loadEditContext(planInstanceId, calendarDayId, mealOccurrenceId, { repo, registry });
+  if (context.occurrence.mode !== 'planned') throw new Error('External meal occurrences cannot be replaced with catalog recipes');
+  if ((context.occurrence.recipeComponents || []).some(component => component.recipeVersionId === recipeVersionId)) throw new Error('Selected replacement is already assigned to the meal occurrence');
+  const recipe = await repo.get('recipeVersions', recipeVersionId);
+  if (!recipe) throw new Error('Selected replacement is not an admissible candidate');
+  const sourceSlot = dayClassSlot(context.dayClass, context.occurrence);
+  const target = dayEnergyTarget(context.active.nutritionProfile, context.day.dayArchetype);
+  const targetEnergy = slotEnergyTarget(sourceSlot, context.mealClass, target);
+  const history = await historyForDate(planInstanceId, context.day.date, { repo });
+  const revisionIds = [...new Set([recipe, ...history.map(item => item.recipe)].flatMap(item => (item.ingredientLines || []).map(line => line.ingredientRevisionId)))];
+  const revisions = await repo.getMany('ingredientRevisions', revisionIds);
+  const revisionById = new Map(revisions.map(item => [item.ingredientRevisionId, item]));
+  const scoreContext = { mealClass: context.mealClass, dayClass: context.dayClass, allergyProfile: context.active.allergyProfile, foodPreferences: context.active.foodPreferences, revisionById, history, date: context.day.date, nutritionProfile: context.active.nutritionProfile, slotEnergyTarget: targetEnergy, dayEnergyTarget: target };
+  if (!hardFilterRecipe(recipe, scoreContext).allowed) throw new Error('Selected replacement is not an admissible candidate');
+  const selected = { recipe };
   const timestamp = nowIso(createdAt); const nextDay = clone(context.day); const nextPlan = clone(context.plan);
   const slot = nextDay.mealSlots.find(item => item.mealOccurrenceId === mealOccurrenceId);
   const previousComponents = clone(slot.recipeComponents);

@@ -669,5 +669,10 @@
   "review.gateBlocked": "Human Review Gate: BLOCKED finché tutte le 500 ricette non sono revisionate e approvate oppure corrette.",
   "review.attentionTitle": "Ricette che richiedono intervento",
   "review.publicationActive": "Production review catalog attivo",
-  "review.sourceDigest": "Digest corpus sorgente"
+  "review.sourceDigest": "Digest corpus sorgente",
+  "backup.delete.title": "Elimina dati locali",
+  "backup.delete.description": "Rimuove configurazione, piani, checklist, modifiche utente e indice locale del catalogo. I file pubblici della PWA restano disponibili e l’app riparte da una installazione pulita.",
+  "backup.delete.button": "Elimina tutti i dati locali",
+  "backup.delete.confirm": "Eliminare tutti i dati locali di yourDietManager? Questa operazione non può essere annullata senza un backup.",
+  "backup.delete.error": "Eliminazione dati non riuscita"
 }

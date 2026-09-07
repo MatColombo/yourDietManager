@@ -118,6 +118,9 @@ export async function undoLastOperation(planInstanceId, { repo = repositories, r
   if (registry) registry.assert('operation', updated);
   const mutation = toMutation(operation.before);
   mutation.puts.operations = [...(mutation.puts.operations || []), updated];
+  // Undo changes the effective plan even when the restored snapshot carries an older timestamp.
+  // Keep planUpdatedAt monotonic so shopping/checklist staleness follows effective content changes.
+  mutation.metaSet.planUpdatedAt = updated.undoneAt;
   mutation.metaSet[historyMetaKey(planInstanceId)] = {
     version: 1,
     maxSequence: pointer.maxSequence,
@@ -145,6 +148,8 @@ export async function redoNextOperation(planInstanceId, { repo = repositories, r
   if (registry) registry.assert('operation', updated);
   const mutation = toMutation(operation.after);
   mutation.puts.operations = [...(mutation.puts.operations || []), updated];
+  // Redo is also a fresh effective-plan mutation; never restore a stale planUpdatedAt snapshot.
+  mutation.metaSet.planUpdatedAt = updated.metadata.lastRedoAt;
   mutation.metaSet[historyMetaKey(planInstanceId)] = {
     version: 1,
     maxSequence: pointer.maxSequence,

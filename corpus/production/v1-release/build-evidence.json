@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "builtAt": "2026-09-07T12:00:00.000Z",
+  "catalogVersion": "1.0.0",
+  "eligibilityPolicy": "v1-release-recipe-eligibility@1.0.0",
+  "recipeDigest": "7416f74b668bf44f8c2abf0c77e3f659ffb145f0b0c5141b9d08a74304cd6780",
+  "counts": {
+    "ingredientFamilies": 600,
+    "ingredientRevisions": 600,
+    "recipeFamilies": 500,
+    "recipeVersions": 500
+  },
+  "diagnostics": {
+    "breakfast": {
+      "generatedCandidates": 1689,
+      "accepted": 100,
+      "rejected": 1589,
+      "warnings": 0,
+      "energyRange": {
+        "min": 362.3,
+        "max": 434.9
+      }
+    },
+    "lunch": {
+      "generatedCandidates": 2240,
+      "accepted": 125,
+      "rejected": 2115,
+      "warnings": 0,
+      "energyRange": {
+        "min": 609.2,
+        "max": 700.1
+      }
+    },
+    "dinner": {
+      "generatedCandidates": 2237,
+      "accepted": 125,
+      "rejected": 2112,
+      "warnings": 0,
+      "energyRange": {
+        "min": 651.6,
+        "max": 700.1
+      }
+    },
+    "snack": {
+      "generatedCandidates": 1033,
+      "accepted": 75,
+      "rejected": 958,
+      "warnings": 0,
+      "energyRange": {
+        "min": 199.7,
+        "max": 240.9
+      }
+    },
+    "mini_meal": {
+      "generatedCandidates": 612,
+      "accepted": 75,
+      "rejected": 537,
+      "warnings": 0,
+      "energyRange": {
+        "min": 199.7,
+        "max": 232
+      }
+    }
+  }
+}

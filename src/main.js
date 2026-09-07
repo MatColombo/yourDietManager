@@ -1,6 +1,6 @@
 import { SchemaRegistry } from './lib/schemaValidator.js';
 import { repositories } from './repositories/repositoryHub.js';
-import { runMigrations } from './services/migrationRunner.js';
+import { ensurePreV1DataEpoch } from './services/preV1DataEpoch.js';
 import { ensureBootstrapConfiguration } from './services/configurationBootstrap.js';
 import { CatalogImporter } from './services/catalogImporter.js';
 import { CatalogUpdater } from './services/catalogUpdater.js';
@@ -38,7 +38,7 @@ async function refreshCatalogStats(state) {
 
 async function start() {
   await registry.loadAll();
-  await runMigrations(repositories, { registry, referenceDataLoader: () => fetchBundledReferenceData({ registry }) });
+  await ensurePreV1DataEpoch({ repo: repositories, registry, referenceDataLoader: () => fetchBundledReferenceData({ registry }) });
   await ensureBootstrapConfiguration({ repo: repositories, registry });
   const configuration = await loadConfigurationBundle(repositories);
   const config = configuration.appConfig;

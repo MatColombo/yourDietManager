@@ -669,5 +669,10 @@
   "review.gateBlocked": "Human Review Gate: BLOCKED until all 500 recipes are reviewed and approved or corrected.",
   "review.attentionTitle": "Recipes requiring action",
   "review.publicationActive": "Production review catalog active",
-  "review.sourceDigest": "Source corpus digest"
+  "review.sourceDigest": "Source corpus digest",
+  "backup.delete.title": "Delete local data",
+  "backup.delete.description": "Removes configuration, plans, checklists, user edits, and the local catalog index. Public PWA files remain available and the app restarts as a clean installation.",
+  "backup.delete.button": "Delete all local data",
+  "backup.delete.confirm": "Delete all local yourDietManager data? This cannot be undone without a backup.",
+  "backup.delete.error": "Data deletion failed"
 }

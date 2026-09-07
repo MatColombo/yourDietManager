@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "status": "release_candidate",
+  "manualAcceptanceRequired": true,
+  "manualAcceptanceStatus": "pending",
+  "catalogVersion": "1.0.0",
+  "appCandidateVersion": "1.0.0-rc.27",
+  "builtAt": "2026-09-07T12:45:00.000Z",
+  "publication": {
+    "channel": "production_release",
+    "publicationId": "v1-release-500-7416f74b668b",
+    "sourceCorpusDigest": "358f405451ab464e5a630076984b14639d8b6f6905d6f74463535e5825ceff8f",
+    "sourceSnapshotId": "v1-release-7416f74b668bf44f",
+    "requiredHumanReview": false,
+    "reviewRecipeCount": 60,
+    "reviewPolicyVersion": "v1-stratified-semantic-review-1",
+    "releaseEligible": true
+  },
+  "dataContract": {
+    "ingredientFamilies": 600,
+    "ingredientRevisions": 600,
+    "recipeFamilies": 500,
+    "recipeVersions": 500,
+    "eligibilityPolicy": "v1-release-recipe-eligibility@1.0.0"
+  },
+  "quality": {
+    "schemaErrors": 0,
+    "unknownIngredientReferences": 0,
+    "nutritionErrors": 0,
+    "allergenDerivationErrors": 0,
+    "missingRequiredLocaleFields": 0,
+    "exactDuplicateCount": 0,
+    "nearDuplicateCount": 0,
+    "stratifiedReviewSampleSize": 60,
+    "stratifiedReviewStatus": "passed"
+  },
+  "recipeDigest": "7416f74b668bf44f8c2abf0c77e3f659ffb145f0b0c5141b9d08a74304cd6780"
+}
