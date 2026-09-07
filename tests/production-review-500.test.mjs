@@ -151,9 +151,12 @@ test('published 500-recipe review catalog bootstraps all required recipes with t
   assert.equal((await repo.getMeta('catalogManifest')).publication.releaseEligible, false);
 });
 
-test('browser regression gives production-scale catalog bootstrap a bounded 60-second window and fails fast on catalog errors', async () => {
+test('browser regression gives production-scale catalog bootstrap a bounded window, waits for stable rendered results and fails fast on catalog errors', async () => {
   const source = await readFile(path.join(root,'scripts/hardening/browser-regression.mjs'),'utf8');
   assert.match(source, /waitExpression\(cdp, recipeBootstrapExpression, 60000\)/);
+  assert.match(source, /waitStableExpression\(cdp/);
+  assert.match(source, /status-dot--complete/);
+  assert.match(source, /stableMs: 1200/);
   assert.match(source, /catalog-panel \.error-text/);
   assert.match(source, /Catalog bootstrap failed:/);
 });

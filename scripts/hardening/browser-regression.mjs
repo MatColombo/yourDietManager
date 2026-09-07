@@ -164,6 +164,27 @@ async function evaluate(cdp, expression) {
   return result.result?.value;
 }
 
+async function waitStableExpression(cdp, expression, { maxMs = 15000, stableMs = 1200 } = {}) {
+  const started = Date.now();
+  let stableSince = null;
+  let stableValue = null;
+  while (Date.now() - started < maxMs) {
+    const result = await cdp.send('Runtime.evaluate', { expression, returnByValue: true, awaitPromise: true });
+    if (result.exceptionDetails) throw evaluationError(result.exceptionDetails, expression);
+    const value = result.result?.value;
+    if (value) {
+      if (stableSince === null) stableSince = Date.now();
+      stableValue = value;
+      if (Date.now() - stableSince >= stableMs) return stableValue;
+    } else {
+      stableSince = null;
+      stableValue = null;
+    }
+    await timeout(120);
+  }
+  throw new Error(`Browser condition did not remain stable for ${stableMs} ms: ${expression}`);
+}
+
 const required = process.env.YDM_BROWSER_REQUIRED === '1';
 const browserChoice = findChromium();
 if (!browserChoice) {
@@ -242,8 +263,13 @@ try {
     throw new Error(`${error.message}; browser=${JSON.stringify(diagnostic)}; exceptions=${browserErrors.join(' | ')}`);
   }
 
-  const recipeCatalogCount = await evaluate(cdp, `document.querySelector('.results-heading strong')?.textContent || ''`);
-  if (!/\b500\b/.test(recipeCatalogCount)) throw new Error(`V1 candidate catalog expected 500 recipes, got heading: ${recipeCatalogCount}`);
+  const recipeCatalogState = await waitStableExpression(cdp, `(() => {
+    const heading = document.querySelector('.results-heading strong')?.textContent || '';
+    const recipeCards = document.querySelectorAll('.recipe-card').length;
+    const catalogComplete = !!document.querySelector('.catalog-panel .status-dot--complete');
+    return catalogComplete && /\b500\b/.test(heading) && recipeCards > 0 ? { heading, recipeCards } : null;
+  })()`, { maxMs: 15000, stableMs: 1200 });
+  if (!/\b500\b/.test(recipeCatalogState.heading)) throw new Error(`V1 candidate catalog expected 500 recipes, got state: ${JSON.stringify(recipeCatalogState)}`);
 
   const resetState = await evaluate(cdp, `(async () => {
     const { repositories } = await import('/src/repositories/repositoryHub.js');
@@ -259,7 +285,12 @@ try {
   }
 
   // Critical regression: clicking a recipe card must open catalog detail, not fall through to Today/Create plan.
-  await evaluate(cdp, `document.querySelector('.recipe-card').click(); true`);
+  await waitExpression(cdp, `(() => {
+    const card = document.querySelector('.recipe-card');
+    if (!card) return false;
+    card.click();
+    return true;
+  })()`);
   await waitExpression(cdp, `location.pathname.startsWith('/recipes/') && !!document.querySelector('[data-testid="recipe-detail"] h2')`);
   const recipeState = await evaluate(cdp, `({path: location.pathname, title: document.querySelector('[data-testid="recipe-detail"] h2')?.textContent || '', body: document.querySelector('[data-testid="recipe-detail"]')?.textContent || ''})`);
   if (!recipeState.path.startsWith('/recipes/') || !recipeState.title) throw new Error(`Recipe detail route failed: ${JSON.stringify(recipeState)}`);
