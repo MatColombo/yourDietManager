@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/controlled-scale-plan.schema.json",
+  "title": "ControlledScalePlan",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion","planId","planVersion","contractId","contractVersion","corpusPolicyId","corpusPolicyVersion","pipelinePolicyId","pipelinePolicyVersion","startMinimumActiveRecipes","targetActiveRecipes","requireZeroReviewBacklog","requireGatePassAtCompletion","tranches"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "planId": {"type":"string","minLength":1},
+    "planVersion": {"type":"string","minLength":1},
+    "contractId": {"type":"string","minLength":1},
+    "contractVersion": {"type":"string","minLength":1},
+    "corpusPolicyId": {"type":"string","minLength":1},
+    "corpusPolicyVersion": {"type":"string","minLength":1},
+    "pipelinePolicyId": {"type":"string","minLength":1},
+    "pipelinePolicyVersion": {"type":"string","minLength":1},
+    "startMinimumActiveRecipes": {"type":"integer","minimum":1},
+    "targetActiveRecipes": {"type":"integer","minimum":1},
+    "requireZeroReviewBacklog": {"const": true},
+    "requireGatePassAtCompletion": {"const": true},
+    "tranches": {
+      "type":"array","minItems":1,
+      "items": {
+        "type":"object","additionalProperties":false,
+        "required":["trancheId","targetAcceptedCount","cells"],
+        "properties": {
+          "trancheId":{"type":"string","minLength":1},
+          "targetAcceptedCount":{"type":"integer","minimum":1,"maximum":500},
+          "cells":{
+            "type":"array","minItems":1,
+            "items":{
+              "type":"object","additionalProperties":false,
+              "required":["cellId","mealArchetype","energyBandId","acceptedCount"],
+              "properties":{
+                "cellId":{"type":"string","minLength":1},
+                "mealArchetype":{"$ref":"domain-enums.schema.json#/$defs/mealArchetype"},
+                "energyBandId":{"type":"string","pattern":"^kcal-[0-9]+-[0-9]+$"},
+                "acceptedCount":{"type":"integer","minimum":1,"maximum":150}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

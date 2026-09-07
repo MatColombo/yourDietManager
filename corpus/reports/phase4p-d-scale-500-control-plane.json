@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "pass": true,
+  "planId": "controlled-scale-500-v1",
+  "planVersion": "1.0.0",
+  "plannedAcceptedCount": 280,
+  "trancheCount": 3,
+  "cellCount": 23,
+  "checks": [
+    {
+      "id": "plan-bridge-220-500",
+      "status": "pass"
+    },
+    {
+      "id": "plan-three-tranches",
+      "status": "pass"
+    },
+    {
+      "id": "plan-safeguards",
+      "status": "pass"
+    },
+    {
+      "id": "workflow-actions-node24",
+      "status": "pass"
+    },
+    {
+      "id": "workflow-tranche-order",
+      "status": "pass"
+    },
+    {
+      "id": "workflow-canonical-checkpoints",
+      "status": "pass"
+    },
+    {
+      "id": "workflow-final-strict-gate",
+      "status": "pass"
+    },
+    {
+      "id": "workflow-optional-commit",
+      "status": "pass"
+    },
+    {
+      "id": "spec-controlled-scale",
+      "status": "pass"
+    },
+    {
+      "id": "spec-zero-backlog",
+      "status": "pass"
+    }
+  ],
+  "blockers": [],
+  "generatedAt": "2026-09-04T20:17:11.199Z"
+}

@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "planId": "controlled-scale-500-v1",
+  "planVersion": "1.0.0",
+  "contractId": "ydm-v1-production-corpus",
+  "contractVersion": "1.0.0",
+  "corpusPolicyId": "corpus-policy-v1-default",
+  "corpusPolicyVersion": "1.1.0",
+  "pipelinePolicyId": "recipe-production-pipeline-v1",
+  "pipelinePolicyVersion": "1.0.0",
+  "startMinimumActiveRecipes": 220,
+  "targetActiveRecipes": 500,
+  "requireZeroReviewBacklog": true,
+  "requireGatePassAtCompletion": true,
+  "tranches": [
+    {
+      "trancheId": "scale-500-tranche-01-breakfast-snack",
+      "targetAcceptedCount": 100,
+      "cells": [
+        {
+          "cellId": "breakfast-100-199",
+          "mealArchetype": "breakfast",
+          "energyBandId": "kcal-100-199",
+          "acceptedCount": 16
+        },
+        {
+          "cellId": "breakfast-200-299",
+          "mealArchetype": "breakfast",
+          "energyBandId": "kcal-200-299",
+          "acceptedCount": 16
+        },
+        {
+          "cellId": "breakfast-300-399",
+          "mealArchetype": "breakfast",
+          "energyBandId": "kcal-300-399",
+          "acceptedCount": 16
+        },
+        {
+          "cellId": "breakfast-400-499",
+          "mealArchetype": "breakfast",
+          "energyBandId": "kcal-400-499",
+          "acceptedCount": 16
+        },
+        {
+          "cellId": "snack-100-199",
+          "mealArchetype": "snack",
+          "energyBandId": "kcal-100-199",
+          "acceptedCount": 9
+        },
+        {
+          "cellId": "snack-200-299",
+          "mealArchetype": "snack",
+          "energyBandId": "kcal-200-299",
+          "acceptedCount": 9
+        },
+        {
+          "cellId": "snack-300-399",
+          "mealArchetype": "snack",
+          "energyBandId": "kcal-300-399",
+          "acceptedCount": 9
+        },
+        {
+          "cellId": "snack-400-499",
+          "mealArchetype": "snack",
+          "energyBandId": "kcal-400-499",
+          "acceptedCount": 9
+        }
+      ]
+    },
+    {
+      "trancheId": "scale-500-tranche-02-lunch-dinner",
+      "targetAcceptedCount": 100,
+      "cells": [
+        {
+          "cellId": "lunch-300-399",
+          "mealArchetype": "lunch",
+          "energyBandId": "kcal-300-399",
+          "acceptedCount": 10
+        },
+        {
+          "cellId": "lunch-400-499",
+          "mealArchetype": "lunch",
+          "energyBandId": "kcal-400-499",
+          "acceptedCount": 10
+        },
+        {
+          "cellId": "lunch-500-599",
+          "mealArchetype": "lunch",
+          "energyBandId": "kcal-500-599",
+          "acceptedCount": 10
+        },
+        {
+          "cellId": "lunch-600-699",
+          "mealArchetype": "lunch",
+          "energyBandId": "kcal-600-699",
+          "acceptedCount": 10
+        },
+        {
+          "cellId": "lunch-700-799",
+          "mealArchetype": "lunch",
+          "energyBandId": "kcal-700-799",
+          "acceptedCount": 10
+        },
+        {
+          "cellId": "dinner-300-399",
+          "mealArchetype": "dinner",
+          "energyBandId": "kcal-300-399",
+          "acceptedCount": 10
+        },
+        {
+          "cellId": "dinner-400-499",
+          "mealArchetype": "dinner",
+          "energyBandId": "kcal-400-499",
+          "acceptedCount": 10
+        },
+        {
+          "cellId": "dinner-500-599",
+          "mealArchetype": "dinner",
+          "energyBandId": "kcal-500-599",
+          "acceptedCount": 10
+        },
+        {
+          "cellId": "dinner-600-699",
+          "mealArchetype": "dinner",
+          "energyBandId": "kcal-600-699",
+          "acceptedCount": 10
+        },
+        {
+          "cellId": "dinner-700-799",
+          "mealArchetype": "dinner",
+          "energyBandId": "kcal-700-799",
+          "acceptedCount": 10
+        }
+      ]
+    },
+    {
+      "trancheId": "scale-500-tranche-03-balanced-close",
+      "targetAcceptedCount": 80,
+      "cells": [
+        {
+          "cellId": "breakfast-300-399-close",
+          "mealArchetype": "breakfast",
+          "energyBandId": "kcal-300-399",
+          "acceptedCount": 10
+        },
+        {
+          "cellId": "snack-300-399-close",
+          "mealArchetype": "snack",
+          "energyBandId": "kcal-300-399",
+          "acceptedCount": 10
+        },
+        {
+          "cellId": "lunch-500-599-close",
+          "mealArchetype": "lunch",
+          "energyBandId": "kcal-500-599",
+          "acceptedCount": 15
+        },
+        {
+          "cellId": "dinner-500-599-close",
+          "mealArchetype": "dinner",
+          "energyBandId": "kcal-500-599",
+          "acceptedCount": 20
+        },
+        {
+          "cellId": "mini-meal-300-399-close",
+          "mealArchetype": "mini_meal",
+          "energyBandId": "kcal-300-399",
+          "acceptedCount": 25
+        }
+      ]
+    }
+  ]
+}

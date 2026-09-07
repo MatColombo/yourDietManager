@@ -1,0 +1,1073 @@
+diff --git a/.github/workflows/controlled-scale-500.yml b/.github/workflows/controlled-scale-500.yml
+new file mode 100644
+index 0000000..89717a9
+--- /dev/null
++++ b/.github/workflows/controlled-scale-500.yml
+@@ -0,0 +1,121 @@
++name: Controlled Scale to 500 Recipes
++
++on:
++  workflow_dispatch:
++    inputs:
++      commit_results:
++        description: Commit the verified 500-recipe working bundle and audit evidence to the invoking branch
++        required: true
++        default: false
++        type: boolean
++
++permissions:
++  contents: write
++
++concurrency:
++  group: controlled-scale-500-${{ github.ref }}
++  cancel-in-progress: false
++
++jobs:
++  controlled-scale-500:
++    runs-on: ubuntu-latest
++    timeout-minutes: 45
++    steps:
++      - name: Checkout
++        uses: actions/checkout@v7
++        with:
++          ref: ${{ github.ref }}
++
++      - name: Setup Node
++        uses: actions/setup-node@v7
++        with:
++          node-version: 22
++
++      - name: Validate 4P-D control plane and committed production baseline
++        run: |
++          npm run corpus:4pd
++          npm run lint
++          npm test
++          test -f corpus/production/current-working-bundle.json
++          node --input-type=module <<'NODE'
++          import fs from 'node:fs';
++          const bundle = JSON.parse(fs.readFileSync('corpus/production/current-working-bundle.json','utf8'));
++          const active = (bundle.recipeFamilies || []).filter(item => item.status === 'active').length;
++          if (active !== 220) throw new Error(`Controlled Scale Pass A requires the committed 220-recipe baseline; got ${active}`);
++          NODE
++
++      - name: Tranche 1 - breakfast and snack 220 to 320
++        run: |
++          npm run corpus:scale-to-500 -- \
++            corpus/production/current-working-bundle.json \
++            corpus/staging/runtime/controlled-scale-500/tranche-01 \
++            --tranche=1 \
++            --canonical
++
++      - name: Tranche 2 - lunch and dinner 320 to 420
++        run: |
++          npm run corpus:scale-to-500 -- \
++            corpus/production/current-working-bundle.json \
++            corpus/staging/runtime/controlled-scale-500/tranche-02 \
++            --tranche=2 \
++            --canonical
++
++      - name: Tranche 3 - balanced close 420 to 500
++        run: |
++          npm run corpus:scale-to-500 -- \
++            corpus/production/current-working-bundle.json \
++            corpus/staging/runtime/controlled-scale-500/tranche-03 \
++            --tranche=3 \
++            --canonical
++
++      - name: Verify Scale Gate 500 and regression suite
++        run: |
++          npm run corpus:scale-gate-500 -- \
++            corpus/production/current-working-bundle.json \
++            corpus/staging/runtime/controlled-scale-500/final-scale-gate-verified.json \
++            corpus/staging/runtime/controlled-scale-500/final-snapshot-verified.json \
++            --strict
++          node scripts/corpus/production-readiness.mjs \
++            corpus/production/current-working-bundle.json \
++            corpus/contracts/v1-production.json \
++            corpus/policies/v1-default.json \
++            corpus/staging/runtime/controlled-scale-500/final-readiness.json
++          npm run corpus:4pd
++          npm run lint
++          npm test
++
++      - name: Upload controlled-scale evidence
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: controlled-scale-500-${{ github.run_number }}
++          path: |
++            corpus/production/current-working-bundle.json
++            corpus/production/evidence/controlled-scale-500-summary.json
++            corpus/production/evidence/controlled-scale-500-tranches.json
++            corpus/reports/scale-gate-500.json
++            corpus/snapshots/scale-gate-500-current.json
++            corpus/staging/runtime/controlled-scale-500
++          if-no-files-found: warn
++          retention-days: 14
++
++      - name: Commit verified 500-recipe working set
++        if: ${{ inputs.commit_results }}
++        run: |
++          git config user.name "github-actions[bot]"
++          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
++          git add \
++            corpus/production/current-working-bundle.json \
++            corpus/production/evidence/controlled-scale-500-summary.json \
++            corpus/production/evidence/controlled-scale-500-tranches.json \
++            corpus/reports \
++            corpus/snapshots \
++            corpus/runs \
++            corpus/jobs \
++            corpus/intake
++          if git diff --cached --quiet; then
++            echo "No controlled-scale corpus changes to commit"
++          else
++            git commit -m "data: scale production corpus to 500 recipes"
++            git push origin HEAD:${GITHUB_REF_NAME}
++          fi
+diff --git a/PHASE4_PRODUCTION_SCALE_500_RC21_REPORT.md b/PHASE4_PRODUCTION_SCALE_500_RC21_REPORT.md
+new file mode 100644
+index 0000000..4e1aa98
+--- /dev/null
++++ b/PHASE4_PRODUCTION_SCALE_500_RC21_REPORT.md
+@@ -0,0 +1,85 @@
++# Phase 4P-D Pass A — Controlled Scale 220 -> 500 — rc.21
++
++Status: **IMPLEMENTED AND VERIFIED AGAINST THE REAL SOURCE-BACKED WORKING SET**.
++
++## Input evidence
++
++The implementation was verified against the successful GitHub Actions artifact supplied from the production-corpus workflow:
++
++- artifact: `production-corpus-working-set-10.zip`
++- SHA-256: `7d81cab17921cd576e998423fed1d38ae26fbdc836d18feee8ce5433dc37bee1`
++- active production-ready ingredients: 600
++- pilot: 120/120 accepted, 0 rejected, zero unresolved reference requests/proposals
++- active recipes before 4P-D Pass A: 220
++- Scale Gate 500 before controlled scale: `ready`
++
++The final `production/current-working-bundle.json` is the source of truth. Intermediate readiness snapshots generated earlier in the source-backed workflow are not used as the 4P-D baseline.
++
++## Controlled plan
++
++`controlled-scale-500-v1@1.0.0` bridges exactly 220 -> 500 as three independently checkpointed tranches:
++
++1. 100 accepted breakfast/snack recipes: 220 -> 320;
++2. 100 accepted lunch/dinner recipes: 320 -> 420;
++3. 80 accepted balanced-close recipes: 420 -> 500.
++
++Each cell freezes one canonical `mealArchetype` and one canonical energy-band ID. No free-text or implicit semantic target is introduced. The runner refuses an ambiguous partial resume: tranche 1 requires exactly 220 active recipes, tranche 2 exactly 320, and tranche 3 exactly 420.
++
++## Real execution result
++
++| Tranche | Accepted | Rejected oversample | Review backlog | Active after | Gate |
++|---|---:|---:|---:|---:|---|
++| breakfast/snack | 100 | 28 | 0 | 320 | ready |
++| lunch/dinner | 100 | 30 | 0 | 420 | ready |
++| balanced close | 80 | 22 | 0 | 500 | pass |
++
++Final 500-recipe snapshot:
++
++- schema errors: 0
++- unknown ingredient references: 0
++- nutrition errors: 0
++- allergen derivation errors: 0
++- missing required locale fields: 0
++- exact duplicates: 0
++- near duplicates: 0
++- hard coverage blockers: 0
++- Scale Gate 500: `pass`
++
++Final locally verified working-bundle SHA-256: `dba7764f3c80b17da28be50c589795f2c2e901ade7cbae3aa9b4d16963db1448`.
++
++Rejected oversample candidates are terminal hard rejects such as `target_already_reached` or bounded diversity rejects; they are not review backlog and do not enter the active corpus.
++
++## Execution controls added in rc.21
++
++- `schemas/controlled-scale-plan.schema.json`
++- `corpus/production/v1-controlled-scale-500-plan.json`
++- `src/corpus/controlledScale.js`
++- `generateControlledScaleCandidates()` with explicit meal-specific canonical profile registries
++- `npm run corpus:scale-to-500`
++- `npm run corpus:4pd`
++- `.github/workflows/controlled-scale-500.yml`
++
++The GitHub runner executes the three tranches as separate steps and writes a checkpoint after each. Canonical evidence is cumulative across split invocations instead of being overwritten by the latest tranche.
++
++Freshness verification still compares the exact canonical corpus content digest. rc.21 computes that digest directly from active RecipeVersion content hashes plus IngredientRevision content hashes instead of performing a redundant full coverage/similarity scan before every cell.
++
++## Release boundary
++
++Scale Gate 500 passing is a Phase 4 controlled-scale milestone, not V1 production readiness. The production corpus remains blocked until at least 3,000 accepted recipes and final `productionCorpus` manifest traceability/publication requirements are satisfied.
++
++Next milestone after the committed 500-recipe checkpoint: **4P-D Pass B — controlled scale 500 -> 1500**, preceded by a 500-recipe distribution/concentration checkpoint rather than a blind bulk expansion.
++
++## rc.21 verification
++
++Final release-candidate verification after the public-schema mirror fix:
++
++- full Node test suite: 166/166 PASS;
++- JavaScript syntax/lint inventory: 138 files PASS;
++- 4P-D control plane: 10/10 PASS;
++- accessibility gate: 16/16 PASS;
++- forms, scale benchmark, build, Pass E closure and Pages root audit: PASS;
++- GitHub Pages project-base audit (`/yourDietManager`): PASS;
++- post-mutation CI simulation: 166/166 tests PASS after canonical 220 -> 320 -> 420 -> 500 execution;
++- browser regression: Chromium launches, but localhost navigation remains SKIPPED only in the restricted local sandbox environment.
++
++The controlled-scale workflow intentionally requires the source-backed 220-recipe `corpus/production/current-working-bundle.json` already committed by the successful production-corpus workflow. It does not recreate USDA ingestion or the 120-recipe pilot.
+diff --git a/corpus/production/v1-controlled-scale-500-plan.json b/corpus/production/v1-controlled-scale-500-plan.json
+new file mode 100644
+index 0000000..c21b398
+--- /dev/null
++++ b/corpus/production/v1-controlled-scale-500-plan.json
+@@ -0,0 +1,173 @@
++{
++  "schemaVersion": 1,
++  "planId": "controlled-scale-500-v1",
++  "planVersion": "1.0.0",
++  "contractId": "ydm-v1-production-corpus",
++  "contractVersion": "1.0.0",
++  "corpusPolicyId": "corpus-policy-v1-default",
++  "corpusPolicyVersion": "1.1.0",
++  "pipelinePolicyId": "recipe-production-pipeline-v1",
++  "pipelinePolicyVersion": "1.0.0",
++  "startMinimumActiveRecipes": 220,
++  "targetActiveRecipes": 500,
++  "requireZeroReviewBacklog": true,
++  "requireGatePassAtCompletion": true,
++  "tranches": [
++    {
++      "trancheId": "scale-500-tranche-01-breakfast-snack",
++      "targetAcceptedCount": 100,
++      "cells": [
++        {
++          "cellId": "breakfast-100-199",
++          "mealArchetype": "breakfast",
++          "energyBandId": "kcal-100-199",
++          "acceptedCount": 16
++        },
++        {
++          "cellId": "breakfast-200-299",
++          "mealArchetype": "breakfast",
++          "energyBandId": "kcal-200-299",
++          "acceptedCount": 16
++        },
++        {
++          "cellId": "breakfast-300-399",
++          "mealArchetype": "breakfast",
++          "energyBandId": "kcal-300-399",
++          "acceptedCount": 16
++        },
++        {
++          "cellId": "breakfast-400-499",
++          "mealArchetype": "breakfast",
++          "energyBandId": "kcal-400-499",
++          "acceptedCount": 16
++        },
++        {
++          "cellId": "snack-100-199",
++          "mealArchetype": "snack",
++          "energyBandId": "kcal-100-199",
++          "acceptedCount": 9
++        },
++        {
++          "cellId": "snack-200-299",
++          "mealArchetype": "snack",
++          "energyBandId": "kcal-200-299",
++          "acceptedCount": 9
++        },
++        {
++          "cellId": "snack-300-399",
++          "mealArchetype": "snack",
++          "energyBandId": "kcal-300-399",
++          "acceptedCount": 9
++        },
++        {
++          "cellId": "snack-400-499",
++          "mealArchetype": "snack",
++          "energyBandId": "kcal-400-499",
++          "acceptedCount": 9
++        }
++      ]
++    },
++    {
++      "trancheId": "scale-500-tranche-02-lunch-dinner",
++      "targetAcceptedCount": 100,
++      "cells": [
++        {
++          "cellId": "lunch-300-399",
++          "mealArchetype": "lunch",
++          "energyBandId": "kcal-300-399",
++          "acceptedCount": 10
++        },
++        {
++          "cellId": "lunch-400-499",
++          "mealArchetype": "lunch",
++          "energyBandId": "kcal-400-499",
++          "acceptedCount": 10
++        },
++        {
++          "cellId": "lunch-500-599",
++          "mealArchetype": "lunch",
++          "energyBandId": "kcal-500-599",
++          "acceptedCount": 10
++        },
++        {
++          "cellId": "lunch-600-699",
++          "mealArchetype": "lunch",
++          "energyBandId": "kcal-600-699",
++          "acceptedCount": 10
++        },
++        {
++          "cellId": "lunch-700-799",
++          "mealArchetype": "lunch",
++          "energyBandId": "kcal-700-799",
++          "acceptedCount": 10
++        },
++        {
++          "cellId": "dinner-300-399",
++          "mealArchetype": "dinner",
++          "energyBandId": "kcal-300-399",
++          "acceptedCount": 10
++        },
++        {
++          "cellId": "dinner-400-499",
++          "mealArchetype": "dinner",
++          "energyBandId": "kcal-400-499",
++          "acceptedCount": 10
++        },
++        {
++          "cellId": "dinner-500-599",
++          "mealArchetype": "dinner",
++          "energyBandId": "kcal-500-599",
++          "acceptedCount": 10
++        },
++        {
++          "cellId": "dinner-600-699",
++          "mealArchetype": "dinner",
++          "energyBandId": "kcal-600-699",
++          "acceptedCount": 10
++        },
++        {
++          "cellId": "dinner-700-799",
++          "mealArchetype": "dinner",
++          "energyBandId": "kcal-700-799",
++          "acceptedCount": 10
++        }
++      ]
++    },
++    {
++      "trancheId": "scale-500-tranche-03-balanced-close",
++      "targetAcceptedCount": 80,
++      "cells": [
++        {
++          "cellId": "breakfast-300-399-close",
++          "mealArchetype": "breakfast",
++          "energyBandId": "kcal-300-399",
++          "acceptedCount": 10
++        },
++        {
++          "cellId": "snack-300-399-close",
++          "mealArchetype": "snack",
++          "energyBandId": "kcal-300-399",
++          "acceptedCount": 10
++        },
++        {
++          "cellId": "lunch-500-599-close",
++          "mealArchetype": "lunch",
++          "energyBandId": "kcal-500-599",
++          "acceptedCount": 15
++        },
++        {
++          "cellId": "dinner-500-599-close",
++          "mealArchetype": "dinner",
++          "energyBandId": "kcal-500-599",
++          "acceptedCount": 20
++        },
++        {
++          "cellId": "mini-meal-300-399-close",
++          "mealArchetype": "mini_meal",
++          "energyBandId": "kcal-300-399",
++          "acceptedCount": 25
++        }
++      ]
++    }
++  ]
++}
+diff --git a/corpus/reports/phase4p-d-scale-500-control-plane.json b/corpus/reports/phase4p-d-scale-500-control-plane.json
+new file mode 100644
+index 0000000..14e1992
+--- /dev/null
++++ b/corpus/reports/phase4p-d-scale-500-control-plane.json
+@@ -0,0 +1,53 @@
++{
++  "schemaVersion": 1,
++  "pass": true,
++  "planId": "controlled-scale-500-v1",
++  "planVersion": "1.0.0",
++  "plannedAcceptedCount": 280,
++  "trancheCount": 3,
++  "cellCount": 23,
++  "checks": [
++    {
++      "id": "plan-bridge-220-500",
++      "status": "pass"
++    },
++    {
++      "id": "plan-three-tranches",
++      "status": "pass"
++    },
++    {
++      "id": "plan-safeguards",
++      "status": "pass"
++    },
++    {
++      "id": "workflow-actions-node24",
++      "status": "pass"
++    },
++    {
++      "id": "workflow-tranche-order",
++      "status": "pass"
++    },
++    {
++      "id": "workflow-canonical-checkpoints",
++      "status": "pass"
++    },
++    {
++      "id": "workflow-final-strict-gate",
++      "status": "pass"
++    },
++    {
++      "id": "workflow-optional-commit",
++      "status": "pass"
++    },
++    {
++      "id": "spec-controlled-scale",
++      "status": "pass"
++    },
++    {
++      "id": "spec-zero-backlog",
++      "status": "pass"
++    }
++  ],
++  "blockers": [],
++  "generatedAt": "2026-09-04T20:17:11.199Z"
++}
+diff --git a/dist/schemas/controlled-scale-plan.schema.json b/dist/schemas/controlled-scale-plan.schema.json
+new file mode 100644
+index 0000000..d27eb70
+--- /dev/null
++++ b/dist/schemas/controlled-scale-plan.schema.json
+@@ -0,0 +1,47 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "$id": "https://yourdietmanager.local/schemas/controlled-scale-plan.schema.json",
++  "title": "ControlledScalePlan",
++  "type": "object",
++  "additionalProperties": false,
++  "required": ["schemaVersion","planId","planVersion","contractId","contractVersion","corpusPolicyId","corpusPolicyVersion","pipelinePolicyId","pipelinePolicyVersion","startMinimumActiveRecipes","targetActiveRecipes","requireZeroReviewBacklog","requireGatePassAtCompletion","tranches"],
++  "properties": {
++    "schemaVersion": {"const": 1},
++    "planId": {"type":"string","minLength":1},
++    "planVersion": {"type":"string","minLength":1},
++    "contractId": {"type":"string","minLength":1},
++    "contractVersion": {"type":"string","minLength":1},
++    "corpusPolicyId": {"type":"string","minLength":1},
++    "corpusPolicyVersion": {"type":"string","minLength":1},
++    "pipelinePolicyId": {"type":"string","minLength":1},
++    "pipelinePolicyVersion": {"type":"string","minLength":1},
++    "startMinimumActiveRecipes": {"type":"integer","minimum":1},
++    "targetActiveRecipes": {"type":"integer","minimum":1},
++    "requireZeroReviewBacklog": {"const": true},
++    "requireGatePassAtCompletion": {"const": true},
++    "tranches": {
++      "type":"array","minItems":1,
++      "items": {
++        "type":"object","additionalProperties":false,
++        "required":["trancheId","targetAcceptedCount","cells"],
++        "properties": {
++          "trancheId":{"type":"string","minLength":1},
++          "targetAcceptedCount":{"type":"integer","minimum":1,"maximum":500},
++          "cells":{
++            "type":"array","minItems":1,
++            "items":{
++              "type":"object","additionalProperties":false,
++              "required":["cellId","mealArchetype","energyBandId","acceptedCount"],
++              "properties":{
++                "cellId":{"type":"string","minLength":1},
++                "mealArchetype":{"$ref":"domain-enums.schema.json#/$defs/mealArchetype"},
++                "energyBandId":{"type":"string","pattern":"^kcal-[0-9]+-[0-9]+$"},
++                "acceptedCount":{"type":"integer","minimum":1,"maximum":150}
++              }
++            }
++          }
++        }
++      }
++    }
++  }
++}
+diff --git a/dist/src/corpus/controlledScale.js b/dist/src/corpus/controlledScale.js
+new file mode 100644
+index 0000000..d967218
+--- /dev/null
++++ b/dist/src/corpus/controlledScale.js
+@@ -0,0 +1,86 @@
++function sum(values) { return values.reduce((total, value) => total + Number(value || 0), 0); }
++function unique(values) { return [...new Set(values)]; }
++
++export function controlledScalePlanDiagnostics(plan, contract, corpusPolicy, pipelinePolicy) {
++  const errors = [];
++  if (!plan || !contract || !corpusPolicy || !pipelinePolicy) return { valid: false, errors: ['Controlled scale plan and bound policies are required'] };
++  if (plan.contractId !== contract.contractId || plan.contractVersion !== contract.contractVersion) errors.push('production contract binding mismatch');
++  if (plan.corpusPolicyId !== corpusPolicy.policyId || plan.corpusPolicyVersion !== corpusPolicy.policyVersion) errors.push('corpus policy binding mismatch');
++  if (plan.pipelinePolicyId !== pipelinePolicy.policyId || plan.pipelinePolicyVersion !== pipelinePolicy.policyVersion) errors.push('pipeline policy binding mismatch');
++  if (plan.targetActiveRecipes !== pipelinePolicy.scaleGate500?.targetActiveRecipes) errors.push(`targetActiveRecipes ${plan.targetActiveRecipes} does not match Scale Gate 500 target ${pipelinePolicy.scaleGate500?.targetActiveRecipes}`);
++  if (!plan.requireZeroReviewBacklog || !plan.requireGatePassAtCompletion) errors.push('controlled scale safeguards must stay enabled');
++  const trancheIds = new Set(); const cellIds = new Set();
++  let totalAccepted = 0;
++  for (const tranche of plan.tranches || []) {
++    if (trancheIds.has(tranche.trancheId)) errors.push(`duplicate trancheId ${tranche.trancheId}`); trancheIds.add(tranche.trancheId);
++    const cellTotal = sum((tranche.cells || []).map(cell => cell.acceptedCount));
++    if (cellTotal !== tranche.targetAcceptedCount) errors.push(`${tranche.trancheId} cell accepted total ${cellTotal} does not equal tranche target ${tranche.targetAcceptedCount}`);
++    for (const cell of tranche.cells || []) {
++      if (cellIds.has(cell.cellId)) errors.push(`duplicate cellId ${cell.cellId}`); cellIds.add(cell.cellId);
++      const band = (corpusPolicy.energyBands || []).find(item => item.bandId === cell.energyBandId);
++      if (!band) errors.push(`${cell.cellId} uses unknown energy band ${cell.energyBandId}`);
++      const hardCell = (corpusPolicy.coverageTargets || []).find(target => (target.criteria || []).length === 2 && target.criteria.some(c => c.dimension === 'meal_archetype' && c.key === cell.mealArchetype) && target.criteria.some(c => c.dimension === 'energy_band' && c.key === cell.energyBandId));
++      if (!hardCell && !['mini_meal'].includes(cell.mealArchetype)) errors.push(`${cell.cellId} does not map to a governed meal×energy coverage cell`);
++    }
++    totalAccepted += tranche.targetAcceptedCount;
++  }
++  if (plan.startMinimumActiveRecipes + totalAccepted !== plan.targetActiveRecipes) errors.push(`planned accepted total ${totalAccepted} does not bridge ${plan.startMinimumActiveRecipes} -> ${plan.targetActiveRecipes}`);
++  return { valid: errors.length === 0, errors, plannedAcceptedCount: totalAccepted, trancheCount: (plan.tranches || []).length, cellCount: (plan.tranches || []).reduce((total, tranche) => total + (tranche.cells || []).length, 0) };
++}
++
++export function assertControlledScalePlan(plan, contract, corpusPolicy, pipelinePolicy, registry = null) {
++  registry?.assert('controlledScalePlan', plan);
++  const diagnostics = controlledScalePlanDiagnostics(plan, contract, corpusPolicy, pipelinePolicy);
++  if (!diagnostics.valid) throw new Error(`Controlled scale plan validation failed: ${diagnostics.errors.join('; ')}`);
++  return diagnostics;
++}
++
++export function hardCoverageAtGate({ snapshot, corpusPolicy, targetActiveRecipes, releaseReferenceRecipeCount }) {
++  const byId = new Map((snapshot.coverageCells || []).map(cell => [cell.targetId, cell]));
++  return (corpusPolicy.coverageTargets || [])
++    .filter(target => target.hardForRelease && Number.isFinite(target.minCount))
++    .map(target => {
++      const requiredAtGate = Math.ceil(Number(target.minCount) * Number(targetActiveRecipes) / Number(releaseReferenceRecipeCount));
++      const actual = byId.get(target.targetId)?.currentCount || 0;
++      return { targetId: target.targetId, requiredAtGate, actual, deficit: Math.max(0, requiredAtGate - actual), status: actual >= requiredAtGate ? 'pass' : 'blocked' };
++    });
++}
++
++export function controlledScaleCheckpoint({ plan, tranche, beforeSnapshot, afterSnapshot, gate, batchSummaries, corpusPolicy, pipelinePolicy, generatedAt = null }) {
++  const accepted = sum(batchSummaries.map(item => item.accepted));
++  const reviewBacklog = sum(batchSummaries.map(item => item.reviewBacklog));
++  const rejected = sum(batchSummaries.map(item => item.rejected));
++  const expectedAfter = beforeSnapshot.activeRecipeCount + tranche.targetAcceptedCount;
++  const hardCoverage = hardCoverageAtGate({ snapshot: afterSnapshot, corpusPolicy, targetActiveRecipes: plan.targetActiveRecipes, releaseReferenceRecipeCount: pipelinePolicy.scaleGate500.releaseReferenceRecipeCount });
++  const blockers = [];
++  if (accepted !== tranche.targetAcceptedCount) blockers.push(`accepted=${accepted}, target=${tranche.targetAcceptedCount}`);
++  if (reviewBacklog !== 0) blockers.push(`review-backlog=${reviewBacklog}`);
++  if (afterSnapshot.activeRecipeCount !== expectedAfter) blockers.push(`active-recipes=${afterSnapshot.activeRecipeCount}, expected=${expectedAfter}`);
++  if (afterSnapshot.quality.schemaErrors !== 0) blockers.push(`schema-errors=${afterSnapshot.quality.schemaErrors}`);
++  if (afterSnapshot.quality.unknownIngredientReferences !== 0) blockers.push(`unknown-ingredient-references=${afterSnapshot.quality.unknownIngredientReferences}`);
++  if (afterSnapshot.quality.nutritionErrors !== 0) blockers.push(`nutrition-errors=${afterSnapshot.quality.nutritionErrors}`);
++  if (afterSnapshot.quality.allergenDerivationErrors !== 0) blockers.push(`allergen-errors=${afterSnapshot.quality.allergenDerivationErrors}`);
++  if (afterSnapshot.quality.missingRequiredLocaleFields !== 0) blockers.push(`locale-errors=${afterSnapshot.quality.missingRequiredLocaleFields}`);
++  if (afterSnapshot.similarity.exactDuplicateCount !== 0) blockers.push(`exact-duplicates=${afterSnapshot.similarity.exactDuplicateCount}`);
++  if (afterSnapshot.similarity.nearDuplicateCount !== 0) blockers.push(`near-duplicates=${afterSnapshot.similarity.nearDuplicateCount}`);
++  return {
++    schemaVersion: 1,
++    planId: plan.planId,
++    planVersion: plan.planVersion,
++    trancheId: tranche.trancheId,
++    generatedAt: generatedAt || new Date().toISOString(),
++    beforeActiveRecipes: beforeSnapshot.activeRecipeCount,
++    afterActiveRecipes: afterSnapshot.activeRecipeCount,
++    targetAcceptedCount: tranche.targetAcceptedCount,
++    accepted,
++    rejected,
++    reviewBacklog,
++    gateStatus: gate.status,
++    quality: afterSnapshot.quality,
++    similarity: afterSnapshot.similarity,
++    hardCoverageRemaining: hardCoverage.filter(item => item.status === 'blocked'),
++    batchSummaries,
++    status: blockers.length ? 'blocked' : 'pass',
++    blockers: unique(blockers)
++  };
++}
+diff --git a/public/schemas/controlled-scale-plan.schema.json b/public/schemas/controlled-scale-plan.schema.json
+new file mode 100644
+index 0000000..d27eb70
+--- /dev/null
++++ b/public/schemas/controlled-scale-plan.schema.json
+@@ -0,0 +1,47 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "$id": "https://yourdietmanager.local/schemas/controlled-scale-plan.schema.json",
++  "title": "ControlledScalePlan",
++  "type": "object",
++  "additionalProperties": false,
++  "required": ["schemaVersion","planId","planVersion","contractId","contractVersion","corpusPolicyId","corpusPolicyVersion","pipelinePolicyId","pipelinePolicyVersion","startMinimumActiveRecipes","targetActiveRecipes","requireZeroReviewBacklog","requireGatePassAtCompletion","tranches"],
++  "properties": {
++    "schemaVersion": {"const": 1},
++    "planId": {"type":"string","minLength":1},
++    "planVersion": {"type":"string","minLength":1},
++    "contractId": {"type":"string","minLength":1},
++    "contractVersion": {"type":"string","minLength":1},
++    "corpusPolicyId": {"type":"string","minLength":1},
++    "corpusPolicyVersion": {"type":"string","minLength":1},
++    "pipelinePolicyId": {"type":"string","minLength":1},
++    "pipelinePolicyVersion": {"type":"string","minLength":1},
++    "startMinimumActiveRecipes": {"type":"integer","minimum":1},
++    "targetActiveRecipes": {"type":"integer","minimum":1},
++    "requireZeroReviewBacklog": {"const": true},
++    "requireGatePassAtCompletion": {"const": true},
++    "tranches": {
++      "type":"array","minItems":1,
++      "items": {
++        "type":"object","additionalProperties":false,
++        "required":["trancheId","targetAcceptedCount","cells"],
++        "properties": {
++          "trancheId":{"type":"string","minLength":1},
++          "targetAcceptedCount":{"type":"integer","minimum":1,"maximum":500},
++          "cells":{
++            "type":"array","minItems":1,
++            "items":{
++              "type":"object","additionalProperties":false,
++              "required":["cellId","mealArchetype","energyBandId","acceptedCount"],
++              "properties":{
++                "cellId":{"type":"string","minLength":1},
++                "mealArchetype":{"$ref":"domain-enums.schema.json#/$defs/mealArchetype"},
++                "energyBandId":{"type":"string","pattern":"^kcal-[0-9]+-[0-9]+$"},
++                "acceptedCount":{"type":"integer","minimum":1,"maximum":150}
++              }
++            }
++          }
++        }
++      }
++    }
++  }
++}
+diff --git a/schemas/controlled-scale-plan.schema.json b/schemas/controlled-scale-plan.schema.json
+new file mode 100644
+index 0000000..d27eb70
+--- /dev/null
++++ b/schemas/controlled-scale-plan.schema.json
+@@ -0,0 +1,47 @@
++{
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "$id": "https://yourdietmanager.local/schemas/controlled-scale-plan.schema.json",
++  "title": "ControlledScalePlan",
++  "type": "object",
++  "additionalProperties": false,
++  "required": ["schemaVersion","planId","planVersion","contractId","contractVersion","corpusPolicyId","corpusPolicyVersion","pipelinePolicyId","pipelinePolicyVersion","startMinimumActiveRecipes","targetActiveRecipes","requireZeroReviewBacklog","requireGatePassAtCompletion","tranches"],
++  "properties": {
++    "schemaVersion": {"const": 1},
++    "planId": {"type":"string","minLength":1},
++    "planVersion": {"type":"string","minLength":1},
++    "contractId": {"type":"string","minLength":1},
++    "contractVersion": {"type":"string","minLength":1},
++    "corpusPolicyId": {"type":"string","minLength":1},
++    "corpusPolicyVersion": {"type":"string","minLength":1},
++    "pipelinePolicyId": {"type":"string","minLength":1},
++    "pipelinePolicyVersion": {"type":"string","minLength":1},
++    "startMinimumActiveRecipes": {"type":"integer","minimum":1},
++    "targetActiveRecipes": {"type":"integer","minimum":1},
++    "requireZeroReviewBacklog": {"const": true},
++    "requireGatePassAtCompletion": {"const": true},
++    "tranches": {
++      "type":"array","minItems":1,
++      "items": {
++        "type":"object","additionalProperties":false,
++        "required":["trancheId","targetAcceptedCount","cells"],
++        "properties": {
++          "trancheId":{"type":"string","minLength":1},
++          "targetAcceptedCount":{"type":"integer","minimum":1,"maximum":500},
++          "cells":{
++            "type":"array","minItems":1,
++            "items":{
++              "type":"object","additionalProperties":false,
++              "required":["cellId","mealArchetype","energyBandId","acceptedCount"],
++              "properties":{
++                "cellId":{"type":"string","minLength":1},
++                "mealArchetype":{"$ref":"domain-enums.schema.json#/$defs/mealArchetype"},
++                "energyBandId":{"type":"string","pattern":"^kcal-[0-9]+-[0-9]+$"},
++                "acceptedCount":{"type":"integer","minimum":1,"maximum":150}
++              }
++            }
++          }
++        }
++      }
++    }
++  }
++}
+diff --git a/scripts/corpus/execute-controlled-scale-500.mjs b/scripts/corpus/execute-controlled-scale-500.mjs
+new file mode 100644
+index 0000000..fc2b736
+--- /dev/null
++++ b/scripts/corpus/execute-controlled-scale-500.mjs
+@@ -0,0 +1,123 @@
++import path from 'node:path';
++import { access } from 'node:fs/promises';
++import { SchemaRegistry } from '../../src/lib/schemaValidator.js';
++import { assessProductionReadiness, resolveProductionIntake } from '../../src/corpus/productionCorpus.js';
++import { assertIngredientCurationPolicy } from '../../src/corpus/ingredientCuration.js';
++import { planNextBatch } from '../../src/corpus/corpusOrchestrator.js';
++import { scanCorpus } from '../../src/corpus/corpusScanner.js';
++import { assertControlledScalePlan, controlledScaleCheckpoint, hardCoverageAtGate } from '../../src/corpus/controlledScale.js';
++import { applyIndustrializedBatchToIntake, assertFreshProductionSnapshot, assertProductionRecipePipelinePolicy, buildScaleGate500Report, planProductionJobIntake, processIndustrializedProductionBatch, verifyIndustrializedBatchReport } from '../../src/corpus/productionRecipePipeline.js';
++import { generateControlledScaleCandidates } from '../../src/corpus/deterministicRecipeGenerator.js';
++import { assertReferenceData } from '../../src/services/referenceDataService.js';
++import { currentRecipeVersions, loadCorpusInput, readJson, writeJson } from './io-lib.mjs';
++
++function option(name, fallback) {
++  const prefix=`--${name}=`; const found=process.argv.find(value=>value.startsWith(prefix)); return found ? found.slice(prefix.length) : fallback;
++}
++function rejectionCodes(result) {
++  const out={}; for(const item of result.rejected||[]) out[item.code||'unknown']=(out[item.code||'unknown']||0)+1; return Object.fromEntries(Object.entries(out).sort(([a],[b])=>a.localeCompare(b)));
++}
++function safeId(value) { return String(value).replace(/[^a-zA-Z0-9_-]+/g,'-'); }
++
++const corpusInput=process.argv[2];
++const outputRoot=process.argv[3] && !process.argv[3].startsWith('--') ? process.argv[3] : 'corpus/staging/controlled-scale-500';
++const canonical=process.argv.includes('--canonical');
++const planFile=option('plan','corpus/production/v1-controlled-scale-500-plan.json');
++const pilotFile=option('pilot-intake','corpus/pilot/v1-pilot-intake.json');
++const proposalsFile=option('proposals','corpus/pilot/v1-reference-data-proposals.json');
++const trancheOption=option('tranche',null);
++if(!corpusInput){ console.error('Usage: node scripts/corpus/execute-controlled-scale-500.mjs <working-bundle.json> [outputRoot] [--canonical] [--tranche=1|2|3] [--plan=...] [--pilot-intake=...] [--proposals=...]'); process.exit(2); }
++
++const registry=new SchemaRegistry(async file=>readJson(path.join('schemas',file))); await registry.loadAll();
++const [plan,corpusPolicy,contract,curationPolicy,pipelinePolicy,pilotIntake,proposals]=await Promise.all([
++  readJson(planFile),readJson('corpus/policies/v1-default.json'),readJson('corpus/contracts/v1-production.json'),readJson('corpus/curation/v1-ingredient-curation-policy.json'),readJson('corpus/production/v1-recipe-pipeline-policy.json'),readJson(pilotFile),readJson(proposalsFile)
++]);
++const planDiagnostics=assertControlledScalePlan(plan,contract,corpusPolicy,pipelinePolicy,registry);
++assertIngredientCurationPolicy(curationPolicy,contract,registry); assertProductionRecipePipelinePolicy(pipelinePolicy,contract,corpusPolicy,curationPolicy,registry);
++let corpus=await loadCorpusInput(corpusInput); const referenceIndex=assertReferenceData(corpus.taxonomies||[],corpus.taxonomyTerms||[],registry);
++let snapshot=await scanCorpus({policy:corpusPolicy,catalogVersion:corpus.manifest.catalogVersion,...corpus,registry});
++let readiness=await assessProductionReadiness({contract,policy:corpusPolicy,corpus,registry});
++let gate=buildScaleGate500Report({pipelinePolicy,contract,corpusPolicy,productionReadiness:readiness,intake:pilotIntake,proposals,snapshot,registry});
++
++if(snapshot.activeRecipeCount>=plan.targetActiveRecipes){
++  if(gate.status!=='pass') throw new Error(`Controlled scale input already has ${snapshot.activeRecipeCount} recipes but Scale Gate 500 is ${gate.status}: ${gate.blockers.join('; ')}`);
++  const summary={schemaVersion:1,planId:plan.planId,planVersion:plan.planVersion,status:'already_complete',activeRecipeCount:snapshot.activeRecipeCount,gateStatus:gate.status,generatedAt:new Date().toISOString()};
++  await Promise.all([writeJson(path.join(outputRoot,'final-working-bundle.json'),corpus),writeJson(path.join(outputRoot,'final-snapshot.json'),snapshot),writeJson(path.join(outputRoot,'final-scale-gate.json'),gate),writeJson(path.join(outputRoot,'summary.json'),summary)]);
++  console.log(JSON.stringify(summary,null,2)); process.exit(0);
++}
++const selectedIndices=trancheOption==null ? plan.tranches.map((_,index)=>index) : [Number(trancheOption)-1];
++if(selectedIndices.some(index=>!Number.isInteger(index)||index<0||index>=plan.tranches.length)) throw new Error(`--tranche must be between 1 and ${plan.tranches.length}`);
++const firstSelected=selectedIndices[0];
++const expectedStart=plan.startMinimumActiveRecipes + plan.tranches.slice(0,firstSelected).reduce((total,tranche)=>total+tranche.targetAcceptedCount,0);
++if(snapshot.activeRecipeCount!==expectedStart) throw new Error(`Controlled scale tranche ${firstSelected+1} requires exactly ${expectedStart} active recipes at start; got ${snapshot.activeRecipeCount}. Refuse ambiguous partial resume.`);
++if(gate.status!=='ready') throw new Error(`Controlled scale requires Scale Gate 500 ready at start; got ${gate.status}: ${gate.blockers.slice(0,20).join('; ')}`);
++
++const baseline={snapshotId:snapshot.snapshotId,activeRecipeCount:snapshot.activeRecipeCount,gateStatus:gate.status,hardCoverage:hardCoverageAtGate({snapshot,corpusPolicy,targetActiveRecipes:plan.targetActiveRecipes,releaseReferenceRecipeCount:pipelinePolicy.scaleGate500.releaseReferenceRecipeCount})};
++await writeJson(path.join(outputRoot,'baseline.json'),baseline);
++const trancheSummaries=[]; const canonicalArtifacts=[];
++
++for(const trancheIndex of selectedIndices){
++  const tranche=plan.tranches[trancheIndex]; const trancheRoot=path.join(outputRoot,`${String(trancheIndex+1).padStart(2,'0')}-${safeId(tranche.trancheId)}`);
++  const beforeSnapshot=snapshot; const batchSummaries=[];
++  for(let cellIndex=0; cellIndex<tranche.cells.length; cellIndex+=1){
++    const cell=tranche.cells[cellIndex]; const jobRoot=path.join(trancheRoot,`${String(cellIndex+1).padStart(2,'0')}-${safeId(cell.cellId)}`);
++    const targetCatalogVersion='1.0.0-production-scale-500';
++    const seed=`${plan.planId}:${plan.planVersion}:${tranche.trancheId}:${cell.cellId}:${snapshot.contentDigest}`;
++    const planned=await planNextBatch({policy:corpusPolicy,snapshot,ingredientFamilies:corpus.ingredientFamilies,ingredientRevisions:corpus.ingredientRevisions,mode:'focused_expansion',goal:{acceptedAddCount:cell.acceptedCount,focusMode:'restrict',intentStrategy:'focus_only',focus:{mealArchetypes:[cell.mealArchetype],energyBandIds:[cell.energyBandId]}},seed,targetCatalogVersion,referenceDataVersion:corpus.manifest.referenceDataVersion,referenceDataDigest:corpus.manifest.referenceDataDigest,referenceIndex,productionContract:contract});
++    if(planned.jobs.length!==1) throw new Error(`${cell.cellId}: expected one job, planner returned ${planned.jobs.length}`);
++    const job=planned.jobs[0]; registry.assert('recipeGenerationJob',job);
++    if(job.targetAcceptedCount!==cell.acceptedCount) throw new Error(`${cell.cellId}: planner target ${job.targetAcceptedCount} does not equal controlled cell target ${cell.acceptedCount}`);
++    if(job.mealArchetypes.length!==1 || job.mealArchetypes[0]!==cell.mealArchetype) throw new Error(`${cell.cellId}: planner meal focus drifted`);
++    const energyBand=(corpusPolicy.energyBands||[]).find(item=>item.bandId===cell.energyBandId);
++    if(!energyBand || Number(job.energyKcal.min)!==Number(energyBand.min) || Number(job.energyKcal.max)!==Number(energyBand.max)) throw new Error(`${cell.cellId}: planner energy focus drifted from ${cell.energyBandId}`);
++    let intake=await planProductionJobIntake({job,contract,registry}); for(const record of intake.records) record.referenceScanStatus='complete';
++    const resolved=await resolveProductionIntake({intake,contract,taxonomies:corpus.taxonomies||[],taxonomyTerms:corpus.taxonomyTerms||[],ingredientFamilies:corpus.ingredientFamilies,ingredientRevisions:corpus.ingredientRevisions,proposals,registry}); intake=resolved.intake;
++    if(intake.records.some(record=>record.state!=='ready_for_generation')) throw new Error(`${cell.cellId}: intake did not resolve every candidate to ready_for_generation`);
++    const generated=generateControlledScaleCandidates({job,intake,corpus});
++    await assertFreshProductionSnapshot({job,snapshot,corpus,corpusPolicy,registry});
++    const {result,report}=await processIndustrializedProductionBatch({job,candidates:generated.candidates,corpusPolicy,pipelinePolicy,ingredientFamilies:corpus.ingredientFamilies,ingredientRevisions:corpus.ingredientRevisions,existingRecipeVersions:currentRecipeVersions(corpus),taxonomies:corpus.taxonomies||[],taxonomyTerms:corpus.taxonomyTerms||[],registry,productionContext:{contractId:contract.contractId,contractVersion:contract.contractVersion,intakeId:intake.intakeId},generatedAt:new Date().toISOString()});
++    const updatedIntake=applyIndustrializedBatchToIntake({intake,job,report,registry});
++    const preVerify={schemaVersion:1,planId:plan.planId,trancheId:tranche.trancheId,cellId:cell.cellId,jobId:job.jobId,candidateCount:generated.candidates.length,accepted:result.acceptedCount,rejected:result.rejectedCount,reviewBacklog:report.reviewBacklogCount,batchGate:report.batchGate.status,dispositions:report.dispositionCounts,rejectionCodes:rejectionCodes(result),generatorDiagnostics:generated.diagnostics,generatedAt:new Date().toISOString()};
++    await Promise.all([writeJson(path.join(jobRoot,'input-snapshot.json'),snapshot),writeJson(path.join(jobRoot,'orchestration-run.json'),planned.run),writeJson(path.join(jobRoot,'job.json'),job),writeJson(path.join(jobRoot,'intake.json'),updatedIntake),writeJson(path.join(jobRoot,'candidates.json'),generated.candidates),writeJson(path.join(jobRoot,'result.json'),result),writeJson(path.join(jobRoot,'batch-report.json'),report),writeJson(path.join(jobRoot,'pre-verify-summary.json'),preVerify)]);
++    console.log(JSON.stringify({phase:'controlled-scale-cell-pre-verify',...preVerify},null,2));
++    await verifyIndustrializedBatchReport({result,report,pipelinePolicy,registry});
++    if(result.acceptedCount!==cell.acceptedCount) throw new Error(`${cell.cellId}: accepted ${result.acceptedCount}, expected ${cell.acceptedCount}`);
++    if(plan.requireZeroReviewBacklog && report.reviewBacklogCount!==0) throw new Error(`${cell.cellId}: review backlog ${report.reviewBacklogCount}`);
++    corpus={...corpus,catalogVersion:targetCatalogVersion,manifest:{...corpus.manifest,catalogVersion:targetCatalogVersion,pipelineVersion:contract.pipelineVersion},recipeFamilies:[...corpus.recipeFamilies,...result.families],recipeVersions:[...corpus.recipeVersions,...result.versions]};
++    const afterJobSnapshot=await scanCorpus({policy:corpusPolicy,catalogVersion:corpus.manifest.catalogVersion,...corpus,registry});
++    const batchSummary={...preVerify,afterActiveRecipes:afterJobSnapshot.activeRecipeCount,afterSnapshotId:afterJobSnapshot.snapshotId}; batchSummaries.push(batchSummary);
++    await Promise.all([writeJson(path.join(jobRoot,'after-snapshot.json'),afterJobSnapshot),writeJson(path.join(jobRoot,'summary.json'),batchSummary)]);
++    canonicalArtifacts.push({run:planned.run,job,intake:updatedIntake,report}); snapshot=afterJobSnapshot;
++  }
++  readiness=await assessProductionReadiness({contract,policy:corpusPolicy,corpus,registry});
++  snapshot=await scanCorpus({policy:corpusPolicy,catalogVersion:corpus.manifest.catalogVersion,...corpus,registry});
++  gate=buildScaleGate500Report({pipelinePolicy,contract,corpusPolicy,productionReadiness:readiness,intake:pilotIntake,proposals,snapshot,registry});
++  const checkpoint=controlledScaleCheckpoint({plan,tranche,beforeSnapshot,afterSnapshot:snapshot,gate,batchSummaries,corpusPolicy,pipelinePolicy});
++  await Promise.all([writeJson(path.join(trancheRoot,'checkpoint.json'),checkpoint),writeJson(path.join(trancheRoot,'output-corpus-bundle.json'),corpus),writeJson(path.join(trancheRoot,'snapshot.json'),snapshot),writeJson(path.join(trancheRoot,'scale-gate.json'),gate)]);
++  console.log(JSON.stringify({phase:'controlled-scale-tranche',trancheId:tranche.trancheId,status:checkpoint.status,afterActiveRecipes:checkpoint.afterActiveRecipes,gateStatus:checkpoint.gateStatus,hardCoverageRemaining:checkpoint.hardCoverageRemaining},null,2));
++  if(checkpoint.status!=='pass') throw new Error(`${tranche.trancheId} checkpoint blocked: ${checkpoint.blockers.join('; ')}`);
++  trancheSummaries.push(checkpoint);
++}
++
++readiness=await assessProductionReadiness({contract,policy:corpusPolicy,corpus,registry});
++snapshot=await scanCorpus({policy:corpusPolicy,catalogVersion:corpus.manifest.catalogVersion,...corpus,registry});
++gate=buildScaleGate500Report({pipelinePolicy,contract,corpusPolicy,productionReadiness:readiness,intake:pilotIntake,proposals,snapshot,registry});
++const expectedEnd=expectedStart + selectedIndices.reduce((total,index)=>total+plan.tranches[index].targetAcceptedCount,0);
++if(snapshot.activeRecipeCount!==expectedEnd) throw new Error(`Controlled scale ended with ${snapshot.activeRecipeCount} active recipes, expected ${expectedEnd}`);
++const completedFinalTranche=selectedIndices.includes(plan.tranches.length-1);
++if(completedFinalTranche && plan.requireGatePassAtCompletion && gate.status!=='pass') throw new Error(`Controlled scale reached ${snapshot.activeRecipeCount} but Scale Gate 500 is ${gate.status}: ${gate.blockers.join('; ')}`);
++if(!completedFinalTranche && gate.status!=='ready') throw new Error(`Intermediate controlled scale checkpoint expected gate ready, got ${gate.status}`);
++const summary={schemaVersion:1,planId:plan.planId,planVersion:plan.planVersion,status:'pass',selectedTranches:selectedIndices.map(index=>index+1),generatedAt:new Date().toISOString(),baselineActiveRecipes:baseline.activeRecipeCount,finalActiveRecipes:snapshot.activeRecipeCount,acceptedAdded:snapshot.activeRecipeCount-baseline.activeRecipeCount,gateStatus:gate.status,quality:snapshot.quality,similarity:snapshot.similarity,hardCoverageRemaining:hardCoverageAtGate({snapshot,corpusPolicy,targetActiveRecipes:plan.targetActiveRecipes,releaseReferenceRecipeCount:pipelinePolicy.scaleGate500.releaseReferenceRecipeCount}).filter(item=>item.status==='blocked'),readyForProduction:readiness.readyForProduction,productionBlockers:readiness.blockers,tranches:trancheSummaries.map(item=>({trancheId:item.trancheId,accepted:item.accepted,rejected:item.rejected,reviewBacklog:item.reviewBacklog,afterActiveRecipes:item.afterActiveRecipes,gateStatus:item.gateStatus,status:item.status}))};
++await Promise.all([writeJson(path.join(outputRoot,'final-working-bundle.json'),corpus),writeJson(path.join(outputRoot,'final-snapshot.json'),snapshot),writeJson(path.join(outputRoot,'final-scale-gate.json'),gate),writeJson(path.join(outputRoot,'final-readiness.json'),readiness),writeJson(path.join(outputRoot,'summary.json'),summary)]);
++if(canonical){
++  const trancheEvidencePath='corpus/production/evidence/controlled-scale-500-tranches.json';
++  const existingTranches=await access(trancheEvidencePath).then(()=>readJson(trancheEvidencePath)).catch(()=>[]);
++  const byTrancheId=new Map((Array.isArray(existingTranches)?existingTranches:[]).map(item=>[item.trancheId,item]));
++  for(const checkpoint of trancheSummaries) byTrancheId.set(checkpoint.trancheId,checkpoint);
++  const cumulativeTranches=plan.tranches.map(item=>byTrancheId.get(item.trancheId)).filter(Boolean);
++  const allTranchesComplete=cumulativeTranches.length===plan.tranches.length;
++  const cumulativeSummary={...summary,status:allTranchesComplete&&gate.status==='pass'?'pass':'in_progress',selectedTranches:cumulativeTranches.map(item=>plan.tranches.findIndex(t=>t.trancheId===item.trancheId)+1),baselineActiveRecipes:plan.startMinimumActiveRecipes,finalActiveRecipes:snapshot.activeRecipeCount,acceptedAdded:snapshot.activeRecipeCount-plan.startMinimumActiveRecipes,tranches:cumulativeTranches.map(item=>({trancheId:item.trancheId,accepted:item.accepted,rejected:item.rejected,reviewBacklog:item.reviewBacklog,afterActiveRecipes:item.afterActiveRecipes,gateStatus:item.gateStatus,status:item.status}))};
++  await Promise.all([writeJson('corpus/production/current-working-bundle.json',corpus),writeJson('corpus/reports/scale-gate-500.json',gate),writeJson('corpus/snapshots/scale-gate-500-current.json',snapshot),writeJson('corpus/production/evidence/controlled-scale-500-summary.json',cumulativeSummary),writeJson(trancheEvidencePath,cumulativeTranches)]);
++  for(const artifact of canonicalArtifacts){ await writeJson(`corpus/runs/${artifact.run.runId}.json`,artifact.run); await writeJson(`corpus/jobs/${artifact.job.jobId}.json`,artifact.job); await writeJson(`corpus/intake/${artifact.intake.intakeId}.json`,artifact.intake); await writeJson(`corpus/reports/${artifact.report.reportId}.json`,artifact.report); }
++}
++console.log(JSON.stringify(summary,null,2));
+diff --git a/scripts/corpus/validate-controlled-scale-500.mjs b/scripts/corpus/validate-controlled-scale-500.mjs
+new file mode 100644
+index 0000000..56f6dff
+--- /dev/null
++++ b/scripts/corpus/validate-controlled-scale-500.mjs
+@@ -0,0 +1,42 @@
++import { access, readFile } from 'node:fs/promises';
++import path from 'node:path';
++import { SchemaRegistry } from '../../src/lib/schemaValidator.js';
++import { assertControlledScalePlan } from '../../src/corpus/controlledScale.js';
++import { readJson, writeJson } from './io-lib.mjs';
++
++const requiredFiles = [
++  '.github/workflows/controlled-scale-500.yml',
++  'corpus/production/v1-controlled-scale-500-plan.json',
++  'schemas/controlled-scale-plan.schema.json',
++  'src/corpus/controlledScale.js',
++  'scripts/corpus/execute-controlled-scale-500.mjs',
++  'specs/PRODUCTION_RECIPE_PIPELINE_SCALE_SPEC.md'
++];
++for (const file of requiredFiles) await access(file);
++const registry = new SchemaRegistry(async file => readJson(path.join('schemas', file))); await registry.loadAll();
++const [plan, contract, corpusPolicy, pipelinePolicy, workflow, spec] = await Promise.all([
++  readJson('corpus/production/v1-controlled-scale-500-plan.json'),
++  readJson('corpus/contracts/v1-production.json'),
++  readJson('corpus/policies/v1-default.json'),
++  readJson('corpus/production/v1-recipe-pipeline-policy.json'),
++  readFile('.github/workflows/controlled-scale-500.yml','utf8'),
++  readFile('specs/PRODUCTION_RECIPE_PIPELINE_SCALE_SPEC.md','utf8')
++]);
++const diagnostics = assertControlledScalePlan(plan, contract, corpusPolicy, pipelinePolicy, registry);
++const checks = [
++  ['plan-bridge-220-500', plan.startMinimumActiveRecipes === 220 && plan.targetActiveRecipes === 500 && diagnostics.plannedAcceptedCount === 280],
++  ['plan-three-tranches', plan.tranches.length === 3 && plan.tranches.map(item => item.targetAcceptedCount).join(',') === '100,100,80'],
++  ['plan-safeguards', plan.requireZeroReviewBacklog === true && plan.requireGatePassAtCompletion === true],
++  ['workflow-actions-node24', workflow.includes('actions/checkout@v7') && workflow.includes('actions/setup-node@v7')],
++  ['workflow-tranche-order', workflow.indexOf('--tranche=1') < workflow.indexOf('--tranche=2') && workflow.indexOf('--tranche=2') < workflow.indexOf('--tranche=3')],
++  ['workflow-canonical-checkpoints', (workflow.match(/--canonical/g) || []).length === 3],
++  ['workflow-final-strict-gate', /corpus:scale-gate-500[\s\S]*--strict/.test(workflow)],
++  ['workflow-optional-commit', workflow.includes('commit_results') && workflow.includes('data: scale production corpus to 500 recipes')],
++  ['spec-controlled-scale', /4P-D Pass A/i.test(spec) && /220\s*(?:->|→)\s*500/.test(spec)],
++  ['spec-zero-backlog', /zero review backlog/i.test(spec)]
++].map(([id, pass]) => ({ id, status: pass ? 'pass' : 'blocked' }));
++const blockers = checks.filter(item => item.status !== 'pass').map(item => item.id);
++const report = { schemaVersion:1, pass:blockers.length===0, planId:plan.planId, planVersion:plan.planVersion, plannedAcceptedCount:diagnostics.plannedAcceptedCount, trancheCount:diagnostics.trancheCount, cellCount:diagnostics.cellCount, checks, blockers, generatedAt:new Date().toISOString() };
++await writeJson('corpus/reports/phase4p-d-scale-500-control-plane.json', report);
++console.log(`Phase 4P-D Scale 500 control-plane: ${report.pass ? 'PASS' : 'BLOCKED'} (${checks.filter(item=>item.status==='pass').length}/${checks.length}) · plan=${plan.planId}@${plan.planVersion}`);
++if (!report.pass) process.exitCode = 2;
+diff --git a/src/corpus/controlledScale.js b/src/corpus/controlledScale.js
+new file mode 100644
+index 0000000..d967218
+--- /dev/null
++++ b/src/corpus/controlledScale.js
+@@ -0,0 +1,86 @@
++function sum(values) { return values.reduce((total, value) => total + Number(value || 0), 0); }
++function unique(values) { return [...new Set(values)]; }
++
++export function controlledScalePlanDiagnostics(plan, contract, corpusPolicy, pipelinePolicy) {
++  const errors = [];
++  if (!plan || !contract || !corpusPolicy || !pipelinePolicy) return { valid: false, errors: ['Controlled scale plan and bound policies are required'] };
++  if (plan.contractId !== contract.contractId || plan.contractVersion !== contract.contractVersion) errors.push('production contract binding mismatch');
++  if (plan.corpusPolicyId !== corpusPolicy.policyId || plan.corpusPolicyVersion !== corpusPolicy.policyVersion) errors.push('corpus policy binding mismatch');
++  if (plan.pipelinePolicyId !== pipelinePolicy.policyId || plan.pipelinePolicyVersion !== pipelinePolicy.policyVersion) errors.push('pipeline policy binding mismatch');
++  if (plan.targetActiveRecipes !== pipelinePolicy.scaleGate500?.targetActiveRecipes) errors.push(`targetActiveRecipes ${plan.targetActiveRecipes} does not match Scale Gate 500 target ${pipelinePolicy.scaleGate500?.targetActiveRecipes}`);
++  if (!plan.requireZeroReviewBacklog || !plan.requireGatePassAtCompletion) errors.push('controlled scale safeguards must stay enabled');
++  const trancheIds = new Set(); const cellIds = new Set();
++  let totalAccepted = 0;
++  for (const tranche of plan.tranches || []) {
++    if (trancheIds.has(tranche.trancheId)) errors.push(`duplicate trancheId ${tranche.trancheId}`); trancheIds.add(tranche.trancheId);
++    const cellTotal = sum((tranche.cells || []).map(cell => cell.acceptedCount));
++    if (cellTotal !== tranche.targetAcceptedCount) errors.push(`${tranche.trancheId} cell accepted total ${cellTotal} does not equal tranche target ${tranche.targetAcceptedCount}`);
++    for (const cell of tranche.cells || []) {
++      if (cellIds.has(cell.cellId)) errors.push(`duplicate cellId ${cell.cellId}`); cellIds.add(cell.cellId);
++      const band = (corpusPolicy.energyBands || []).find(item => item.bandId === cell.energyBandId);
++      if (!band) errors.push(`${cell.cellId} uses unknown energy band ${cell.energyBandId}`);
++      const hardCell = (corpusPolicy.coverageTargets || []).find(target => (target.criteria || []).length === 2 && target.criteria.some(c => c.dimension === 'meal_archetype' && c.key === cell.mealArchetype) && target.criteria.some(c => c.dimension === 'energy_band' && c.key === cell.energyBandId));
++      if (!hardCell && !['mini_meal'].includes(cell.mealArchetype)) errors.push(`${cell.cellId} does not map to a governed meal×energy coverage cell`);
++    }
++    totalAccepted += tranche.targetAcceptedCount;
++  }
++  if (plan.startMinimumActiveRecipes + totalAccepted !== plan.targetActiveRecipes) errors.push(`planned accepted total ${totalAccepted} does not bridge ${plan.startMinimumActiveRecipes} -> ${plan.targetActiveRecipes}`);
++  return { valid: errors.length === 0, errors, plannedAcceptedCount: totalAccepted, trancheCount: (plan.tranches || []).length, cellCount: (plan.tranches || []).reduce((total, tranche) => total + (tranche.cells || []).length, 0) };
++}
++
++export function assertControlledScalePlan(plan, contract, corpusPolicy, pipelinePolicy, registry = null) {
++  registry?.assert('controlledScalePlan', plan);
++  const diagnostics = controlledScalePlanDiagnostics(plan, contract, corpusPolicy, pipelinePolicy);
++  if (!diagnostics.valid) throw new Error(`Controlled scale plan validation failed: ${diagnostics.errors.join('; ')}`);
++  return diagnostics;
++}
++
++export function hardCoverageAtGate({ snapshot, corpusPolicy, targetActiveRecipes, releaseReferenceRecipeCount }) {
++  const byId = new Map((snapshot.coverageCells || []).map(cell => [cell.targetId, cell]));
++  return (corpusPolicy.coverageTargets || [])
++    .filter(target => target.hardForRelease && Number.isFinite(target.minCount))
++    .map(target => {
++      const requiredAtGate = Math.ceil(Number(target.minCount) * Number(targetActiveRecipes) / Number(releaseReferenceRecipeCount));
++      const actual = byId.get(target.targetId)?.currentCount || 0;
++      return { targetId: target.targetId, requiredAtGate, actual, deficit: Math.max(0, requiredAtGate - actual), status: actual >= requiredAtGate ? 'pass' : 'blocked' };
++    });
++}
++
++export function controlledScaleCheckpoint({ plan, tranche, beforeSnapshot, afterSnapshot, gate, batchSummaries, corpusPolicy, pipelinePolicy, generatedAt = null }) {
++  const accepted = sum(batchSummaries.map(item => item.accepted));
++  const reviewBacklog = sum(batchSummaries.map(item => item.reviewBacklog));
++  const rejected = sum(batchSummaries.map(item => item.rejected));
++  const expectedAfter = beforeSnapshot.activeRecipeCount + tranche.targetAcceptedCount;
++  const hardCoverage = hardCoverageAtGate({ snapshot: afterSnapshot, corpusPolicy, targetActiveRecipes: plan.targetActiveRecipes, releaseReferenceRecipeCount: pipelinePolicy.scaleGate500.releaseReferenceRecipeCount });
++  const blockers = [];
++  if (accepted !== tranche.targetAcceptedCount) blockers.push(`accepted=${accepted}, target=${tranche.targetAcceptedCount}`);
++  if (reviewBacklog !== 0) blockers.push(`review-backlog=${reviewBacklog}`);
++  if (afterSnapshot.activeRecipeCount !== expectedAfter) blockers.push(`active-recipes=${afterSnapshot.activeRecipeCount}, expected=${expectedAfter}`);
++  if (afterSnapshot.quality.schemaErrors !== 0) blockers.push(`schema-errors=${afterSnapshot.quality.schemaErrors}`);
++  if (afterSnapshot.quality.unknownIngredientReferences !== 0) blockers.push(`unknown-ingredient-references=${afterSnapshot.quality.unknownIngredientReferences}`);
++  if (afterSnapshot.quality.nutritionErrors !== 0) blockers.push(`nutrition-errors=${afterSnapshot.quality.nutritionErrors}`);
++  if (afterSnapshot.quality.allergenDerivationErrors !== 0) blockers.push(`allergen-errors=${afterSnapshot.quality.allergenDerivationErrors}`);
++  if (afterSnapshot.quality.missingRequiredLocaleFields !== 0) blockers.push(`locale-errors=${afterSnapshot.quality.missingRequiredLocaleFields}`);
++  if (afterSnapshot.similarity.exactDuplicateCount !== 0) blockers.push(`exact-duplicates=${afterSnapshot.similarity.exactDuplicateCount}`);
++  if (afterSnapshot.similarity.nearDuplicateCount !== 0) blockers.push(`near-duplicates=${afterSnapshot.similarity.nearDuplicateCount}`);
++  return {
++    schemaVersion: 1,
++    planId: plan.planId,
++    planVersion: plan.planVersion,
++    trancheId: tranche.trancheId,
++    generatedAt: generatedAt || new Date().toISOString(),
++    beforeActiveRecipes: beforeSnapshot.activeRecipeCount,
++    afterActiveRecipes: afterSnapshot.activeRecipeCount,
++    targetAcceptedCount: tranche.targetAcceptedCount,
++    accepted,
++    rejected,
++    reviewBacklog,
++    gateStatus: gate.status,
++    quality: afterSnapshot.quality,
++    similarity: afterSnapshot.similarity,
++    hardCoverageRemaining: hardCoverage.filter(item => item.status === 'blocked'),
++    batchSummaries,
++    status: blockers.length ? 'blocked' : 'pass',
++    blockers: unique(blockers)
++  };
++}
+diff --git a/tests/controlled-scale-500.test.mjs b/tests/controlled-scale-500.test.mjs
+new file mode 100644
+index 0000000..d521afd
+--- /dev/null
++++ b/tests/controlled-scale-500.test.mjs
+@@ -0,0 +1,91 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import path from 'node:path';
++import { readFile } from 'node:fs/promises';
++import { fileURLToPath } from 'node:url';
++import { SchemaRegistry } from '../src/lib/schemaValidator.js';
++import { assertControlledScalePlan, controlledScalePlanDiagnostics } from '../src/corpus/controlledScale.js';
++import { computeCorpusContentIdentity, scanCorpus } from '../src/corpus/corpusScanner.js';
++import { generateControlledScaleCandidates } from '../src/corpus/deterministicRecipeGenerator.js';
++import { loadCorpusInput, readJson } from '../scripts/corpus/io-lib.mjs';
++
++const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
++async function registry(){ const value=new SchemaRegistry(async file=>readJson(path.join(root,'schemas',file))); await value.loadAll(); return value; }
++
++function ingredientCorpus(){
++  const groups=['food_group_pasta_rice_cereals','food_group_grains','food_group_legumes','food_group_poultry','food_group_fish_seafood','food_group_vegetables','food_group_fats_oils'];
++  const ingredientFamilies=[]; const ingredientRevisions=[];
++  for(const group of groups) for(let i=1;i<=10;i+=1){
++    const ingredientId=`ing_control_${group.replace('food_group_','')}_${i}`; const ingredientRevisionId=`${ingredientId}_r1`;
++    ingredientFamilies.push({ingredientId,currentRevisionId:ingredientRevisionId,status:'active'});
++    ingredientRevisions.push({ingredientRevisionId,ingredientId,i18n:{it:{name:`IT ${ingredientId}`},en:{name:`EN ${ingredientId}`}},nutrition:{energyKcal:98,proteinG:5,carbsG:15,fatG:2,fiberG:3},taxonomy:{foodGroup:group},quality:{status:'curated',confidence:'high'}});
++  }
++  return {ingredientFamilies,ingredientRevisions,recipeFamilies:[],recipeVersions:[]};
++}
++
++test('controlled-scale schema is mirrored into the public PWA schema surface', async()=>{
++  const [source,published]=await Promise.all([readFile(path.join(root,'schemas/controlled-scale-plan.schema.json'),'utf8'),readFile(path.join(root,'public/schemas/controlled-scale-plan.schema.json'),'utf8')]);
++  assert.equal(published,source);
++});
++
++test('4P-D controlled plan is schema-valid, policy-bound and bridges exactly 220 -> 500 as 100+100+80', async()=>{
++  const [r,plan,contract,corpusPolicy,pipelinePolicy]=await Promise.all([
++    registry(),readJson(path.join(root,'corpus/production/v1-controlled-scale-500-plan.json')),readJson(path.join(root,'corpus/contracts/v1-production.json')),readJson(path.join(root,'corpus/policies/v1-default.json')),readJson(path.join(root,'corpus/production/v1-recipe-pipeline-policy.json'))
++  ]);
++  const diagnostics=assertControlledScalePlan(plan,contract,corpusPolicy,pipelinePolicy,r);
++  assert.equal(diagnostics.valid,true);
++  assert.equal(diagnostics.plannedAcceptedCount,280);
++  assert.equal(plan.startMinimumActiveRecipes,220);
++  assert.equal(plan.targetActiveRecipes,500);
++  assert.deepEqual(plan.tranches.map(item=>item.targetAcceptedCount),[100,100,80]);
++  assert.equal(plan.requireZeroReviewBacklog,true);
++  assert.equal(plan.requireGatePassAtCompletion,true);
++  const broken=structuredClone(plan); broken.tranches[0].cells[0].energyBandId='kcal-typo';
++  assert.equal(controlledScalePlanDiagnostics(broken,contract,corpusPolicy,pipelinePolicy).valid,false);
++});
++
++test('freshness identity helper reproduces scanCorpus content digest without re-running coverage analysis', async()=>{
++  const [r,policy,corpus]=await Promise.all([registry(),readJson(path.join(root,'corpus/policies/v1-default.json')),loadCorpusInput(path.join(root,'corpus/staging/phase4-smoke-base-bundle.json'))]);
++  const snapshot=await scanCorpus({policy,catalogVersion:corpus.manifest.catalogVersion,...corpus,registry:r});
++  const identity=await computeCorpusContentIdentity({catalogVersion:corpus.manifest.catalogVersion,recipeFamilies:corpus.recipeFamilies,recipeVersions:corpus.recipeVersions,ingredientRevisions:corpus.ingredientRevisions});
++  assert.equal(identity.activeRecipeCount,snapshot.activeRecipeCount);
++  assert.equal(identity.contentDigest,snapshot.contentDigest);
++});
++
++test('controlled-scale generator produces deterministic lunch candidates inside the frozen energy band from curated/high ingredients only',()=>{
++  const corpus=ingredientCorpus(); const allowed=corpus.ingredientFamilies.map(item=>item.ingredientId);
++  const job={mealArchetypes:['lunch'],energyKcal:{min:300,max:399},proteinG:null,fiberG:null,requiredTags:[],forbiddenTags:[],practicalityTargets:[],recipeFamilies:[],cuisineFocus:[],allowedIngredientIds:allowed,preferredUnderusedIngredientIds:[],diversityTargets:{maxIngredientPairFrequency:4}};
++  const intake={records:Array.from({length:8},(_,index)=>({candidateId:`controlled-${index+1}`}))};
++  const generated=generateControlledScaleCandidates({job,intake,corpus});
++  assert.equal(generated.candidates.length,8);
++  assert.equal(generated.diagnostics.generatorVersion,'controlled-scale-generator-v1');
++  assert.equal(generated.diagnostics.mealArchetype,'lunch');
++  assert.ok(generated.diagnostics.generatedEnergyRangeKcal.min>=300);
++  assert.ok(generated.diagnostics.generatedEnergyRangeKcal.max<=399);
++  for(const candidate of generated.candidates){
++    assert.deepEqual(candidate.mealArchetypes,['lunch']);
++    assert.ok(candidate.ingredientLines.length>=4);
++    const byId=new Map(corpus.ingredientRevisions.map(item=>[item.ingredientId,item]));
++    const energy=candidate.ingredientLines.reduce((total,line)=>total+byId.get(line.ingredientId).nutrition.energyKcal*line.amount/100,0);
++    assert.ok(energy>=299.95&&energy<=399.05,`energy=${energy}`);
++  }
++});
++
++test('controlled-scale workflow executes tranche checkpoints 1 -> 2 -> 3 and verifies the final strict Scale Gate', async()=>{
++  const workflow=await readFile(path.join(root,'.github/workflows/controlled-scale-500.yml'),'utf8');
++  const ordered=['--tranche=1','--tranche=2','--tranche=3','--strict']; let cursor=-1;
++  for(const token of ordered){ const next=workflow.indexOf(token,cursor+1); assert.ok(next>cursor,`workflow token missing/out of order: ${token}`); cursor=next; }
++  assert.match(workflow,/active !== 220/);
++  assert.equal((workflow.match(/--canonical/g)||[]).length,3);
++  assert.match(workflow,/controlled-scale-500-summary\.json/);
++  assert.match(workflow,/commit_results/);
++});
++
++test('split controlled-scale runner accumulates canonical tranche evidence instead of overwriting prior checkpoints', async()=>{
++  const runner=await readFile(path.join(root,'scripts/corpus/execute-controlled-scale-500.mjs'),'utf8');
++  assert.match(runner,/existingTranches/);
++  assert.match(runner,/byTrancheId/);
++  assert.match(runner,/cumulativeTranches/);
++  assert.match(runner,/allTranchesComplete/);
++  assert.match(runner,/Refuse ambiguous partial resume/);
++});
