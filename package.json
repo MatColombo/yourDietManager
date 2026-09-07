@@ -1,7 +1,7 @@
 {
   "name": "yourdietmanager",
   "private": true,
-  "version": "1.0.0-rc.20",
+  "version": "1.0.0-rc.21",
   "type": "module",
   "scripts": {
     "dev": "node scripts/dev-server.mjs",
@@ -11,7 +11,7 @@
     "hardening:a11y": "node scripts/hardening/a11y-audit.mjs",
     "hardening:scale": "node scripts/hardening/scale-benchmark.mjs",
     "release:gate": "node scripts/hardening/release-gate.mjs",
-    "check": "npm run corpus:4pa && npm run corpus:4pb && npm run corpus:4pc && npm run corpus:production-execution && npm run corpus:smoke && npm run planner:smoke && npm run lint && npm run test && npm run hardening:a11y && npm run hardening:forms && npm run hardening:scale && npm run build && npm run hardening:browser && npm run hardening:revision && npm run pages:audit",
+    "check": "npm run corpus:4pa && npm run corpus:4pb && npm run corpus:4pc && npm run corpus:production-execution && npm run corpus:4pd && npm run corpus:smoke && npm run planner:smoke && npm run lint && npm run test && npm run hardening:a11y && npm run hardening:forms && npm run hardening:scale && npm run build && npm run hardening:browser && npm run hardening:revision && npm run pages:audit",
     "corpus:scan": "node scripts/corpus/scan.mjs",
     "corpus:plan": "node scripts/corpus/plan.mjs",
     "corpus:smoke": "node scripts/corpus/build-phase4-smoke.mjs",
@@ -48,6 +48,8 @@
     "corpus:retire-recipe-fixtures": "node scripts/corpus/retire-development-recipe-fixtures.mjs",
     "corpus:pilot-execute": "node scripts/corpus/execute-production-pilot.mjs",
     "corpus:first-scale-batch": "node scripts/corpus/execute-first-scale-batch.mjs",
-    "corpus:production-execution": "node scripts/corpus/validate-production-execution.mjs"
+    "corpus:production-execution": "node scripts/corpus/validate-production-execution.mjs",
+    "corpus:scale-to-500": "node scripts/corpus/execute-controlled-scale-500.mjs",
+    "corpus:4pd": "node scripts/corpus/validate-controlled-scale-500.mjs"
   }
 }

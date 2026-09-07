@@ -92,6 +92,7 @@ JSON backup
 | `specs/PRODUCTION_RECIPE_PIPELINE_SCALE_SPEC.md` | Contratto operativo 4P-C: batch industrializzati, disposition/review, stale-snapshot guard e Scale Gate 500 |
 | `specs/PRODUCTION_CORPUS_EXECUTION_SPEC.md` | Esecuzione rc.13: acquisizione USDA, deterministic review bounded, retirement fixture, pilot 120/120 e primo batch 4P-C |
 | `PHASE4_PRODUCTION_TEST_ISOLATION_RC20_REPORT.md` | rc.20: isolamento dei test baseline dalle mutazioni canoniche della workflow production |
+| `PHASE4_PRODUCTION_SCALE_500_RC21_REPORT.md` | rc.21 / 4P-D Pass A: piano e verifica reale del controlled scale 220 -> 500 |
 | `specs/PLAN_GENERATOR_SPEC.md` | Generatore del piano e solver |
 | `specs/SHOPPING_SPEC.md` | Spesa e moltiplicatore persone |
 | `specs/SHOPPING_CHECKLIST_SPEC.md` | Contratto checklist persistita e refresh |
@@ -128,3 +129,7 @@ The local sandbox used for this package cannot download the USDA ZIPs. Therefore
 ## Phase 4 production verification — rc.20 test isolation
 
 The network-enabled production workflow intentionally mutates canonical pilot, retirement, report and scale artifacts before its final verification step. Baseline regression tests must therefore never infer the development starting state from those mutable canonical files. rc.20 binds 4P-B/4P-C baseline tests to the immutable Phase 4 smoke bundle and regenerates fresh pilot intake state in-memory. Production-state tests remain free to inspect generated working artifacts explicitly.
+
+## Phase 4P-D Pass A — rc.21 controlled scale 220 -> 500
+
+Il working set source-backed verificato (600 ingredienti curated/high, pilot 120/120, 220 ricette attive) è ora il prerequisito esplicito del controlled-scale runner. `controlled-scale-500-v1@1.0.0` divide l'espansione in tranche 100 + 100 + 80, con celle canoniche `mealArchetype × energyBand`, checkpoint e zero review backlog. La verifica sul working set reale ha raggiunto 500 ricette attive con Scale Gate 500 `pass`, zero errori quality e zero exact/near duplicate. La workflow dedicata è `.github/workflows/controlled-scale-500.yml`.

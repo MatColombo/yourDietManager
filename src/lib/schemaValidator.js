@@ -7,7 +7,7 @@ const SCHEMA_FILES = [
   'ingredient.schema.json', 'meal-class.schema.json', 'nutrition-profile.schema.json', 'operation.schema.json',
   'plan-instance.schema.json', 'recipe-corpus-orchestration-run.schema.json', 'recipe-corpus-policy.schema.json',
   'recipe-corpus-snapshot.schema.json', 'recipe-generation-job.schema.json', 'production-corpus-contract.schema.json',
-  'production-corpus-intake.schema.json', 'production-corpus-readiness-report.schema.json', 'production-recipe-pipeline-policy.schema.json', 'production-recipe-batch-report.schema.json', 'production-recipe-review-decisions.schema.json', 'production-scale-gate-report.schema.json', 'ingredient-curation-policy.schema.json',
+  'production-corpus-intake.schema.json', 'production-corpus-readiness-report.schema.json', 'production-recipe-pipeline-policy.schema.json', 'production-recipe-batch-report.schema.json', 'production-recipe-review-decisions.schema.json', 'production-scale-gate-report.schema.json', 'controlled-scale-plan.schema.json', 'ingredient-curation-policy.schema.json',
   'ingredient-curation-batch.schema.json', 'ingredient-curation-report.schema.json', 'ingredient-retirement-map.schema.json', 'pilot-wave-report.schema.json', 'recipe-version.schema.json',
   'recipe.schema.json', 'shopping-checklist.schema.json', 'taxonomy.schema.json', 'taxonomy-term.schema.json', 'reference-data-proposal.schema.json', 'theme-profile.schema.json'
 ];
@@ -24,7 +24,7 @@ export const SCHEMA_BY_NAME = {
   productionCorpusContract: 'production-corpus-contract.schema.json', productionCorpusIntake: 'production-corpus-intake.schema.json',
   productionCorpusReadinessReport: 'production-corpus-readiness-report.schema.json',
   productionRecipePipelinePolicy: 'production-recipe-pipeline-policy.schema.json', productionRecipeBatchReport: 'production-recipe-batch-report.schema.json',
-  productionRecipeReviewDecisions: 'production-recipe-review-decisions.schema.json', productionScaleGateReport: 'production-scale-gate-report.schema.json',
+  productionRecipeReviewDecisions: 'production-recipe-review-decisions.schema.json', productionScaleGateReport: 'production-scale-gate-report.schema.json', controlledScalePlan: 'controlled-scale-plan.schema.json',
   ingredientCurationPolicy: 'ingredient-curation-policy.schema.json', ingredientCurationBatch: 'ingredient-curation-batch.schema.json',
   ingredientCurationReport: 'ingredient-curation-report.schema.json', ingredientRetirementMap: 'ingredient-retirement-map.schema.json', pilotWaveReport: 'pilot-wave-report.schema.json',
   operation: 'operation.schema.json', shoppingChecklist: 'shopping-checklist.schema.json', taxonomy: 'taxonomy.schema.json', taxonomyTerm: 'taxonomy-term.schema.json', referenceDataProposal: 'reference-data-proposal.schema.json', backup: 'backup.schema.json'

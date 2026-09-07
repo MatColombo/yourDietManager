@@ -68,6 +68,13 @@ export function evaluateReleaseGates(snapshot, policy) {
   return { passed: failed.length === 0, failed };
 }
 
+export async function computeCorpusContentIdentity({ catalogVersion, recipeFamilies = [], recipeVersions = [], ingredientRevisions = [] }) {
+  const versionById = new Map(recipeVersions.map(record => [record.recipeVersionId, record]));
+  const active = recipeFamilies.filter(family => family.status === 'active').map(family => versionById.get(family.currentVersionId)).filter(Boolean);
+  const digest = await sha256Json({ catalogVersion, active: active.map(recipe => [recipe.recipeVersionId, recipe.contentHash]).sort(), ingredients: ingredientRevisions.map(revision => [revision.ingredientRevisionId, revision.contentHash]).sort() });
+  return { activeRecipeCount: active.length, contentDigest: `sha256:${digest}` };
+}
+
 export async function scanCorpus({ policy, catalogVersion, recipeFamilies = [], recipeVersions = [], ingredientFamilies = [], ingredientRevisions = [], requiredLocales = ['it', 'en'], registry = null, snapshotId = null, createdAt = null }) {
   const revisionById = new Map(ingredientRevisions.map(record => [record.ingredientRevisionId, record]));
   const ingredientFamilyById = new Map(ingredientFamilies.map(record => [record.ingredientId, record]));
@@ -168,7 +175,8 @@ export async function scanCorpus({ policy, catalogVersion, recipeFamilies = [], 
   const ingredientUsage = [...new Set([...ingredientUse.keys(), ...primaryUse.keys()])].sort().map(ingredientId => ({ ingredientId, recipeCount: ingredientUse.get(ingredientId) || 0, primaryCount: primaryUse.get(ingredientId) || 0, recipeShare: denominator ? round((ingredientUse.get(ingredientId) || 0) / denominator) : 0, primaryShare: denominator ? round((primaryUse.get(ingredientId) || 0) / denominator) : 0 }));
   const ingredientPairUsage = [...pairUse.entries()].map(([key, coOccurrenceCount]) => { const [ingredientIdA, ingredientIdB] = key.split('\u0000'); return { ingredientIdA, ingredientIdB, coOccurrenceCount, share: denominator ? round(coOccurrenceCount / denominator) : 0 }; }).sort((a, b) => b.coOccurrenceCount - a.coOccurrenceCount || a.ingredientIdA.localeCompare(b.ingredientIdA) || a.ingredientIdB.localeCompare(b.ingredientIdB));
   const schemaErrors = schemaErrorCount(recipeFamilies, registry, 'recipe') + schemaErrorCount(recipeVersions, registry, 'recipeVersion') + schemaErrorCount(ingredientFamilies, registry, 'ingredient') + schemaErrorCount(ingredientRevisions, registry, 'ingredientRevision');
-  const digest = await sha256Json({ catalogVersion, active: activeVersions.map(recipe => [recipe.recipeVersionId, recipe.contentHash]).sort(), ingredients: ingredientRevisions.map(revision => [revision.ingredientRevisionId, revision.contentHash]).sort() });
+  const identity = await computeCorpusContentIdentity({ catalogVersion, recipeFamilies, recipeVersions, ingredientRevisions });
+  const digest = identity.contentDigest.replace(/^sha256:/, '');
   const timestamp = createdAt || new Date().toISOString();
   const snapshot = {
     schemaVersion: 1,

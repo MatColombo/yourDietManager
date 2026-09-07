@@ -179,3 +179,15 @@
 - Recreate a fresh pilot intake from the frozen contract/reference-data snapshot when testing pre-pilot behavior.
 - Generated-production tests must take the generated bundle/artifact as explicit input.
 - Require the full test suite to pass both on the pristine development tree and after canonical production execution artifacts are populated.
+
+
+## 4P-D Pass A / controlled scale 500
+
+- Validate the controlled-scale plan schema and contract/policy/pipeline bindings.
+- Require exact bridge 220 -> 500 as 100 + 100 + 80 accepted recipes.
+- Require exact tranche start counts 220/320/420; reject ambiguous partial resume.
+- Require zero review backlog and zero schema/reference/nutrition/allergen/locale errors after every tranche.
+- Require zero exact/near duplicates and all hard coverage floors at the final 500 checkpoint.
+- Require Scale Gate 500 `ready` after tranches 1 and 2 and strict `pass` after tranche 3.
+- Preserve all prior tranche evidence when later split invocations write canonical artifacts.
+- Passing 500 is a scale milestone only; keep the 3,000-recipe release minimum and final production-manifest gate unchanged.

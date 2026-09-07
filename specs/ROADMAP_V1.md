@@ -152,44 +152,35 @@ Passes A-E are implemented. The production corpus build can resume only after th
 - production release publication and final release gate require production-contract traceability;
 - current bundled fixture remains intentionally blocked: 0/4 production-ready ingredient families versus the 400-family pilot floor.
 
-### 4P-B — Ingredient Curation & Pilot Execution 🟡 CONTROL PLANE DONE / DATA BLOCKED
+### 4P-B — Ingredient Curation & Pilot Execution ✅ SOURCE-BACKED COMPLETE
 
-- frozen `ingredient-curation-v1@1.0.0` policy bound to the 4P-A production contract;
-- trusted-source hierarchy: Foundation Foods April 2026 primary, SR Legacy supplemental, Branded forbidden;
-- source archive/input digest and source-record provenance required;
-- imported source mappings remain `pending` until every editorial review dimension is explicit;
-- only fully approved records can materialize as `curated/high`;
-- duplicate handling and retirement of development fixtures require explicit mappings, never fuzzy replacement;
-- pilot is six ordered waves of 20; a later wave cannot start before the previous wave closes with zero unresolved references/proposals;
-- current baseline is intentionally blocked because no trusted USDA source batch is vendored and the production-ready foundation remains below 400.
+- `ingredient-curation-v1@1.0.0` remains bound to the 4P-A contract;
+- official Foundation Foods + SR Legacy acquisition completed through the GitHub production workflow;
+- **600** active current ingredient families materialized at `curated/high`;
+- Phase 1 ingredient/recipe fixtures retired through explicit audited replacement mappings;
+- six ordered pilot waves completed **120/120 accepted**, zero unresolved reference requests and zero unhandled taxonomy proposals.
 
-4P-B is complete only at the control-plane level in this candidate. **Do not execute 4P-C scale-up** until >=400 production-ready ingredient families exist and all 120 pilot slots have been executed/reviewed to terminal states.
+### 4P-C — Industrialized Corpus Generation & first scale batch ✅ EXECUTED
 
-### 4P-C — Industrialized Corpus Generation & Scale Gate 500 🟡 CONTROL PLANE DONE / EXECUTION BLOCKED
+- `recipe-production-pipeline-v1@1.0.0` remains the production acceptance pipeline;
+- the source-backed pilot opened Scale Gate 500 to `ready`;
+- the first industrialized batch added 100 accepted recipes with zero review backlog;
+- the committed production working set reached **220 active recipes** with full provenance/quality gates preserved.
 
-- companion policy `recipe-production-pipeline-v1@1.0.0` bound to production contract, corpus policy and 4P-B curation policy;
-- deterministic per-job scale intake, never direct candidate generation from a job without a ledger;
-- explicit post-generation dispositions: accepted/rejected/duplicate/reference review/recipe review/nutrition outlier;
-- objective ordered 100-point quality stages; V1 production acceptance requires 100/100;
-- stale-snapshot guard between job planning and execution;
-- immutable result/report digest;
-- explicit review/retry with maximum three attempts;
-- production apply refuses review backlog, digest mismatch, target failure or diversity failure;
-- Scale Gate 500 derives hard coverage floors pro-rata from the frozen 3,000-recipe release minima.
+### 4P-D Pass A — Controlled Scale 220 -> 500 ✅ VERIFIED / WORKFLOW READY
 
-The 4P-C execution gate remains intentionally blocked in the bundled fixture until the 4P-B data/pilot prerequisites are real. Control-plane availability does not authorize generation with fixture ingredients or unfinished pilot intake.
+- `controlled-scale-500-v1@1.0.0` bridges exactly 220 -> 500;
+- tranche 1: +100 breakfast/snack -> 320;
+- tranche 2: +100 lunch/dinner -> 420;
+- tranche 3: +80 balanced close -> 500;
+- every cell uses canonical `mealArchetype × energyBand` focus, no implicit semantic targets;
+- every tranche requires exact accepted count, zero review backlog, zero quality errors and zero exact/near duplicates;
+- split resume is fail-closed at exact 220/320/420 start counts;
+- real-artifact verification reached **500 active recipes, hard coverage blockers 0, Scale Gate 500 = pass**;
+- `.github/workflows/controlled-scale-500.yml` is the canonical repository runner and commits only with explicit `commit_results=true`.
 
-### 4P execution bridge — rc.13 🟢 IMPLEMENTED / NETWORK RUN REQUIRED
+Scale Gate 500 passing is not V1 release readiness. The frozen production release minimum remains 3,000 accepted recipes plus final production-manifest traceability.
 
-- `.github/workflows/production-corpus.yml` executes the missing source-backed chain on a network-enabled GitHub runner;
-- official USDA source acquisition is digest-pinned in evidence manifests and source archives remain uncommitted;
-- deterministic high-confidence review can approve only strict generic/rule-mappable records after import; import itself remains pending/unapproved;
-- curation must preserve explicit replacements for salmon, cooked rice, zucchini and olive oil before Phase 1 fixtures can retire;
-- recipe fixtures retire only after their ingredient fixtures are explicitly retired, with history preserved;
-- six deterministic pilot waves must close at 120/120 accepted with zero unresolved references/proposals;
-- the first 4P-C 100-accepted batch is created only after Scale Gate 500 becomes `ready`;
-- generated working data is staging/evidence, not a V1 release; 4P-D remains gated by the real output of this run.
+### Next — 4P-D Pass B: controlled scale 500 -> 1500
 
-The local build environment cannot fetch the USDA ZIPs, so rc.13 validates this execution path with synthetic production fixtures and leaves the local production-data gate red rather than fabricating source data.
-
-Next after the source-backed workflow reaches a clean Scale Gate 500 trajectory: **4P-D — Controlled Scale 500 -> 1500 -> 3000+**.
+Before bulk expansion, perform a 500-recipe checkpoint on coverage balance, ingredient-use concentration, primary-ingredient concentration, pair reuse, practicality distribution and nutrition-band distribution. Only a green checkpoint may define the next canonical scale plan.

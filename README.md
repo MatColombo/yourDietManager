@@ -2,7 +2,7 @@
 
 Local-first PWA implementation through **Phase 8 — Hardening & V1 release gates**.
 
-Candidate version: **`1.0.0-rc.20`**.
+Candidate version: **`1.0.0-rc.21`**.
 
 Phases 1–7 remain fully present: IndexedDB persistence, onboarding/configuration, backup/import, IT/EN, theme engine, indexed catalog/search/packs, versioned catalog authoring, corpus-orchestration tooling, deterministic seeded plan generation, effective-plan UX with history/undo, shopping checklists and preparation horizon.
 
@@ -178,6 +178,23 @@ npm run corpus:production-execution
 ```
 
 
+
+## Phase 4P-D Pass A — rc.21 controlled scale 220 -> 500
+
+The source-backed production workflow is now proven through 600 curated/high ingredients, pilot 120/120 and the first 100-recipe industrialized batch, leaving a real 220-recipe working set with Scale Gate 500 `ready`. rc.21 adds a governed controlled-scale plan that bridges exactly **220 -> 500** in three auditable tranches: **100 + 100 + 80** accepted recipes. Each generation cell is frozen to canonical `mealArchetype × energyBand` IDs, uses only current curated/high ingredients, and runs through the existing industrialized pipeline, zero-review-backlog gate, stale-snapshot digest guard, diversity checks and full corpus scan.
+
+The implementation was executed against the real uploaded production artifact and closed at **500 active recipes / Scale Gate 500 = pass**, with zero schema, reference, nutrition, allergen, locale, exact-duplicate or near-duplicate errors and no remaining hard coverage blockers. Use `.github/workflows/controlled-scale-500.yml` for the network/repository run. It executes tranche 1, 2 and 3 as separate resumable checkpoints and can commit the verified 500-recipe working set only when `commit_results=true`. Passing 500 is not V1 release readiness; the frozen release minimum remains 3,000 recipes plus final production-manifest traceability.
+
+Additional commands:
+
+```bash
+npm run corpus:4pd
+npm run corpus:scale-to-500 -- corpus/production/current-working-bundle.json corpus/staging/runtime/controlled-scale-500/tranche-01 --tranche=1 --canonical
+npm run corpus:scale-to-500 -- corpus/production/current-working-bundle.json corpus/staging/runtime/controlled-scale-500/tranche-02 --tranche=2 --canonical
+npm run corpus:scale-to-500 -- corpus/production/current-working-bundle.json corpus/staging/runtime/controlled-scale-500/tranche-03 --tranche=3 --canonical
+```
+
+See `PHASE4_PRODUCTION_SCALE_500_RC21_REPORT.md`.
 
 ## Phase 4 production execution — rc.20 mutable-working-set test isolation
 

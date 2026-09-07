@@ -283,3 +283,21 @@ The rc.13 execution suite must verify:
 ## Production-workflow test isolation
 
 The source-backed production workflow mutates canonical corpus execution artifacts during the same job (`corpus/pilot`, retirement mappings, reports, snapshots, runs/jobs/intake). Tests that assert a development baseline must not read those mutable paths. Use an immutable test corpus such as `corpus/staging/phase4-smoke-base-bundle.json` and create fresh pilot intake state with `planPilotIntake()` from the frozen reference-data digest. Tests of generated production state must receive or load the generated working bundle explicitly. The complete `npm test` suite must pass both before production execution and after canonical production artifacts have been populated.
+
+## 4P-D Pass A controlled scale 220 -> 500
+
+The rc.21 gate must verify:
+
+- `controlled-scale-500-v1@1.0.0` is schema-valid and bound to the production contract, corpus policy and production recipe pipeline policy;
+- the plan bridges exactly 220 -> 500 with tranche targets 100 + 100 + 80;
+- every planned cell uses canonical meal-archetype and energy-band IDs; typo/unknown bands are rejected;
+- the controlled generator consumes only current curated/high ingredients and solves recipe energy inside the frozen job band;
+- the freshness identity helper reproduces the exact `scanCorpus()` content digest without requiring a redundant coverage/similarity scan;
+- split execution is ordered `--tranche=1` -> `--tranche=2` -> `--tranche=3`, with exact start counts 220/320/420 and ambiguous partial resume rejected;
+- canonical tranche evidence is cumulative and is not overwritten by later invocations;
+- intermediate checkpoints require Scale Gate 500 `ready`; the final checkpoint requires strict `pass`;
+- every tranche closes with exact accepted count, zero review backlog, zero schema/reference/nutrition/allergen/locale errors and zero exact/near duplicates;
+- `.github/workflows/controlled-scale-500.yml` runs the three checkpoints separately, uploads failure/success evidence and commits only through explicit `commit_results=true`;
+- the full regression suite remains green after canonical corpus mutation.
+
+Real-artifact acceptance for rc.21 additionally records 220 -> 320 -> 420 -> 500, final hard coverage blockers = 0 and Scale Gate 500 = `pass`.

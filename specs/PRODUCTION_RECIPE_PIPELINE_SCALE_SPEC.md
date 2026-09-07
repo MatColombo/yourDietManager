@@ -250,3 +250,44 @@ Requires, in addition:
 - Scale Gate 500 status = `pass`.
 
 Do not label 4P-C scale execution complete while the current 4P-B gate remains blocked.
+
+## 12. 4P-D Pass A — Controlled Scale 220 -> 500
+
+After the real source-backed workflow has committed the 220-recipe working set and Scale Gate 500 is `ready`, the first controlled-scale milestone uses `controlled-scale-500-v1@1.0.0`.
+
+The plan bridges exactly **220 -> 500** active recipes as three checkpointed tranches:
+
+1. 100 accepted breakfast/snack recipes -> 320;
+2. 100 accepted lunch/dinner recipes -> 420;
+3. 80 accepted balanced-close recipes -> 500.
+
+Every cell freezes one canonical `mealArchetype` and one canonical `energyBandId`. The controlled generator is not authorized to invent cuisine, preparation taxonomy, protein/fiber bands or other semantic targets. Unsupported semantic constraints require a dedicated generator rather than silent inference.
+
+Run each tranche independently:
+
+```bash
+npm run corpus:scale-to-500 -- <220-bundle.json> <out-1> --tranche=1 --canonical
+npm run corpus:scale-to-500 -- corpus/production/current-working-bundle.json <out-2> --tranche=2 --canonical
+npm run corpus:scale-to-500 -- corpus/production/current-working-bundle.json <out-3> --tranche=3 --canonical
+```
+
+Resume is fail-closed: tranche 1 requires exactly 220 active recipes, tranche 2 exactly 320 and tranche 3 exactly 420. Any other count is ambiguous and must be rejected.
+
+Each tranche must have:
+
+- exact planned accepted count;
+- zero review backlog;
+- zero schema/reference/nutrition/allergen/locale errors;
+- zero exact duplicates and zero near duplicates;
+- batch gates passing for every cell;
+- a full corpus scan after every applied cell;
+- Scale Gate 500 `ready` after tranches 1 and 2;
+- Scale Gate 500 `pass` after tranche 3.
+
+Canonical evidence must accumulate checkpoints across split invocations. A later tranche must never overwrite the audit record of an earlier completed tranche.
+
+The freshness guard still compares the same canonical content digest. It may compute that identity directly from active RecipeVersion content hashes and IngredientRevision content hashes rather than rerunning unrelated coverage/similarity analysis before every cell.
+
+`.github/workflows/controlled-scale-500.yml` is the canonical repository runner. By default it uploads evidence only. `commit_results=true` may commit the verified 500-recipe working set after the final strict Scale Gate passes.
+
+The real rc.21 verification reached **500 active recipes / Scale Gate 500 = pass** with zero hard coverage blockers and zero quality/similarity errors. This milestone does not satisfy the 3,000-recipe V1 release minimum.

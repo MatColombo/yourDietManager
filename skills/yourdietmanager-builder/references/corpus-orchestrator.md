@@ -431,3 +431,8 @@ When the user asks to complete the production-data steps after 4P-C control-plan
 8. run the first 100-accepted industrialized batch and re-scan again.
 
 Use `.github/workflows/production-corpus.yml` when the local runtime cannot download the USDA archives. The workflow output is a working production bundle/evidence set, not a release catalog.
+
+
+## 4P-D Pass A controlled scale 220 -> 500
+
+After the source-backed foundation is committed at 220 active recipes, use `controlled-scale-500-v1@1.0.0` rather than generic adaptive bulk expansion. Execute three checkpoints: 100 breakfast/snack accepted (220->320), 100 lunch/dinner (320->420), then 80 balanced-close (420->500). Each cell freezes one canonical meal archetype and energy band; unsupported semantic dimensions are a generator-design blocker, not an invitation to infer values. Require exact start counts, zero review backlog, full quality/dedup scans, and Scale Gate `ready`/`ready`/`pass`. Preserve cumulative evidence across split runs.

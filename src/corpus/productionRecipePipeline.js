@@ -1,7 +1,7 @@
 import { sha256Json } from '../lib/crypto.js';
 import { primaryIngredientId } from './corpusMath.js';
 import { processCandidateBatch } from './recipePipeline.js';
-import { scanCorpus } from './corpusScanner.js';
+import { computeCorpusContentIdentity, scanCorpus } from './corpusScanner.js';
 
 const DISPOSITIONS = ['accepted', 'rejected', 'duplicate', 'needs_reference_review', 'needs_recipe_review', 'nutrition_outlier'];
 const RESOLVED_REQUEST_STATES = new Set(['reused', 'materialized', 'resolved']);
@@ -337,7 +337,7 @@ export async function assertFreshProductionSnapshot({ job, snapshot, corpus, cor
   if (job.orchestration.inputSnapshotId !== snapshot.snapshotId) throw new Error(`Stale production job snapshot: job=${job.orchestration.inputSnapshotId}, supplied=${snapshot.snapshotId}`);
   if (snapshot.policyId !== corpusPolicy.policyId || snapshot.policyVersion !== corpusPolicy.policyVersion) throw new Error('Snapshot policy does not match active corpus policy');
   if (job.orchestration.policyId !== corpusPolicy.policyId || job.orchestration.policyVersion !== corpusPolicy.policyVersion) throw new Error('RecipeGenerationJob orchestration policy does not match active corpus policy');
-  const current = await scanCorpus({ policy: corpusPolicy, catalogVersion: corpus.manifest.catalogVersion, recipeFamilies: corpus.recipeFamilies, recipeVersions: corpus.recipeVersions, ingredientFamilies: corpus.ingredientFamilies, ingredientRevisions: corpus.ingredientRevisions, registry, snapshotId: snapshot.snapshotId, createdAt: snapshot.createdAt });
+  const current = await computeCorpusContentIdentity({ catalogVersion: corpus.manifest.catalogVersion, recipeFamilies: corpus.recipeFamilies, recipeVersions: corpus.recipeVersions, ingredientRevisions: corpus.ingredientRevisions });
   if (current.contentDigest !== snapshot.contentDigest || current.activeRecipeCount !== snapshot.activeRecipeCount) throw new Error(`Stale production snapshot ${snapshot.snapshotId}: catalog content changed since planning`);
   return true;
 }

@@ -2,7 +2,7 @@ export const DB_NAME = 'yourDietManager';
 export const DB_VERSION = 4;
 export const CONTENT_SCHEMA_VERSION = 3;
 export const BACKUP_FORMAT_VERSION = 1;
-export const APP_VERSION = '1.0.0-rc.20';
+export const APP_VERSION = '1.0.0-rc.21';
 
 export const STORE_DEFINITIONS = {
   meta: { keyPath: 'key', indexes: [] },

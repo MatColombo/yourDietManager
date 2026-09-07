@@ -1,0 +1,917 @@
+diff --git a/GITHUB_PAGES_DEPLOYMENT.md b/GITHUB_PAGES_DEPLOYMENT.md
+index ccfb4ad..8dae2ec 100644
+--- a/GITHUB_PAGES_DEPLOYMENT.md
++++ b/GITHUB_PAGES_DEPLOYMENT.md
+@@ -85,7 +85,7 @@ The Pages workflow runs the application check with `YDM_BROWSER_REQUIRED=1`. Thi
+ 
+ La PWA registra/aggiorna ora la Service Worker tramite `src/recoveryBootstrap.js` **prima** di `src/main.js`. Questo evita che un errore di bootstrap applicativo impedisca al browser di ricevere una Service Worker nuova e continui quindi a servire moduli JS obsoleti dalla shell cache precedente.
+ 
+-Le cache correnti sono `ydm-shell-v22-<scope>` e `ydm-data-v10-<scope>`. `updateViaCache: 'none'` e `registration.update()` forzano il controllo del worker dalla rete; al cambio controller viene eseguito un solo reload protetto da `sessionStorage`.
++Le cache correnti sono `ydm-shell-v23-<scope>` e `ydm-data-v11-<scope>`. `updateViaCache: 'none'` e `registration.update()` forzano il controllo del worker dalla rete; al cambio controller viene eseguito un solo reload protetto da `sessionStorage`.
+ 
+ Per upgrade da installazioni pre-hardening, `contentMigration:3` e resumable. Una FoodPreference legacy non-hard salvata come `ingredient:uova` viene re-tipizzata in modo auditato a `foodCategory:food_group_eggs`; non e un alias runtime e non modifica regole `autoExclude=true`.
+ 
+diff --git a/README.md b/README.md
+index d76228f..397c31b 100644
+--- a/README.md
++++ b/README.md
+@@ -2,7 +2,7 @@
+ 
+ Local-first PWA implementation through **Phase 8 — Hardening & V1 release gates**.
+ 
+-Candidate version: **`1.0.0-rc.20`**.
++Candidate version: **`1.0.0-rc.21`**.
+ 
+ Phases 1–7 remain fully present: IndexedDB persistence, onboarding/configuration, backup/import, IT/EN, theme engine, indexed catalog/search/packs, versioned catalog authoring, corpus-orchestration tooling, deterministic seeded plan generation, effective-plan UX with history/undo, shopping checklists and preparation horizon.
+ 
+@@ -179,6 +179,23 @@ npm run corpus:production-execution
+ 
+ 
+ 
++## Phase 4P-D Pass A — rc.21 controlled scale 220 -> 500
++
++The source-backed production workflow is now proven through 600 curated/high ingredients, pilot 120/120 and the first 100-recipe industrialized batch, leaving a real 220-recipe working set with Scale Gate 500 `ready`. rc.21 adds a governed controlled-scale plan that bridges exactly **220 -> 500** in three auditable tranches: **100 + 100 + 80** accepted recipes. Each generation cell is frozen to canonical `mealArchetype × energyBand` IDs, uses only current curated/high ingredients, and runs through the existing industrialized pipeline, zero-review-backlog gate, stale-snapshot digest guard, diversity checks and full corpus scan.
++
++The implementation was executed against the real uploaded production artifact and closed at **500 active recipes / Scale Gate 500 = pass**, with zero schema, reference, nutrition, allergen, locale, exact-duplicate or near-duplicate errors and no remaining hard coverage blockers. Use `.github/workflows/controlled-scale-500.yml` for the network/repository run. It executes tranche 1, 2 and 3 as separate resumable checkpoints and can commit the verified 500-recipe working set only when `commit_results=true`. Passing 500 is not V1 release readiness; the frozen release minimum remains 3,000 recipes plus final production-manifest traceability.
++
++Additional commands:
++
++```bash
++npm run corpus:4pd
++npm run corpus:scale-to-500 -- corpus/production/current-working-bundle.json corpus/staging/runtime/controlled-scale-500/tranche-01 --tranche=1 --canonical
++npm run corpus:scale-to-500 -- corpus/production/current-working-bundle.json corpus/staging/runtime/controlled-scale-500/tranche-02 --tranche=2 --canonical
++npm run corpus:scale-to-500 -- corpus/production/current-working-bundle.json corpus/staging/runtime/controlled-scale-500/tranche-03 --tranche=3 --canonical
++```
++
++See `PHASE4_PRODUCTION_SCALE_500_RC21_REPORT.md`.
++
+ ## Phase 4 production execution — rc.20 mutable-working-set test isolation
+ 
+ The source-backed rc.19 workflow reached 600 curated/high ingredients, closed the 120/120 pilot, applied the first 100-recipe scale batch, and then failed only when `npm test` ran against canonical files already mutated by that same workflow. Four tests were incorrectly stateful: they assumed development `public/data`, an open pilot intake, an empty fixture-retirement map, and a 0/120 Scale Gate baseline. rc.20 makes 4P-B/4P-C baseline tests load the immutable `corpus/staging/phase4-smoke-base-bundle.json` and regenerate a fresh pilot intake with `planPilotIntake()`. The retirement-map test now validates explicit approval semantics whether the canonical map is empty or populated. Production execution remains unchanged; this is test isolation, not a gate relaxation. The application shell cache advances to `ydm-shell-v22`; the data cache remains `ydm-data-v10`.
+diff --git a/SPEC_README.md b/SPEC_README.md
+index 14df482..b01c5c4 100644
+--- a/SPEC_README.md
++++ b/SPEC_README.md
+@@ -92,6 +92,7 @@ JSON backup
+ | `specs/PRODUCTION_RECIPE_PIPELINE_SCALE_SPEC.md` | Contratto operativo 4P-C: batch industrializzati, disposition/review, stale-snapshot guard e Scale Gate 500 |
+ | `specs/PRODUCTION_CORPUS_EXECUTION_SPEC.md` | Esecuzione rc.13: acquisizione USDA, deterministic review bounded, retirement fixture, pilot 120/120 e primo batch 4P-C |
+ | `PHASE4_PRODUCTION_TEST_ISOLATION_RC20_REPORT.md` | rc.20: isolamento dei test baseline dalle mutazioni canoniche della workflow production |
++| `PHASE4_PRODUCTION_SCALE_500_RC21_REPORT.md` | rc.21 / 4P-D Pass A: piano e verifica reale del controlled scale 220 -> 500 |
+ | `specs/PLAN_GENERATOR_SPEC.md` | Generatore del piano e solver |
+ | `specs/SHOPPING_SPEC.md` | Spesa e moltiplicatore persone |
+ | `specs/SHOPPING_CHECKLIST_SPEC.md` | Contratto checklist persistita e refresh |
+@@ -128,3 +129,7 @@ The local sandbox used for this package cannot download the USDA ZIPs. Therefore
+ ## Phase 4 production verification — rc.20 test isolation
+ 
+ The network-enabled production workflow intentionally mutates canonical pilot, retirement, report and scale artifacts before its final verification step. Baseline regression tests must therefore never infer the development starting state from those mutable canonical files. rc.20 binds 4P-B/4P-C baseline tests to the immutable Phase 4 smoke bundle and regenerates fresh pilot intake state in-memory. Production-state tests remain free to inspect generated working artifacts explicitly.
++
++## Phase 4P-D Pass A — rc.21 controlled scale 220 -> 500
++
++Il working set source-backed verificato (600 ingredienti curated/high, pilot 120/120, 220 ricette attive) è ora il prerequisito esplicito del controlled-scale runner. `controlled-scale-500-v1@1.0.0` divide l'espansione in tranche 100 + 100 + 80, con celle canoniche `mealArchetype × energyBand`, checkpoint e zero review backlog. La verifica sul working set reale ha raggiunto 500 ricette attive con Scale Gate 500 `pass`, zero errori quality e zero exact/near duplicate. La workflow dedicata è `.github/workflows/controlled-scale-500.yml`.
+diff --git a/dist/service-worker.js b/dist/service-worker.js
+index 07ed6a2..1b9ab2e 100644
+--- a/dist/service-worker.js
++++ b/dist/service-worker.js
+@@ -1,8 +1,8 @@
+ const BASE_URL = new URL('./', self.location.href);
+ const BASE_PATH = BASE_URL.pathname.endsWith('/') ? BASE_URL.pathname : `${BASE_URL.pathname}/`;
+ const CACHE_SCOPE_KEY = BASE_PATH.replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '') || 'root';
+-const SHELL_CACHE = `ydm-shell-v22-${CACHE_SCOPE_KEY}`;
+-const DATA_CACHE = `ydm-data-v10-${CACHE_SCOPE_KEY}`;
++const SHELL_CACHE = `ydm-shell-v23-${CACHE_SCOPE_KEY}`;
++const DATA_CACHE = `ydm-data-v11-${CACHE_SCOPE_KEY}`;
+ const scoped = path => new URL(String(path || '').replace(/^\/+/, ''), BASE_URL).pathname;
+ const DATA_PREFIX = scoped('data/');
+ const SCHEMA_PREFIX = scoped('schemas/');
+@@ -20,7 +20,7 @@ const SHELL = [
+   'src/services/offlineCatalog.js', 'src/services/storageMetrics.js', 'src/services/referenceDataService.js', 'src/services/referenceDataProposalService.js', 'src/services/referenceDataEditorService.js',
+   'src/planner/seededRandom.js', 'src/planner/planMath.js', 'src/planner/recipeFeatures.js', 'src/planner/hardFilter.js', 'src/planner/softScoring.js', 'src/planner/beamSolver.js', 'src/planner/planGenerator.js',
+   'src/styles.css', 'src/theme/themeEngine.js', 'src/ui/app.js', 'src/ui/catalogPages.js', 'src/ui/configurationPages.js', 'src/ui/referenceDataPages.js', 'src/ui/guidedControls.js', 'src/ui/planPages.js', 'src/ui/shoppingPages.js', 'src/ui/dom.js', 'src/ui/router.js', 'src/ui/uiState.js',
+-  'schemas/allergy-intolerance-profile.schema.json', 'schemas/app-config.schema.json', 'schemas/backup.schema.json', 'schemas/calendar-day.schema.json', 'schemas/catalog-manifest.schema.json', 'schemas/catalog-pack.schema.json', 'schemas/cycle.schema.json', 'schemas/day-class.schema.json', 'schemas/domain-enums.schema.json', 'schemas/food-preferences.schema.json', 'schemas/generation-run.schema.json', 'schemas/ingredient-revision.schema.json', 'schemas/ingredient.schema.json', 'schemas/meal-class.schema.json', 'schemas/nutrition-profile.schema.json', 'schemas/operation.schema.json', 'schemas/plan-instance.schema.json', 'schemas/recipe-corpus-orchestration-run.schema.json', 'schemas/recipe-corpus-policy.schema.json', 'schemas/recipe-corpus-snapshot.schema.json', 'schemas/recipe-generation-job.schema.json', 'schemas/recipe-version.schema.json', 'schemas/recipe.schema.json', 'schemas/shopping-checklist.schema.json', 'schemas/taxonomy.schema.json', 'schemas/taxonomy-term.schema.json', 'schemas/reference-data-proposal.schema.json', 'schemas/production-recipe-pipeline-policy.schema.json', 'schemas/production-recipe-batch-report.schema.json', 'schemas/production-recipe-review-decisions.schema.json', 'schemas/production-scale-gate-report.schema.json', 'schemas/theme-profile.schema.json',
++  'schemas/allergy-intolerance-profile.schema.json', 'schemas/app-config.schema.json', 'schemas/backup.schema.json', 'schemas/calendar-day.schema.json', 'schemas/catalog-manifest.schema.json', 'schemas/catalog-pack.schema.json', 'schemas/cycle.schema.json', 'schemas/day-class.schema.json', 'schemas/domain-enums.schema.json', 'schemas/food-preferences.schema.json', 'schemas/generation-run.schema.json', 'schemas/ingredient-revision.schema.json', 'schemas/ingredient.schema.json', 'schemas/meal-class.schema.json', 'schemas/nutrition-profile.schema.json', 'schemas/operation.schema.json', 'schemas/plan-instance.schema.json', 'schemas/recipe-corpus-orchestration-run.schema.json', 'schemas/recipe-corpus-policy.schema.json', 'schemas/recipe-corpus-snapshot.schema.json', 'schemas/recipe-generation-job.schema.json', 'schemas/recipe-version.schema.json', 'schemas/recipe.schema.json', 'schemas/shopping-checklist.schema.json', 'schemas/taxonomy.schema.json', 'schemas/taxonomy-term.schema.json', 'schemas/reference-data-proposal.schema.json', 'schemas/production-recipe-pipeline-policy.schema.json', 'schemas/production-recipe-batch-report.schema.json', 'schemas/production-recipe-review-decisions.schema.json', 'schemas/production-scale-gate-report.schema.json', 'schemas/controlled-scale-plan.schema.json', 'schemas/theme-profile.schema.json',
+   'data/locales/it.json', 'data/locales/en.json', 'data/catalog-manifest.json', 'data/reference-data/taxonomies-0001.json', 'data/reference-data/taxonomy-terms-0001.json'
+ ].map(scoped);
+ 
+diff --git a/dist/src/corpus/corpusScanner.js b/dist/src/corpus/corpusScanner.js
+index 3be437c..7d8f687 100644
+--- a/dist/src/corpus/corpusScanner.js
++++ b/dist/src/corpus/corpusScanner.js
+@@ -68,6 +68,13 @@ export function evaluateReleaseGates(snapshot, policy) {
+   return { passed: failed.length === 0, failed };
+ }
+ 
++export async function computeCorpusContentIdentity({ catalogVersion, recipeFamilies = [], recipeVersions = [], ingredientRevisions = [] }) {
++  const versionById = new Map(recipeVersions.map(record => [record.recipeVersionId, record]));
++  const active = recipeFamilies.filter(family => family.status === 'active').map(family => versionById.get(family.currentVersionId)).filter(Boolean);
++  const digest = await sha256Json({ catalogVersion, active: active.map(recipe => [recipe.recipeVersionId, recipe.contentHash]).sort(), ingredients: ingredientRevisions.map(revision => [revision.ingredientRevisionId, revision.contentHash]).sort() });
++  return { activeRecipeCount: active.length, contentDigest: `sha256:${digest}` };
++}
++
+ export async function scanCorpus({ policy, catalogVersion, recipeFamilies = [], recipeVersions = [], ingredientFamilies = [], ingredientRevisions = [], requiredLocales = ['it', 'en'], registry = null, snapshotId = null, createdAt = null }) {
+   const revisionById = new Map(ingredientRevisions.map(record => [record.ingredientRevisionId, record]));
+   const ingredientFamilyById = new Map(ingredientFamilies.map(record => [record.ingredientId, record]));
+@@ -168,7 +175,8 @@ export async function scanCorpus({ policy, catalogVersion, recipeFamilies = [],
+   const ingredientUsage = [...new Set([...ingredientUse.keys(), ...primaryUse.keys()])].sort().map(ingredientId => ({ ingredientId, recipeCount: ingredientUse.get(ingredientId) || 0, primaryCount: primaryUse.get(ingredientId) || 0, recipeShare: denominator ? round((ingredientUse.get(ingredientId) || 0) / denominator) : 0, primaryShare: denominator ? round((primaryUse.get(ingredientId) || 0) / denominator) : 0 }));
+   const ingredientPairUsage = [...pairUse.entries()].map(([key, coOccurrenceCount]) => { const [ingredientIdA, ingredientIdB] = key.split('\u0000'); return { ingredientIdA, ingredientIdB, coOccurrenceCount, share: denominator ? round(coOccurrenceCount / denominator) : 0 }; }).sort((a, b) => b.coOccurrenceCount - a.coOccurrenceCount || a.ingredientIdA.localeCompare(b.ingredientIdA) || a.ingredientIdB.localeCompare(b.ingredientIdB));
+   const schemaErrors = schemaErrorCount(recipeFamilies, registry, 'recipe') + schemaErrorCount(recipeVersions, registry, 'recipeVersion') + schemaErrorCount(ingredientFamilies, registry, 'ingredient') + schemaErrorCount(ingredientRevisions, registry, 'ingredientRevision');
+-  const digest = await sha256Json({ catalogVersion, active: activeVersions.map(recipe => [recipe.recipeVersionId, recipe.contentHash]).sort(), ingredients: ingredientRevisions.map(revision => [revision.ingredientRevisionId, revision.contentHash]).sort() });
++  const identity = await computeCorpusContentIdentity({ catalogVersion, recipeFamilies, recipeVersions, ingredientRevisions });
++  const digest = identity.contentDigest.replace(/^sha256:/, '');
+   const timestamp = createdAt || new Date().toISOString();
+   const snapshot = {
+     schemaVersion: 1,
+diff --git a/dist/src/corpus/deterministicRecipeGenerator.js b/dist/src/corpus/deterministicRecipeGenerator.js
+index 5b2a601..c510c5f 100644
+--- a/dist/src/corpus/deterministicRecipeGenerator.js
++++ b/dist/src/corpus/deterministicRecipeGenerator.js
+@@ -222,7 +222,7 @@ function rangeBound(range, key, fallback) {
+   return Number.isFinite(value) ? value : fallback;
+ }
+ function roundAmount(value) { return Math.round(value * 100) / 100; }
+-function solvePortableAmounts(entries, baseAmounts, energyRange) {
++function solveAmountsForEnergy(entries, baseAmounts, energyRange) {
+   const baseEnergy=energyFor(entries,baseAmounts);
+   if (!(baseEnergy > 0)) return null;
+   const baseTotal=baseAmounts.reduce((sum,value)=>sum+Number(value||0),0);
+@@ -296,7 +296,7 @@ export function generatePortableScaleCandidates({ job, intake, corpus }) {
+       const ids=[a.family.ingredientId,b.family.ingredientId,c.family.ingredientId];
+       if(new Set(ids).size!==ids.length){infeasibleCombinationAttempts+=1;continue;}
+       const candidateEntries=[a,b,c];
+-      const candidateSolution=solvePortableAmounts(candidateEntries,baseAmounts,job.energyKcal);
++      const candidateSolution=solveAmountsForEnergy(candidateEntries,baseAmounts,job.energyKcal);
+       if(!candidateSolution){infeasibleCombinationAttempts+=1;continue;}
+       entries=candidateEntries; solved=candidateSolution; break;
+     }
+@@ -327,3 +327,137 @@ export function generatePortableScaleCandidates({ job, intake, corpus }) {
+     generatedEnergyRangeKcal:{min:Number.isFinite(minGeneratedEnergy)?Math.round(minGeneratedEnergy*100)/100:null,max:maxGeneratedEnergy?Math.round(maxGeneratedEnergy*100)/100:null}
+   }};
+ }
++
++const CONTROLLED_SCALE_PROFILES = Object.freeze({
++  breakfast: [
++    { profileId:'breakfast-grain-fruit', slots:[[GROUP.grains,GROUP.starch],[GROUP.fruit],[GROUP.dairy,GROUP.nuts]], amounts:[170,130,90], family:'recipe_family_grain_bowl', practical:{prepMinutes:8,cookMinutes:10,reheatingRequired:false,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:false} },
++    { profileId:'breakfast-egg-plate', slots:[[GROUP.eggs],[GROUP.vegetables],[GROUP.grains,GROUP.starch]], amounts:[170,130,100], family:'recipe_family_egg_dish', practical:{prepMinutes:8,cookMinutes:12,reheatingRequired:false,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:false} },
++    { profileId:'breakfast-fruit-nut', slots:[[GROUP.fruit],[GROUP.nuts],[GROUP.dairy,GROUP.grains]], amounts:[180,45,110], family:'recipe_family_snack_plate', practical:{prepMinutes:6,cookMinutes:0,reheatingRequired:false,coldSuitable:true,portable:true,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:false} }
++  ],
++  snack: [
++    { profileId:'snack-fruit-nut', slots:[[GROUP.fruit],[GROUP.nuts],[GROUP.dairy,GROUP.legumes]], amounts:[180,35,100], family:'recipe_family_snack_plate', practical:{prepMinutes:5,cookMinutes:0,reheatingRequired:false,coldSuitable:true,portable:true,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:false} },
++    { profileId:'snack-veg-legume', slots:[[GROUP.vegetables],[GROUP.legumes],[GROUP.cheese,GROUP.nuts]], amounts:[180,100,45], family:'recipe_family_snack_plate', practical:{prepMinutes:8,cookMinutes:0,reheatingRequired:false,coldSuitable:true,portable:true,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} },
++    { profileId:'snack-fruit-grain', slots:[[GROUP.fruit],[GROUP.grains,GROUP.starch],[GROUP.dairy,GROUP.nuts]], amounts:[160,90,80], family:'recipe_family_snack_plate', practical:{prepMinutes:6,cookMinutes:0,reheatingRequired:false,coldSuitable:true,portable:true,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:false} }
++  ],
++  lunch: [
++    { profileId:'lunch-grain-bowl', slots:[[GROUP.starch,GROUP.grains],[GROUP.legumes,GROUP.poultry,GROUP.fish],[GROUP.vegetables],[GROUP.oils]], amounts:[180,130,150,12], family:'recipe_family_grain_bowl', practical:{prepMinutes:12,cookMinutes:20,reheatingRequired:true,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} },
++    { profileId:'lunch-protein-plate', slots:[[GROUP.legumes,GROUP.poultry,GROUP.fish,GROUP.meat],[GROUP.vegetables],[GROUP.starch,GROUP.grains],[GROUP.oils]], amounts:[180,150,120,12], family:'recipe_family_protein_plate', practical:{prepMinutes:12,cookMinutes:22,reheatingRequired:true,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} },
++    { profileId:'lunch-legume-bowl', slots:[[GROUP.legumes],[GROUP.starch,GROUP.grains],[GROUP.vegetables],[GROUP.oils]], amounts:[180,130,150,10], family:'recipe_family_grain_bowl', practical:{prepMinutes:10,cookMinutes:18,reheatingRequired:true,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} }
++  ],
++  dinner: [
++    { profileId:'dinner-protein-plate', slots:[[GROUP.fish,GROUP.poultry,GROUP.meat,GROUP.legumes],[GROUP.vegetables],[GROUP.starch,GROUP.grains],[GROUP.oils]], amounts:[185,155,120,12], family:'recipe_family_protein_plate', practical:{prepMinutes:12,cookMinutes:25,reheatingRequired:true,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} },
++    { profileId:'dinner-grain-bowl', slots:[[GROUP.starch,GROUP.grains],[GROUP.fish,GROUP.poultry,GROUP.meat,GROUP.legumes],[GROUP.vegetables],[GROUP.oils]], amounts:[180,140,160,12], family:'recipe_family_grain_bowl', practical:{prepMinutes:12,cookMinutes:24,reheatingRequired:true,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} },
++    { profileId:'dinner-legume-plate', slots:[[GROUP.legumes],[GROUP.vegetables],[GROUP.starch,GROUP.grains],[GROUP.oils]], amounts:[185,155,120,10], family:'recipe_family_protein_plate', practical:{prepMinutes:10,cookMinutes:20,reheatingRequired:true,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} }
++  ],
++  mini_meal: [
++    { profileId:'mini-fruit-nut', slots:[[GROUP.fruit,GROUP.vegetables],[GROUP.nuts,GROUP.legumes],[GROUP.dairy,GROUP.eggs,GROUP.grains]], amounts:[170,45,105], family:'recipe_family_snack_plate', practical:{prepMinutes:6,cookMinutes:0,reheatingRequired:false,coldSuitable:true,portable:true,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} },
++    { profileId:'mini-veg-legume', slots:[[GROUP.vegetables],[GROUP.legumes,GROUP.nuts],[GROUP.grains,GROUP.dairy]], amounts:[170,100,90], family:'recipe_family_snack_plate', practical:{prepMinutes:8,cookMinutes:0,reheatingRequired:false,coldSuitable:true,portable:true,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} }
++  ]
++});
++
++function controlledScaleActiveRecipeVersions(corpus) {
++  const byId = new Map((corpus.recipeVersions || []).map(version => [version.recipeVersionId, version]));
++  return (corpus.recipeFamilies || []).filter(family => family.status === 'active').map(family => byId.get(family.currentVersionId)).filter(Boolean);
++}
++function ingredientSetKey(ids) { return [...new Set(ids)].sort().join('|'); }
++function ingredientPairKeys(ids) {
++  const values=[...new Set(ids)].sort(); const out=[];
++  for(let i=0;i<values.length;i+=1) for(let j=i+1;j<values.length;j+=1) out.push(`${values[i]}\u0000${values[j]}`);
++  return out;
++}
++function controlledScaleExistingSets(corpus) { return new Set(controlledScaleActiveRecipeVersions(corpus).map(recipe=>ingredientSetKey((recipe.ingredientLines||[]).map(line=>line.ingredientId)))); }
++function orderedControlledPool(entries, preferred) {
++  const priority=new Map((preferred||[]).map((id,index)=>[id,index]));
++  return [...entries].sort((a,b)=>{
++    const ap=priority.has(a.family.ingredientId)?priority.get(a.family.ingredientId):Number.MAX_SAFE_INTEGER;
++    const bp=priority.has(b.family.ingredientId)?priority.get(b.family.ingredientId):Number.MAX_SAFE_INTEGER;
++    return ap-bp || a.family.ingredientId.localeCompare(b.family.ingredientId);
++  });
++}
++function controlledScalePools(job, corpus) {
++  const allowed=new Set(job.allowedIngredientIds||[]); const preferred=job.preferredUnderusedIngredientIds||[]; const pools=new Map();
++  for(const entry of activeReadyEntries(corpus).filter(entry=>allowed.has(entry.family.ingredientId) && macroReliable(entry))){
++    const group=entry.revision.taxonomy?.foodGroup; if(!pools.has(group)) pools.set(group,[]); pools.get(group).push(entry);
++  }
++  for(const [group,values] of pools) pools.set(group,orderedControlledPool(values,preferred));
++  return pools;
++}
++function controlledTitle(meal, entries, locale) {
++  const names=entries.slice(0,3).map(entry=>labels(entry)[locale]);
++  const prefixes=locale==='it'
++    ? {breakfast:'Colazione',snack:'Spuntino',lunch:'Bowl pranzo',dinner:'Piatto cena',mini_meal:'Mini pasto'}
++    : {breakfast:'Breakfast',snack:'Snack',lunch:'Lunch bowl',dinner:'Dinner plate',mini_meal:'Mini meal'};
++  const joiner=locale==='it'?' e ':' and '; const connector=locale==='it'?' con ':' with ';
++  return `${prefixes[meal]||(locale==='it'?'Piatto':'Dish')}: ${names.slice(0,2).join(joiner)}${connector}${names[2]}`;
++}
++function controlledInstructions(entries, locale) {
++  const names=entries.map(entry=>labels(entry)[locale]).join(', ');
++  if(locale==='it') return [
++    `Pesare gli ingredienti nella quantità indicata: ${names}.`,
++    'Usare ogni ingrediente nello stato canonico indicato nel catalogo; cuocere completamente gli alimenti che non sono già cotti o pronti al consumo.',
++    'Combinare gli ingredienti nella porzione prevista e refrigerare gli avanzi o la porzione preparata se non consumata subito.'
++  ];
++  return [
++    `Weigh the ingredients in the stated amounts: ${names}.`,
++    'Use each ingredient in its canonical catalog state; fully cook any food that is not already cooked or ready to eat.',
++    'Combine the ingredients as one portion and refrigerate leftovers or the prepared portion if it is not eaten immediately.'
++  ];
++}
++function validateControlledScaleJob(job) {
++  if(job.proteinG!=null || job.fiberG!=null) throw new Error('Controlled scale 500 generator requires unconstrained proteinG and fiberG');
++  if((job.mealArchetypes||[]).length!==1) throw new Error('Controlled scale 500 generator requires exactly one mealArchetype per job');
++  const meal=job.mealArchetypes[0]; if(!CONTROLLED_SCALE_PROFILES[meal]) throw new Error(`Controlled scale 500 generator has no profile registry for ${meal}`);
++  if((job.requiredTags||[]).length || (job.forbiddenTags||[]).length || (job.practicalityTargets||[]).length || (job.recipeFamilies||[]).length || (job.cuisineFocus||[]).length) throw new Error('Controlled scale 500 generator accepts only meal+energy focused jobs; additional semantic targets require a dedicated generator profile');
++  return meal;
++}
++
++export function generateControlledScaleCandidates({ job, intake, corpus }) {
++  const meal=validateControlledScaleJob(job); const profiles=CONTROLLED_SCALE_PROFILES[meal]; const pools=controlledScalePools(job,corpus);
++  const existingSets=controlledScaleExistingSets(corpus); const generatedSets=new Set(); const generatedPairCounts=new Map(); const candidates=[];
++  let infeasibleCombinationAttempts=0, duplicateSetAvoidances=0, pairLimitAvoidances=0, minScaleFactor=Number.POSITIVE_INFINITY, maxScaleFactor=0, minGeneratedEnergy=Number.POSITIVE_INFINITY, maxGeneratedEnergy=0;
++  const profileUsage={};
++  for(let index=0; index<(intake.records||[]).length; index+=1){
++    const record=intake.records[index]; let chosen=null, solved=null, profile=null;
++    const maxAttempts=800;
++    for(let attempt=0; attempt<maxAttempts; attempt+=1){
++      profile=profiles[(index+attempt)%profiles.length]; const used=new Set(); const entries=[]; let missing=false;
++      for(let slotIndex=0; slotIndex<profile.slots.length; slotIndex+=1){
++        const pool=mergedPool(pools,profile.slots[slotIndex]);
++        const entry=chooseDistinct(pool,index+attempt*5,used,slotIndex+3+(attempt%11));
++        if(!entry){missing=true;break;} used.add(entry.family.ingredientId); entries.push(entry);
++      }
++      if(missing){infeasibleCombinationAttempts+=1;continue;}
++      const ids=entries.map(entry=>entry.family.ingredientId); const setKey=ingredientSetKey(ids);
++      if(existingSets.has(setKey)||generatedSets.has(setKey)){duplicateSetAvoidances+=1;continue;}
++      const pairs=ingredientPairKeys(ids); const maxPair=Math.max(1,Number(job.diversityTargets?.maxIngredientPairFrequency||2));
++      if(pairs.some(key=>(generatedPairCounts.get(key)||0)>=maxPair)){pairLimitAvoidances+=1;continue;}
++      const solution=solveAmountsForEnergy(entries,profile.amounts,job.energyKcal);
++      if(!solution){infeasibleCombinationAttempts+=1;continue;}
++      chosen=entries; solved=solution; generatedSets.add(setKey); for(const key of pairs) generatedPairCounts.set(key,(generatedPairCounts.get(key)||0)+1); break;
++    }
++    if(!chosen || !solved || !profile) throw new Error(`Controlled scale candidate ${record.candidateId} has no feasible canonical profile for ${meal} ${job.energyKcal.min}-${job.energyKcal.max} kcal`);
++    profileUsage[profile.profileId]=(profileUsage[profile.profileId]||0)+1;
++    minScaleFactor=Math.min(minScaleFactor,solved.factor); maxScaleFactor=Math.max(maxScaleFactor,solved.factor); minGeneratedEnergy=Math.min(minGeneratedEnergy,solved.energyKcal); maxGeneratedEnergy=Math.max(maxGeneratedEnergy,solved.energyKcal);
++    const amounts=solved.amounts; const total=amounts.reduce((sum,value)=>sum+value,0); const practical={...profile.practical,finalWeightG:total,finalVolumeMl:null,yieldNotes:'One standard serving generated by controlled-scale-generator-v1.'};
++    const family=profile.family;
++    candidates.push({
++      candidateId:record.candidateId,
++      i18n:{
++        it:{title:controlledTitle(meal,chosen,'it'),description:`Ricetta ${meal} generata deterministicamente per la copertura controllata verso Scale Gate 500.`,instructions:controlledInstructions(chosen,'it')},
++        en:{title:controlledTitle(meal,chosen,'en'),description:`Deterministic ${meal} recipe generated for controlled coverage toward Scale Gate 500.`,instructions:controlledInstructions(chosen,'en')}
++      },
++      mealArchetypes:[meal],
++      ingredientLines:chosen.map((entry,i)=>({ingredientId:entry.family.ingredientId,amount:amounts[i],unit:'g',optional:false})),
++      practical,
++      tags:{families:[family],cuisines:['cuisine_international'],practical:practicalTags(practical)},
++      culinaryReview:{status:'approved',notes:`Controlled scale profile ${profile.profileId}; canonical curated/high ingredients only; energy solved inside the frozen job band; no cuisine or preparation semantics inferred beyond the explicit profile.`}
++    });
++  }
++  return {candidates,diagnostics:{
++    generatorVersion:'controlled-scale-generator-v1',mealArchetype:meal,energyKcal:job.energyKcal,eligibleMacroReliableIngredients:[...pools.values()].reduce((sum,values)=>sum+values.length,0),profileUsage,
++    infeasibleCombinationAttempts,duplicateSetAvoidances,pairLimitAvoidances,minScaleFactor:Number.isFinite(minScaleFactor)?minScaleFactor:null,maxScaleFactor:maxScaleFactor||null,
++    generatedEnergyRangeKcal:{min:Number.isFinite(minGeneratedEnergy)?Math.round(minGeneratedEnergy*100)/100:null,max:maxGeneratedEnergy?Math.round(maxGeneratedEnergy*100)/100:null}
++  }};
++}
++
++export function controlledScaleProfileIds() { return Object.fromEntries(Object.entries(CONTROLLED_SCALE_PROFILES).map(([meal,profiles])=>[meal,profiles.map(profile=>profile.profileId)])); }
+diff --git a/dist/src/corpus/productionRecipePipeline.js b/dist/src/corpus/productionRecipePipeline.js
+index da68e77..25e45f6 100644
+--- a/dist/src/corpus/productionRecipePipeline.js
++++ b/dist/src/corpus/productionRecipePipeline.js
+@@ -1,7 +1,7 @@
+ import { sha256Json } from '../lib/crypto.js';
+ import { primaryIngredientId } from './corpusMath.js';
+ import { processCandidateBatch } from './recipePipeline.js';
+-import { scanCorpus } from './corpusScanner.js';
++import { computeCorpusContentIdentity, scanCorpus } from './corpusScanner.js';
+ 
+ const DISPOSITIONS = ['accepted', 'rejected', 'duplicate', 'needs_reference_review', 'needs_recipe_review', 'nutrition_outlier'];
+ const RESOLVED_REQUEST_STATES = new Set(['reused', 'materialized', 'resolved']);
+@@ -337,7 +337,7 @@ export async function assertFreshProductionSnapshot({ job, snapshot, corpus, cor
+   if (job.orchestration.inputSnapshotId !== snapshot.snapshotId) throw new Error(`Stale production job snapshot: job=${job.orchestration.inputSnapshotId}, supplied=${snapshot.snapshotId}`);
+   if (snapshot.policyId !== corpusPolicy.policyId || snapshot.policyVersion !== corpusPolicy.policyVersion) throw new Error('Snapshot policy does not match active corpus policy');
+   if (job.orchestration.policyId !== corpusPolicy.policyId || job.orchestration.policyVersion !== corpusPolicy.policyVersion) throw new Error('RecipeGenerationJob orchestration policy does not match active corpus policy');
+-  const current = await scanCorpus({ policy: corpusPolicy, catalogVersion: corpus.manifest.catalogVersion, recipeFamilies: corpus.recipeFamilies, recipeVersions: corpus.recipeVersions, ingredientFamilies: corpus.ingredientFamilies, ingredientRevisions: corpus.ingredientRevisions, registry, snapshotId: snapshot.snapshotId, createdAt: snapshot.createdAt });
++  const current = await computeCorpusContentIdentity({ catalogVersion: corpus.manifest.catalogVersion, recipeFamilies: corpus.recipeFamilies, recipeVersions: corpus.recipeVersions, ingredientRevisions: corpus.ingredientRevisions });
+   if (current.contentDigest !== snapshot.contentDigest || current.activeRecipeCount !== snapshot.activeRecipeCount) throw new Error(`Stale production snapshot ${snapshot.snapshotId}: catalog content changed since planning`);
+   return true;
+ }
+diff --git a/dist/src/db/constants.js b/dist/src/db/constants.js
+index cc1427f..0788164 100644
+--- a/dist/src/db/constants.js
++++ b/dist/src/db/constants.js
+@@ -2,7 +2,7 @@ export const DB_NAME = 'yourDietManager';
+ export const DB_VERSION = 4;
+ export const CONTENT_SCHEMA_VERSION = 3;
+ export const BACKUP_FORMAT_VERSION = 1;
+-export const APP_VERSION = '1.0.0-rc.20';
++export const APP_VERSION = '1.0.0-rc.21';
+ 
+ export const STORE_DEFINITIONS = {
+   meta: { keyPath: 'key', indexes: [] },
+diff --git a/dist/src/lib/schemaValidator.js b/dist/src/lib/schemaValidator.js
+index eaf4375..8c5fdd4 100644
+--- a/dist/src/lib/schemaValidator.js
++++ b/dist/src/lib/schemaValidator.js
+@@ -7,7 +7,7 @@ const SCHEMA_FILES = [
+   'ingredient.schema.json', 'meal-class.schema.json', 'nutrition-profile.schema.json', 'operation.schema.json',
+   'plan-instance.schema.json', 'recipe-corpus-orchestration-run.schema.json', 'recipe-corpus-policy.schema.json',
+   'recipe-corpus-snapshot.schema.json', 'recipe-generation-job.schema.json', 'production-corpus-contract.schema.json',
+-  'production-corpus-intake.schema.json', 'production-corpus-readiness-report.schema.json', 'production-recipe-pipeline-policy.schema.json', 'production-recipe-batch-report.schema.json', 'production-recipe-review-decisions.schema.json', 'production-scale-gate-report.schema.json', 'ingredient-curation-policy.schema.json',
++  'production-corpus-intake.schema.json', 'production-corpus-readiness-report.schema.json', 'production-recipe-pipeline-policy.schema.json', 'production-recipe-batch-report.schema.json', 'production-recipe-review-decisions.schema.json', 'production-scale-gate-report.schema.json', 'controlled-scale-plan.schema.json', 'ingredient-curation-policy.schema.json',
+   'ingredient-curation-batch.schema.json', 'ingredient-curation-report.schema.json', 'ingredient-retirement-map.schema.json', 'pilot-wave-report.schema.json', 'recipe-version.schema.json',
+   'recipe.schema.json', 'shopping-checklist.schema.json', 'taxonomy.schema.json', 'taxonomy-term.schema.json', 'reference-data-proposal.schema.json', 'theme-profile.schema.json'
+ ];
+@@ -24,7 +24,7 @@ export const SCHEMA_BY_NAME = {
+   productionCorpusContract: 'production-corpus-contract.schema.json', productionCorpusIntake: 'production-corpus-intake.schema.json',
+   productionCorpusReadinessReport: 'production-corpus-readiness-report.schema.json',
+   productionRecipePipelinePolicy: 'production-recipe-pipeline-policy.schema.json', productionRecipeBatchReport: 'production-recipe-batch-report.schema.json',
+-  productionRecipeReviewDecisions: 'production-recipe-review-decisions.schema.json', productionScaleGateReport: 'production-scale-gate-report.schema.json',
++  productionRecipeReviewDecisions: 'production-recipe-review-decisions.schema.json', productionScaleGateReport: 'production-scale-gate-report.schema.json', controlledScalePlan: 'controlled-scale-plan.schema.json',
+   ingredientCurationPolicy: 'ingredient-curation-policy.schema.json', ingredientCurationBatch: 'ingredient-curation-batch.schema.json',
+   ingredientCurationReport: 'ingredient-curation-report.schema.json', ingredientRetirementMap: 'ingredient-retirement-map.schema.json', pilotWaveReport: 'pilot-wave-report.schema.json',
+   operation: 'operation.schema.json', shoppingChecklist: 'shopping-checklist.schema.json', taxonomy: 'taxonomy.schema.json', taxonomyTerm: 'taxonomy-term.schema.json', referenceDataProposal: 'reference-data-proposal.schema.json', backup: 'backup.schema.json'
+diff --git a/dist/src/services/offlineCatalog.js b/dist/src/services/offlineCatalog.js
+index d7b51bc..fe932bd 100644
+--- a/dist/src/services/offlineCatalog.js
++++ b/dist/src/services/offlineCatalog.js
+@@ -1,6 +1,6 @@
+ import { APP_BASE_PATH, cacheScopeKey, prefixAppPath } from '../lib/appBase.js';
+ 
+-const DATA_CACHE = `ydm-data-v10-${cacheScopeKey(APP_BASE_PATH)}`;
++const DATA_CACHE = `ydm-data-v11-${cacheScopeKey(APP_BASE_PATH)}`;
+ 
+ function shardMatches(shard, wantedIds) {
+   if (!wantedIds || wantedIds.size === 0) return true;
+diff --git a/package.json b/package.json
+index ecf1bcb..26bf34f 100644
+--- a/package.json
++++ b/package.json
+@@ -1,7 +1,7 @@
+ {
+   "name": "yourdietmanager",
+   "private": true,
+-  "version": "1.0.0-rc.20",
++  "version": "1.0.0-rc.21",
+   "type": "module",
+   "scripts": {
+     "dev": "node scripts/dev-server.mjs",
+@@ -11,7 +11,7 @@
+     "hardening:a11y": "node scripts/hardening/a11y-audit.mjs",
+     "hardening:scale": "node scripts/hardening/scale-benchmark.mjs",
+     "release:gate": "node scripts/hardening/release-gate.mjs",
+-    "check": "npm run corpus:4pa && npm run corpus:4pb && npm run corpus:4pc && npm run corpus:production-execution && npm run corpus:smoke && npm run planner:smoke && npm run lint && npm run test && npm run hardening:a11y && npm run hardening:forms && npm run hardening:scale && npm run build && npm run hardening:browser && npm run hardening:revision && npm run pages:audit",
++    "check": "npm run corpus:4pa && npm run corpus:4pb && npm run corpus:4pc && npm run corpus:production-execution && npm run corpus:4pd && npm run corpus:smoke && npm run planner:smoke && npm run lint && npm run test && npm run hardening:a11y && npm run hardening:forms && npm run hardening:scale && npm run build && npm run hardening:browser && npm run hardening:revision && npm run pages:audit",
+     "corpus:scan": "node scripts/corpus/scan.mjs",
+     "corpus:plan": "node scripts/corpus/plan.mjs",
+     "corpus:smoke": "node scripts/corpus/build-phase4-smoke.mjs",
+@@ -48,6 +48,8 @@
+     "corpus:retire-recipe-fixtures": "node scripts/corpus/retire-development-recipe-fixtures.mjs",
+     "corpus:pilot-execute": "node scripts/corpus/execute-production-pilot.mjs",
+     "corpus:first-scale-batch": "node scripts/corpus/execute-first-scale-batch.mjs",
+-    "corpus:production-execution": "node scripts/corpus/validate-production-execution.mjs"
++    "corpus:production-execution": "node scripts/corpus/validate-production-execution.mjs",
++    "corpus:scale-to-500": "node scripts/corpus/execute-controlled-scale-500.mjs",
++    "corpus:4pd": "node scripts/corpus/validate-controlled-scale-500.mjs"
+   }
+ }
+diff --git a/public/service-worker.js b/public/service-worker.js
+index 07ed6a2..1b9ab2e 100644
+--- a/public/service-worker.js
++++ b/public/service-worker.js
+@@ -1,8 +1,8 @@
+ const BASE_URL = new URL('./', self.location.href);
+ const BASE_PATH = BASE_URL.pathname.endsWith('/') ? BASE_URL.pathname : `${BASE_URL.pathname}/`;
+ const CACHE_SCOPE_KEY = BASE_PATH.replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '') || 'root';
+-const SHELL_CACHE = `ydm-shell-v22-${CACHE_SCOPE_KEY}`;
+-const DATA_CACHE = `ydm-data-v10-${CACHE_SCOPE_KEY}`;
++const SHELL_CACHE = `ydm-shell-v23-${CACHE_SCOPE_KEY}`;
++const DATA_CACHE = `ydm-data-v11-${CACHE_SCOPE_KEY}`;
+ const scoped = path => new URL(String(path || '').replace(/^\/+/, ''), BASE_URL).pathname;
+ const DATA_PREFIX = scoped('data/');
+ const SCHEMA_PREFIX = scoped('schemas/');
+@@ -20,7 +20,7 @@ const SHELL = [
+   'src/services/offlineCatalog.js', 'src/services/storageMetrics.js', 'src/services/referenceDataService.js', 'src/services/referenceDataProposalService.js', 'src/services/referenceDataEditorService.js',
+   'src/planner/seededRandom.js', 'src/planner/planMath.js', 'src/planner/recipeFeatures.js', 'src/planner/hardFilter.js', 'src/planner/softScoring.js', 'src/planner/beamSolver.js', 'src/planner/planGenerator.js',
+   'src/styles.css', 'src/theme/themeEngine.js', 'src/ui/app.js', 'src/ui/catalogPages.js', 'src/ui/configurationPages.js', 'src/ui/referenceDataPages.js', 'src/ui/guidedControls.js', 'src/ui/planPages.js', 'src/ui/shoppingPages.js', 'src/ui/dom.js', 'src/ui/router.js', 'src/ui/uiState.js',
+-  'schemas/allergy-intolerance-profile.schema.json', 'schemas/app-config.schema.json', 'schemas/backup.schema.json', 'schemas/calendar-day.schema.json', 'schemas/catalog-manifest.schema.json', 'schemas/catalog-pack.schema.json', 'schemas/cycle.schema.json', 'schemas/day-class.schema.json', 'schemas/domain-enums.schema.json', 'schemas/food-preferences.schema.json', 'schemas/generation-run.schema.json', 'schemas/ingredient-revision.schema.json', 'schemas/ingredient.schema.json', 'schemas/meal-class.schema.json', 'schemas/nutrition-profile.schema.json', 'schemas/operation.schema.json', 'schemas/plan-instance.schema.json', 'schemas/recipe-corpus-orchestration-run.schema.json', 'schemas/recipe-corpus-policy.schema.json', 'schemas/recipe-corpus-snapshot.schema.json', 'schemas/recipe-generation-job.schema.json', 'schemas/recipe-version.schema.json', 'schemas/recipe.schema.json', 'schemas/shopping-checklist.schema.json', 'schemas/taxonomy.schema.json', 'schemas/taxonomy-term.schema.json', 'schemas/reference-data-proposal.schema.json', 'schemas/production-recipe-pipeline-policy.schema.json', 'schemas/production-recipe-batch-report.schema.json', 'schemas/production-recipe-review-decisions.schema.json', 'schemas/production-scale-gate-report.schema.json', 'schemas/theme-profile.schema.json',
++  'schemas/allergy-intolerance-profile.schema.json', 'schemas/app-config.schema.json', 'schemas/backup.schema.json', 'schemas/calendar-day.schema.json', 'schemas/catalog-manifest.schema.json', 'schemas/catalog-pack.schema.json', 'schemas/cycle.schema.json', 'schemas/day-class.schema.json', 'schemas/domain-enums.schema.json', 'schemas/food-preferences.schema.json', 'schemas/generation-run.schema.json', 'schemas/ingredient-revision.schema.json', 'schemas/ingredient.schema.json', 'schemas/meal-class.schema.json', 'schemas/nutrition-profile.schema.json', 'schemas/operation.schema.json', 'schemas/plan-instance.schema.json', 'schemas/recipe-corpus-orchestration-run.schema.json', 'schemas/recipe-corpus-policy.schema.json', 'schemas/recipe-corpus-snapshot.schema.json', 'schemas/recipe-generation-job.schema.json', 'schemas/recipe-version.schema.json', 'schemas/recipe.schema.json', 'schemas/shopping-checklist.schema.json', 'schemas/taxonomy.schema.json', 'schemas/taxonomy-term.schema.json', 'schemas/reference-data-proposal.schema.json', 'schemas/production-recipe-pipeline-policy.schema.json', 'schemas/production-recipe-batch-report.schema.json', 'schemas/production-recipe-review-decisions.schema.json', 'schemas/production-scale-gate-report.schema.json', 'schemas/controlled-scale-plan.schema.json', 'schemas/theme-profile.schema.json',
+   'data/locales/it.json', 'data/locales/en.json', 'data/catalog-manifest.json', 'data/reference-data/taxonomies-0001.json', 'data/reference-data/taxonomy-terms-0001.json'
+ ].map(scoped);
+ 
+diff --git a/skills/yourdietmanager-builder/SKILL.md b/skills/yourdietmanager-builder/SKILL.md
+index d14ee77..ae089cd 100644
+--- a/skills/yourdietmanager-builder/SKILL.md
++++ b/skills/yourdietmanager-builder/SKILL.md
+@@ -37,6 +37,7 @@ Preserve these rules:
+ 26. Treat 4P-B ingredient import as review intake, never publication. Use the frozen trusted-source policy (Foundation primary, SR Legacy supplemental, no Branded), require source/input digests and explicit review fields for labels, taxonomy, state, allergens, culinary suitability, duplicates, nutrition and provenance before `curated/high` materialization. A deterministic reviewer may populate those checks only for strict generic, nutrient-complete, rule-mappable USDA records under the execution companion spec; it must reject ambiguous records, never fuzzy-merge concepts or create taxonomy terms, preserve reviewer/FDC/source audit data, and preserve USDA energy basis. Prefer Foundation nutrient 2047 Atwater General over 2048 Specific regardless of JSON ordering; never reject 2048/SR Legacy energy merely for differing from a General-factor 4/4/9 calculation. Never implicitly retire fixtures. Execute the production pilot only in ordered 20-candidate waves; do not start the next wave until the previous one is terminal with zero unresolved references/proposals.
+ 27. Treat 4P-C scale execution as gated industrial production. Do not create scale job intake or run post-pilot batches while Scale Gate 500 is blocked by unfinished 4P-B data/pilot. For each scale job use a deterministic ProductionCorpusIntake, require a fresh matching snapshot, classify every candidate into explicit accepted/rejected/duplicate/reference-review/recipe-review/nutrition-outlier disposition, keep review findings non-terminal, verify the result/report digest before apply, cap retries, and re-scan/re-plan after each applied batch. In `focus_only` planning, attach a compound coverage target only when every criterion of that target is explicitly present in the frozen focus; never let a partial criterion such as `practical_portable` silently pull incompatible energy-band cells into the same job.
+ 28. Keep production regression tests state-isolated. Tests that assert the development baseline must load an immutable fixture (for example `phase4-smoke-base-bundle.json`) and construct fresh pilot intake state; never read canonical pilot/retirement/report/snapshot files that the production workflow is allowed to mutate earlier in the same job. Production-state tests must consume the generated working bundle explicitly.
++29. Treat 4P-D Pass A as a governed controlled scale from the committed 220-recipe source-backed working set to exactly 500 active recipes. Use `controlled-scale-500-v1@1.0.0` and execute three independently checkpointed tranches (100 + 100 + 80) with canonical `mealArchetype × energyBand` cells. Require exact start counts 220/320/420, zero review backlog, zero quality/reference/nutrition/allergen/locale errors, zero exact/near duplicates, cumulative evidence across split invocations, Scale Gate `ready` after tranches 1/2 and strict `pass` after tranche 3. Never infer unsupported semantic targets or treat 500 as V1 release readiness.
+ 
+ Read `references/invariants.md` and `references/persistence.md` when architecture, storage, identity, catalog updates or migrations are involved. Read `references/reference-data-taxonomy.md` whenever a field can affect matching, filtering, scoring, generation or catalog classification.
+ 
+@@ -66,7 +67,8 @@ Read `references/invariants.md` and `references/persistence.md` when architectur
+ 11. Generate/localize text only after structure is frozen.
+ 12. For production, process only intake records in `ready_for_generation`; emit reference-data changes first, then Recipe/RecipeVersion JSON shards plus acceptance/coverage/QA report, update intake outcomes, rebuild the snapshot, then choose the next batch.
+ 13. After the 4P-B pilot, require the 4P-C pipeline policy and Scale Gate 500. Create one deterministic intake per RecipeGenerationJob, reject stale snapshots, preserve explicit non-terminal review dispositions, and apply only digest-verified batches with zero review backlog and passing target/diversity gates. For the rc.13 execution bridge, require the exact sequence official-source acquisition -> bounded review -> materialization -> explicit fixture retirement -> 120/120 pilot -> Scale Gate `ready` -> first 100-accepted industrialized batch; never treat the network workflow itself as a V1 release.
+-14. Run a test JSON -> IndexedDB import and query gate before catalog release.
++14. After the committed source-backed working set reaches 220 active recipes, use the 4P-D controlled-scale plan rather than ad-hoc bulk generation: tranche 1 220->320, tranche 2 320->420, tranche 3 420->500. Freeze one canonical meal archetype and energy band per cell, re-scan after every applied cell, preserve zero backlog/duplicate/quality gates, and accumulate canonical tranche evidence across separate invocations. Require the final Scale Gate 500 to be `pass` before planning the 500->1500 milestone.
++15. Run a test JSON -> IndexedDB import and query gate before catalog release.
+ 
+ Never generate thousands of recipes in one unreviewed blob. Use adaptive targeted batches selected by coverage/diversity/similarity scoring.
+ 
+diff --git a/skills/yourdietmanager-builder/references/corpus-orchestrator.md b/skills/yourdietmanager-builder/references/corpus-orchestrator.md
+index 0c65caf..e6593ce 100644
+--- a/skills/yourdietmanager-builder/references/corpus-orchestrator.md
++++ b/skills/yourdietmanager-builder/references/corpus-orchestrator.md
+@@ -431,3 +431,8 @@ When the user asks to complete the production-data steps after 4P-C control-plan
+ 8. run the first 100-accepted industrialized batch and re-scan again.
+ 
+ Use `.github/workflows/production-corpus.yml` when the local runtime cannot download the USDA archives. The workflow output is a working production bundle/evidence set, not a release catalog.
++
++
++## 4P-D Pass A controlled scale 220 -> 500
++
++After the source-backed foundation is committed at 220 active recipes, use `controlled-scale-500-v1@1.0.0` rather than generic adaptive bulk expansion. Execute three checkpoints: 100 breakfast/snack accepted (220->320), 100 lunch/dinner (320->420), then 80 balanced-close (420->500). Each cell freezes one canonical meal archetype and energy band; unsupported semantic dimensions are a generator-design blocker, not an invitation to infer values. Require exact start counts, zero review backlog, full quality/dedup scans, and Scale Gate `ready`/`ready`/`pass`. Preserve cumulative evidence across split runs.
+diff --git a/skills/yourdietmanager-builder/references/quality-gates.md b/skills/yourdietmanager-builder/references/quality-gates.md
+index 5e29a35..1326be7 100644
+--- a/skills/yourdietmanager-builder/references/quality-gates.md
++++ b/skills/yourdietmanager-builder/references/quality-gates.md
+@@ -179,3 +179,15 @@
+ - Recreate a fresh pilot intake from the frozen contract/reference-data snapshot when testing pre-pilot behavior.
+ - Generated-production tests must take the generated bundle/artifact as explicit input.
+ - Require the full test suite to pass both on the pristine development tree and after canonical production execution artifacts are populated.
++
++
++## 4P-D Pass A / controlled scale 500
++
++- Validate the controlled-scale plan schema and contract/policy/pipeline bindings.
++- Require exact bridge 220 -> 500 as 100 + 100 + 80 accepted recipes.
++- Require exact tranche start counts 220/320/420; reject ambiguous partial resume.
++- Require zero review backlog and zero schema/reference/nutrition/allergen/locale errors after every tranche.
++- Require zero exact/near duplicates and all hard coverage floors at the final 500 checkpoint.
++- Require Scale Gate 500 `ready` after tranches 1 and 2 and strict `pass` after tranche 3.
++- Preserve all prior tranche evidence when later split invocations write canonical artifacts.
++- Passing 500 is a scale milestone only; keep the 3,000-recipe release minimum and final production-manifest gate unchanged.
+diff --git a/specs/PRODUCTION_CORPUS_EXECUTION_SPEC.md b/specs/PRODUCTION_CORPUS_EXECUTION_SPEC.md
+index c5869c6..da7bb57 100644
+--- a/specs/PRODUCTION_CORPUS_EXECUTION_SPEC.md
++++ b/specs/PRODUCTION_CORPUS_EXECUTION_SPEC.md
+@@ -87,3 +87,22 @@ The first scale batch output is a **working production bundle**, not a V1 releas
+ `.github/workflows/production-corpus.yml` is the canonical network-enabled runner for this sequence. It downloads source archives from URLs frozen in the curation policy, records archive SHA-256, imports/curates/materializes, runs the pilot and first scale batch, and uploads all generated artifacts.
+ 
+ By default the workflow does not commit generated corpus data. An explicit `commit_results=true` workflow input may commit the resulting working production bundle and audit reports to the invoking branch. The official source archives remain excluded from source control.
++
++## 7. 4P-D controlled-scale continuation after the source-backed foundation
++
++Once the source-backed workflow has completed successfully and committed the 220-recipe working set, further expansion must not repeat USDA acquisition, ingredient materialization or the pilot. The next runner consumes `corpus/production/current-working-bundle.json` as its explicit production baseline.
++
++4P-D Pass A uses `controlled-scale-500-v1@1.0.0` to add 280 accepted recipes as **100 + 100 + 80**. Generation is partitioned into canonical meal-archetype/energy-band cells, and every cell is processed by the same industrialized Recipe Pipeline used by 4P-C.
++
++The sequence is:
++
++1. validate the 4P-D control plane and require exactly 220 active recipes;
++2. execute tranche 1 to 320 and require Scale Gate 500 `ready`;
++3. execute tranche 2 to 420 and require Scale Gate 500 `ready`;
++4. execute tranche 3 to exactly 500;
++5. require the strict Scale Gate 500 to be `pass`;
++6. rerun regression tests against the canonically mutated working tree;
++7. upload cumulative tranche/job/intake/report/snapshot evidence;
++8. commit only through explicit `commit_results=true`.
++
++Zero review backlog, zero unresolved references, immutable digests, quality scoring, diversity constraints and hard coverage requirements remain unchanged. A 500-recipe working set is still not a production V1 release.
+diff --git a/specs/PRODUCTION_RECIPE_PIPELINE_SCALE_SPEC.md b/specs/PRODUCTION_RECIPE_PIPELINE_SCALE_SPEC.md
+index fff9d09..91bc78c 100644
+--- a/specs/PRODUCTION_RECIPE_PIPELINE_SCALE_SPEC.md
++++ b/specs/PRODUCTION_RECIPE_PIPELINE_SCALE_SPEC.md
+@@ -250,3 +250,44 @@ Requires, in addition:
+ - Scale Gate 500 status = `pass`.
+ 
+ Do not label 4P-C scale execution complete while the current 4P-B gate remains blocked.
++
++## 12. 4P-D Pass A — Controlled Scale 220 -> 500
++
++After the real source-backed workflow has committed the 220-recipe working set and Scale Gate 500 is `ready`, the first controlled-scale milestone uses `controlled-scale-500-v1@1.0.0`.
++
++The plan bridges exactly **220 -> 500** active recipes as three checkpointed tranches:
++
++1. 100 accepted breakfast/snack recipes -> 320;
++2. 100 accepted lunch/dinner recipes -> 420;
++3. 80 accepted balanced-close recipes -> 500.
++
++Every cell freezes one canonical `mealArchetype` and one canonical `energyBandId`. The controlled generator is not authorized to invent cuisine, preparation taxonomy, protein/fiber bands or other semantic targets. Unsupported semantic constraints require a dedicated generator rather than silent inference.
++
++Run each tranche independently:
++
++```bash
++npm run corpus:scale-to-500 -- <220-bundle.json> <out-1> --tranche=1 --canonical
++npm run corpus:scale-to-500 -- corpus/production/current-working-bundle.json <out-2> --tranche=2 --canonical
++npm run corpus:scale-to-500 -- corpus/production/current-working-bundle.json <out-3> --tranche=3 --canonical
++```
++
++Resume is fail-closed: tranche 1 requires exactly 220 active recipes, tranche 2 exactly 320 and tranche 3 exactly 420. Any other count is ambiguous and must be rejected.
++
++Each tranche must have:
++
++- exact planned accepted count;
++- zero review backlog;
++- zero schema/reference/nutrition/allergen/locale errors;
++- zero exact duplicates and zero near duplicates;
++- batch gates passing for every cell;
++- a full corpus scan after every applied cell;
++- Scale Gate 500 `ready` after tranches 1 and 2;
++- Scale Gate 500 `pass` after tranche 3.
++
++Canonical evidence must accumulate checkpoints across split invocations. A later tranche must never overwrite the audit record of an earlier completed tranche.
++
++The freshness guard still compares the same canonical content digest. It may compute that identity directly from active RecipeVersion content hashes and IngredientRevision content hashes rather than rerunning unrelated coverage/similarity analysis before every cell.
++
++`.github/workflows/controlled-scale-500.yml` is the canonical repository runner. By default it uploads evidence only. `commit_results=true` may commit the verified 500-recipe working set after the final strict Scale Gate passes.
++
++The real rc.21 verification reached **500 active recipes / Scale Gate 500 = pass** with zero hard coverage blockers and zero quality/similarity errors. This milestone does not satisfy the 3,000-recipe V1 release minimum.
+diff --git a/specs/ROADMAP_V1.md b/specs/ROADMAP_V1.md
+index d9cf077..807ce5a 100644
+--- a/specs/ROADMAP_V1.md
++++ b/specs/ROADMAP_V1.md
+@@ -152,44 +152,35 @@ Passes A-E are implemented. The production corpus build can resume only after th
+ - production release publication and final release gate require production-contract traceability;
+ - current bundled fixture remains intentionally blocked: 0/4 production-ready ingredient families versus the 400-family pilot floor.
+ 
+-### 4P-B — Ingredient Curation & Pilot Execution 🟡 CONTROL PLANE DONE / DATA BLOCKED
+-
+-- frozen `ingredient-curation-v1@1.0.0` policy bound to the 4P-A production contract;
+-- trusted-source hierarchy: Foundation Foods April 2026 primary, SR Legacy supplemental, Branded forbidden;
+-- source archive/input digest and source-record provenance required;
+-- imported source mappings remain `pending` until every editorial review dimension is explicit;
+-- only fully approved records can materialize as `curated/high`;
+-- duplicate handling and retirement of development fixtures require explicit mappings, never fuzzy replacement;
+-- pilot is six ordered waves of 20; a later wave cannot start before the previous wave closes with zero unresolved references/proposals;
+-- current baseline is intentionally blocked because no trusted USDA source batch is vendored and the production-ready foundation remains below 400.
+-
+-4P-B is complete only at the control-plane level in this candidate. **Do not execute 4P-C scale-up** until >=400 production-ready ingredient families exist and all 120 pilot slots have been executed/reviewed to terminal states.
+-
+-### 4P-C — Industrialized Corpus Generation & Scale Gate 500 🟡 CONTROL PLANE DONE / EXECUTION BLOCKED
+-
+-- companion policy `recipe-production-pipeline-v1@1.0.0` bound to production contract, corpus policy and 4P-B curation policy;
+-- deterministic per-job scale intake, never direct candidate generation from a job without a ledger;
+-- explicit post-generation dispositions: accepted/rejected/duplicate/reference review/recipe review/nutrition outlier;
+-- objective ordered 100-point quality stages; V1 production acceptance requires 100/100;
+-- stale-snapshot guard between job planning and execution;
+-- immutable result/report digest;
+-- explicit review/retry with maximum three attempts;
+-- production apply refuses review backlog, digest mismatch, target failure or diversity failure;
+-- Scale Gate 500 derives hard coverage floors pro-rata from the frozen 3,000-recipe release minima.
+-
+-The 4P-C execution gate remains intentionally blocked in the bundled fixture until the 4P-B data/pilot prerequisites are real. Control-plane availability does not authorize generation with fixture ingredients or unfinished pilot intake.
+-
+-### 4P execution bridge — rc.13 🟢 IMPLEMENTED / NETWORK RUN REQUIRED
+-
+-- `.github/workflows/production-corpus.yml` executes the missing source-backed chain on a network-enabled GitHub runner;
+-- official USDA source acquisition is digest-pinned in evidence manifests and source archives remain uncommitted;
+-- deterministic high-confidence review can approve only strict generic/rule-mappable records after import; import itself remains pending/unapproved;
+-- curation must preserve explicit replacements for salmon, cooked rice, zucchini and olive oil before Phase 1 fixtures can retire;
+-- recipe fixtures retire only after their ingredient fixtures are explicitly retired, with history preserved;
+-- six deterministic pilot waves must close at 120/120 accepted with zero unresolved references/proposals;
+-- the first 4P-C 100-accepted batch is created only after Scale Gate 500 becomes `ready`;
+-- generated working data is staging/evidence, not a V1 release; 4P-D remains gated by the real output of this run.
+-
+-The local build environment cannot fetch the USDA ZIPs, so rc.13 validates this execution path with synthetic production fixtures and leaves the local production-data gate red rather than fabricating source data.
+-
+-Next after the source-backed workflow reaches a clean Scale Gate 500 trajectory: **4P-D — Controlled Scale 500 -> 1500 -> 3000+**.
++### 4P-B — Ingredient Curation & Pilot Execution ✅ SOURCE-BACKED COMPLETE
++
++- `ingredient-curation-v1@1.0.0` remains bound to the 4P-A contract;
++- official Foundation Foods + SR Legacy acquisition completed through the GitHub production workflow;
++- **600** active current ingredient families materialized at `curated/high`;
++- Phase 1 ingredient/recipe fixtures retired through explicit audited replacement mappings;
++- six ordered pilot waves completed **120/120 accepted**, zero unresolved reference requests and zero unhandled taxonomy proposals.
++
++### 4P-C — Industrialized Corpus Generation & first scale batch ✅ EXECUTED
++
++- `recipe-production-pipeline-v1@1.0.0` remains the production acceptance pipeline;
++- the source-backed pilot opened Scale Gate 500 to `ready`;
++- the first industrialized batch added 100 accepted recipes with zero review backlog;
++- the committed production working set reached **220 active recipes** with full provenance/quality gates preserved.
++
++### 4P-D Pass A — Controlled Scale 220 -> 500 ✅ VERIFIED / WORKFLOW READY
++
++- `controlled-scale-500-v1@1.0.0` bridges exactly 220 -> 500;
++- tranche 1: +100 breakfast/snack -> 320;
++- tranche 2: +100 lunch/dinner -> 420;
++- tranche 3: +80 balanced close -> 500;
++- every cell uses canonical `mealArchetype × energyBand` focus, no implicit semantic targets;
++- every tranche requires exact accepted count, zero review backlog, zero quality errors and zero exact/near duplicates;
++- split resume is fail-closed at exact 220/320/420 start counts;
++- real-artifact verification reached **500 active recipes, hard coverage blockers 0, Scale Gate 500 = pass**;
++- `.github/workflows/controlled-scale-500.yml` is the canonical repository runner and commits only with explicit `commit_results=true`.
++
++Scale Gate 500 passing is not V1 release readiness. The frozen production release minimum remains 3,000 accepted recipes plus final production-manifest traceability.
++
++### Next — 4P-D Pass B: controlled scale 500 -> 1500
++
++Before bulk expansion, perform a 500-recipe checkpoint on coverage balance, ingredient-use concentration, primary-ingredient concentration, pair reuse, practicality distribution and nutrition-band distribution. Only a green checkpoint may define the next canonical scale plan.
+diff --git a/specs/TEST_STRATEGY.md b/specs/TEST_STRATEGY.md
+index b84a755..e6ead79 100644
+--- a/specs/TEST_STRATEGY.md
++++ b/specs/TEST_STRATEGY.md
+@@ -283,3 +283,21 @@ The rc.13 execution suite must verify:
+ ## Production-workflow test isolation
+ 
+ The source-backed production workflow mutates canonical corpus execution artifacts during the same job (`corpus/pilot`, retirement mappings, reports, snapshots, runs/jobs/intake). Tests that assert a development baseline must not read those mutable paths. Use an immutable test corpus such as `corpus/staging/phase4-smoke-base-bundle.json` and create fresh pilot intake state with `planPilotIntake()` from the frozen reference-data digest. Tests of generated production state must receive or load the generated working bundle explicitly. The complete `npm test` suite must pass both before production execution and after canonical production artifacts have been populated.
++
++## 4P-D Pass A controlled scale 220 -> 500
++
++The rc.21 gate must verify:
++
++- `controlled-scale-500-v1@1.0.0` is schema-valid and bound to the production contract, corpus policy and production recipe pipeline policy;
++- the plan bridges exactly 220 -> 500 with tranche targets 100 + 100 + 80;
++- every planned cell uses canonical meal-archetype and energy-band IDs; typo/unknown bands are rejected;
++- the controlled generator consumes only current curated/high ingredients and solves recipe energy inside the frozen job band;
++- the freshness identity helper reproduces the exact `scanCorpus()` content digest without requiring a redundant coverage/similarity scan;
++- split execution is ordered `--tranche=1` -> `--tranche=2` -> `--tranche=3`, with exact start counts 220/320/420 and ambiguous partial resume rejected;
++- canonical tranche evidence is cumulative and is not overwritten by later invocations;
++- intermediate checkpoints require Scale Gate 500 `ready`; the final checkpoint requires strict `pass`;
++- every tranche closes with exact accepted count, zero review backlog, zero schema/reference/nutrition/allergen/locale errors and zero exact/near duplicates;
++- `.github/workflows/controlled-scale-500.yml` runs the three checkpoints separately, uploads failure/success evidence and commits only through explicit `commit_results=true`;
++- the full regression suite remains green after canonical corpus mutation.
++
++Real-artifact acceptance for rc.21 additionally records 220 -> 320 -> 420 -> 500, final hard coverage blockers = 0 and Scale Gate 500 = `pass`.
+diff --git a/src/corpus/corpusScanner.js b/src/corpus/corpusScanner.js
+index 3be437c..7d8f687 100644
+--- a/src/corpus/corpusScanner.js
++++ b/src/corpus/corpusScanner.js
+@@ -68,6 +68,13 @@ export function evaluateReleaseGates(snapshot, policy) {
+   return { passed: failed.length === 0, failed };
+ }
+ 
++export async function computeCorpusContentIdentity({ catalogVersion, recipeFamilies = [], recipeVersions = [], ingredientRevisions = [] }) {
++  const versionById = new Map(recipeVersions.map(record => [record.recipeVersionId, record]));
++  const active = recipeFamilies.filter(family => family.status === 'active').map(family => versionById.get(family.currentVersionId)).filter(Boolean);
++  const digest = await sha256Json({ catalogVersion, active: active.map(recipe => [recipe.recipeVersionId, recipe.contentHash]).sort(), ingredients: ingredientRevisions.map(revision => [revision.ingredientRevisionId, revision.contentHash]).sort() });
++  return { activeRecipeCount: active.length, contentDigest: `sha256:${digest}` };
++}
++
+ export async function scanCorpus({ policy, catalogVersion, recipeFamilies = [], recipeVersions = [], ingredientFamilies = [], ingredientRevisions = [], requiredLocales = ['it', 'en'], registry = null, snapshotId = null, createdAt = null }) {
+   const revisionById = new Map(ingredientRevisions.map(record => [record.ingredientRevisionId, record]));
+   const ingredientFamilyById = new Map(ingredientFamilies.map(record => [record.ingredientId, record]));
+@@ -168,7 +175,8 @@ export async function scanCorpus({ policy, catalogVersion, recipeFamilies = [],
+   const ingredientUsage = [...new Set([...ingredientUse.keys(), ...primaryUse.keys()])].sort().map(ingredientId => ({ ingredientId, recipeCount: ingredientUse.get(ingredientId) || 0, primaryCount: primaryUse.get(ingredientId) || 0, recipeShare: denominator ? round((ingredientUse.get(ingredientId) || 0) / denominator) : 0, primaryShare: denominator ? round((primaryUse.get(ingredientId) || 0) / denominator) : 0 }));
+   const ingredientPairUsage = [...pairUse.entries()].map(([key, coOccurrenceCount]) => { const [ingredientIdA, ingredientIdB] = key.split('\u0000'); return { ingredientIdA, ingredientIdB, coOccurrenceCount, share: denominator ? round(coOccurrenceCount / denominator) : 0 }; }).sort((a, b) => b.coOccurrenceCount - a.coOccurrenceCount || a.ingredientIdA.localeCompare(b.ingredientIdA) || a.ingredientIdB.localeCompare(b.ingredientIdB));
+   const schemaErrors = schemaErrorCount(recipeFamilies, registry, 'recipe') + schemaErrorCount(recipeVersions, registry, 'recipeVersion') + schemaErrorCount(ingredientFamilies, registry, 'ingredient') + schemaErrorCount(ingredientRevisions, registry, 'ingredientRevision');
+-  const digest = await sha256Json({ catalogVersion, active: activeVersions.map(recipe => [recipe.recipeVersionId, recipe.contentHash]).sort(), ingredients: ingredientRevisions.map(revision => [revision.ingredientRevisionId, revision.contentHash]).sort() });
++  const identity = await computeCorpusContentIdentity({ catalogVersion, recipeFamilies, recipeVersions, ingredientRevisions });
++  const digest = identity.contentDigest.replace(/^sha256:/, '');
+   const timestamp = createdAt || new Date().toISOString();
+   const snapshot = {
+     schemaVersion: 1,
+diff --git a/src/corpus/deterministicRecipeGenerator.js b/src/corpus/deterministicRecipeGenerator.js
+index 5b2a601..c510c5f 100644
+--- a/src/corpus/deterministicRecipeGenerator.js
++++ b/src/corpus/deterministicRecipeGenerator.js
+@@ -222,7 +222,7 @@ function rangeBound(range, key, fallback) {
+   return Number.isFinite(value) ? value : fallback;
+ }
+ function roundAmount(value) { return Math.round(value * 100) / 100; }
+-function solvePortableAmounts(entries, baseAmounts, energyRange) {
++function solveAmountsForEnergy(entries, baseAmounts, energyRange) {
+   const baseEnergy=energyFor(entries,baseAmounts);
+   if (!(baseEnergy > 0)) return null;
+   const baseTotal=baseAmounts.reduce((sum,value)=>sum+Number(value||0),0);
+@@ -296,7 +296,7 @@ export function generatePortableScaleCandidates({ job, intake, corpus }) {
+       const ids=[a.family.ingredientId,b.family.ingredientId,c.family.ingredientId];
+       if(new Set(ids).size!==ids.length){infeasibleCombinationAttempts+=1;continue;}
+       const candidateEntries=[a,b,c];
+-      const candidateSolution=solvePortableAmounts(candidateEntries,baseAmounts,job.energyKcal);
++      const candidateSolution=solveAmountsForEnergy(candidateEntries,baseAmounts,job.energyKcal);
+       if(!candidateSolution){infeasibleCombinationAttempts+=1;continue;}
+       entries=candidateEntries; solved=candidateSolution; break;
+     }
+@@ -327,3 +327,137 @@ export function generatePortableScaleCandidates({ job, intake, corpus }) {
+     generatedEnergyRangeKcal:{min:Number.isFinite(minGeneratedEnergy)?Math.round(minGeneratedEnergy*100)/100:null,max:maxGeneratedEnergy?Math.round(maxGeneratedEnergy*100)/100:null}
+   }};
+ }
++
++const CONTROLLED_SCALE_PROFILES = Object.freeze({
++  breakfast: [
++    { profileId:'breakfast-grain-fruit', slots:[[GROUP.grains,GROUP.starch],[GROUP.fruit],[GROUP.dairy,GROUP.nuts]], amounts:[170,130,90], family:'recipe_family_grain_bowl', practical:{prepMinutes:8,cookMinutes:10,reheatingRequired:false,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:false} },
++    { profileId:'breakfast-egg-plate', slots:[[GROUP.eggs],[GROUP.vegetables],[GROUP.grains,GROUP.starch]], amounts:[170,130,100], family:'recipe_family_egg_dish', practical:{prepMinutes:8,cookMinutes:12,reheatingRequired:false,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:false} },
++    { profileId:'breakfast-fruit-nut', slots:[[GROUP.fruit],[GROUP.nuts],[GROUP.dairy,GROUP.grains]], amounts:[180,45,110], family:'recipe_family_snack_plate', practical:{prepMinutes:6,cookMinutes:0,reheatingRequired:false,coldSuitable:true,portable:true,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:false} }
++  ],
++  snack: [
++    { profileId:'snack-fruit-nut', slots:[[GROUP.fruit],[GROUP.nuts],[GROUP.dairy,GROUP.legumes]], amounts:[180,35,100], family:'recipe_family_snack_plate', practical:{prepMinutes:5,cookMinutes:0,reheatingRequired:false,coldSuitable:true,portable:true,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:false} },
++    { profileId:'snack-veg-legume', slots:[[GROUP.vegetables],[GROUP.legumes],[GROUP.cheese,GROUP.nuts]], amounts:[180,100,45], family:'recipe_family_snack_plate', practical:{prepMinutes:8,cookMinutes:0,reheatingRequired:false,coldSuitable:true,portable:true,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} },
++    { profileId:'snack-fruit-grain', slots:[[GROUP.fruit],[GROUP.grains,GROUP.starch],[GROUP.dairy,GROUP.nuts]], amounts:[160,90,80], family:'recipe_family_snack_plate', practical:{prepMinutes:6,cookMinutes:0,reheatingRequired:false,coldSuitable:true,portable:true,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:false} }
++  ],
++  lunch: [
++    { profileId:'lunch-grain-bowl', slots:[[GROUP.starch,GROUP.grains],[GROUP.legumes,GROUP.poultry,GROUP.fish],[GROUP.vegetables],[GROUP.oils]], amounts:[180,130,150,12], family:'recipe_family_grain_bowl', practical:{prepMinutes:12,cookMinutes:20,reheatingRequired:true,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} },
++    { profileId:'lunch-protein-plate', slots:[[GROUP.legumes,GROUP.poultry,GROUP.fish,GROUP.meat],[GROUP.vegetables],[GROUP.starch,GROUP.grains],[GROUP.oils]], amounts:[180,150,120,12], family:'recipe_family_protein_plate', practical:{prepMinutes:12,cookMinutes:22,reheatingRequired:true,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} },
++    { profileId:'lunch-legume-bowl', slots:[[GROUP.legumes],[GROUP.starch,GROUP.grains],[GROUP.vegetables],[GROUP.oils]], amounts:[180,130,150,10], family:'recipe_family_grain_bowl', practical:{prepMinutes:10,cookMinutes:18,reheatingRequired:true,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} }
++  ],
++  dinner: [
++    { profileId:'dinner-protein-plate', slots:[[GROUP.fish,GROUP.poultry,GROUP.meat,GROUP.legumes],[GROUP.vegetables],[GROUP.starch,GROUP.grains],[GROUP.oils]], amounts:[185,155,120,12], family:'recipe_family_protein_plate', practical:{prepMinutes:12,cookMinutes:25,reheatingRequired:true,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} },
++    { profileId:'dinner-grain-bowl', slots:[[GROUP.starch,GROUP.grains],[GROUP.fish,GROUP.poultry,GROUP.meat,GROUP.legumes],[GROUP.vegetables],[GROUP.oils]], amounts:[180,140,160,12], family:'recipe_family_grain_bowl', practical:{prepMinutes:12,cookMinutes:24,reheatingRequired:true,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} },
++    { profileId:'dinner-legume-plate', slots:[[GROUP.legumes],[GROUP.vegetables],[GROUP.starch,GROUP.grains],[GROUP.oils]], amounts:[185,155,120,10], family:'recipe_family_protein_plate', practical:{prepMinutes:10,cookMinutes:20,reheatingRequired:true,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} }
++  ],
++  mini_meal: [
++    { profileId:'mini-fruit-nut', slots:[[GROUP.fruit,GROUP.vegetables],[GROUP.nuts,GROUP.legumes],[GROUP.dairy,GROUP.eggs,GROUP.grains]], amounts:[170,45,105], family:'recipe_family_snack_plate', practical:{prepMinutes:6,cookMinutes:0,reheatingRequired:false,coldSuitable:true,portable:true,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} },
++    { profileId:'mini-veg-legume', slots:[[GROUP.vegetables],[GROUP.legumes,GROUP.nuts],[GROUP.grains,GROUP.dairy]], amounts:[170,100,90], family:'recipe_family_snack_plate', practical:{prepMinutes:8,cookMinutes:0,reheatingRequired:false,coldSuitable:true,portable:true,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} }
++  ]
++});
++
++function controlledScaleActiveRecipeVersions(corpus) {
++  const byId = new Map((corpus.recipeVersions || []).map(version => [version.recipeVersionId, version]));
++  return (corpus.recipeFamilies || []).filter(family => family.status === 'active').map(family => byId.get(family.currentVersionId)).filter(Boolean);
++}
++function ingredientSetKey(ids) { return [...new Set(ids)].sort().join('|'); }
++function ingredientPairKeys(ids) {
++  const values=[...new Set(ids)].sort(); const out=[];
++  for(let i=0;i<values.length;i+=1) for(let j=i+1;j<values.length;j+=1) out.push(`${values[i]}\u0000${values[j]}`);
++  return out;
++}
++function controlledScaleExistingSets(corpus) { return new Set(controlledScaleActiveRecipeVersions(corpus).map(recipe=>ingredientSetKey((recipe.ingredientLines||[]).map(line=>line.ingredientId)))); }
++function orderedControlledPool(entries, preferred) {
++  const priority=new Map((preferred||[]).map((id,index)=>[id,index]));
++  return [...entries].sort((a,b)=>{
++    const ap=priority.has(a.family.ingredientId)?priority.get(a.family.ingredientId):Number.MAX_SAFE_INTEGER;
++    const bp=priority.has(b.family.ingredientId)?priority.get(b.family.ingredientId):Number.MAX_SAFE_INTEGER;
++    return ap-bp || a.family.ingredientId.localeCompare(b.family.ingredientId);
++  });
++}
++function controlledScalePools(job, corpus) {
++  const allowed=new Set(job.allowedIngredientIds||[]); const preferred=job.preferredUnderusedIngredientIds||[]; const pools=new Map();
++  for(const entry of activeReadyEntries(corpus).filter(entry=>allowed.has(entry.family.ingredientId) && macroReliable(entry))){
++    const group=entry.revision.taxonomy?.foodGroup; if(!pools.has(group)) pools.set(group,[]); pools.get(group).push(entry);
++  }
++  for(const [group,values] of pools) pools.set(group,orderedControlledPool(values,preferred));
++  return pools;
++}
++function controlledTitle(meal, entries, locale) {
++  const names=entries.slice(0,3).map(entry=>labels(entry)[locale]);
++  const prefixes=locale==='it'
++    ? {breakfast:'Colazione',snack:'Spuntino',lunch:'Bowl pranzo',dinner:'Piatto cena',mini_meal:'Mini pasto'}
++    : {breakfast:'Breakfast',snack:'Snack',lunch:'Lunch bowl',dinner:'Dinner plate',mini_meal:'Mini meal'};
++  const joiner=locale==='it'?' e ':' and '; const connector=locale==='it'?' con ':' with ';
++  return `${prefixes[meal]||(locale==='it'?'Piatto':'Dish')}: ${names.slice(0,2).join(joiner)}${connector}${names[2]}`;
++}
++function controlledInstructions(entries, locale) {
++  const names=entries.map(entry=>labels(entry)[locale]).join(', ');
++  if(locale==='it') return [
++    `Pesare gli ingredienti nella quantità indicata: ${names}.`,
++    'Usare ogni ingrediente nello stato canonico indicato nel catalogo; cuocere completamente gli alimenti che non sono già cotti o pronti al consumo.',
++    'Combinare gli ingredienti nella porzione prevista e refrigerare gli avanzi o la porzione preparata se non consumata subito.'
++  ];
++  return [
++    `Weigh the ingredients in the stated amounts: ${names}.`,
++    'Use each ingredient in its canonical catalog state; fully cook any food that is not already cooked or ready to eat.',
++    'Combine the ingredients as one portion and refrigerate leftovers or the prepared portion if it is not eaten immediately.'
++  ];
++}
++function validateControlledScaleJob(job) {
++  if(job.proteinG!=null || job.fiberG!=null) throw new Error('Controlled scale 500 generator requires unconstrained proteinG and fiberG');
++  if((job.mealArchetypes||[]).length!==1) throw new Error('Controlled scale 500 generator requires exactly one mealArchetype per job');
++  const meal=job.mealArchetypes[0]; if(!CONTROLLED_SCALE_PROFILES[meal]) throw new Error(`Controlled scale 500 generator has no profile registry for ${meal}`);
++  if((job.requiredTags||[]).length || (job.forbiddenTags||[]).length || (job.practicalityTargets||[]).length || (job.recipeFamilies||[]).length || (job.cuisineFocus||[]).length) throw new Error('Controlled scale 500 generator accepts only meal+energy focused jobs; additional semantic targets require a dedicated generator profile');
++  return meal;
++}
++
++export function generateControlledScaleCandidates({ job, intake, corpus }) {
++  const meal=validateControlledScaleJob(job); const profiles=CONTROLLED_SCALE_PROFILES[meal]; const pools=controlledScalePools(job,corpus);
++  const existingSets=controlledScaleExistingSets(corpus); const generatedSets=new Set(); const generatedPairCounts=new Map(); const candidates=[];
++  let infeasibleCombinationAttempts=0, duplicateSetAvoidances=0, pairLimitAvoidances=0, minScaleFactor=Number.POSITIVE_INFINITY, maxScaleFactor=0, minGeneratedEnergy=Number.POSITIVE_INFINITY, maxGeneratedEnergy=0;
++  const profileUsage={};
++  for(let index=0; index<(intake.records||[]).length; index+=1){
++    const record=intake.records[index]; let chosen=null, solved=null, profile=null;
++    const maxAttempts=800;
++    for(let attempt=0; attempt<maxAttempts; attempt+=1){
++      profile=profiles[(index+attempt)%profiles.length]; const used=new Set(); const entries=[]; let missing=false;
++      for(let slotIndex=0; slotIndex<profile.slots.length; slotIndex+=1){
++        const pool=mergedPool(pools,profile.slots[slotIndex]);
++        const entry=chooseDistinct(pool,index+attempt*5,used,slotIndex+3+(attempt%11));
++        if(!entry){missing=true;break;} used.add(entry.family.ingredientId); entries.push(entry);
++      }
++      if(missing){infeasibleCombinationAttempts+=1;continue;}
++      const ids=entries.map(entry=>entry.family.ingredientId); const setKey=ingredientSetKey(ids);
++      if(existingSets.has(setKey)||generatedSets.has(setKey)){duplicateSetAvoidances+=1;continue;}
++      const pairs=ingredientPairKeys(ids); const maxPair=Math.max(1,Number(job.diversityTargets?.maxIngredientPairFrequency||2));
++      if(pairs.some(key=>(generatedPairCounts.get(key)||0)>=maxPair)){pairLimitAvoidances+=1;continue;}
++      const solution=solveAmountsForEnergy(entries,profile.amounts,job.energyKcal);
++      if(!solution){infeasibleCombinationAttempts+=1;continue;}
++      chosen=entries; solved=solution; generatedSets.add(setKey); for(const key of pairs) generatedPairCounts.set(key,(generatedPairCounts.get(key)||0)+1); break;
++    }
++    if(!chosen || !solved || !profile) throw new Error(`Controlled scale candidate ${record.candidateId} has no feasible canonical profile for ${meal} ${job.energyKcal.min}-${job.energyKcal.max} kcal`);
++    profileUsage[profile.profileId]=(profileUsage[profile.profileId]||0)+1;
++    minScaleFactor=Math.min(minScaleFactor,solved.factor); maxScaleFactor=Math.max(maxScaleFactor,solved.factor); minGeneratedEnergy=Math.min(minGeneratedEnergy,solved.energyKcal); maxGeneratedEnergy=Math.max(maxGeneratedEnergy,solved.energyKcal);
++    const amounts=solved.amounts; const total=amounts.reduce((sum,value)=>sum+value,0); const practical={...profile.practical,finalWeightG:total,finalVolumeMl:null,yieldNotes:'One standard serving generated by controlled-scale-generator-v1.'};
++    const family=profile.family;
++    candidates.push({
++      candidateId:record.candidateId,
++      i18n:{
++        it:{title:controlledTitle(meal,chosen,'it'),description:`Ricetta ${meal} generata deterministicamente per la copertura controllata verso Scale Gate 500.`,instructions:controlledInstructions(chosen,'it')},
++        en:{title:controlledTitle(meal,chosen,'en'),description:`Deterministic ${meal} recipe generated for controlled coverage toward Scale Gate 500.`,instructions:controlledInstructions(chosen,'en')}
++      },
++      mealArchetypes:[meal],
++      ingredientLines:chosen.map((entry,i)=>({ingredientId:entry.family.ingredientId,amount:amounts[i],unit:'g',optional:false})),
++      practical,
++      tags:{families:[family],cuisines:['cuisine_international'],practical:practicalTags(practical)},
++      culinaryReview:{status:'approved',notes:`Controlled scale profile ${profile.profileId}; canonical curated/high ingredients only; energy solved inside the frozen job band; no cuisine or preparation semantics inferred beyond the explicit profile.`}
++    });
++  }
++  return {candidates,diagnostics:{
++    generatorVersion:'controlled-scale-generator-v1',mealArchetype:meal,energyKcal:job.energyKcal,eligibleMacroReliableIngredients:[...pools.values()].reduce((sum,values)=>sum+values.length,0),profileUsage,
++    infeasibleCombinationAttempts,duplicateSetAvoidances,pairLimitAvoidances,minScaleFactor:Number.isFinite(minScaleFactor)?minScaleFactor:null,maxScaleFactor:maxScaleFactor||null,
++    generatedEnergyRangeKcal:{min:Number.isFinite(minGeneratedEnergy)?Math.round(minGeneratedEnergy*100)/100:null,max:maxGeneratedEnergy?Math.round(maxGeneratedEnergy*100)/100:null}
++  }};
++}
++
++export function controlledScaleProfileIds() { return Object.fromEntries(Object.entries(CONTROLLED_SCALE_PROFILES).map(([meal,profiles])=>[meal,profiles.map(profile=>profile.profileId)])); }
+diff --git a/src/corpus/productionRecipePipeline.js b/src/corpus/productionRecipePipeline.js
+index da68e77..25e45f6 100644
+--- a/src/corpus/productionRecipePipeline.js
++++ b/src/corpus/productionRecipePipeline.js
+@@ -1,7 +1,7 @@
+ import { sha256Json } from '../lib/crypto.js';
+ import { primaryIngredientId } from './corpusMath.js';
+ import { processCandidateBatch } from './recipePipeline.js';
+-import { scanCorpus } from './corpusScanner.js';
++import { computeCorpusContentIdentity, scanCorpus } from './corpusScanner.js';
+ 
+ const DISPOSITIONS = ['accepted', 'rejected', 'duplicate', 'needs_reference_review', 'needs_recipe_review', 'nutrition_outlier'];
+ const RESOLVED_REQUEST_STATES = new Set(['reused', 'materialized', 'resolved']);
+@@ -337,7 +337,7 @@ export async function assertFreshProductionSnapshot({ job, snapshot, corpus, cor
+   if (job.orchestration.inputSnapshotId !== snapshot.snapshotId) throw new Error(`Stale production job snapshot: job=${job.orchestration.inputSnapshotId}, supplied=${snapshot.snapshotId}`);
+   if (snapshot.policyId !== corpusPolicy.policyId || snapshot.policyVersion !== corpusPolicy.policyVersion) throw new Error('Snapshot policy does not match active corpus policy');
+   if (job.orchestration.policyId !== corpusPolicy.policyId || job.orchestration.policyVersion !== corpusPolicy.policyVersion) throw new Error('RecipeGenerationJob orchestration policy does not match active corpus policy');
+-  const current = await scanCorpus({ policy: corpusPolicy, catalogVersion: corpus.manifest.catalogVersion, recipeFamilies: corpus.recipeFamilies, recipeVersions: corpus.recipeVersions, ingredientFamilies: corpus.ingredientFamilies, ingredientRevisions: corpus.ingredientRevisions, registry, snapshotId: snapshot.snapshotId, createdAt: snapshot.createdAt });
++  const current = await computeCorpusContentIdentity({ catalogVersion: corpus.manifest.catalogVersion, recipeFamilies: corpus.recipeFamilies, recipeVersions: corpus.recipeVersions, ingredientRevisions: corpus.ingredientRevisions });
+   if (current.contentDigest !== snapshot.contentDigest || current.activeRecipeCount !== snapshot.activeRecipeCount) throw new Error(`Stale production snapshot ${snapshot.snapshotId}: catalog content changed since planning`);
+   return true;
+ }
+diff --git a/src/db/constants.js b/src/db/constants.js
+index cc1427f..0788164 100644
+--- a/src/db/constants.js
++++ b/src/db/constants.js
+@@ -2,7 +2,7 @@ export const DB_NAME = 'yourDietManager';
+ export const DB_VERSION = 4;
+ export const CONTENT_SCHEMA_VERSION = 3;
+ export const BACKUP_FORMAT_VERSION = 1;
+-export const APP_VERSION = '1.0.0-rc.20';
++export const APP_VERSION = '1.0.0-rc.21';
+ 
+ export const STORE_DEFINITIONS = {
+   meta: { keyPath: 'key', indexes: [] },
+diff --git a/src/lib/schemaValidator.js b/src/lib/schemaValidator.js
+index eaf4375..8c5fdd4 100644
+--- a/src/lib/schemaValidator.js
++++ b/src/lib/schemaValidator.js
+@@ -7,7 +7,7 @@ const SCHEMA_FILES = [
+   'ingredient.schema.json', 'meal-class.schema.json', 'nutrition-profile.schema.json', 'operation.schema.json',
+   'plan-instance.schema.json', 'recipe-corpus-orchestration-run.schema.json', 'recipe-corpus-policy.schema.json',
+   'recipe-corpus-snapshot.schema.json', 'recipe-generation-job.schema.json', 'production-corpus-contract.schema.json',
+-  'production-corpus-intake.schema.json', 'production-corpus-readiness-report.schema.json', 'production-recipe-pipeline-policy.schema.json', 'production-recipe-batch-report.schema.json', 'production-recipe-review-decisions.schema.json', 'production-scale-gate-report.schema.json', 'ingredient-curation-policy.schema.json',
++  'production-corpus-intake.schema.json', 'production-corpus-readiness-report.schema.json', 'production-recipe-pipeline-policy.schema.json', 'production-recipe-batch-report.schema.json', 'production-recipe-review-decisions.schema.json', 'production-scale-gate-report.schema.json', 'controlled-scale-plan.schema.json', 'ingredient-curation-policy.schema.json',
+   'ingredient-curation-batch.schema.json', 'ingredient-curation-report.schema.json', 'ingredient-retirement-map.schema.json', 'pilot-wave-report.schema.json', 'recipe-version.schema.json',
+   'recipe.schema.json', 'shopping-checklist.schema.json', 'taxonomy.schema.json', 'taxonomy-term.schema.json', 'reference-data-proposal.schema.json', 'theme-profile.schema.json'
+ ];
+@@ -24,7 +24,7 @@ export const SCHEMA_BY_NAME = {
+   productionCorpusContract: 'production-corpus-contract.schema.json', productionCorpusIntake: 'production-corpus-intake.schema.json',
+   productionCorpusReadinessReport: 'production-corpus-readiness-report.schema.json',
+   productionRecipePipelinePolicy: 'production-recipe-pipeline-policy.schema.json', productionRecipeBatchReport: 'production-recipe-batch-report.schema.json',
+-  productionRecipeReviewDecisions: 'production-recipe-review-decisions.schema.json', productionScaleGateReport: 'production-scale-gate-report.schema.json',
++  productionRecipeReviewDecisions: 'production-recipe-review-decisions.schema.json', productionScaleGateReport: 'production-scale-gate-report.schema.json', controlledScalePlan: 'controlled-scale-plan.schema.json',
+   ingredientCurationPolicy: 'ingredient-curation-policy.schema.json', ingredientCurationBatch: 'ingredient-curation-batch.schema.json',
+   ingredientCurationReport: 'ingredient-curation-report.schema.json', ingredientRetirementMap: 'ingredient-retirement-map.schema.json', pilotWaveReport: 'pilot-wave-report.schema.json',
+   operation: 'operation.schema.json', shoppingChecklist: 'shopping-checklist.schema.json', taxonomy: 'taxonomy.schema.json', taxonomyTerm: 'taxonomy-term.schema.json', referenceDataProposal: 'reference-data-proposal.schema.json', backup: 'backup.schema.json'
+diff --git a/src/services/offlineCatalog.js b/src/services/offlineCatalog.js
+index d7b51bc..fe932bd 100644
+--- a/src/services/offlineCatalog.js
++++ b/src/services/offlineCatalog.js
+@@ -1,6 +1,6 @@
+ import { APP_BASE_PATH, cacheScopeKey, prefixAppPath } from '../lib/appBase.js';
+ 
+-const DATA_CACHE = `ydm-data-v10-${cacheScopeKey(APP_BASE_PATH)}`;
++const DATA_CACHE = `ydm-data-v11-${cacheScopeKey(APP_BASE_PATH)}`;
+ 
+ function shardMatches(shard, wantedIds) {
+   if (!wantedIds || wantedIds.size === 0) return true;
+diff --git a/tests/data-ux-pass-c.test.mjs b/tests/data-ux-pass-c.test.mjs
+index 7a70e56..b7cd420 100644
+--- a/tests/data-ux-pass-c.test.mjs
++++ b/tests/data-ux-pass-c.test.mjs
+@@ -99,8 +99,8 @@ test('Pass C source audit centralizes disclosure state, guarded navigation, feed
+   assert.match(sources['uiState.js'], /ydm:draft-change/);
+   assert.match(main, /onboardingEnabled: false/);
+   assert.doesNotMatch(main, /location\.pathname\s*=.*onboarding|navigate\(['"]\/onboarding/);
+-  assert.match(sw, /ydm-shell-v22/);
+-  assert.match(sw, /ydm-data-v10/);
++  assert.match(sw, /ydm-shell-v23/);
++  assert.match(sw, /ydm-data-v11/);
+   assert.match(sw, /src\/recoveryBootstrap\.js/);
+   assert.match(index, /src\/recoveryBootstrap\.js/);
+   assert.match(recovery, /updateViaCache: 'none'/);

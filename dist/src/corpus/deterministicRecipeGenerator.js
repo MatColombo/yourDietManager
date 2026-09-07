@@ -222,7 +222,7 @@ function rangeBound(range, key, fallback) {
   return Number.isFinite(value) ? value : fallback;
 }
 function roundAmount(value) { return Math.round(value * 100) / 100; }
-function solvePortableAmounts(entries, baseAmounts, energyRange) {
+function solveAmountsForEnergy(entries, baseAmounts, energyRange) {
   const baseEnergy=energyFor(entries,baseAmounts);
   if (!(baseEnergy > 0)) return null;
   const baseTotal=baseAmounts.reduce((sum,value)=>sum+Number(value||0),0);
@@ -296,7 +296,7 @@ export function generatePortableScaleCandidates({ job, intake, corpus }) {
       const ids=[a.family.ingredientId,b.family.ingredientId,c.family.ingredientId];
       if(new Set(ids).size!==ids.length){infeasibleCombinationAttempts+=1;continue;}
       const candidateEntries=[a,b,c];
-      const candidateSolution=solvePortableAmounts(candidateEntries,baseAmounts,job.energyKcal);
+      const candidateSolution=solveAmountsForEnergy(candidateEntries,baseAmounts,job.energyKcal);
       if(!candidateSolution){infeasibleCombinationAttempts+=1;continue;}
       entries=candidateEntries; solved=candidateSolution; break;
     }
@@ -327,3 +327,137 @@ export function generatePortableScaleCandidates({ job, intake, corpus }) {
     generatedEnergyRangeKcal:{min:Number.isFinite(minGeneratedEnergy)?Math.round(minGeneratedEnergy*100)/100:null,max:maxGeneratedEnergy?Math.round(maxGeneratedEnergy*100)/100:null}
   }};
 }
+
+const CONTROLLED_SCALE_PROFILES = Object.freeze({
+  breakfast: [
+    { profileId:'breakfast-grain-fruit', slots:[[GROUP.grains,GROUP.starch],[GROUP.fruit],[GROUP.dairy,GROUP.nuts]], amounts:[170,130,90], family:'recipe_family_grain_bowl', practical:{prepMinutes:8,cookMinutes:10,reheatingRequired:false,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:false} },
+    { profileId:'breakfast-egg-plate', slots:[[GROUP.eggs],[GROUP.vegetables],[GROUP.grains,GROUP.starch]], amounts:[170,130,100], family:'recipe_family_egg_dish', practical:{prepMinutes:8,cookMinutes:12,reheatingRequired:false,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:false} },
+    { profileId:'breakfast-fruit-nut', slots:[[GROUP.fruit],[GROUP.nuts],[GROUP.dairy,GROUP.grains]], amounts:[180,45,110], family:'recipe_family_snack_plate', practical:{prepMinutes:6,cookMinutes:0,reheatingRequired:false,coldSuitable:true,portable:true,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:false} }
+  ],
+  snack: [
+    { profileId:'snack-fruit-nut', slots:[[GROUP.fruit],[GROUP.nuts],[GROUP.dairy,GROUP.legumes]], amounts:[180,35,100], family:'recipe_family_snack_plate', practical:{prepMinutes:5,cookMinutes:0,reheatingRequired:false,coldSuitable:true,portable:true,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:false} },
+    { profileId:'snack-veg-legume', slots:[[GROUP.vegetables],[GROUP.legumes],[GROUP.cheese,GROUP.nuts]], amounts:[180,100,45], family:'recipe_family_snack_plate', practical:{prepMinutes:8,cookMinutes:0,reheatingRequired:false,coldSuitable:true,portable:true,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} },
+    { profileId:'snack-fruit-grain', slots:[[GROUP.fruit],[GROUP.grains,GROUP.starch],[GROUP.dairy,GROUP.nuts]], amounts:[160,90,80], family:'recipe_family_snack_plate', practical:{prepMinutes:6,cookMinutes:0,reheatingRequired:false,coldSuitable:true,portable:true,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:false} }
+  ],
+  lunch: [
+    { profileId:'lunch-grain-bowl', slots:[[GROUP.starch,GROUP.grains],[GROUP.legumes,GROUP.poultry,GROUP.fish],[GROUP.vegetables],[GROUP.oils]], amounts:[180,130,150,12], family:'recipe_family_grain_bowl', practical:{prepMinutes:12,cookMinutes:20,reheatingRequired:true,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} },
+    { profileId:'lunch-protein-plate', slots:[[GROUP.legumes,GROUP.poultry,GROUP.fish,GROUP.meat],[GROUP.vegetables],[GROUP.starch,GROUP.grains],[GROUP.oils]], amounts:[180,150,120,12], family:'recipe_family_protein_plate', practical:{prepMinutes:12,cookMinutes:22,reheatingRequired:true,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} },
+    { profileId:'lunch-legume-bowl', slots:[[GROUP.legumes],[GROUP.starch,GROUP.grains],[GROUP.vegetables],[GROUP.oils]], amounts:[180,130,150,10], family:'recipe_family_grain_bowl', practical:{prepMinutes:10,cookMinutes:18,reheatingRequired:true,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} }
+  ],
+  dinner: [
+    { profileId:'dinner-protein-plate', slots:[[GROUP.fish,GROUP.poultry,GROUP.meat,GROUP.legumes],[GROUP.vegetables],[GROUP.starch,GROUP.grains],[GROUP.oils]], amounts:[185,155,120,12], family:'recipe_family_protein_plate', practical:{prepMinutes:12,cookMinutes:25,reheatingRequired:true,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} },
+    { profileId:'dinner-grain-bowl', slots:[[GROUP.starch,GROUP.grains],[GROUP.fish,GROUP.poultry,GROUP.meat,GROUP.legumes],[GROUP.vegetables],[GROUP.oils]], amounts:[180,140,160,12], family:'recipe_family_grain_bowl', practical:{prepMinutes:12,cookMinutes:24,reheatingRequired:true,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} },
+    { profileId:'dinner-legume-plate', slots:[[GROUP.legumes],[GROUP.vegetables],[GROUP.starch,GROUP.grains],[GROUP.oils]], amounts:[185,155,120,10], family:'recipe_family_protein_plate', practical:{prepMinutes:10,cookMinutes:20,reheatingRequired:true,coldSuitable:false,portable:false,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} }
+  ],
+  mini_meal: [
+    { profileId:'mini-fruit-nut', slots:[[GROUP.fruit,GROUP.vegetables],[GROUP.nuts,GROUP.legumes],[GROUP.dairy,GROUP.eggs,GROUP.grains]], amounts:[170,45,105], family:'recipe_family_snack_plate', practical:{prepMinutes:6,cookMinutes:0,reheatingRequired:false,coldSuitable:true,portable:true,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} },
+    { profileId:'mini-veg-legume', slots:[[GROUP.vegetables],[GROUP.legumes,GROUP.nuts],[GROUP.grains,GROUP.dairy]], amounts:[170,100,90], family:'recipe_family_snack_plate', practical:{prepMinutes:8,cookMinutes:0,reheatingRequired:false,coldSuitable:true,portable:true,fridgeRequired:true,freezerSuitable:false,mealPrepSuitable:true} }
+  ]
+});
+
+function controlledScaleActiveRecipeVersions(corpus) {
+  const byId = new Map((corpus.recipeVersions || []).map(version => [version.recipeVersionId, version]));
+  return (corpus.recipeFamilies || []).filter(family => family.status === 'active').map(family => byId.get(family.currentVersionId)).filter(Boolean);
+}
+function ingredientSetKey(ids) { return [...new Set(ids)].sort().join('|'); }
+function ingredientPairKeys(ids) {
+  const values=[...new Set(ids)].sort(); const out=[];
+  for(let i=0;i<values.length;i+=1) for(let j=i+1;j<values.length;j+=1) out.push(`${values[i]}\u0000${values[j]}`);
+  return out;
+}
+function controlledScaleExistingSets(corpus) { return new Set(controlledScaleActiveRecipeVersions(corpus).map(recipe=>ingredientSetKey((recipe.ingredientLines||[]).map(line=>line.ingredientId)))); }
+function orderedControlledPool(entries, preferred) {
+  const priority=new Map((preferred||[]).map((id,index)=>[id,index]));
+  return [...entries].sort((a,b)=>{
+    const ap=priority.has(a.family.ingredientId)?priority.get(a.family.ingredientId):Number.MAX_SAFE_INTEGER;
+    const bp=priority.has(b.family.ingredientId)?priority.get(b.family.ingredientId):Number.MAX_SAFE_INTEGER;
+    return ap-bp || a.family.ingredientId.localeCompare(b.family.ingredientId);
+  });
+}
+function controlledScalePools(job, corpus) {
+  const allowed=new Set(job.allowedIngredientIds||[]); const preferred=job.preferredUnderusedIngredientIds||[]; const pools=new Map();
+  for(const entry of activeReadyEntries(corpus).filter(entry=>allowed.has(entry.family.ingredientId) && macroReliable(entry))){
+    const group=entry.revision.taxonomy?.foodGroup; if(!pools.has(group)) pools.set(group,[]); pools.get(group).push(entry);
+  }
+  for(const [group,values] of pools) pools.set(group,orderedControlledPool(values,preferred));
+  return pools;
+}
+function controlledTitle(meal, entries, locale) {
+  const names=entries.slice(0,3).map(entry=>labels(entry)[locale]);
+  const prefixes=locale==='it'
+    ? {breakfast:'Colazione',snack:'Spuntino',lunch:'Bowl pranzo',dinner:'Piatto cena',mini_meal:'Mini pasto'}
+    : {breakfast:'Breakfast',snack:'Snack',lunch:'Lunch bowl',dinner:'Dinner plate',mini_meal:'Mini meal'};
+  const joiner=locale==='it'?' e ':' and '; const connector=locale==='it'?' con ':' with ';
+  return `${prefixes[meal]||(locale==='it'?'Piatto':'Dish')}: ${names.slice(0,2).join(joiner)}${connector}${names[2]}`;
+}
+function controlledInstructions(entries, locale) {
+  const names=entries.map(entry=>labels(entry)[locale]).join(', ');
+  if(locale==='it') return [
+    `Pesare gli ingredienti nella quantità indicata: ${names}.`,
+    'Usare ogni ingrediente nello stato canonico indicato nel catalogo; cuocere completamente gli alimenti che non sono già cotti o pronti al consumo.',
+    'Combinare gli ingredienti nella porzione prevista e refrigerare gli avanzi o la porzione preparata se non consumata subito.'
+  ];
+  return [
+    `Weigh the ingredients in the stated amounts: ${names}.`,
+    'Use each ingredient in its canonical catalog state; fully cook any food that is not already cooked or ready to eat.',
+    'Combine the ingredients as one portion and refrigerate leftovers or the prepared portion if it is not eaten immediately.'
+  ];
+}
+function validateControlledScaleJob(job) {
+  if(job.proteinG!=null || job.fiberG!=null) throw new Error('Controlled scale 500 generator requires unconstrained proteinG and fiberG');
+  if((job.mealArchetypes||[]).length!==1) throw new Error('Controlled scale 500 generator requires exactly one mealArchetype per job');
+  const meal=job.mealArchetypes[0]; if(!CONTROLLED_SCALE_PROFILES[meal]) throw new Error(`Controlled scale 500 generator has no profile registry for ${meal}`);
+  if((job.requiredTags||[]).length || (job.forbiddenTags||[]).length || (job.practicalityTargets||[]).length || (job.recipeFamilies||[]).length || (job.cuisineFocus||[]).length) throw new Error('Controlled scale 500 generator accepts only meal+energy focused jobs; additional semantic targets require a dedicated generator profile');
+  return meal;
+}
+
+export function generateControlledScaleCandidates({ job, intake, corpus }) {
+  const meal=validateControlledScaleJob(job); const profiles=CONTROLLED_SCALE_PROFILES[meal]; const pools=controlledScalePools(job,corpus);
+  const existingSets=controlledScaleExistingSets(corpus); const generatedSets=new Set(); const generatedPairCounts=new Map(); const candidates=[];
+  let infeasibleCombinationAttempts=0, duplicateSetAvoidances=0, pairLimitAvoidances=0, minScaleFactor=Number.POSITIVE_INFINITY, maxScaleFactor=0, minGeneratedEnergy=Number.POSITIVE_INFINITY, maxGeneratedEnergy=0;
+  const profileUsage={};
+  for(let index=0; index<(intake.records||[]).length; index+=1){
+    const record=intake.records[index]; let chosen=null, solved=null, profile=null;
+    const maxAttempts=800;
+    for(let attempt=0; attempt<maxAttempts; attempt+=1){
+      profile=profiles[(index+attempt)%profiles.length]; const used=new Set(); const entries=[]; let missing=false;
+      for(let slotIndex=0; slotIndex<profile.slots.length; slotIndex+=1){
+        const pool=mergedPool(pools,profile.slots[slotIndex]);
+        const entry=chooseDistinct(pool,index+attempt*5,used,slotIndex+3+(attempt%11));
+        if(!entry){missing=true;break;} used.add(entry.family.ingredientId); entries.push(entry);
+      }
+      if(missing){infeasibleCombinationAttempts+=1;continue;}
+      const ids=entries.map(entry=>entry.family.ingredientId); const setKey=ingredientSetKey(ids);
+      if(existingSets.has(setKey)||generatedSets.has(setKey)){duplicateSetAvoidances+=1;continue;}
+      const pairs=ingredientPairKeys(ids); const maxPair=Math.max(1,Number(job.diversityTargets?.maxIngredientPairFrequency||2));
+      if(pairs.some(key=>(generatedPairCounts.get(key)||0)>=maxPair)){pairLimitAvoidances+=1;continue;}
+      const solution=solveAmountsForEnergy(entries,profile.amounts,job.energyKcal);
+      if(!solution){infeasibleCombinationAttempts+=1;continue;}
+      chosen=entries; solved=solution; generatedSets.add(setKey); for(const key of pairs) generatedPairCounts.set(key,(generatedPairCounts.get(key)||0)+1); break;
+    }
+    if(!chosen || !solved || !profile) throw new Error(`Controlled scale candidate ${record.candidateId} has no feasible canonical profile for ${meal} ${job.energyKcal.min}-${job.energyKcal.max} kcal`);
+    profileUsage[profile.profileId]=(profileUsage[profile.profileId]||0)+1;
+    minScaleFactor=Math.min(minScaleFactor,solved.factor); maxScaleFactor=Math.max(maxScaleFactor,solved.factor); minGeneratedEnergy=Math.min(minGeneratedEnergy,solved.energyKcal); maxGeneratedEnergy=Math.max(maxGeneratedEnergy,solved.energyKcal);
+    const amounts=solved.amounts; const total=amounts.reduce((sum,value)=>sum+value,0); const practical={...profile.practical,finalWeightG:total,finalVolumeMl:null,yieldNotes:'One standard serving generated by controlled-scale-generator-v1.'};
+    const family=profile.family;
+    candidates.push({
+      candidateId:record.candidateId,
+      i18n:{
+        it:{title:controlledTitle(meal,chosen,'it'),description:`Ricetta ${meal} generata deterministicamente per la copertura controllata verso Scale Gate 500.`,instructions:controlledInstructions(chosen,'it')},
+        en:{title:controlledTitle(meal,chosen,'en'),description:`Deterministic ${meal} recipe generated for controlled coverage toward Scale Gate 500.`,instructions:controlledInstructions(chosen,'en')}
+      },
+      mealArchetypes:[meal],
+      ingredientLines:chosen.map((entry,i)=>({ingredientId:entry.family.ingredientId,amount:amounts[i],unit:'g',optional:false})),
+      practical,
+      tags:{families:[family],cuisines:['cuisine_international'],practical:practicalTags(practical)},
+      culinaryReview:{status:'approved',notes:`Controlled scale profile ${profile.profileId}; canonical curated/high ingredients only; energy solved inside the frozen job band; no cuisine or preparation semantics inferred beyond the explicit profile.`}
+    });
+  }
+  return {candidates,diagnostics:{
+    generatorVersion:'controlled-scale-generator-v1',mealArchetype:meal,energyKcal:job.energyKcal,eligibleMacroReliableIngredients:[...pools.values()].reduce((sum,values)=>sum+values.length,0),profileUsage,
+    infeasibleCombinationAttempts,duplicateSetAvoidances,pairLimitAvoidances,minScaleFactor:Number.isFinite(minScaleFactor)?minScaleFactor:null,maxScaleFactor:maxScaleFactor||null,
+    generatedEnergyRangeKcal:{min:Number.isFinite(minGeneratedEnergy)?Math.round(minGeneratedEnergy*100)/100:null,max:maxGeneratedEnergy?Math.round(maxGeneratedEnergy*100)/100:null}
+  }};
+}
+
+export function controlledScaleProfileIds() { return Object.fromEntries(Object.entries(CONTROLLED_SCALE_PROFILES).map(([meal,profiles])=>[meal,profiles.map(profile=>profile.profileId)])); }

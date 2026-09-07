@@ -87,3 +87,22 @@ The first scale batch output is a **working production bundle**, not a V1 releas
 `.github/workflows/production-corpus.yml` is the canonical network-enabled runner for this sequence. It downloads source archives from URLs frozen in the curation policy, records archive SHA-256, imports/curates/materializes, runs the pilot and first scale batch, and uploads all generated artifacts.
 
 By default the workflow does not commit generated corpus data. An explicit `commit_results=true` workflow input may commit the resulting working production bundle and audit reports to the invoking branch. The official source archives remain excluded from source control.
+
+## 7. 4P-D controlled-scale continuation after the source-backed foundation
+
+Once the source-backed workflow has completed successfully and committed the 220-recipe working set, further expansion must not repeat USDA acquisition, ingredient materialization or the pilot. The next runner consumes `corpus/production/current-working-bundle.json` as its explicit production baseline.
+
+4P-D Pass A uses `controlled-scale-500-v1@1.0.0` to add 280 accepted recipes as **100 + 100 + 80**. Generation is partitioned into canonical meal-archetype/energy-band cells, and every cell is processed by the same industrialized Recipe Pipeline used by 4P-C.
+
+The sequence is:
+
+1. validate the 4P-D control plane and require exactly 220 active recipes;
+2. execute tranche 1 to 320 and require Scale Gate 500 `ready`;
+3. execute tranche 2 to 420 and require Scale Gate 500 `ready`;
+4. execute tranche 3 to exactly 500;
+5. require the strict Scale Gate 500 to be `pass`;
+6. rerun regression tests against the canonically mutated working tree;
+7. upload cumulative tranche/job/intake/report/snapshot evidence;
+8. commit only through explicit `commit_results=true`.
+
+Zero review backlog, zero unresolved references, immutable digests, quality scoring, diversity constraints and hard coverage requirements remain unchanged. A 500-recipe working set is still not a production V1 release.
