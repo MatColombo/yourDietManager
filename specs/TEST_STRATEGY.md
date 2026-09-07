@@ -328,3 +328,5 @@ Real-artifact acceptance for rc.21 additionally records 220 -> 320 -> 420 -> 500
 ## Browser schema deployment mirror
 
 Every schema loaded by the browser `SchemaRegistry` must be byte-for-byte identical between the canonical `schemas/` directory and `public/schemas/`. The test suite must also validate representative production records against the public mirror. Never fix browser validation by allowing arbitrary additional properties; evolve the canonical schema explicitly and mirror it.
+
+- Production-review browser acceptance is channel-aware: frozen base RecipeVersions expose the Human Review panel and intentionally suppress the visible Edit action, while the route-independent recipe editor is still exercised directly so Pass D edit/versioning behavior remains covered.

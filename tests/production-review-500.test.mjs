@@ -9,6 +9,7 @@ import { RecipeHumanReviewService, REVIEW_DIMENSIONS, REVIEW_POLICY_VERSION, rev
 import { assertReferenceData } from '../src/services/referenceDataService.js';
 import { loadLocalCatalog, readJson } from '../scripts/corpus/io-lib.mjs';
 import { CatalogImporter } from '../src/services/catalogImporter.js';
+import { recipeToDraft, saveRecipe } from '../src/services/personalCatalogService.js';
 import { MemoryRepository, fileFetch, fileLoader } from './helpers.mjs';
 
 const root = process.cwd();
@@ -151,4 +152,35 @@ test('browser regression gives production-scale catalog bootstrap a bounded 60-s
   assert.match(source, /waitExpression\(cdp, recipeBootstrapExpression, 60000\)/);
   assert.match(source, /catalog-panel \.error-text/);
   assert.match(source, /Catalog bootstrap failed:/);
+});
+
+
+test('browser regression respects frozen production-review UX while preserving the route-independent recipe editor', async () => {
+  const source = await readFile(path.join(root,'scripts/hardening/browser-regression.mjs'),'utf8');
+  assert.match(source, /human-review-panel/);
+  assert.match(source, /Production review detail controls regression/);
+  assert.match(source, /if \(recipeControls\.reviewPanel\)/);
+  assert.match(source, /recipeState\.path}\/edit/);
+  assert.match(source, /Recipe detail missing Edit action/);
+});
+
+
+test('published review recipes remain editable through version promotion without mutating the frozen reviewed version', async () => {
+  const registry = new SchemaRegistry(fileLoader(path.join(root, 'public', 'schemas')));
+  await registry.loadAll();
+  const repo = new MemoryRepository();
+  const importer = new CatalogImporter({ repo, registry, fetcher:fileFetch(root), storage:null, serviceWorker:null });
+  const manifest = await readJson(path.join(root,'public/data/catalog-manifest.json'));
+  if (manifest.publication?.channel !== 'production_review') return;
+  await importer.bootstrap();
+  const [family] = await repo.getAll('recipes');
+  const frozenId = family.currentVersionId;
+  const frozenBefore = structuredClone(await repo.get('recipeVersions', frozenId));
+  const draft = await recipeToDraft(family.recipeId, { repo });
+  draft.titleIt = `${draft.titleIt} revisione locale`;
+  const saved = await saveRecipe({ recipeId:family.recipeId, ...draft }, { repo, registry });
+  assert.equal(saved.promotedFromBase, true);
+  assert.equal(saved.family.origin, 'user');
+  assert.notEqual(saved.version.recipeVersionId, frozenId);
+  assert.deepEqual(await repo.get('recipeVersions', frozenId), frozenBefore);
 });

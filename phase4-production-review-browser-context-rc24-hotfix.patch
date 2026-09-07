@@ -1,0 +1,152 @@
+diff --git a/PHASE4_PRODUCTION_REVIEW_RC24_BROWSER_CONTEXT_HOTFIX_REPORT.md b/PHASE4_PRODUCTION_REVIEW_RC24_BROWSER_CONTEXT_HOTFIX_REPORT.md
+new file mode 100644
+index 0000000..7aa18ae
+--- /dev/null
++++ b/PHASE4_PRODUCTION_REVIEW_RC24_BROWSER_CONTEXT_HOTFIX_REPORT.md
+@@ -0,0 +1,14 @@
++# Phase 4 Production Review — rc.24 Browser Context Hotfix Report
++
++## Finding
++The rc.24 browser harness assumed every recipe detail exposes a visible `Edit` link. Production-review detail intentionally suppresses that link for the exact frozen base RecipeVersion and exposes the Human Review panel instead. The editor route itself remains valid and saving it creates a new user-owned version rather than mutating the frozen review version.
++
++## Fix
++The browser acceptance is now channel-aware:
++
++- normal catalog detail must expose and click `Edit`;
++- frozen production-review detail must expose the Human Review panel and review dashboard link and must not expose a visible `Edit` action;
++- both paths still exercise `/recipes/:id/edit` and require the route-independent recipe editor to render;
++- no production corpus, publication data, or human-review decisions are modified.
++
++This reconciles Pass D edit/versioning coverage with the frozen review contract instead of weakening either invariant.
+diff --git a/scripts/hardening/browser-regression.mjs b/scripts/hardening/browser-regression.mjs
+index 8057ee1..b99ced7 100644
+--- a/scripts/hardening/browser-regression.mjs
++++ b/scripts/hardening/browser-regression.mjs
+@@ -214,8 +214,21 @@ try {
+   if (!recipeState.path.startsWith('/recipes/') || !recipeState.title) throw new Error(`Recipe detail route failed: ${JSON.stringify(recipeState)}`);
+   if (/crea un piano|create a plan/i.test(recipeState.body)) throw new Error('Recipe detail incorrectly rendered plan-creation content');
+ 
+-  // Every recipe, including bundled/base content, exposes Edit. The editor is route-independent from PlanInstance.
+-  await evaluate(cdp, `document.querySelector('[data-testid="recipe-detail"] a[href$="/edit"]').click(); true`);
++  // Normal catalog detail exposes Edit. A frozen production-review version intentionally suppresses
++  // the visible Edit action so the reviewer evaluates the exact frozen version. The editor route
++  // remains route-independent from PlanInstance and, if saved, promotes the family to a user-owned version.
++  const recipeControls = await evaluate(cdp, `({
++    reviewPanel: !!document.querySelector('[data-testid="human-review-panel"]'),
++    editHref: document.querySelector('[data-testid="recipe-detail"] a[href$="/edit"]')?.getAttribute('href') || '',
++    reviewDashboard: !!document.querySelector('[data-testid="recipe-detail"] a[href="/recipes/review"]')
++  })`);
++  if (recipeControls.reviewPanel) {
++    if (recipeControls.editHref || !recipeControls.reviewDashboard) throw new Error(`Production review detail controls regression: ${JSON.stringify(recipeControls)}`);
++    await cdp.send('Page.navigate', { url: `${origin}${recipeState.path}/edit` });
++  } else {
++    if (!recipeControls.editHref) throw new Error(`Recipe detail missing Edit action: ${JSON.stringify(recipeControls)}`);
++    await evaluate(cdp, `document.querySelector('[data-testid="recipe-detail"] a[href$="/edit"]').click(); true`);
++  }
+   await waitExpression(cdp, `location.pathname.endsWith('/edit') && !!document.querySelector('[data-testid="recipe-editor"]')`);
+ 
+   // Ingredient catalog exposes an independent detail route and an Edit action for bundled content.
+diff --git a/skills/yourdietmanager-builder/SKILL.md b/skills/yourdietmanager-builder/SKILL.md
+index c5a72ef..0a4ee9e 100644
+--- a/skills/yourdietmanager-builder/SKILL.md
++++ b/skills/yourdietmanager-builder/SKILL.md
+@@ -39,7 +39,7 @@ Preserve these rules:
+ 27. Treat 4P-C scale execution as gated industrial production. Do not create scale job intake or run post-pilot batches while Scale Gate 500 is blocked by unfinished 4P-B data/pilot. For each scale job use a deterministic ProductionCorpusIntake, require a fresh matching snapshot, classify every candidate into explicit accepted/rejected/duplicate/reference-review/recipe-review/nutrition-outlier disposition, keep review findings non-terminal, verify the result/report digest before apply, cap retries, and re-scan/re-plan after each applied batch. In `focus_only` planning, attach a compound coverage target only when every criterion of that target is explicitly present in the frozen focus; never let a partial criterion such as `practical_portable` silently pull incompatible energy-band cells into the same job.
+ 28. Keep production regression tests state-isolated. Tests that assert the development baseline must load an immutable fixture (for example `phase4-smoke-base-bundle.json`) and construct fresh pilot intake state; never read canonical pilot/retirement/report/snapshot files that the production workflow is allowed to mutate earlier in the same job. Production-state tests must consume the generated working bundle explicitly.
+ 29. Treat 4P-D Pass A as a governed controlled scale from the committed 220-recipe source-backed working set to exactly 500 active recipes. Use `controlled-scale-500-v1@1.0.0` and execute three independently checkpointed tranches (100 + 100 + 80) with canonical `mealArchetype × energyBand` cells. Require exact start counts 220/320/420, zero review backlog, zero quality/reference/nutrition/allergen/locale errors, zero exact/near duplicates, cumulative evidence across split invocations, Scale Gate `ready` after tranches 1/2 and strict `pass` after tranche 3. Never infer unsupported semantic targets or treat 500 as V1 release readiness.
+-30. After Scale Gate 500 passes, pause generation and enter the Production Catalog Review boundary before any 500->1500 work. Publish exactly the frozen 500 active RecipeVersion records through `production_review` with `requiredHumanReview=true` and `releaseEligible=false`; persist review decisions in `recipeHumanReviews`; require all six explicit culinary/product review dimensions; bind decisions to publication/source digest/version/content hash; support checksum-bound export/import; and keep further scale blocked until all 500 are reviewed and approved with zero needs_changes/rejected/unreviewed. Treat legacy `maxRecipes:5000` / `targetCorpus.max:5000` as advisory provenance fields only: never stop corpus generation because 5,000 has been reached.
++30. After Scale Gate 500 passes, pause generation and enter the Production Catalog Review boundary before any 500->1500 work. Publish exactly the frozen 500 active RecipeVersion records through `production_review` with `requiredHumanReview=true` and `releaseEligible=false`; persist review decisions in `recipeHumanReviews`; require all six explicit culinary/product review dimensions; bind decisions to publication/source digest/version/content hash; support checksum-bound export/import; and keep further scale blocked until all 500 are reviewed and approved with zero needs_changes/rejected/unreviewed. While reviewing a frozen base RecipeVersion, suppress the visible Edit action and show the Human Review panel; preserve the canonical `/recipes/:id/edit` route and immutable-version promotion behavior so an explicit edit creates a user-owned version without mutating the frozen reviewed version. Browser acceptance must branch on this review context rather than assuming every detail renders an Edit link. Treat legacy `maxRecipes:5000` / `targetCorpus.max:5000` as advisory provenance fields only: never stop corpus generation because 5,000 has been reached.
+ 
+ Read `references/invariants.md` and `references/persistence.md` when architecture, storage, identity, catalog updates or migrations are involved. Read `references/reference-data-taxonomy.md` whenever a field can affect matching, filtering, scoring, generation or catalog classification.
+ 
+@@ -70,7 +70,7 @@ Read `references/invariants.md` and `references/persistence.md` when architectur
+ 12. For production, process only intake records in `ready_for_generation`; emit reference-data changes first, then Recipe/RecipeVersion JSON shards plus acceptance/coverage/QA report, update intake outcomes, rebuild the snapshot, then choose the next batch.
+ 13. After the 4P-B pilot, require the 4P-C pipeline policy and Scale Gate 500. Create one deterministic intake per RecipeGenerationJob, reject stale snapshots, preserve explicit non-terminal review dispositions, and apply only digest-verified batches with zero review backlog and passing target/diversity gates. For the rc.13 execution bridge, require the exact sequence official-source acquisition -> bounded review -> materialization -> explicit fixture retirement -> 120/120 pilot -> Scale Gate `ready` -> first 100-accepted industrialized batch; never treat the network workflow itself as a V1 release.
+ 14. After the committed source-backed working set reaches 220 active recipes, use the 4P-D controlled-scale plan rather than ad-hoc bulk generation: tranche 1 220->320, tranche 2 320->420, tranche 3 420->500. Freeze one canonical meal archetype and energy band per cell, re-scan after every applied cell, preserve zero backlog/duplicate/quality gates, and accumulate canonical tranche evidence across separate invocations. Require the final Scale Gate 500 to be `pass`.
+-15. At 500, publish the exact frozen set as a `production_review` app catalog and perform the human review before planning any further scale. Require 500/500 approved under the six-dimensional review contract; export checksum-bound review evidence; remediate/re-review every needs_changes/rejected item. Do not resume 500->1500 until this Human Review Gate passes. Never treat the legacy 5,000 planning field as a stop condition.
++15. At 500, publish the exact frozen set as a `production_review` app catalog and perform the human review before planning any further scale. Require 500/500 approved under the six-dimensional review contract; export checksum-bound review evidence; remediate/re-review every needs_changes/rejected item. On frozen review details show review controls instead of a visible Edit action, but keep the direct edit route/version-promotion path valid and test it separately. Do not resume 500->1500 until this Human Review Gate passes. Never treat the legacy 5,000 planning field as a stop condition.
+ 16. Run a test JSON -> IndexedDB import and query gate before any production-release catalog publication.
+ 
+ Never generate thousands of recipes in one unreviewed blob. Use adaptive targeted batches selected by coverage/diversity/similarity scoring.
+diff --git a/skills/yourdietmanager-builder/references/quality-gates.md b/skills/yourdietmanager-builder/references/quality-gates.md
+index 04777ff..139502a 100644
+--- a/skills/yourdietmanager-builder/references/quality-gates.md
++++ b/skills/yourdietmanager-builder/references/quality-gates.md
+@@ -94,7 +94,7 @@
+ 
+ - Recipe detail and ingredient detail resolve directly from catalog repositories with zero PlanInstance records.
+ - Canonical dynamic detail routes do not fall through to plan/today pages; trailing slashes normalize consistently.
+-- Edit is available for bundled/base and local/user families alike.
++- Edit is available for bundled/base and local/user families alike. During the frozen `production_review` flow, the detail UI deliberately substitutes the Human Review panel for the visible Edit action; the direct edit route must still work and must promote a saved edit to a user-owned version without mutating the frozen reviewed RecipeVersion.
+ - Editing a bundled family preserves the stable family ID, creates a new immutable user revision/version and leaves historical records byte-for-byte unchanged.
+ - First edit promotes the family to local management; catalog update/rollback/pack install cannot overwrite its local current pointer.
+ - Export/import can carry a local family override with the same stable ID as a bundled family while immutable ID collisions remain forbidden.
+diff --git a/specs/PRODUCTION_CATALOG_REVIEW_SPEC.md b/specs/PRODUCTION_CATALOG_REVIEW_SPEC.md
+index 849f47f..b2bdc2f 100644
+--- a/specs/PRODUCTION_CATALOG_REVIEW_SPEC.md
++++ b/specs/PRODUCTION_CATALOG_REVIEW_SPEC.md
+@@ -43,6 +43,7 @@ When a production-review manifest is active:
+ - the dashboard links to the next unreviewed frozen RecipeVersion;
+ - the exact frozen base version can be reviewed even when a local override owns the family current pointer;
+ - frozen base review versions are not edited in place during review;
++- while a frozen base version is being reviewed, its detail suppresses the visible Edit action and exposes the Human Review panel instead; the canonical `/recipes/:id/edit` route remains valid and any save creates a new user-owned version without mutating the frozen reviewed RecipeVersion;
+ - review decisions can be exported and imported as checksum-bound JSON.
+ 
+ ## 4. Human-review contract
+diff --git a/specs/TEST_STRATEGY.md b/specs/TEST_STRATEGY.md
+index aec7231..3d3fbe9 100644
+--- a/specs/TEST_STRATEGY.md
++++ b/specs/TEST_STRATEGY.md
+@@ -328,3 +328,5 @@ Real-artifact acceptance for rc.21 additionally records 220 -> 320 -> 420 -> 500
+ ## Browser schema deployment mirror
+ 
+ Every schema loaded by the browser `SchemaRegistry` must be byte-for-byte identical between the canonical `schemas/` directory and `public/schemas/`. The test suite must also validate representative production records against the public mirror. Never fix browser validation by allowing arbitrary additional properties; evolve the canonical schema explicitly and mirror it.
++
++- Production-review browser acceptance is channel-aware: frozen base RecipeVersions expose the Human Review panel and intentionally suppress the visible Edit action, while the route-independent recipe editor is still exercised directly so Pass D edit/versioning behavior remains covered.
+diff --git a/tests/production-review-500.test.mjs b/tests/production-review-500.test.mjs
+index 229a6ff..0b79e04 100644
+--- a/tests/production-review-500.test.mjs
++++ b/tests/production-review-500.test.mjs
+@@ -9,6 +9,7 @@ import { RecipeHumanReviewService, REVIEW_DIMENSIONS, REVIEW_POLICY_VERSION, rev
+ import { assertReferenceData } from '../src/services/referenceDataService.js';
+ import { loadLocalCatalog, readJson } from '../scripts/corpus/io-lib.mjs';
+ import { CatalogImporter } from '../src/services/catalogImporter.js';
++import { recipeToDraft, saveRecipe } from '../src/services/personalCatalogService.js';
+ import { MemoryRepository, fileFetch, fileLoader } from './helpers.mjs';
+ 
+ const root = process.cwd();
+@@ -152,3 +153,34 @@ test('browser regression gives production-scale catalog bootstrap a bounded 60-s
+   assert.match(source, /catalog-panel \.error-text/);
+   assert.match(source, /Catalog bootstrap failed:/);
+ });
++
++
++test('browser regression respects frozen production-review UX while preserving the route-independent recipe editor', async () => {
++  const source = await readFile(path.join(root,'scripts/hardening/browser-regression.mjs'),'utf8');
++  assert.match(source, /human-review-panel/);
++  assert.match(source, /Production review detail controls regression/);
++  assert.match(source, /if \(recipeControls\.reviewPanel\)/);
++  assert.match(source, /recipeState\.path}\/edit/);
++  assert.match(source, /Recipe detail missing Edit action/);
++});
++
++
++test('published review recipes remain editable through version promotion without mutating the frozen reviewed version', async () => {
++  const registry = new SchemaRegistry(fileLoader(path.join(root, 'public', 'schemas')));
++  await registry.loadAll();
++  const repo = new MemoryRepository();
++  const importer = new CatalogImporter({ repo, registry, fetcher:fileFetch(root), storage:null, serviceWorker:null });
++  const manifest = await readJson(path.join(root,'public/data/catalog-manifest.json'));
++  if (manifest.publication?.channel !== 'production_review') return;
++  await importer.bootstrap();
++  const [family] = await repo.getAll('recipes');
++  const frozenId = family.currentVersionId;
++  const frozenBefore = structuredClone(await repo.get('recipeVersions', frozenId));
++  const draft = await recipeToDraft(family.recipeId, { repo });
++  draft.titleIt = `${draft.titleIt} revisione locale`;
++  const saved = await saveRecipe({ recipeId:family.recipeId, ...draft }, { repo, registry });
++  assert.equal(saved.promotedFromBase, true);
++  assert.equal(saved.family.origin, 'user');
++  assert.notEqual(saved.version.recipeVersionId, frozenId);
++  assert.deepEqual(await repo.get('recipeVersions', frozenId), frozenBefore);
++});

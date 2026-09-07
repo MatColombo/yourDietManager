@@ -94,7 +94,7 @@
 
 - Recipe detail and ingredient detail resolve directly from catalog repositories with zero PlanInstance records.
 - Canonical dynamic detail routes do not fall through to plan/today pages; trailing slashes normalize consistently.
-- Edit is available for bundled/base and local/user families alike.
+- Edit is available for bundled/base and local/user families alike. During the frozen `production_review` flow, the detail UI deliberately substitutes the Human Review panel for the visible Edit action; the direct edit route must still work and must promote a saved edit to a user-owned version without mutating the frozen reviewed RecipeVersion.
 - Editing a bundled family preserves the stable family ID, creates a new immutable user revision/version and leaves historical records byte-for-byte unchanged.
 - First edit promotes the family to local management; catalog update/rollback/pack install cannot overwrite its local current pointer.
 - Export/import can carry a local family override with the same stable ID as a bundled family while immutable ID collisions remain forbidden.

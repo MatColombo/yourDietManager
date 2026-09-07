@@ -43,6 +43,7 @@ When a production-review manifest is active:
 - the dashboard links to the next unreviewed frozen RecipeVersion;
 - the exact frozen base version can be reviewed even when a local override owns the family current pointer;
 - frozen base review versions are not edited in place during review;
+- while a frozen base version is being reviewed, its detail suppresses the visible Edit action and exposes the Human Review panel instead; the canonical `/recipes/:id/edit` route remains valid and any save creates a new user-owned version without mutating the frozen reviewed RecipeVersion;
 - review decisions can be exported and imported as checksum-bound JSON.
 
 ## 4. Human-review contract

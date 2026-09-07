@@ -214,8 +214,21 @@ try {
   if (!recipeState.path.startsWith('/recipes/') || !recipeState.title) throw new Error(`Recipe detail route failed: ${JSON.stringify(recipeState)}`);
   if (/crea un piano|create a plan/i.test(recipeState.body)) throw new Error('Recipe detail incorrectly rendered plan-creation content');
 
-  // Every recipe, including bundled/base content, exposes Edit. The editor is route-independent from PlanInstance.
-  await evaluate(cdp, `document.querySelector('[data-testid="recipe-detail"] a[href$="/edit"]').click(); true`);
+  // Normal catalog detail exposes Edit. A frozen production-review version intentionally suppresses
+  // the visible Edit action so the reviewer evaluates the exact frozen version. The editor route
+  // remains route-independent from PlanInstance and, if saved, promotes the family to a user-owned version.
+  const recipeControls = await evaluate(cdp, `({
+    reviewPanel: !!document.querySelector('[data-testid="human-review-panel"]'),
+    editHref: document.querySelector('[data-testid="recipe-detail"] a[href$="/edit"]')?.getAttribute('href') || '',
+    reviewDashboard: !!document.querySelector('[data-testid="recipe-detail"] a[href="/recipes/review"]')
+  })`);
+  if (recipeControls.reviewPanel) {
+    if (recipeControls.editHref || !recipeControls.reviewDashboard) throw new Error(`Production review detail controls regression: ${JSON.stringify(recipeControls)}`);
+    await cdp.send('Page.navigate', { url: `${origin}${recipeState.path}/edit` });
+  } else {
+    if (!recipeControls.editHref) throw new Error(`Recipe detail missing Edit action: ${JSON.stringify(recipeControls)}`);
+    await evaluate(cdp, `document.querySelector('[data-testid="recipe-detail"] a[href$="/edit"]').click(); true`);
+  }
   await waitExpression(cdp, `location.pathname.endsWith('/edit') && !!document.querySelector('[data-testid="recipe-editor"]')`);
 
   // Ingredient catalog exposes an independent detail route and an Edit action for bundled content.
