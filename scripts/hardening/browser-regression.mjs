@@ -267,7 +267,7 @@ try {
     const heading = document.querySelector('.results-heading strong')?.textContent || '';
     const recipeCards = document.querySelectorAll('.recipe-card').length;
     const catalogComplete = !!document.querySelector('.catalog-panel .status-dot--complete');
-    return catalogComplete && /\b500\b/.test(heading) && recipeCards > 0 ? { heading, recipeCards } : null;
+    return catalogComplete && heading.trim() === '500' && recipeCards > 0 ? { heading, recipeCards } : null;
   })()`, { maxMs: 15000, stableMs: 1200 });
   if (!/\b500\b/.test(recipeCatalogState.heading)) throw new Error(`V1 candidate catalog expected 500 recipes, got state: ${JSON.stringify(recipeCatalogState)}`);
 
