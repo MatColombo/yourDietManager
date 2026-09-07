@@ -157,7 +157,9 @@ test('browser regression gives production-scale catalog bootstrap a bounded wind
   assert.match(source, /waitStableExpression\(cdp/);
   assert.match(source, /status-dot--complete/);
   assert.match(source, /stableMs: 1200/);
-  assert.ok(source.includes("heading.trim() === '500'"));
+  assert.ok(source.includes('Number.parseInt(heading.trim(), 10)'));
+  assert.ok(source.includes('recipeCount === 500'));
+  assert.ok(!source.includes("heading.trim() === '500'"));
   assert.ok(!source.includes("catalogComplete && /\\b500\\b/.test(heading)"));
   assert.match(source, /catalog-panel \.error-text/);
   assert.match(source, /Catalog bootstrap failed:/);
