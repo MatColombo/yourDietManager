@@ -316,3 +316,11 @@ Real-artifact acceptance for rc.21 additionally records 220 -> 320 -> 420 -> 500
 - Require the publication workflow to publish first, validate the review catalog, then execute the full app check/Pages audit.
 - Keep development-catalog regression tests isolated on immutable fixtures after `public/data` is replaced by the review catalog.
 - Functional regression must prove planning continues above 5,000 recipes; legacy `max=5000` fields are not runtime hard stops.
+
+
+### Production-review browser bootstrap
+
+- Treat catalog import time as scale-dependent: browser acceptance may wait up to 60 seconds for the 500-recipe review catalog on a clean profile.
+- Do not weaken the acceptance condition: at least one recipe card must render.
+- Fail immediately if the catalog status enters `error`, and include the catalog diagnostic in CI output.
+- Pair browser acceptance with a non-browser clean-repository import regression that must activate all 500 recipe families and versions.

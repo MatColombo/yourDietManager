@@ -2,7 +2,7 @@
 
 Local-first PWA implementation through **Phase 8 — Hardening & V1 release gates**.
 
-Candidate version: **`1.0.0-rc.22`**.
+Candidate version: **`1.0.0-rc.23`**.
 
 Phases 1–7 remain fully present: IndexedDB persistence, onboarding/configuration, backup/import, IT/EN, theme engine, indexed catalog/search/packs, versioned catalog authoring, corpus-orchestration tooling, deterministic seeded plan generation, effective-plan UX with history/undo, shopping checklists and preparation horizon.
 
@@ -227,3 +227,8 @@ The first-scale runner writes `job.json`, `batch-report.json` and `pre-verify-su
 ## Phase 4 production execution — rc.16 curation/materialization nutrition contract
 
 A real production run reached materialization with an auto-approved USDA record (`FDC 746768`) that violated the frozen `nutritionBoundsPer100g` energy gate. rc.16 removes the contract split: deterministic auto-curation now applies the exact curation-policy nutrition bounds before approval, so a record that cannot materialize cannot be marked approved. The FDC importer is also unit-aware for Energy: kcal is preserved, kJ is converted explicitly to kcal, and original value/unit/conversion provenance is carried through the curation batch into the materialized IngredientRevision source metadata. Generic Energy with an unknown unsupported unit is not relabeled as kcal. Frozen nutrition bounds and pilot quotas are unchanged.
+
+
+### rc.23 production-review browser bootstrap hardening
+
+The browser acceptance gate allows up to 60 seconds for a clean production-review catalog bootstrap and fails immediately when the catalog panel enters an error state. A regression test also imports the published 500-recipe review catalog into a clean repository and requires all 500 recipe families and versions to activate.

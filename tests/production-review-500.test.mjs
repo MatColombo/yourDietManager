@@ -8,7 +8,8 @@ import { planNextBatch } from '../src/corpus/corpusOrchestrator.js';
 import { RecipeHumanReviewService, REVIEW_DIMENSIONS, REVIEW_POLICY_VERSION, reviewSummary } from '../src/services/recipeHumanReviewService.js';
 import { assertReferenceData } from '../src/services/referenceDataService.js';
 import { loadLocalCatalog, readJson } from '../scripts/corpus/io-lib.mjs';
-import { MemoryRepository, fileLoader } from './helpers.mjs';
+import { CatalogImporter } from '../src/services/catalogImporter.js';
+import { MemoryRepository, fileFetch, fileLoader } from './helpers.mjs';
 
 const root = process.cwd();
 async function registryFixture() { const registry = new SchemaRegistry(fileLoader(path.join(root, 'schemas'))); await registry.loadAll(); return registry; }
@@ -127,4 +128,26 @@ test('Phase 4 smoke builder is isolated from the mutable published review catalo
   const smoke = await readFile(path.join(root,'scripts/corpus/build-phase4-smoke.mjs'),'utf8');
   assert.match(smoke, /tests\/fixtures\/catalog-0\.3\/public\/data/);
   assert.doesNotMatch(smoke, /loadLocalCatalog\(path\.join\(root,'public\/data'\)\)/);
+});
+
+
+test('published 500-recipe review catalog bootstraps all required recipes into a clean local catalog', async () => {
+  const registry = await registryFixture();
+  const repo = new MemoryRepository();
+  const importer = new CatalogImporter({ repo, registry, fetcher:fileFetch(root), storage:null, serviceWorker:null });
+  const manifest = await readJson(path.join(root,'public/data/catalog-manifest.json'));
+  if (manifest.publication?.channel !== 'production_review') return;
+  const version = await importer.bootstrap();
+  assert.equal(version, manifest.catalogVersion);
+  assert.equal(await repo.getMeta('activeCatalogVersion'), manifest.catalogVersion);
+  assert.equal(await repo.count('recipes'), 500);
+  assert.equal(await repo.count('recipeVersions'), 500);
+  assert.equal((await repo.getMeta('catalogManifest')).publication.releaseEligible, false);
+});
+
+test('browser regression gives production-scale catalog bootstrap a bounded 60-second window and fails fast on catalog errors', async () => {
+  const source = await readFile(path.join(root,'scripts/hardening/browser-regression.mjs'),'utf8');
+  assert.match(source, /waitExpression\(cdp, recipeBootstrapExpression, 60000\)/);
+  assert.match(source, /catalog-panel \.error-text/);
+  assert.match(source, /Catalog bootstrap failed:/);
 });

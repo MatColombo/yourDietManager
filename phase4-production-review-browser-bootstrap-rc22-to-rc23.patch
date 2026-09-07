@@ -1,0 +1,185 @@
+diff --git a/README.md b/README.md
+index 5262be5..7518e3b 100644
+--- a/README.md
++++ b/README.md
+@@ -2,7 +2,7 @@
+ 
+ Local-first PWA implementation through **Phase 8 — Hardening & V1 release gates**.
+ 
+-Candidate version: **`1.0.0-rc.22`**.
++Candidate version: **`1.0.0-rc.23`**.
+ 
+ Phases 1–7 remain fully present: IndexedDB persistence, onboarding/configuration, backup/import, IT/EN, theme engine, indexed catalog/search/packs, versioned catalog authoring, corpus-orchestration tooling, deterministic seeded plan generation, effective-plan UX with history/undo, shopping checklists and preparation horizon.
+ 
+@@ -227,3 +227,8 @@ The first-scale runner writes `job.json`, `batch-report.json` and `pre-verify-su
+ ## Phase 4 production execution — rc.16 curation/materialization nutrition contract
+ 
+ A real production run reached materialization with an auto-approved USDA record (`FDC 746768`) that violated the frozen `nutritionBoundsPer100g` energy gate. rc.16 removes the contract split: deterministic auto-curation now applies the exact curation-policy nutrition bounds before approval, so a record that cannot materialize cannot be marked approved. The FDC importer is also unit-aware for Energy: kcal is preserved, kJ is converted explicitly to kcal, and original value/unit/conversion provenance is carried through the curation batch into the materialized IngredientRevision source metadata. Generic Energy with an unknown unsupported unit is not relabeled as kcal. Frozen nutrition bounds and pilot quotas are unchanged.
++
++
++### rc.23 production-review browser bootstrap hardening
++
++The browser acceptance gate allows up to 60 seconds for a clean production-review catalog bootstrap and fails immediately when the catalog panel enters an error state. A regression test also imports the published 500-recipe review catalog into a clean repository and requires all 500 recipe families and versions to activate.
+diff --git a/package.json b/package.json
+index aa11efd..ffa83e6 100644
+--- a/package.json
++++ b/package.json
+@@ -1,7 +1,7 @@
+ {
+   "name": "yourdietmanager",
+   "private": true,
+-  "version": "1.0.0-rc.22",
++  "version": "1.0.0-rc.23",
+   "type": "module",
+   "scripts": {
+     "dev": "node scripts/dev-server.mjs",
+diff --git a/public/service-worker.js b/public/service-worker.js
+index a66731c..b9bf967 100644
+--- a/public/service-worker.js
++++ b/public/service-worker.js
+@@ -1,7 +1,7 @@
+ const BASE_URL = new URL('./', self.location.href);
+ const BASE_PATH = BASE_URL.pathname.endsWith('/') ? BASE_URL.pathname : `${BASE_URL.pathname}/`;
+ const CACHE_SCOPE_KEY = BASE_PATH.replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '') || 'root';
+-const SHELL_CACHE = `ydm-shell-v24-${CACHE_SCOPE_KEY}`;
++const SHELL_CACHE = `ydm-shell-v25-${CACHE_SCOPE_KEY}`;
+ const DATA_CACHE = `ydm-data-v12-${CACHE_SCOPE_KEY}`;
+ const scoped = path => new URL(String(path || '').replace(/^\/+/, ''), BASE_URL).pathname;
+ const DATA_PREFIX = scoped('data/');
+diff --git a/scripts/corpus/validate-production-review-control-plane.mjs b/scripts/corpus/validate-production-review-control-plane.mjs
+index badb52b..314c834 100644
+--- a/scripts/corpus/validate-production-review-control-plane.mjs
++++ b/scripts/corpus/validate-production-review-control-plane.mjs
+@@ -60,7 +60,7 @@ const checks = [
+   ['review-in-backup', backup.includes('recipeHumanReviews')],
+   ['review-bundle-strict-gate', humanValidator.includes('human-review-incomplete') && humanValidator.includes('human-review-not-all-approved') && humanValidator.includes('source-corpus-digest-drift')],
+   ['schema-public-mirrors', mirrorsPass],
+-  ['offline-review-assets', /ydm-shell-v24/.test(sw) && /ydm-data-v12/.test(sw) && sw.includes('recipeHumanReviewService.js')],
++  ['offline-review-assets', /ydm-shell-v25/.test(sw) && /ydm-data-v12/.test(sw) && sw.includes('recipeHumanReviewService.js')],
+   ['5000-not-hard-stop', !orchestrator.includes('snapshot.activeRecipeCount >= policy.targetCorpus.max')],
+   ['spec-5000-advisory', /advisory planning references, not hard ceilings/i.test(spec)],
+   ['spec-scale-blocked-during-review', /Further corpus scaling must not resume while the Human Review Gate is blocked/i.test(spec)]
+diff --git a/scripts/hardening/browser-regression.mjs b/scripts/hardening/browser-regression.mjs
+index a61094d..8057ee1 100644
+--- a/scripts/hardening/browser-regression.mjs
++++ b/scripts/hardening/browser-regression.mjs
+@@ -185,8 +185,25 @@ try {
+   if (!cdp.events.has('Runtime.exceptionThrown')) cdp.events.set('Runtime.exceptionThrown', new Set());
+   cdp.events.get('Runtime.exceptionThrown').add(params => browserErrors.push(params.exceptionDetails?.exception?.description || params.exceptionDetails?.text || 'runtime exception'));
+   await cdp.send('Page.navigate', { url: `${origin}/recipes` });
+-  try { await waitExpression(cdp, `document.querySelectorAll('.recipe-card').length > 0`); } catch (error) {
+-    const diagnostic = await evaluate(cdp, `({href:location.href,title:document.title,body:document.body?.innerText?.slice(0,2000) || ''})`).catch(() => null);
++  const recipeBootstrapExpression = `(() => {
++    if (document.querySelectorAll('.recipe-card').length > 0) return 'ready';
++    if (document.querySelector('.catalog-panel .error-text')) return 'error';
++    return '';
++  })()`;
++  try {
++    const bootstrapState = await waitExpression(cdp, recipeBootstrapExpression, 60000);
++    if (bootstrapState === 'error') {
++      const detail = await evaluate(cdp, `document.querySelector('.catalog-panel .error-text')?.textContent || 'Catalog bootstrap failed'`);
++      throw new Error(`Catalog bootstrap failed: ${detail}`);
++    }
++  } catch (error) {
++    const diagnostic = await evaluate(cdp, `({
++      href:location.href,
++      title:document.title,
++      catalogStatus:document.querySelector('.catalog-panel')?.innerText?.slice(0,1200) || '',
++      recipeCards:document.querySelectorAll('.recipe-card').length,
++      body:document.body?.innerText?.slice(0,2000) || ''
++    })`).catch(() => null);
+     throw new Error(`${error.message}; browser=${JSON.stringify(diagnostic)}; exceptions=${browserErrors.join(' | ')}`);
+   }
+ 
+diff --git a/skills/yourdietmanager-builder/SKILL.md b/skills/yourdietmanager-builder/SKILL.md
+index 353120f..62f7b4f 100644
+--- a/skills/yourdietmanager-builder/SKILL.md
++++ b/skills/yourdietmanager-builder/SKILL.md
+@@ -123,3 +123,5 @@ For recipe batches:
+ - `references/corpus-orchestrator.md` — policy/snapshot/scoring and automatic next-batch planning.
+ - `references/reference-data-taxonomy.md` — canonical registries, taxonomy governance, guided inputs and pipeline-created prerequisites.
+ - `references/quality-gates.md` — testing/release checklist.
++
++- For the 500-recipe production-review catalog, allow the clean-profile browser bootstrap up to 60 seconds while keeping the recipe-card acceptance condition unchanged; fail immediately on catalog bootstrap errors and pair the browser gate with a direct 500-record clean-repository import regression.
+diff --git a/specs/TEST_STRATEGY.md b/specs/TEST_STRATEGY.md
+index 8bb103e..d3fd3bc 100644
+--- a/specs/TEST_STRATEGY.md
++++ b/specs/TEST_STRATEGY.md
+@@ -316,3 +316,11 @@ Real-artifact acceptance for rc.21 additionally records 220 -> 320 -> 420 -> 500
+ - Require the publication workflow to publish first, validate the review catalog, then execute the full app check/Pages audit.
+ - Keep development-catalog regression tests isolated on immutable fixtures after `public/data` is replaced by the review catalog.
+ - Functional regression must prove planning continues above 5,000 recipes; legacy `max=5000` fields are not runtime hard stops.
++
++
++### Production-review browser bootstrap
++
++- Treat catalog import time as scale-dependent: browser acceptance may wait up to 60 seconds for the 500-recipe review catalog on a clean profile.
++- Do not weaken the acceptance condition: at least one recipe card must render.
++- Fail immediately if the catalog status enters `error`, and include the catalog diagnostic in CI output.
++- Pair browser acceptance with a non-browser clean-repository import regression that must activate all 500 recipe families and versions.
+diff --git a/src/db/constants.js b/src/db/constants.js
+index adf2601..2cfd4e9 100644
+--- a/src/db/constants.js
++++ b/src/db/constants.js
+@@ -2,7 +2,7 @@ export const DB_NAME = 'yourDietManager';
+ export const DB_VERSION = 5;
+ export const CONTENT_SCHEMA_VERSION = 3;
+ export const BACKUP_FORMAT_VERSION = 1;
+-export const APP_VERSION = '1.0.0-rc.22';
++export const APP_VERSION = '1.0.0-rc.23';
+ 
+ export const STORE_DEFINITIONS = {
+   meta: { keyPath: 'key', indexes: [] },
+diff --git a/tests/data-ux-pass-c.test.mjs b/tests/data-ux-pass-c.test.mjs
+index e638df9..6a0bfde 100644
+--- a/tests/data-ux-pass-c.test.mjs
++++ b/tests/data-ux-pass-c.test.mjs
+@@ -99,7 +99,7 @@ test('Pass C source audit centralizes disclosure state, guarded navigation, feed
+   assert.match(sources['uiState.js'], /ydm:draft-change/);
+   assert.match(main, /onboardingEnabled: false/);
+   assert.doesNotMatch(main, /location\.pathname\s*=.*onboarding|navigate\(['"]\/onboarding/);
+-  assert.match(sw, /ydm-shell-v24/);
++  assert.match(sw, /ydm-shell-v25/);
+   assert.match(sw, /ydm-data-v12/);
+   assert.match(sw, /src\/recoveryBootstrap\.js/);
+   assert.match(index, /src\/recoveryBootstrap\.js/);
+diff --git a/tests/production-review-500.test.mjs b/tests/production-review-500.test.mjs
+index 57f0583..5ef3709 100644
+--- a/tests/production-review-500.test.mjs
++++ b/tests/production-review-500.test.mjs
+@@ -8,7 +8,8 @@ import { planNextBatch } from '../src/corpus/corpusOrchestrator.js';
+ import { RecipeHumanReviewService, REVIEW_DIMENSIONS, REVIEW_POLICY_VERSION, reviewSummary } from '../src/services/recipeHumanReviewService.js';
+ import { assertReferenceData } from '../src/services/referenceDataService.js';
+ import { loadLocalCatalog, readJson } from '../scripts/corpus/io-lib.mjs';
+-import { MemoryRepository, fileLoader } from './helpers.mjs';
++import { CatalogImporter } from '../src/services/catalogImporter.js';
++import { MemoryRepository, fileFetch, fileLoader } from './helpers.mjs';
+ 
+ const root = process.cwd();
+ async function registryFixture() { const registry = new SchemaRegistry(fileLoader(path.join(root, 'schemas'))); await registry.loadAll(); return registry; }
+@@ -128,3 +129,25 @@ test('Phase 4 smoke builder is isolated from the mutable published review catalo
+   assert.match(smoke, /tests\/fixtures\/catalog-0\.3\/public\/data/);
+   assert.doesNotMatch(smoke, /loadLocalCatalog\(path\.join\(root,'public\/data'\)\)/);
+ });
++
++
++test('published 500-recipe review catalog bootstraps all required recipes into a clean local catalog', async () => {
++  const registry = await registryFixture();
++  const repo = new MemoryRepository();
++  const importer = new CatalogImporter({ repo, registry, fetcher:fileFetch(root), storage:null, serviceWorker:null });
++  const manifest = await readJson(path.join(root,'public/data/catalog-manifest.json'));
++  if (manifest.publication?.channel !== 'production_review') return;
++  const version = await importer.bootstrap();
++  assert.equal(version, manifest.catalogVersion);
++  assert.equal(await repo.getMeta('activeCatalogVersion'), manifest.catalogVersion);
++  assert.equal(await repo.count('recipes'), 500);
++  assert.equal(await repo.count('recipeVersions'), 500);
++  assert.equal((await repo.getMeta('catalogManifest')).publication.releaseEligible, false);
++});
++
++test('browser regression gives production-scale catalog bootstrap a bounded 60-second window and fails fast on catalog errors', async () => {
++  const source = await readFile(path.join(root,'scripts/hardening/browser-regression.mjs'),'utf8');
++  assert.match(source, /waitExpression\(cdp, recipeBootstrapExpression, 60000\)/);
++  assert.match(source, /catalog-panel \.error-text/);
++  assert.match(source, /Catalog bootstrap failed:/);
++});

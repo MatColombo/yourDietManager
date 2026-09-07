@@ -123,3 +123,5 @@ For recipe batches:
 - `references/corpus-orchestrator.md` — policy/snapshot/scoring and automatic next-batch planning.
 - `references/reference-data-taxonomy.md` — canonical registries, taxonomy governance, guided inputs and pipeline-created prerequisites.
 - `references/quality-gates.md` — testing/release checklist.
+
+- For the 500-recipe production-review catalog, allow the clean-profile browser bootstrap up to 60 seconds while keeping the recipe-card acceptance condition unchanged; fail immediately on catalog bootstrap errors and pair the browser gate with a direct 500-record clean-repository import regression.

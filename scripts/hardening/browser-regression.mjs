@@ -185,8 +185,25 @@ try {
   if (!cdp.events.has('Runtime.exceptionThrown')) cdp.events.set('Runtime.exceptionThrown', new Set());
   cdp.events.get('Runtime.exceptionThrown').add(params => browserErrors.push(params.exceptionDetails?.exception?.description || params.exceptionDetails?.text || 'runtime exception'));
   await cdp.send('Page.navigate', { url: `${origin}/recipes` });
-  try { await waitExpression(cdp, `document.querySelectorAll('.recipe-card').length > 0`); } catch (error) {
-    const diagnostic = await evaluate(cdp, `({href:location.href,title:document.title,body:document.body?.innerText?.slice(0,2000) || ''})`).catch(() => null);
+  const recipeBootstrapExpression = `(() => {
+    if (document.querySelectorAll('.recipe-card').length > 0) return 'ready';
+    if (document.querySelector('.catalog-panel .error-text')) return 'error';
+    return '';
+  })()`;
+  try {
+    const bootstrapState = await waitExpression(cdp, recipeBootstrapExpression, 60000);
+    if (bootstrapState === 'error') {
+      const detail = await evaluate(cdp, `document.querySelector('.catalog-panel .error-text')?.textContent || 'Catalog bootstrap failed'`);
+      throw new Error(`Catalog bootstrap failed: ${detail}`);
+    }
+  } catch (error) {
+    const diagnostic = await evaluate(cdp, `({
+      href:location.href,
+      title:document.title,
+      catalogStatus:document.querySelector('.catalog-panel')?.innerText?.slice(0,1200) || '',
+      recipeCards:document.querySelectorAll('.recipe-card').length,
+      body:document.body?.innerText?.slice(0,2000) || ''
+    })`).catch(() => null);
     throw new Error(`${error.message}; browser=${JSON.stringify(diagnostic)}; exceptions=${browserErrors.join(' | ')}`);
   }
 
