@@ -1,0 +1,1634 @@
+diff --git a/GITHUB_PAGES_DEPLOYMENT.md b/GITHUB_PAGES_DEPLOYMENT.md
+index b77721a95c92ba5865f495e4d7eec1f6ac4646f3..3b34c9f2c881147ce4ec6ed68a7baf7ea919b588 100644
+--- a/GITHUB_PAGES_DEPLOYMENT.md
++++ b/GITHUB_PAGES_DEPLOYMENT.md
+@@ -85,7 +85,7 @@ The Pages workflow runs the application check with `YDM_BROWSER_REQUIRED=1`. Thi
+ 
+ La PWA registra/aggiorna ora la Service Worker tramite `src/recoveryBootstrap.js` **prima** di `src/main.js`. Questo evita che un errore di bootstrap applicativo impedisca al browser di ricevere una Service Worker nuova e continui quindi a servire moduli JS obsoleti dalla shell cache precedente.
+ 
+-Le cache correnti sono `ydm-shell-v24-<scope>` e `ydm-data-v12-<scope>`. `updateViaCache: 'none'` e `registration.update()` forzano il controllo del worker dalla rete; al cambio controller viene eseguito un solo reload protetto da `sessionStorage`.
++Le cache correnti sono `ydm-shell-v26-<scope>` e `ydm-data-v12-<scope>`. `updateViaCache: 'none'` e `registration.update()` forzano il controllo del worker dalla rete; al cambio controller viene eseguito un solo reload protetto da `sessionStorage`.
+ 
+ Per upgrade da installazioni pre-hardening, `contentMigration:3` e resumable. Una FoodPreference legacy non-hard salvata come `ingredient:uova` viene re-tipizzata in modo auditato a `foodCategory:food_group_eggs`; non e un alias runtime e non modifica regole `autoExclude=true`.
+ 
+diff --git a/PHASE4_IMPLEMENTATION_REPORT.md b/PHASE4_IMPLEMENTATION_REPORT.md
+index c972946fa48e4e9e1bd9681a190c515274a11bbc..9ff10e6c0f50a19ffe4ea7419461f8e59c439b1f 100644
+--- a/PHASE4_IMPLEMENTATION_REPORT.md
++++ b/PHASE4_IMPLEMENTATION_REPORT.md
+@@ -220,3 +220,7 @@ The verified 500-recipe controlled-scale checkpoint is now a mandatory product-r
+ Human review is persisted in IndexedDB and bound to publication ID, source-corpus digest, RecipeVersion ID and content hash. Every recipe requires six explicit dimensions plus an `approved`, `needs_changes` or `rejected` decision. The phase closes only when all 500 are approved; any unresolved/non-approved item blocks further scale and requires remediation/re-review.
+ 
+ This addendum also removes 5,000 as a behavioral stop. Existing contract/policy fields retain 5,000 only for compatibility with frozen provenance; the orchestrator must continue beyond it whenever coverage, diversity or product requirements call for more recipes.
++
++## rc.24 production-review browser schema mirror hardening
++
++The review publication exposed a deployment-contract drift: canonical production ingredient schemas accepted the rc.15–rc.16 energy provenance fields while the PWA mirror rejected them. rc.24 synchronizes all browser-loaded schema mirrors, adds a byte-for-byte mirror gate plus a build preflight, and tests the 500-recipe bootstrap using the actual `public/schemas` surface. See `PHASE4_PRODUCTION_REVIEW_RC24_SCHEMA_MIRROR_REPORT.md`.
+diff --git a/PHASE4_PRODUCTION_REVIEW_RC24_SCHEMA_MIRROR_REPORT.md b/PHASE4_PRODUCTION_REVIEW_RC24_SCHEMA_MIRROR_REPORT.md
+new file mode 100644
+index 0000000000000000000000000000000000000000..daaf48fe454f4b06913673e0d0d9e30b070c851e
+--- /dev/null
++++ b/PHASE4_PRODUCTION_REVIEW_RC24_SCHEMA_MIRROR_REPORT.md
+@@ -0,0 +1,28 @@
++# Phase 4 Production Review rc.24 — Browser schema mirror hardening
++
++## Trigger
++The `Publish 500 Recipe Review Catalog` workflow reached Chromium with the published 500-recipe catalog but browser bootstrap failed on `ingredientRevision.source`: production energy provenance fields (`energyBasis`, `energyNutrientId`, `energySourceUnit`, `energyOriginalValue`, `energyConversion`) were rejected as additional properties.
++
++## Root cause
++The canonical `schemas/ingredient-revision.schema.json` already allowed the production provenance fields introduced during rc.15–rc.16. The PWA mirror `public/schemas/ingredient-revision.schema.json` had not been synchronized. Node production validation loaded canonical schemas and passed; the browser `SchemaRegistry` fetches `/schemas/*` from `public/`, so it correctly rejected the stale client contract.
++
++## rc.24 correction
++- mirror the canonical ingredient revision schema into `public/schemas/ingredient-revision.schema.json`;
++- synchronize two additional latent browser-schema drifts found by the new gate: `recipe-corpus-orchestration-run.schema.json` (`intentStrategy`) and `ingredient-curation-batch.schema.json` (production curation fields);
++- export the exact browser schema list from `schemaValidator.js`;
++- require every browser-loaded schema to be byte-for-byte identical between `schemas/` and `public/schemas/`;
++- enforce the same invariant as a build preflight, so a drift cannot be shipped even when a developer runs `npm run build` without the full test suite;
++- validate a production-style ingredient revision against the public schema, including all five energy provenance fields;
++- retain `additionalProperties:false` and prove an uncontrolled source field is still rejected;
++- raise the production-review catalog `appMinVersion` to `1.0.0-rc.24` because earlier clients do not carry this schema contract;
++- advance the shell cache to `ydm-shell-v26` because a precached schema changed.
++
++## Invariant
++A schema used by the browser has one canonical definition. `public/schemas/` is a deployment mirror, never an independently evolving contract. Any drift must fail `npm test` before Chromium or publication.
++
++## Verification
++- production-review control plane: 17/17 PASS;
++- public-schema production bootstrap: 500 recipe families + 500 recipe versions imported with the browser schema surface;
++- complete Node test suite: 177/177 PASS;
++- lint/a11y/forms/scale/build pass before the local Chromium step;
++- local Chromium cannot complete reliably in the sandbox execution window, so the GitHub browser gate remains the authoritative browser run.
+diff --git a/README.md b/README.md
+index 7518e3bfc6d9dd788c0f16e30b33988f0ee44bb8..c4893e3622c4ce301eaade1836b3446936238a77 100644
+--- a/README.md
++++ b/README.md
+@@ -1,8 +1,12 @@
+ # yourDietManager — V1 Release Candidate
+ 
++## rc.24 browser schema mirror hardening
++
++Production-review browser bootstrap now enforces canonical JSON Schema parity between `schemas/` and the PWA mirror `public/schemas/`. The production ingredient energy provenance fields are accepted by the browser contract, while unknown source properties remain rejected. Production-review publications require app version `1.0.0-rc.24` or newer. See `PHASE4_PRODUCTION_REVIEW_RC24_SCHEMA_MIRROR_REPORT.md`.
++
+ Local-first PWA implementation through **Phase 8 — Hardening & V1 release gates**.
+ 
+-Candidate version: **`1.0.0-rc.23`**.
++Candidate version: **`1.0.0-rc.24`**.
+ 
+ Phases 1–7 remain fully present: IndexedDB persistence, onboarding/configuration, backup/import, IT/EN, theme engine, indexed catalog/search/packs, versioned catalog authoring, corpus-orchestration tooling, deterministic seeded plan generation, effective-plan UX with history/undo, shopping checklists and preparation horizon.
+ 
+diff --git a/SPEC_README.md b/SPEC_README.md
+index 55e2d230bdf9d0032bf57ffe3306943dda9df140..8bebbb59901e1a5cf75bdeeac7e9937f89c149f7 100644
+--- a/SPEC_README.md
++++ b/SPEC_README.md
+@@ -135,3 +135,5 @@ The network-enabled production workflow intentionally mutates canonical pilot, r
+ ## Phase 4P-D Pass A — rc.21 controlled scale 220 -> 500
+ 
+ Il working set source-backed verificato (600 ingredienti curated/high, pilot 120/120, 220 ricette attive) è ora il prerequisito esplicito del controlled-scale runner. `controlled-scale-500-v1@1.0.0` divide l'espansione in tranche 100 + 100 + 80, con celle canoniche `mealArchetype × energyBand`, checkpoint e zero review backlog. La verifica sul working set reale ha raggiunto 500 ricette attive con Scale Gate 500 `pass`, zero errori quality e zero exact/near duplicate. La workflow dedicata è `.github/workflows/controlled-scale-500.yml`.
++
++- `PHASE4_PRODUCTION_REVIEW_RC24_SCHEMA_MIRROR_REPORT.md` — browser schema mirror hardening for the 500-recipe review publication.
+diff --git a/package.json b/package.json
+index ffa83e62140f134d0e06a5602a0007c23aa89e21..c457b38ca062ac9b88917e54905def006628dacf 100644
+--- a/package.json
++++ b/package.json
+@@ -1,7 +1,7 @@
+ {
+   "name": "yourdietmanager",
+   "private": true,
+-  "version": "1.0.0-rc.23",
++  "version": "1.0.0-rc.24",
+   "type": "module",
+   "scripts": {
+     "dev": "node scripts/dev-server.mjs",
+diff --git a/public/schemas/ingredient-curation-batch.schema.json b/public/schemas/ingredient-curation-batch.schema.json
+index bb0fc041080b80a97f63d823ba19a31587942a2f..e87b9a5dfc86ca4d5eb46e26a8db8668274fec14 100644
+--- a/public/schemas/ingredient-curation-batch.schema.json
++++ b/public/schemas/ingredient-curation-batch.schema.json
+@@ -1,23 +1,445 @@
+ {
+-  "$schema":"https://json-schema.org/draft/2020-12/schema",
+-  "$id":"https://yourdietmanager.local/schemas/ingredient-curation-batch.schema.json",
+-  "title":"IngredientCurationBatch",
+-  "type":"object","additionalProperties":false,
+-  "required":["schemaVersion","batchId","policyId","policyVersion","source","inputFoodCount","completeRequiredNutrientCount","incompleteRequiredNutrientCount","records"],
+-  "properties":{
+-    "schemaVersion":{"const":1},"batchId":{"type":"string","minLength":1},"policyId":{"type":"string","minLength":1},"policyVersion":{"type":"string","minLength":1},
+-    "source":{"type":"object","additionalProperties":false,"required":["sourceId","provider","dataset","release","reference","archive","license","inputDigest","importedAt"],"properties":{
+-      "sourceId":{"type":"string","minLength":1},"provider":{"type":"string","minLength":1},"dataset":{"type":"string","minLength":1},"release":{"type":"string","minLength":1},"reference":{"type":"string","minLength":1},"archive":{"type":["string","null"]},"license":{"type":"string","minLength":1},"inputDigest":{"type":"string","minLength":16},"importedAt":{"type":"string","format":"date-time"}
+-    }},
+-    "inputFoodCount":{"type":"integer","minimum":0},"completeRequiredNutrientCount":{"type":"integer","minimum":0},"incompleteRequiredNutrientCount":{"type":"integer","minimum":0},
+-    "records":{"type":"array","items":{"$ref":"#/$defs/record"}}
++  "$schema": "https://json-schema.org/draft/2020-12/schema",
++  "$id": "https://yourdietmanager.local/schemas/ingredient-curation-batch.schema.json",
++  "title": "IngredientCurationBatch",
++  "type": "object",
++  "additionalProperties": false,
++  "required": [
++    "schemaVersion",
++    "batchId",
++    "policyId",
++    "policyVersion",
++    "source",
++    "inputFoodCount",
++    "completeRequiredNutrientCount",
++    "incompleteRequiredNutrientCount",
++    "records"
++  ],
++  "properties": {
++    "schemaVersion": {
++      "const": 1
++    },
++    "batchId": {
++      "type": "string",
++      "minLength": 1
++    },
++    "policyId": {
++      "type": "string",
++      "minLength": 1
++    },
++    "policyVersion": {
++      "type": "string",
++      "minLength": 1
++    },
++    "source": {
++      "type": "object",
++      "additionalProperties": false,
++      "required": [
++        "sourceId",
++        "provider",
++        "dataset",
++        "release",
++        "reference",
++        "archive",
++        "license",
++        "inputDigest",
++        "importedAt"
++      ],
++      "properties": {
++        "sourceId": {
++          "type": "string",
++          "minLength": 1
++        },
++        "provider": {
++          "type": "string",
++          "minLength": 1
++        },
++        "dataset": {
++          "type": "string",
++          "minLength": 1
++        },
++        "release": {
++          "type": "string",
++          "minLength": 1
++        },
++        "reference": {
++          "type": "string",
++          "minLength": 1
++        },
++        "archive": {
++          "type": [
++            "string",
++            "null"
++          ]
++        },
++        "license": {
++          "type": "string",
++          "minLength": 1
++        },
++        "inputDigest": {
++          "type": "string",
++          "minLength": 16
++        },
++        "importedAt": {
++          "type": "string",
++          "format": "date-time"
++        }
++      }
++    },
++    "inputFoodCount": {
++      "type": "integer",
++      "minimum": 0
++    },
++    "completeRequiredNutrientCount": {
++      "type": "integer",
++      "minimum": 0
++    },
++    "incompleteRequiredNutrientCount": {
++      "type": "integer",
++      "minimum": 0
++    },
++    "structurallyInvalidFoodCount": {
++      "type": "integer",
++      "minimum": 0
++    },
++    "structurallyInvalidFoodExamples": {
++      "type": "array",
++      "maxItems": 20,
++      "items": {
++        "type": "object",
++        "additionalProperties": false,
++        "required": [
++          "index",
++          "reason"
++        ],
++        "properties": {
++          "index": {
++            "type": "integer",
++            "minimum": 0
++          },
++          "reason": {
++            "enum": [
++              "null_food_record",
++              "non_object_food_record",
++              "missing_fdc_id"
++            ]
++          }
++        }
++      }
++    },
++    "records": {
++      "type": "array",
++      "items": {
++        "$ref": "#/$defs/record"
++      }
++    }
+   },
+-  "$defs":{
+-    "record":{"type":"object","additionalProperties":false,"required":["sourceRecordId","description","commonName","category","nutrition","suggested","review"],"properties":{
+-      "sourceRecordId":{"type":"string","minLength":1},"description":{"type":"string","minLength":1},"commonName":{"type":["string","null"]},"category":{"type":"string"},
+-      "nutrition":{"type":"object","additionalProperties":false,"required":["energyKcal","proteinG","carbsG","fatG","fiberG","sugarsG","saturatedFatG","sodiumMg"],"properties":{"energyKcal":{"type":"number","minimum":0},"proteinG":{"type":"number","minimum":0},"carbsG":{"type":"number","minimum":0},"fatG":{"type":"number","minimum":0},"fiberG":{"type":"number","minimum":0},"sugarsG":{"type":["number","null"],"minimum":0},"saturatedFatG":{"type":["number","null"],"minimum":0},"sodiumMg":{"type":["number","null"],"minimum":0}}},
+-      "suggested":{"type":"object","additionalProperties":false,"required":["ingredientId","nameEn","nameIt","aliasesEn","aliasesIt","foodGroup","foodSubgroup","flavorProfile","mealArchetypes","state","allergenIds","conversions"],"properties":{"ingredientId":{"type":"string","minLength":1},"nameEn":{"type":"string","minLength":1},"nameIt":{"type":"string"},"aliasesEn":{"type":"array","items":{"type":"string"},"uniqueItems":true},"aliasesIt":{"type":"array","items":{"type":"string"},"uniqueItems":true},"foodGroup":{"type":"string","minLength":1},"foodSubgroup":{"type":["string","null"]},"flavorProfile":{"type":"string","minLength":1},"mealArchetypes":{"type":"array","minItems":1,"uniqueItems":true,"items":{"$ref":"domain-enums.schema.json#/$defs/mealArchetype"}},"state":{"enum":["raw","cooked","dry","drained","prepared","ready_to_eat","as_sold","unknown"]},"allergenIds":{"type":"array","uniqueItems":true,"items":{"$ref":"domain-enums.schema.json#/$defs/allergenId"}},"conversions":{"type":"array","items":{"type":"object"}}}},
+-      "review":{"type":"object","additionalProperties":false,"required":["decision","approved","checks","reviewer","reviewedAt","notes","duplicateOfIngredientId"],"properties":{"decision":{"enum":["pending","approved","rejected"]},"approved":{"type":"boolean"},"checks":{"type":"object","additionalProperties":false,"required":["italianLabel","taxonomy","state","allergens","culinarySuitability","duplicate","nutrition","source"],"properties":{"italianLabel":{"type":"boolean"},"taxonomy":{"type":"boolean"},"state":{"type":"boolean"},"allergens":{"type":"boolean"},"culinarySuitability":{"type":"boolean"},"duplicate":{"type":"boolean"},"nutrition":{"type":"boolean"},"source":{"type":"boolean"}}},"reviewer":{"type":["string","null"]},"reviewedAt":{"type":["string","null"],"format":"date-time"},"notes":{"type":["string","null"]},"duplicateOfIngredientId":{"type":["string","null"]}}}
+-    }}
++  "$defs": {
++    "record": {
++      "type": "object",
++      "additionalProperties": false,
++      "required": [
++        "sourceRecordId",
++        "description",
++        "commonName",
++        "category",
++        "nutrition",
++        "suggested",
++        "review"
++      ],
++      "properties": {
++        "sourceRecordId": {
++          "type": "string",
++          "minLength": 1
++        },
++        "description": {
++          "type": "string",
++          "minLength": 1
++        },
++        "commonName": {
++          "type": [
++            "string",
++            "null"
++          ]
++        },
++        "category": {
++          "type": "string"
++        },
++        "nutrition": {
++          "type": "object",
++          "additionalProperties": false,
++          "required": [
++            "energyKcal",
++            "proteinG",
++            "carbsG",
++            "fatG",
++            "fiberG",
++            "sugarsG",
++            "saturatedFatG",
++            "sodiumMg"
++          ],
++          "properties": {
++            "energyKcal": {
++              "type": "number",
++              "minimum": 0
++            },
++            "proteinG": {
++              "type": "number",
++              "minimum": 0
++            },
++            "carbsG": {
++              "type": "number",
++              "minimum": 0
++            },
++            "fatG": {
++              "type": "number",
++              "minimum": 0
++            },
++            "fiberG": {
++              "type": "number",
++              "minimum": 0
++            },
++            "sugarsG": {
++              "type": [
++                "number",
++                "null"
++              ],
++              "minimum": 0
++            },
++            "saturatedFatG": {
++              "type": [
++                "number",
++                "null"
++              ],
++              "minimum": 0
++            },
++            "sodiumMg": {
++              "type": [
++                "number",
++                "null"
++              ],
++              "minimum": 0
++            },
++            "energyBasis": {
++              "enum": [
++                "atwater_general",
++                "atwater_specific",
++                "legacy_energy",
++                "unknown"
++              ]
++            },
++            "energyNutrientId": {
++              "type": [
++                "string",
++                "null"
++              ]
++            },
++            "energySourceUnit": {
++              "enum": [
++                "kcal",
++                "kJ",
++                "unknown"
++              ]
++            },
++            "energyOriginalValue": {
++              "type": [
++                "number",
++                "null"
++              ],
++              "minimum": 0
++            },
++            "energyConversion": {
++              "enum": [
++                "none",
++                "kj_to_kcal",
++                "assumed_kcal_by_nutrient_id"
++              ]
++            }
++          }
++        },
++        "suggested": {
++          "type": "object",
++          "additionalProperties": false,
++          "required": [
++            "ingredientId",
++            "nameEn",
++            "nameIt",
++            "aliasesEn",
++            "aliasesIt",
++            "foodGroup",
++            "foodSubgroup",
++            "flavorProfile",
++            "mealArchetypes",
++            "state",
++            "allergenIds",
++            "conversions"
++          ],
++          "properties": {
++            "ingredientId": {
++              "type": "string",
++              "minLength": 1
++            },
++            "nameEn": {
++              "type": "string",
++              "minLength": 1
++            },
++            "nameIt": {
++              "type": "string"
++            },
++            "aliasesEn": {
++              "type": "array",
++              "items": {
++                "type": "string"
++              },
++              "uniqueItems": true
++            },
++            "aliasesIt": {
++              "type": "array",
++              "items": {
++                "type": "string"
++              },
++              "uniqueItems": true
++            },
++            "foodGroup": {
++              "type": "string",
++              "minLength": 1
++            },
++            "foodSubgroup": {
++              "type": [
++                "string",
++                "null"
++              ]
++            },
++            "flavorProfile": {
++              "type": "string",
++              "minLength": 1
++            },
++            "mealArchetypes": {
++              "type": "array",
++              "minItems": 1,
++              "uniqueItems": true,
++              "items": {
++                "$ref": "domain-enums.schema.json#/$defs/mealArchetype"
++              }
++            },
++            "state": {
++              "enum": [
++                "raw",
++                "cooked",
++                "dry",
++                "drained",
++                "prepared",
++                "ready_to_eat",
++                "as_sold",
++                "unknown"
++              ]
++            },
++            "allergenIds": {
++              "type": "array",
++              "uniqueItems": true,
++              "items": {
++                "$ref": "domain-enums.schema.json#/$defs/allergenId"
++              }
++            },
++            "conversions": {
++              "type": "array",
++              "items": {
++                "type": "object"
++              }
++            }
++          }
++        },
++        "review": {
++          "type": "object",
++          "additionalProperties": false,
++          "required": [
++            "decision",
++            "approved",
++            "checks",
++            "reviewer",
++            "reviewedAt",
++            "notes",
++            "duplicateOfIngredientId"
++          ],
++          "properties": {
++            "decision": {
++              "enum": [
++                "pending",
++                "approved",
++                "rejected"
++              ]
++            },
++            "approved": {
++              "type": "boolean"
++            },
++            "checks": {
++              "type": "object",
++              "additionalProperties": false,
++              "required": [
++                "italianLabel",
++                "taxonomy",
++                "state",
++                "allergens",
++                "culinarySuitability",
++                "duplicate",
++                "nutrition",
++                "source"
++              ],
++              "properties": {
++                "italianLabel": {
++                  "type": "boolean"
++                },
++                "taxonomy": {
++                  "type": "boolean"
++                },
++                "state": {
++                  "type": "boolean"
++                },
++                "allergens": {
++                  "type": "boolean"
++                },
++                "culinarySuitability": {
++                  "type": "boolean"
++                },
++                "duplicate": {
++                  "type": "boolean"
++                },
++                "nutrition": {
++                  "type": "boolean"
++                },
++                "source": {
++                  "type": "boolean"
++                }
++              }
++            },
++            "reviewer": {
++              "type": [
++                "string",
++                "null"
++              ]
++            },
++            "reviewedAt": {
++              "type": [
++                "string",
++                "null"
++              ],
++              "format": "date-time"
++            },
++            "notes": {
++              "type": [
++                "string",
++                "null"
++              ]
++            },
++            "duplicateOfIngredientId": {
++              "type": [
++                "string",
++                "null"
++              ]
++            }
++          }
++        }
++      }
++    }
+   }
+ }
+diff --git a/public/schemas/ingredient-revision.schema.json b/public/schemas/ingredient-revision.schema.json
+index abed6af925ce737e6b55e1eba5828644f603ed01..7da2f65e46f94d437f1ad7c4f48e978cb4e23c82 100644
+--- a/public/schemas/ingredient-revision.schema.json
++++ b/public/schemas/ingredient-revision.schema.json
+@@ -295,6 +295,41 @@
+             "string",
+             "null"
+           ]
++        },
++        "energyBasis": {
++          "enum": [
++            "atwater_general",
++            "atwater_specific",
++            "legacy_energy",
++            "unknown"
++          ]
++        },
++        "energyNutrientId": {
++          "type": [
++            "string",
++            "null"
++          ]
++        },
++        "energySourceUnit": {
++          "enum": [
++            "kcal",
++            "kJ",
++            "unknown"
++          ]
++        },
++        "energyOriginalValue": {
++          "type": [
++            "number",
++            "null"
++          ],
++          "minimum": 0
++        },
++        "energyConversion": {
++          "enum": [
++            "none",
++            "kj_to_kcal",
++            "assumed_kcal_by_nutrient_id"
++          ]
+         }
+       }
+     },
+diff --git a/public/schemas/recipe-corpus-orchestration-run.schema.json b/public/schemas/recipe-corpus-orchestration-run.schema.json
+index c3d7cdee2ad8f5b0887a60729dd1e9a3b22d3a68..a0b1e58eb55f43cef714e13bb97f90d8174b98ca 100644
+--- a/public/schemas/recipe-corpus-orchestration-run.schema.json
++++ b/public/schemas/recipe-corpus-orchestration-run.schema.json
+@@ -94,6 +94,12 @@
+             "restrict"
+           ]
+         },
++        "intentStrategy": {
++          "enum": [
++            "adaptive",
++            "focus_only"
++          ]
++        },
+         "focus": {
+           "$ref": "#/$defs/focus"
+         }
+diff --git a/public/service-worker.js b/public/service-worker.js
+index b9bf967755c5d7819143d3ea1376ab25ceefc0ca..44ea87a6d7d9a0fad126766aa8b01a21cadd06ca 100644
+--- a/public/service-worker.js
++++ b/public/service-worker.js
+@@ -1,7 +1,7 @@
+ const BASE_URL = new URL('./', self.location.href);
+ const BASE_PATH = BASE_URL.pathname.endsWith('/') ? BASE_URL.pathname : `${BASE_URL.pathname}/`;
+ const CACHE_SCOPE_KEY = BASE_PATH.replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '') || 'root';
+-const SHELL_CACHE = `ydm-shell-v25-${CACHE_SCOPE_KEY}`;
++const SHELL_CACHE = `ydm-shell-v26-${CACHE_SCOPE_KEY}`;
+ const DATA_CACHE = `ydm-data-v12-${CACHE_SCOPE_KEY}`;
+ const scoped = path => new URL(String(path || '').replace(/^\/+/, ''), BASE_URL).pathname;
+ const DATA_PREFIX = scoped('data/');
+diff --git a/scripts/build.mjs b/scripts/build.mjs
+index 10a9b065b422600e47c8d10a6b027da998952a96..35215b83ce28938029701f95498021a89b51d805 100644
+--- a/scripts/build.mjs
++++ b/scripts/build.mjs
+@@ -1,9 +1,18 @@
+ import { cp, mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
+ import path from 'node:path';
++import { SCHEMA_FILES } from '../src/lib/schemaValidator.js';
+ 
+ const root = process.cwd();
+ const dist = path.join(root, 'dist');
+ 
++for (const file of SCHEMA_FILES) {
++  const [canonical, published] = await Promise.all([
++    readFile(path.join(root, 'schemas', file), 'utf8'),
++    readFile(path.join(root, 'public', 'schemas', file), 'utf8')
++  ]);
++  if (canonical !== published) throw new Error(`Build failed: public schema mirror drift for ${file}`);
++}
++
+ function normalizeBasePath(value = '') {
+   const raw = String(value || '').trim();
+   if (!raw || raw === '/') return '';
+diff --git a/scripts/corpus/publish-production-review-500.mjs b/scripts/corpus/publish-production-review-500.mjs
+index 3a8faf1642a506af2f4074398da6f1eb9017693a..767893b2d53000625fce5f136688fc7549a1636f 100644
+--- a/scripts/corpus/publish-production-review-500.mjs
++++ b/scripts/corpus/publish-production-review-500.mjs
+@@ -50,7 +50,7 @@ const packs = [
+   { packId:'vegetarian', labelKey:'catalog.pack.vegetarian.label', descriptionKey:'catalog.pack.vegetarian.description', required:false, estimatedBytes:0, recipeVersionIds:activeVersions.filter(v => (v.tags.diet || []).includes('diet_vegetarian')).map(v=>v.recipeVersionId) }
+ ];
+ await rm(releaseRoot, { recursive:true, force:true }); await mkdir(stagingRoot, { recursive:true });
+-const manifest = await publishCatalogRelease({ outputDir:releaseRoot, catalogVersion, taxonomies:corpus.taxonomies || [], taxonomyTerms:corpus.taxonomyTerms || [], referenceDataVersion:corpus.manifest.referenceDataVersion || '1.0.0', ingredientFamilies:corpus.ingredientFamilies.filter(item=>item.status==='active'), ingredientRevisions:corpus.ingredientRevisions, recipeFamilies:activeFamilies, recipeVersions:activeVersions, appMinVersion:'1.0.0-rc.22', pipelineVersion:contract.pipelineVersion, productionContract:contract, publication, packs, registry, builtAt:publishedAt });
++const manifest = await publishCatalogRelease({ outputDir:releaseRoot, catalogVersion, taxonomies:corpus.taxonomies || [], taxonomyTerms:corpus.taxonomyTerms || [], referenceDataVersion:corpus.manifest.referenceDataVersion || '1.0.0', ingredientFamilies:corpus.ingredientFamilies.filter(item=>item.status==='active'), ingredientRevisions:corpus.ingredientRevisions, recipeFamilies:activeFamilies, recipeVersions:activeVersions, appMinVersion:'1.0.0-rc.24', pipelineVersion:contract.pipelineVersion, productionContract:contract, publication, packs, registry, builtAt:publishedAt });
+ const evidence = { schemaVersion:1, catalogVersion:manifest.catalogVersion, publication, publishedAt, source:{ catalogVersion:corpus.manifest.catalogVersion, activeRecipeCount:500, productionReadyIngredientCount:readiness.ingredients.productionReadyFamilies, scaleGateId:gate.gateId, scaleGateStatus:gate.status }, frozenRecipeVersionIds };
+ registry.assert('productionReviewPublication', evidence);
+ await writeJson(evidencePath, evidence);
+diff --git a/scripts/corpus/validate-production-review-control-plane.mjs b/scripts/corpus/validate-production-review-control-plane.mjs
+index 314c834e1df4f4865a65c2d97482a9c66599cb36..656e6bab0e1210be21b414e8c48b407dfe1ffe18 100644
+--- a/scripts/corpus/validate-production-review-control-plane.mjs
++++ b/scripts/corpus/validate-production-review-control-plane.mjs
+@@ -60,7 +60,7 @@ const checks = [
+   ['review-in-backup', backup.includes('recipeHumanReviews')],
+   ['review-bundle-strict-gate', humanValidator.includes('human-review-incomplete') && humanValidator.includes('human-review-not-all-approved') && humanValidator.includes('source-corpus-digest-drift')],
+   ['schema-public-mirrors', mirrorsPass],
+-  ['offline-review-assets', /ydm-shell-v25/.test(sw) && /ydm-data-v12/.test(sw) && sw.includes('recipeHumanReviewService.js')],
++  ['offline-review-assets', /ydm-shell-v26/.test(sw) && /ydm-data-v12/.test(sw) && sw.includes('recipeHumanReviewService.js')],
+   ['5000-not-hard-stop', !orchestrator.includes('snapshot.activeRecipeCount >= policy.targetCorpus.max')],
+   ['spec-5000-advisory', /advisory planning references, not hard ceilings/i.test(spec)],
+   ['spec-scale-blocked-during-review', /Further corpus scaling must not resume while the Human Review Gate is blocked/i.test(spec)]
+diff --git a/skills/dist/skill.zip b/skills/dist/skill.zip
+index e7243994df1695923d8e83994e97120086c35446..da076a11c33418b97e77809dcda8767773e3b36b 100644
+GIT binary patch
+delta 22278
+zcmV(_K-9ms_W}Nn0vu3F0|XQR000O8$4w_)y?kyj?;HRCh)4hcAOMrWcp8(9cnE)u
+zT-$ORN0NQ#S5%B2b|wam7A5&I;@Yt^DS0_-Te4(%=1pjz3qV_qZn!U`pr`qV-H835
+z{ge5UJts4(x&Tr$^B@HYbk`*-FDFlCG0U>Err7ys?$C~1S@~gCG{weu*>bGv(syU2
+z?^j*5AF8%_=6-kW`)bq7oP0ZToxgvr{N2p8o%0_C-;{3HdKu~(L;avbxw>5yb+)d$
+zesHh;a_I^@R}H;ewavQPj9sy;z5C_dmF=#mnz?)1d$-1r{ob$ond?_uzbo*=O;h?0
+zzP$c6@BF^)tD)^GkI#42rYpEW{2a&R@6MNeh#wbC+f-Nvmb~_zZ&p4li=ltWhvGxq
+zw7Ua7-&Fme1FrB*-ELg9+qd12k9$1oXRaCXJ;%*43!cSdhn_-MReP_yYBn9_^v&Rk
+zaoA#g&4z30_G1qrVIzD^hS>PV>yI<HuZzZ|AN1RHzn6Eb^RMtbq`H$|m&NM+xSzS7
+zE=A~AVC{F9PPcp4cJJrzvhIIdH$sMYTR#okZ1}=$QCFq@7B-2!;N*s9&NmSH%Dd7J
+zzQc47N41(ZoeD8Z?dBQ+C`O3cmu}U0T}QiyP<|UL$YOewgZB9(A-uT76p#@|y!Bnr
+zS0Pfr!GwpI2()P_NazKZ!o%P*Jzl^#^WU9iP~Wr9?kU{2rn_gKedd3z+RkIt+oG!q
+zOnR2N|MGtCJSIH2W!K*IQ1-elN~~2i%`Fdu&mfD8Ke+zTthOCC{t-_s{cz_Y)kzc!
+zQ_p-M3oiY>ZVx;XsAbnd<cs~dtgBTXpSy4kXNOs|J%(BoWhnwK>Q`O6_t>NF7j9@F
+zp3;X=%C1@ubB8C&aV39J*mv!%ZwhF#TUWj=d$${5U`xExmcGVf{f9j!u7>&m0f=Qz
+z%eJj@$vOj%s+EUeqVuz}SDlAsZaqJOE_Gw=`)6lo=X3WnkJ<eU^`Xq&FQ3mJ&(B@a
+zyV`Gx)gg}-=Gvw{gxz)?M=PuMV*Kms10}x2wj7SPt3FUau{3`gHAd^loj9F-e)f2-
+zX9gER{fC>$)}8lx;#Z!zKfihTW7O$>TXYae(WP51#lDxLNRP&UF?kfXIMJbnt9p?}
+zH#S4HgBlDS1V2(vR9b(bGvX<=$sE##e$LOHzyen*-}lMr0~Bc7Y+dTNa*DUYgL8K+
+zjt>U7sT$wQp}c>+(c^5|fjULkTEd=IJWN{H@>l%)h6~Bx`@^eZ*wSu`s)oFtn!Hwr
+z6&!1gVe##evpxU&-~Ri_xw$MIo*E0gT~)VL4Gn7WioQ8N``pI6E)JLUVZ*`P-4DK~
+zlTYB$Yp65?bm#}aJ94Ra+Y0kygsU278{f9ya84ub@MwRLJfb;-IJs23WX=}Wx$9jI
+zHDBTLx;|bC&g1}btc$S@Z;3Z@(A(M<5Nq4``Pmncy!krlN!Rv$wyVmf+H7e?+v2u@
+zMy|Vd=lUAQuqcbe%k{eV15B9yHQ1NCx%~0cQA<8zT-w^@et#ufnV)?b3<j(8-KMhh
+zg)y}Fo#ubrQ*u;TmxPtM`%%oMZ0{fdcqfSgG|~NJUpTj-rn{J*eHEsO{u-XQ+xS7J
+zYZ2R<0v>POwq-Je%-y%J!DMbXHZ}D(?(ep(VFi5Me^}L{I_fEY`*MEvr?6nU>x>@S
+zhqDqrZ#F#za}w$1?s>7=CNADyS+$6~4bQydG75iFds-oOLs8kF^Rx3u3K;MWm1a_x
+z{I#h{v8!r{RG1xMxZ3STeKrX{(`&B*X}Cdq{TGW%SQuo8W4UY&ZZ&qDEN+_27LMhL
+zA`^JX9Iyc_SHubH!fY^cYNy6Zgy91I@lJr0%o^e#53ML~p&xvRj>z`0Zy6#xgaU}N
+zfw6z>p!xj-Yuuts7k*PhS#5E(c$ehK>fWyLI7A93e^u10u?Fl(6zT{VK%Eb29Qf}e
+z;@Eu=y5B~G+)5PGv;%>df?GowYaN-t0+ozd*<A&v1O52^`ya3fc>Om6Tybug#YgY1
+zcuW<$$4k^8#Khb9L^!kpYNaa;QHV#6kqUn&LAl>Te)mBLCWjM$Ehp~2i^}?X1oZG8
+zu(xk(JQ^SzVU@l(ySIR*G%Im^Q|tljhJ0J}Ta1uc0ksB^L4soirC}(kVTn{AtOf2|
+z0FAr(Ie-46qUq|Rz9|Pl?ST4s!-acKKTTDKa%@IOFKaxcjJ?THVl13a2Ks|jSYdyj
+z;O3*RKn$WGLbia({rjwy(}K0Tzlb;Iylt~=3%;<y@qMIaVl#-eTstIHwi3aD|Aj9h
+zurKy|n#qM=7=j#_2S%>2u+50Grg91_{V<F?y?pEIz3gDwwgcVN9y|AtV+E&$CxY&{
+zu-oV-j`9I)@{8an=}v*^5%&;~4>Esvj83Z-C`4Q%jadSbO(222T2?jRfq=WR)0le>
+zKmW#1JMhc_ng-9j7w8oOSR!?}fC7`RsvTCl_bqUIc%{OWoUI+<mA3^!fqDR@XR@My
+z>l3S_OU3*M0M}e6#4j3>gushqh>{Z>4jwK`vbbngjKaO&7ac7m`hFtP!hnC+dGzvo
+zDmdb(LKent;59~mfXarB9E19e;2esPaLw^J)mQ)XY>X<b(H(<|l22gb0?NJgb)Ulw
+ziry=H*b}Z=9t31n0162F1bRe(_}&kSe>D@^!yD2WQvU$Re2(DbksrXU2)J>=khmnY
+zJ?-%%hfz}+MNHx0B&`8-STld;FsD12dGJBz1EZ+8D}=|{<PX;{Ip&Lo8L$j0It`_u
+z>`HZqIsrC#&b+|Tx@Nr8|G^_zm9$Kp^sc?tA7I>`(+PrdUb9D;i#oCaOcl7)5fOI%
+zgh62vH5?dlTGM&P1>(`3cn|Sk-oMi%7!UNtEx+yxW-M12zf;LhFX(^z#Cm;EYQ9(>
+zBuAA{OAEyi*DrqvI?OZx5#c+UoF#8ljD@9mHBe#%;N;<uHGpp$b&@+zGphO>c5$n_
+zml(<z1T}aM(OV+uzJ(C-7j1XPX%sm!H_Qdt0<8qA;1+Z4M|=!0W!LMxx-;=?fNeWP
+zHIkpHEqjycuIS#|8$*BFVsnT%&vjer9QyFy@+Px737M6uW<QEc%GYp16zm!SiYE!3
+zXF!xw4oN>#XLyxb0HEk#boH7J<_dxp>*U9_={&Q<UX5|-Da4WwFd<@!R8Om0Q7NAW
+zNBfE%^|^(7I?(+f4jyiypm>4DlLY-)JPJ9YLUUa?H$*cP2a<oPZdEZUHIg9{0b7Rc
+z;K77HNYrhw=AkkuWS8b8qpHvD>rLmGWaYZ%St@-wnjmUrD(Hr@G?`NKOb8E4&~oZ6
+zOw;x6tNoswf^8U?CcU>h3GNK%#@C4XAwxVVgbw|fZ*HruZIot!CiQU;>h~J1)i$8=
+z!Et;Zk7G-DKQ(`yGU<v}lmlVdrPQ;fcmg^3;4Xnf)U_q=-t%%X)^nYPi?H;GxVVzp
+zu56x}`{wJXj~+!xt$wx4x5&cW5m{6Opn0N~0a(o@%h^}V*PuYfdvi6t9@0nOwc^19
+z!A;~;dP-cs@0o!mWJ~nAy##kg7Dp`9ov>w)j35L$SQ>u{z<5y}-a%^bCJ{vjXnEkl
+zhJ_+vkG<N}ExgWtr%3t35In4)rCyk#d(i_&9HGtASJ}5I>`)q$=c|0JO*pevC_iQS
+z7{jw<8!GFegTcYT`gSBWxNq^~!TtUPm7_2k3J|7)xxIOfFiQdmK4~9l$$CZ#?_1=#
+zr7!<5i^_kY<3a3ufSj`0P~dVx@eFOLMr{!_YSf>_L!0T*&ZZ~{{5{s@&_)Ia!D+DU
+zaW6aceL~`@)lMXuh3!SEfeSYw0~65Y$%*SanOYP~&i0x#0lg9DZ2bzhDcT~0Hj(zA
+z#!{`OfS(a&6O+w^XUlc~$P(G!zPY{(sVDRneoBAM|ASwRX1c)Vjd=FGUtJJji;Gm(
+z<%-=B;I|$7Fi1G__4x7QA=^=GG<iBWQ8A6YCxB-b{HKq*&0kz!<)#!u|B9zDPZ%DS
+z)pM_#1JDJ0r{EMAuS@hNf}Y2Zo_^^rhdT<~vaZ_E@AI3l+#BqVp6w)~77{Linu%+a
+z-SdCFd{RqW2{!HRJj!alHZ(+IEyA=J0T{l2nm^6|L{3stVL5(FV|S5R?fgK64t7e6
+zz{621N*ty7BvFN`(G|l1J${r;fbI@a1?bjtCduezlm<{#zO+EABjY4^u);X?PE`^T
+z6Bu;r=O(@<SIAp1XL<Z(;xVqAk~WiW!C!xD1co81jZ|G`Dse+(EfpE6%IMp_w#(qo
+zT8(I!Y{+!;%VJ;!#JIpW^1^p~_j3dQ5~&Eu?->x`2$8ilnxBg|lk7l7nL~LH9!VQb
+zQ<9A<P7L!j;@p_ii(H_kkUOr5Ixq#26|=x<eK4Rooe){O$wetJ@I*?#N~V%WN0Wbm
+zCp8%(h{A8t3uVBrlJNnp2sbP=f~4`$12(15XULhdaLh9e^arJ=eGh~zMX@e;)8NkF
+zN$LZ6365u6tm0adbPZn0gp&hS_a;`pQt=ol7!t5<v2Ism|BlML5TMgYF{&5_d0y$d
+zQMeAnY05pSx(jMCNn+Djx0Z;8Ez^H+eX#1&YK0|pp=x2VNEQ)`CwNJqp0EbfxWL0(
+zYVKk$*by4?j#8mFUAVp?pyC8$U1N0do`c|Mbq?85ayw5(LC#vJm0~Aa27~#^D3T)p
+zggDy^+cQWMlc1DUu)IRJlAq;M*(_0<*>oD?;Tts_71zytgL%}%Q<`sazh8e#owZ=B
+zzy=BAo@V{7eeW|4ku7lqwV(gm17iFka8FvdFkQb7j3$>^r2LRPn5%EwDZeSyL9h|5
+z2_D#v@YvC@2)VA?JDw>bb9<+iC1c)@DT%t<(MH)O=9+18sL~XX7`-5G7>pts#zeGR
+z-FBisIH*4*p6yywkV^%)8>)XO5vd?uWVKTFqa%r28q{J}4V>aJ{BvNjCD>(BfSTs+
+zz2NgeQPYtb6{)ZFil`RTWXg?acrv>^|Bv(eqxqwSA)gR8NR}j-1jZF0q0BFY$*KYU
+z=<m-l-5;I)|J9>EsP9iole?q(%>VtbY5BL9ZlPLEnp54OY{7!g3dVm7*<<(l6a0Jn
+z_|Z&5in$~Tp>8+!;csI>m^Hb)$-CtNnrW@hTM}t6%9MEnl{i9Zt8pjcmTU&uK}i-h
+zXY274_4l@2g@S()Migu>%$G$mo#&60DpvHhAm%=K$UT_|YT}czA%=y*r<7Kxr?h;H
+zx+SOGvn(0XST2AhJA!}flSjacGRH}vlU$CNs$kSg5+_jt$tk1?J6Y6~5p=Ij`U0L<
+zy*3x$h~j16oO5{X0eGeKc2vy7jV3z!V2L9ZD;JYdzte+XsD>><UiqIRM5C+v8g9m`
+zA}>rD&+BSK-}?0$Xu~7v38bNE5!p{pEQKMfS|lU(Qn;{K4R?RtS0AR(8*qMZYm8%7
+zJCb%7^ujGGsmF&&m_|>TP5`eOEkoHQw`K@OlK#S(5*Usjca{_zjjCzYh3r`Z_Im6f
+z=g!<oKr@QjxC4=V7eTZVOo+D3LCOTUHQtx~JEMyxa6vq$F9zqP1$Wqa@j;KWe}*~W
+zPja_VZB^(q#{+-%4SisVEVAtm4|EVPUO%&l&=2iCPy>mUF8xXr_wyOXqnz-GB;|kt
+zWE#$1Gm<P4#5pxz%y(r}kqM9{v=P4-xIq3EAzcdYGby+ORm>c{!5}H!X)OpwIkf?a
+zl<6f1e(B;)R&>lDWFgy$(`z9!&~}23)=Ve@RGcyV4PJk{d-|2N`6NP;P6lhQQ7jn}
+zZ0Sk)O9+ucJLyn7zxpiLeXh+=c!CXA(syxh8~R8l?H*jabV}Tah=2@r&0c(p)*L8#
+z)|vCug0D0!ycJ1WABC|qk<5O3GgZXpfWq>~z?i1a-BrZR#Dyxpl>KMMyVKOyIt4sF
+zm?b62aJ+w0jxR-#Ea@pB<<eEcFtb5`-42oc4n^Q=+wA@RqDg$x*KqCEQU{oHFlXfb
+zkVj>5UgQWTwN`K-o3*T`m*VYjBe5-zBst~&USbsD2gQ(448htUNXbL2w2^ksNJTJ^
+zcV8%o2(>MG_`I&xURc|56zn6Qkm-HP7Jv?Dun&I;^HDF2=$KW;gNjay`>>u_>Jn+d
+zhphM?nAC;j+UiNNnz+|}`}XGh>-_m&UtRuqo!|WM>h;TCo=4&hzOru>kft-(08<xT
+z+eM{+aXLX5Yi7za<<XMWDAt?U$xs(kdh3sdmLu3r>J&x)K9u96Hb`V!0i0+S#q@z(
+z{H}kh+2OMqVcm^a`}&@^{$C?SMPLb}PCGd)r`M1et8JS96kJYPTvNTGJ-{)nnN@tM
+zswLfo31!%a($>syffL~M$*fwH-Pi@~4vKYq$rAQt+JB=!27gi_o5)qM<`>7CPga$V
+zfupU1M1>+)g{DtCMbS`b*7e(~pKo6N`0jt|<?B~(-@JSN*XLJn<%2h`o?lH7$9NAr
+z+fdh2hI#ONc7CiBj7U-o&s`VNG^Y%y3wT0kut<SP9J@UsI%kF-6+j4eD0O3@;0gLA
+zvlusgSV8Vl4-*dFOOKLa9%C6zrW0YwQI6Tnc}l$Dh>g3I;U}I9U!)9fB%~Pijmdwd
+zwg`n7wk=FzpVlFjY>Vt(P}TmKJ0g#1-@S5wM!re6YjaHch5oT=kpx^lQ=hLWG&U3_
+z&OYqR79s9-&ZexIRd;3e1fEGBEJ=V4h^R^E3dv1F{W+yDDV@L)>YLJ~5gW-;QaH_k
+zWoXSg0v+F!few_?E~gZHiKmSr&X0fD;9%t!t|iXAV+jmM+q|2Zsd5AcledJ^wi=0d
+zA=`VPStr1MO(KnucHGi#+<lTZm*`}zG6W*|rY-7R+hk4(H34HAL1p7iMJV%qH`n>e
+zlW;o)Gqsf$F=+If`f~o<E`###AE?-*?Pl!8vlov#IujoQUzvw)EcvC_X*Pd++(2{e
+zJPA0Y4^<lR{-xe2X_@;axX9D?zZueoYDkJ5E^XP9{sSv?AnuHzBSpL6u6@j=U9l+`
+zydqWkiIh)MPiz0KMEopFYuM3-upqYF`i~URrFtFZNxj!(Q`@+X9r`R3$%6I^85LHd
+zso;Y(GryCv(2-7snz{(zJcoa7@uYuGV6C+UOB>)+iOvISng4X@l;@gRUJ<$Maezg5
+zY4+Eq8F3JiFqU~&TQ+o`APwy$Qz9USDq+_qCfYu~O8Qc!5O&NSK)DoEN~6P(&#|Qf
+z%06TvvrrUaztpt!w6+tyMoKhKiFKr>EglK8Y{5|MG}GF1V2(pW-vfWdk=lNtAy&04
+zpVV$6NI<kk{Mu@M{v;_&EW4`Q_+#lAc}37CIl>w-12Hg^EsK?c2ELws6TPf03ZI-*
+z`S?+kMqpnjGL&DRKYo<spE0WV-~k>ApX#L-gsCiA;8ab~8wHeAU}1;Qnugy8;{1e7
+z9T1P!%3)57lePy=>NS5+m!IY<HB}dS?}V(JNsKpjymqIgrFQQ^rM5B~^Wrkwwkx+B
+z>-UM9eHLl8b74@wc|rm)eD>Hq;b%|N&z`ua{7e-51=6ICs^F8mC6g&&YHB`@QJK1g
+z1(DC3g}O$lXGql{6g2dSsPCefrjbeI#^_8{LsRvYagynh!rFiDag?EjE}<!>z$-+Y
+z7}g0b2;{!>Mowxo=A|%<v(T!VD7rCuJWSDthnPC{SjNsi6_GRpag-Dm#L#JF9ibDC
+zn5=2>SWYe^R^Y6rl5}5v$RhbRxs4FjFN`!hrPA!NAVV^KI|O2_pk?t}p5nu-80^CD
+zV#>`**v=<xXefV}A|eU37&ufByE3tX`JHUfXf<WHqFf@KQ3PtN(R(}ERm$$*LW&j|
+zYhe7-{f`9lDOo_}O8MLA0JFd)hr>(TGtSO*t)U3QK7+Am(y2XkV#QKlZnRU+h(>_j
+zrIH9mS?tB+)$JzEI>KFcr-z6by>i}HNNT0CDllF~CJ=vChlZo$`)I-@NWIM1B5VhN
+z>iXpmX`_^~R^dgrD3=Rl;PIx+!PUiqy)r7SH4bSMLQ0bA8x?GjRT|}`em5O~w$?xe
+zsx=AUpoe|v8k?HrBnkb2vGkZ^w081v4MjvG9onIBS_pvvWF~Z(t!lZtP^{H)agmvt
+zgTDX8X;*)2d1wmGlr)TKlcP4mgmXT=aVSpa;g++|6Qaz4a35i7>5U}4ai`Z#^vaRI
+zeV8s02BfF0#$R$G28u=Bt@5$T*|Y7-D~%TY{MTOTAx%n-d$sJ!lXk-d_Ck{5Xou-V
+zu}GQaS8skfy>+Ou=csclLgcp7_6I5Xh@)adWoUnu`ig9fq1c3ov<@T7HH{OLs2OR+
+z3(K!gNff;{YRxm!BrL!vlv1Q{848alG9i;EH?<@qIF{^Ky^%&<ic}j`jyq_rY0)K3
+zi{|S?ry{&!B%dd0a*}XY+y$F5>TIEj^kKdq`>jmBP;n*&)5X8rWwUP<%I+}aQjpfz
+zE2)2lHdbm*^0GN?*dHTQKIzzxE&dnN?Sb1s;iWBb$<+fvNb2iJ1wbK$Ha}@AFj9~u
+zfmf%X7hg-;vQ>4cGPLI7>%`?K%|g>9gmEu-vn)jtpP@I?YAiU51X#$z%+>tSrG2*I
+z?2a@-?pns;7rl4Uybsj5SqtTLkhWROafE-#RxP_@39MUzIJtFDYc8gRqlI2Xl5)_L
+z%jbIcTimdz7sX%bJ!)!|&|-3Ji=j_$FKP9?4A+yCm#K7t(!3C^U(F(Cu2-JSTOQwg
+zlH_pL4!%$CJYgr=t(z<`?KBgbB_)8&318eR6UBaZ8si=L6pi>Ydgwt7SF9v;)A)ZC
+z6Y7ZW#EVic&ysJCcNn*Rp#s$VT(&joe9$Kh#Fyn%!b<N(PsNX!@C4b!6U_9EXTB=B
+z?vQa$JhIF#NQc|w;nKL;Y^Lq<0-@!yKo;*@ThE1sTGAAH#v$kiRw$Mcq?hTZ%Lj^n
+zhN3e~=E&0vLRvKYowS8<Bc8bGnHYaeAYo-e`LWf-!c$20HSVqIvGflOXsyr-&GR34
+zASm4;?i8*|cgia?`P;uv53@ADYq!Ey0x!nfoB(YnhvBfu+D<R&y}MU=nn{BF$y@fN
+zSLi^Om*|7FI+1PRchUiKtlcy5Jps?aRHa-w`DdgT4IYp&LWC&g&j@H=RJeb+k;%;s
+zy7T_HNnb14oz^g4jsq!eY@as?7+ucJUf3UPm?F-zv$M=e5J@WW#+2cUU`(g<m)*L(
+zSEkGW==9tL>4mbF7MMgk%Bglak5f-5P_Ay@EAeSNr`3){5xHd;tE}>S_AHdXu9k|q
+z`Ijo><^%6trd>x_Xm6eHLQa2N(Q6xPAkNAOh-AWYP?tV=kxJ5zv}^HxeJ80K-du}y
+zC?YdR-*!`zm);&1*SqsOqHD}A*ov34^aQOcV|js`;A;>2Z{U7e{`T1@*ZT}@+Zl%2
+zpbcD+Ht+m&nI2e7DU63&O{{9lCflE9SlIpED?a7EcIS)umEM9B@-ct1)N-jX5G>)U
+zuBhqj=#sdPf6$ij_rLv5+I7I|sj$+<ZvddUTRE+N)VII^D3SbuKT~p;lr2O$$ws7d
+ze=_cARbK`!!(Rx{QvPh>LgdetOy2**T>e=Zmt!Y=3z2P7vfIkTTA9oKm1?XEsO)9z
+z70fMPR4OH2^(IG}X*GW~<k<ID{OLXoPIS){L^Lr?P{dt`%QcHI@FZGia>&AMv!m+b
+z=~C{+Gg$!RrQWNvoSj)^UD3OlZ8Ox9jxeJ-%JY>WQ7O-~Qlumv25T}r$|lQrvnNHJ
+zL_}Xag6)xn2nh?JSEygwS<Cgb<jz&(EC}b-Um~MnhFI;4cTpz~5zc;^)UJOib6e@g
+z!qSAzup7AgS1Q7uTe}{|?Z$-O*pR7nc7BuK7{{}CHk=C*Mo1@J-?*?Thz0-vpAG;3
+zF#wancp8&HLJO0>YYu;HS50r+HW0n*R}7Gwvn!!VbE%OYYzOGJ%?E5J*DhD$u2@T?
+zKvHXOe|_H!DeZ>?7>1T2hcj>9ycxZrZ`ubFqPDdrWgFV_Z)c6&6~&u3^tU=-p(xht
+zb<{7h`19fG7phfMo!eDjZ?)%>%LXeHTIHKS%irlXZJ<>@I3Itt=e3n>^owrpZurN&
+z9$YZdd86gPo$Hmc)%R6#w(UmMPvbzJ?9N!t3v5npI!)roMqaaTMRB8oo*YYWO(3r~
+zqv;wxQPTGSN5oOQQDbazdsNZvH5q&2-bTk~tu5)7p)<9K`I=A)Ah)AO$WaV!aA#3G
+zwzxR24&F6m9RYvf((Ap^&*VoNO|NMTI{a1?OIqLE{PW|}{ln_(myaLT*Su0Yiv+}n
+zy4Ah<krMFny}Y}+diRdp=3iY$3cyQ;t1CFNvZR{E@I@3I!NAt+7E}BS8aidG*6@jg
+zq&2i|7?9L#1UpjRal|6qwd!cjW(LV7ccXf7*7Zo#nx233K{vEH%&Ui0lR}t&KWg8f
+zZ^QyN(X)vyO}nZ=F<eyu{$r?+2qd@)TKT%g#heMi4YOX?X3&3(y|VX$=b7yUF|050
+zAz7Z-IgA_RPccT-z1YdnRt<jf!-BTX)5*T&#*F~0<@+cnkbTrC_xU`^;V-QRxpUC?
+zXQM!Mq|kp!j@NRBpk9fSc=n*k=rsd}0G)5D%m4~PfvE@+IZ`<J?u7Q7syn=#-q2fW
+z%ua{MTM}pa?q0=HdkImvvh%tzd?&{#u;g82$9{vy6!T}Z^MXxLpnz!Y>^NWrL2KRU
+z=5=^=t1P@I>9cy$)H!f&imsn*1u~6>Ht;G`BmjSJE^6UOuly6=PG9t%3s!eJO8Mk#
+zP`mg$+G1+^SdS6@PL(t}{oDIB1vnb2&Z#C`aD0K^!F7As?DS662kb@Wqp3MbfG9u&
+zR2?hT85JtL8dX<~HlJ!1wCP;^6bN1%S81=hkxQ)h8q^77!J^fS_x%L-87IlRXSk<g
+zi#UHHAf$d|aRPd&jHN`KWxHI@DSQ~`ZH!%#fH7k-#|fw+iWi5wLl&^Ck>daeAYVTa
+z96tegYqpvt!Sw^oY)oh3VUc7VY1N2y>=#K~6Hym*(E<_yp*-4iEobeSKs};wkft5v
+z_W-p8fiwl=zHT|(H2{Yu-=5RHq=%?>`ci+S^64X+tHkeIS76a<n<J&IG9A!+;?f1o
+z&}wADjbZK@>EaU2DWVyj;+`ubRIFwJ<S^ZdUW)3l;(`c%wwBd5f&S?6R!L(BsgRIL
+z6vs}?$KzXwpx+yWCrYHC-dtaaNz17~-yZvoV<bI@ICf9s0|AGKFmc)ejK(b{Eiix5
+zjNvx6)%sQHB>Kc2PTCnLvYaA$;2M;Q_ISmULEiZdw*)BhdTKSd%$N=+K(pE6PsJR4
+zfVRemxU4%B!qk?4DZ)d41A#>qAT_MfSQq-GR*CfTt<-A~tkw+7T^!kZ*GrD4C?;-S
+zCmyp`;*%)-@>J=?qwzQ@*t#2WIgft`3C9X^0dOpN<dC_5R2LkxiBp%(E>pq~b3K9u
+z{o_dw6)4V@bJM&go+mCD?ln(FXQNCCZwf6<U8M|bPDBDU@z7UtThPKb9sJm;9@VTl
+zU8&iA<h#~931MW}YpX0%!aC-MYL?D+hurz-t4$daX0cH<n?0&pR<m@`0quYAm-1L?
+zAxYHwSf=RNRpx_C5bw&&aTsU0H2tJ&>(|POqi5Qghl?pPP5?~4FEJwRIWF-bId)k%
+zC+c`z{8};?J-X8A35-`~mQl5gGI#?$>S61;_)s3x&rJ(z;0?-_F|LG5$9R%3fj#Fs
+zjB<2c#|#sK4E%t!V+&s;xqyHAF*HJwOM3w+L4O6SB!^6aXUHqVnZr;WC-%U)0DmrH
+zDD$XYC1Nfoa%IgB!*Int!=MC|t<GEnO8nfxRdvp~LmvH@2dbaRu)3q?)<^(6+!`4Z
+zx=s=-4fQm{iveYI$HR%p(YIFv_i+56DT>#xr`az^p(h;Xa!(boIsJc>;N>!_9%ATO
+z2!5ty*GCFW+s^a?)s6Wmy#rV$Lnp$SC-<q-Ea-eX09qo-d5~&VXv?{ipANdY*Ci&%
+z02K}vmj?5n=I(ULj5Ov>fN<Xvgp$8iPCb9O5IPFEXFCr8c}`AwCa7Nq7ylcPE__v>
+zH{&Y{k^v&%V(D>EHq;fe5W<147=rmj6Xtm!a5D%w%(D0&vuknQ1{wnd6aWAK2mr@T
+zCtU$iv^fM8003S#001)plfifzlR!coe_QQt+{Tjq@2B7*Sm0hnV@gg8>{{>zWJ$i!
+z-PrN9on&|acsOLwOh^0*o0L5MwePTRxKFa@R8==QvJxP+r5Uojx;{>ws_J}`{c|d6
+zKOVAOF}m>N$v59*@7xf47+qVsCr?({b<^YPt5?~k>&7q+MIW-V7>l~wW!s@^f3kmk
+z_~~sHrm}P)Y^S<DJjGk@UDvxdAKZ3uVW0K*+YNUvWE1|)!ie4Y*oSeL%5fTsIxo8x
+zdyZM-cSAAyu3fxT)V01ixUw6nz*k=vzIIg-W$G)enboe~3wZU;chf9sQI7sjwtQ6t
+zmp(3w7He)MUsu_^ANSofW|gbmf9Ttt?ub<jeXYEmdOhsWO>MOr2j4Gbg#25-n^g9^
+zoWcm**rD>iF4~aqq1JAIeyHZFt|@#=4PPG0+Cjq7^<&7+{_lVO_q(&qx0QniE2^a1
+zW(^kF<8<wA+*6$EJ2${8#o@9pLdf5^qL!a<nynjXJ7_JtZM*w6D~59Kf5t=a<`+ZV
+zjaljMe4UBfUS^edqyGFY{yF@#-3EN%+jK7Idi0I^(zPxNt|{8lmtu(P&!ZdKqLxKN
+zwsWl;xK7(;Vc+#VRf#`Xz~eAMPyeCVLL{F4zunMf#WZ%S0L7Oh_JNgsj|0Gjbs?sJ
+z1Gr&#$bCC@_^H78xb=m6f9%=-qYbdHI^<2->^;07(3Q+@P9W5XV~o&uQ;g*vYjd49
+zJ_K$vK!Q7*%=U9_*0`~t3uK=9jBc~3yYkizdX!%nFW3XJx!vIPRPSK$)>X8N9mgKK
+zsj&EcaiFC_SHp8OTo#Wkv=tBV_*>VN7wweOFwjrt_j27cYaPs;e>D^1EoAC{zJyG4
+z$gG{<!*o|Yhzb!8$y1!2p8l)4{0F#DQ)G7li|T3oW|-BRoX+IaL;XH^`c2vgYuDuj
+zo8rT5H|Q$r`1s^bk1t1CGpcZ&ON83E&fI4NaDB+m_}$wsdt1ECZ{U|L)Sb5u;6>}p
+zKI&uUSMpv~O?{11e~+rQn~(YR+iY~75dmG(BiKdSe(3I8OV5f>^g|K$@VI^&ul&x1
+zQG>l5Ra<{oKktSoDiU27KIO}-?*=(+Gu5NV&alA0ycEel6iw1^u7Q<{x`sSBaePQo
+zP1IxHqktpq9?=dln2jA=5`h`IEgZRkk0RvM${H;+b1_s5e_MjJH*LiCD_`u|E--d8
+zPjK<uLpJW6y0kbGVZ?$I=5qPZHv&@T`hlN8dw~`^yUm~9=4Yq3#}52do^LBJcrrLz
+z1)f7d4T#RleRdTRikF|lIgx^iBZb%1PjB#6%b3>q{0Qfhg>arA4ug2zK#pw(pcQ)!
+zMKHr$%5N|`fA!#6ETQtZT`R7iV*BPQs6$iAaSv4A?L`*>Z{l>WotpD(Y86HKG(LtD
+zzX?jsU|Kooj4#Yb`{gWSs5!_$+z1jqIlPhnmX#(UmxvIa!TW}~P`Fei9W;L6#B^Uj
+zX6wEfD1H4BY16Iw`m^u%0?WbV;(;do2G0qwZ+3e6f8z8M8Rgk`FP{JVBWT@gvX^70
+zbHKR1p;Gz|8y`|;^z9uz1_B;Mnp!6y@tP0;D=<(zwqcy*8zj%2WX&wvD%-fayU%{T
+zy!d-|aY6NiCv>&uc2JO2L+C83y#fpI_Z}cph}DVmKmTV27h|pxIx$fLjrs>pf<rby
+z2Rb^qe@W96gU}Mfa<&HsB8|bmM4=jD;GK3>Gez|6WF$mYz^#tKv>!YW%uoPNzMtAG
+zv|va3PSx@uCO;UzysfF_ujvr-C<s{QN7pdu6ow5<g?pqFIkg6@RZ725gmWuFGBdkh
+zVDYMAN^G;OccxZ#*RlBAwOw<_)06P+lvlU}f1P1)J4j5bU}s|VR@vrY-!h-(zjYg~
+z`vV}3B*P2%+)3&$Noo+9Ll?p-ZkfS>qt{&4T@c8VefTQK7}N8H9zQbtWjo7cyQFBb
+zBR;Bq>sIC9B%7oiXn2zXh=%C?f^X{r-iGY23lP+1v=`Hsa05+cVyy7!9t#qKgCJzv
+ze{N`)O9ivVTVh<~5oDGd3B|_oww=I;91BY2UOys*!ON0iXA(>R`SQU2W^7w&u|15^
+z0}n}K3SD^SLUK;q74J1d#VrRA7D-huB2%0h-U}h$iJEN)ciRG)?IdG>HB*y;5t{3g
+zkRT`$6Uy@J9Tjy+FMchqj{qHw&IfU&f7U@~#G?@cGIOOm<6LsGm<8W=?WV)m!X|_8
+zxPoycAQ=!pLMVWrQKc6xR5o@KP6P)~{idZ6cL$UVP%<zwWp2oII8QhLx<O2<a^Enc
+zV-+a~j(EO^BCtUCCP2Y)siehD(Ug*g;Ym!xP86jkC>;?|9kueIL|pI@sgaQ9e}RD&
+zEZSfL{DY{&W`&p=thW<I(0dW2PJBe!RdD)9EL{|Rb4jyQ8k1{!AGD(`7zx;afYnsG
+z$S?(R@%pIMn;7j_X1ud%i#xwlo$Mx>achns$p&$Bi}>3Nz*@*}g^;;q-4#{NV~gG1
+z4ILELD3ywCxRSKdfg<dSb|<(wf81))8VWEWmAm%0@F(Sh!rQDqF<cLY){?@bU4u{h
+zSn7_kfX%l?l(yhwOk0T<AVVyONA2$vBh{`y@>k;$RDrOm0KSKh@Aq&CWdJ9c;-SK4
+z)(uOvW|gs|XCxbQ&_5v54Y*N>Z3^hs5+BnuB{(;a45*J=dU4sg0oHX=f5?koNFxa<
+zxyAAk5h;tl*m!9Qs1hadf{eCU3oowYlTXu=K<_naT)SdMnwLt9ZDe7N1jyo15<A(4
+z90^%--S$m3OzlkAUI;*~QKd`<5{k5>ow-!&`MYAr$c29faW(bX=pRp|!shOE&Tqbk
+zq^l>X>>^#jgW`=d#>Y?1e*knbCpCz$k4RM!I$hw-Okm_m3fANqH$*z({-S9yv(W0$
+z77a`ochUH=fZP%x6C>@UTFb|dT&KsmL77SIYo&^)Qe4bM2uNZ6>eSkbxt8<82zPiz
+z`4bei0UXo-w+-7NJh^1cTp(@>$!agLf{0pHnniq1pE)d;j1Xtze`osL%@zIKN!Bai
+zl=qo$$e#F!b#oNmbF2JR4(;G9YE{!8V0CmW$iCta2o1HhM8<1Bz`MlK$QeyHnm{HA
+zR4B(I-Gcra=;r)E=O_od)C~B%XVk|uWt=3UJ8%X5rfbEjyYB?%3~G=mEMZ7<sVoNK
+zoV{Y=aJ7N#TpUIef5&Riv<EUKMZ*J4-|rF63k~A2#99&rKsy^>A&4ZRW7)f4#=)_M
+z7@egMY>wDGHj?fq3kb4{Yho`5&6x9TSx*&x)jU`^MZSm}v4eW_pTxK&gSEJ02}y5P
+zHGr#rWI+J!K;-2~1x~3mlv?E^hj8tkAG)>?YmoRS8~yO{f8)FC5`ols5EaGma}oz(
+z^(*b;R4Fe}z-E%-L?T<VK8z7=ec!w4#E`X6{zunS-t*cs$!Q})Lf$~;njrJa7GHd=
+zBolHBk0Ls00BvjuB=WquFDrqvL0GWx6VT6!9qlj5fvQ-0N?=@MYfGJQB?Uy_>VjrO
+z*I>IgLn@`9fB29&TQq368aYF93$-r<pYy(tMJPTNLAZ_eBDQ{L(o-xnL98n|2I93u
+zt__-BRDx8B%{tS==vj{`Sd4n@n=Dc~!G)1xseMlAR^sgHZi5pdzWtVQqMfXm(ltvw
+z;*5satH0^aTd5yY3ZBC`I#rmwc9_=cQX!}FtlY{Te|Y*^=-M^)BFt*;Q_TKS3=k0!
+zd%kq_m6fJ+&e)nDP^!zW&1cuqY1itq(lxlei8TV7Zu9Adl&}Bm>dmKD?|=IB!}a@5
+z@2~&)^UeF~tCwd;@ZRvE=_;cGg$2SKL2^V%H!401@Fy4$Gr-ymFP$h`YA0=(P9-FZ
+zsazg<e^=%oZhc+nmp4pLJB@k^5$#|wQHd(MVNe=8cPfQuR#vXO+fxJIe_cT#e!qXW
+zx_F{=)V{lvuTpnO8QsdFudP%Xr*i~j7W&FNv6GgR?7M5*ZtiJ5JGExaU(QZXS7*;p
+zS#ovvERLDr{(7P@B6?<wOMZm&??quqGGtX`e~NeB@hza5l;szZb$x$&Y6FmzwEnn9
+zE}k@N1YEVK4%uJUCF2c*VefbQ^<SgL*Yfr2ZjhtReW_V(LS9-4YD*kW+7OF~5~m{Z
+z)(}{jgR286LOAM~X&+;0wbX3Xe%nK%-LzwI8{<O_6kEU5Ou^aPY*XuaQE#V?$x%xB
+ze;qaW7>*V32|s_DTNP_%?Y90E2nQqsVI+H)bGIcGjzDb7b51AV_9S!>mn2by1vK`o
+zj*FUG{G;1&G=ekcGcjH4`pbe}Rocsz@kjJQ@s`+zKb}QIuTUyKYdY??@RVqxMJxS*
+zD}a9at&>KWu6h)C`gU%x7Ui@7jB3&_e`_wZV#6`|wYmA@XJ~B9vyfR&aU`)o1H%7R
+zR>l+~c}ilJ!53$xz|r`C$sD`ML2C&(hx9xFVh{X!>CGR9Nt)@Qn+EB{p-{G;&0(eW
+zEX4_HH&slGQ=3STW)#vgvsdHLDrID{EK2dqnfB7yKBRQ1H*pi&9F2CNZ3m=%f2lL3
+z9k->!N~PyGl@uB#1c9yI$Z7_XM0g*0&2qwWAs)+!(~POzZL;j-)QVv^B2Zm}W4XYa
+z6ciG+cNRa~@ED#>zDDPiS66e%ou*mWpV=usnp4h2%raC7QgBJ&_j$JUpGRd-BhJx8
+zP>?8Hwv(;9A`d{de}v3mLGD9Yf21Ij{fsk4UN}3Z44JO9hLrTV{4VR1oNR@xes^+;
+zWMlonl2bOeBl@pn6}9FbIaB)eOsw4k^V8F7ova>bgY}&9G-uK42_i^%#~u0^za<g!
+zy<aKw+i%Ze1%~1XyaHmv0CJwU!kA<c1wna3^80Luhn>?I>l1#{IqWgye^RNq=61EA
+zbyyCG$K!aFKx69>FtK4U&akl&jD?tMD>M=rGjf*CWrSkRC76dy-Lk(^8_!QqWx6Qu
+zXqA?eK<N<9uuBU=0W2~1+}B^`t7WS+Xp#M3r&-EHuPM`kMH&KVzj!>P>l)^Sn$w{y
+z&{DDZ!jnV|%QcA}DLhale@F{OV3fy<zHmOHL3%<XfQ_bTc`bz~I5T3rd}8}-h<yyM
+z-|d!5C@CyxR*pZ~F^*{uxM=qdmP_FDQ%#i$t+kwV#F<S2Uu~`|?+u9Fw|GxF9OL1g
+zvgL2p<LrE_N#s_+SN;67=#Rb;B#~NV9;b7(3KBk!?Cph=XKZj0f3s3kd}g2Cfam!P
+zIq{xFgkljYb}DDznGy439_62;IqHd4iuh94#41hOZD>{ui;s{My5UH}IPPj-4B6P)
+z+6*#WDC}NGrA;>;?g+PH5rY~``_*gZ?=K`kR)oM6&%0XTKTes-ah)n&dXWV_K}E+}
+za45c@;7MbJKdu$#e+I;6@YPOkOMPUJW;QVxY=AEf1IwdkbB*2e2RIlxo!&M{y&7Zo
+zyf@|g)P!i~ZDiEzwp*u+;)3NvwmwwN>S+DdwklVGPTjD&J6mfF$0&e$zo20M`NP$P
+z;hF-YJRr5aafTJGxa)?)Ny<a3IP^M6z`1k|nPZ$}$6m3Re~JxLZHbLc;DJ8yXaoxN
+z8JThK*hGh0m(s!3q4kRL?GEI4N^Pr23c=$A7l0U1`g}13Dg2N|cs6BQy6QY3UXYDt
+ze%Dqs5=O%SDZ7r%C1?%j|1y=lZsb+1GCt_wb!i$14nc9%&CZUJzw(T5ZcIZwmGg3!
+zo{nQZdveiAf4OH+sm8TYD_Tw$(dM%~R>&PQjJd2iKO%3ze?~@M%{g3?J-|qlG3wi#
+zHEu%MxlR69W)AsL){XK#$W=NWQ=yZbk|AUDzm=A-<WxyOv(Qp*YHnt4oqZm54CmIW
+z!hEh_mkS6BBFN<<H{N%{ZEo3rYOSqq0~2Z7T32z#e}`rAJ+ay4k^(HrpYRFYO@U_y
+z9B#~ZlgvS|m)wr)<PPB#JEvVQeId5=1^-7OIMUFRS#LUEbQG0kZaEoz=3?;m$%5LR
+zSZ9Z|NxbB6!e&n3C4gYn;0cLPCyj}|827<0OUT&xG2pbTZ$fOK61yBB-e%+`;l3eM
+zsuCXzf6fv?(e|)YIuE@Y9oe{japyHj*qsev#zLlru4H3r5XJ|s7oW#I905InfmCHj
+znV;fv&?;t<_Fr<e4YU)9ct1$h!M0U09@wQ*h}4GIY@0_DPZY>%wXWC8bu*#7(mv(|
+zc;(y&HvVYr@|XDvlv_Ns(ud@tpmGAcDRES$f9Hv8Y`i462Y^XsX?Dz>0RvWlQ~nXi
+z!9aub?|)l>!y_C_R~dQhQ)f(^t*~MVTr>X;f4+ZqdLC~;70t%)CSLySsU8_1g{fIy
+zNqm%kr9!}NYt1w|k)HWlhf*G+GqG!}*K1VHuXdAD<fKE3`-s*!tRIjc;WIKeoeMVV
+ze@!ZEnK%6jG)7Rgj;e|Sh09*g<Zq=y+7f>7VD_E%Y!=x<Z#u>Ap|naWD2X(>8!{fw
+zBiF+^CB<=Myl7@eM~$s@h9{*}rXwdnjmybJtG(s(?AE#dk2znweZupoh87^28cjmv
+z7Nf$4kQ%QwzE@wMM0xhZg!kh|)a#Q6f6-lbO~b1ml|ZuG@zTCA!d$K%#oq3MY(L(T
+zqVx~#r&ftMZI0T0+SFEch!**4*rz#hy3@XAzZGCU>*JHUIuM=n`7g74TH15hWAU^J
+z<)orlmM1z<l^8jo=whO^ndG|mI}Ti4Zjrm)Q58v!u&DS_cc<4o{n+^hNEL9Te;C;5
+z-^X%e$=5o>bz5ldfqG8LP{Pv`yk_4Mnc5C!Su6QY^tv~AVkigSFTb*O=vKlUKoJ$Y
+zF04_tUNm%!=qzO~I7?i&9A160dk5=$9UE@znItW5KWz1XTS)6@k<{6!^pz*$jkij*
+zFVEC5TVAK?W@?+8$A00;yiobef5}%iO#n`Pf;#RKW^&l=^2nVjpY0y6V+OsxC=sFD
+zOAxR=SYuLJ`<Z}%0P55~eJ~9dPO2@!sj<dfL}1CTAzjJ0@h(x{(mq_#{&x}L)>rXq
+zrJ9v1q?d3uvBFFE_DL+D?6+uM{q4wpFXdr1Ab*~xDlbp<QrSW3#v-*ce-)JMzRz|V
+zg#4Ht6xOu7T*NUMRpsZ-GDwOkLJ70hIv2+sLH*wBo-V*i(?T!%W&d#mmk)6=SByLY
+z#&CRz!WxIJ1@Opiu;)wMja`IzSJCo+YWmB=cG*<Rx#|uSRR=Yx*h?(`d{IxxZ9Kbm
+z%SPj&W78Z-STA(P0lKk}f5tQE$^lZrz1HtSz9zR=q#Z1@*67KP9${ypue*bGWo5-B
+zUL9XGaS<@&qLD=BRxV?-M+3|Chsz(X-&}lpee>h>hjqpqzfYI^insfvU0*zC_@-=-
+z?t`evCYZ8xy?%8xA%4p_tZ9Xp=yW_Uey}d8%IjrUj-1@UJ6bOkFPNFRWmvl95dJ)_
+z0Jg+4#`_Pb5tO(m+*aGh{sX>I(kAzUhK+|CsIhIgr%(PLvz-|Q1P(?>CtX-iO=3hF
+z0010Aldv5@f7_BAH*$UNuRv(S!HfDb!;5xJh7{&S(vD4vV~(WV2#14>u0r=ftS+?b
+z(!*i+!5`r-^q2UYOaN6iGt^oS;&c}ZNF*{(p3Fr5$-H-kKREL$G>5)5@0#M$wOwPo
+z(3p#ZE6lH_v)P~iWKNgnq6mjDo1ImE^iGLKr85s7fBxRv%9)Mric3>^)A+)5oijUE
+zyT&%ol$h+{!=?G&^tCC%{t#+cW5A~ORk`T=-mP5eF{S4`rK?O~J6nZan48ueESEE_
+zx2CjJWs^wf_+RB~m!6pO%GTybS(M^6ea)$tv)LPK8rNdg)^2>|J8PW59@=ea_LL7&
+zdB{^^e-&FATjAfzA6-=iO6#7@W()j*ZTG${yz!7v)$!};b3C%Uo$u?NH&0Ja(&qX7
+z-tQ_O8Y?fv4Nb-;Mftk)w#GX%Uqcv+P5<7z`ZL7#hbEML;UTx9Zr8f`xJw`Ee+`>8
+zR^o@b+4a7}AEGB{tfSuczU@VUqF0fdD!JEpe{u$OsPW_oEfx;qI;dlBYaHla9*14+
+z&DLVu7JI00M1`H>i@mR|=ca&U5I2}z(;p6j0{VK_;4tyBUz&gKVJr{_yR?|xw4n~>
+zfW7)H=81yd3nQa~9JV?J6OOKFXk9qB$`_uqy}2<`#I`lQf}Yw?9VvXpv$iGdqHQq(
+ze@b>+d|wwBk2842!&Xb>&JR70m}k#-A(Go+i*5yRSGvhnfkUU2byyf`@$z2dc3$N0
+zOL3V;OL$1V^-vZaU}9{u*?PV1+^25#OY53wX=a5{m9s6}B-m<Z@_+v|`ujN3<5urG
+z575N5xsQFeIC<>m!580){@NC{#@5W@e>*dt>7urW_A+!|eEmmzfM#uV-TKyiZC;AP
+z4wX#y|B`h83P}3Cum8bI6MOy#V+Y62zW&8GjyNzJyDQ`NSNhMdszK9U+NNy3@b=dW
+z{P&%y`v7}vqsEMW39oEhzYl6kJYc%i#5@HxD!1FY?EHY8#vMY_DLT+EVSPAGf4g&Y
+z7>*pQpc70#)TIRkaA<T*;>dJiL6ZX=#2Wfn_8N6=K34p2=C`n+AG&4_BZX4}$KX6Y
+zU{}nPLnEF8&FeB4cn!d@h0{8C2)=-4?E@T^5&{M;J+^9>xAu*A01tWiQ1<WZBLuNf
+zV%G>Jh)DfrBO=2%O9d?Y@D^AAe|#lG+y;5kSSSTIGH$jE8GP06_x-RBjXR<(Kn*ax
+z@&q%9L;&@BgL1rtBJ4O|HrsTZ-qXk7#E`}{m@0bs<E44gbZ%=qii>G$4CNC(IyJZb
+z6mH)_w!LjvjXYc^_%06ec&QJUzX20rJkhuFM%-%fa?wudh%T@M(JMBye{&tg#KvS)
+zikq?ox3+<9o$CFw3=q}i_p;r|fw)$-4COb#Z+-=U3mS0-vm8OYSY;5S<a-`SX&a1@
+z?`a6YM?2VPhB`c8^!Wue!0tC5euc0KGf#mZ2S2=C0LUdA(gm$qtKy>Xu9xN~cyO|b
+zhOX5$fyZ;S8oT(azGFCDf8SD<2cRJzM3I*12p`=IkY75)ga<c{@rTfbU1PUoB(8xZ
+z(VHhx+zr8bI5WeoGDHQlj(9Qb6tSg)-kruO&<9Mq$98G_a|uWi__llskN0p~kpL!a
+zCWwdazF=ezVnw<oObVuCM03JVl4+O%6NoXD40e9g(~>+^w$<t*f7rkZ+v=RJS6jbv
+z4F^tRCZ5{@P(#ePUcquYT}$Td+c35$<3^v%!TLr<ks1}mm77)upyQXMo|s%LOJ&#a
+zTKXLjDWC3R^M}FdOQ#&h0~a8aH;(%S@iW>j(UU4xM~ty@iFK7Jh{6+oiqnZ@io>MX
+zBJ}CdOL%CVD+SEJe-2i6;5zYq#H2J#5PmoCnvZ3;s?`^1P=b^P@*;?RbH&hiSTdnL
+z*?Dc8RZtwxmd0^+g1c*w1a}+UT?coU;4l!}g4^ISSg=8ZOK^w5H6duQ;6Xx`yLI<}
+zYiqarrTbK$)BVuZFa3SL{one_TZG;QiSj&dqL4OC;od_LG$Qf3F^`bb^|e0>-3(FX
+zU%E)^FRVfa_k+!JLzI}?3LQeH`M&|sls@jk**84}T)AZnB9+Waogq&#=wt5f6z6~v
+zd2wlQjuqnP$Pq1?-@=G?G3Rkh%5Vr=@`Vv=LcR7+vcJ8^uQmU;<1HS6y1QILC5Nny
+z!QM#D^~hZ8&jjUj{0b;yILsstxp$@w1X94L1M8s1VLr?Sv>O}8?TX(NI9_iQDr0W0
+zvYQ1P?3?{4zL4Jj<%Dp6H{~LwpEW_n07gq))p=TE??$)KuH}X$y{tz|swA<I`nA)K
+zC=da}N%@hZ&usZa9q^&xbDuEc#=ZK(+}}5(QcMB;V7b$nxo!jTTBRf0DRNp?J7)Ve
+zYXl@qNo?l8ERW<g&qo;{f@eck?ae!_l=lgAZ7qm>`)R5)IVDC%>F96#;G;kQ_Fbf|
+z>io3t`=ozNG8-pq-6%<h>5uTKh2Ko^9rllE-tzI`3J{r{JoOdz{dNp=Y12@(&3M0{
+zLZ_Q#k3F4OFQDA)IshucQVmi+C26RDITm`u9&-ov0R4{ohz$VWea4wiF>ceePCeJh
+z*`hLC1-o!ng1mwT_k)wgfLB*z(I}tNm+A`JAGCwrI5fj5x@7k5vpaoHw@+~b+6Zs!
+z%Xl3jVeSTqZyl{GY7d8?V|^GBB{gH3<_?=pPvTTsDTeJL(<lpGH=hp!uw=n_RPSQw
+zX*&g4dLpjCI7N5l9?_{3VEfWv1?HJ<i0SaVv`W}ea{BU5r=xznwG|-Ks0Ts5=CUhU
+z;u;*niIJNuJ`~jqt@RphI=S*BiF9j-34@aN$PU~|HTSaGjMG&ky{FS(tm;V~gQ=2m
+zYAUJ{qQ1ray!?^T_s`$AKAUs(g8oQjJ?)-uX{5vCv{lvDS$QWH_1JOsDu)ZkrVmS9
+zBGdoCQ}XJQwJ2LXV7Y_vo+&hKW66%F{0wNzBU`bNEyAjMcN<Cj0||?tKlln8v(5;l
+zn14fhrw`kM0**#7>#!7C22p%xbqsY#G)WG>3)O|ixiN%R&&DFnj!Q8;&Rsmx#Z2(y
+zcnxO}qb8-Y%RCnab(Zp6R&l?Tvbd9x?W5q}qM7;Brd?Ud@a+{4AZ`XWe<_rW)!w~3
+z;?OG20*O!y%-9J85#3EKxDk!4hfdnW8HWn!3iSql@XO_lrW|TaFOhG1j{m`+OOWZl
+z-%feC`{^e*cs3uUiceY@0T2bdzR~;?C|W--437N<kTG_#rD=qYYbVD*v^~`;P)e#l
+zTu!4L;Hl!U55<Gxj>X@fwGDh%5>TRy!*ue^o5xHa-i4>6K>gAgL5yCqqAinNn*0z*
+z>!~dJ?m4M8yu;|-8?jd@Tv;u0kPaCOzla*J)cMeu&dh-V3`WagbDUVgXvpci2M`kH
+zg4ubH?Vd%yU+O3Q%7X-m=iIQ;6---jL4~YhOrw-gkH|n7Ff*E=2T~)ym9(P~8C37o
+zXCtq)c^Dm`<(c1wX!e4?SK;$BVoRfdeS?WN=w|<-hg+il@P{XQXvNOp^8~Kz#fAS6
+zRj?2(<F2#8n@QA+lOw5!oVq2Bu_jUp3=+gPQl&gvT`m!x6zX3F?0$0VkVAIi6zaMP
+z4Pi+9@HEJI2}Nh<<kH$AU7lEVMUWFQv5+e#`514U*4kFiHH!6ZiwqyaI~M<4-h_yt
+zdP4_ELwQ^&!Be5E7=oVIMImWUphhKw9+~a;TmVxgqwyX>(!7(P2{9id7fO4J@LZxp
+z%=&gw_JRF=(I7nfxJmhAT2*a2)eB|Z1*F351Pj#fEd7#vZv5ggg<H<mjiM3)IPU`1
+zsmxIvafNJdXgnUC33AbXq}W!Zxr}~cOE44e>soAgf49%{o_E<vcj6f49zLvYov!VG
+zoKbZxkfAxFuPs<;l=+!HwQvWz-CjKMwlbp@*NF(6k0UjOVy{XW%jMqk2{yEjETclI
+zw+`AI0}{Sta_QE;u30OO+d?Z$fA{_^OFa^iSC7n{gF-5B)~{0#VZCY*S8R#04tsQj
+z9>MDPka9cvkHnIuAxl=)yrvW(87h}v7lO)yx8A~+mum7&b2MMSjQMhYex5bmG0S!c
+z!($xjZ<;F09RO=oSE?>C`$mtT`?i-t83yQs)jh*6Q$gsXG{q3X2^!pGLPQHwnywdf
+zr!_Nmfqf2k1t!&6Z+h0MzdyUs@cKOc8!%F^`g(*lb&IBd*+-#iv`F(&Ycgjx-(Oan
+zdCSre6s4bv45f#%`M1A*iaNBpZ*?FV94(r|mS?Yu+pP_{yk$yvf>0$6jgoSvP=r8!
+zr`-A0V>YFy?r%Sq>x(l#X&4hS{jN%ZCuh!t>c6}q5B_qP&>|W`>1kBx3OJn5dp$Nn
+zQuunVaWig{HIz<83z>&YppH(#FyG6!m{PO;^biU|&ogc1wL4_<O9fnZBV1F9Z(nyK
+zSN&IQCseveGFtU{jwTXOr7j$aG{iv%ua`s5hSiPyyOh#JX#Z~{N%hRAIhWw-0W<;Y
+zr}$wy6hhnY#@Fu8>OzS-m0mUAdxJ`rzl;sa)OF}%22lRoc=fmz?rEd?d#1sW;5bgD
+zZPl@8aYQHdcS)4hXI{;=v@t)p@R-j`XiSy?=F({U8ur52ES~W{HD^#@w}POfj}+ho
+z-X*4f*OWGc5={asiUF$&(n>SJd>kAKfpP_}K>B+Gq#uwW;j?h18hQxT8E?|ONmj8|
+z-YqD9O5?9LmGIlAW)}&I@RdOML;|eKZY`b(j#6x3o;yU^@0Jh|t{}CD+DYuFeEO0d
+zC4%M*Ubaub;1z4J0K$z@*ane%OW4KWve@t@E9sLQ#u;lgN+eQ*0Y<R7{DY2goroQk
+zTkZaMkur=sQzP;@?|sfzHRrXltmo3Ud^V2W6M6U`$4*5A<x#s~N?9C;Y))M`N0L%A
+zooNZ$Ycm<YHVT_tK&JHx>EdY1pugRToNZy`K3qsv0;&K7nKT#}Qb2?Br;$MWUVeb>
+zeazGSXc_i+<eTEXABfE#u|Z(0+&mbnxA!2(2hp5ZY9N>~3~87fowf`We(wi1{GMpa
+zU)ht-ni|7jVr`FOv4N8lPuO8*@Xorc<r^72cSvl?UKR27sdyfaDC@$z>DIf%Kl7@l
+zB2zuBkhJ3jlcl%>4nP*Nb$&tBEJ4^F&Plj|qn6@Mzp|Rt@gJlL06Xs^a27GD)mY-r
+z#rq^3B;k4MycT*F*QJo)U46<8jF>Ln=t7b`OXJ{t9XBQ&S4<!_-pDhV*ODDO9?UX-
+zDFVb5PozcEP*V23aB8nsAiX%DS6ThyXn`3-#x{<jrPL{!&46lm*3Z4x@HX!6X=+<-
+zA^<w(!}*0=(+_+KTxOZYH(~(lHnnG=PQ{qeq0`c}rdMeZKk6kuot4&YHMItW@XmPE
+zg($Dve4@HCL_ETEZ_(q8TWb~nuX{s#=K>FTKaP``9~+@CnFHS8`Gwk|idrC|-2tZr
+z^0M3JBys7!JIJ@@yJ*5@=nT3{aMYT3LJ$!9{W6%DxiBt78Ay6cygqWKot=oEv~bqC
+zac$l0N9%h7NRRnzfJe&wCn(uI-#VdNZm>J`5im(8;MYo$L-oz<tZO(lY);us3l^z`
+z(KDl8Jn|=+yP*tO!Witw5W&M`j6d1mFSfLl;9w~H0Tk<_cPXyXketm>TPQ|nC}O_V
+zXRR)m?UHpaz7c|thx)0EQ%`W_6rb~rd)8SC3xIfJTaBG+zo+qnEe?~-(XEkodWcRj
+zrnXbi7ptV>rYn38gZKxnE($rh1HL<xQ-wbxhl+$)`O3qmoFzANa|Hw^L7^XtGN{`d
+z7(0os?4;E<*!Gn8X0vCP3*G47EnHrS6CN!367uQWT$G>{zpY3^SsFz_M<+G6x+Iox
+z!#OK<{*i(@=IPGEW)?z6Z9Gzhx$8BUtz5^!%#-?#s(xx)+n!7T(5*Po`#9B2rLU?k
+zd#qx@QtgPeMqTH`UdP|IAj>H;K_g3C;MCZZ9X~&Zfr)5zL%LF9^_a#jV63%|ge^8h
+z0!WwSx(brrsjDC%iq&o(U$~yngfAmOe$Z2HN3twCg6h5Bq|9;bR|TuA;CM@&RkYHo
+zj+P>n!PJ~<m|Kx~2t-FO106BO_El>6F0*;c>Ge7#1Uuq8Ra@I6J2Rlv#yqkO()B&R
+zBCS?-zZEd%{FYMs_L4C)d|M99KseU{D(LwoM1vRvg!6h@CH!2BBrdwbhEVSaoz<ZW
+zv?P-HUtP63!WO_6Q{!LgnU=D9)6_Oe(|%?i+s&QfpA!x;<rMI##i3n3N&g`%i|aY4
+zNDcI;){=FtwMzFtB2;&!z0dAXrq51GKob)_?;u-O+^SM#r)18?vbHY%Sq^hEX=;^l
+z8v{8C>Ka%!3+%vRk9jxCQ?+~znvo|&hZnfj_sur0s&>aiWOuYl$M4^lA~X4u-4>Ni
+zCkknsnw^8x7CSOg+P*BV{zhB6-$0GfP<QKXq-;K6KwTqr`n9X<o~AxF;<421+1K&$
+zwD#=2R(!ls#UOad9vG9bQVu)tA&iB(G=WA;Q0MG-Zj)}Zlzy%Qd&Y;)aR=6RZ|>-}
+zp3}0xL#<l-PdBqFzCTu-Xu&PbCP9^Vrp*>h@xaW^8>{|biGa@T-1t<^>#goc$o}JI
+zntCNU_nwaanWbD_mnR!xzQzT`5fbvpcgsHr>(&xkd%KLvQl08o+X`_eNnDE7D?rP0
+z)Es7X%Te0J<8M-w1B-%#OQd9Dhc}wnRN5h)qA6jYU~65c)-x?fVb=m%`>$BB<Nn*D
+ziQzS39aDNDU`j{FUJ*ZB{yn^Be;r=429+qT%ZK;rxtPS6;u7oMeS<Pu;r-j&jNu0;
+zLF(TnPoQog5v<nF%fB};v9P@P{6G|s6?nO)3hnHVc6{>--8C|p5i@z~mKxE&I;v$Z
+z@qL^5NEQal39hP0A^P}z{k{*sv##sVc4<@aZWPt`Qe4Me304IO2t*db7dy6F{d4bw
+z!r@)Tdc60KB(}d=qF4ze>aQOCVL417!Sz>b<`n=YWu>w`8IaC@-WbTT3jvv(lZ?WK
+zdH8_X&)Km3@hcnGb8F_ERw0HulnPc-FzU~TK1@hFp3j|#*~!v6_>L{t%8rAAO5WMu
+zL}?P849!@mgYbm#I$pGU<zwP?tZ7H7bR8fhjr{frz?Ga7N}d}0VMFMCE$KsQtAL^?
+zC26x)a6m}*{z;v>AU>80CkVJq!<#VzKas-txh~_gNbua7DleKLe93Zz!6k?eMO+?*
+zA16}`V*&XQJXvuL7PrT^tyoQ?9C*8~#v`ivbGwbm@LtpLGKjt<zEe`fZ|=m$0;o_I
+z@-j7f%=ZM%!s*3mdO0pj*J|3@HJPxfKgE9^T^Hap_^b6BH}9TiBM1*vgOL7&6t-jD
+zAfFaX;%e%*Zwj_7%YnU%BX-<l|MsxEZ-Y7&vl#LPX(t0we{IwNW2)DkzaQ_RmuJ+1
+z$@A7Fp8<Ku3eKIA%jkFeKL6&=e5W`y8K+Tpzm#;l#EZnNmrTD#6?|;FjmX(mpOIWN
+z$?U?Uo!zU)+y_fM9?+e~!NG1%03r(7iqjJ!fuhnmJC_Zx>2X*2LDXABZhp3?;k%5-
+zJtW{5BM(cUbqIfleFqp{4W%GlWv-;RkhGRA%FpMtqGRk_GhH0QBzToZdT(Ve+BqGR
+zzfBWUU9=FGtP{!!te()r#|Uaf{=v3fuzJ^(Gd=QEm^Q)Z43r-uGlqZckmLkjBQW`U
+z?B=}ZANBe(K0+zI{y;-&*xA&}<i$qq5d{gL+Dr7t!&iAeKGFF)XAS_!(!je<zGqV6
+zTpSLt(1%AUV-n4(Y}{n_nc65l%t#22ymmB~O}34?NI$*I>hNS_K6p>Cd?cs_6$_zM
+zbC&k+ul}Op1#%=4-Jq@B{gd9uG-nCjTD>bnfG!88weI=TdXg|6r`*6F219<6)F7+L
+z6xdK3c#+?U$&#3*n5-HDH5O8wQgI{N8>4mFKd$p8aPwt&Je;#Liazh}-X`pE`n;Kq
+z(9g#Q0H1G%cjsa5jN^y1X2mX(+7aOV^@=8%gG0q#kdbWaBZf_GhC1w<rpl#8sC>AK
+z$I3NN)YUj?{knu8#2Dd^T5u%wsKr~Gim5whrtt7uo8oL%fw-tmo%p7u58ZRD=l~*|
+zC*Dsg_;i5ni{7Zp1J*~#8l*90CI+WWqTDUwYm7<Vk?}aELC3eieak#PXlnQYwRn;l
+z(txx!s9sX1-jh|6j2nZvD%9rr8<QY1?Dl%i{D!ad^~Hb}39$757jEg#o8&4>zH>FT
+zvJau6^X=J`o(pX*WpfL+J^M*qX#~9ZtTmQ-V8ML$Oh*Ue!K-(&l&7R?%T9E2Bz0c6
+zIkrb8K={3%bOb#<ZsIV^h_*($enaiH=Oa4?3UZwZ_dfu5)yIR0m&6C>IeW{l?3zh-
+zBex)3-wzqkA~b*5HTmBP_Rh%M@_xwJ=)lXpZJd)KHnu>X8<2Y$5h|qY&$^?1@A~+Y
+z0eg7@QUZC9FgEZ*AAub2(7}an*o*1^SsPh?msvY*a>ct7<CAbfEh!SflO3*SPLfRv
+zveCZl_?v@UH1_oq>OIMnO+Y3FJ!Wy(wHF!^2#ySmvsO`I9Tlr)RCuC=u9!=((-xJ`
+z-Ucx`(N)YmaRI6SU?+eN^RCDD!vy*+e6zcc4Vyu%U&^B&L#s3S{L>MkF{Y#R6f8OV
+z;HMo~Q+#scCt*C44W)hgFnv&pd5@J4Xqcu$-{-U5OZKIAkKEul#$#lmQ;65s8p9?P
+zjwsMqAV|S{%t+or)HtH!v?LlppzMOBrTRnr<GdMRedi?9v57GRc1AHM@kwqU%!0JP
+z6q!cS03RsB;}Ee^u=`i#IwH+)rs^?JWU%vi|E_t(21D8H_h4Z(X<)y_<C%&lXk5E=
+zGfLI%QTo2MP{H_E6h5^6-r$_Vd91esmD+5wNJteX97jw}O1Bx05T8leIN|xRC@qtV
+z71=9EuO_z^?Q^OWq{t8g$Ks5OhY*c_!70Qf+q5OKXE=<Pi@9=j%_HlOc<sWk;6g?X
+zk>lu}b#xl49jG$s=qGgVz0$u0%?fp&k8s=H-ND*d&&NfyD{}ClM4uI46{EE)=y5~^
+zi#OZI$0&^U3q@=9%Uw0P#XZDtokCsQmk0R6UxoQ9#i<TLzF&jJG!DBzs%2znFZo(s
+zO@QZ2$)3)3m?GR%6g|>>4D_3pSMd^3UAR*_Ev^8fYm>8TJ`LJuRS(T_R%$oe(61o~
+z9dKmbH_$>l!pw(uB`Go+e~$`rhDbanb#W)~z?pSmour5J^xv2Jzj8}1@>r78Aucfs
+zb<jiyYvCu!=2YDaVp4d7H;Dfq;WgdTABgal>J{=Tl-?gejd1j@A$j`0Jc<nh<mohl
+zShWAw#`sE#{dX%5k7WBN;nmcbE)&F#V8ZiHsMZskQ&Z)CZ~ngxCI3?i4z4_0Q1IW0
+z6zO4sSm_V`)Ch@c|J0HQp!n~z{O1D^4o>(#>96@QTK_CA44_X>45UV&cl{@{pi4lk
+Xse=4!#)N}If9*zyaB#Sh|C;?5UKUVv
+
+delta 19211
+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
+AD*ylh
+
+diff --git a/skills/yourdietmanager-builder/SKILL.md b/skills/yourdietmanager-builder/SKILL.md
+index 62f7b4f39ce9fcc96e7245545cd298d3f579fd73..c5a72efcdcfc02902c598160ead7ffda212b79c7 100644
+--- a/skills/yourdietmanager-builder/SKILL.md
++++ b/skills/yourdietmanager-builder/SKILL.md
+@@ -6,6 +6,7 @@ description: "Design, build, review, or extend the yourDietManager local-first P
+ # yourDietManager Builder
+ 
+ ## Core invariants
++- Keep every browser-loaded schema byte-for-byte synchronized between canonical `schemas/` and deployment mirror `public/schemas/`; never loosen `additionalProperties` to hide mirror drift. Production provenance fields must be modeled explicitly in the canonical schema and mirrored to the PWA.
+ 
+ Preserve these rules:
+ 
+diff --git a/skills/yourdietmanager-builder/references/quality-gates.md b/skills/yourdietmanager-builder/references/quality-gates.md
+index db8b9703fc90fd17d00f20f74e9c1f216aa964d0..04777ffed6a91ece403335d350e43a59be41c981 100644
+--- a/skills/yourdietmanager-builder/references/quality-gates.md
++++ b/skills/yourdietmanager-builder/references/quality-gates.md
+@@ -205,3 +205,9 @@
+ - Any non-approved recipe blocks further corpus scale until controlled remediation and re-review close it.
+ - A production-review catalog is not a V1 release. Keep the 3,000 release minimum/final manifest gates unchanged.
+ - Do not enforce a 5,000-recipe maximum. Legacy policy/contract 5,000 fields are advisory provenance references; generation may continue beyond them.
++
++## Browser schema mirror gate
++- Treat `schemas/` as canonical and `public/schemas/` as a deployment mirror.
++- Require byte-for-byte equality for every file in the browser `SCHEMA_FILES` list.
++- Validate representative production records with the public mirror, not only the canonical Node schema loader.
++- Keep `additionalProperties:false` where defined; schema parity must be fixed by explicit fields, never by accepting arbitrary properties.
+diff --git a/specs/TEST_STRATEGY.md b/specs/TEST_STRATEGY.md
+index d3fd3bc9a9cf897b4f7e519ad4f86c39682d53f2..aec7231e52ef1f3d9b986c2f36366ca6c973fec5 100644
+--- a/specs/TEST_STRATEGY.md
++++ b/specs/TEST_STRATEGY.md
+@@ -324,3 +324,7 @@ Real-artifact acceptance for rc.21 additionally records 220 -> 320 -> 420 -> 500
+ - Do not weaken the acceptance condition: at least one recipe card must render.
+ - Fail immediately if the catalog status enters `error`, and include the catalog diagnostic in CI output.
+ - Pair browser acceptance with a non-browser clean-repository import regression that must activate all 500 recipe families and versions.
++
++## Browser schema deployment mirror
++
++Every schema loaded by the browser `SchemaRegistry` must be byte-for-byte identical between the canonical `schemas/` directory and `public/schemas/`. The test suite must also validate representative production records against the public mirror. Never fix browser validation by allowing arbitrary additional properties; evolve the canonical schema explicitly and mirror it.
+diff --git a/src/db/constants.js b/src/db/constants.js
+index 2cfd4e95ba5e01f689cb08c2cd83aafa8f828b23..23afd0e93eee916958e58f8e52d7e4a3491db237 100644
+--- a/src/db/constants.js
++++ b/src/db/constants.js
+@@ -2,7 +2,7 @@ export const DB_NAME = 'yourDietManager';
+ export const DB_VERSION = 5;
+ export const CONTENT_SCHEMA_VERSION = 3;
+ export const BACKUP_FORMAT_VERSION = 1;
+-export const APP_VERSION = '1.0.0-rc.23';
++export const APP_VERSION = '1.0.0-rc.24';
+ 
+ export const STORE_DEFINITIONS = {
+   meta: { keyPath: 'key', indexes: [] },
+diff --git a/src/lib/schemaValidator.js b/src/lib/schemaValidator.js
+index 5240edb4ccb641c5945f7ad275a76f15a36e94ea..fa232b66cea31c3773cf916664edf0c398705dac 100644
+--- a/src/lib/schemaValidator.js
++++ b/src/lib/schemaValidator.js
+@@ -1,6 +1,6 @@
+ import { assetPath } from './appBase.js';
+ 
+-const SCHEMA_FILES = [
++export const SCHEMA_FILES = [
+   'allergy-intolerance-profile.schema.json', 'app-config.schema.json', 'backup.schema.json', 'calendar-day.schema.json',
+   'catalog-manifest.schema.json', 'catalog-publication.schema.json', 'production-review-publication.schema.json', 'recipe-human-review.schema.json', 'recipe-human-review-bundle.schema.json', 'catalog-pack.schema.json', 'cycle.schema.json', 'day-class.schema.json',
+   'domain-enums.schema.json', 'food-preferences.schema.json', 'generation-run.schema.json', 'ingredient-revision.schema.json',
+diff --git a/tests/data-ux-pass-c.test.mjs b/tests/data-ux-pass-c.test.mjs
+index 6a0bfde252b096c2de3729b08f0b4cd677115044..301528d3087ba34df7c294dd984449900b75b291 100644
+--- a/tests/data-ux-pass-c.test.mjs
++++ b/tests/data-ux-pass-c.test.mjs
+@@ -99,7 +99,7 @@ test('Pass C source audit centralizes disclosure state, guarded navigation, feed
+   assert.match(sources['uiState.js'], /ydm:draft-change/);
+   assert.match(main, /onboardingEnabled: false/);
+   assert.doesNotMatch(main, /location\.pathname\s*=.*onboarding|navigate\(['"]\/onboarding/);
+-  assert.match(sw, /ydm-shell-v25/);
++  assert.match(sw, /ydm-shell-v26/);
+   assert.match(sw, /ydm-data-v12/);
+   assert.match(sw, /src\/recoveryBootstrap\.js/);
+   assert.match(index, /src\/recoveryBootstrap\.js/);
+diff --git a/tests/production-review-500.test.mjs b/tests/production-review-500.test.mjs
+index 5ef37093ab147c5d032d29de1f89e4ca12067521..229a6ff6c2dab700c8ff7f2857c07f1a86c3880c 100644
+--- a/tests/production-review-500.test.mjs
++++ b/tests/production-review-500.test.mjs
+@@ -131,8 +131,9 @@ test('Phase 4 smoke builder is isolated from the mutable published review catalo
+ });
+ 
+ 
+-test('published 500-recipe review catalog bootstraps all required recipes into a clean local catalog', async () => {
+-  const registry = await registryFixture();
++test('published 500-recipe review catalog bootstraps all required recipes with the browser public schema surface', async () => {
++  const registry = new SchemaRegistry(fileLoader(path.join(root, 'public', 'schemas')));
++  await registry.loadAll();
+   const repo = new MemoryRepository();
+   const importer = new CatalogImporter({ repo, registry, fetcher:fileFetch(root), storage:null, serviceWorker:null });
+   const manifest = await readJson(path.join(root,'public/data/catalog-manifest.json'));
+diff --git a/tests/schema-public-mirrors.test.mjs b/tests/schema-public-mirrors.test.mjs
+new file mode 100644
+index 0000000000000000000000000000000000000000..8ba2b8e526f2c77cefaee086d1a618fda8f39ae1
+--- /dev/null
++++ b/tests/schema-public-mirrors.test.mjs
+@@ -0,0 +1,37 @@
++import test from 'node:test';
++import assert from 'node:assert/strict';
++import path from 'node:path';
++import { readFile } from 'node:fs/promises';
++import { SchemaRegistry, SCHEMA_FILES } from '../src/lib/schemaValidator.js';
++import { fileLoader } from './helpers.mjs';
++
++const root = process.cwd();
++
++test('every browser-loaded JSON schema is an exact mirror of the canonical schema', async () => {
++  for (const file of SCHEMA_FILES) {
++    const [canonical, published] = await Promise.all([
++      readFile(path.join(root, 'schemas', file), 'utf8'),
++      readFile(path.join(root, 'public', 'schemas', file), 'utf8')
++    ]);
++    assert.equal(published, canonical, `public schema mirror drift: ${file}`);
++  }
++});
++
++test('public ingredientRevision schema accepts production energy provenance but remains closed', async () => {
++  const registry = new SchemaRegistry(fileLoader(path.join(root, 'public', 'schemas')));
++  await registry.loadAll();
++  const bundle = JSON.parse(await readFile(path.join(root, 'corpus', 'staging', 'phase4-smoke-base-bundle.json'), 'utf8'));
++  const revision = structuredClone(bundle.ingredientRevisions[0]);
++  revision.source = {
++    ...revision.source,
++    energyBasis: 'legacy_energy',
++    energyNutrientId: '1008',
++    energySourceUnit: 'kcal',
++    energyOriginalValue: 208,
++    energyConversion: 'none'
++  };
++  registry.assert('ingredientRevision', revision);
++
++  revision.source.uncontrolledField = 'must-not-be-accepted';
++  assert.throws(() => registry.assert('ingredientRevision', revision), /additional properties not allowed: uncontrolledField/);
++});

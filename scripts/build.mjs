@@ -1,8 +1,17 @@
 import { cp, mkdir, readFile, rm, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
+import { SCHEMA_FILES } from '../src/lib/schemaValidator.js';
 
 const root = process.cwd();
 const dist = path.join(root, 'dist');
+
+for (const file of SCHEMA_FILES) {
+  const [canonical, published] = await Promise.all([
+    readFile(path.join(root, 'schemas', file), 'utf8'),
+    readFile(path.join(root, 'public', 'schemas', file), 'utf8')
+  ]);
+  if (canonical !== published) throw new Error(`Build failed: public schema mirror drift for ${file}`);
+}
 
 function normalizeBasePath(value = '') {
   const raw = String(value || '').trim();

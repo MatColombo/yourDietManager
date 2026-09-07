@@ -6,6 +6,7 @@ description: "Design, build, review, or extend the yourDietManager local-first P
 # yourDietManager Builder
 
 ## Core invariants
+- Keep every browser-loaded schema byte-for-byte synchronized between canonical `schemas/` and deployment mirror `public/schemas/`; never loosen `additionalProperties` to hide mirror drift. Production provenance fields must be modeled explicitly in the canonical schema and mirrored to the PWA.
 
 Preserve these rules:
 

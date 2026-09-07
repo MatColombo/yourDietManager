@@ -220,3 +220,7 @@ The verified 500-recipe controlled-scale checkpoint is now a mandatory product-r
 Human review is persisted in IndexedDB and bound to publication ID, source-corpus digest, RecipeVersion ID and content hash. Every recipe requires six explicit dimensions plus an `approved`, `needs_changes` or `rejected` decision. The phase closes only when all 500 are approved; any unresolved/non-approved item blocks further scale and requires remediation/re-review.
 
 This addendum also removes 5,000 as a behavioral stop. Existing contract/policy fields retain 5,000 only for compatibility with frozen provenance; the orchestrator must continue beyond it whenever coverage, diversity or product requirements call for more recipes.
+
+## rc.24 production-review browser schema mirror hardening
+
+The review publication exposed a deployment-contract drift: canonical production ingredient schemas accepted the rc.15–rc.16 energy provenance fields while the PWA mirror rejected them. rc.24 synchronizes all browser-loaded schema mirrors, adds a byte-for-byte mirror gate plus a build preflight, and tests the 500-recipe bootstrap using the actual `public/schemas` surface. See `PHASE4_PRODUCTION_REVIEW_RC24_SCHEMA_MIRROR_REPORT.md`.

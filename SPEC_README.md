@@ -135,3 +135,5 @@ The network-enabled production workflow intentionally mutates canonical pilot, r
 ## Phase 4P-D Pass A — rc.21 controlled scale 220 -> 500
 
 Il working set source-backed verificato (600 ingredienti curated/high, pilot 120/120, 220 ricette attive) è ora il prerequisito esplicito del controlled-scale runner. `controlled-scale-500-v1@1.0.0` divide l'espansione in tranche 100 + 100 + 80, con celle canoniche `mealArchetype × energyBand`, checkpoint e zero review backlog. La verifica sul working set reale ha raggiunto 500 ricette attive con Scale Gate 500 `pass`, zero errori quality e zero exact/near duplicate. La workflow dedicata è `.github/workflows/controlled-scale-500.yml`.
+
+- `PHASE4_PRODUCTION_REVIEW_RC24_SCHEMA_MIRROR_REPORT.md` — browser schema mirror hardening for the 500-recipe review publication.

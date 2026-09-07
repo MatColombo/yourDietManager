@@ -205,3 +205,9 @@
 - Any non-approved recipe blocks further corpus scale until controlled remediation and re-review close it.
 - A production-review catalog is not a V1 release. Keep the 3,000 release minimum/final manifest gates unchanged.
 - Do not enforce a 5,000-recipe maximum. Legacy policy/contract 5,000 fields are advisory provenance references; generation may continue beyond them.
+
+## Browser schema mirror gate
+- Treat `schemas/` as canonical and `public/schemas/` as a deployment mirror.
+- Require byte-for-byte equality for every file in the browser `SCHEMA_FILES` list.
+- Validate representative production records with the public mirror, not only the canonical Node schema loader.
+- Keep `additionalProperties:false` where defined; schema parity must be fixed by explicit fields, never by accepting arbitrary properties.

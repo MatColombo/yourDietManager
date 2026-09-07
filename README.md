@@ -1,8 +1,12 @@
 # yourDietManager — V1 Release Candidate
 
+## rc.24 browser schema mirror hardening
+
+Production-review browser bootstrap now enforces canonical JSON Schema parity between `schemas/` and the PWA mirror `public/schemas/`. The production ingredient energy provenance fields are accepted by the browser contract, while unknown source properties remain rejected. Production-review publications require app version `1.0.0-rc.24` or newer. See `PHASE4_PRODUCTION_REVIEW_RC24_SCHEMA_MIRROR_REPORT.md`.
+
 Local-first PWA implementation through **Phase 8 — Hardening & V1 release gates**.
 
-Candidate version: **`1.0.0-rc.23`**.
+Candidate version: **`1.0.0-rc.24`**.
 
 Phases 1–7 remain fully present: IndexedDB persistence, onboarding/configuration, backup/import, IT/EN, theme engine, indexed catalog/search/packs, versioned catalog authoring, corpus-orchestration tooling, deterministic seeded plan generation, effective-plan UX with history/undo, shopping checklists and preparation horizon.
 

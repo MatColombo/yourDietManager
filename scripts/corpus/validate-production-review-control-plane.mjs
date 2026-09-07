@@ -60,7 +60,7 @@ const checks = [
   ['review-in-backup', backup.includes('recipeHumanReviews')],
   ['review-bundle-strict-gate', humanValidator.includes('human-review-incomplete') && humanValidator.includes('human-review-not-all-approved') && humanValidator.includes('source-corpus-digest-drift')],
   ['schema-public-mirrors', mirrorsPass],
-  ['offline-review-assets', /ydm-shell-v25/.test(sw) && /ydm-data-v12/.test(sw) && sw.includes('recipeHumanReviewService.js')],
+  ['offline-review-assets', /ydm-shell-v26/.test(sw) && /ydm-data-v12/.test(sw) && sw.includes('recipeHumanReviewService.js')],
   ['5000-not-hard-stop', !orchestrator.includes('snapshot.activeRecipeCount >= policy.targetCorpus.max')],
   ['spec-5000-advisory', /advisory planning references, not hard ceilings/i.test(spec)],
   ['spec-scale-blocked-during-review', /Further corpus scaling must not resume while the Human Review Gate is blocked/i.test(spec)]

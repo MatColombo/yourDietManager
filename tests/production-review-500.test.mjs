@@ -131,8 +131,9 @@ test('Phase 4 smoke builder is isolated from the mutable published review catalo
 });
 
 
-test('published 500-recipe review catalog bootstraps all required recipes into a clean local catalog', async () => {
-  const registry = await registryFixture();
+test('published 500-recipe review catalog bootstraps all required recipes with the browser public schema surface', async () => {
+  const registry = new SchemaRegistry(fileLoader(path.join(root, 'public', 'schemas')));
+  await registry.loadAll();
   const repo = new MemoryRepository();
   const importer = new CatalogImporter({ repo, registry, fetcher:fileFetch(root), storage:null, serviceWorker:null });
   const manifest = await readJson(path.join(root,'public/data/catalog-manifest.json'));

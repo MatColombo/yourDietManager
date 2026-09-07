@@ -1,6 +1,6 @@
 import { assetPath } from './appBase.js';
 
-const SCHEMA_FILES = [
+export const SCHEMA_FILES = [
   'allergy-intolerance-profile.schema.json', 'app-config.schema.json', 'backup.schema.json', 'calendar-day.schema.json',
   'catalog-manifest.schema.json', 'catalog-publication.schema.json', 'production-review-publication.schema.json', 'recipe-human-review.schema.json', 'recipe-human-review-bundle.schema.json', 'catalog-pack.schema.json', 'cycle.schema.json', 'day-class.schema.json',
   'domain-enums.schema.json', 'food-preferences.schema.json', 'generation-run.schema.json', 'ingredient-revision.schema.json',

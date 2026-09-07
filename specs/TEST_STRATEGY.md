@@ -324,3 +324,7 @@ Real-artifact acceptance for rc.21 additionally records 220 -> 320 -> 420 -> 500
 - Do not weaken the acceptance condition: at least one recipe card must render.
 - Fail immediately if the catalog status enters `error`, and include the catalog diagnostic in CI output.
 - Pair browser acceptance with a non-browser clean-repository import regression that must activate all 500 recipe families and versions.
+
+## Browser schema deployment mirror
+
+Every schema loaded by the browser `SchemaRegistry` must be byte-for-byte identical between the canonical `schemas/` directory and `public/schemas/`. The test suite must also validate representative production records against the public mirror. Never fix browser validation by allowing arbitrary additional properties; evolve the canonical schema explicitly and mirror it.
