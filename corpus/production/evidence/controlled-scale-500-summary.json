@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "planId": "controlled-scale-500-v1",
+  "planVersion": "1.0.0",
+  "status": "pass",
+  "selectedTranches": [
+    1,
+    2,
+    3
+  ],
+  "generatedAt": "2026-09-07T08:10:28.467Z",
+  "baselineActiveRecipes": 220,
+  "finalActiveRecipes": 500,
+  "acceptedAdded": 280,
+  "gateStatus": "pass",
+  "quality": {
+    "schemaErrors": 0,
+    "unknownIngredientReferences": 0,
+    "nutritionErrors": 0,
+    "allergenDerivationErrors": 0,
+    "missingRequiredLocaleFields": 0
+  },
+  "similarity": {
+    "exactDuplicateCount": 0,
+    "nearDuplicateCount": 0,
+    "nearDuplicateShare": 0
+  },
+  "hardCoverageRemaining": [],
+  "readyForProduction": false,
+  "productionBlockers": [
+    "recipe-production-count: active=500, required>=3000",
+    "production-manifest-contract: productionCorpus metadata missing"
+  ],
+  "tranches": [
+    {
+      "trancheId": "scale-500-tranche-01-breakfast-snack",
+      "accepted": 100,
+      "rejected": 28,
+      "reviewBacklog": 0,
+      "afterActiveRecipes": 320,
+      "gateStatus": "ready",
+      "status": "pass"
+    },
+    {
+      "trancheId": "scale-500-tranche-02-lunch-dinner",
+      "accepted": 100,
+      "rejected": 30,
+      "reviewBacklog": 0,
+      "afterActiveRecipes": 420,
+      "gateStatus": "ready",
+      "status": "pass"
+    },
+    {
+      "trancheId": "scale-500-tranche-03-balanced-close",
+      "accepted": 80,
+      "rejected": 22,
+      "reviewBacklog": 0,
+      "afterActiveRecipes": 500,
+      "gateStatus": "pass",
+      "status": "pass"
+    }
+  ]
+}

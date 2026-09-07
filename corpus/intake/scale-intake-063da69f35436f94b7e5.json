@@ -1,0 +1,573 @@
+{
+  "schemaVersion": 1,
+  "intakeId": "scale-intake-063da69f35436f94b7e5",
+  "contractId": "ydm-v1-production-corpus",
+  "contractVersion": "1.0.0",
+  "seed": "controlled-scale-500-v1:1.0.0:scale-500-tranche-03-balanced-close:snack-300-399-close:sha256:40b3fff14d5dc11aec0be9ff848856662e9bb3593caea5b9dcc2e214f84ae6d9:518241b73621588c",
+  "referenceDataVersion": "1.0.0",
+  "referenceDataDigest": "56f3949bd1c0348f8fe65861ebcda23c2a198805cd2e9f70b00610a328753b52",
+  "targetCandidateCount": 13,
+  "records": [
+    {
+      "candidateId": "scale-063da69f35-001-e01ee6",
+      "stratumId": "batch-518241b7362158",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "snack|kcal-300-399",
+          "kcal-300-399",
+          "snack"
+        ],
+        "rationale": "energy_band:snack|kcal-300-399 deficit=0.838; energy_band:kcal-300-399 deficit=0; meal_archetype:snack deficit=0.876; user focus mode=restrict"
+      },
+      "referenceRequests": [],
+      "jobId": "batch-518241b7362158",
+      "generatedAt": "2026-09-07T08:10:08.530Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_9b3de54eb36d3e1c05eaab4d_v1",
+        "processedAt": "2026-09-07T08:10:08.530Z"
+      },
+      "audit": [
+        {
+          "at": "2026-09-07T08:10:08.516Z",
+          "action": "scale_slot_created",
+          "detail": "Created from RecipeGenerationJob batch-518241b7362158"
+        },
+        {
+          "at": "2026-09-07T08:10:08.521Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-07T08:10:08.530Z",
+          "action": "production_candidate_attempt",
+          "detail": "prbr-9b4fce2dfea954df73b4: accepted"
+        }
+      ]
+    },
+    {
+      "candidateId": "scale-063da69f35-002-d643b8",
+      "stratumId": "batch-518241b7362158",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "snack|kcal-300-399",
+          "kcal-300-399",
+          "snack"
+        ],
+        "rationale": "energy_band:snack|kcal-300-399 deficit=0.838; energy_band:kcal-300-399 deficit=0; meal_archetype:snack deficit=0.876; user focus mode=restrict"
+      },
+      "referenceRequests": [],
+      "jobId": "batch-518241b7362158",
+      "generatedAt": "2026-09-07T08:10:08.530Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_13379c7982aaf159fce3ee9a_v1",
+        "processedAt": "2026-09-07T08:10:08.530Z"
+      },
+      "audit": [
+        {
+          "at": "2026-09-07T08:10:08.516Z",
+          "action": "scale_slot_created",
+          "detail": "Created from RecipeGenerationJob batch-518241b7362158"
+        },
+        {
+          "at": "2026-09-07T08:10:08.521Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-07T08:10:08.530Z",
+          "action": "production_candidate_attempt",
+          "detail": "prbr-9b4fce2dfea954df73b4: accepted"
+        }
+      ]
+    },
+    {
+      "candidateId": "scale-063da69f35-003-0ad41c",
+      "stratumId": "batch-518241b7362158",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "snack|kcal-300-399",
+          "kcal-300-399",
+          "snack"
+        ],
+        "rationale": "energy_band:snack|kcal-300-399 deficit=0.838; energy_band:kcal-300-399 deficit=0; meal_archetype:snack deficit=0.876; user focus mode=restrict"
+      },
+      "referenceRequests": [],
+      "jobId": "batch-518241b7362158",
+      "generatedAt": "2026-09-07T08:10:08.530Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_270c7c75bba3e100b6c7d5f1_v1",
+        "processedAt": "2026-09-07T08:10:08.530Z"
+      },
+      "audit": [
+        {
+          "at": "2026-09-07T08:10:08.516Z",
+          "action": "scale_slot_created",
+          "detail": "Created from RecipeGenerationJob batch-518241b7362158"
+        },
+        {
+          "at": "2026-09-07T08:10:08.521Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-07T08:10:08.530Z",
+          "action": "production_candidate_attempt",
+          "detail": "prbr-9b4fce2dfea954df73b4: accepted"
+        }
+      ]
+    },
+    {
+      "candidateId": "scale-063da69f35-004-65b06e",
+      "stratumId": "batch-518241b7362158",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "snack|kcal-300-399",
+          "kcal-300-399",
+          "snack"
+        ],
+        "rationale": "energy_band:snack|kcal-300-399 deficit=0.838; energy_band:kcal-300-399 deficit=0; meal_archetype:snack deficit=0.876; user focus mode=restrict"
+      },
+      "referenceRequests": [],
+      "jobId": "batch-518241b7362158",
+      "generatedAt": "2026-09-07T08:10:08.530Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_66623f0b69ab4750c659ea8d_v1",
+        "processedAt": "2026-09-07T08:10:08.530Z"
+      },
+      "audit": [
+        {
+          "at": "2026-09-07T08:10:08.516Z",
+          "action": "scale_slot_created",
+          "detail": "Created from RecipeGenerationJob batch-518241b7362158"
+        },
+        {
+          "at": "2026-09-07T08:10:08.521Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-07T08:10:08.530Z",
+          "action": "production_candidate_attempt",
+          "detail": "prbr-9b4fce2dfea954df73b4: accepted"
+        }
+      ]
+    },
+    {
+      "candidateId": "scale-063da69f35-005-56a1d2",
+      "stratumId": "batch-518241b7362158",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "snack|kcal-300-399",
+          "kcal-300-399",
+          "snack"
+        ],
+        "rationale": "energy_band:snack|kcal-300-399 deficit=0.838; energy_band:kcal-300-399 deficit=0; meal_archetype:snack deficit=0.876; user focus mode=restrict"
+      },
+      "referenceRequests": [],
+      "jobId": "batch-518241b7362158",
+      "generatedAt": "2026-09-07T08:10:08.530Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_57ddee88d9ce17e13d59c4f0_v1",
+        "processedAt": "2026-09-07T08:10:08.530Z"
+      },
+      "audit": [
+        {
+          "at": "2026-09-07T08:10:08.516Z",
+          "action": "scale_slot_created",
+          "detail": "Created from RecipeGenerationJob batch-518241b7362158"
+        },
+        {
+          "at": "2026-09-07T08:10:08.521Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-07T08:10:08.530Z",
+          "action": "production_candidate_attempt",
+          "detail": "prbr-9b4fce2dfea954df73b4: accepted"
+        }
+      ]
+    },
+    {
+      "candidateId": "scale-063da69f35-006-344922",
+      "stratumId": "batch-518241b7362158",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "snack|kcal-300-399",
+          "kcal-300-399",
+          "snack"
+        ],
+        "rationale": "energy_band:snack|kcal-300-399 deficit=0.838; energy_band:kcal-300-399 deficit=0; meal_archetype:snack deficit=0.876; user focus mode=restrict"
+      },
+      "referenceRequests": [],
+      "jobId": "batch-518241b7362158",
+      "generatedAt": "2026-09-07T08:10:08.530Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_dc845f4c0c05e5e29d414a5b_v1",
+        "processedAt": "2026-09-07T08:10:08.530Z"
+      },
+      "audit": [
+        {
+          "at": "2026-09-07T08:10:08.516Z",
+          "action": "scale_slot_created",
+          "detail": "Created from RecipeGenerationJob batch-518241b7362158"
+        },
+        {
+          "at": "2026-09-07T08:10:08.521Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-07T08:10:08.530Z",
+          "action": "production_candidate_attempt",
+          "detail": "prbr-9b4fce2dfea954df73b4: accepted"
+        }
+      ]
+    },
+    {
+      "candidateId": "scale-063da69f35-007-4f557b",
+      "stratumId": "batch-518241b7362158",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "snack|kcal-300-399",
+          "kcal-300-399",
+          "snack"
+        ],
+        "rationale": "energy_band:snack|kcal-300-399 deficit=0.838; energy_band:kcal-300-399 deficit=0; meal_archetype:snack deficit=0.876; user focus mode=restrict"
+      },
+      "referenceRequests": [],
+      "jobId": "batch-518241b7362158",
+      "generatedAt": "2026-09-07T08:10:08.530Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_5240c406c1de066b42448776_v1",
+        "processedAt": "2026-09-07T08:10:08.530Z"
+      },
+      "audit": [
+        {
+          "at": "2026-09-07T08:10:08.516Z",
+          "action": "scale_slot_created",
+          "detail": "Created from RecipeGenerationJob batch-518241b7362158"
+        },
+        {
+          "at": "2026-09-07T08:10:08.521Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-07T08:10:08.530Z",
+          "action": "production_candidate_attempt",
+          "detail": "prbr-9b4fce2dfea954df73b4: accepted"
+        }
+      ]
+    },
+    {
+      "candidateId": "scale-063da69f35-008-e16e3e",
+      "stratumId": "batch-518241b7362158",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "snack|kcal-300-399",
+          "kcal-300-399",
+          "snack"
+        ],
+        "rationale": "energy_band:snack|kcal-300-399 deficit=0.838; energy_band:kcal-300-399 deficit=0; meal_archetype:snack deficit=0.876; user focus mode=restrict"
+      },
+      "referenceRequests": [],
+      "jobId": "batch-518241b7362158",
+      "generatedAt": "2026-09-07T08:10:08.530Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_85bd03065e117237ee33acda_v1",
+        "processedAt": "2026-09-07T08:10:08.530Z"
+      },
+      "audit": [
+        {
+          "at": "2026-09-07T08:10:08.516Z",
+          "action": "scale_slot_created",
+          "detail": "Created from RecipeGenerationJob batch-518241b7362158"
+        },
+        {
+          "at": "2026-09-07T08:10:08.521Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-07T08:10:08.530Z",
+          "action": "production_candidate_attempt",
+          "detail": "prbr-9b4fce2dfea954df73b4: accepted"
+        }
+      ]
+    },
+    {
+      "candidateId": "scale-063da69f35-009-b2056f",
+      "stratumId": "batch-518241b7362158",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "snack|kcal-300-399",
+          "kcal-300-399",
+          "snack"
+        ],
+        "rationale": "energy_band:snack|kcal-300-399 deficit=0.838; energy_band:kcal-300-399 deficit=0; meal_archetype:snack deficit=0.876; user focus mode=restrict"
+      },
+      "referenceRequests": [],
+      "jobId": "batch-518241b7362158",
+      "generatedAt": "2026-09-07T08:10:08.530Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_bbd3dd16d8a203ee879d6b38_v1",
+        "processedAt": "2026-09-07T08:10:08.530Z"
+      },
+      "audit": [
+        {
+          "at": "2026-09-07T08:10:08.516Z",
+          "action": "scale_slot_created",
+          "detail": "Created from RecipeGenerationJob batch-518241b7362158"
+        },
+        {
+          "at": "2026-09-07T08:10:08.521Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-07T08:10:08.530Z",
+          "action": "production_candidate_attempt",
+          "detail": "prbr-9b4fce2dfea954df73b4: accepted"
+        }
+      ]
+    },
+    {
+      "candidateId": "scale-063da69f35-010-810ea6",
+      "stratumId": "batch-518241b7362158",
+      "state": "accepted",
+      "referenceScanStatus": "complete",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "snack|kcal-300-399",
+          "kcal-300-399",
+          "snack"
+        ],
+        "rationale": "energy_band:snack|kcal-300-399 deficit=0.838; energy_band:kcal-300-399 deficit=0; meal_archetype:snack deficit=0.876; user focus mode=restrict"
+      },
+      "referenceRequests": [],
+      "jobId": "batch-518241b7362158",
+      "generatedAt": "2026-09-07T08:10:08.530Z",
+      "outcome": {
+        "status": "accepted",
+        "code": null,
+        "recipeVersionId": "recver_f759b3b3812eb2f6d9800cb6_v1",
+        "processedAt": "2026-09-07T08:10:08.530Z"
+      },
+      "audit": [
+        {
+          "at": "2026-09-07T08:10:08.516Z",
+          "action": "scale_slot_created",
+          "detail": "Created from RecipeGenerationJob batch-518241b7362158"
+        },
+        {
+          "at": "2026-09-07T08:10:08.521Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-07T08:10:08.530Z",
+          "action": "production_candidate_attempt",
+          "detail": "prbr-9b4fce2dfea954df73b4: accepted"
+        }
+      ]
+    },
+    {
+      "candidateId": "scale-063da69f35-011-26c511",
+      "stratumId": "batch-518241b7362158",
+      "state": "rejected",
+      "referenceScanStatus": "complete",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "snack|kcal-300-399",
+          "kcal-300-399",
+          "snack"
+        ],
+        "rationale": "energy_band:snack|kcal-300-399 deficit=0.838; energy_band:kcal-300-399 deficit=0; meal_archetype:snack deficit=0.876; user focus mode=restrict"
+      },
+      "referenceRequests": [],
+      "jobId": "batch-518241b7362158",
+      "generatedAt": "2026-09-07T08:10:08.530Z",
+      "outcome": {
+        "status": "rejected",
+        "code": "target_already_reached",
+        "recipeVersionId": null,
+        "processedAt": "2026-09-07T08:10:08.530Z"
+      },
+      "audit": [
+        {
+          "at": "2026-09-07T08:10:08.516Z",
+          "action": "scale_slot_created",
+          "detail": "Created from RecipeGenerationJob batch-518241b7362158"
+        },
+        {
+          "at": "2026-09-07T08:10:08.521Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-07T08:10:08.530Z",
+          "action": "production_candidate_attempt",
+          "detail": "prbr-9b4fce2dfea954df73b4: rejected (target_already_reached)"
+        }
+      ]
+    },
+    {
+      "candidateId": "scale-063da69f35-012-82c6d2",
+      "stratumId": "batch-518241b7362158",
+      "state": "rejected",
+      "referenceScanStatus": "complete",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "snack|kcal-300-399",
+          "kcal-300-399",
+          "snack"
+        ],
+        "rationale": "energy_band:snack|kcal-300-399 deficit=0.838; energy_band:kcal-300-399 deficit=0; meal_archetype:snack deficit=0.876; user focus mode=restrict"
+      },
+      "referenceRequests": [],
+      "jobId": "batch-518241b7362158",
+      "generatedAt": "2026-09-07T08:10:08.530Z",
+      "outcome": {
+        "status": "rejected",
+        "code": "target_already_reached",
+        "recipeVersionId": null,
+        "processedAt": "2026-09-07T08:10:08.530Z"
+      },
+      "audit": [
+        {
+          "at": "2026-09-07T08:10:08.516Z",
+          "action": "scale_slot_created",
+          "detail": "Created from RecipeGenerationJob batch-518241b7362158"
+        },
+        {
+          "at": "2026-09-07T08:10:08.521Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-07T08:10:08.530Z",
+          "action": "production_candidate_attempt",
+          "detail": "prbr-9b4fce2dfea954df73b4: rejected (target_already_reached)"
+        }
+      ]
+    },
+    {
+      "candidateId": "scale-063da69f35-013-9a9ae5",
+      "stratumId": "batch-518241b7362158",
+      "state": "rejected",
+      "referenceScanStatus": "complete",
+      "concept": {
+        "mealArchetypes": [
+          "snack"
+        ],
+        "focus": [
+          "snack|kcal-300-399",
+          "kcal-300-399",
+          "snack"
+        ],
+        "rationale": "energy_band:snack|kcal-300-399 deficit=0.838; energy_band:kcal-300-399 deficit=0; meal_archetype:snack deficit=0.876; user focus mode=restrict"
+      },
+      "referenceRequests": [],
+      "jobId": "batch-518241b7362158",
+      "generatedAt": "2026-09-07T08:10:08.530Z",
+      "outcome": {
+        "status": "rejected",
+        "code": "target_already_reached",
+        "recipeVersionId": null,
+        "processedAt": "2026-09-07T08:10:08.530Z"
+      },
+      "audit": [
+        {
+          "at": "2026-09-07T08:10:08.516Z",
+          "action": "scale_slot_created",
+          "detail": "Created from RecipeGenerationJob batch-518241b7362158"
+        },
+        {
+          "at": "2026-09-07T08:10:08.521Z",
+          "action": "reference_resolution",
+          "detail": "State resolved to ready_for_generation"
+        },
+        {
+          "at": "2026-09-07T08:10:08.530Z",
+          "action": "production_candidate_attempt",
+          "detail": "prbr-9b4fce2dfea954df73b4: rejected (target_already_reached)"
+        }
+      ]
+    }
+  ],
+  "createdAt": "2026-09-07T08:10:08.516Z",
+  "updatedAt": "2026-09-07T08:10:08.530Z"
+}

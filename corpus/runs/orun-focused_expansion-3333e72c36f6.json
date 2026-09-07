@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "runId": "orun-focused_expansion-3333e72c36f6",
+  "mode": "focused_expansion",
+  "plannerVersion": "corpus-planner-1",
+  "policyId": "corpus-policy-v1-default",
+  "policyVersion": "1.1.0",
+  "inputSnapshotId": "snapshot-1.0.0-production-scale-500-1a2702682578",
+  "outputSnapshotId": null,
+  "seed": "controlled-scale-500-v1:1.0.0:scale-500-tranche-02-lunch-dinner:lunch-400-499:sha256:1a27026825788ae92b8d4b8751ced903bd6e0bf1bc1e982d41d0f81537592eb1",
+  "goal": {
+    "targetRecipeCount": null,
+    "acceptedAddCount": 10,
+    "maxJobs": null,
+    "allowRetire": false,
+    "focusMode": "restrict",
+    "intentStrategy": "focus_only",
+    "focus": {
+      "mealArchetypes": [
+        "lunch"
+      ],
+      "energyBandIds": [
+        "kcal-400-499"
+      ]
+    }
+  },
+  "status": "planned",
+  "stopReason": null,
+  "plannedJobs": [
+    {
+      "jobId": "batch-cd40e54c10746d",
+      "priority": 3.9163,
+      "scoreBreakdown": {
+        "nutrition": 0.9545,
+        "meal": 0.9,
+        "practicality": 0,
+        "cuisine": 0,
+        "ingredientDiversity": 0,
+        "recipeFamily": 0,
+        "focusBoost": 1,
+        "similarityPenalty": 0,
+        "ingredientOverusePenalty": 0,
+        "pairRepetitionPenalty": 0
+      },
+      "targetIds": [
+        "cell-lunch-kcal-400-499",
+        "energy-kcal-400-499-density",
+        "meal-lunch-coverage"
+      ],
+      "reasons": [
+        "energy_band:lunch|kcal-400-499 deficit=0.955",
+        "energy_band:kcal-400-499 deficit=0.377",
+        "meal_archetype:lunch deficit=0.9",
+        "user focus mode=restrict"
+      ],
+      "expectedAcceptedCount": 10
+    }
+  ],
+  "createdAt": "2026-09-07T08:09:39.413Z",
+  "completedAt": null
+}

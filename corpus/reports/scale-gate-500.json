@@ -5,8 +5,8 @@
   "policyVersion": "1.0.0",
   "contractId": "ydm-v1-production-corpus",
   "contractVersion": "1.0.0",
-  "snapshotId": "snapshot-1.0.0-production-scale-001-bcb4ffaee5c4",
-  "activeRecipeCount": 220,
+  "snapshotId": "snapshot-1.0.0-production-scale-500-82d6917d6fb3",
+  "activeRecipeCount": 500,
   "targetActiveRecipes": 500,
   "pilot": {
     "target": 120,
@@ -79,193 +79,172 @@
       "targetId": "meal-breakfast-coverage",
       "releaseMinimum": 500,
       "requiredAtGate": 84,
-      "actual": 20,
-      "status": "blocked"
+      "actual": 94,
+      "status": "pass"
     },
     {
       "targetId": "meal-lunch-coverage",
       "releaseMinimum": 700,
       "requiredAtGate": 117,
-      "actual": 70,
-      "status": "blocked"
+      "actual": 135,
+      "status": "pass"
     },
     {
       "targetId": "meal-dinner-coverage",
       "releaseMinimum": 700,
       "requiredAtGate": 117,
-      "actual": 60,
-      "status": "blocked"
+      "actual": 130,
+      "status": "pass"
     },
     {
       "targetId": "meal-snack-coverage",
       "releaseMinimum": 350,
       "requiredAtGate": 59,
-      "actual": 20,
-      "status": "blocked"
+      "actual": 66,
+      "status": "pass"
     },
     {
       "targetId": "meal-mini_meal-coverage",
       "releaseMinimum": 150,
       "requiredAtGate": 25,
-      "actual": 100,
+      "actual": 125,
       "status": "pass"
     },
     {
       "targetId": "practical-portable-coverage",
       "releaseMinimum": 300,
       "requiredAtGate": 50,
-      "actual": 170,
+      "actual": 266,
       "status": "pass"
     },
     {
       "targetId": "cell-lunch-kcal-300-399",
       "releaseMinimum": 75,
       "requiredAtGate": 13,
-      "actual": 5,
-      "status": "blocked"
+      "actual": 15,
+      "status": "pass"
     },
     {
       "targetId": "cell-lunch-kcal-400-499",
       "releaseMinimum": 75,
       "requiredAtGate": 13,
-      "actual": 5,
-      "status": "blocked"
+      "actual": 15,
+      "status": "pass"
     },
     {
       "targetId": "cell-lunch-kcal-500-599",
       "releaseMinimum": 75,
       "requiredAtGate": 13,
-      "actual": 13,
+      "actual": 38,
       "status": "pass"
     },
     {
       "targetId": "cell-lunch-kcal-600-699",
       "releaseMinimum": 75,
       "requiredAtGate": 13,
-      "actual": 13,
+      "actual": 23,
       "status": "pass"
     },
     {
       "targetId": "cell-lunch-kcal-700-799",
       "releaseMinimum": 75,
       "requiredAtGate": 13,
-      "actual": 10,
-      "status": "blocked"
+      "actual": 20,
+      "status": "pass"
     },
     {
       "targetId": "cell-dinner-kcal-300-399",
       "releaseMinimum": 75,
       "requiredAtGate": 13,
-      "actual": 5,
-      "status": "blocked"
+      "actual": 15,
+      "status": "pass"
     },
     {
       "targetId": "cell-dinner-kcal-400-499",
       "releaseMinimum": 75,
       "requiredAtGate": 13,
-      "actual": 4,
-      "status": "blocked"
+      "actual": 14,
+      "status": "pass"
     },
     {
       "targetId": "cell-dinner-kcal-500-599",
       "releaseMinimum": 75,
       "requiredAtGate": 13,
-      "actual": 13,
+      "actual": 43,
       "status": "pass"
     },
     {
       "targetId": "cell-dinner-kcal-600-699",
       "releaseMinimum": 75,
       "requiredAtGate": 13,
-      "actual": 8,
-      "status": "blocked"
+      "actual": 18,
+      "status": "pass"
     },
     {
       "targetId": "cell-dinner-kcal-700-799",
       "releaseMinimum": 75,
       "requiredAtGate": 13,
-      "actual": 8,
-      "status": "blocked"
+      "actual": 18,
+      "status": "pass"
     },
     {
       "targetId": "cell-breakfast-kcal-100-199",
       "releaseMinimum": 50,
       "requiredAtGate": 9,
-      "actual": 1,
-      "status": "blocked"
+      "actual": 17,
+      "status": "pass"
     },
     {
       "targetId": "cell-breakfast-kcal-200-299",
       "releaseMinimum": 50,
       "requiredAtGate": 9,
-      "actual": 1,
-      "status": "blocked"
+      "actual": 17,
+      "status": "pass"
     },
     {
       "targetId": "cell-breakfast-kcal-300-399",
       "releaseMinimum": 50,
       "requiredAtGate": 9,
-      "actual": 2,
-      "status": "blocked"
+      "actual": 28,
+      "status": "pass"
     },
     {
       "targetId": "cell-breakfast-kcal-400-499",
       "releaseMinimum": 50,
       "requiredAtGate": 9,
-      "actual": 5,
-      "status": "blocked"
+      "actual": 21,
+      "status": "pass"
     },
     {
       "targetId": "cell-snack-kcal-100-199",
       "releaseMinimum": 50,
       "requiredAtGate": 9,
-      "actual": 0,
-      "status": "blocked"
+      "actual": 9,
+      "status": "pass"
     },
     {
       "targetId": "cell-snack-kcal-200-299",
       "releaseMinimum": 50,
       "requiredAtGate": 9,
-      "actual": 2,
-      "status": "blocked"
+      "actual": 11,
+      "status": "pass"
     },
     {
       "targetId": "cell-snack-kcal-300-399",
       "releaseMinimum": 50,
       "requiredAtGate": 9,
-      "actual": 4,
-      "status": "blocked"
+      "actual": 23,
+      "status": "pass"
     },
     {
       "targetId": "cell-snack-kcal-400-499",
       "releaseMinimum": 50,
       "requiredAtGate": 9,
-      "actual": 1,
-      "status": "blocked"
+      "actual": 10,
+      "status": "pass"
     }
   ],
-  "status": "ready",
-  "blockers": [
-    "coverage:meal-breakfast-coverage: actual=20, required>=84",
-    "coverage:meal-lunch-coverage: actual=70, required>=117",
-    "coverage:meal-dinner-coverage: actual=60, required>=117",
-    "coverage:meal-snack-coverage: actual=20, required>=59",
-    "coverage:cell-lunch-kcal-300-399: actual=5, required>=13",
-    "coverage:cell-lunch-kcal-400-499: actual=5, required>=13",
-    "coverage:cell-lunch-kcal-700-799: actual=10, required>=13",
-    "coverage:cell-dinner-kcal-300-399: actual=5, required>=13",
-    "coverage:cell-dinner-kcal-400-499: actual=4, required>=13",
-    "coverage:cell-dinner-kcal-600-699: actual=8, required>=13",
-    "coverage:cell-dinner-kcal-700-799: actual=8, required>=13",
-    "coverage:cell-breakfast-kcal-100-199: actual=1, required>=9",
-    "coverage:cell-breakfast-kcal-200-299: actual=1, required>=9",
-    "coverage:cell-breakfast-kcal-300-399: actual=2, required>=9",
-    "coverage:cell-breakfast-kcal-400-499: actual=5, required>=9",
-    "coverage:cell-snack-kcal-100-199: actual=0, required>=9",
-    "coverage:cell-snack-kcal-200-299: actual=2, required>=9",
-    "coverage:cell-snack-kcal-300-399: actual=4, required>=9",
-    "coverage:cell-snack-kcal-400-499: actual=1, required>=9",
-    "active-recipe-count: active=220, required>=500"
-  ],
-  "evaluatedAt": "2026-09-04T19:43:49.891Z"
+  "status": "pass",
+  "blockers": [],
+  "evaluatedAt": "2026-09-07T08:10:28.467Z"
 }

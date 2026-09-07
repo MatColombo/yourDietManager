@@ -1,0 +1,1308 @@
+[
+  {
+    "schemaVersion": 1,
+    "planId": "controlled-scale-500-v1",
+    "planVersion": "1.0.0",
+    "trancheId": "scale-500-tranche-01-breakfast-snack",
+    "generatedAt": "2026-09-07T08:09:34.363Z",
+    "beforeActiveRecipes": 220,
+    "afterActiveRecipes": 320,
+    "targetAcceptedCount": 100,
+    "accepted": 100,
+    "rejected": 28,
+    "reviewBacklog": 0,
+    "gateStatus": "ready",
+    "quality": {
+      "schemaErrors": 0,
+      "unknownIngredientReferences": 0,
+      "nutritionErrors": 0,
+      "allergenDerivationErrors": 0,
+      "missingRequiredLocaleFields": 0
+    },
+    "similarity": {
+      "exactDuplicateCount": 0,
+      "nearDuplicateCount": 0,
+      "nearDuplicateShare": 0
+    },
+    "hardCoverageRemaining": [
+      {
+        "targetId": "meal-lunch-coverage",
+        "requiredAtGate": 117,
+        "actual": 70,
+        "deficit": 47,
+        "status": "blocked"
+      },
+      {
+        "targetId": "meal-dinner-coverage",
+        "requiredAtGate": 117,
+        "actual": 60,
+        "deficit": 57,
+        "status": "blocked"
+      },
+      {
+        "targetId": "meal-snack-coverage",
+        "requiredAtGate": 59,
+        "actual": 56,
+        "deficit": 3,
+        "status": "blocked"
+      },
+      {
+        "targetId": "cell-lunch-kcal-300-399",
+        "requiredAtGate": 13,
+        "actual": 5,
+        "deficit": 8,
+        "status": "blocked"
+      },
+      {
+        "targetId": "cell-lunch-kcal-400-499",
+        "requiredAtGate": 13,
+        "actual": 5,
+        "deficit": 8,
+        "status": "blocked"
+      },
+      {
+        "targetId": "cell-lunch-kcal-700-799",
+        "requiredAtGate": 13,
+        "actual": 10,
+        "deficit": 3,
+        "status": "blocked"
+      },
+      {
+        "targetId": "cell-dinner-kcal-300-399",
+        "requiredAtGate": 13,
+        "actual": 5,
+        "deficit": 8,
+        "status": "blocked"
+      },
+      {
+        "targetId": "cell-dinner-kcal-400-499",
+        "requiredAtGate": 13,
+        "actual": 4,
+        "deficit": 9,
+        "status": "blocked"
+      },
+      {
+        "targetId": "cell-dinner-kcal-600-699",
+        "requiredAtGate": 13,
+        "actual": 8,
+        "deficit": 5,
+        "status": "blocked"
+      },
+      {
+        "targetId": "cell-dinner-kcal-700-799",
+        "requiredAtGate": 13,
+        "actual": 8,
+        "deficit": 5,
+        "status": "blocked"
+      }
+    ],
+    "batchSummaries": [
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-01-breakfast-snack",
+        "cellId": "breakfast-100-199",
+        "jobId": "batch-c4416af308c5fb",
+        "candidateCount": 20,
+        "accepted": 16,
+        "rejected": 4,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 16,
+          "rejected": 4,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 4
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "breakfast",
+          "energyKcal": {
+            "min": 100,
+            "max": 199
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "breakfast-grain-fruit": 7,
+            "breakfast-egg-plate": 7,
+            "breakfast-fruit-nut": 6
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 0,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.10345933145914728,
+          "maxScaleFactor": 0.598478828835828,
+          "generatedEnergyRangeKcal": {
+            "min": 149.47,
+            "max": 149.52
+          }
+        },
+        "generatedAt": "2026-09-07T08:09:23.271Z",
+        "afterActiveRecipes": 236,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-d519316d5b60"
+      },
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-01-breakfast-snack",
+        "cellId": "breakfast-200-299",
+        "jobId": "batch-422a1fa0ef3818",
+        "candidateCount": 20,
+        "accepted": 16,
+        "rejected": 4,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 16,
+          "rejected": 4,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 4
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "breakfast",
+          "energyKcal": {
+            "min": 200,
+            "max": 299
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "breakfast-egg-plate": 8,
+            "breakfast-fruit-nut": 6,
+            "breakfast-grain-fruit": 6
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 16,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.26470961737264825,
+          "maxScaleFactor": 0.9987991156825358,
+          "generatedEnergyRangeKcal": {
+            "min": 249.47,
+            "max": 249.53
+          }
+        },
+        "generatedAt": "2026-09-07T08:09:24.185Z",
+        "afterActiveRecipes": 252,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-7e807018e0c8"
+      },
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-01-breakfast-snack",
+        "cellId": "breakfast-300-399",
+        "jobId": "batch-d37e40e200eefc",
+        "candidateCount": 20,
+        "accepted": 16,
+        "rejected": 4,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 16,
+          "rejected": 4,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 4
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "breakfast",
+          "energyKcal": {
+            "min": 300,
+            "max": 399
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "breakfast-fruit-nut": 7,
+            "breakfast-grain-fruit": 6,
+            "breakfast-egg-plate": 7
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 32,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.28298640031656835,
+          "maxScaleFactor": 1.3991194025292435,
+          "generatedEnergyRangeKcal": {
+            "min": 349.47,
+            "max": 349.52
+          }
+        },
+        "generatedAt": "2026-09-07T08:09:25.178Z",
+        "afterActiveRecipes": 268,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-b7fa117b6fb8"
+      },
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-01-breakfast-snack",
+        "cellId": "breakfast-400-499",
+        "jobId": "batch-5bd91e8bccf601",
+        "candidateCount": 20,
+        "accepted": 16,
+        "rejected": 4,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 16,
+          "rejected": 4,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 4
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "breakfast",
+          "energyKcal": {
+            "min": 400,
+            "max": 499
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "breakfast-grain-fruit": 7,
+            "breakfast-egg-plate": 7,
+            "breakfast-fruit-nut": 6
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 48,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.33855539655042555,
+          "maxScaleFactor": 1.7994396893759512,
+          "generatedEnergyRangeKcal": {
+            "min": 449.45,
+            "max": 449.52
+          }
+        },
+        "generatedAt": "2026-09-07T08:09:26.368Z",
+        "afterActiveRecipes": 284,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-aab7d8b9df26"
+      },
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-01-breakfast-snack",
+        "cellId": "snack-100-199",
+        "jobId": "batch-d43c046e1c4103",
+        "candidateCount": 12,
+        "accepted": 9,
+        "rejected": 3,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 9,
+          "rejected": 3,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 3
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "snack",
+          "energyKcal": {
+            "min": 100,
+            "max": 199
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "snack-fruit-nut": 4,
+            "snack-veg-legume": 4,
+            "snack-fruit-grain": 4
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 0,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.1286448919890323,
+          "maxScaleFactor": 0.4142431818894641,
+          "generatedEnergyRangeKcal": {
+            "min": 149.46,
+            "max": 149.53
+          }
+        },
+        "generatedAt": "2026-09-07T08:09:27.571Z",
+        "afterActiveRecipes": 293,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-5ca7f6f39573"
+      },
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-01-breakfast-snack",
+        "cellId": "snack-200-299",
+        "jobId": "batch-c63327b479787b",
+        "candidateCount": 12,
+        "accepted": 9,
+        "rejected": 3,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 9,
+          "rejected": 3,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 3
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "snack",
+          "energyKcal": {
+            "min": 200,
+            "max": 299
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "snack-veg-legume": 4,
+            "snack-fruit-grain": 4,
+            "snack-fruit-nut": 4
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 9,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.3279555609954341,
+          "maxScaleFactor": 0.758855695961078,
+          "generatedEnergyRangeKcal": {
+            "min": 249.46,
+            "max": 249.52
+          }
+        },
+        "generatedAt": "2026-09-07T08:09:28.830Z",
+        "afterActiveRecipes": 302,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-08870de416f7"
+      },
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-01-breakfast-snack",
+        "cellId": "snack-300-399",
+        "jobId": "batch-ea9057b03d0c95",
+        "candidateCount": 12,
+        "accepted": 9,
+        "rejected": 3,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 9,
+          "rejected": 3,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 3
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "snack",
+          "energyKcal": {
+            "min": 300,
+            "max": 399
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "snack-fruit-grain": 4,
+            "snack-fruit-nut": 4,
+            "snack-veg-legume": 4
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 18,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.44932436709308055,
+          "maxScaleFactor": 1.909331945603178,
+          "generatedEnergyRangeKcal": {
+            "min": 349.48,
+            "max": 349.53
+          }
+        },
+        "generatedAt": "2026-09-07T08:09:30.194Z",
+        "afterActiveRecipes": 311,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-d79465881c80"
+      },
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-01-breakfast-snack",
+        "cellId": "snack-400-499",
+        "jobId": "batch-4078b29bd18885",
+        "candidateCount": 12,
+        "accepted": 9,
+        "rejected": 3,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 9,
+          "rejected": 3,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 3
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "snack",
+          "energyKcal": {
+            "min": 400,
+            "max": 499
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "snack-fruit-nut": 4,
+            "snack-veg-legume": 4,
+            "snack-fruit-grain": 4
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 27,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.4929021552891765,
+          "maxScaleFactor": 1.172837627629036,
+          "generatedEnergyRangeKcal": {
+            "min": 449.47,
+            "max": 449.52
+          }
+        },
+        "generatedAt": "2026-09-07T08:09:31.574Z",
+        "afterActiveRecipes": 320,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-6015ea0db891"
+      }
+    ],
+    "status": "pass",
+    "blockers": []
+  },
+  {
+    "schemaVersion": 1,
+    "planId": "controlled-scale-500-v1",
+    "planVersion": "1.0.0",
+    "trancheId": "scale-500-tranche-02-lunch-dinner",
+    "generatedAt": "2026-09-07T08:10:00.507Z",
+    "beforeActiveRecipes": 320,
+    "afterActiveRecipes": 420,
+    "targetAcceptedCount": 100,
+    "accepted": 100,
+    "rejected": 30,
+    "reviewBacklog": 0,
+    "gateStatus": "ready",
+    "quality": {
+      "schemaErrors": 0,
+      "unknownIngredientReferences": 0,
+      "nutritionErrors": 0,
+      "allergenDerivationErrors": 0,
+      "missingRequiredLocaleFields": 0
+    },
+    "similarity": {
+      "exactDuplicateCount": 0,
+      "nearDuplicateCount": 0,
+      "nearDuplicateShare": 0
+    },
+    "hardCoverageRemaining": [
+      {
+        "targetId": "meal-dinner-coverage",
+        "requiredAtGate": 117,
+        "actual": 110,
+        "deficit": 7,
+        "status": "blocked"
+      },
+      {
+        "targetId": "meal-snack-coverage",
+        "requiredAtGate": 59,
+        "actual": 56,
+        "deficit": 3,
+        "status": "blocked"
+      }
+    ],
+    "batchSummaries": [
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-02-lunch-dinner",
+        "cellId": "lunch-300-399",
+        "jobId": "batch-86bb7b0bec4073",
+        "candidateCount": 13,
+        "accepted": 10,
+        "rejected": 3,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 10,
+          "rejected": 3,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 3
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "lunch",
+          "energyKcal": {
+            "min": 300,
+            "max": 399
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "lunch-grain-bowl": 5,
+            "lunch-protein-plate": 4,
+            "lunch-legume-bowl": 4
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 0,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.2695599385724502,
+          "maxScaleFactor": 1.0334121821407452,
+          "generatedEnergyRangeKcal": {
+            "min": 349.48,
+            "max": 349.55
+          }
+        },
+        "generatedAt": "2026-09-07T08:09:37.876Z",
+        "afterActiveRecipes": 330,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-1a2702682578"
+      },
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-02-lunch-dinner",
+        "cellId": "lunch-400-499",
+        "jobId": "batch-cd40e54c10746d",
+        "candidateCount": 13,
+        "accepted": 10,
+        "rejected": 3,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 10,
+          "rejected": 3,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 3
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "lunch",
+          "energyKcal": {
+            "min": 400,
+            "max": 499
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "lunch-protein-plate": 5,
+            "lunch-legume-bowl": 4,
+            "lunch-grain-bowl": 4
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 10,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.401209394035979,
+          "maxScaleFactor": 0.8750759912814196,
+          "generatedEnergyRangeKcal": {
+            "min": 449.45,
+            "max": 449.55
+          }
+        },
+        "generatedAt": "2026-09-07T08:09:39.538Z",
+        "afterActiveRecipes": 340,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-f92d76b0f157"
+      },
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-02-lunch-dinner",
+        "cellId": "lunch-500-599",
+        "jobId": "batch-b663cdaf85140b",
+        "candidateCount": 13,
+        "accepted": 10,
+        "rejected": 3,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 10,
+          "rejected": 3,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 3
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "lunch",
+          "energyKcal": {
+            "min": 500,
+            "max": 599
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "lunch-legume-bowl": 5,
+            "lunch-grain-bowl": 4,
+            "lunch-protein-plate": 4
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 20,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.42697493093322425,
+          "maxScaleFactor": 1.4507153741549206,
+          "generatedEnergyRangeKcal": {
+            "min": 549.47,
+            "max": 549.55
+          }
+        },
+        "generatedAt": "2026-09-07T08:09:41.188Z",
+        "afterActiveRecipes": 350,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-f17fdc76757f"
+      },
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-02-lunch-dinner",
+        "cellId": "lunch-600-699",
+        "jobId": "batch-da4c717582fcc4",
+        "candidateCount": 13,
+        "accepted": 10,
+        "rejected": 3,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 10,
+          "rejected": 3,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 3
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "lunch",
+          "energyKcal": {
+            "min": 600,
+            "max": 699
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "lunch-grain-bowl": 5,
+            "lunch-protein-plate": 4,
+            "lunch-legume-bowl": 4
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 30,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.394400690648364,
+          "maxScaleFactor": 1.4021608041881157,
+          "generatedEnergyRangeKcal": {
+            "min": 649.44,
+            "max": 649.52
+          }
+        },
+        "generatedAt": "2026-09-07T08:09:42.924Z",
+        "afterActiveRecipes": 360,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-a3548f63134e"
+      },
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-02-lunch-dinner",
+        "cellId": "lunch-700-799",
+        "jobId": "batch-8f5c3d92eb621e",
+        "candidateCount": 13,
+        "accepted": 10,
+        "rejected": 3,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 10,
+          "rejected": 3,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 3
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "lunch",
+          "energyKcal": {
+            "min": 700,
+            "max": 799
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "lunch-protein-plate": 5,
+            "lunch-legume-bowl": 4,
+            "lunch-grain-bowl": 4
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 40,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.4740162257370186,
+          "maxScaleFactor": 1.3500105627649688,
+          "generatedEnergyRangeKcal": {
+            "min": 749.47,
+            "max": 749.52
+          }
+        },
+        "generatedAt": "2026-09-07T08:09:44.774Z",
+        "afterActiveRecipes": 370,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-6791bccb7e55"
+      },
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-02-lunch-dinner",
+        "cellId": "dinner-300-399",
+        "jobId": "batch-4f7b50d658fa03",
+        "candidateCount": 13,
+        "accepted": 10,
+        "rejected": 3,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 10,
+          "rejected": 3,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 3
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "dinner",
+          "energyKcal": {
+            "min": 300,
+            "max": 399
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "dinner-protein-plate": 5,
+            "dinner-grain-bowl": 4,
+            "dinner-legume-plate": 4
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 0,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.2093716572021211,
+          "maxScaleFactor": 0.6596719715497482,
+          "generatedEnergyRangeKcal": {
+            "min": 349.48,
+            "max": 349.51
+          }
+        },
+        "generatedAt": "2026-09-07T08:09:46.698Z",
+        "afterActiveRecipes": 380,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-29a841ba1734"
+      },
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-02-lunch-dinner",
+        "cellId": "dinner-400-499",
+        "jobId": "batch-6797c479930498",
+        "candidateCount": 13,
+        "accepted": 10,
+        "rejected": 3,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 10,
+          "rejected": 3,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 3
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "dinner",
+          "energyKcal": {
+            "min": 400,
+            "max": 499
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "dinner-grain-bowl": 5,
+            "dinner-legume-plate": 4,
+            "dinner-protein-plate": 4
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 10,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.26526449563102333,
+          "maxScaleFactor": 0.9887314430297123,
+          "generatedEnergyRangeKcal": {
+            "min": 449.44,
+            "max": 449.55
+          }
+        },
+        "generatedAt": "2026-09-07T08:09:48.727Z",
+        "afterActiveRecipes": 390,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-080f2a092759"
+      },
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-02-lunch-dinner",
+        "cellId": "dinner-500-599",
+        "jobId": "batch-a90981ac6c95f7",
+        "candidateCount": 13,
+        "accepted": 10,
+        "rejected": 3,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 10,
+          "rejected": 3,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 3
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "dinner",
+          "energyKcal": {
+            "min": 500,
+            "max": 599
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "dinner-legume-plate": 5,
+            "dinner-protein-plate": 4,
+            "dinner-grain-bowl": 4
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 20,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.3395471731596241,
+          "maxScaleFactor": 0.8045099711159847,
+          "generatedEnergyRangeKcal": {
+            "min": 549.45,
+            "max": 549.58
+          }
+        },
+        "generatedAt": "2026-09-07T08:09:50.908Z",
+        "afterActiveRecipes": 400,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-f2d09f5b5117"
+      },
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-02-lunch-dinner",
+        "cellId": "dinner-600-699",
+        "jobId": "batch-d024c40fc8ea32",
+        "candidateCount": 13,
+        "accepted": 10,
+        "rejected": 3,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 10,
+          "rejected": 3,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 3
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "dinner",
+          "energyKcal": {
+            "min": 600,
+            "max": 699
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "dinner-protein-plate": 5,
+            "dinner-grain-bowl": 4,
+            "dinner-legume-plate": 4
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 30,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.30884605366414136,
+          "maxScaleFactor": 1.2768235523847093,
+          "generatedEnergyRangeKcal": {
+            "min": 649.47,
+            "max": 649.54
+          }
+        },
+        "generatedAt": "2026-09-07T08:09:53.197Z",
+        "afterActiveRecipes": 410,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-82083c64e86c"
+      },
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-02-lunch-dinner",
+        "cellId": "dinner-700-799",
+        "jobId": "batch-87a611f808793a",
+        "candidateCount": 13,
+        "accepted": 10,
+        "rejected": 3,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 10,
+          "rejected": 3,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 3
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "dinner",
+          "energyKcal": {
+            "min": 700,
+            "max": 799
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "dinner-grain-bowl": 5,
+            "dinner-legume-plate": 4,
+            "dinner-protein-plate": 4
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 40,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.575631116535386,
+          "maxScaleFactor": 0.9978009679691529,
+          "generatedEnergyRangeKcal": {
+            "min": 749.48,
+            "max": 749.52
+          }
+        },
+        "generatedAt": "2026-09-07T08:09:55.590Z",
+        "afterActiveRecipes": 420,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-977aebd4d058"
+      }
+    ],
+    "status": "pass",
+    "blockers": []
+  },
+  {
+    "schemaVersion": 1,
+    "planId": "controlled-scale-500-v1",
+    "planVersion": "1.0.0",
+    "trancheId": "scale-500-tranche-03-balanced-close",
+    "generatedAt": "2026-09-07T08:10:24.509Z",
+    "beforeActiveRecipes": 420,
+    "afterActiveRecipes": 500,
+    "targetAcceptedCount": 80,
+    "accepted": 80,
+    "rejected": 22,
+    "reviewBacklog": 0,
+    "gateStatus": "pass",
+    "quality": {
+      "schemaErrors": 0,
+      "unknownIngredientReferences": 0,
+      "nutritionErrors": 0,
+      "allergenDerivationErrors": 0,
+      "missingRequiredLocaleFields": 0
+    },
+    "similarity": {
+      "exactDuplicateCount": 0,
+      "nearDuplicateCount": 0,
+      "nearDuplicateShare": 0
+    },
+    "hardCoverageRemaining": [],
+    "batchSummaries": [
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-03-balanced-close",
+        "cellId": "breakfast-300-399-close",
+        "jobId": "batch-7374ea41a57599",
+        "candidateCount": 13,
+        "accepted": 10,
+        "rejected": 3,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 10,
+          "rejected": 3,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "diversity_primary_frequency": 2,
+          "target_already_reached": 1
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "breakfast",
+          "energyKcal": {
+            "min": 300,
+            "max": 399
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "breakfast-egg-plate": 5,
+            "breakfast-fruit-nut": 4,
+            "breakfast-grain-fruit": 4
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 52,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.28059791994473654,
+          "maxScaleFactor": 0.8143992892716193,
+          "generatedEnergyRangeKcal": {
+            "min": 349.47,
+            "max": 349.51
+          }
+        },
+        "generatedAt": "2026-09-07T08:10:05.978Z",
+        "afterActiveRecipes": 430,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-40b3fff14d5d"
+      },
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-03-balanced-close",
+        "cellId": "snack-300-399-close",
+        "jobId": "batch-518241b7362158",
+        "candidateCount": 13,
+        "accepted": 10,
+        "rejected": 3,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 10,
+          "rejected": 3,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 3
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "snack",
+          "energyKcal": {
+            "min": 300,
+            "max": 399
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "snack-veg-legume": 4,
+            "snack-fruit-grain": 4,
+            "snack-fruit-nut": 5
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 36,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.28174123337363965,
+          "maxScaleFactor": 0.9524977516147496,
+          "generatedEnergyRangeKcal": {
+            "min": 349.47,
+            "max": 349.53
+          }
+        },
+        "generatedAt": "2026-09-07T08:10:08.648Z",
+        "afterActiveRecipes": 440,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-89c9cced455c"
+      },
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-03-balanced-close",
+        "cellId": "lunch-500-599-close",
+        "jobId": "batch-257964fe6d1692",
+        "candidateCount": 19,
+        "accepted": 15,
+        "rejected": 4,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 15,
+          "rejected": 4,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 4
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "lunch",
+          "energyKcal": {
+            "min": 500,
+            "max": 599
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "lunch-legume-bowl": 7,
+            "lunch-grain-bowl": 6,
+            "lunch-protein-plate": 6
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 50,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.3343916426203973,
+          "maxScaleFactor": 1.2633949845520265,
+          "generatedEnergyRangeKcal": {
+            "min": 549.45,
+            "max": 549.55
+          }
+        },
+        "generatedAt": "2026-09-07T08:10:11.392Z",
+        "afterActiveRecipes": 455,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-119d955b66be"
+      },
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-03-balanced-close",
+        "cellId": "dinner-500-599-close",
+        "jobId": "batch-9d099023ecf104",
+        "candidateCount": 25,
+        "accepted": 20,
+        "rejected": 5,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 20,
+          "rejected": 5,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 5
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "dinner",
+          "energyKcal": {
+            "min": 500,
+            "max": 599
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "dinner-legume-plate": 9,
+            "dinner-protein-plate": 8,
+            "dinner-grain-bowl": 8
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 50,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.41489803108353035,
+          "maxScaleFactor": 1.1805652533542446,
+          "generatedEnergyRangeKcal": {
+            "min": 549.48,
+            "max": 549.55
+          }
+        },
+        "generatedAt": "2026-09-07T08:10:14.393Z",
+        "afterActiveRecipes": 475,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-756da68b4eb1"
+      },
+      {
+        "schemaVersion": 1,
+        "planId": "controlled-scale-500-v1",
+        "trancheId": "scale-500-tranche-03-balanced-close",
+        "cellId": "mini-meal-300-399-close",
+        "jobId": "batch-29950cd4c43f91",
+        "candidateCount": 32,
+        "accepted": 25,
+        "rejected": 7,
+        "reviewBacklog": 0,
+        "batchGate": "pass",
+        "dispositions": {
+          "accepted": 25,
+          "rejected": 7,
+          "duplicate": 0,
+          "needs_reference_review": 0,
+          "needs_recipe_review": 0,
+          "nutrition_outlier": 0
+        },
+        "rejectionCodes": {
+          "target_already_reached": 7
+        },
+        "generatorDiagnostics": {
+          "generatorVersion": "controlled-scale-generator-v1",
+          "mealArchetype": "mini_meal",
+          "energyKcal": {
+            "min": 300,
+            "max": 399
+          },
+          "eligibleMacroReliableIngredients": 568,
+          "profileUsage": {
+            "mini-fruit-nut": 16,
+            "mini-veg-legume": 16
+          },
+          "infeasibleCombinationAttempts": 0,
+          "duplicateSetAvoidances": 0,
+          "pairLimitAvoidances": 0,
+          "minScaleFactor": 0.30260646979564004,
+          "maxScaleFactor": 1.248114566099267,
+          "generatedEnergyRangeKcal": {
+            "min": 349.47,
+            "max": 349.53
+          }
+        },
+        "generatedAt": "2026-09-07T08:10:17.694Z",
+        "afterActiveRecipes": 500,
+        "afterSnapshotId": "snapshot-1.0.0-production-scale-500-82d6917d6fb3"
+      }
+    ],
+    "status": "pass",
+    "blockers": []
+  }
+]
