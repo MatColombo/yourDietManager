@@ -20,6 +20,7 @@ import { loadCorpusInput, readJson } from '../scripts/corpus/io-lib.mjs';
 import { fileLoader } from './helpers.mjs';
 
 const root = process.cwd();
+const devRoot = path.join(root, 'tests/fixtures/catalog-0.3');
 async function registryFixture() {
   const registry = new SchemaRegistry(fileLoader(path.join(root, 'schemas')));
   await registry.loadAll();
@@ -30,7 +31,7 @@ async function productionFixture() {
     registryFixture(),
     readJson(path.join(root, 'corpus/contracts/v1-production.json')),
     readJson(path.join(root, 'corpus/policies/v1-default.json')),
-    loadCorpusInput(path.join(root, 'public/data'))
+    loadCorpusInput(path.join(devRoot, 'public/data'))
   ]);
   return { registry, contract, policy, corpus };
 }

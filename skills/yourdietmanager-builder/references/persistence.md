@@ -11,16 +11,17 @@ Base catalog JSON is rebuildable. User data is authoritative in IndexedDB betwee
 
 ## Current database
 
-The current V1 Data/UX Hardening Pass A runtime uses:
+The current production-review runtime uses:
 
-- `DB_VERSION=4`;
+- `DB_VERSION=5`;
 - `contentSchemaVersion=3`;
-- **21 object stores**.
+- **22 object stores**.
 
 In addition to config, catalog, plan/history and shopping stores, persist canonical reference data in:
 
 - `taxonomies` keyed by `taxonomyId`;
 - `taxonomyTerms` keyed by `termId` with taxonomy/parent/status/origin/search indexes.
+- `recipeHumanReviews` keyed by `reviewId`, indexed by catalog/publication/RecipeVersion/decision, for publication-bound human review state.
 
 ## Versions
 
@@ -49,7 +50,7 @@ Use one logical transaction/service boundary for create-version + current pointe
 
 ## Store contracts
 
-`catalogPacks` and `shoppingChecklists` are first-class persisted entities with dedicated JSON Schemas. Pack membership comes from the catalog manifest; checklist state is user data included in backup/export.
+`catalogPacks`, `shoppingChecklists` and `recipeHumanReviews` are first-class persisted entities with dedicated JSON Schemas. Pack membership comes from the catalog manifest; checklist and human-review state are user data included in backup/export.
 
 Backups also preserve user-created `customTaxonomies` and `customTaxonomyTerms`; base reference data remains rebuildable from catalog shards.
 ## Local override of bundled families
@@ -64,3 +65,8 @@ Backups also preserve user-created `customTaxonomies` and `customTaxonomyTerms`;
 
 Catalog update, rollback and pack install may stage new base immutable records but must not overwrite a family already under local management. Backup/custom-catalog import must allow a user family override to overlay a bundled family with the same stable ID while rejecting collisions on immutable revision/version IDs.
 
+
+
+## Production-review persistence
+
+Production-review decisions are local user data, not base catalog data. Store them in `recipeHumanReviews`; preserve them in backup/export; bind them to publication ID, catalog version, RecipeVersion ID and content hash. Catalog publication/update must never synthesize or overwrite a human decision. Review export/import uses its own checksum-bound bundle so review evidence can be audited or transferred without turning it into catalog content.

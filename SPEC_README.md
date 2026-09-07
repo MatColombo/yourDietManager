@@ -89,10 +89,12 @@ JSON backup
 | `specs/INITIAL_RECIPE_CORPUS_PLAN.md` | Piano quantitativo per il catalogo iniziale |
 | `specs/PRODUCTION_CORPUS_CONTRACT.md` | Contratto 4P-A: readiness ingredienti/reference data, pilot intake, candidate lifecycle e production acceptance |
 | `specs/INGREDIENT_CURATION_PILOT_SPEC.md` | Contratto operativo 4P-B: trusted sources, review ingredienti, materializzazione, retirement e pilot waves |
-| `specs/PRODUCTION_RECIPE_PIPELINE_SCALE_SPEC.md` | Contratto operativo 4P-C: batch industrializzati, disposition/review, stale-snapshot guard e Scale Gate 500 |
+| `specs/PRODUCTION_RECIPE_PIPELINE_SCALE_SPEC.md` | Contratto operativo 4P-C/4P-D: batch industrializzati, disposition/review, stale-snapshot guard, Scale Gate 500 e boundary di review post-500 |
 | `specs/PRODUCTION_CORPUS_EXECUTION_SPEC.md` | Esecuzione rc.13: acquisizione USDA, deterministic review bounded, retirement fixture, pilot 120/120 e primo batch 4P-C |
+| `specs/PRODUCTION_CATALOG_REVIEW_SPEC.md` | rc.22: pubblicazione controllata delle 500 ricette in app, review umana persistente/exportabile e Human Review Gate prima di riprendere la scala |
 | `PHASE4_PRODUCTION_TEST_ISOLATION_RC20_REPORT.md` | rc.20: isolamento dei test baseline dalle mutazioni canoniche della workflow production |
 | `PHASE4_PRODUCTION_SCALE_500_RC21_REPORT.md` | rc.21 / 4P-D Pass A: piano e verifica reale del controlled scale 220 -> 500 |
+| `PHASE4_PRODUCTION_REVIEW_RC22_REPORT.md` | rc.22: controlled publication 500 + in-app human review, fail-closed gate e QA |
 | `specs/PLAN_GENERATOR_SPEC.md` | Generatore del piano e solver |
 | `specs/SHOPPING_SPEC.md` | Spesa e moltiplicatore persone |
 | `specs/SHOPPING_CHECKLIST_SPEC.md` | Contratto checklist persistita e refresh |

@@ -6,12 +6,13 @@ import { CatalogImporter } from '../src/services/catalogImporter.js';
 import { MemoryRepository, fileFetch, fileLoader } from './helpers.mjs';
 
 const root = process.cwd();
+const devRoot = path.join(root, 'tests/fixtures/catalog-0.3');
 
 test('catalog bootstrap validates then activates only after import', async () => {
   const repo = new MemoryRepository();
   const registry = new SchemaRegistry(fileLoader(path.join(root, 'schemas'))); await registry.loadAll();
   const phases = [];
-  const importer = new CatalogImporter({ repo, registry, fetcher: fileFetch(root), storage: null });
+  const importer = new CatalogImporter({ repo, registry, fetcher: fileFetch(devRoot), storage: null });
   const version = await importer.bootstrap(progress => phases.push(progress.phase));
   assert.equal(version, '0.3.0-dev');
   assert.equal(await repo.getMeta('activeCatalogVersion'), '0.3.0-dev');

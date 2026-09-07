@@ -13,10 +13,11 @@ import { isEditableRoute } from '../src/ui/uiState.js';
 import { MemoryRepository, fileFetch, fileLoader } from './helpers.mjs';
 
 const root = process.cwd();
+const devRoot = path.join(root, 'tests/fixtures/catalog-0.3');
 async function fixture() {
   const repo = new MemoryRepository();
   const registry = new SchemaRegistry(fileLoader(path.join(root, 'schemas'))); await registry.loadAll();
-  await new CatalogImporter({ repo, registry, fetcher: fileFetch(root), storage: null }).bootstrap();
+  await new CatalogImporter({ repo, registry, fetcher: fileFetch(devRoot), storage: null }).bootstrap();
   return { repo, registry, query: new CatalogQueryService({ repo }) };
 }
 
@@ -91,7 +92,7 @@ test('Pass D personal catalog transfer can carry local overrides of bundled fami
 
 test('Pass D catalog pack reinstall does not overwrite a locally edited bundled recipe family', async () => {
   const { repo, registry } = await fixture();
-  const updater = new CatalogUpdater({ repo, registry, fetcher: fileFetch(root), storage: null });
+  const updater = new CatalogUpdater({ repo, registry, fetcher: fileFetch(devRoot), storage: null });
   await updater.installPack('quick');
   const base = await repo.get('recipes', 'rec_zucchini_rice');
   const draft = await recipeToDraft(base.recipeId, { repo }); draft.titleIt = `${draft.titleIt} locale`;

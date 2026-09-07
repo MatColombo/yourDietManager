@@ -1,8 +1,8 @@
 export const DB_NAME = 'yourDietManager';
-export const DB_VERSION = 4;
+export const DB_VERSION = 5;
 export const CONTENT_SCHEMA_VERSION = 3;
 export const BACKUP_FORMAT_VERSION = 1;
-export const APP_VERSION = '1.0.0-rc.21';
+export const APP_VERSION = '1.0.0-rc.22';
 
 export const STORE_DEFINITIONS = {
   meta: { keyPath: 'key', indexes: [] },
@@ -82,6 +82,16 @@ export const STORE_DEFINITIONS = {
       { name: 'catalogVersionAndPackId', keyPath: ['catalogVersion', 'packId'], options: { unique: true } },
       { name: 'catalogVersion', keyPath: 'catalogVersion' },
       { name: 'status', keyPath: 'status' }
+    ]
+  },
+  recipeHumanReviews: {
+    keyPath: 'reviewId',
+    indexes: [
+      { name: 'catalogVersion', keyPath: 'catalogVersion' },
+      { name: 'publicationId', keyPath: 'publicationId' },
+      { name: 'recipeVersionId', keyPath: 'recipeVersionId' },
+      { name: 'decision', keyPath: 'decision' },
+      { name: 'publicationAndDecision', keyPath: ['publicationId', 'decision'] }
     ]
   },
   planInstances: { keyPath: 'planInstanceId', indexes: [] },

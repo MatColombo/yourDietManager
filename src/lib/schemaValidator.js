@@ -2,7 +2,7 @@ import { assetPath } from './appBase.js';
 
 const SCHEMA_FILES = [
   'allergy-intolerance-profile.schema.json', 'app-config.schema.json', 'backup.schema.json', 'calendar-day.schema.json',
-  'catalog-manifest.schema.json', 'catalog-pack.schema.json', 'cycle.schema.json', 'day-class.schema.json',
+  'catalog-manifest.schema.json', 'catalog-publication.schema.json', 'production-review-publication.schema.json', 'recipe-human-review.schema.json', 'recipe-human-review-bundle.schema.json', 'catalog-pack.schema.json', 'cycle.schema.json', 'day-class.schema.json',
   'domain-enums.schema.json', 'food-preferences.schema.json', 'generation-run.schema.json', 'ingredient-revision.schema.json',
   'ingredient.schema.json', 'meal-class.schema.json', 'nutrition-profile.schema.json', 'operation.schema.json',
   'plan-instance.schema.json', 'recipe-corpus-orchestration-run.schema.json', 'recipe-corpus-policy.schema.json',
@@ -13,7 +13,7 @@ const SCHEMA_FILES = [
 ];
 
 export const SCHEMA_BY_NAME = {
-  catalogManifest: 'catalog-manifest.schema.json', catalogPack: 'catalog-pack.schema.json', ingredient: 'ingredient.schema.json',
+  catalogManifest: 'catalog-manifest.schema.json', catalogPublication: 'catalog-publication.schema.json', productionReviewPublication: 'production-review-publication.schema.json', recipeHumanReview: 'recipe-human-review.schema.json', recipeHumanReviewBundle: 'recipe-human-review-bundle.schema.json', catalogPack: 'catalog-pack.schema.json', ingredient: 'ingredient.schema.json',
   ingredientRevision: 'ingredient-revision.schema.json', recipe: 'recipe.schema.json', recipeVersion: 'recipe-version.schema.json',
   appConfig: 'app-config.schema.json', themeProfile: 'theme-profile.schema.json', nutritionProfile: 'nutrition-profile.schema.json',
   allergyIntoleranceProfile: 'allergy-intolerance-profile.schema.json', foodPreferences: 'food-preferences.schema.json',

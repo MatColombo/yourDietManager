@@ -85,8 +85,15 @@ The Pages workflow runs the application check with `YDM_BROWSER_REQUIRED=1`. Thi
 
 La PWA registra/aggiorna ora la Service Worker tramite `src/recoveryBootstrap.js` **prima** di `src/main.js`. Questo evita che un errore di bootstrap applicativo impedisca al browser di ricevere una Service Worker nuova e continui quindi a servire moduli JS obsoleti dalla shell cache precedente.
 
-Le cache correnti sono `ydm-shell-v23-<scope>` e `ydm-data-v11-<scope>`. `updateViaCache: 'none'` e `registration.update()` forzano il controllo del worker dalla rete; al cambio controller viene eseguito un solo reload protetto da `sessionStorage`.
+Le cache correnti sono `ydm-shell-v24-<scope>` e `ydm-data-v12-<scope>`. `updateViaCache: 'none'` e `registration.update()` forzano il controllo del worker dalla rete; al cambio controller viene eseguito un solo reload protetto da `sessionStorage`.
 
 Per upgrade da installazioni pre-hardening, `contentMigration:3` e resumable. Una FoodPreference legacy non-hard salvata come `ingredient:uova` viene re-tipizzata in modo auditato a `foodCategory:food_group_eggs`; non e un alias runtime e non modifica regole `autoExclude=true`.
 
 Se si sta testando una build precedente gia bloccata prima di rc.9, un hard refresh o la rimozione una tantum della vecchia Service Worker puo accelerare il primo caricamento della rc.9, ma non e parte del flusso normale dopo che `recoveryBootstrap.js` e stato ricevuto.
+
+
+## Production-review catalog publication
+
+The 500-recipe review catalog is intentionally published by `.github/workflows/production-review-500.yml`, not by copying a prebuilt catalog into the repository. Run **Publish 500 Recipe Review Catalog** first with `commit_results=false`; after it is green, rerun with `commit_results=true`. The commit updates the base catalog JSON and the normal Pages workflow then deploys it.
+
+A fresh browser profile imports the 500-recipe review catalog on first bootstrap. An existing profile keeps its local data and applies the new base catalog through the normal catalog-update path. The manifest remains `releaseEligible=false` until the later production release process.

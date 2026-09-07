@@ -2,7 +2,7 @@
 
 Local-first PWA implementation through **Phase 8 — Hardening & V1 release gates**.
 
-Candidate version: **`1.0.0-rc.21`**.
+Candidate version: **`1.0.0-rc.22`**.
 
 Phases 1–7 remain fully present: IndexedDB persistence, onboarding/configuration, backup/import, IT/EN, theme engine, indexed catalog/search/packs, versioned catalog authoring, corpus-orchestration tooling, deterministic seeded plan generation, effective-plan UX with history/undo, shopping checklists and preparation horizon.
 
@@ -21,7 +21,7 @@ See `PHASE8_IMPLEMENTATION_REPORT.md` for the full implementation and verificati
 
 ## V1 Data/UX Hardening — Pass A + Pass B + Pass C + Pass D + Pass E
 
-Pass A through Pass E are implemented on top of the release candidate. The current runtime remains **IndexedDB DB v4 / content schema v3** with canonical `taxonomies` / `taxonomyTerms`, a 7-taxonomy/113-term seed registry, reference-data digest/versioning, semantic validation and audited legacy migration.
+Pass A through Pass E are implemented on top of the release candidate. The current runtime is **IndexedDB DB v5 / content schema v3** with canonical `taxonomies` / `taxonomyTerms`, a 7-taxonomy/113-term seed registry, reference-data digest/versioning, semantic validation and audited legacy migration.
 
 Pass B makes those contracts the normal UI path: `Configura -> Tassonomie e reference data`, canonical autocomplete selectors for entity/taxonomy references, chip multi-selects for recipe taxonomy metadata, hierarchical food group/subgroup selection, localized closed enums, ingredient-dependent recipe-line units, unified MealArchetype defaults and inline validation. Semantic CSV/free-text entry is no longer used by ordinary authoring/configuration forms.
 
@@ -69,7 +69,7 @@ No `npm install` is required.
 
 4P-A introduces the versioned production-data control plane before any mass recipe generation:
 
-- `corpus/contracts/v1-production.json` freezes production target 3,000/4,000/5,000, ingredient readiness 400/600/800 and a 120-candidate pilot;
+- `corpus/contracts/v1-production.json` freezes the V1 release minimum (3,000), current planning target (4,000), a legacy 5,000 planning reference retained only for provenance compatibility, ingredient readiness 400/600/800 and a 120-candidate pilot;
 - `schemas/production-corpus-contract.schema.json`, `production-corpus-intake.schema.json` and `production-corpus-readiness-report.schema.json` make the workflow machine-checkable;
 - production planning filters out IngredientRevision records that are not `curated/high` instead of silently using development fixtures;
 - pilot slots have explicit lifecycle `discovered -> needs_reference_review/needs_ingredient_review -> ready_for_generation -> generated -> accepted|rejected`;
@@ -140,7 +140,7 @@ Only `accepted`, `rejected` and `duplicate` are terminal dispositions. `needs_re
 
 The repository is intentionally still a **release candidate**, not V1.0 final. The final release gate blocks promotion because the bundled base catalog is still the development fixture: 3 recipes, 4 low-confidence/draft ingredient revisions, `pipelineVersion=phase3-fixture`, `catalogVersion=0.3.0-dev`.
 
-The remaining V1 data gate is governed by the 4P-A contract and the 4P-B curation/pilot gates rather than an informal recipe-count target: first materialize at least 400 production-ready curated/high ingredients, then run the 120-candidate pilot through reference/ingredient intake, and only after its acceptance/coverage review scale toward 3,000–5,000 validated recipes. Pass E implementation closes the hardening revision; the GitHub Actions verification step requires the full final-acceptance browser regression instead of silently accepting a skipped browser run. After the production corpus is complete, rerun `npm run check` and `npm run release:gate`; only a fully green gate should be tagged `1.0.0`.
+The remaining V1 data gate is governed by the 4P-A contract and the 4P-B curation/pilot gates rather than an informal recipe-count target: first materialize at least 400 production-ready curated/high ingredients, then run the 120-candidate pilot through reference/ingredient intake, and only after its acceptance/coverage review scale toward the 3,000 minimum and 4,000 planning target, continuing beyond 5,000 whenever coverage, variety or future requirements justify it. Pass E implementation closes the hardening revision; the GitHub Actions verification step requires the full final-acceptance browser regression instead of silently accepting a skipped browser run. After the production corpus is complete, rerun `npm run check` and `npm run release:gate`; only a fully green gate should be tagged `1.0.0`.
 
 
 ## Mandatory data/UX hardening before production corpus
@@ -195,6 +195,16 @@ npm run corpus:scale-to-500 -- corpus/production/current-working-bundle.json cor
 ```
 
 See `PHASE4_PRODUCTION_SCALE_500_RC21_REPORT.md`.
+
+## Phase 4 production review — rc.22 controlled publication + human review
+
+After the verified 500-recipe Scale Gate checkpoint, rc.22 deliberately pauses further recipe generation and turns the exact frozen 500 RecipeVersion set into a **production-review catalog** visible in the app. The review catalog is not a V1 release: its manifest uses `channel=production_review`, `requiredHumanReview=true` and `releaseEligible=false`. Publication is source-digest-bound and uses the normal CatalogUpdater path, so existing local overrides, plans and configuration remain untouched.
+
+The app exposes `Recipes -> Review production` with persistent per-recipe decisions. Every frozen recipe requires six explicit review dimensions — culinary coherence, ingredient combination, quantity plausibility, instruction quality, title/description quality and differentiation — plus one decision: `approved`, `needs_changes` or `rejected`. Approved requires all six dimensions to pass; non-approved decisions require at least one failed dimension and notes. Review state lives in IndexedDB (`recipeHumanReviews`) and can be exported/imported as checksum-bound JSON.
+
+The Human Review Gate is fail-closed: scale generation must not resume until the frozen set is **500/500 approved**, with zero `needs_changes`, zero `rejected` and zero unreviewed recipes. A remediation/re-review cycle is required otherwise. The legacy `5000` policy/contract fields remain only as advisory provenance references; the orchestrator can plan beyond 5,000 recipes and no hard corpus ceiling exists. See `specs/PRODUCTION_CATALOG_REVIEW_SPEC.md` and `PHASE4_PRODUCTION_REVIEW_RC22_REPORT.md`.
+
+Canonical workflow: `.github/workflows/production-review-500.yml` (`Publish 500 Recipe Review Catalog`).
 
 ## Phase 4 production execution — rc.20 mutable-working-set test isolation
 

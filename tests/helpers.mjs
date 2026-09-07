@@ -4,7 +4,7 @@ import path from 'node:path';
 const KEY_FIELDS = {
   nutritionProfiles: 'id', allergyIntoleranceProfiles: 'id', foodPreferences: 'id', themeProfiles: 'id', mealClasses: 'id', dayClasses: 'id', cycles: 'id',
   taxonomies: 'taxonomyId', taxonomyTerms: 'termId', ingredients: 'ingredientId', ingredientRevisions: 'ingredientRevisionId', recipes: 'recipeId', recipeVersions: 'recipeVersionId',
-  planInstances: 'planInstanceId', calendarDays: 'calendarDayId', generationRuns: 'generationRunId', operations: 'operationId', shoppingChecklists: 'checklistId'
+  planInstances: 'planInstanceId', calendarDays: 'calendarDayId', generationRuns: 'generationRunId', operations: 'operationId', shoppingChecklists: 'checklistId', recipeHumanReviews: 'reviewId'
 };
 
 export class MemoryRepository {
@@ -27,7 +27,7 @@ export class MemoryRepository {
       'taxonomy.foodGroup': 'taxonomy.foodGroup', allergenIds: 'allergenIds', mealArchetypes: 'mealArchetypes',
       'calculatedNutrition.energyKcal': 'calculatedNutrition.energyKcal', 'calculatedNutrition.proteinG': 'calculatedNutrition.proteinG',
       'calculatedNutrition.fiberG': 'calculatedNutrition.fiberG', 'practical.prepMinutes': 'practical.prepMinutes', searchTokens: 'searchTokens',
-      planAndSequence: null, planInstanceId: 'planInstanceId', createdAt: 'createdAt'
+      planAndSequence: null, planInstanceId: 'planInstanceId', createdAt: 'createdAt', publicationId: 'publicationId', decision: 'decision', recipeVersionId: 'recipeVersionId', publicationAndDecision: null
     };
     const cmp = (left, right) => {
       if (Array.isArray(left) && Array.isArray(right)) {
@@ -55,6 +55,7 @@ export class MemoryRepository {
       if (indexName === 'originAndCatalogVersion') return matchScalar([record.origin, record.catalogVersion]);
       if (indexName === 'taxonomyAndStatus') return matchScalar([record.taxonomyId, record.status]);
       if (indexName === 'planAndSequence') return matchScalar([record.planInstanceId, record.sequence]);
+      if (indexName === 'publicationAndDecision') return matchScalar([record.publicationId, record.decision]);
       const path = indexPaths[indexName] || indexName; const value = at(record, path);
       return Array.isArray(value) ? value.some(matchScalar) : matchScalar(value);
     });

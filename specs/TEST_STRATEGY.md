@@ -301,3 +301,18 @@ The rc.21 gate must verify:
 - the full regression suite remains green after canonical corpus mutation.
 
 Real-artifact acceptance for rc.21 additionally records 220 -> 320 -> 420 -> 500, final hard coverage blockers = 0 and Scale Gate 500 = `pass`.
+
+
+## Production Catalog Review 500 gate
+
+- Validate publication/review schemas through the runtime SchemaRegistry and require public/schema mirrors for every new schema.
+- Require publication channel `production_review`, exactly 500 frozen active RecipeVersion IDs, `requiredHumanReview=true` and `releaseEligible=false`.
+- Verify review persistence uses the dedicated `recipeHumanReviews` store and survives backup/export/import.
+- Require all six explicit review dimensions; `approved` requires all pass, while non-approved decisions require a failed dimension plus notes.
+- Reject checksum mismatch, wrong publication/catalog, changed frozen set, duplicate decisions, decisions outside the frozen set and stale RecipeVersion content hashes.
+- Require one current decision per frozen RecipeVersion when computing progress.
+- Strict Human Review Gate passes only at 500/500 approved with zero needs-changes/rejected/unreviewed.
+- Verify the application route/card/dashboard operate against the frozen base RecipeVersion even if a family has a local override.
+- Require the publication workflow to publish first, validate the review catalog, then execute the full app check/Pages audit.
+- Keep development-catalog regression tests isolated on immutable fixtures after `public/data` is replaced by the review catalog.
+- Functional regression must prove planning continues above 5,000 recipes; legacy `max=5000` fields are not runtime hard stops.

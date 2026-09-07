@@ -6,7 +6,7 @@ import {
   configurationIndexPage, cyclePage, dayClassesPage, mealClassesPage, nutritionPage,
   preferencesPage, safetyPage
 } from './configurationPages.js';
-import { ingredientDetailPage, ingredientEditorPage, ingredientsPage, packsPage, recipeDetailPage, recipeEditorPage, recipesPage } from './catalogPages.js';
+import { ingredientDetailPage, ingredientEditorPage, ingredientsPage, packsPage, recipeDetailPage, recipeEditorPage, recipesPage, productionReviewPage } from './catalogPages.js';
 import { todayPage, calendarPage, manageDayPage, historyPage } from './planPages.js';
 import { shoppingPage } from './shoppingPages.js';
 import { referenceDataPage } from './referenceDataPages.js';
@@ -37,6 +37,7 @@ function catalogPanel(state) {
       dl.append(element('div', {}, [element('dt', { text: state.i18n.t(key) }), element('dd', { text: value })]));
     }
     panel.append(dl);
+    if (state.humanReviewSummary) panel.append(element('a', { href: '/recipes/review', 'data-route': '', className: 'catalog-review-summary' }, [element('strong', { text: state.i18n.t('review.dashboardShort') }), element('span', { text: `${state.humanReviewSummary.reviewed}/${state.humanReviewSummary.expected}` })]));
     if (state.catalogUpdateAvailable) panel.append(element('button', { className: 'button button--secondary button--small', text: `${state.i18n.t('catalog.update')} ${state.catalogUpdateVersion || ''}`.trim(), onClick: () => state.updateCatalog() }));
   }
   if (p.phase === 'error') {
@@ -154,6 +155,7 @@ function routePage(state) {
   if (path === '/recipes/new') return recipeEditorPage(state);
   if (path === '/recipes/edit') return recipeEditorPage(state, { edit: true }); // legacy query route
   if (path === '/recipes/packs') return packsPage(state);
+  if (path === '/recipes/review') return productionReviewPage(state);
   const recipeEditMatch = path.match(/^\/recipes\/([^/]+)\/edit$/);
   if (recipeEditMatch) return recipeEditorPage(state, { edit: true, recipeId: decodeURIComponent(recipeEditMatch[1]) });
   const recipeDetailMatch = path.match(/^\/recipes\/([^/]+)$/);

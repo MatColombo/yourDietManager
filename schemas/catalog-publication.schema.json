@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/catalog-publication.schema.json",
+  "title": "CatalogPublication",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["channel", "publicationId", "sourceCorpusDigest", "sourceSnapshotId", "requiredHumanReview", "reviewRecipeCount", "reviewPolicyVersion", "releaseEligible"],
+  "properties": {
+    "channel": { "enum": ["development", "production_review", "production_release"] },
+    "publicationId": { "type": "string", "minLength": 3 },
+    "sourceCorpusDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "sourceSnapshotId": { "type": "string", "minLength": 3 },
+    "requiredHumanReview": { "type": "boolean" },
+    "reviewRecipeCount": { "type": "integer", "minimum": 0 },
+    "reviewPolicyVersion": { "type": "string", "minLength": 1 },
+    "releaseEligible": { "type": "boolean" }
+  }
+}

@@ -346,3 +346,18 @@ textarea:focus-visible, summary:focus-visible { outline: 3px solid var(--ydm-col
 .history-row--active { border-inline-start: 4px solid var(--ydm-color-primary); background: color-mix(in srgb,var(--ydm-color-primary) 5%,var(--ydm-color-background)); }
 .text-link { color: var(--ydm-color-primary); font-weight: 650; }
 @media (max-width: 680px) { .history-row { grid-template-columns: 1fr; gap: 3px; } }
+
+/* Production recipe human review */
+.catalog-review-summary { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:10px; padding:8px 10px; border:1px solid var(--ydm-color-border); border-radius:calc(8px * var(--ydm-radius-scale)); color:var(--ydm-color-text); text-decoration:none; background:color-mix(in srgb,var(--ydm-color-warning) 7%,var(--ydm-color-surface)); }
+.recipe-card__badges { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:6px; }
+.status-chip--review-unreviewed { background:color-mix(in srgb,var(--ydm-color-muted-text) 10%,var(--ydm-color-surface)); }
+.status-chip--review-approved { background:color-mix(in srgb,var(--ydm-color-success) 14%,var(--ydm-color-surface)); }
+.status-chip--review-needs_changes { background:color-mix(in srgb,var(--ydm-color-warning) 16%,var(--ydm-color-surface)); }
+.status-chip--review-rejected { background:color-mix(in srgb,var(--ydm-color-danger) 14%,var(--ydm-color-surface)); }
+.human-review-panel { display:grid; gap:14px; margin:22px 0; padding:18px; border:1px solid color-mix(in srgb,var(--ydm-color-warning) 45%,var(--ydm-color-border)); border-radius:calc(12px * var(--ydm-radius-scale)); background:color-mix(in srgb,var(--ydm-color-warning) 6%,var(--ydm-color-surface)); }
+.review-dimension-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px; }
+.review-progress { width:100%; min-height:16px; }
+.review-publication-banner { display:grid; gap:4px; padding:14px; border:1px solid var(--ydm-color-border); border-radius:calc(10px * var(--ydm-radius-scale)); background:var(--ydm-color-background); overflow-wrap:anywhere; }
+.review-attention-list { display:grid; gap:8px; }
+.review-import-input { position:absolute; inline-size:1px; block-size:1px; opacity:0; pointer-events:none; }
+.review-import-label { cursor:pointer; }

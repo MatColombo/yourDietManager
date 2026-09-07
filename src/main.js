@@ -5,6 +5,7 @@ import { ensureBootstrapConfiguration } from './services/configurationBootstrap.
 import { CatalogImporter } from './services/catalogImporter.js';
 import { CatalogUpdater } from './services/catalogUpdater.js';
 import { CatalogQueryService } from './services/catalogQuery.js';
+import { RecipeHumanReviewService, isProductionReviewManifest } from './services/recipeHumanReviewService.js';
 import { loadDictionaries, I18n } from './i18n/i18n.js';
 import { applyTheme } from './theme/themeEngine.js';
 import { renderApp } from './ui/app.js';
@@ -22,6 +23,7 @@ const registry = new SchemaRegistry();
 
 async function refreshCatalogStats(state) {
   state.catalogVersion = (await repositories.getMeta('activeCatalogVersion')) || null;
+  state.catalogManifest = (await repositories.getMeta('catalogManifest')) || null;
   state.ingredientCount = await repositories.count('ingredients');
   state.recipeCount = await repositories.count('recipes');
   const packs = state.catalogVersion ? await repositories.getAllByIndex('catalogPacks', 'catalogVersion', { kind: 'only', value: state.catalogVersion }) : [];
@@ -31,6 +33,7 @@ async function refreshCatalogStats(state) {
   })));
   state.catalogPacks.sort((a, b) => Number(b.required) - Number(a.required) || a.packId.localeCompare(b.packId));
   if (state.catalogQuery) state.guidedIngredients = await state.catalogQuery.listCurrentIngredients();
+  state.humanReviewSummary = state.humanReview && isProductionReviewManifest(state.catalogManifest) ? await state.humanReview.summary(state.catalogManifest) : null;
 }
 
 async function start() {
@@ -52,8 +55,8 @@ async function start() {
     repo: repositories, registry, config, configuration, theme, i18n,
     onboardingEnabled: false, onboardingComplete: true, onboardingDraft: null,
     catalogProgress: { phase: 'idle', completed: 0, total: 1, messageKey: 'common.loading' },
-    catalogVersion: null, ingredientCount: 0, recipeCount: 0, catalogPacks: [], catalogUpdateAvailable: false, catalogUpdateVersion: null,
-    catalogQuery: new CatalogQueryService({ repo: repositories }), guidedIngredients: [], notice: null, preImportBackup: null, planUi: {},
+    catalogVersion: null, catalogManifest: null, ingredientCount: 0, recipeCount: 0, catalogPacks: [], catalogUpdateAvailable: false, catalogUpdateVersion: null, humanReviewSummary: null,
+    catalogQuery: new CatalogQueryService({ repo: repositories }), humanReview: new RecipeHumanReviewService({ repo: repositories, registry }), guidedIngredients: [], notice: null, preImportBackup: null, planUi: {},
     referenceDataIndex: referenceData.index, referenceTaxonomies: referenceData.taxonomies, referenceTerms: referenceData.taxonomyTerms,
     render: null, retryCatalog: null, updateCatalog: null, installPack: null, uninstallPack: null, refreshCatalog: null, refreshReferenceData: null
   };
@@ -68,6 +71,7 @@ async function start() {
   installDraftTracking(root, state);
 
   state.refreshCatalog = async () => { await refreshCatalogStats(state); };
+  state.refreshHumanReview = async () => { await refreshCatalogStats(state); state.render(); };
   state.refreshReferenceData = async () => {
     const next = await loadReferenceDataBundle(repositories, registry);
     state.referenceDataIndex = next.index; state.referenceTaxonomies = next.taxonomies; state.referenceTerms = next.taxonomyTerms;

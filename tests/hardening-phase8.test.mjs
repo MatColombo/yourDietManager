@@ -15,6 +15,7 @@ import { SchemaRegistry } from '../src/lib/schemaValidator.js';
 import { MemoryRepository, fileFetch, fileLoader, bundledReferenceData } from './helpers.mjs';
 
 const root = process.cwd();
+const devRoot = path.join(root, 'tests/fixtures/catalog-0.3');
 
 function fakeStructuralDb() {
   const stores = new Map();
@@ -34,14 +35,14 @@ function fakeStructuralDb() {
   return { db, transaction, stores };
 }
 
-test('Pass A structural schema is DB v4 and applies the new compound catalog indexes without deleting stores', () => {
-  assert.equal(DB_VERSION, 4);
+test('Pass A structural schema is DB v5 and applies the new compound catalog indexes without deleting stores', () => {
+  assert.equal(DB_VERSION, 5);
   assert.equal(CONTENT_SCHEMA_VERSION, 3);
   const { db, transaction, stores } = fakeStructuralDb();
   applyStructuralUpgrade(db, transaction);
   assert.ok(stores.get('recipeVersions').indexes.has('originAndCatalogVersion'));
   assert.ok(stores.get('ingredientRevisions').indexes.has('originAndCatalogVersion'));
-  assert.equal(stores.size, 21);
+  assert.equal(stores.size, 22);
   assert.ok(stores.get('taxonomyTerms').indexes.has('taxonomyAndStatus'));
 });
 
@@ -106,8 +107,8 @@ test('10k operation history uses persisted head/redo pointers for new commits an
 });
 
 test('offline pack planner selects only the shard families needed by the installed recipe versions', async () => {
-  const manifest = JSON.parse(await readFile(path.join(root, 'public/data/catalog-manifest.json'), 'utf8'));
-  const recipeVersions = JSON.parse(await readFile(path.join(root, 'public/data/recipes/recipe-versions-0001.json'), 'utf8'));
+  const manifest = JSON.parse(await readFile(path.join(devRoot, 'public/data/catalog-manifest.json'), 'utf8'));
+  const recipeVersions = JSON.parse(await readFile(path.join(devRoot, 'public/data/recipes/recipe-versions-0001.json'), 'utf8'));
   const pack = manifest.packs.find(item => item.packId === 'quick');
   const urls = offlineUrlsForPack(manifest, pack, recipeVersions);
   assert.ok(urls.includes('/data/catalog-manifest.json'));
@@ -123,7 +124,7 @@ test('catalog update can roll back to the previous active family pointers while 
   const oldRoot = path.join(root, 'tests/fixtures/catalog-0.1');
   await new CatalogImporter({ repo, registry, fetcher: fileFetch(oldRoot), storage: null, serviceWorker: null }).bootstrap();
   const oldPointer = (await repo.get('recipes', 'rec_salmon_rice')).currentVersionId;
-  const updater = new CatalogUpdater({ repo, registry, fetcher: fileFetch(root), storage: null, serviceWorker: null });
+  const updater = new CatalogUpdater({ repo, registry, fetcher: fileFetch(devRoot), storage: null, serviceWorker: null });
   await updater.update();
   assert.equal(await repo.getMeta('activeCatalogVersion'), '0.3.0-dev');
   assert.notEqual((await repo.get('recipes', 'rec_salmon_rice')).currentVersionId, oldPointer);
@@ -137,7 +138,7 @@ test('catalog update can roll back to the previous active family pointers while 
 test('failed catalog update records recoverable state without switching the active version', async () => {
   const repo = new MemoryRepository(); const registry = new SchemaRegistry(fileLoader(path.join(root, 'schemas'))); await registry.loadAll();
   await new CatalogImporter({ repo, registry, fetcher: fileFetch(path.join(root, 'tests/fixtures/catalog-0.1')), storage: null, serviceWorker: null }).bootstrap();
-  const normal = fileFetch(root);
+  const normal = fileFetch(devRoot);
   const broken = async input => {
     const pathname = new URL(typeof input === 'string' ? input : input.url, 'http://local.test').pathname;
     if (pathname === '/data/catalog-manifest.json') {

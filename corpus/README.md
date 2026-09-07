@@ -42,7 +42,7 @@ The initial `v1-pilot-intake.json` contains 120 slots across 12 stress-test stra
 
 ## Production policy
 
-`policies/v1-default.json` is policy version `1.1.0` and targets 3,000 / 4,000 / 5,000 recipes (min / desired / max). It includes 99 explicit coverage targets. In addition to marginal meal, kcal, protein, fiber, practicality, diet, family, cuisine and ingredient-category targets, it uses compound `criteria[]` cells such as:
+`policies/v1-default.json` is policy version `1.1.0`. Its frozen fields retain 3,000 / 4,000 / 5,000 for provenance compatibility, but operational semantics are: **3,000 release minimum, 4,000 current planning target, no hard maximum**. The legacy 5,000 value is advisory only and never stops the orchestrator. It includes 99 explicit coverage targets. In addition to marginal meal, kcal, protein, fiber, practicality, diet, family, cuisine and ingredient-category targets, it uses compound `criteria[]` cells such as:
 
 - lunch + 300–399 kcal;
 - dinner + 600–699 kcal;
@@ -133,3 +133,20 @@ npm run corpus:production-apply -- <catalog> <result> <batch-report> [output-bun
 ```
 
 A batch with `needs_reference_review`, `needs_recipe_review` or `nutrition_outlier` is not applicable. Re-scan and re-plan after every applied batch; stale snapshots are hard failures.
+
+## Production review checkpoint after 500
+
+After Scale Gate 500 passes, pause generation and publish the frozen 500 RecipeVersion set through the `production_review` channel before any 500->1500 work. Use:
+
+```bash
+npm run corpus:publish-review-500 -- corpus/production/current-working-bundle.json public 1.0.0-production-review-500 --canonical
+npm run corpus:validate-review-publication -- public/data --strict
+```
+
+Human review is persisted in the application and exported as `ydm-production-recipe-human-review` JSON. The next scale phase is blocked until the strict validator confirms 500 reviewed / 500 approved and zero needs-changes, rejected or unreviewed recipes:
+
+```bash
+npm run corpus:validate-human-review-500 -- <review-bundle.json> --strict
+```
+
+The publication itself remains `releaseEligible=false`; it exists to inspect the production corpus in the actual app. See `specs/PRODUCTION_CATALOG_REVIEW_SPEC.md`.

@@ -4,7 +4,7 @@
 
 **Phase 4 engine/toolchain: implemented and verified.**
 
-**Phase 4 production content gate: not yet complete.** The roadmap requires an initial curated ingredient catalog and a 3,000–5,000 validated recipe release. This repository does not falsely mark that requirement complete: the supplied Phase 3 nutrition records are development fixtures, and the official upstream USDA Foundation Foods binary was not available inside the execution sandbox. No nutrient values were fabricated to reach a recipe-count target.
+**Phase 4 production content gate: not yet complete.** The roadmap requires an initial curated ingredient catalog, at least 3,000 validated recipes for V1 release (4,000 current planning target), and the required production/review provenance gates. There is no hard recipe-count ceiling. This repository does not falsely mark that requirement complete: the supplied Phase 3 nutrition records are development fixtures, and the official upstream USDA Foundation Foods binary was not available inside the execution sandbox. No nutrient values were fabricated to reach a recipe-count target.
 
 The repository is versioned `0.4.0-phase4`; the included `0.4.0-dev` corpus is an end-to-end smoke release only.
 
@@ -25,7 +25,7 @@ The repository is versioned `0.4.0-phase4`; the included `0.4.0-dev` corpus is a
 
 `corpus/policies/v1-default.json` is now `1.1.0`:
 
-- target corpus 3,000 / 4,000 / 5,000;
+- frozen legacy target fields 3,000 / 4,000 / 5,000, interpreted operationally as 3,000 release minimum / 4,000 current planning target / 5,000 advisory compatibility reference only;
 - deterministic oversampling/batch limits;
 - 99 target cells;
 - hard meal and meal×energy coverage;
@@ -134,7 +134,7 @@ The Phase 1–3 suite plus Phase 4 tests verifies:
 - old immutable record reuse and future-version rejection;
 - production rejection of draft/low-confidence ingredient fixtures;
 - USDA source intake remains review-only until approval and materializes schema-valid curated/high revisions only after approval;
-- V1 target remains 3,000–5,000;
+- V1 release minimum remains 3,000 and current planning target 4,000; corpus growth may continue beyond 5,000;
 - compound coverage cells count intersections, not independent marginals;
 - all Phase 1–3 regressions.
 
@@ -150,7 +150,7 @@ To mark the roadmap phase itself **DONE**, production data must still be materia
 2. run source import and editorial curation;
 3. materialize approximately 400–800 production IngredientRevision records with provenance;
 4. BUILD adaptively from repeated scan → plan → generate → process → apply loops;
-5. reach 3,000–5,000 validated active recipes with all hard compound coverage and release gates green;
+5. reach at least 3,000 validated active recipes (current planning target 4,000, with no hard maximum) with all hard compound coverage and release gates green;
 6. publish the production catalog and re-run runtime import/query/rollback tests.
 
 Until those conditions are met, Phase 5 should not assume the smoke corpus is the production recipe base.
@@ -161,7 +161,7 @@ The official USDA FoodData Central pages are reachable through web research, but
 
 ## Post-RC amendment — reference-data prerequisite
 
-After the UI/data audit, the production Phase 4 gate has an additional prerequisite: complete the canonical Reference Data Registry and migrate semantic free-text fields before resuming the 3,000–5,000 recipe build. The orchestrator/pipeline must be reference-data-aware: it may propose/materialize extensible taxonomy terms and curate missing ingredients first, but accepted recipes may contain only canonical IDs. This amendment does not invalidate the existing engine tests; it tightens the production-data contract before final materialization.
+After the UI/data audit, the production Phase 4 gate has an additional prerequisite: complete the canonical Reference Data Registry and migrate semantic free-text fields before resuming the production recipe build toward the 3,000 release minimum / 4,000 planning target and beyond if required. The orchestrator/pipeline must be reference-data-aware: it may propose/materialize extensible taxonomy terms and curate missing ingredients first, but accepted recipes may contain only canonical IDs. This amendment does not invalidate the existing engine tests; it tightens the production-data contract before final materialization.
 
 
 
@@ -171,7 +171,7 @@ After the UI/data audit, the production Phase 4 gate has an additional prerequis
 
 The production path is now contract-bound rather than recipe-count-only:
 
-- 3,000/4,000/5,000 recipe target and 400/600/800 ingredient readiness are machine-checkable;
+- the frozen 3,000/4,000/5,000 recipe fields and 400/600/800 ingredient readiness are machine-checkable; the 5,000 recipe field is not a runtime ceiling;
 - a deterministic 120-slot pilot ledger exists;
 - production planning excludes non-`curated/high` ingredient revisions;
 - taxonomy gaps create/reuse governed ReferenceDataProposal artifacts before candidate generation;
@@ -211,3 +211,12 @@ The 4P-C control plane is covered by dedicated schemas, CLI tools and automated 
 ## Phase 4 production verification addendum — rc.20
 
 The source-backed GitHub run reached 600 production-ready ingredient families, pilot 120/120 terminal and 220 active recipes before post-generation verification. The four failing tests were development-baseline assertions coupled to mutable canonical pilot/retirement state. rc.20 isolates those tests on the immutable Phase 4 smoke bundle and fresh deterministic pilot intake. Production workflow semantics and gates are unchanged. The full suite is additionally verified against a simulated post-workflow canonical state.
+
+
+## Phase 4 production review addendum — rc.22
+
+The verified 500-recipe controlled-scale checkpoint is now a mandatory product-review boundary before further generation. rc.22 publishes the exact frozen 500 RecipeVersion set into the application through catalog channel `production_review`, with `requiredHumanReview=true` and `releaseEligible=false`.
+
+Human review is persisted in IndexedDB and bound to publication ID, source-corpus digest, RecipeVersion ID and content hash. Every recipe requires six explicit dimensions plus an `approved`, `needs_changes` or `rejected` decision. The phase closes only when all 500 are approved; any unresolved/non-approved item blocks further scale and requires remediation/re-review.
+
+This addendum also removes 5,000 as a behavioral stop. Existing contract/policy fields retain 5,000 only for compatibility with frozen provenance; the orchestrator must continue beyond it whenever coverage, diversity or product requirements call for more recipes.

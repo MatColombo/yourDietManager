@@ -8,6 +8,7 @@ import {
   ingredientChoices, taxonomyChoices, unitsForIngredientRevision
 } from './guidedControls.js';
 import { controlledDetails, signalDraftChange } from './uiState.js';
+import { REVIEW_DIMENSIONS, expectedReviewRecipeVersionIds, isProductionReviewManifest } from '../services/recipeHumanReviewService.js';
 
 function t(state, key, vars = {}) { let value = state.i18n.t(key); for (const [name, replacement] of Object.entries(vars)) value = value.replace(`{${name}}`, replacement); return value; }
 function nav(state, url) { return state.navigate(url); }
@@ -48,14 +49,17 @@ function queryFromLocation() { const p = new URLSearchParams(location.search); r
 export function recipesPage(state) {
   const params = new URLSearchParams(location.search); if (params.get('id')) return recipeDetailPage(state, params.get('id'), params.get('version'));
   const section = page(t(state, 'page.recipes.title'), t(state, 'catalog.recipes.lead'));
-  section.append(element('div', { className: 'page-actions' }, [element('a', { href: '/recipes/new', 'data-route': '', className: 'button', text: t(state, 'catalog.recipe.new') }), element('a', { href: '/recipes/packs', 'data-route': '', className: 'button button--secondary', text: t(state, 'catalog.packs.manage') })]), recipeFilters(state));
+  const pageActions = [element('a', { href: '/recipes/new', 'data-route': '', className: 'button', text: t(state, 'catalog.recipe.new') }), element('a', { href: '/recipes/packs', 'data-route': '', className: 'button button--secondary', text: t(state, 'catalog.packs.manage') })];
+  if (isProductionReviewManifest(state.catalogManifest)) pageActions.unshift(element('a', { href: '/recipes/review', 'data-route': '', className: 'button', text: t(state, 'review.openDashboard') }));
+  section.append(element('div', { className: 'page-actions' }, pageActions), recipeFilters(state));
   const results = element('div', { className: 'catalog-results', 'aria-live': 'polite' }, [element('p', { className: 'muted', text: t(state, 'common.loading') })]); section.append(results);
-  void state.catalogQuery.searchRecipes(queryFromLocation()).then(result => {
+  void state.catalogQuery.searchRecipes(queryFromLocation()).then(async result => {
+    const reviewMap = isProductionReviewManifest(state.catalogManifest) ? await state.humanReview.reviewsForVersions(state.catalogManifest, result.items.map(item => item.recipeVersionId)) : new Map();
     results.replaceChildren(element('div', { className: 'results-heading' }, [element('strong', { text: t(state, 'catalog.results.count', { count: String(result.total) }) }), element('span', { className: 'muted', text: t(state, 'catalog.results.indexed') })]));
     const grid = element('div', { className: 'recipe-grid' });
     for (const recipe of result.items) {
       const n = recipe.calculatedNutrition; grid.append(element('a', { href: `/recipes/${encodeURIComponent(recipe.recipeId)}`, 'data-route': '', className: 'recipe-card' }, [
-        element('div', { className: 'recipe-card__top' }, [element('strong', { text: localeText(state, recipe.i18n) }), element('span', { className: `origin-pill origin-pill--${recipe.origin}`, text: t(state, `catalog.origin.${recipe.origin}`) })]),
+        element('div', { className: 'recipe-card__top' }, [element('strong', { text: localeText(state, recipe.i18n) }), element('div', { className: 'recipe-card__badges' }, [element('span', { className: `origin-pill origin-pill--${recipe.origin}`, text: t(state, `catalog.origin.${recipe.origin}`) }), isProductionReviewManifest(state.catalogManifest) ? element('span', { className: `status-chip status-chip--review-${reviewMap.get(recipe.recipeVersionId)?.decision || 'unreviewed'}`, text: t(state, `review.status.${reviewMap.get(recipe.recipeVersionId)?.decision || 'unreviewed'}`) }) : null])]),
         element('p', { className: 'muted', text: recipe.mealArchetypes.map(id => t(state, `mealArchetype.${id}`)).join(' · ') }),
         element('div', { className: 'recipe-metrics' }, [element('span', { text: `${Math.round(n.energyKcal)} kcal` }), element('span', { text: `${n.proteinG} g ${t(state, 'nutrient.protein')}` }), element('span', { text: `${n.fiberG} g ${t(state, 'nutrient.fiber')}` }), element('span', { text: `${recipe.practical.prepMinutes} min` })]), element('span', { className: 'recipe-card__action', text: t(state, 'common.details') })
       ]));
@@ -67,18 +71,116 @@ export function recipesPage(state) {
   }).catch(error => { results.replaceChildren(element('div', { className: 'validation-box validation-box--error', text: error.message || String(error) })); }); return section;
 }
 
+
+function reviewStatusChip(state, review) {
+  const status = review?.decision || 'unreviewed';
+  return element('span', { className: `status-chip status-chip--review-${status}`, text: t(state, `review.status.${status}`) });
+}
+
+async function recipeHumanReviewPanel(state, version) {
+  if (!isProductionReviewManifest(state.catalogManifest)) return null;
+  const existing = await state.humanReview.get(state.catalogManifest, version.recipeVersionId);
+  const box = element('section', { className: 'human-review-panel', 'data-testid': 'human-review-panel' });
+  const heading = element('div', { className: 'section-heading' }, [element('h3', { text: t(state, 'review.recipeTitle') }), reviewStatusChip(state, existing)]);
+  const reviewer = text(existing?.reviewer || await state.repo.getMeta('humanReviewReviewer') || 'local-human-reviewer');
+  const dimensionControls = {};
+  const dimensionGrid = element('div', { className: 'review-dimension-grid' });
+  for (const key of REVIEW_DIMENSIONS) {
+    const select = optionSelect([['', t(state, 'review.select')], ['pass', t(state, 'review.dimensionPass')], ['fail', t(state, 'review.dimensionFail')]], existing?.dimensions?.[key] || '');
+    dimensionControls[key] = select;
+    dimensionGrid.append(field(t(state, `review.dimension.${key}`), select));
+  }
+  const decision = optionSelect([['', t(state, 'review.selectDecision')], ['approved', t(state, 'review.status.approved')], ['needs_changes', t(state, 'review.status.needs_changes')], ['rejected', t(state, 'review.status.rejected')]], existing?.decision || '');
+  const notes = element('textarea', { rows: 4, placeholder: t(state, 'review.notesPlaceholder') }); notes.value = existing?.notes || '';
+  const status = statusBox();
+  const save = async goNext => {
+    try {
+      const dimensions = Object.fromEntries(REVIEW_DIMENSIONS.map(key => [key, dimensionControls[key].value]));
+      const saved = await state.humanReview.save(state.catalogManifest, version, { decision: decision.value, dimensions, notes: notes.value, reviewer: reviewer.value });
+      await state.repo.setMeta('humanReviewReviewer', saved.reviewer);
+      await state.refreshCatalog();
+      status.ok(t(state, 'review.saved'));
+      heading.replaceChildren(element('h3', { text: t(state, 'review.recipeTitle') }), reviewStatusChip(state, saved));
+      if (goNext) {
+        const next = await state.humanReview.nextUnreviewed(state.catalogManifest, version.recipeVersionId);
+        nav(state, next ? `/recipes/${encodeURIComponent(next.recipeId)}?version=${encodeURIComponent(next.recipeVersionId)}` : '/recipes/review');
+      }
+    } catch (error) { status.error(error); }
+  };
+  box.append(
+    heading,
+    element('p', { className: 'muted', text: t(state, 'review.recipeHelp') }),
+    field(t(state, 'review.reviewer'), reviewer),
+    dimensionGrid,
+    field(t(state, 'review.decision'), decision),
+    field(t(state, 'review.notes'), notes),
+    status.node,
+    element('div', { className: 'button-row' }, [
+      element('button', { className: 'button button--secondary', type: 'button', text: t(state, 'review.save'), onClick: () => save(false) }),
+      element('button', { className: 'button', type: 'button', text: t(state, 'review.saveNext'), onClick: () => save(true) })
+    ])
+  );
+  return box;
+}
+
+export function productionReviewPage(state) {
+  const section = page(t(state, 'review.dashboardTitle'), t(state, 'review.dashboardLead'), 'PRODUCTION REVIEW');
+  if (!isProductionReviewManifest(state.catalogManifest)) {
+    section.append(element('div', { className: 'validation-box validation-box--warning', text: t(state, 'review.notActive') }));
+    return section;
+  }
+  const body = element('div', { className: 'catalog-results', 'aria-live': 'polite' }, [element('p', { className: 'muted', text: t(state, 'common.loading') })]); section.append(body);
+  void Promise.all([state.humanReview.summary(state.catalogManifest), state.humanReview.list(state.catalogManifest)]).then(([summary, reviews]) => {
+    const metrics = element('div', { className: 'summary-grid' }, [
+      [t(state, 'review.expected'), summary.expected], [t(state, 'review.reviewed'), summary.reviewed], [t(state, 'review.approved'), summary.approved],
+      [t(state, 'review.needsChanges'), summary.needsChanges], [t(state, 'review.rejected'), summary.rejected], [t(state, 'review.unreviewed'), summary.unreviewed]
+    ].map(([label, value]) => element('div', { className: 'metric' }, [element('span', { text: label }), element('strong', { text: String(value) })])));
+    const progress = element('progress', { className: 'review-progress', max: summary.expected || 1, value: summary.reviewed, 'aria-label': t(state, 'review.progress') });
+    const nextButton = element('button', { className: 'button', text: summary.unreviewed ? t(state, 'review.reviewNext') : t(state, 'review.allReviewed'), disabled: summary.unreviewed === 0, onClick: async () => {
+      const next = await state.humanReview.nextUnreviewed(state.catalogManifest); if (next) nav(state, `/recipes/${encodeURIComponent(next.recipeId)}?version=${encodeURIComponent(next.recipeVersionId)}`);
+    } });
+    const exportButton = element('button', { className: 'button button--secondary', text: t(state, 'review.export'), onClick: async () => {
+      const document = await state.humanReview.exportBundle(state.catalogManifest); downloadJson(document, `yourdietmanager-human-review-${state.catalogManifest.publication.publicationId}.json`);
+    } });
+    const importInput = element('input', { type: 'file', accept: 'application/json,.json', className: 'review-import-input' });
+    importInput.addEventListener('change', async () => {
+      const file = importInput.files?.[0]; if (!file) return;
+      try { const document = JSON.parse(await file.text()); await state.humanReview.importBundle(document, state.catalogManifest); await state.refreshCatalog(); state.notify?.('success', t(state, 'review.imported')); state.render({ force: true }); }
+      catch (error) { state.notify?.('error', `${t(state, 'review.importFailed')}: ${error.message || error}`); }
+    });
+    const attention = reviews.filter(item => item.decision !== 'approved');
+    const attentionBox = element('div', { className: 'review-attention-list' });
+    if (attention.length) for (const item of attention.slice(0, 50)) attentionBox.append(element('a', { href: `/recipes/${encodeURIComponent(item.recipeId)}?version=${encodeURIComponent(item.recipeVersionId)}`, 'data-route': '', className: 'history-row' }, [element('span', { text: item.recipeId }), reviewStatusChip(state, item), element('span', { className: 'muted', text: item.notes || '—' })]));
+    else attentionBox.append(element('p', { className: 'muted', text: t(state, 'review.noAttention') }));
+    const gate = element('div', { className: `validation-box${summary.pass ? '' : ' validation-box--warning'}`, text: summary.pass ? t(state, 'review.gatePass') : t(state, 'review.gateBlocked') });
+    body.replaceChildren(
+      element('div', { className: 'review-publication-banner' }, [
+        element('strong', { text: t(state, 'review.publicationActive') }),
+        element('span', { text: state.catalogManifest.publication.publicationId }),
+        element('span', { className: 'muted', text: `${t(state, 'review.sourceDigest')}: ${state.catalogManifest.publication.sourceCorpusDigest.slice(0,16)}…` })
+      ]),
+      metrics, progress,
+      element('div', { className: 'button-row' }, [nextButton, exportButton, element('label', { className: 'button button--secondary review-import-label' }, [document.createTextNode(t(state, 'review.import')), importInput])]),
+      gate,
+      element('h3', { text: t(state, 'review.attentionTitle') }), attentionBox
+    );
+  }).catch(error => body.replaceChildren(element('div', { className: 'validation-box validation-box--error', text: error.message || String(error) })));
+  return section;
+}
+
 export function recipeDetailPage(state, recipeId, recipeVersionId = null) {
   const section = page(t(state, 'catalog.recipe.detail'), t(state, 'catalog.recipe.detailLead'));
   const body = element('div', { className: 'catalog-results', 'data-testid': 'recipe-detail' }, [element('p', { className: 'muted', text: t(state, 'common.loading') })]); section.append(body);
-  void Promise.all([state.catalogQuery.resolveRecipe(recipeId, recipeVersionId), state.catalogQuery.recipeHistory(recipeId)]).then(([record, history]) => {
+  void Promise.all([state.catalogQuery.resolveRecipe(recipeId, recipeVersionId), state.catalogQuery.recipeHistory(recipeId)]).then(async ([record, history]) => {
     if (!record) { body.replaceChildren(element('div', { className: 'empty-state', text: t(state, 'catalog.recipe.notFound') })); return; }
     const { family, version, ingredientLines } = record; const n = version.calculatedNutrition; const current = family.currentVersionId === version.recipeVersionId;
     const actions = element('div', { className: 'page-actions' });
-    actions.append(
-      element('a', { href: '/recipes', 'data-route': '', className: 'button button--secondary', text: t(state, 'common.back') }),
-      element('a', { href: `/recipes/${encodeURIComponent(recipeId)}/edit`, 'data-route': '', className: 'button', text: t(state, 'common.edit') }),
-      element('a', { href: `/recipes/new?duplicate=${encodeURIComponent(recipeId)}`, 'data-route': '', className: 'button button--secondary', text: t(state, 'catalog.recipe.duplicate') })
-    );
+    actions.append(element('a', { href: '/recipes', 'data-route': '', className: 'button button--secondary', text: t(state, 'common.back') }));
+    const frozenReviewIds = isProductionReviewManifest(state.catalogManifest) ? new Set(expectedReviewRecipeVersionIds(state.catalogManifest)) : new Set();
+    const reviewMode = version.origin === 'base' && frozenReviewIds.has(version.recipeVersionId);
+    if (reviewMode) actions.append(element('a', { href: '/recipes/review', 'data-route': '', className: 'button button--secondary', text: t(state, 'review.dashboardShort') }));
+    else actions.append(element('a', { href: `/recipes/${encodeURIComponent(recipeId)}/edit`, 'data-route': '', className: 'button', text: t(state, 'common.edit') }));
+    actions.append(element('a', { href: `/recipes/new?duplicate=${encodeURIComponent(recipeId)}`, 'data-route': '', className: 'button button--secondary', text: t(state, 'catalog.recipe.duplicate') }));
     if (family.origin === 'user') actions.append(element('button', { className: 'button button--danger', text: t(state, 'common.archive'), onClick: async () => { if (!confirm(t(state, 'catalog.recipe.archiveConfirm'))) return; await archiveUserRecipe(recipeId, { repo: state.repo }); nav(state, '/recipes?origin=user'); } }));
     const title = element('h2', { text: localeText(state, version.i18n) }); const desc = element('p', { text: localeText(state, version.i18n, 'description') });
     const versionMeta = element('div', { className: 'detail-meta' }, [
@@ -109,6 +211,7 @@ export function recipeDetailPage(state, recipeId, recipeVersionId = null) {
       element('h3', { text: t(state, 'catalog.instructions') }), steps,
       element('h3', { text: t(state, 'catalog.semanticData') }), tagBox,
       element('p', { className: 'muted', text: `${version.mealArchetypes.map(id => t(state, `mealArchetype.${id}`)).join(' · ')} · ${version.practical.prepMinutes + version.practical.cookMinutes} min · ${version.allergenIds.length ? version.allergenIds.map(id => t(state, `allergen.${id}`)).join(', ') : t(state, 'catalog.noAllergens')}` }),
+      reviewMode ? await recipeHumanReviewPanel(state, version) : null,
       element('h3', { text: t(state, 'catalog.versionHistory') }), historyBox
     );
   }).catch(error => body.replaceChildren(element('div', { className: 'validation-box validation-box--error', text: error.message || String(error) }))); return section;

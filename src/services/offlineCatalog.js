@@ -1,6 +1,6 @@
 import { APP_BASE_PATH, cacheScopeKey, prefixAppPath } from '../lib/appBase.js';
 
-const DATA_CACHE = `ydm-data-v11-${cacheScopeKey(APP_BASE_PATH)}`;
+const DATA_CACHE = `ydm-data-v12-${cacheScopeKey(APP_BASE_PATH)}`;
 
 function shardMatches(shard, wantedIds) {
   if (!wantedIds || wantedIds.size === 0) return true;

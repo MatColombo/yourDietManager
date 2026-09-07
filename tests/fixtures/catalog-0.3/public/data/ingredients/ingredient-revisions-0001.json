@@ -1,0 +1,258 @@
+[
+  {
+    "schemaVersion": 1,
+    "ingredientRevisionId": "ingrev_salmon_raw_v2",
+    "ingredientId": "ing_salmon",
+    "revisionNumber": 2,
+    "origin": "base",
+    "catalogVersion": "0.3.0-dev",
+    "i18n": {
+      "it": {
+        "name": "Salmone crudo",
+        "aliases": [
+          "salmone"
+        ]
+      },
+      "en": {
+        "name": "Raw salmon",
+        "aliases": [
+          "salmon"
+        ]
+      }
+    },
+    "basis": {
+      "amount": 100,
+      "unit": "g",
+      "state": "raw"
+    },
+    "nutrition": {
+      "energyKcal": 208,
+      "proteinG": 20.4,
+      "carbsG": 0,
+      "fatG": 13.4,
+      "fiberG": 0,
+      "sugarsG": 0,
+      "saturatedFatG": 3.1,
+      "saltG": 0.15,
+      "sodiumMg": 59
+    },
+    "taxonomy": {
+      "foodGroup": "food_group_fish_seafood",
+      "foodSubgroup": "food_subgroup_fatty_fish",
+      "flavorProfile": "flavor_savory",
+      "mealArchetypes": [
+        "lunch",
+        "dinner"
+      ],
+      "proteinRole": "high",
+      "fatRole": "high"
+    },
+    "allergenIds": [
+      "fish"
+    ],
+    "conversions": [],
+    "source": {
+      "type": "curated",
+      "label": "Phase 1 development fixture",
+      "reference": null,
+      "sourceRecordId": null,
+      "checkedAt": "2026-09-03T12:00:00Z",
+      "licenseNote": "Development bootstrap fixture only; replace during Phase 4 catalog curation."
+    },
+    "quality": {
+      "status": "draft",
+      "confidence": "low",
+      "notes": "Development bootstrap fixture; replace during Phase 4 catalog curation."
+    },
+    "contentHash": "f8f85594abb5cc3d7bfe7c0d442e2dc1d9a8709a012f2cd407c48fa26a3bbe98",
+    "createdAt": "2026-09-03T12:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientRevisionId": "ingrev_rice_cooked_v2",
+    "ingredientId": "ing_rice_cooked",
+    "revisionNumber": 2,
+    "origin": "base",
+    "catalogVersion": "0.3.0-dev",
+    "i18n": {
+      "it": {
+        "name": "Riso cotto",
+        "aliases": []
+      },
+      "en": {
+        "name": "Cooked rice",
+        "aliases": []
+      }
+    },
+    "basis": {
+      "amount": 100,
+      "unit": "g",
+      "state": "cooked"
+    },
+    "nutrition": {
+      "energyKcal": 130,
+      "proteinG": 2.7,
+      "carbsG": 28.2,
+      "fatG": 0.3,
+      "fiberG": 0.4,
+      "sugarsG": 0.1,
+      "saturatedFatG": 0.1,
+      "saltG": 0.01,
+      "sodiumMg": 4
+    },
+    "taxonomy": {
+      "foodGroup": "food_group_pasta_rice_cereals",
+      "foodSubgroup": "food_subgroup_rice",
+      "flavorProfile": "flavor_neutral",
+      "mealArchetypes": [
+        "lunch",
+        "dinner"
+      ],
+      "proteinRole": "low",
+      "fatRole": "low"
+    },
+    "allergenIds": [],
+    "conversions": [],
+    "source": {
+      "type": "manual",
+      "label": "Phase 1 development fixture",
+      "reference": null,
+      "sourceRecordId": null,
+      "checkedAt": "2026-09-03T12:00:00Z",
+      "licenseNote": "Development bootstrap fixture only; replace during Phase 4 catalog curation."
+    },
+    "quality": {
+      "status": "draft",
+      "confidence": "low",
+      "notes": "Development bootstrap fixture; not production nutrition data."
+    },
+    "contentHash": "df5eb50b6429ef6e78d32897544a612fdd3f175d5058c5a574da1b091f1dcdb8",
+    "createdAt": "2026-09-03T12:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientRevisionId": "ingrev_zucchini_raw_v2",
+    "ingredientId": "ing_zucchini",
+    "revisionNumber": 2,
+    "origin": "base",
+    "catalogVersion": "0.3.0-dev",
+    "i18n": {
+      "it": {
+        "name": "Zucchine crude",
+        "aliases": []
+      },
+      "en": {
+        "name": "Raw zucchini",
+        "aliases": []
+      }
+    },
+    "basis": {
+      "amount": 100,
+      "unit": "g",
+      "state": "raw"
+    },
+    "nutrition": {
+      "energyKcal": 17,
+      "proteinG": 1.2,
+      "carbsG": 3.1,
+      "fatG": 0.3,
+      "fiberG": 1,
+      "sugarsG": 2.5,
+      "saturatedFatG": 0.1,
+      "saltG": 0.02,
+      "sodiumMg": 8
+    },
+    "taxonomy": {
+      "foodGroup": "food_group_vegetables",
+      "foodSubgroup": "food_subgroup_summer_vegetables",
+      "flavorProfile": "flavor_savory",
+      "mealArchetypes": [
+        "lunch",
+        "dinner"
+      ],
+      "proteinRole": "low",
+      "fatRole": "low"
+    },
+    "allergenIds": [],
+    "conversions": [],
+    "source": {
+      "type": "manual",
+      "label": "Phase 1 development fixture",
+      "reference": null,
+      "sourceRecordId": null,
+      "checkedAt": "2026-09-03T12:00:00Z",
+      "licenseNote": "Development bootstrap fixture only; replace during Phase 4 catalog curation."
+    },
+    "quality": {
+      "status": "draft",
+      "confidence": "low",
+      "notes": "Development bootstrap fixture; not production nutrition data."
+    },
+    "contentHash": "5bfb19998b92fc70e8949cc699292d679c5f7196812b3a6ee2f8eb24dd8b450f",
+    "createdAt": "2026-09-03T12:00:00Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientRevisionId": "ingrev_olive_oil_v2",
+    "ingredientId": "ing_olive_oil",
+    "revisionNumber": 2,
+    "origin": "base",
+    "catalogVersion": "0.3.0-dev",
+    "i18n": {
+      "it": {
+        "name": "Olio di oliva",
+        "aliases": []
+      },
+      "en": {
+        "name": "Olive oil",
+        "aliases": []
+      }
+    },
+    "basis": {
+      "amount": 100,
+      "unit": "g",
+      "state": "raw"
+    },
+    "nutrition": {
+      "energyKcal": 884,
+      "proteinG": 0,
+      "carbsG": 0,
+      "fatG": 100,
+      "fiberG": 0,
+      "sugarsG": 0,
+      "saturatedFatG": 14,
+      "saltG": 0,
+      "sodiumMg": 0
+    },
+    "taxonomy": {
+      "foodGroup": "food_group_fats_oils",
+      "foodSubgroup": "food_subgroup_plant_oils",
+      "flavorProfile": "flavor_savory",
+      "mealArchetypes": [
+        "breakfast",
+        "lunch",
+        "dinner",
+        "snack"
+      ],
+      "proteinRole": "low",
+      "fatRole": "high"
+    },
+    "allergenIds": [],
+    "conversions": [],
+    "source": {
+      "type": "manual",
+      "label": "Phase 1 development fixture",
+      "reference": null,
+      "sourceRecordId": null,
+      "checkedAt": "2026-09-03T12:00:00Z",
+      "licenseNote": "Development bootstrap fixture only; replace during Phase 4 catalog curation."
+    },
+    "quality": {
+      "status": "draft",
+      "confidence": "low",
+      "notes": "Development bootstrap fixture; not production nutrition data."
+    },
+    "contentHash": "8b012f36dc88ab5b5d91efbabea9a9c76e1053d2198b0e91574d41591c7621aa",
+    "createdAt": "2026-09-03T12:00:00Z"
+  }
+]

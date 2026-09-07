@@ -10,10 +10,11 @@ import { saveUserIngredient, saveUserRecipe } from '../src/services/personalCata
 import { MemoryRepository, fileFetch, fileLoader } from './helpers.mjs';
 
 const root = process.cwd();
+const devRoot = path.join(root, 'tests/fixtures/catalog-0.3');
 async function fixture() {
   const repo = new MemoryRepository(); const registry = new SchemaRegistry(fileLoader(path.join(root, 'schemas'))); await registry.loadAll();
-  const importer = new CatalogImporter({ repo, registry, fetcher: fileFetch(root), storage: null }); await importer.bootstrap();
-  return { repo, registry, query: new CatalogQueryService({ repo }), updater: new CatalogUpdater({ repo, registry, fetcher: fileFetch(root), storage: null }) };
+  const importer = new CatalogImporter({ repo, registry, fetcher: fileFetch(devRoot), storage: null }); await importer.bootstrap();
+  return { repo, registry, query: new CatalogQueryService({ repo }), updater: new CatalogUpdater({ repo, registry, fetcher: fileFetch(devRoot), storage: null }) };
 }
 
 test('Phase 3 bootstrap installs required packs only and keeps optional packs available', async () => {
@@ -78,7 +79,7 @@ test('personal catalog export/import preserves user family+version records with 
   const doc = await createCustomCatalogExport({ repo }); assert.equal(doc.payload.ingredients.length, 1);
   const target = new MemoryRepository();
   // Base catalog is required because personal recipes may reference base revisions; import this fixture's base data first.
-  await new CatalogImporter({ repo: target, registry, fetcher: fileFetch(root), storage: null }).bootstrap();
+  await new CatalogImporter({ repo: target, registry, fetcher: fileFetch(devRoot), storage: null }).bootstrap();
   await importCustomCatalogExport(doc, { repo: target, registry });
   assert.equal((await target.getAll('ingredients')).filter(record => record.origin === 'user').length, 1);
   doc.payload.ingredients[0].status = 'retired';
@@ -86,7 +87,7 @@ test('personal catalog export/import preserves user family+version records with 
 });
 
 test('failed catalog update leaves the previous active version untouched', async () => {
-  const { repo, registry } = await fixture(); const normal = fileFetch(root);
+  const { repo, registry } = await fixture(); const normal = fileFetch(devRoot);
   const brokenFetch = async input => {
     const raw = typeof input === 'string' ? input : input.url; const pathname = new URL(raw, 'http://local.test').pathname;
     if (pathname === '/data/catalog-manifest.json') {
@@ -102,7 +103,7 @@ test('failed catalog update leaves the previous active version untouched', async
 
 test('all distributed Phase 3 catalog records validate, including optional packs', async () => {
   const repo = new MemoryRepository(); const registry = new SchemaRegistry(fileLoader(path.join(root, 'schemas'))); await registry.loadAll();
-  const updater = new CatalogUpdater({ repo, registry, fetcher: fileFetch(root), storage: null });
+  const updater = new CatalogUpdater({ repo, registry, fetcher: fileFetch(devRoot), storage: null });
   // Simulate a valid older active catalog so the current distributed manifest is treated as an update.
   await repo.setMeta('activeCatalogVersion', '0.2.0');
   await repo.put('catalogPacks', { schemaVersion: 1, packId: 'quick', catalogVersion: '0.2.0', labelKey: 'catalog.pack.quick.label', descriptionKey: 'catalog.pack.quick.description', required: false, estimatedBytes: 1, recipeVersionIds: [], status: 'installed', installedAt: '2026-09-01T00:00:00Z', lastErrorCode: null, createdAt: '2026-09-01T00:00:00Z', updatedAt: '2026-09-01T00:00:00Z' });
@@ -121,7 +122,7 @@ test('real Phase 2 catalog fixture upgrades to Phase 3 without mutating historic
   await new CatalogImporter({ repo, registry, fetcher: fileFetch(oldRoot), storage: null }).bootstrap();
   const oldRecipe = await repo.get('recipeVersions', 'recver_salmon_rice_v1'); const oldRevision = await repo.get('ingredientRevisions', 'ingrev_salmon_raw_v1');
   assert.equal(await repo.getMeta('activeCatalogVersion'), '0.1.0-dev');
-  const updater = new CatalogUpdater({ repo, registry, fetcher: fileFetch(root), storage: null }); await updater.update();
+  const updater = new CatalogUpdater({ repo, registry, fetcher: fileFetch(devRoot), storage: null }); await updater.update();
   assert.equal(await repo.getMeta('activeCatalogVersion'), '0.3.0-dev');
   assert.equal((await repo.get('recipes', 'rec_salmon_rice')).currentVersionId, 'recver_salmon_rice_v2');
   assert.equal((await repo.get('ingredients', 'ing_salmon')).currentRevisionId, 'ingrev_salmon_raw_v2');

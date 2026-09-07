@@ -8,8 +8,8 @@ import { I18n, normalizeLocale } from '../src/i18n/i18n.js';
 import { MemoryRepository } from './helpers.mjs';
 import theme from '../examples/theme-profile.example.json' with { type: 'json' };
 
-test('IndexedDB metadata contains all 21 V1 stores and critical indexes', () => {
-  assert.equal(STORE_NAMES.length, 21);
+test('IndexedDB metadata contains all 22 V1 stores and critical indexes', () => {
+  assert.equal(STORE_NAMES.length, 22);
   assert.ok(STORE_DEFINITIONS.recipeVersions.indexes.some(index => index.name === 'searchTokens' && index.options?.multiEntry));
   assert.ok(STORE_DEFINITIONS.calendarDays.indexes.some(index => index.name === 'planAndDate' && index.options?.unique));
   assert.ok(STORE_DEFINITIONS.operations.indexes.some(index => index.name === 'planAndSequence' && index.options?.unique));

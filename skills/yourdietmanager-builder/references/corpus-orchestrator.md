@@ -436,3 +436,10 @@ Use `.github/workflows/production-corpus.yml` when the local runtime cannot down
 ## 4P-D Pass A controlled scale 220 -> 500
 
 After the source-backed foundation is committed at 220 active recipes, use `controlled-scale-500-v1@1.0.0` rather than generic adaptive bulk expansion. Execute three checkpoints: 100 breakfast/snack accepted (220->320), 100 lunch/dinner (320->420), then 80 balanced-close (420->500). Each cell freezes one canonical meal archetype and energy band; unsupported semantic dimensions are a generator-design blocker, not an invitation to infer values. Require exact start counts, zero review backlog, full quality/dedup scans, and Scale Gate `ready`/`ready`/`pass`. Preserve cumulative evidence across split runs.
+
+
+## Post-500 human-review boundary and unbounded growth
+
+After the real Scale Gate 500 reaches `pass`, do not immediately plan 500->1500. Freeze the exact 500 current RecipeVersion IDs, publish them through catalog channel `production_review`, and wait for the Human Review Gate. Resume orchestration only after 500/500 are approved with zero needs-changes/rejected/unreviewed decisions and review evidence still matches the publication/source corpus digest. Use review findings as inputs to the next generator/coverage strategy.
+
+Treat `targetCorpus.max=5000` and contract `maxRecipes=5000` as legacy provenance-compatible planning fields. They are never a stop condition. BUILD/EXPAND may plan above 5,000 whenever the explicit goal, hard coverage, diversity, locales or later product requirements call for more recipes. If no feasible intent exists while a required target remains unmet, fail for infeasibility/policy reasons — never because the corpus count crossed 5,000.

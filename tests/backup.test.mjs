@@ -8,11 +8,12 @@ import { createBackup, importBackup, validateBackup } from '../src/services/back
 import { MemoryRepository, fileFetch, fileLoader } from './helpers.mjs';
 
 const root = process.cwd();
+const devRoot = path.join(root, 'tests/fixtures/catalog-0.3');
 
 test('backup round-trip restores config and preserves base catalog', async () => {
   const repo = new MemoryRepository();
   const registry = new SchemaRegistry(fileLoader(path.join(root, 'schemas'))); await registry.loadAll();
-  const fetcher = fileFetch(root);
+  const fetcher = fileFetch(devRoot);
   await new CatalogImporter({ repo, registry, fetcher, storage: null }).bootstrap();
   const config = await ensureBootstrapConfiguration({ repo, registry, fetcher });
   const backup = await createBackup({ repo, registry });

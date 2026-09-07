@@ -1,0 +1,21 @@
+import path from 'node:path';
+import { SchemaRegistry } from '../../src/lib/schemaValidator.js';
+import { loadCorpusInput, readJson } from './io-lib.mjs';
+import { expectedReviewRecipeVersionIds, REVIEW_POLICY_VERSION } from '../../src/services/recipeHumanReviewService.js';
+
+const strict = process.argv.includes('--strict');
+const dataDir = process.argv.slice(2).find(value => value !== '--strict') || 'public/data';
+const registry = new SchemaRegistry(async file => readJson(path.join('schemas', file))); await registry.loadAll();
+const corpus = await loadCorpusInput(dataDir);
+const manifest = corpus.manifest;
+registry.assert('catalogManifest', manifest);
+const blockers=[];
+if (manifest.publication?.channel !== 'production_review') blockers.push('publication-channel');
+if (manifest.publication?.reviewPolicyVersion !== REVIEW_POLICY_VERSION) blockers.push('review-policy-version');
+if (manifest.publication?.releaseEligible !== false) blockers.push('review-publication-must-not-be-release-eligible');
+const ids = expectedReviewRecipeVersionIds(manifest);
+if (ids.length !== 500 || manifest.publication?.reviewRecipeCount !== 500) blockers.push(`review-recipe-count=${ids.length}`);
+if ((corpus.recipeFamilies || []).filter(item=>item.status==='active').length !== 500) blockers.push('active-recipe-count');
+if ((corpus.ingredientFamilies || []).filter(item=>item.status==='active').length < 400) blockers.push('ingredient-count');
+const output={status:blockers.length?'blocked':'pass',catalogVersion:manifest.catalogVersion,publicationId:manifest.publication?.publicationId||null,reviewRecipeCount:ids.length,activeRecipeCount:(corpus.recipeFamilies||[]).filter(item=>item.status==='active').length,ingredientCount:(corpus.ingredientFamilies||[]).filter(item=>item.status==='active').length,releaseEligible:manifest.publication?.releaseEligible??null,blockers};
+console.log(JSON.stringify(output,null,2)); if(strict&&blockers.length) process.exitCode=2;

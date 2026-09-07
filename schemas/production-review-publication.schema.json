@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/production-review-publication.schema.json",
+  "title": "ProductionReviewPublication",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "catalogVersion",
+    "publication",
+    "publishedAt",
+    "source",
+    "frozenRecipeVersionIds"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "publication": {
+      "$ref": "catalog-publication.schema.json"
+    },
+    "publishedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "catalogVersion",
+        "activeRecipeCount",
+        "productionReadyIngredientCount",
+        "scaleGateId",
+        "scaleGateStatus"
+      ],
+      "properties": {
+        "catalogVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "activeRecipeCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "productionReadyIngredientCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "scaleGateId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scaleGateStatus": {
+          "const": "pass"
+        }
+      }
+    },
+    "frozenRecipeVersionIds": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "catalogVersion": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

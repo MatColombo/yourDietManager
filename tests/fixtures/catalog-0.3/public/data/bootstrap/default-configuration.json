@@ -1,0 +1,135 @@
+{
+  "appConfig": {
+    "schemaVersion": 1,
+    "locale": "it",
+    "timeZone": "Europe/Rome",
+    "nutritionProfileId": "nutrition-default",
+    "allergyIntoleranceProfileId": "allergy-profile-main",
+    "foodPreferencesId": "food-preferences-main",
+    "themeProfileId": "theme-user",
+    "mealClassIds": ["mc-breakfast", "mc-lunch", "mc-dinner", "mc-snack"],
+    "dayClassIds": ["dc-standard"],
+    "cycleId": "cycle-standard",
+    "shoppingPeopleMultiplier": 1,
+    "measurementSystem": "metric",
+    "weekStart": "monday"
+  },
+  "nutritionProfiles": [
+    {
+      "schemaVersion": 1,
+      "id": "nutrition-default",
+      "dailyEnergyKcal": 2000,
+      "energyTolerancePct": 10,
+      "preset": "custom",
+      "nutrients": {
+        "proteinG": { "min": null, "target": null, "max": null, "weight": 0, "enabled": false },
+        "carbsG": { "min": null, "target": null, "max": null, "weight": 0, "enabled": false },
+        "fatG": { "min": null, "target": null, "max": null, "weight": 0, "enabled": false },
+        "fiberG": { "min": null, "target": null, "max": null, "weight": 0, "enabled": false }
+      },
+      "dayArchetypeModifiers": {}
+    }
+  ],
+  "allergyIntoleranceProfiles": [
+    { "schemaVersion": 1, "id": "allergy-profile-main", "rules": [] }
+  ],
+  "foodPreferences": [
+    { "schemaVersion": 1, "id": "food-preferences-main", "rules": [] }
+  ],
+  "themeProfiles": [
+    {
+      "schemaVersion": 1,
+      "id": "theme-user",
+      "mode": "system",
+      "preset": "minimal",
+      "density": "compact",
+      "fontScale": 1,
+      "tokens": {
+        "primary": "#2F6B4F",
+        "secondary": "#5B6F9E",
+        "surface": "#FFFFFF",
+        "background": "#F5F7F5",
+        "text": "#1B1F1D",
+        "mutedText": "#5A625E",
+        "border": "#C8D0CC",
+        "success": "#2E7D32",
+        "warning": "#8A5A00",
+        "danger": "#B3261E",
+        "focusRing": "#005FCC",
+        "borderRadiusScale": 1
+      }
+    }
+  ],
+  "mealClasses": [
+    {
+      "schemaVersion": 1,
+      "id": "mc-breakfast",
+      "name": "Colazione",
+      "abbreviation": "CO",
+      "mealArchetype": "breakfast",
+      "energyShare": { "target": 0.2, "min": 0.1, "max": 0.3 },
+      "rules": []
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mc-lunch",
+      "name": "Pranzo",
+      "abbreviation": "PR",
+      "mealArchetype": "lunch",
+      "energyShare": { "target": 0.35, "min": 0.2, "max": 0.45 },
+      "rules": []
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mc-dinner",
+      "name": "Cena",
+      "abbreviation": "CE",
+      "mealArchetype": "dinner",
+      "energyShare": { "target": 0.35, "min": 0.2, "max": 0.45 },
+      "rules": []
+    },
+    {
+      "schemaVersion": 1,
+      "id": "mc-snack",
+      "name": "Spuntino",
+      "abbreviation": "SP",
+      "mealArchetype": "snack",
+      "energyShare": { "target": 0.1, "min": 0.05, "max": 0.2 },
+      "rules": []
+    }
+  ],
+  "dayClasses": [
+    {
+      "schemaVersion": 1,
+      "id": "dc-standard",
+      "name": "Giornata standard",
+      "abbreviation": "ST",
+      "color": "#4A8F55",
+      "dayArchetype": "day",
+      "workWindows": [],
+      "capabilities": {
+        "fridge": "unknown",
+        "reheating": "unknown",
+        "cooking": true,
+        "complexSnack": false,
+        "portabilityRequired": false,
+        "maxPrepMinutes": 45
+      },
+      "mealSlots": [
+        { "id": "slot-breakfast", "mealClassId": "mc-breakfast", "time": "08:00", "dayOffset": 0, "mode": "planned", "energyBudgetKcal": null, "energyShare": 0.2, "guidanceKeys": [], "parallel": false, "proteinMinG": null },
+        { "id": "slot-lunch", "mealClassId": "mc-lunch", "time": "13:00", "dayOffset": 0, "mode": "planned", "energyBudgetKcal": null, "energyShare": 0.35, "guidanceKeys": [], "parallel": false, "proteinMinG": null },
+        { "id": "slot-snack", "mealClassId": "mc-snack", "time": "17:00", "dayOffset": 0, "mode": "planned", "energyBudgetKcal": null, "energyShare": 0.1, "guidanceKeys": [], "parallel": false, "proteinMinG": null },
+        { "id": "slot-dinner", "mealClassId": "mc-dinner", "time": "20:00", "dayOffset": 0, "mode": "planned", "energyBudgetKcal": null, "energyShare": 0.35, "guidanceKeys": [], "parallel": false, "proteinMinG": null }
+      ]
+    }
+  ],
+  "cycles": [
+    {
+      "schemaVersion": 1,
+      "id": "cycle-standard",
+      "name": "Ciclo standard",
+      "length": 1,
+      "days": [{ "cycleDay": 1, "dayClassId": "dc-standard" }]
+    }
+  ]
+}

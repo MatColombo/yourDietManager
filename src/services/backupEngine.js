@@ -45,7 +45,8 @@ export async function createBackup({ repo = repositories, registry } = {}) {
       calendarDays: await repo.getAll('calendarDays'),
       generationRuns: await repo.getAll('generationRuns'),
       operations: await repo.getAll('operations'),
-      shoppingChecklists: await repo.getAll('shoppingChecklists')
+      shoppingChecklists: await repo.getAll('shoppingChecklists'),
+      recipeHumanReviews: await repo.getAll('recipeHumanReviews')
     },
     sha256: null
   };
@@ -80,9 +81,9 @@ export async function validateBackup(document, { repo = repositories, registry }
   validateConfiguration(registry, payload.configuration);
   const mapping = {
     customTaxonomies: 'taxonomy', customTaxonomyTerms: 'taxonomyTerm', customIngredients: 'ingredient', customIngredientRevisions: 'ingredientRevision', customRecipes: 'recipe', customRecipeVersions: 'recipeVersion',
-    plans: 'planInstance', calendarDays: 'calendarDay', generationRuns: 'generationRun', operations: 'operation', shoppingChecklists: 'shoppingChecklist'
+    plans: 'planInstance', calendarDays: 'calendarDay', generationRuns: 'generationRun', operations: 'operation', shoppingChecklists: 'shoppingChecklist', recipeHumanReviews: 'recipeHumanReview'
   };
-  for (const [key, schema] of Object.entries(mapping)) for (const record of (key === 'customTaxonomies' || key === 'customTaxonomyTerms' ? optionalArray(payload, key) : array(payload, key))) registry.assert(schema, record);
+  for (const [key, schema] of Object.entries(mapping)) for (const record of (['customTaxonomies','customTaxonomyTerms','recipeHumanReviews'].includes(key) ? optionalArray(payload, key) : array(payload, key))) registry.assert(schema, record);
   return document;
 }
 
@@ -116,7 +117,8 @@ export async function importBackup(document, { repo = repositories, registry } =
     calendarDays: array(payload, 'calendarDays'),
     generationRuns: array(payload, 'generationRuns'),
     operations: array(payload, 'operations'),
-    shoppingChecklists: array(payload, 'shoppingChecklists')
+    shoppingChecklists: array(payload, 'shoppingChecklists'),
+    recipeHumanReviews: optionalArray(payload, 'recipeHumanReviews')
   });
   await repo.setMeta('lastBackupImportAt', new Date().toISOString());
   return { preImportBackup };

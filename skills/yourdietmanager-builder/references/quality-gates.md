@@ -191,3 +191,17 @@
 - Require Scale Gate 500 `ready` after tranches 1 and 2 and strict `pass` after tranche 3.
 - Preserve all prior tranche evidence when later split invocations write canonical artifacts.
 - Passing 500 is a scale milestone only; keep the 3,000-recipe release minimum and final production-manifest gate unchanged.
+
+
+## Production Catalog Review 500 / Human Review Gate
+
+- Require the committed working corpus to have exactly 500 active RecipeVersion records and Scale Gate 500 `pass` before controlled publication.
+- Publish through catalog channel `production_review`, freeze exactly those 500 RecipeVersion IDs, set `requiredHumanReview=true` and keep `releaseEligible=false`.
+- Require six explicit dimensions per recipe: culinary coherence, ingredient combination, quantity plausibility, instruction quality, title/description quality and differentiation.
+- `approved` requires all six dimensions pass; `needs_changes`/`rejected` require at least one failed dimension and notes.
+- Bind every decision to publication ID, catalog version, source-corpus digest, RecipeVersion ID and content hash; reject stale/mismatched decisions.
+- Persist review state locally and include it in backup. Export/import only checksum-valid review bundles matching the exact frozen set.
+- Strict Human Review Gate passes only with expected=500, reviewed=500, approved=500, needs_changes=0, rejected=0, unreviewed=0.
+- Any non-approved recipe blocks further corpus scale until controlled remediation and re-review close it.
+- A production-review catalog is not a V1 release. Keep the 3,000 release minimum/final manifest gates unchanged.
+- Do not enforce a 5,000-recipe maximum. Legacy policy/contract 5,000 fields are advisory provenance references; generation may continue beyond them.

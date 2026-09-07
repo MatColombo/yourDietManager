@@ -40,8 +40,8 @@ test('production execution spec keeps deterministic review bounded and non-fuzzy
 });
 
 
-test('pilot-strict readiness flag works with default corpus paths and fails closed on the development baseline', () => {
-  const run = spawnSync(process.execPath, ['scripts/corpus/production-readiness.mjs', '--pilot-strict'], { encoding: 'utf8' });
+test('pilot-strict readiness fails closed on the immutable development fixture even when public catalog is production-review', () => {
+  const run = spawnSync(process.execPath, ['scripts/corpus/production-readiness.mjs', 'tests/fixtures/catalog-0.3/public/data', 'corpus/contracts/v1-production.json', 'corpus/policies/v1-default.json', '/tmp/ydm-test-production-readiness.json', '--pilot-strict'], { encoding: 'utf8' });
   assert.equal(run.status, 2, run.stderr || run.stdout);
   assert.match(run.stdout, /\"readyForPilot\": false/);
 });

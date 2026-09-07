@@ -193,7 +193,8 @@ function stopEvaluation(mode, goal, policy, snapshot) {
   if (mode === 'build') {
     const target = goal.targetRecipeCount || policy.targetCorpus.target;
     if (snapshot.activeRecipeCount >= target && gates.passed) return { stop: true, status: 'completed', stopReason: 'target_reached' };
-    if (snapshot.activeRecipeCount >= policy.targetCorpus.max && hardCoverageFailures.length) return { stop: true, status: 'blocked', stopReason: 'quality_gate_failure' };
+    // targetCorpus.max is a legacy planning reference, never a hard recipe ceiling.
+    // Continue planning beyond it whenever the requested goal or unresolved coverage requires more recipes.
   }
   return { stop: false, gates };
 }

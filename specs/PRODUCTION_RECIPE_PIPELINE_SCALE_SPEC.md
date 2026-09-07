@@ -291,3 +291,22 @@ The freshness guard still compares the same canonical content digest. It may com
 `.github/workflows/controlled-scale-500.yml` is the canonical repository runner. By default it uploads evidence only. `commit_results=true` may commit the verified 500-recipe working set after the final strict Scale Gate passes.
 
 The real rc.21 verification reached **500 active recipes / Scale Gate 500 = pass** with zero hard coverage blockers and zero quality/similarity errors. This milestone does not satisfy the 3,000-recipe V1 release minimum.
+
+## 13. Post-500 Production Catalog Review boundary
+
+Passing Scale Gate 500 does not authorize immediate 500->1500 generation. The exact frozen 500 RecipeVersion set must first be published to the app using catalog channel `production_review` and reviewed under `production-review-500-v1`.
+
+Further scale is blocked until the Human Review Gate proves:
+
+- 500 expected;
+- 500 reviewed;
+- 500 approved;
+- zero `needs_changes`;
+- zero `rejected`;
+- zero unreviewed;
+- valid review-bundle checksum;
+- publication/source-corpus/frozen-version identity still matches.
+
+The review catalog remains `releaseEligible=false`. Any failed recipe requires controlled remediation and re-review before generation resumes. Review findings are inputs to the next scale/generator design.
+
+The V1 `5000` contract/policy values are legacy advisory planning references, not a hard scale boundary. Never terminate generation solely because active recipe count reaches or exceeds 5,000.

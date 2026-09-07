@@ -109,6 +109,12 @@
           "items": {
             "$ref": "taxonomy-term.schema.json"
           }
+        },
+        "recipeHumanReviews": {
+          "type": "array",
+          "items": {
+            "$ref": "recipe-human-review.schema.json"
+          }
         }
       }
     },

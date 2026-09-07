@@ -45,7 +45,7 @@
 - emit traceable `RecipeGenerationJob` batches with oversampling/diversity targets;
 - run recipe generation pipeline in adaptive batches;
 - coverage/diversity/similarity reports;
-- target initial 3,000–5,000 validated recipes.
+- V1 release minimum 3,000 validated recipes; current planning target 4,000; no hard maximum corpus size.
 
 ## Phase 5 — Plan generator
 
@@ -136,7 +136,7 @@ See `../DATA_UX_HARDENING_PASS_B_REPORT.md`.
 - persistent save-success feedback after a real configuration save;
 - machine-checkable revision closure across code, reports, specs, project Skill and CI browser requirement.
 
-Passes A-E are implemented. The production corpus build can resume only after the Pass E final-acceptance browser regression is green in an unrestricted Chromium/localhost environment; the GitHub Pages workflow sets this browser gate as required. The remaining V1 release blocker is then the 3,000–5,000 curated production corpus and its provenance/quality requirements.
+Passes A-E are implemented. The production corpus build can resume only after the Pass E final-acceptance browser regression is green in an unrestricted Chromium/localhost environment; the GitHub Pages workflow sets this browser gate as required. The remaining V1 release blocker is then the curated production corpus at the 3,000 minimum / 4,000 planning target, its provenance/quality requirements, and the explicit human-review boundary introduced after the 500 checkpoint. Corpus growth is not capped at 5,000.
 
 ## Phase 4 production corpus — controlled scale-up
 
@@ -181,6 +181,20 @@ Passes A-E are implemented. The production corpus build can resume only after th
 
 Scale Gate 500 passing is not V1 release readiness. The frozen production release minimum remains 3,000 accepted recipes plus final production-manifest traceability.
 
-### Next — 4P-D Pass B: controlled scale 500 -> 1500
+### Production Catalog Review — 500 published in app + human review 🚧 CURRENT
 
-Before bulk expansion, perform a 500-recipe checkpoint on coverage balance, ingredient-use concentration, primary-ingredient concentration, pair reuse, practicality distribution and nutrition-band distribution. Only a green checkpoint may define the next canonical scale plan.
+Treat the successful 500-recipe Scale Gate as a deliberate product-validation boundary before generating recipe 501:
+
+- publish exactly the frozen 500 active RecipeVersion records through catalog channel `production_review`;
+- keep `releaseEligible=false`: visibility in the app is not a V1 production release;
+- expose persistent human review directly in Recipes, bound to the publication ID, source-corpus digest and immutable RecipeVersion content hash;
+- require all six review dimensions and a terminal decision for every frozen recipe;
+- allow checksum-bound review export/import for audit and recovery;
+- block every subsequent controlled-scale pass until Human Review Gate = **500/500 approved**, with zero needs-changes/rejected/unreviewed;
+- use the review findings to redesign or adjust generation before resuming scale.
+
+The legacy `5000` values retained in the frozen V1 policy/contract are advisory compatibility fields only. They never stop generation. V1 release minimum remains 3,000; 4,000 remains the current planning target; the corpus may continue past 5,000 whenever product/coverage needs justify it.
+
+### After review — 4P-D Pass B: controlled scale 500 -> 1500
+
+Resume only after the Human Review Gate passes. Before bulk expansion, analyse the approved 500-recipe corpus and the human-review evidence for coverage balance, ingredient-use concentration, pair reuse, practicality/nutrition distribution and recurring culinary issues. The next generator/scale plan must incorporate those findings rather than mechanically extending the current templates.

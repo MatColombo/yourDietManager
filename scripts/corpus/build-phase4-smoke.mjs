@@ -13,7 +13,7 @@ import { assertReferenceData } from '../../src/services/referenceDataService.js'
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
 const registry=new SchemaRegistry(async file=>readJson(path.join(root,'schemas',file))); await registry.loadAll();
 const policy=await readJson(path.join(root,'corpus/policies/phase4-smoke.json')); registry.assert('recipeCorpusPolicy',policy);
-const base=await loadLocalCatalog(path.join(root,'public/data'));
+const base=await loadLocalCatalog(path.join(root,'tests/fixtures/catalog-0.3/public/data'));
 async function normalizeDevelopmentFixture(baseCatalog) {
   const at='2026-09-03T14:04:00Z'; const revisionIdMap=new Map(); const ingredientRevisions=[]; const ingredientFamilies=[];
   const oldRevisionById=new Map(baseCatalog.ingredientRevisions.map(r=>[r.ingredientRevisionId,r]));
