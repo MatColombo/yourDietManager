@@ -136,3 +136,11 @@ test('Phase C — UI exposes the manual validation route and diagnostic actions'
   const browser = await readFile(path.join(root, 'scripts/hardening/browser-regression.mjs'), 'utf8');
   assert.match(browser, /phaseCManualLab/); assert.match(browser, /planner-validation-run/);
 });
+
+
+test('Phase C — browser vertical flow uses retry-safe click after asynchronous today-page rerender', async () => {
+  const browser = await readFile(path.join(root, 'scripts/hardening/browser-regression.mjs'), 'utf8');
+  assert.match(browser, /async function clickWhenReady\(cdp, selector/);
+  assert.match(browser, /await clickWhenReady\(cdp, '\[data-testid=\"plan-manage-today\"\]', 20000\)/);
+  assert.doesNotMatch(browser, /document\.querySelector\('\[data-testid=\"plan-manage-today\"\]'\)\.click\(\)/);
+});

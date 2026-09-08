@@ -167,6 +167,16 @@ async function evaluate(cdp, expression) {
   return result.result?.value;
 }
 
+async function clickWhenReady(cdp, selector, maxMs = 15000) {
+  const encoded = JSON.stringify(selector);
+  return waitExpression(cdp, `(() => {
+    const node = document.querySelector(${encoded});
+    if (!node) return false;
+    node.click();
+    return true;
+  })()`, maxMs);
+}
+
 async function waitStableExpression(cdp, expression, { maxMs = 15000, stableMs = 1200 } = {}) {
   const started = Date.now();
   let stableSince = null;
@@ -430,10 +440,11 @@ try {
   const planRecipePath = await evaluate(cdp, `location.pathname`);
   if (planRecipePath === '/recipes/' || planRecipePath === '/recipes') throw new Error(`Plan recipe route regression: ${planRecipePath}`);
   await cdp.send('Page.navigate', { url: `${origin}/` });
-  await waitExpression(cdp, `!!document.querySelector('[data-testid="plan-manage-today"]')`);
 
-  // Manage day -> replace -> adherence -> rebalance.
-  await evaluate(cdp, `document.querySelector('[data-testid="plan-manage-today"]').click(); true`);
+  // Manage day -> replace -> adherence -> rebalance. The today page body is rendered
+  // asynchronously and may replace the DOM between a separate wait and click. Query
+  // and click atomically inside the retry loop so CI cannot race that re-render.
+  await clickWhenReady(cdp, '[data-testid="plan-manage-today"]', 20000);
   await waitExpression(cdp, `location.pathname === '/calendar/day' && !!document.querySelector('[data-testid="plan-replace"]')`, 20000);
   const originalOccurrence = await evaluate(cdp, `(async () => {
     const { repositories } = await import('/src/repositories/repositoryHub.js');
