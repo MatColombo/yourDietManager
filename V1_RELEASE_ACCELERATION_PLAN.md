@@ -1,5 +1,8 @@
 # yourDietManager — V1 Release Acceleration Plan
 
+> **SUPERSEDED / SUSPENDED:** The direct V1 promotion path in this document is suspended by `V1_PLANNER_VALIDATION_PLAN.md`. Planner Validation phases A–C must complete before stable V1.
+
+
 **Status:** Step 1 e Step 2 completati; Step 3 release-candidate freeze implementato in `1.0.0-rc.27`; test manuale finale e promozione stabile ancora pendenti
 **Baseline:** `5cc6491` / `1.0.0-rc.24`
 **Priorità:** time-to-release > retrocompatibilità con build RC/dev

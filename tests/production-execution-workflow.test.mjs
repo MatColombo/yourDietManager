@@ -3,10 +3,11 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 
-test('pre-freeze network corpus writer workflow is retired at the V1 freeze boundary', async () => {
+test('pre-freeze network corpus writer stays retired while the active workflow rebuilds Phase B validation data', async () => {
   await assert.rejects(readFile('.github/workflows/production-corpus.yml','utf8'), /ENOENT/);
   const candidateWorkflow = await readFile('.github/workflows/v1-release-candidate.yml','utf8');
-  assert.match(candidateWorkflow,/corpus:build-v1-release/);
+  assert.match(candidateWorkflow,/corpus:build-planner-phase-b/);
+  assert.match(candidateWorkflow,/catalog:publish-planner-phase-b/);
   assert.match(candidateWorkflow,/git diff --exit-code/);
 });
 

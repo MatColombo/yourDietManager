@@ -361,3 +361,33 @@ textarea:focus-visible, summary:focus-visible { outline: 3px solid var(--ydm-col
 .review-attention-list { display:grid; gap:8px; }
 .review-import-input { position:absolute; inline-size:1px; block-size:1px; opacity:0; pointer-events:none; }
 .review-import-label { cursor:pointer; }
+
+/* Phase C planner validation lab */
+.planner-validation-page { align-content: start; }
+.validation-control-grid, .validation-summary-grid, .validation-range-grid, .validation-day-metrics { display: grid; gap: 10px; grid-template-columns: repeat(4,minmax(0,1fr)); }
+.validation-profile-description { margin-top: 10px; padding: 10px 12px; border-left: 3px solid var(--ydm-color-primary); background: color-mix(in srgb,var(--ydm-color-primary) 4%,var(--ydm-color-surface)); }
+.validation-profile-description p { margin: 4px 0 0; }
+.validation-policy-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; margin-top: 12px; }
+.validation-policy-group { min-width: 0; }
+.validation-policy-list, .validation-day-list, .validation-slot-list, .validation-selected-list, .validation-soft-list { display: grid; gap: 8px; }
+.validation-policy-item, .validation-slot-card, .validation-day-card { padding: 11px 12px; border: 1px solid var(--ydm-color-border); border-radius: calc(10px * var(--ydm-radius-scale)); background: var(--ydm-color-surface); min-width: 0; }
+.validation-policy-item { display: grid; gap: 4px; }
+.validation-policy-item code, .validation-json, .validation-soft-list code { overflow-wrap: anywhere; }
+.validation-day-card { display: grid; gap: 12px; }
+.validation-slot-card { display: grid; gap: 10px; background: var(--ydm-color-background); }
+.validation-selected-list > div, .validation-soft-list > div { display: grid; gap: 3px; padding: 8px 10px; border-radius: calc(8px * var(--ydm-radius-scale)); background: color-mix(in srgb,var(--ydm-color-primary) 5%,var(--ydm-color-surface)); }
+.validation-rejections { display: grid; gap: 4px; margin-top: 7px; }
+.validation-rejections > div { display: flex; justify-content: space-between; gap: 10px; padding: 5px 0; border-bottom: 1px solid var(--ydm-color-border); }
+.validation-json { max-height: 520px; overflow: auto; white-space: pre-wrap; padding: 10px; border-radius: calc(8px * var(--ydm-radius-scale)); background: var(--ydm-color-background); }
+.validation-sweep-table { display: grid; gap: 1px; margin-top: 12px; border: 1px solid var(--ydm-color-border); border-radius: calc(10px * var(--ydm-radius-scale)); overflow: hidden; background: var(--ydm-color-border); }
+.validation-sweep-row { display: grid; grid-template-columns: .55fr repeat(3,minmax(0,1fr)); gap: 8px; align-items: center; padding: 8px 10px; background: var(--ydm-color-surface); }
+.validation-sweep-row--head { background: color-mix(in srgb,var(--ydm-color-primary) 8%,var(--ydm-color-surface)); }
+@media (max-width: 900px) {
+  .validation-control-grid, .validation-summary-grid, .validation-range-grid, .validation-day-metrics { grid-template-columns: repeat(2,minmax(0,1fr)); }
+  .validation-policy-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 580px) {
+  .validation-control-grid, .validation-summary-grid, .validation-range-grid, .validation-day-metrics { grid-template-columns: 1fr; }
+  .validation-sweep-row { grid-template-columns: 1fr; }
+  .validation-sweep-row--head { display: none; }
+}

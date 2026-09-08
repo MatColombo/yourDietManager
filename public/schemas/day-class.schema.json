@@ -201,6 +201,30 @@
                 "estimatedNutritionPolicy"
               ]
             }
+          },
+          {
+            "if": {
+              "properties": {
+                "mode": {
+                  "const": "planned"
+                }
+              },
+              "required": [
+                "mode"
+              ]
+            },
+            "then": {
+              "properties": {
+                "proteinMinG": {
+                  "type": "null"
+                }
+              },
+              "not": {
+                "required": [
+                  "estimatedNutritionPolicy"
+                ]
+              }
+            }
           }
         ]
       }

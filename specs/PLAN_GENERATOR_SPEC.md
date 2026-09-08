@@ -57,7 +57,7 @@ Ogni component usa sempre:
 "servings":1
 ```
 
-Se nessuna combinazione raggiunge esattamente il target, preferire uno scostamento entro tolleranza piuttosto che scalare una ricetta.
+La tolleranza energetica giornaliera è un hard constraint. Se nessuna combinazione cade nel range `dailyEnergyKcal ± energyTolerancePct`, il planner restituisce `NO_FEASIBLE_PLAN`; non scala mai una ricetta per forzare il risultato.
 
 ## 6. External slots
 
@@ -99,8 +99,9 @@ Finestre raccomandate 3, 7 e 14 giorni con pesi decrescenti.
 Se il solver non trova soluzione:
 
 1. non violare hard constraints;
-2. allargare solo soft constraints secondo priorita;
-3. produrre diagnostica chiara:
+2. non allargare mai la tolleranza energetica o altri hard constraints;
+3. allargare solo soft constraints secondo priorita;
+4. produrre diagnostica chiara:
    - catalogo insufficiente;
    - target troppo stretto;
    - meal class troppo restrittiva;
@@ -129,3 +130,18 @@ Se l'utente modifica configurazione prima dell'estensione, il nuovo GenerationRu
 ## 12. Guardrail temporale UI
 
 La Home/Oggi non deve diventare vuota senza spiegazione quando la data corrente supera `endDate`. Deve mostrare lo stato di piano terminato e l'azione coerente con `continuationPolicy` (genera estensione / riattiva proposta / passa a un altro piano).
+
+
+## 13. Hard energy feasibility contract
+
+`dailyEnergyKcal ± energyTolerancePct` e hard. Il solver deve filtrare i finalisti fuori finestra e ripetere una validazione post-solve prima di materializzare il CalendarDay. Per slot external con budget noto, la finestra si applica a `knownPlanned.energyKcal + externalBudget.energyKcal`. Un external slot con energia `unknown` impedisce di certificare la giornata e produce failure classificata. Replacement e rebalance devono preservare lo stesso vincolo.
+
+## 14. Constraint policy snapshot
+
+Ogni GenerationRun registra la classificazione hard/soft usata dal motore. Nutrienti opzionali (proteine, carboidrati, grassi, fibra), preferenze, frequenza e varieta restano soft in V1; allergie, `autoExclude`, `forbid`, capabilities, meal archetype, quality, fixed serving ed energia giornaliera sono hard.
+
+## 15. Bounded search and hard-feasibility frontier
+
+Il ranking soft non puo eliminare preventivamente tutta la copertura energetica. Prima del beam il planner conserva candidati e combinazioni distribuiti lungo il fronte energetico (low/target/high/quantili), oltre ai migliori per score. Durante l'espansione il beam usa i min/max energetici ancora raggiungibili per scartare solo stati che non possono piu entrare nella finestra hard giornaliera.
+
+Un failure energetico del bounded search deve dichiarare `proof=bounded_search`. `NO_FEASIBLE_PLAN` significa che non e stata trovata una soluzione hard-valid nel catalogo/configurazione/search space corrente; non e una dimostrazione matematica di inesistenza globale.

@@ -112,20 +112,18 @@ test('legacy 5000 policy field is advisory: build planning can continue above 50
   assert.equal(planned.jobs[0].targetAcceptedCount, 100);
 });
 
-test('V1 release-candidate workflow rebuilds and verifies the frozen 500-recipe catalog without a 500-of-500 human-review blocker', async () => {
+test('planner Phase B workflow rebuilds the 1800-recipe validation corpus and verifies generated drift', async () => {
   const [workflow, publisher] = await Promise.all([
     readFile(path.join(root,'.github/workflows/v1-release-candidate.yml'),'utf8'),
-    readFile(path.join(root,'scripts/corpus/publish-v1-release.mjs'),'utf8')
+    readFile(path.join(root,'scripts/corpus/publish-v1-planner-phase-b.mjs'),'utf8')
   ]);
-  assert.ok(workflow.indexOf('corpus:build-v1-release') < workflow.indexOf('npm run check'));
-  assert.ok(workflow.indexOf('corpus:review-v1-release') < workflow.indexOf('npm run check'));
-  assert.ok(workflow.indexOf('catalog:publish-v1-release') < workflow.indexOf('npm run check'));
+  assert.ok(workflow.indexOf('corpus:build-planner-phase-b') < workflow.indexOf('npm run check'));
+  assert.ok(workflow.indexOf('catalog:publish-planner-phase-b') < workflow.indexOf('npm run check'));
   assert.match(workflow, /git diff --exit-code/);
   assert.match(workflow, /YDM_BROWSER_REQUIRED: '1'/);
-  assert.match(publisher, /channel:'production_release'/);
+  assert.match(publisher, /channel:'development'/);
   assert.match(publisher, /requiredHumanReview:false/);
-  assert.match(publisher, /reviewRecipeCount:60/);
-  assert.match(publisher, /releaseEligible:true/);
+  assert.match(publisher, /releaseEligible:false/);
 });
 
 
@@ -158,7 +156,9 @@ test('browser regression gives production-scale catalog bootstrap a bounded wind
   assert.match(source, /status-dot--complete/);
   assert.match(source, /stableMs: 1200/);
   assert.ok(source.includes('Number.parseInt(heading.trim(), 10)'));
-  assert.ok(source.includes('recipeCount === 500'));
+  assert.ok(source.includes('recipeCount === ${expectedRecipeCount}'));
+  assert.ok(source.includes('expectedCatalogVersion'));
+  assert.ok(!source.includes('recipeCount === 500'));
   assert.ok(!source.includes("heading.trim() === '500'"));
   assert.ok(!source.includes("catalogComplete && /\\b500\\b/.test(heading)"));
   assert.match(source, /catalog-panel \.error-text/);

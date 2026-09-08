@@ -1,7 +1,7 @@
 {
   "name": "yourdietmanager",
   "private": true,
-  "version": "1.0.0-rc.27",
+  "version": "1.0.0-rc.29",
   "type": "module",
   "scripts": {
     "dev": "node scripts/dev-server.mjs",
@@ -11,7 +11,7 @@
     "hardening:a11y": "node scripts/hardening/a11y-audit.mjs",
     "hardening:scale": "node scripts/hardening/scale-benchmark.mjs",
     "release:gate": "node scripts/hardening/release-gate.mjs",
-    "check": "npm run v1:step1-gate && npm run v1:step2-gate && npm run v1:step3-gate && npm run planner:smoke && npm run lint && npm run test && npm run hardening:a11y && npm run hardening:forms && npm run build && npm run hardening:browser && npm run hardening:revision && npm run pages:audit",
+    "check": "npm run v1:engine-phase-a && npm run v1:planner-phase-b && npm run v1:planner-phase-c && npm run v1:step2-gate && npm run planner:smoke && npm run lint && npm run test && npm run hardening:a11y && npm run hardening:forms && npm run build && npm run hardening:browser && npm run hardening:revision && npm run pages:audit",
     "corpus:scan": "node scripts/corpus/scan.mjs",
     "corpus:plan": "node scripts/corpus/plan.mjs",
     "corpus:smoke": "node scripts/corpus/build-phase4-smoke.mjs",
@@ -61,6 +61,11 @@
     "corpus:build-v1-release": "node scripts/corpus/build-v1-release-corpus.mjs",
     "corpus:review-v1-release": "node scripts/corpus/v1-stratified-review.mjs",
     "catalog:publish-v1-release": "node scripts/corpus/publish-v1-release.mjs --canonical",
-    "v1:step3-gate": "node scripts/hardening/v1-step3-gate.mjs"
+    "v1:step3-gate": "node scripts/hardening/v1-step3-gate.mjs",
+    "v1:engine-phase-a": "node --test tests/v1-engine-phase-a.test.mjs && node scripts/hardening/v1-engine-phase-a-gate.mjs && node scripts/planner/audit-v1-feasibility.mjs",
+    "corpus:build-planner-phase-b": "node scripts/corpus/build-v1-planner-phase-b.mjs",
+    "catalog:publish-planner-phase-b": "node scripts/corpus/publish-v1-planner-phase-b.mjs --canonical",
+    "v1:planner-phase-b": "node --test tests/v1-planner-phase-b.test.mjs && node scripts/hardening/v1-planner-phase-b-gate.mjs && node scripts/planner/audit-v1-feasibility.mjs --require-all-feasible",
+    "v1:planner-phase-c": "node --test tests/v1-planner-phase-c.test.mjs && node scripts/hardening/v1-planner-phase-c-gate.mjs"
   }
 }

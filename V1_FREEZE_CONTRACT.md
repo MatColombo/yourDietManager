@@ -1,5 +1,8 @@
 # YourDietManager V1 Freeze Contract
 
+> **SUPERSEDED / SUSPENDED:** The direct V1 promotion path in this document is suspended by `V1_PLANNER_VALIDATION_PLAN.md`. Planner Validation phases A–C must complete before stable V1.
+
+
 ## Status
 
 **Release candidate frozen. Manual product acceptance is still pending.**

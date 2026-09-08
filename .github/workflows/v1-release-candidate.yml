@@ -1,4 +1,4 @@
-name: Verify V1 Release Candidate
+name: Verify V1 Planner Phase B Corpus
 
 on:
   workflow_dispatch:
@@ -7,13 +7,13 @@ permissions:
   contents: read
 
 concurrency:
-  group: v1-release-candidate-${{ github.ref }}
+  group: v1-planner-phase-b-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  verify-v1-release-candidate:
+  verify-v1-planner-phase-b:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -23,17 +23,15 @@ jobs:
         with:
           node-version: 22
 
-      - name: Rebuild frozen V1 corpus
+      - name: Rebuild Phase B planner corpus
         run: |
-          npm run corpus:build-v1-release
-          npm run corpus:review-v1-release
-          npm run catalog:publish-v1-release
+          npm run corpus:build-planner-phase-b
+          npm run catalog:publish-planner-phase-b
 
-      - name: Verify frozen generated data has no drift
+      - name: Verify generated Phase B data has no drift
         run: |
           git diff --exit-code -- \
-            corpus/production/v1-release-bundle.json \
-            corpus/production/v1-release \
+            corpus/production/planner-phase-b \
             public/data/catalog-manifest.json \
             public/data/ingredients \
             public/data/recipes \
@@ -50,32 +48,32 @@ jobs:
           echo "CHROMIUM_PATH=$browser" >> "$GITHUB_ENV"
           "$browser" --version
 
-      - name: Verify release candidate
+      - name: Verify planner-validation build
         run: npm run check
         env:
           YDM_BROWSER_REQUIRED: '1'
 
-      - name: Verify Step 3 freeze explicitly
-        run: npm run v1:step3-gate
+      - name: Verify Phase B explicitly
+        run: npm run v1:planner-phase-b
 
-      - name: Build GitHub Pages candidate
+      - name: Build GitHub Pages planner-validation artifact
         run: npm run build
         env:
           YDM_BASE_PATH: /yourDietManager/
 
-      - name: Audit GitHub Pages candidate
+      - name: Audit GitHub Pages artifact
         run: node scripts/hardening/pages-audit.mjs dist /yourDietManager/
 
-      - name: Upload release-candidate artifact
+      - name: Upload planner-validation artifact
         uses: actions/upload-artifact@v4
         with:
-          name: yourdietmanager-v1-rc-${{ github.run_number }}
+          name: yourdietmanager-planner-phase-b-${{ github.run_number }}
           path: |
             dist
-            corpus/production/v1-release/freeze-contract.json
-            corpus/production/v1-release/release-candidate-evidence.json
-            corpus/production/v1-release/stratified-review.json
-            V1_FREEZE_CONTRACT.md
-            V1_FINAL_TEST_CHECKLIST.md
+            corpus/production/planner-phase-b/build-evidence.json
+            corpus/production/planner-phase-b/publication-evidence.json
+            corpus/production/planner-phase-b/recipe-eligibility.json
+            V1_PLANNER_VALIDATION_PLAN.md
+            V1_PLANNER_PHASE_B_REPORT.md
           if-no-files-found: error
           retention-days: 14

@@ -13,7 +13,7 @@ const rec = (id, archetype, kcal, protein, ingredientId, revisionId, allergens =
   ingredientLines: [{ ingredientId, ingredientRevisionId: revisionId, amount: 100, unit: 'g', normalizedAmount: 100, normalizedUnit: 'g', optional: false, notesKey: null }], quality: { status: 'validated' }, origin: 'base'
 });
 const ingredientRevisions = [rev('rev_oats','ing_oats','grains'), rev('rev_chicken','ing_chicken','meat'), rev('rev_fish','ing_fish','fish_seafood',['fish']), rev('rev_night','ing_night','grains')];
-const recipes = [rec('oats','breakfast',400,20,'ing_oats','rev_oats'), rec('chicken','dinner',700,60,'ing_chicken','rev_chicken'), rec('fish','dinner',700,55,'ing_fish','rev_fish',['fish']), rec('night','night_meal',500,30,'ing_night','rev_night')];
+const recipes = [rec('oats','breakfast',400,20,'ing_oats','rev_oats'), rec('chicken','dinner',900,60,'ing_chicken','rev_chicken'), rec('fish','dinner',900,55,'ing_fish','rev_fish',['fish']), rec('night','night_meal',990,30,'ing_night','rev_night')];
 const mealClasses = [
   { schemaVersion:1,id:'mc-breakfast',name:'Breakfast',abbreviation:'BR',mealArchetype:'breakfast',energyShare:{target:0.22,min:0.15,max:0.3},rules:[] },
   { schemaVersion:1,id:'mc-dinner',name:'Dinner',abbreviation:'DI',mealArchetype:'dinner',energyShare:{target:0.35,min:0.2,max:0.5},rules:[] },

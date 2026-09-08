@@ -72,8 +72,8 @@ export function scoreRecipe(recipe, context) {
   const pref = preferenceScore(recipe, context);
   const variety = varietyScore(recipe, context);
   const target = context.slotEnergyTarget;
-  const scale = target / Math.max(1, context.dayEnergyTarget);
-  const nutrition = nutritionPenalty(recipe.calculatedNutrition, context.nutritionProfile, { energyTarget: target, energyWeight: 1.5, nutrientScale: scale });
+  const nutrientTargetFactor = target / Math.max(1, context.dayEnergyTarget);
+  const nutrition = nutritionPenalty(recipe.calculatedNutrition, context.nutritionProfile, { energyTarget: target, energyWeight: 1.5, nutrientTargetFactor });
   return {
     total: nutrition + pref.score + variety.score,
     components: { nutrition, preference: pref.score, variety: variety.score },

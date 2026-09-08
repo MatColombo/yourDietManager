@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "status": "planner_validation",
+  "catalogVersion": "1.1.0-planner-phase-b",
+  "appCandidateVersion": "1.0.0-rc.28",
+  "builtAt": "2026-09-07T19:00:00.000Z",
+  "publication": {
+    "channel": "development",
+    "publicationId": "planner-phase-b-1800-5e3bd7661171",
+    "sourceCorpusDigest": "4273d1e476aaf88d476909a08a6fd56765d07f44dd66458d2442ddce813b81bc",
+    "sourceSnapshotId": "planner-phase-b-5e3bd7661171cff9",
+    "requiredHumanReview": false,
+    "reviewRecipeCount": 0,
+    "reviewPolicyVersion": "manual-planner-validation-phase-b",
+    "releaseEligible": false
+  },
+  "dataContract": {
+    "ingredientFamilies": 600,
+    "ingredientRevisions": 600,
+    "recipeFamilies": 1800,
+    "recipeVersions": 1800,
+    "usableIngredientCount": 311,
+    "usedIngredientCount": 302,
+    "eligibilityPolicy": "v1-planner-phase-b-recipe-eligibility@1.0.0"
+  },
+  "quantityStrategy": "fixed-template-only",
+  "servingScalingAllowed": false,
+  "energyFittingByIngredientAmountAllowed": false,
+  "quality": {
+    "schemaErrors": 0,
+    "unknownIngredientReferences": 0,
+    "nutritionErrors": 0,
+    "allergenDerivationErrors": 0,
+    "missingRequiredLocaleFields": 0,
+    "exactDuplicateCount": 0,
+    "nearDuplicateCount": 0
+  },
+  "recipeDigest": "5e3bd7661171cff9434b03bb9951d58779ed84dc2e0e9910d36d1ebc517f53f2",
+  "packs": {
+    "core": 1800,
+    "quick": 1180,
+    "high_protein": 232,
+    "vegetarian": 1251
+  }
+}

@@ -6,6 +6,9 @@ import path from 'node:path';
 
 const root = process.cwd();
 const dist = path.join(root, 'dist');
+const expectedCatalogManifest = JSON.parse(await readFile(path.join(dist, 'data', 'catalog-manifest.json'), 'utf8'));
+const expectedRecipeCount = Number(expectedCatalogManifest.recipeVersions?.count || expectedCatalogManifest.recipeFamilies?.count || 0);
+const expectedCatalogVersion = expectedCatalogManifest.catalogVersion;
 const timeout = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 async function report(payload) {
   await mkdir(path.join(root, 'reports'), { recursive: true });
@@ -268,9 +271,9 @@ try {
     const recipeCards = document.querySelectorAll('.recipe-card').length;
     const catalogComplete = !!document.querySelector('.catalog-panel .status-dot--complete');
     const recipeCount = Number.parseInt(heading.trim(), 10);
-    return catalogComplete && recipeCount === 500 && recipeCards > 0 ? { heading, recipeCards, recipeCount } : null;
+    return catalogComplete && recipeCount === ${expectedRecipeCount} && recipeCards > 0 ? { heading, recipeCards, recipeCount } : null;
   })()`, { maxMs: 15000, stableMs: 1200 });
-  if (!/\b500\b/.test(recipeCatalogState.heading)) throw new Error(`V1 candidate catalog expected 500 recipes, got state: ${JSON.stringify(recipeCatalogState)}`);
+  if (recipeCatalogState.recipeCount !== expectedRecipeCount) throw new Error(`Planner catalog expected ${expectedRecipeCount} recipes, got state: ${JSON.stringify(recipeCatalogState)}`);
 
   const resetState = await evaluate(cdp, `(async () => {
     const { repositories } = await import('/src/repositories/repositoryHub.js');
@@ -281,7 +284,7 @@ try {
     const cacheNames = await caches.keys();
     return { epoch, expectedEpoch:PRE_V1_DATA_EPOCH, oldRevision:oldRevision || null, activeCatalogVersion, legacyLocalStorage:localStorage.getItem('ydm:legacy-pre-v1'), legacyCache:cacheNames.includes('ydm-data-v12-root') };
   })()`);
-  if (resetState.epoch !== resetState.expectedEpoch || resetState.oldRevision || resetState.legacyLocalStorage || resetState.legacyCache || resetState.activeCatalogVersion !== '1.0.0') {
+  if (resetState.epoch !== resetState.expectedEpoch || resetState.oldRevision || resetState.legacyLocalStorage || resetState.legacyCache || resetState.activeCatalogVersion !== expectedCatalogVersion) {
     throw new Error(`Pre-V1 destructive reset regression: ${JSON.stringify(resetState)}`);
   }
 
@@ -321,6 +324,19 @@ try {
   await waitExpression(cdp, `location.pathname.startsWith('/configure/ingredients/') && !!document.querySelector('[data-testid="ingredient-detail"] h2')`);
   const ingredientState = await evaluate(cdp, `({path: location.pathname, title: document.querySelector('[data-testid="ingredient-detail"] h2')?.textContent || '', edit: !!document.querySelector('[data-testid="ingredient-detail"] a[href$="/edit"]')})`);
   if (!ingredientState.title || !ingredientState.edit) throw new Error(`Ingredient detail/edit regression: ${JSON.stringify(ingredientState)}`);
+
+  // Phase C acceptance: the manual planner lab must run a non-persistent 7-day diagnostic case in real Chromium.
+  await cdp.send('Page.navigate', { url: `${origin}/planner-validation` });
+  await waitExpression(cdp, `!!document.querySelector('[data-testid="planner-validation-controls"]') && !!document.querySelector('[data-testid="planner-validation-run"]')`, 20000);
+  await evaluate(cdp, `document.querySelector('[data-testid="planner-validation-run"]').click(); true`);
+  await waitExpression(cdp, `!!document.querySelector('[data-testid="planner-validation-result"]')`, 60000);
+  const phaseCManualLab = await evaluate(cdp, `({
+    failure: document.querySelector('[data-testid="planner-validation-failure"]')?.textContent || '',
+    resultStatus: document.querySelector('[data-testid="planner-validation-result"] .section-heading .status-chip')?.textContent || '',
+    dayCount: document.querySelectorAll('[data-testid="planner-validation-result"] .validation-day-card').length,
+    hardFailures: [...document.querySelectorAll('[data-testid="planner-validation-result"] .validation-day-card .status-chip')].filter(node => /HARD FAIL/i.test(node.textContent || '')).length
+  })`);
+  if (phaseCManualLab.failure || phaseCManualLab.resultStatus !== 'SUCCESS' || phaseCManualLab.dayCount !== 7 || phaseCManualLab.hardFailures) throw new Error(`Phase C manual planner lab regression: ${JSON.stringify(phaseCManualLab)}`);
 
   // Pass E final acceptance: required numeric blanks are blocked before persistence.
   await cdp.send('Page.navigate', { url: `${origin}/configure/nutrition` });
@@ -509,9 +525,10 @@ try {
     invalidDraftBlocked: Boolean(disclosureState?.invalidBlocked),
     dirtyNavigationGuarded: true,
     saveFeedbackVisible: true,
+    phaseCManualLab,
     step2
   };
-  console.log(`Browser regression PASS: recipe=${recipeState.path}, ingredient=${ingredientState.path}, passE=accepted, step2=accepted`);
+  console.log(`Browser regression PASS: recipe=${recipeState.path}, ingredient=${ingredientState.path}, passE=accepted, phaseC=accepted, step2=accepted`);
   await report({ status: 'passed', browserPath: browserChoice.path, browserVersion: browserChoice.version, recipePath: recipeState.path, ingredientPath: ingredientState.path, acceptance });
   cdp.close();
 } catch (error) {

@@ -1,10 +1,10 @@
 import { repositories } from '../repositories/repositoryHub.js';
 import { loadConfigurationBundle, assertConfigurationBundle, activeRecords } from './configurationService.js';
-import { PlanCandidateService } from './planCandidateService.js';
+import { PlanCandidateService, MAX_PLANNER_CANDIDATES_PER_ARCHETYPE } from './planCandidateService.js';
 import { createPlanPreview, extendPlan, continuationState } from './planGenerationService.js';
 import { hardFilterRecipe } from '../planner/hardFilter.js';
 import { scoreRecipe } from '../planner/softScoring.js';
-import { addCivilDays, dayEnergyTarget, sumNutrition, nutritionPenalty } from '../planner/planMath.js';
+import { addCivilDays, dayEnergyTarget, sumNutrition, nutritionPenalty, energyConstraintStatus } from '../planner/planMath.js';
 import { seededTie } from '../planner/seededRandom.js';
 import { commitOperation, mutationSnapshot, listRecentOperations, undoLastOperation, redoNextOperation, historyState } from './operationHistoryService.js';
 
@@ -91,6 +91,13 @@ function slotEnergyTarget(slot, mealClass, target) {
   return target * 0.2;
 }
 
+function dayEnergyConstraint(day, plannedEnergyKcal, nutritionProfile) {
+  const target = Number(day.nutritionSummary?.target?.energyKcal || nutritionProfile.dailyEnergyKcal);
+  const tolerance = Number(day.nutritionSummary?.target?.energyTolerancePct ?? nutritionProfile.energyTolerancePct ?? 0);
+  const external = Number(day.nutritionSummary?.externalBudget?.energyKcal || 0);
+  return energyConstraintStatus(plannedEnergyKcal, target, tolerance, external);
+}
+
 async function loadEditContext(planInstanceId, calendarDayId, mealOccurrenceId, { repo, registry }) {
   const bundle = await loadConfigurationBundle(repo); assertConfigurationBundle(bundle, registry);
   const active = activeRecords(bundle);
@@ -120,24 +127,37 @@ export async function createReplacementPreview({ planInstanceId, calendarDayId, 
   const sourceSlot = dayClassSlot(context.dayClass, context.occurrence);
   const target = dayEnergyTarget(context.active.nutritionProfile, context.day.dayArchetype);
   const targetEnergy = slotEnergyTarget(sourceSlot, context.mealClass, target);
-  const hardAllergens = (context.active.allergyProfile?.rules || []).filter(rule => rule.enabled && rule.targetType === 'allergen').map(rule => rule.targetId);
   const service = new PlanCandidateService({ repo });
-  const candidates = await service.retrieve(context.mealClass.mealArchetype, { limit: 250, excludeAllergens: hardAllergens });
+  const candidates = await service.retrieve(context.mealClass.mealArchetype, { limit: MAX_PLANNER_CANDIDATES_PER_ARCHETYPE });
   const history = await historyForDate(planInstanceId, context.day.date, { repo });
   const allRecipes = [...candidates, ...history.map(item => item.recipe)];
   const revisionIds = [...new Set(allRecipes.flatMap(recipe => (recipe.ingredientLines || []).map(line => line.ingredientRevisionId)))];
   const revisions = await repo.getMany('ingredientRevisions', revisionIds); const revisionById = new Map(revisions.map(item => [item.ingredientRevisionId, item]));
   const current = new Set((context.occurrence.recipeComponents || []).map(component => component.recipeVersionId));
+  const dayComponentIds = context.day.mealSlots.flatMap(slot => (slot.recipeComponents || []).map(component => component.recipeVersionId));
+  const dayRecipes = await repo.getMany('recipeVersions', [...new Set(dayComponentIds)]);
+  const dayRecipeById = new Map(dayRecipes.map(item => [item.recipeVersionId, item]));
+  const currentSlotNutrition = sumNutrition((context.occurrence.recipeComponents || []).map(component => dayRecipeById.get(component.recipeVersionId)).filter(Boolean));
+  const currentDayNutrition = sumNutrition(dayComponentIds.map(id => dayRecipeById.get(id)).filter(Boolean));
+  const baseDayEnergy = Math.max(0, Number(currentDayNutrition.energyKcal || 0) - Number(currentSlotNutrition.energyKcal || 0));
   const ranked = [];
+  const energyRejected = [];
   for (const recipe of candidates) {
     if (current.has(recipe.recipeVersionId)) continue;
     const scoreContext = { mealClass: context.mealClass, dayClass: context.dayClass, allergyProfile: context.active.allergyProfile, foodPreferences: context.active.foodPreferences, revisionById, history, date: context.day.date, nutritionProfile: context.active.nutritionProfile, slotEnergyTarget: targetEnergy, dayEnergyTarget: target };
     const hard = hardFilterRecipe(recipe, scoreContext); if (!hard.allowed) continue;
+    const projectedEnergy = baseDayEnergy + Number(recipe.calculatedNutrition?.energyKcal || 0);
+    const energyConstraint = dayEnergyConstraint(context.day, projectedEnergy, context.active.nutritionProfile);
+    if (!energyConstraint.withinTolerance) { energyRejected.push({ recipeVersionId: recipe.recipeVersionId, projectedEnergyKcal: projectedEnergy, energyConstraint }); continue; }
     const score = scoreRecipe(recipe, scoreContext);
-    ranked.push({ recipe, score, tie: seededTie(seed, `${context.day.date}|${mealOccurrenceId}|${recipe.recipeVersionId}`) });
+    ranked.push({ recipe, score, energyConstraint, tie: seededTie(seed, `${context.day.date}|${mealOccurrenceId}|${recipe.recipeVersionId}`) });
   }
   ranked.sort((a, b) => a.score.total - b.score.total || a.tie - b.tie || a.recipe.recipeVersionId.localeCompare(b.recipe.recipeVersionId));
-  return { status: 'success', planInstanceId, calendarDayId, mealOccurrenceId, targetEnergy, candidates: ranked.slice(0, Math.max(1, Math.min(20, Number(limit) || 8))).map(({ recipe, score }) => ({ recipe: clone(recipe), score: clone(score) })) };
+  return {
+    status: 'success', planInstanceId, calendarDayId, mealOccurrenceId, targetEnergy,
+    hardConstraints: { dailyEnergyTolerance: true, rejectedByEnergy: energyRejected.length },
+    candidates: ranked.slice(0, Math.max(1, Math.min(20, Number(limit) || 8))).map(({ recipe, score, energyConstraint }) => ({ recipe: clone(recipe), score: clone(score), energyConstraint: clone(energyConstraint) }))
+  };
 }
 
 async function recomputeDayNutrition(day, nutritionProfile, repo) {
@@ -146,8 +166,8 @@ async function recomputeDayNutrition(day, nutritionProfile, repo) {
   const known = sumNutrition(componentIds.map(id => byId.get(id)).filter(Boolean));
   const dailyTarget = Number(day.nutritionSummary?.target?.energyKcal || nutritionProfile.dailyEnergyKcal);
   const plannedTarget = Number(day.nutritionSummary?.target?.plannedEnergyKcal || dailyTarget);
-  const scale = plannedTarget / Math.max(1, dailyTarget);
-  const score = nutritionPenalty(known, nutritionProfile, { energyTarget: plannedTarget, energyWeight: 3, nutrientScale: scale });
+  const nutrientTargetFactor = plannedTarget / Math.max(1, dailyTarget);
+  const score = nutritionPenalty(known, nutritionProfile, { energyTarget: plannedTarget, energyWeight: 3, nutrientTargetFactor });
   return { ...clone(day.nutritionSummary), knownPlanned: known, score: Math.round(score * 1000) / 1000 };
 }
 
@@ -178,6 +198,8 @@ export async function commitReplacement({ planInstanceId, calendarDayId, mealOcc
   const previousComponents = clone(slot.recipeComponents);
   slot.recipeComponents = [{ recipeId: selected.recipe.recipeId, recipeVersionId: selected.recipe.recipeVersionId, servings: 1 }]; slot.adherenceStatus = 'not_recorded'; slot.adherenceNotes = null;
   nextDay.status = deriveDayStatus(nextDay.mealSlots); nextDay.updatedAt = timestamp; nextDay.nutritionSummary = await recomputeDayNutrition(nextDay, context.active.nutritionProfile, repo);
+  const replacementEnergyConstraint = dayEnergyConstraint(nextDay, nextDay.nutritionSummary.knownPlanned.energyKcal, context.active.nutritionProfile);
+  if (!replacementEnergyConstraint.withinTolerance) throw new Error(`Selected replacement violates daily energy tolerance (${replacementEnergyConstraint.budgetedTotalKcal} kcal; allowed ${replacementEnergyConstraint.dailyMinKcal}-${replacementEnergyConstraint.dailyMaxKcal})`);
   nextPlan.updatedAt = timestamp;
   registry.assert('calendarDay', nextDay); registry.assert('planInstance', nextPlan);
   const beforeMeta = await metaBefore(repo, ['planUpdatedAt']);

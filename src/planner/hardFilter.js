@@ -1,5 +1,7 @@
 import { recipeMatchesTarget, numericRuleSatisfied } from './recipeFeatures.js';
 
+export const SIMPLE_SNACK_MAX_PREP_MINUTES = 10;
+
 function reject(reasons, code) { reasons.push(code); }
 
 export function hardFilterRecipe(recipe, context) {
@@ -18,7 +20,7 @@ export function hardFilterRecipe(recipe, context) {
   for (const rule of mealClass.rules || []) {
     if (rule.strength !== 'forbid') continue;
     if (rule.ruleType === 'nutrition' || rule.ruleType === 'practical') {
-      if (!numericRuleSatisfied(recipe, rule)) reject(reasons, `meal_rule:${rule.ruleType}:${rule.target}`);
+      if (numericRuleSatisfied(recipe, rule)) reject(reasons, `meal_rule:${rule.ruleType}:${rule.target}`);
     } else if (recipeMatchesTarget(recipe, rule.ruleType, rule.target, revisionById)) {
       reject(reasons, `meal_rule:${rule.ruleType}:${rule.target}`);
     }
@@ -28,7 +30,11 @@ export function hardFilterRecipe(recipe, context) {
   if (capabilities.portabilityRequired && !recipe.practical?.portable) reject(reasons, 'capability:portable');
   if (capabilities.fridge === 'no' && recipe.practical?.fridgeRequired) reject(reasons, 'capability:fridge');
   if (capabilities.reheating === 'no' && recipe.practical?.reheatingRequired) reject(reasons, 'capability:reheating');
+  if (capabilities.cooking === false && Number(recipe.practical?.cookMinutes || 0) > 0) reject(reasons, 'capability:cooking');
   if (capabilities.maxPrepMinutes != null && recipe.practical?.prepMinutes > capabilities.maxPrepMinutes) reject(reasons, 'capability:prep_time');
+  if (capabilities.complexSnack === false && ['snack', 'mini_meal'].includes(mealClass.mealArchetype)) {
+    if (Number(recipe.practical?.cookMinutes || 0) > 0 || Number(recipe.practical?.prepMinutes || 0) > SIMPLE_SNACK_MAX_PREP_MINUTES) reject(reasons, 'capability:complex_snack');
+  }
 
   return { allowed: reasons.length === 0, reasons };
 }

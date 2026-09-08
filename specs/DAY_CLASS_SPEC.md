@@ -90,7 +90,7 @@ Ogni classe puo dichiarare:
 - portabilityRequired: yes/no;
 - maxPrepMinutes opzionale.
 
-Questi segnali filtrano/rankano le ricette.
+Questi segnali sono hard filter del planner quando esprimono una restrizione (`no`, `false`, required o un massimo esplicito).
 
 ## 7. Validazioni
 
@@ -124,3 +124,22 @@ Due slot con la stessa coppia `time` + `dayOffset` sono invalidi salvo che **tut
 ## 11. Formato orario
 
 Tutti gli orari locali `HH:mm` usano il pattern 24 ore `00:00`–`23:59`. Valori come `24:00` o `29:59` sono invalidi.
+
+
+## 12. Capability enforcement contract
+
+In Planner Validation Phase A le capabilities sono hard filters:
+
+- `cooking=false` esclude ricette con `cookMinutes > 0`;
+- `complexSnack=false`, per `snack` e `mini_meal`, consente solo ricette con `cookMinutes=0` e `prepMinutes<=10`;
+- portability/fridge/reheating/maxPrepMinutes mantengono l'enforcement hard gia definito.
+
+Queste regole devono comparire nei rejection counts del planner.
+
+## 13. Planned vs external slot constraint semantics
+
+`proteinMinG` e consentito solo su `mode=external` ed e guidance operativa per il pasto esterno. Non e un constraint del recipe solver e non viene conteggiato come assunzione nota.
+
+Su `mode=planned`, `proteinMinG` deve essere `null` e `estimatedNutritionPolicy` deve essere assente. I target proteici delle ricette pianificate provengono dal NutritionProfile e restano soft in V1.
+
+Per slot planned, `energyBudgetKcal` / `energyShare` guidano lo score dello slot; il vincolo hard e sulla finestra energetica dell'intera giornata. Per slot external con budget noto, il budget partecipa invece al totale giornaliero usato dal vincolo hard.

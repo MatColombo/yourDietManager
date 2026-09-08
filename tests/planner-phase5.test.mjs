@@ -156,7 +156,7 @@ test('candidate retrieval remains bounded with a 10k-recipe archetype', async ()
     await repo.put('recipes', { recipeId: rec.recipeId, currentVersionId: rec.recipeVersionId, origin: 'user', status: 'active' }); await repo.put('recipeVersions', { ...rec, origin: 'user' });
   }
   const service = new PlanCandidateService({ repo }); const items = await service.retrieve('breakfast', { limit: 999 });
-  assert.equal(items.length, 250);
+  assert.equal(items.length, 500);
 });
 
 test('preview validates schemas, commit is atomic, and extension continues the cycle', async () => {

@@ -1,5 +1,8 @@
 # YourDietManager — V1 Final Manual Test Checklist
 
+> **SUPERSEDED / SUSPENDED:** The direct V1 promotion path in this document is suspended by `V1_PLANNER_VALIDATION_PLAN.md`. Planner Validation phases A–C must complete before stable V1.
+
+
 **Candidate:** `1.0.0-rc.27`
 **Frozen catalog:** `1.0.0`
 **Purpose:** final product acceptance before promoting the application to stable `v1.0.0`.

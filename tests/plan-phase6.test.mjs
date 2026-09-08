@@ -37,7 +37,7 @@ async function fixture() {
       { id: 'night', mealClassId: 'mc-night', time: '02:00', dayOffset: 1, mode: 'planned', energyBudgetKcal: 500, energyShare: null, guidanceKeys: [], parallel: false, proteinMinG: null }
     ] }
   ];
-  const nutrition = { schemaVersion: 1, id: 'nutrition', dailyEnergyKcal: 1800, energyTolerancePct: 10, preset: 'balanced', nutrients: { proteinG: { enabled: true, min: 70, target: 100, max: null, weight: 1.5 }, carbsG: { enabled: false, min: null, target: null, max: null, weight: 0 }, fatG: { enabled: false, min: null, target: null, max: null, weight: 0 }, fiberG: { enabled: false, min: null, target: null, max: null, weight: 0 } }, dayArchetypeModifiers: {} };
+  const nutrition = { schemaVersion: 1, id: 'nutrition', dailyEnergyKcal: 1600, energyTolerancePct: 10, preset: 'balanced', nutrients: { proteinG: { enabled: true, min: 70, target: 100, max: null, weight: 1.5 }, carbsG: { enabled: false, min: null, target: null, max: null, weight: 0 }, fatG: { enabled: false, min: null, target: null, max: null, weight: 0 }, fiberG: { enabled: false, min: null, target: null, max: null, weight: 0 } }, dayArchetypeModifiers: {} };
   const allergy = { schemaVersion: 1, id: 'allergy', rules: [{ id: 'fish', kind: 'allergy', targetType: 'allergen', targetId: 'fish', label: 'Fish', enabled: true, notes: '' }] };
   const prefs = { schemaVersion: 1, id: 'prefs', rules: [] };
   const cycle = { schemaVersion: 1, id: 'cycle', name: 'Cycle', length: 2, days: [{ cycleDay: 1, dayClassId: 'dc-day' }, { cycleDay: 2, dayClassId: 'dc-night' }] };

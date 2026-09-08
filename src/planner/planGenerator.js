@@ -1,11 +1,12 @@
-import { addCivilDays, dateRange, dayEnergyTarget, sumNutrition } from './planMath.js';
+import { addCivilDays, dateRange, dayEnergyTarget, sumNutrition, energyConstraintStatus, energyToleranceWindow } from './planMath.js';
 import { filterCandidates } from './hardFilter.js';
 import { scoreRecipe } from './softScoring.js';
-import { buildSlotOptions, solveDayBeam } from './beamSolver.js';
+import { buildSlotOptions, selectCandidateFrontier, solveDayBeam } from './beamSolver.js';
 import { seededTie, stableHashId } from './seededRandom.js';
+import { plannerConstraintPolicySnapshot } from './constraintPolicy.js';
 
-export const GENERATOR_VERSION = 'plan-generator-1';
-export const SOLVER_VERSION = 'beam-search-1';
+export const GENERATOR_VERSION = 'plan-generator-2';
+export const SOLVER_VERSION = 'beam-search-2';
 
 function mealMap(mealClasses) { return new Map(mealClasses.map(item => [item.id, item])); }
 function dayMap(dayClasses) { return new Map(dayClasses.map(item => [item.id, item])); }
@@ -57,17 +58,30 @@ function buildPlannedSlot(slot, date, option) {
   };
 }
 
-function selectedDiagnostics(slotPlan, option, scoredCandidates) {
+function rounded(value) { return Math.round(Number(value || 0) * 10) / 10; }
+function energyRange(recipes) {
+  const values = (recipes || []).map(recipe => Number(recipe?.calculatedNutrition?.energyKcal || recipe?.nutrition?.energyKcal || 0)).filter(Number.isFinite);
+  if (!values.length) return { minKcal: null, maxKcal: null };
+  return { minKcal: rounded(Math.min(...values)), maxKcal: rounded(Math.max(...values)) };
+}
+
+function selectedDiagnostics(slotPlan, option) {
   return option.recipes.map(recipe => {
-    const scored = scoredCandidates.find(item => item.recipe.recipeVersionId === recipe.recipeVersionId);
+    const allRank = slotPlan.allScored.findIndex(item => item.recipe.recipeVersionId === recipe.recipeVersionId);
+    const frontierRank = slotPlan.scoredCandidates.findIndex(item => item.recipe.recipeVersionId === recipe.recipeVersionId);
+    const scored = slotPlan.allScored[allRank] || slotPlan.scoredCandidates[frontierRank];
     return {
+      slotId: slotPlan.id,
       mealClassId: slotPlan.mealClass.id,
       recipeId: recipe.recipeId,
       recipeVersionId: recipe.recipeVersionId,
+      energyKcal: rounded(recipe.calculatedNutrition?.energyKcal),
       hardFiltersPassed: true,
+      softRank: allRank < 0 ? null : allRank + 1,
+      frontierRank: frontierRank < 0 ? null : frontierRank + 1,
       score: Math.round((scored?.score.total || 0) * 1000) / 1000,
       scoreComponents: scored?.score.components || {},
-      reasons: (scored?.score.reasons || []).slice(0, 5),
+      reasons: (scored?.score.reasons || []).slice(0, 8),
       relaxedSoftConstraints: []
     };
   });
@@ -96,18 +110,24 @@ export function generatePlanCore(input) {
     const energyTarget = dayEnergyTarget(nutritionProfile, dayClass.dayArchetype);
     const externalSlots = dayClass.mealSlots.filter(slot => slot.mode === 'external');
     const plannedSlots = dayClass.mealSlots.filter(slot => slot.mode === 'planned');
-    let externalEnergy = 0; let externalProteinMin = 0; let externalInvalid = false;
+    let externalEnergy = 0; let externalProteinMin = 0; let externalInvalid = false; let externalUnknown = false;
     for (const slot of externalSlots) {
       const budget = externalBudget(slot, energyTarget);
+      if (slot.estimatedNutritionPolicy === 'unknown') externalUnknown = true;
       if (budget == null && slot.estimatedNutritionPolicy !== 'unknown') externalInvalid = true;
       externalEnergy += budget || 0; externalProteinMin += Number(slot.proteinMinG || 0);
     }
-    if (externalInvalid || externalEnergy >= energyTarget) {
-      failures.push({ date, code: 'external_budget_inconsistency', externalEnergy, energyTarget });
+    const energyWindow = energyToleranceWindow(energyTarget, nutritionProfile.energyTolerancePct, externalEnergy);
+    if (externalUnknown) {
+      failures.push({ date, code: 'external_energy_unknown', constraintId: 'daily_energy_tolerance', externalEnergy, energyTarget, energyWindow });
       break;
     }
-    const plannedEnergyTarget = energyTarget - externalEnergy;
-    const slotPlans = []; const rejectionCounts = {};
+    if (externalInvalid || externalEnergy > energyWindow.dailyMaxKcal) {
+      failures.push({ date, code: 'external_budget_inconsistency', constraintId: 'daily_energy_tolerance', externalEnergy, energyTarget, energyWindow });
+      break;
+    }
+    const plannedEnergyTarget = energyWindow.plannedTargetKcal;
+    const slotPlans = []; const rejectionCounts = {}; const slotDiagnostics = [];
     let failedSlot = null;
     for (const slot of plannedSlots) {
       const mealClass = meals.get(slot.mealClassId);
@@ -116,22 +136,48 @@ export function generatePlanCore(input) {
       const context = { mealClass, dayClass, allergyProfile, foodPreferences, revisionById: revisions, history, date, nutritionProfile, slotEnergyTarget: targetEnergy, dayEnergyTarget: energyTarget };
       const sourceCandidates = candidateSets?.[mealClass.mealArchetype] || recipes || [];
       const filtered = filterCandidates(sourceCandidates, context); rejectionMerge(rejectionCounts, filtered.rejectionCounts);
-      if (!filtered.accepted.length) { failedSlot = { slotId: slot.id, mealClassId: mealClass.id, code: 'no_candidates_after_hard_constraints', rejections: filtered.rejectionCounts }; break; }
-      const scored = filtered.accepted.map(recipe => ({ recipe, score: scoreRecipe(recipe, context), tie: seededTie(seed, `${date}|${slot.id}|${recipe.recipeVersionId}`) }))
-        .sort((a, b) => a.score.total - b.score.total || a.tie - b.tie || a.recipe.recipeVersionId.localeCompare(b.recipe.recipeVersionId)).slice(0, candidateLimit);
+      if (!filtered.accepted.length) {
+        const diagnostic = { slotId: slot.id, mealClassId: mealClass.id, mealArchetype: mealClass.mealArchetype, targetEnergyKcal: rounded(targetEnergy), sourceCandidateCount: sourceCandidates.length, acceptedCandidateCount: 0, candidateFrontierCount: 0, optionCount: 0, sourceEnergyRange: energyRange(sourceCandidates), acceptedEnergyRange: { minKcal: null, maxKcal: null }, frontierEnergyRange: { minKcal: null, maxKcal: null }, optionEnergyRange: { minKcal: null, maxKcal: null }, hardRejectionCounts: filtered.rejectionCounts };
+        slotDiagnostics.push(diagnostic);
+        failedSlot = { slotId: slot.id, mealClassId: mealClass.id, code: 'no_candidates_after_hard_constraints', rejections: filtered.rejectionCounts, slotDiagnostic: diagnostic }; break;
+      }
+      const allScored = filtered.accepted.map(recipe => ({ recipe, score: scoreRecipe(recipe, context), tie: seededTie(seed, `${date}|${slot.id}|${recipe.recipeVersionId}`) }))
+        .sort((a, b) => a.score.total - b.score.total || a.tie - b.tie || a.recipe.recipeVersionId.localeCompare(b.recipe.recipeVersionId));
+      const scored = selectCandidateFrontier(allScored, { targetEnergy, limit: candidateLimit });
       const options = buildSlotOptions(scored, { targetEnergy, dayEnergyTarget: energyTarget, nutritionProfile, optionLimit: slotOptionLimit, seed: `${seed}|${date}|${slot.id}` });
-      if (!options.length) { failedSlot = { slotId: slot.id, code: 'energy_range_impossible' }; break; }
-      slotPlans.push({ ...slot, mealClass, targetEnergy, options, scoredCandidates: scored });
+      const diagnostic = {
+        slotId: slot.id, mealClassId: mealClass.id, mealArchetype: mealClass.mealArchetype, targetEnergyKcal: rounded(targetEnergy),
+        sourceCandidateCount: sourceCandidates.length, acceptedCandidateCount: filtered.accepted.length, candidateFrontierCount: scored.length, optionCount: options.length,
+        sourceEnergyRange: energyRange(sourceCandidates), acceptedEnergyRange: energyRange(filtered.accepted), frontierEnergyRange: energyRange(scored.map(item => item.recipe)),
+        optionEnergyRange: options.length ? { minKcal: rounded(Math.min(...options.map(item => item.nutrition.energyKcal))), maxKcal: rounded(Math.max(...options.map(item => item.nutrition.energyKcal))) } : { minKcal: null, maxKcal: null },
+        hardRejectionCounts: filtered.rejectionCounts,
+        topSoftCandidates: allScored.slice(0, 5).map((item, index) => ({ recipeVersionId: item.recipe.recipeVersionId, rank: index + 1, energyKcal: rounded(item.recipe.calculatedNutrition?.energyKcal), score: Math.round(item.score.total * 1000) / 1000, scoreComponents: item.score.components, reasons: item.score.reasons.slice(0, 5) }))
+      };
+      slotDiagnostics.push(diagnostic);
+      if (!options.length) { failedSlot = { slotId: slot.id, mealClassId: mealClass.id, code: 'energy_range_impossible', slotDiagnostic: diagnostic }; break; }
+      slotPlans.push({ ...slot, mealClass, targetEnergy, options, allScored, scoredCandidates: scored, diagnostic });
     }
-    if (failedSlot) { failures.push({ date, ...failedSlot, rejectionCounts }); break; }
+    if (failedSlot) { failures.push({ date, ...failedSlot, rejectionCounts, slotDiagnostics }); break; }
 
-    const solved = solveDayBeam(slotPlans, { dayEnergyTarget: energyTarget, plannedEnergyTarget, nutritionProfile, beamWidth, seed: `${seed}|${date}` });
-    if (!solved && plannedSlots.length) { failures.push({ date, code: 'insufficient_catalog_coverage' }); break; }
+    const solvedResult = solveDayBeam(slotPlans, { dayEnergyTarget: energyTarget, externalEnergy, nutritionProfile, beamWidth, seed: `${seed}|${date}` });
+    const solved = solvedResult.solution;
+    if (!solved) {
+      failures.push({
+        date, code: 'no_feasible_plan', reason: solvedResult.diagnostics.code, constraintId: 'daily_energy_tolerance', hardConstraint: true,
+        energy: solvedResult.diagnostics.window, nearestPlannedEnergyKcal: solvedResult.diagnostics.nearestPlannedEnergyKcal,
+        nearestDistanceKcal: solvedResult.diagnostics.nearestDistanceKcal,
+        search: { candidateLimit, beamWidth, slotOptionLimit, proof: solvedResult.diagnostics.proof, hardPrunedStates: solvedResult.diagnostics.hardPrunedStates || 0, evaluatedFinalists: solvedResult.diagnostics.evaluatedFinalists, feasibleFinalists: solvedResult.diagnostics.feasibleFinalists },
+        rejectionCounts, slotDiagnostics
+      });
+      break;
+    }
     const plannedOccurrences = [];
     const selectedMeals = [];
-    for (const selected of solved?.slots || []) {
+    for (const selected of solved.slots || []) {
       plannedOccurrences.push(buildPlannedSlot(selected.slot, date, selected.option));
-      selectedMeals.push(...selectedDiagnostics(selected.slot, selected.option, selected.slot.scoredCandidates));
+      selectedMeals.push(...selectedDiagnostics(selected.slot, selected.option));
+      const diagnostic = slotDiagnostics.find(item => item.slotId === selected.slot.id);
+      if (diagnostic) { diagnostic.selectedRecipeVersionIds = selected.option.recipes.map(recipe => recipe.recipeVersionId); diagnostic.selectedEnergyKcal = rounded(selected.option.nutrition.energyKcal); }
       for (const recipe of selected.option.recipes) history.push({ date: addCivilDays(date, selected.slot.dayOffset), recipe });
     }
     const occurrences = [...plannedOccurrences, ...externalSlots.map(slot => buildExternalSlot(slot, date))]
@@ -139,6 +185,11 @@ export function generatePlanCore(input) {
     const knownNutrition = solved?.nutrition || sumNutrition([]);
     const dailyScore = solved?.score || 0;
     const planId = stableHashId('plan', seed, horizon.startDate, horizon.endDate, catalogVersion, configSnapshotHash);
+    const energyConstraint = energyConstraintStatus(knownNutrition.energyKcal, energyTarget, nutritionProfile.energyTolerancePct, externalEnergy);
+    if (!energyConstraint.withinTolerance) {
+      failures.push({ date, code: 'no_feasible_plan', reason: 'post_solve_energy_validation_failed', constraintId: 'daily_energy_tolerance', hardConstraint: true, energy: energyConstraint });
+      break;
+    }
     const nutritionSummary = {
       knownPlanned: knownNutrition,
       externalBudget: { energyKcal: Math.round(externalEnergy * 10) / 10, proteinMinG: Math.round(externalProteinMin * 10) / 10 },
@@ -150,17 +201,17 @@ export function generatePlanCore(input) {
       dayClassId: dayClass.id, dayArchetype: dayClass.dayArchetype, mealSlots: occurrences, status: 'planned', nutritionSummary, createdAt, updatedAt: createdAt
     };
     generatedDays.push(calendarDay);
-    dayDiagnostics.push({ date, cycleDay: cycleDayNumber, dayClassId: dayClass.id, energyTarget, plannedEnergyTarget, externalEnergy, selectedMeals, rejectionCounts, score: nutritionSummary.score });
+    dayDiagnostics.push({ date, cycleDay: cycleDayNumber, dayClassId: dayClass.id, energyTarget, plannedEnergyTarget, externalEnergy, energyConstraint, selectedMeals, slotDiagnostics, rejectionCounts, score: nutritionSummary.score });
   }
 
-  if (failures.length) return { status: 'failed', failure: failures[0], diagnostics: { failures, generatedDayCount: generatedDays.length } };
+  if (failures.length) return { status: 'failed', failure: failures[0], diagnostics: { status: 'failed', constraintPolicy: plannerConstraintPolicySnapshot(), failures, generatedDayCount: generatedDays.length } };
   const generationRunId = stableHashId('genrun', seed, catalogVersion, horizon.startDate, horizon.endDate, configSnapshotHash, reason, previousGenerationRunId || 'none');
   const planInstanceId = stableHashId('plan', seed, horizon.startDate, horizon.endDate, catalogVersion, configSnapshotHash);
   for (const day of generatedDays) day.planInstanceId = planInstanceId;
   const generationRun = {
     schemaVersion: 1, generationRunId, generatorVersion: GENERATOR_VERSION, solverVersion: SOLVER_VERSION, seed, catalogVersion,
     configSnapshotHash, configSnapshot, horizon: structuredClone(horizon), createdAt,
-    diagnostics: { status: 'success', dayCount: generatedDays.length, days: dayDiagnostics, summary: { meanScore: generatedDays.length ? Math.round(dayDiagnostics.reduce((a, b) => a + b.score, 0) / generatedDays.length * 1000) / 1000 : 0 } },
+    diagnostics: { status: 'success', constraintPolicy: plannerConstraintPolicySnapshot(), dayCount: generatedDays.length, days: dayDiagnostics, summary: { meanScore: generatedDays.length ? Math.round(dayDiagnostics.reduce((a, b) => a + b.score, 0) / generatedDays.length * 1000) / 1000 : 0, hardConstraintViolations: 0 } },
     reason, previousGenerationRunId
   };
   const planInstance = {

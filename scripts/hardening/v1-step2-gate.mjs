@@ -21,8 +21,8 @@ check('plan-ui-acceptance-hooks', ['plan-generate','plan-confirm','plan-manage-t
 check('undo-staleness-clock', (history.match(/mutation\.metaSet\.planUpdatedAt/g) || []).length >= 2, 'undo and redo advance planUpdatedAt');
 check('shopping-recalculation-key', shoppingUi.includes("await state.repo.getMeta('planUpdatedAt')") && shoppingUi.includes('ui.calculationKey !== calculationKey'), 'shopping view invalidates derived calculation when effective plan changes');
 check('shopping-ui-acceptance-hooks', ['shopping-calculate','shopping-save-checklist','shopping-check-item','shopping-page'].every(id => shoppingUi.includes(`'data-testid': '${id}'`)), 'shopping/checklist flow exposes stable acceptance hooks');
-check('offline-cache-parity', /ydm-data-v14-/.test(offline) && /ydm-data-v14-/.test(worker), 'direct offline cache and service worker share data cache v14');
-check('shell-cache-bumped', /ydm-shell-v29-/.test(worker), 'release-candidate shell assets invalidate prior cached JS');
+check('offline-cache-parity', /ydm-data-v16-/.test(offline) && /ydm-data-v16-/.test(worker), 'direct offline cache and service worker share data cache v16');
+check('shell-cache-bumped', /ydm-shell-v32-/.test(worker), 'planner-validation shell assets invalidate prior cached JS');
 const scenarios = ['Step2 A', 'Step2 B', 'Step2 C', 'Step2 D', 'Step2 E', 'Step2 F'];
 check('six-engine-scenarios', scenarios.every(label => tests.includes(label)), scenarios.join(', '));
 check('browser-vertical-flow', browser.includes('V1 Step 2 vertical product acceptance') && browser.includes('shoppingChecklistPersisted') && browser.includes('reloadPreservedPlan'), 'real Chromium gate covers create/replace/adherence/rebalance/undo-redo/shopping/reload');

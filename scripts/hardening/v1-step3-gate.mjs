@@ -79,7 +79,7 @@ check('stratified-review-passed', review.automatedStatus === 'passed' && review.
 check('recipe-digest-frozen', Boolean(buildEvidence.recipeDigest) && buildEvidence.recipeDigest === releaseEvidence.recipeDigest, releaseEvidence.recipeDigest || 'missing');
 check('locale-key-parity', localeParity, `it=${localeKeysIt.length}, en=${localeKeysEn.length}`);
 check('backup-delete-local-data', /repo\.resetAll\(\)/.test(localData) && /backup-delete-local-data/.test(appUi) && /deleteAllLocalData/.test(appUi), 'backup page exposes destructive local-data deletion backed by repository reset');
-check('pwa-cache-parity', /ydm-shell-v29-/.test(worker) && /ydm-data-v14-/.test(worker) && /ydm-data-v14-/.test(offline), 'shell=v29, data=v14');
+check('pwa-cache-parity', /ydm-shell-v30-/.test(worker) && /ydm-data-v15-/.test(worker) && /ydm-data-v15-/.test(offline), 'shell=v30, data=v15');
 check('pages-browser-required', /YDM_BROWSER_REQUIRED:\s*'1'/.test(pagesWorkflow) && /npm run check/.test(pagesWorkflow), 'GitHub Pages deploy blocks on browser-required full check');
 check('release-candidate-workflow', /corpus:build-v1-release/.test(candidateWorkflow) && /corpus:review-v1-release/.test(candidateWorkflow) && /catalog:publish-v1-release/.test(candidateWorkflow) && /git diff --exit-code/.test(candidateWorkflow) && /v1:step3-gate/.test(candidateWorkflow), 'manual workflow reproduces frozen corpus and verifies no generated drift');
 check('legacy-corpus-writers-retired', ['production-review-500.yml','controlled-scale-500.yml','production-corpus.yml'].every(name => !existsSync(path.join(root, '.github/workflows', name))), 'pre-freeze corpus writer workflows are retired; Git history remains the archive');

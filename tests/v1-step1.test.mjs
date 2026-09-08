@@ -60,7 +60,7 @@ test('pre-V1 epoch reset destroys RC data, reseeds canonical reference data and 
   assert.equal(storage.getItem('unrelated'), 'keep');
   assert.deepEqual(caches.deleted.sort(), ['ydm-data-v12-root','ydm-shell-v26-root']);
   assert.deepEqual(await repo.getMeta('preV1Reset'), {
-    previousEpoch:'legacy-rc-epoch', previousCatalogVersion:'0.3.0-dev', resetAt:'2026-09-07T12:00:00.000Z', appVersion:'1.0.0-rc.27', policy:'destructive-pre-v1'
+    previousEpoch:'legacy-rc-epoch', previousCatalogVersion:'0.3.0-dev', resetAt:'2026-09-07T12:00:00.000Z', appVersion:'1.0.0-rc.29', policy:'destructive-pre-v1'
   });
 });
 
@@ -73,7 +73,7 @@ test('current pre-V1 epoch is idempotent and does not erase current candidate da
   assert.ok(await repo.get('recipes', 'current_recipe'));
 });
 
-test('V1 candidate publication is closed: 600 ingredients, 600 reachable revisions, 500 recipes and core contains all 500', async () => {
+test('Planner Phase B publication is coherent: 600 ingredients, 1800 recipes and core contains the validation corpus', async () => {
   const catalog = await loadLocalCatalog(path.join(root, 'public/data'));
   const activeIngredients = catalog.ingredientFamilies.filter(item => item.status === 'active');
   const activeRecipes = catalog.recipeFamilies.filter(item => item.status === 'active');
@@ -82,17 +82,17 @@ test('V1 candidate publication is closed: 600 ingredients, 600 reachable revisio
   const revisionIds = new Set(catalog.ingredientRevisions.map(item => item.ingredientRevisionId));
   const core = catalog.manifest.packs.find(pack => pack.packId === 'core');
 
-  assert.equal(catalog.manifest.catalogVersion, '1.0.0');
-  assert.equal(catalog.manifest.publication.channel, 'production_release');
+  assert.equal(catalog.manifest.catalogVersion, '1.1.0-planner-phase-b');
+  assert.equal(catalog.manifest.publication.channel, 'development');
   assert.equal(catalog.manifest.publication.requiredHumanReview, false);
-  assert.equal(catalog.manifest.publication.releaseEligible, true);
+  assert.equal(catalog.manifest.publication.releaseEligible, false);
   assert.equal(activeIngredients.length, 600);
   assert.equal(catalog.ingredientRevisions.length, 600);
-  assert.equal(activeRecipes.length, 500);
-  assert.equal(catalog.recipeVersions.length, 500);
+  assert.equal(activeRecipes.length, 1800);
+  assert.equal(catalog.recipeVersions.length, 1800);
   assert.equal(reachable.size, revisionIds.size);
   assert.ok([...reachable].every(id => revisionIds.has(id)));
   assert.equal(core.required, true);
-  assert.equal(core.recipeVersionIds.length, 500);
+  assert.equal(core.recipeVersionIds.length, 1800);
   for (const id of ['ingrev_salmon_raw_v2','ingrev_rice_cooked_v2','ingrev_zucchini_raw_v2','ingrev_olive_oil_v2']) assert.equal(revisionIds.has(id), false);
 });

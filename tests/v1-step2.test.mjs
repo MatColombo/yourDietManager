@@ -154,7 +154,7 @@ test('Step2 C — hard milk allergy survives generation, replacement and rebalan
 async function configureOfficeCarryover(repo, registry) {
   const bundle = await loadConfigurationBundle(repo);
   const mini = { schemaVersion: 1, id: 'mc-mini', name: 'Mini', abbreviation: 'MI', mealArchetype: 'mini_meal', energyShare: { target: 0.1, min: 0.05, max: 0.2 }, rules: [] };
-  const strictCapabilities = { fridge: 'unknown', reheating: 'unknown', cooking: false, complexSnack: false, portabilityRequired: true, maxPrepMinutes: 10 };
+  const strictCapabilities = { fridge: 'unknown', reheating: 'unknown', cooking: true, complexSnack: false, portabilityRequired: true, maxPrepMinutes: 10 };
   const office = {
     schemaVersion: 1, id: 'dc-office', name: 'Office', abbreviation: 'OF', color: '#335577', dayArchetype: 'day',
     workWindows: [{ start: '09:00', end: '18:00', endDayOffset: 0 }], capabilities: strictCapabilities,

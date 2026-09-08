@@ -10,12 +10,13 @@ import {
 import { ingredientDetailPage, ingredientEditorPage, ingredientsPage, packsPage, recipeDetailPage, recipeEditorPage, recipesPage, productionReviewPage } from './catalogPages.js';
 import { todayPage, calendarPage, manageDayPage, historyPage } from './planPages.js';
 import { shoppingPage } from './shoppingPages.js';
+import { plannerValidationPage } from './plannerValidationPage.js';
 import { referenceDataPage } from './referenceDataPages.js';
 import { routePath } from '../lib/appBase.js';
 import { notificationRegion } from './uiState.js';
 
 const PRIMARY = [['/', 'nav.today'], ['/calendar', 'nav.calendar'], ['/recipes', 'nav.recipes'], ['/shopping', 'nav.shopping']];
-const SECONDARY = [['/configure', 'nav.configure'], ['/appearance', 'nav.appearance'], ['/language', 'nav.language'], ['/backup', 'nav.backup']];
+const SECONDARY = [['/configure', 'nav.configure'], ['/planner-validation', 'nav.plannerValidation'], ['/appearance', 'nav.appearance'], ['/language', 'nav.language'], ['/backup', 'nav.backup']];
 
 function navLink(state, [href, key]) {
   const currentPath = routePath();
@@ -176,6 +177,7 @@ function routePage(state) {
   if (recipeDetailMatch) return recipeDetailPage(state, decodeURIComponent(recipeDetailMatch[1]), new URLSearchParams(location.search).get('version'));
   if (path === '/recipes') return recipesPage(state);
   if (path === '/shopping') return shoppingPage(state);
+  if (path === '/planner-validation') return plannerValidationPage(state);
   if (path === '/configure/nutrition') return nutritionPage(state);
   if (path === '/configure/safety') return safetyPage(state);
   if (path === '/configure/preferences') return preferencesPage(state);

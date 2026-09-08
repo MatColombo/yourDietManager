@@ -1,5 +1,5 @@
 import { element } from './dom.js';
-import { addCivilDays } from '../planner/planMath.js';
+import { addCivilDays, energyConstraintStatus } from '../planner/planMath.js';
 import {
   civilDateInTimeZone, loadEffectivePlanState, loadCalendarRange, createInitialPreview, createExtensionPreview, commitGeneratedPreview,
   createReplacementPreview, commitReplacement, updateAdherence, createRebalancePreview, commitRebalancePreview,
@@ -19,7 +19,15 @@ function seedValue(prefix, date) { return `${prefix}-${date}-${Math.random().toS
 
 function planFailure(state, failure) {
   const code = failure?.code || 'unknown'; const key = `plan.failure.${code}`; const translated = state.i18n.t(key);
-  return translated === key ? `${t(state, 'plan.failure.generic')} (${code})` : translated;
+  const base = translated === key ? `${t(state, 'plan.failure.generic')} (${code})` : translated;
+  if (code !== 'no_feasible_plan' || !failure?.energy) return base;
+  const nearest = failure.nearestPlannedEnergyKcal == null ? '—' : Math.round(failure.nearestPlannedEnergyKcal);
+  const distance = failure.nearestDistanceKcal == null ? '—' : Math.round(failure.nearestDistanceKcal);
+  const details = t(state, 'plan.failure.energyDetails', {
+    target: Math.round(failure.energy.targetKcal), min: Math.round(failure.energy.dailyMinKcal), max: Math.round(failure.energy.dailyMaxKcal),
+    nearest, distance, reason: failure.reason || 'bounded_search'
+  });
+  return `${base} ${details}`;
 }
 
 function recipePills(state, recipe) {
@@ -86,8 +94,11 @@ function mealCard(state, day, slot, recipes, { manage = false, rerender = null }
 }
 
 function nutritionPanel(state, day) {
-  if (!day?.nutritionSummary) return null; const n = day.nutritionSummary.knownPlanned; const target = day.nutritionSummary.target;
-  return element('section', { className: 'nutrition-panel' }, [element('div', { className: 'section-heading' }, [element('h2', { text: t(state, 'plan.nutrition.title') }), element('span', { className: 'muted', text: `${Math.round(n.energyKcal)} / ${Math.round(target.plannedEnergyKcal)} kcal` })]), element('div', { className: 'nutrition-metrics' }, [metric(t(state, 'nutrient.protein'), `${n.proteinG} g`), metric(t(state, 'nutrient.carbs'), `${n.carbsG} g`), metric(t(state, 'nutrient.fat'), `${n.fatG} g`), metric(t(state, 'nutrient.fiber'), `${n.fiberG} g`)])]);
+  if (!day?.nutritionSummary) return null;
+  const n = day.nutritionSummary.knownPlanned; const target = day.nutritionSummary.target; const external = day.nutritionSummary.externalBudget?.energyKcal || 0;
+  const energy = energyConstraintStatus(n.energyKcal, target.energyKcal, target.energyTolerancePct, external);
+  const energyLabel = `${Math.round(energy.budgetedTotalKcal)} / ${Math.round(energy.targetKcal)} kcal · ${Math.round(energy.dailyMinKcal)}–${Math.round(energy.dailyMaxKcal)} · ${t(state, energy.withinTolerance ? 'plan.energy.hardOk' : 'plan.energy.hardFail')}`;
+  return element('section', { className: 'nutrition-panel', 'data-testid': 'plan-energy-constraint', 'data-energy-hard-status': energy.withinTolerance ? 'pass' : 'fail' }, [element('div', { className: 'section-heading' }, [element('h2', { text: t(state, 'plan.nutrition.title') }), element('span', { className: 'muted', text: energyLabel })]), element('div', { className: 'nutrition-metrics' }, [metric(t(state, 'nutrient.protein'), `${n.proteinG} g`), metric(t(state, 'nutrient.carbs'), `${n.carbsG} g`), metric(t(state, 'nutrient.fat'), `${n.fatG} g`), metric(t(state, 'nutrient.fiber'), `${n.fiberG} g`)])]);
 }
 function metric(label, value) { return element('div', { className: 'metric-box' }, [element('span', { className: 'muted', text: label }), element('strong', { text: value })]); }
 

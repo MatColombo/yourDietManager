@@ -21,7 +21,7 @@ Progettare e testare almeno per:
 
 ## 3. Candidate retrieval
 
-Target operativo: recuperare dall'IndexedDB un subset plausibile (tipicamente <=250 candidati per slot) usando archetype, kcal, praticita e hard prefilters indicizzabili; applicare ranking fine in memoria.
+Target operativo pre-V1 planner validation: recuperare dall'IndexedDB un subset bounded fino a **500 candidati per archetype/slot**. Il limite 500 permette al corpus Phase B (fino a 450 ricette per lunch/dinner) di entrare interamente nello spazio di ricerca. Hard safety/capability filtering deve essere applicato dal filtro canonico del planner, non da prefiltri che rendano invisibili le ragioni di esclusione. Per cataloghi post-V1 più grandi, l'obiettivo resta ridurre il working set con indici e query semanticamente equivalenti senza troncare arbitrariamente la coverage utile.
 
 ## 4. UI budgets
 

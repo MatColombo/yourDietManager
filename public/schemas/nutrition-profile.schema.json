@@ -352,7 +352,29 @@
             "minimum": -1000,
             "maximum": 1000
           }
-        }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "mode": {
+                  "const": "percent"
+                }
+              },
+              "required": [
+                "mode"
+              ]
+            },
+            "then": {
+              "properties": {
+                "value": {
+                  "exclusiveMinimum": -100,
+                  "maximum": 1000
+                }
+              }
+            }
+          }
+        ]
       }
     }
   }

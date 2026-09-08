@@ -2,8 +2,8 @@ export const DB_NAME = 'yourDietManager';
 export const DB_VERSION = 5;
 export const CONTENT_SCHEMA_VERSION = 3;
 export const BACKUP_FORMAT_VERSION = 1;
-export const APP_VERSION = '1.0.0-rc.27';
-export const PRE_V1_DATA_EPOCH = 'v1-freeze-epoch-1';
+export const APP_VERSION = '1.0.0-rc.29';
+export const PRE_V1_DATA_EPOCH = 'v1-planner-phase-b-epoch-1';
 
 export const STORE_DEFINITIONS = {
   meta: { keyPath: 'key', indexes: [] },

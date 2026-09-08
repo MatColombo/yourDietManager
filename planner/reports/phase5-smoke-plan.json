@@ -3,8 +3,8 @@
   "generationRun": {
     "schemaVersion": 1,
     "generationRunId": "genrun_79e54332",
-    "generatorVersion": "plan-generator-1",
-    "solverVersion": "beam-search-1",
+    "generatorVersion": "plan-generator-2",
+    "solverVersion": "beam-search-2",
     "seed": "phase5-smoke",
     "catalogVersion": "phase5-smoke",
     "configSnapshotHash": "1234567890abcdef",
@@ -18,6 +18,111 @@
     "createdAt": "2026-09-03T14:00:00Z",
     "diagnostics": {
       "status": "success",
+      "constraintPolicy": {
+        "version": "planner-constraint-policy-1",
+        "hard": [
+          {
+            "id": "daily_energy_tolerance",
+            "scope": "day",
+            "strength": "hard",
+            "source": "NutritionProfile.energyTolerancePct",
+            "enforcement": "bounded_search_energy_filter_and_post_validation"
+          },
+          {
+            "id": "allergy_intolerance",
+            "scope": "recipe",
+            "strength": "hard",
+            "source": "AllergyIntoleranceProfile.rules.enabled",
+            "enforcement": "candidate_filter"
+          },
+          {
+            "id": "food_auto_exclude",
+            "scope": "recipe",
+            "strength": "hard",
+            "source": "FoodPreferences.rules.autoExclude",
+            "enforcement": "candidate_filter"
+          },
+          {
+            "id": "meal_rule_forbid",
+            "scope": "recipe",
+            "strength": "hard",
+            "source": "MealClass.rules[strength=forbid]",
+            "enforcement": "candidate_filter"
+          },
+          {
+            "id": "day_capabilities",
+            "scope": "recipe",
+            "strength": "hard",
+            "source": "DayClass.capabilities",
+            "enforcement": "candidate_filter"
+          },
+          {
+            "id": "meal_archetype",
+            "scope": "recipe",
+            "strength": "hard",
+            "source": "MealClass.mealArchetype",
+            "enforcement": "candidate_filter"
+          },
+          {
+            "id": "recipe_quality",
+            "scope": "recipe",
+            "strength": "hard",
+            "source": "RecipeVersion.quality.status",
+            "enforcement": "candidate_filter"
+          },
+          {
+            "id": "fixed_serving",
+            "scope": "component",
+            "strength": "hard",
+            "source": "RecipeVersion.servingCount / CalendarDay.recipeComponents.servings",
+            "enforcement": "schema_and_generator"
+          }
+        ],
+        "soft": [
+          {
+            "id": "nutrient_targets",
+            "scope": "day",
+            "strength": "soft",
+            "source": "NutritionProfile.nutrients",
+            "enforcement": "objective_penalty"
+          },
+          {
+            "id": "meal_rule_preferences",
+            "scope": "recipe",
+            "strength": "soft",
+            "source": "MealClass.rules[prefer|slight_prefer|avoid]",
+            "enforcement": "objective_penalty"
+          },
+          {
+            "id": "food_preferences",
+            "scope": "recipe",
+            "strength": "soft",
+            "source": "FoodPreferences.rules.level",
+            "enforcement": "objective_penalty"
+          },
+          {
+            "id": "frequency_limits",
+            "scope": "history",
+            "strength": "soft",
+            "source": "FoodPreferences.rules.frequency",
+            "enforcement": "objective_penalty"
+          },
+          {
+            "id": "variety",
+            "scope": "history",
+            "strength": "soft",
+            "source": "recipe/family/ingredient/category/cuisine repetition",
+            "enforcement": "objective_penalty"
+          },
+          {
+            "id": "slot_energy_share",
+            "scope": "slot",
+            "strength": "soft",
+            "source": "MealClass.energyShare / DayClass.mealSlots energy share/budget",
+            "enforcement": "slot_objective"
+          }
+        ]
+      },
       "dayCount": 2,
       "days": [
         {
@@ -27,12 +132,31 @@
           "energyTarget": 1800,
           "plannedEnergyTarget": 1300,
           "externalEnergy": 500,
+          "energyConstraint": {
+            "targetKcal": 1800,
+            "tolerancePct": 10,
+            "externalEnergyKcal": 500,
+            "dailyMinKcal": 1620,
+            "dailyMaxKcal": 1980,
+            "plannedTargetKcal": 1300,
+            "plannedMinKcal": 1120,
+            "plannedMaxKcal": 1480,
+            "plannedEnergyKcal": 1300,
+            "budgetedTotalKcal": 1800,
+            "deviationKcal": 0,
+            "deviationPct": 0,
+            "withinTolerance": true
+          },
           "selectedMeals": [
             {
+              "slotId": "breakfast",
               "mealClassId": "mc-breakfast",
               "recipeId": "r_oats",
               "recipeVersionId": "rv_oats",
+              "energyKcal": 400,
               "hardFiltersPassed": true,
+              "softRank": 1,
+              "frontierRank": 1,
               "score": 15,
               "scoreComponents": {
                 "nutrition": 14.999999999999995,
@@ -43,13 +167,17 @@
               "relaxedSoftConstraints": []
             },
             {
+              "slotId": "dinner",
               "mealClassId": "mc-dinner",
               "recipeId": "r_chicken",
               "recipeVersionId": "rv_chicken",
+              "energyKcal": 900,
               "hardFiltersPassed": true,
-              "score": 81.429,
+              "softRank": 1,
+              "frontierRank": 1,
+              "score": 124.286,
               "scoreComponents": {
-                "nutrition": 81.4285714285714,
+                "nutrition": 124.28571428571425,
                 "preference": 0,
                 "variety": 0
               },
@@ -57,11 +185,109 @@
               "relaxedSoftConstraints": []
             }
           ],
+          "slotDiagnostics": [
+            {
+              "slotId": "breakfast",
+              "mealClassId": "mc-breakfast",
+              "mealArchetype": "breakfast",
+              "targetEnergyKcal": 400,
+              "sourceCandidateCount": 4,
+              "acceptedCandidateCount": 1,
+              "candidateFrontierCount": 1,
+              "optionCount": 1,
+              "sourceEnergyRange": {
+                "minKcal": 400,
+                "maxKcal": 990
+              },
+              "acceptedEnergyRange": {
+                "minKcal": 400,
+                "maxKcal": 400
+              },
+              "frontierEnergyRange": {
+                "minKcal": 400,
+                "maxKcal": 400
+              },
+              "optionEnergyRange": {
+                "minKcal": 400,
+                "maxKcal": 400
+              },
+              "hardRejectionCounts": {
+                "meal_archetype": 3,
+                "safety:fish": 1
+              },
+              "topSoftCandidates": [
+                {
+                  "recipeVersionId": "rv_oats",
+                  "rank": 1,
+                  "energyKcal": 400,
+                  "score": 15,
+                  "scoreComponents": {
+                    "nutrition": 14.999999999999995,
+                    "preference": 0,
+                    "variety": 0
+                  },
+                  "reasons": []
+                }
+              ],
+              "selectedRecipeVersionIds": [
+                "rv_oats"
+              ],
+              "selectedEnergyKcal": 400
+            },
+            {
+              "slotId": "dinner",
+              "mealClassId": "mc-dinner",
+              "mealArchetype": "dinner",
+              "targetEnergyKcal": 700,
+              "sourceCandidateCount": 4,
+              "acceptedCandidateCount": 1,
+              "candidateFrontierCount": 1,
+              "optionCount": 1,
+              "sourceEnergyRange": {
+                "minKcal": 400,
+                "maxKcal": 990
+              },
+              "acceptedEnergyRange": {
+                "minKcal": 900,
+                "maxKcal": 900
+              },
+              "frontierEnergyRange": {
+                "minKcal": 900,
+                "maxKcal": 900
+              },
+              "optionEnergyRange": {
+                "minKcal": 900,
+                "maxKcal": 900
+              },
+              "hardRejectionCounts": {
+                "meal_archetype": 2,
+                "safety:fish": 1
+              },
+              "topSoftCandidates": [
+                {
+                  "recipeVersionId": "rv_chicken",
+                  "rank": 1,
+                  "energyKcal": 900,
+                  "score": 124.286,
+                  "scoreComponents": {
+                    "nutrition": 124.28571428571425,
+                    "preference": 0,
+                    "variety": 0
+                  },
+                  "reasons": []
+                }
+              ],
+              "selectedRecipeVersionIds": [
+                "rv_chicken"
+              ],
+              "selectedEnergyKcal": 900
+            }
+          ],
           "rejectionCounts": {
             "meal_archetype": 5,
             "safety:fish": 2
           },
-          "score": 191.085
+          "score": 198.832
         },
         {
           "date": "2026-09-08",
@@ -70,15 +296,34 @@
           "energyTarget": 1890,
           "plannedEnergyTarget": 1890,
           "externalEnergy": 0,
+          "energyConstraint": {
+            "targetKcal": 1890,
+            "tolerancePct": 10,
+            "externalEnergyKcal": 0,
+            "dailyMinKcal": 1701,
+            "dailyMaxKcal": 2079,
+            "plannedTargetKcal": 1890,
+            "plannedMinKcal": 1701,
+            "plannedMaxKcal": 2079,
+            "plannedEnergyKcal": 1890,
+            "budgetedTotalKcal": 1890,
+            "deviationKcal": 0,
+            "deviationPct": 0,
+            "withinTolerance": true
+          },
           "selectedMeals": [
             {
+              "slotId": "pre",
               "mealClassId": "mc-dinner",
               "recipeId": "r_chicken",
               "recipeVersionId": "rv_chicken",
+              "energyKcal": 900,
               "hardFiltersPassed": true,
-              "score": 116.56,
+              "softRank": 1,
+              "frontierRank": 1,
+              "score": 159.417,
               "scoreComponents": {
-                "nutrition": 93,
+                "nutrition": 135.85714285714286,
                 "preference": 0,
                 "variety": 23.560000000000002
               },
@@ -88,13 +333,17 @@
               "relaxedSoftConstraints": []
             },
             {
+              "slotId": "night",
               "mealClassId": "mc-night",
               "recipeId": "r_night",
               "recipeVersionId": "rv_night",
+              "energyKcal": 990,
               "hardFiltersPassed": true,
-              "score": 31.51,
+              "softRank": 1,
+              "frontierRank": 1,
+              "score": 178.51,
               "scoreComponents": {
-                "nutrition": 20.10000000000002,
+                "nutrition": 167.10000000000002,
                 "preference": 0,
                 "variety": 11.41
               },
@@ -104,15 +353,118 @@
               "relaxedSoftConstraints": []
             }
           ],
+          "slotDiagnostics": [
+            {
+              "slotId": "pre",
+              "mealClassId": "mc-dinner",
+              "mealArchetype": "dinner",
+              "targetEnergyKcal": 700,
+              "sourceCandidateCount": 4,
+              "acceptedCandidateCount": 1,
+              "candidateFrontierCount": 1,
+              "optionCount": 1,
+              "sourceEnergyRange": {
+                "minKcal": 400,
+                "maxKcal": 990
+              },
+              "acceptedEnergyRange": {
+                "minKcal": 900,
+                "maxKcal": 900
+              },
+              "frontierEnergyRange": {
+                "minKcal": 900,
+                "maxKcal": 900
+              },
+              "optionEnergyRange": {
+                "minKcal": 900,
+                "maxKcal": 900
+              },
+              "hardRejectionCounts": {
+                "meal_archetype": 2,
+                "safety:fish": 1
+              },
+              "topSoftCandidates": [
+                {
+                  "recipeVersionId": "rv_chicken",
+                  "rank": 1,
+                  "energyKcal": 900,
+                  "score": 159.417,
+                  "scoreComponents": {
+                    "nutrition": 135.85714285714286,
+                    "preference": 0,
+                    "variety": 23.560000000000002
+                  },
+                  "reasons": [
+                    "variety:23.56"
+                  ]
+                }
+              ],
+              "selectedRecipeVersionIds": [
+                "rv_chicken"
+              ],
+              "selectedEnergyKcal": 900
+            },
+            {
+              "slotId": "night",
+              "mealClassId": "mc-night",
+              "mealArchetype": "night_meal",
+              "targetEnergyKcal": 500,
+              "sourceCandidateCount": 4,
+              "acceptedCandidateCount": 1,
+              "candidateFrontierCount": 1,
+              "optionCount": 1,
+              "sourceEnergyRange": {
+                "minKcal": 400,
+                "maxKcal": 990
+              },
+              "acceptedEnergyRange": {
+                "minKcal": 990,
+                "maxKcal": 990
+              },
+              "frontierEnergyRange": {
+                "minKcal": 990,
+                "maxKcal": 990
+              },
+              "optionEnergyRange": {
+                "minKcal": 990,
+                "maxKcal": 990
+              },
+              "hardRejectionCounts": {
+                "meal_archetype": 3,
+                "safety:fish": 1
+              },
+              "topSoftCandidates": [
+                {
+                  "recipeVersionId": "rv_night",
+                  "rank": 1,
+                  "energyKcal": 990,
+                  "score": 178.51,
+                  "scoreComponents": {
+                    "nutrition": 167.10000000000002,
+                    "preference": 0,
+                    "variety": 11.41
+                  },
+                  "reasons": [
+                    "variety:11.41"
+                  ]
+                }
+              ],
+              "selectedRecipeVersionIds": [
+                "rv_night"
+              ],
+              "selectedEnergyKcal": 990
+            }
+          ],
           "rejectionCounts": {
             "meal_archetype": 5,
             "safety:fish": 2
           },
-          "score": 298.842
+          "score": 459.746
         }
       ],
       "summary": {
-        "meanScore": 244.964
+        "meanScore": 329.289,
+        "hardConstraintViolations": 0
       }
     },
     "reason": "initial",
@@ -202,10 +554,10 @@
       "status": "planned",
       "nutritionSummary": {
         "knownPlanned": {
-          "energyKcal": 1100,
+          "energyKcal": 1300,
           "proteinG": 80,
-          "carbsG": 110,
-          "fatG": 27.5,
+          "carbsG": 130,
+          "fatG": 32.5,
           "fiberG": 10
         },
         "externalBudget": {
@@ -217,7 +569,7 @@
           "plannedEnergyKcal": 1300,
           "energyTolerancePct": 10
         },
-        "score": 191.085
+        "score": 198.832
       },
       "createdAt": "2026-09-03T14:00:00Z",
       "updatedAt": "2026-09-03T14:00:00Z"
@@ -271,10 +623,10 @@
       "status": "planned",
       "nutritionSummary": {
         "knownPlanned": {
-          "energyKcal": 1200,
+          "energyKcal": 1890,
           "proteinG": 90,
-          "carbsG": 120,
-          "fatG": 30,
+          "carbsG": 189,
+          "fatG": 47.3,
           "fiberG": 10
         },
         "externalBudget": {
@@ -286,7 +638,7 @@
           "plannedEnergyKcal": 1890,
           "energyTolerancePct": 10
         },
-        "score": 298.842
+        "score": 459.746
       },
       "createdAt": "2026-09-03T14:00:00Z",
       "updatedAt": "2026-09-03T14:00:00Z"
@@ -294,6 +646,111 @@
   ],
   "diagnostics": {
     "status": "success",
+    "constraintPolicy": {
+      "version": "planner-constraint-policy-1",
+      "hard": [
+        {
+          "id": "daily_energy_tolerance",
+          "scope": "day",
+          "strength": "hard",
+          "source": "NutritionProfile.energyTolerancePct",
+          "enforcement": "bounded_search_energy_filter_and_post_validation"
+        },
+        {
+          "id": "allergy_intolerance",
+          "scope": "recipe",
+          "strength": "hard",
+          "source": "AllergyIntoleranceProfile.rules.enabled",
+          "enforcement": "candidate_filter"
+        },
+        {
+          "id": "food_auto_exclude",
+          "scope": "recipe",
+          "strength": "hard",
+          "source": "FoodPreferences.rules.autoExclude",
+          "enforcement": "candidate_filter"
+        },
+        {
+          "id": "meal_rule_forbid",
+          "scope": "recipe",
+          "strength": "hard",
+          "source": "MealClass.rules[strength=forbid]",
+          "enforcement": "candidate_filter"
+        },
+        {
+          "id": "day_capabilities",
+          "scope": "recipe",
+          "strength": "hard",
+          "source": "DayClass.capabilities",
+          "enforcement": "candidate_filter"
+        },
+        {
+          "id": "meal_archetype",
+          "scope": "recipe",
+          "strength": "hard",
+          "source": "MealClass.mealArchetype",
+          "enforcement": "candidate_filter"
+        },
+        {
+          "id": "recipe_quality",
+          "scope": "recipe",
+          "strength": "hard",
+          "source": "RecipeVersion.quality.status",
+          "enforcement": "candidate_filter"
+        },
+        {
+          "id": "fixed_serving",
+          "scope": "component",
+          "strength": "hard",
+          "source": "RecipeVersion.servingCount / CalendarDay.recipeComponents.servings",
+          "enforcement": "schema_and_generator"
+        }
+      ],
+      "soft": [
+        {
+          "id": "nutrient_targets",
+          "scope": "day",
+          "strength": "soft",
+          "source": "NutritionProfile.nutrients",
+          "enforcement": "objective_penalty"
+        },
+        {
+          "id": "meal_rule_preferences",
+          "scope": "recipe",
+          "strength": "soft",
+          "source": "MealClass.rules[prefer|slight_prefer|avoid]",
+          "enforcement": "objective_penalty"
+        },
+        {
+          "id": "food_preferences",
+          "scope": "recipe",
+          "strength": "soft",
+          "source": "FoodPreferences.rules.level",
+          "enforcement": "objective_penalty"
+        },
+        {
+          "id": "frequency_limits",
+          "scope": "history",
+          "strength": "soft",
+          "source": "FoodPreferences.rules.frequency",
+          "enforcement": "objective_penalty"
+        },
+        {
+          "id": "variety",
+          "scope": "history",
+          "strength": "soft",
+          "source": "recipe/family/ingredient/category/cuisine repetition",
+          "enforcement": "objective_penalty"
+        },
+        {
+          "id": "slot_energy_share",
+          "scope": "slot",
+          "strength": "soft",
+          "source": "MealClass.energyShare / DayClass.mealSlots energy share/budget",
+          "enforcement": "slot_objective"
+        }
+      ]
+    },
     "dayCount": 2,
     "days": [
       {
@@ -303,12 +760,31 @@
         "energyTarget": 1800,
         "plannedEnergyTarget": 1300,
         "externalEnergy": 500,
+        "energyConstraint": {
+          "targetKcal": 1800,
+          "tolerancePct": 10,
+          "externalEnergyKcal": 500,
+          "dailyMinKcal": 1620,
+          "dailyMaxKcal": 1980,
+          "plannedTargetKcal": 1300,
+          "plannedMinKcal": 1120,
+          "plannedMaxKcal": 1480,
+          "plannedEnergyKcal": 1300,
+          "budgetedTotalKcal": 1800,
+          "deviationKcal": 0,
+          "deviationPct": 0,
+          "withinTolerance": true
+        },
         "selectedMeals": [
           {
+            "slotId": "breakfast",
             "mealClassId": "mc-breakfast",
             "recipeId": "r_oats",
             "recipeVersionId": "rv_oats",
+            "energyKcal": 400,
             "hardFiltersPassed": true,
+            "softRank": 1,
+            "frontierRank": 1,
             "score": 15,
             "scoreComponents": {
               "nutrition": 14.999999999999995,
@@ -319,13 +795,17 @@
             "relaxedSoftConstraints": []
           },
           {
+            "slotId": "dinner",
             "mealClassId": "mc-dinner",
             "recipeId": "r_chicken",
             "recipeVersionId": "rv_chicken",
+            "energyKcal": 900,
             "hardFiltersPassed": true,
-            "score": 81.429,
+            "softRank": 1,
+            "frontierRank": 1,
+            "score": 124.286,
             "scoreComponents": {
-              "nutrition": 81.4285714285714,
+              "nutrition": 124.28571428571425,
               "preference": 0,
               "variety": 0
             },
@@ -333,11 +813,109 @@
             "relaxedSoftConstraints": []
           }
         ],
+        "slotDiagnostics": [
+          {
+            "slotId": "breakfast",
+            "mealClassId": "mc-breakfast",
+            "mealArchetype": "breakfast",
+            "targetEnergyKcal": 400,
+            "sourceCandidateCount": 4,
+            "acceptedCandidateCount": 1,
+            "candidateFrontierCount": 1,
+            "optionCount": 1,
+            "sourceEnergyRange": {
+              "minKcal": 400,
+              "maxKcal": 990
+            },
+            "acceptedEnergyRange": {
+              "minKcal": 400,
+              "maxKcal": 400
+            },
+            "frontierEnergyRange": {
+              "minKcal": 400,
+              "maxKcal": 400
+            },
+            "optionEnergyRange": {
+              "minKcal": 400,
+              "maxKcal": 400
+            },
+            "hardRejectionCounts": {
+              "meal_archetype": 3,
+              "safety:fish": 1
+            },
+            "topSoftCandidates": [
+              {
+                "recipeVersionId": "rv_oats",
+                "rank": 1,
+                "energyKcal": 400,
+                "score": 15,
+                "scoreComponents": {
+                  "nutrition": 14.999999999999995,
+                  "preference": 0,
+                  "variety": 0
+                },
+                "reasons": []
+              }
+            ],
+            "selectedRecipeVersionIds": [
+              "rv_oats"
+            ],
+            "selectedEnergyKcal": 400
+          },
+          {
+            "slotId": "dinner",
+            "mealClassId": "mc-dinner",
+            "mealArchetype": "dinner",
+            "targetEnergyKcal": 700,
+            "sourceCandidateCount": 4,
+            "acceptedCandidateCount": 1,
+            "candidateFrontierCount": 1,
+            "optionCount": 1,
+            "sourceEnergyRange": {
+              "minKcal": 400,
+              "maxKcal": 990
+            },
+            "acceptedEnergyRange": {
+              "minKcal": 900,
+              "maxKcal": 900
+            },
+            "frontierEnergyRange": {
+              "minKcal": 900,
+              "maxKcal": 900
+            },
+            "optionEnergyRange": {
+              "minKcal": 900,
+              "maxKcal": 900
+            },
+            "hardRejectionCounts": {
+              "meal_archetype": 2,
+              "safety:fish": 1
+            },
+            "topSoftCandidates": [
+              {
+                "recipeVersionId": "rv_chicken",
+                "rank": 1,
+                "energyKcal": 900,
+                "score": 124.286,
+                "scoreComponents": {
+                  "nutrition": 124.28571428571425,
+                  "preference": 0,
+                  "variety": 0
+                },
+                "reasons": []
+              }
+            ],
+            "selectedRecipeVersionIds": [
+              "rv_chicken"
+            ],
+            "selectedEnergyKcal": 900
+          }
+        ],
         "rejectionCounts": {
           "meal_archetype": 5,
           "safety:fish": 2
         },
-        "score": 191.085
+        "score": 198.832
       },
       {
         "date": "2026-09-08",
@@ -346,15 +924,34 @@
         "energyTarget": 1890,
         "plannedEnergyTarget": 1890,
         "externalEnergy": 0,
+        "energyConstraint": {
+          "targetKcal": 1890,
+          "tolerancePct": 10,
+          "externalEnergyKcal": 0,
+          "dailyMinKcal": 1701,
+          "dailyMaxKcal": 2079,
+          "plannedTargetKcal": 1890,
+          "plannedMinKcal": 1701,
+          "plannedMaxKcal": 2079,
+          "plannedEnergyKcal": 1890,
+          "budgetedTotalKcal": 1890,
+          "deviationKcal": 0,
+          "deviationPct": 0,
+          "withinTolerance": true
+        },
         "selectedMeals": [
           {
+            "slotId": "pre",
             "mealClassId": "mc-dinner",
             "recipeId": "r_chicken",
             "recipeVersionId": "rv_chicken",
+            "energyKcal": 900,
             "hardFiltersPassed": true,
-            "score": 116.56,
+            "softRank": 1,
+            "frontierRank": 1,
+            "score": 159.417,
             "scoreComponents": {
-              "nutrition": 93,
+              "nutrition": 135.85714285714286,
               "preference": 0,
               "variety": 23.560000000000002
             },
@@ -364,13 +961,17 @@
             "relaxedSoftConstraints": []
           },
           {
+            "slotId": "night",
             "mealClassId": "mc-night",
             "recipeId": "r_night",
             "recipeVersionId": "rv_night",
+            "energyKcal": 990,
             "hardFiltersPassed": true,
-            "score": 31.51,
+            "softRank": 1,
+            "frontierRank": 1,
+            "score": 178.51,
             "scoreComponents": {
-              "nutrition": 20.10000000000002,
+              "nutrition": 167.10000000000002,
               "preference": 0,
               "variety": 11.41
             },
@@ -380,15 +981,118 @@
             "relaxedSoftConstraints": []
           }
         ],
+        "slotDiagnostics": [
+          {
+            "slotId": "pre",
+            "mealClassId": "mc-dinner",
+            "mealArchetype": "dinner",
+            "targetEnergyKcal": 700,
+            "sourceCandidateCount": 4,
+            "acceptedCandidateCount": 1,
+            "candidateFrontierCount": 1,
+            "optionCount": 1,
+            "sourceEnergyRange": {
+              "minKcal": 400,
+              "maxKcal": 990
+            },
+            "acceptedEnergyRange": {
+              "minKcal": 900,
+              "maxKcal": 900
+            },
+            "frontierEnergyRange": {
+              "minKcal": 900,
+              "maxKcal": 900
+            },
+            "optionEnergyRange": {
+              "minKcal": 900,
+              "maxKcal": 900
+            },
+            "hardRejectionCounts": {
+              "meal_archetype": 2,
+              "safety:fish": 1
+            },
+            "topSoftCandidates": [
+              {
+                "recipeVersionId": "rv_chicken",
+                "rank": 1,
+                "energyKcal": 900,
+                "score": 159.417,
+                "scoreComponents": {
+                  "nutrition": 135.85714285714286,
+                  "preference": 0,
+                  "variety": 23.560000000000002
+                },
+                "reasons": [
+                  "variety:23.56"
+                ]
+              }
+            ],
+            "selectedRecipeVersionIds": [
+              "rv_chicken"
+            ],
+            "selectedEnergyKcal": 900
+          },
+          {
+            "slotId": "night",
+            "mealClassId": "mc-night",
+            "mealArchetype": "night_meal",
+            "targetEnergyKcal": 500,
+            "sourceCandidateCount": 4,
+            "acceptedCandidateCount": 1,
+            "candidateFrontierCount": 1,
+            "optionCount": 1,
+            "sourceEnergyRange": {
+              "minKcal": 400,
+              "maxKcal": 990
+            },
+            "acceptedEnergyRange": {
+              "minKcal": 990,
+              "maxKcal": 990
+            },
+            "frontierEnergyRange": {
+              "minKcal": 990,
+              "maxKcal": 990
+            },
+            "optionEnergyRange": {
+              "minKcal": 990,
+              "maxKcal": 990
+            },
+            "hardRejectionCounts": {
+              "meal_archetype": 3,
+              "safety:fish": 1
+            },
+            "topSoftCandidates": [
+              {
+                "recipeVersionId": "rv_night",
+                "rank": 1,
+                "energyKcal": 990,
+                "score": 178.51,
+                "scoreComponents": {
+                  "nutrition": 167.10000000000002,
+                  "preference": 0,
+                  "variety": 11.41
+                },
+                "reasons": [
+                  "variety:11.41"
+                ]
+              }
+            ],
+            "selectedRecipeVersionIds": [
+              "rv_night"
+            ],
+            "selectedEnergyKcal": 990
+          }
+        ],
         "rejectionCounts": {
           "meal_archetype": 5,
           "safety:fish": 2
         },
-        "score": 298.842
+        "score": 459.746
       }
     ],
     "summary": {
-      "meanScore": 244.964
+      "meanScore": 329.289,
+      "hardConstraintViolations": 0
     }
   }
 }

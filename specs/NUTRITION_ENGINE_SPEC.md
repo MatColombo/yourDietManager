@@ -2,7 +2,7 @@
 
 ## 1. Natura del motore
 
-Il motore ottimizza un insieme di **soft constraints** dopo avere applicato tutti gli hard constraints. I record necessari vengono ricevuti dai repository; il motore non dipende direttamente da IndexedDB.
+Il motore ottimizza un insieme di **soft constraints** dopo avere applicato tutti gli hard constraints. In V1 `dailyEnergyKcal ± energyTolerancePct` e esplicitamente un hard constraint giornaliero. I record necessari vengono ricevuti dai repository; il motore non dipende direttamente da IndexedDB.
 
 Non e un motore clinico e non deve dichiarare appropriatezza medica.
 
@@ -94,7 +94,7 @@ score =
 
 Punteggio piu basso = migliore.
 
-Hard constraint violation = candidato escluso, non semplicemente penalizzato.
+Hard constraint violation = candidato o soluzione esclusa, non semplicemente penalizzata. La tolleranza calorica viene applicata al finalista giornaliero; non e una semplice componente di score.
 
 ## 7. Nessun autoscaling ricetta
 
@@ -115,3 +115,26 @@ Gli slot `external` non contribuiscono con nutrienti inventati. Il motore riserv
 ## 9. Provenance e riproducibilita
 
 Ogni risultato di generazione deve registrare versione algoritmo/solver, catalogVersion e seed. Le RecipeVersion conservano calculationAlgorithmVersion e inputDigest. Vedere `SOLVER_REPRODUCIBILITY_SPEC.md`.
+
+
+## 10. Energy tolerance semantics
+
+Per target `T` e tolleranza `p`:
+
+```text
+validDailyMin = T * (1 - p/100)
+validDailyMax = T * (1 + p/100)
+```
+
+Con external meal budgetizzato `E`, il planned energy deve rispettare:
+
+```text
+plannedMin = max(0, validDailyMin - E)
+plannedMax = max(0, validDailyMax - E)
+```
+
+Un risultato fuori finestra non puo avere status `success`. Un external slot con energia sconosciuta non consente certificazione del target giornaliero.
+
+## 11. Soft nutrient semantics
+
+I campi `min`, `target` e `max` di proteine, carboidrati, grassi e fibra sono **soft bounds/targets** in V1 e contribuiscono alla funzione obiettivo. Non vanno interpretati come hard constraints finche il modello non introdurra un campo di strength esplicito.
