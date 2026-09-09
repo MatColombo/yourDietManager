@@ -98,6 +98,8 @@ test('Phase D5 — Day → Recipe → Ingredient carries contextual return route
   assert.match(app, /location\.hash/);
   assert.match(app, /scrollIntoView/);
   assert.match(app, /context-return-target/);
+  assert.match(plan, /function applyContextReturnTarget\(\)/);
+  assert.match(plan, /section\.append\(list\);\n  applyContextReturnTarget\(\);/);
 });
 
 test('Phase D3-D5 — real Chromium gate exercises taxonomy facets and contextual drill-down', async () => {

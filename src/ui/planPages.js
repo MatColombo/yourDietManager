@@ -85,6 +85,17 @@ function adherenceEditor(state, day, slot, rerender) {
   return wrap;
 }
 
+function applyContextReturnTarget() {
+  const rawHash = globalThis.location?.hash?.slice(1);
+  if (!rawHash) return false;
+  const target = document.getElementById(decodeURIComponent(rawHash));
+  if (!target) return false;
+  document.querySelectorAll('.context-return-target').forEach(node => { if (node !== target) node.classList.remove('context-return-target'); });
+  target.classList.add('context-return-target');
+  target.scrollIntoView?.({ block: 'center' });
+  return true;
+}
+
 function mealCard(state, day, slot, recipes, { manage = false, rerender = null } = {}) {
   const anchorId = `meal-${slot.mealOccurrenceId}`;
   const returnRoute = `/calendar/day?date=${encodeURIComponent(day.date)}#${encodeURIComponent(anchorId)}`;
@@ -242,6 +253,7 @@ async function manageDayBody(state, section) {
   const ids = [...new Set(day.mealSlots.flatMap(slot => slot.recipeComponents.map(component => component.recipeVersionId)))]; const rows = await state.repo.getMany('recipeVersions', ids); const recipeMap = new Map(rows.map(recipe => [recipe.recipeVersionId, recipe])); const rerender = async () => state.render();
   const dc = dayClass(state, day.dayClassId); section.append(element('div', { className: 'day-heading-card' }, [element('span', { className: 'day-swatch day-swatch--large', style: `background:${dc?.color || '#888'}` }), element('div', {}, [element('strong', { text: `${dc?.name || day.dayClassId} · ${t(state, 'plan.cycleDay', { day: day.cycleDay })}` }), element('span', { className: 'muted', text: t(state, `plan.dayStatus.${day.status}`) })])]), nutritionPanel(state, day));
   const list = element('div', { className: 'meal-list' }); for (const slot of day.mealSlots) { const card = mealCard(state, day, slot, slot.recipeComponents.map(component => recipeMap.get(component.recipeVersionId)).filter(Boolean), { manage: true, rerender }); if (slot.mode === 'planned') card.append(element('button', { className: 'button button--secondary button--small', 'data-testid': 'plan-replace', text: t(state, 'plan.replace'), onClick: async event => { const button = event.currentTarget; try { button.disabled = true; state.planUi.replacePreview = await createReplacementPreview({ planInstanceId: day.planInstanceId, calendarDayId: day.calendarDayId, mealOccurrenceId: slot.mealOccurrenceId, seed: seedValue('replace', date) }, { repo: state.repo, registry: state.registry }); state.render(); } catch (error) { alert(error.message || error); button.disabled = false; } } })); list.append(card); } section.append(list);
+  applyContextReturnTarget();
   const dayActions = element('section', { className: 'plan-action-card' }, [
     element('h2', { text: t(state, 'plan.rebalance.dayTitle') }),
     element('p', { className: 'muted', text: t(state, 'plan.rebalance.dayBody') })
