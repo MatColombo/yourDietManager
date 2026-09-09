@@ -5,7 +5,7 @@ import { assertReferenceData, referenceDataDigest } from './referenceDataService
 async function clearPreV1Caches(cacheStorage) {
   if (!cacheStorage?.keys || !cacheStorage?.delete) return [];
   const names = await cacheStorage.keys();
-  const owned = names.filter(name => /^ydm-(?:shell|data)-/i.test(name) && !/^ydm-shell-v32-/i.test(name) && !/^ydm-data-v16-/i.test(name));
+  const owned = names.filter(name => /^ydm-(?:shell|data)-/i.test(name) && !/^ydm-shell-v35-/i.test(name) && !/^ydm-data-v17-/i.test(name));
   await Promise.all(owned.map(name => cacheStorage.delete(name)));
   return owned;
 }

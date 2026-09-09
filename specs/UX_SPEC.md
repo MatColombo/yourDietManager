@@ -129,3 +129,21 @@ Quando un piano entra nella finestra `triggerDaysBeforeEnd`, Home e Calendario m
 ## 12. Checklist spesa
 
 La vista Spesa puo salvare una checklist persistita. Checked state, note e righe manuali sopravvivono a refresh/reload. Quando cambia il piano sorgente, la UI indica che la checklist e obsoleta e offre `Aggiorna da piano` senza perdere le righe manuali.
+
+## 13. Phase D3–D5 — discovery e navigazione contestuale
+
+### 13.1 Product taxonomy picker
+
+Qualunque controllo `productFood` usa un unico picker gerarchico con path localizzato, ricerca per label/alias e coverage count. L'interfaccia privilegia categorie e concetti comprensibili all'utente rispetto alle varianti tecniche della base nutrizionale.
+
+### 13.2 Faceted search
+
+Ricette: `product_food`, dieta, practical tag, meal class, energia, proteine, fibra, prep time e allergeni sono faccette combinabili.
+
+Ingredienti: `product_food`, stato tecnico, origin e testo sono faccette combinabili.
+
+I filtri devono modificare la query reale del catalogo; non sono semplici tag visuali.
+
+### 13.3 Context drill-down
+
+Da Oggi/Gestione giornata il nome ricetta e un link diretto al dettaglio. Da Recipe detail ogni ingrediente e un link diretto alla specifica IngredientRevision. `Back to context` conserva la catena Recipe -> Day e riporta allo specifico meal slot con scroll/highlight.

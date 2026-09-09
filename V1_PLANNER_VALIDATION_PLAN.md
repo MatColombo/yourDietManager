@@ -2,7 +2,7 @@
 
 **Status:** authoritative pre-V1 plan. It supersedes the direct Step 3 → stable V1 promotion path.
 
-**Current baseline:** `1.0.0-rc.29` / catalog `1.1.0-planner-phase-b`; Phase A and Phase B are implemented and Phase C instrumentation is ready. Stable promotion is suspended until Phase C is manually accepted.
+**Current baseline:** `1.0.0-rc.30` / catalog `1.2.0-planner-phase-d`; Phases A/B/C are preserved and Phase D1+D2 are implemented. Stable promotion remains suspended while user-led planner/product validation continues.
 
 ## 1. Objective
 
@@ -274,7 +274,7 @@ All seven criteria are met by the Phase B baseline.
 
 ## 10. Phase C — user-led manual planner validation
 
-**Implementation status: READY FOR MANUAL VALIDATION in `1.0.0-rc.29`. Manual acceptance remains pending.**
+**Implementation status: READY FOR MANUAL VALIDATION; current integrated baseline `1.0.0-rc.31`. Manual acceptance remains pending.**
 
 Phase C adds `/planner-validation`, an observation-only planner laboratory. Tests use a cloned configuration, do not commit plans, and ignore the active plan history so same seed + same configuration is reproducible. Frequency and variety history still accumulate within the test horizon.
 
@@ -319,8 +319,97 @@ The authoritative operator procedure and acceptance record are in `V1_PLANNER_PH
 
 Exit criteria 1–7 are instrumented/automated where possible. Criteria 8–9 require the user-led manual pass.
 
-## 11. Release policy
+
+## 11. Phase D1 + D2 — regeneration semantics and product food taxonomy
+
+**Implementation status: COMPLETE in `1.0.0-rc.30` / catalog `1.2.0-planner-phase-d`.**
+
+### D1 — Recalculate vs Propose alternative
+
+The UI and engine expose two distinct operations:
+
+- **Recalculate**: reruns the planner with current constraints. The same recipe is allowed when it remains the best bounded-search result.
+- **Propose alternative**: first runs a strict search that excludes the currently assigned RecipeVersion for every planned meal occurrence in the selected date range. If the strict bounded search fails, a second search permits the current recipe only with a very large soft penalty.
+
+The preview reports `changedSlots`, `unchangedSlots`, strict-attempt status and, when fallback retention occurs, an explicit bounded-search reason. It never claims that an unchanged meal is mathematically unavoidable; it states only that the strict alternative was not found in the current bounded search. Hard constraints, including daily energy tolerance, remain unchanged in both modes.
+
+### D2 — Product food taxonomy
+
+A new reference taxonomy `product_food` is separate from source nutritional classification, culinary role and allergen taxonomy. Its hierarchy is:
+
+```text
+FoodCategory -> FoodSubcategory -> IngredientConcept -> IngredientRevision
+```
+
+The current catalog contains 18 root product categories and 203 taxonomy terms. All 600 IngredientRevision records are classified. Sentinel coverage includes:
+
+- `Dairy / Latticini`: 19 ingredient revisions;
+- `Noodles`: 11 technical ingredient variants grouped under one `product_concept_noodles`;
+- plant dairy alternatives remain outside Dairy;
+- known false-positive dairy-like products are excluded from the Dairy category.
+
+`productFood` can already be used as a target for FoodPreferences, allergy/intolerance rules and MealClass categorical rules. Category/subcategory/concept matching is derived from the explicit `productTaxonomy` path on each ingredient revision, not from USDA `foodGroup` and not from allergen IDs.
+
+Labels may legitimately repeat at different hierarchy levels (for example a Beef subcategory and Beef concept). Such ambiguous text is not auto-resolved; explicit term IDs remain authoritative.
+
+Phase D2 is a pre-V1 semantic enrichment of the ingredient catalog. It therefore uses DB v6, epoch `v1-planner-phase-d-epoch-1`, and a destructive pre-V1 reset so stale Phase B IngredientRevision records cannot survive without `productTaxonomy`. RecipeVersion identity/content is unchanged and the Phase B recipe digest remains `5e3bd7661171cff9434b03bb9951d58779ed84dc2e0e9910d36d1ebc517f53f2`. Serving scaling remains forbidden.
+
+### Deferred to D3–D5
+
+D1+D2 intentionally do not complete the discovery UX. The next work remains:
+
+1. hierarchical taxonomy picker shared by Prefer/Avoid/AutoExclude/Forbid and catalog filters;
+2. faceted recipe/ingredient catalog search by category/taxonomy and nutritional/practical facets;
+3. direct Day -> Recipe -> Ingredient navigation with contextual back navigation/detail drawer.
+
+### D1+D2 exit criteria
+
+1. strict alternative changes every selected planned slot when a strict hard-valid alternative is found;
+2. fallback retention is explicit and bounded-search honest;
+3. all 600 ingredients have category/subcategory/concept assignments;
+4. Dairy exists as an explicit product category and does not derive from the milk allergen;
+5. technical noodle variants collapse to a common user-level concept;
+6. `productFood` works in hard and soft planner rules;
+7. 1,800 RecipeVersion records and their fixed serving quantities are unchanged;
+8. Phase A/B/C and the 800–2600 feasibility envelope remain green.
+
+All eight criteria are met by the Phase D baseline.
+
+## 12. Phase D3–D5 — taxonomy picker, faceted discovery and contextual drill-down
+
+**Implementation status: COMPLETE in `1.0.0-rc.31`; catalog remains `1.2.0-planner-phase-d`.**
+
+D3 provides one shared hierarchical `product_food` picker across preference/safety/MealClass rules and ingredient authoring. A concept such as `Noodles` is selected once even when 11 technical IngredientRevision variants exist; the picker shows path and current coverage. New preference rules default to `productFood`.
+
+D4 makes taxonomy operational in discovery. Ingredient search combines text/origin/product category or concept/state. Recipe search combines product taxonomy with diet, practical, meal, energy, protein, fiber, prep and allergen facets. Sentinel results on the current catalog are 19 Dairy ingredients, 327 Noodles recipes, 637 Dairy recipes and 196 Vegan + No-cook recipes.
+
+D5 adds direct Day -> Recipe -> Ingredient navigation. Plan recipe links freeze the exact RecipeVersion and carry a sanitized return route to `CalendarDay#meal-<mealOccurrenceId>`; ingredient links freeze the exact IngredientRevision and carry the recipe route. Returning to the day scrolls/highlights the originating slot.
+
+No catalog data, RecipeVersion, DB schema or pre-V1 epoch changes are introduced in D3–D5. Only the application advances to rc.31 and shell cache v34; data cache remains v17.
+
+### D3–D5 exit criteria
+
+1. Noodles is selectable as one conceptual preference with coverage of the 11 technical variants;
+2. Dairy/Latticini is discoverable as a product category and filters the 19 classified ingredients;
+3. recipe taxonomy/diet/practical facets operate on the actual recipe ingredient graph and are combinable;
+4. ingredient authoring requires an explicit product concept;
+5. Day -> Recipe and Recipe -> Ingredient are direct links to exact immutable versions;
+6. contextual Back returns to the exact meal slot;
+7. no data reset or corpus regeneration occurs;
+8. Phase A/B/C/D1-D2 and the 800–2600 hard-energy envelope remain green.
+
+All eight implementation criteria are met. User acceptance of usability remains part of the ongoing manual validation.
+
+## 13. Release policy
 
 The previous Step 3 release freeze is suspended while this program is open.
 
-Do not tag `v1.0.0` and do not record final manual acceptance until A, B and C are closed. Catalog/model changes required for Phase B are explicitly allowed before stable V1. Compatibility guarantees start only at accepted/tagged stable V1.
+Do not tag `v1.0.0` and do not record final manual acceptance until the planner validation program, including Phase D product-control work, is closed by the user. Pre-V1 catalog/model changes remain explicitly allowed. Compatibility guarantees start only at accepted/tagged stable V1.
+
+## Phase E — Manual Product Acceptance
+
+Implementation status: **harness complete; operator execution pending**.
+
+The canonical manual journal is `/manual-acceptance`. It contains 18 required scenarios spanning energy 800–2600 kcal, hard and soft constraints, regeneration, product taxonomy/discovery, contextual navigation, Replace/Rebalance, shopping and reload persistence.
+
+Release rule: all required cases must be PASS and P0/P1 findings must be zero. P2 findings require an explicit release decision. Eligibility in the harness does not change release metadata or promote `1.0.0`; final freeze/promotion remains a separate explicit step after human acceptance.

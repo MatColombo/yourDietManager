@@ -36,7 +36,7 @@ function fakeStructuralDb() {
 }
 
 test('Pass A structural schema is DB v5 and applies the new compound catalog indexes without deleting stores', () => {
-  assert.equal(DB_VERSION, 5);
+  assert.equal(DB_VERSION, 6);
   assert.equal(CONTENT_SCHEMA_VERSION, 3);
   const { db, transaction, stores } = fakeStructuralDb();
   applyStructuralUpgrade(db, transaction);

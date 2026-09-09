@@ -2,6 +2,7 @@ import { sha256Json } from '../lib/crypto.js';
 import { MEAL_ARCHETYPES } from '../domain/configurationRules.js';
 
 export const TAXONOMY_IDS = Object.freeze({
+  productFood: 'product_food',
   foodCategory: 'food_category',
   cuisine: 'cuisine',
   recipeFamily: 'recipe_family',
@@ -48,8 +49,12 @@ export class ReferenceDataIndex {
       for (const key of keys) {
         const normalized = normalizeLookup(key);
         if (!normalized) continue;
+        const hasExisting = lookup.has(normalized);
         const existing = lookup.get(normalized);
-        if (existing && existing !== term.termId) throw new Error(`Ambiguous reference key ${key} in taxonomy ${term.taxonomyId}`);
+        if (hasExisting && existing !== term.termId) {
+          if (term.taxonomyId === 'product_food') { lookup.set(normalized, null); continue; }
+          throw new Error(`Ambiguous reference key ${key} in taxonomy ${term.taxonomyId}`);
+        }
         lookup.set(normalized, term.termId);
       }
     }
@@ -130,9 +135,11 @@ export function referenceDataDiagnostics(taxonomies, terms, registry = null) {
     for (const term of (terms || []).filter(item => item.taxonomyId === taxonomy.taxonomyId && item.status === 'active')) {
       const values = [term.i18n?.it?.label, term.i18n?.en?.label, ...(term.aliases?.it || []), ...(term.aliases?.en || []), ...(term.legacyKeys || [])].filter(Boolean);
       for (const value of values) {
-        const key = normalizeLookup(value); const existing = lookup.get(key);
-        if (existing && existing !== term.termId) push(`Ambiguous normalized label/alias ${value} in taxonomy ${taxonomy.taxonomyId}: ${existing}, ${term.termId}`);
-        else lookup.set(key, term.termId);
+        const key = normalizeLookup(value); const hasExisting = lookup.has(key); const existing = lookup.get(key);
+        if (hasExisting && existing !== term.termId) {
+          if (taxonomy.taxonomyId === 'product_food') lookup.set(key, null);
+          else push(`Ambiguous normalized label/alias ${value} in taxonomy ${taxonomy.taxonomyId}: ${existing}, ${term.termId}`);
+        } else lookup.set(key, term.termId);
       }
     }
   }
@@ -168,6 +175,16 @@ export function semanticReferenceDiagnostics({ index, ingredientRevisions = [], 
   const ingredientSet = new Set(ingredientIds);
   for (const revision of ingredientRevisions) {
     const base = `ingredientRevision:${revision.ingredientRevisionId}`;
+    if (revision.productTaxonomy) {
+      try {
+        const category = index.assertTerm(revision.productTaxonomy.categoryId, TAXONOMY_IDS.productFood);
+        const subcategory = index.assertTerm(revision.productTaxonomy.subcategoryId, TAXONOMY_IDS.productFood);
+        const concept = index.assertTerm(revision.productTaxonomy.conceptId, TAXONOMY_IDS.productFood);
+        if (category.parentTermId !== null) errors.push(`${base}.productTaxonomy.categoryId: category must be a root term`);
+        if (subcategory.parentTermId !== category.termId) errors.push(`${base}.productTaxonomy.subcategoryId: parent must equal categoryId`);
+        if (concept.parentTermId !== subcategory.termId) errors.push(`${base}.productTaxonomy.conceptId: parent must equal subcategoryId`);
+      } catch (error) { errors.push(`${base}.productTaxonomy: ${error.message}`); }
+    }
     try { index.assertTerm(revision.taxonomy?.foodGroup, TAXONOMY_IDS.foodCategory); } catch (error) { errors.push(`${base}.taxonomy.foodGroup: ${error.message}`); }
     if (revision.taxonomy?.foodSubgroup) {
       try {
@@ -187,7 +204,8 @@ export function semanticReferenceDiagnostics({ index, ingredientRevisions = [], 
     for (const prefs of configuration.foodPreferences || []) for (const rule of prefs.rules || []) {
       const path = `foodPreferences:${prefs.id}.rule:${rule.id}`;
       try {
-        if (rule.targetType === 'foodCategory') index.assertTerm(rule.targetId, TAXONOMY_IDS.foodCategory);
+        if (rule.targetType === 'productFood') index.assertTerm(rule.targetId, TAXONOMY_IDS.productFood);
+        else if (rule.targetType === 'foodCategory') index.assertTerm(rule.targetId, TAXONOMY_IDS.foodCategory);
         else if (rule.targetType === 'cuisine') index.assertTerm(rule.targetId, TAXONOMY_IDS.cuisine);
         else if (rule.targetType === 'recipeTag') {
           if (!index.resolveLegacyAcross(GENERIC_RECIPE_TAG_TAXONOMIES, rule.targetId) && !GENERIC_RECIPE_TAG_TAXONOMIES.some(id => { try { index.assertTerm(rule.targetId, id); return true; } catch { return false; } })) throw new Error(`Unknown recipe tag ${rule.targetId}`);
@@ -197,14 +215,16 @@ export function semanticReferenceDiagnostics({ index, ingredientRevisions = [], 
     for (const profile of configuration.allergyIntoleranceProfiles || []) for (const rule of profile.rules || []) {
       const path = `allergyIntoleranceProfile:${profile.id}.rule:${rule.id}`;
       try {
-        if (rule.targetType === 'foodCategory') index.assertTerm(rule.targetId, TAXONOMY_IDS.foodCategory);
+        if (rule.targetType === 'productFood') index.assertTerm(rule.targetId, TAXONOMY_IDS.productFood);
+        else if (rule.targetType === 'foodCategory') index.assertTerm(rule.targetId, TAXONOMY_IDS.foodCategory);
         else if (rule.targetType === 'ingredient' && ingredientSet.size && !ingredientSet.has(rule.targetId)) throw new Error(`Unknown ingredient ${rule.targetId}`);
       } catch (error) { errors.push(`${path}: ${error.message}`); }
     }
     for (const meal of configuration.mealClasses || []) for (const [i, rule] of (meal.rules || []).entries()) {
       const path = `mealClass:${meal.id}.rules[${i}]`;
       try {
-        if (rule.ruleType === 'foodCategory') index.assertTerm(rule.target, TAXONOMY_IDS.foodCategory);
+        if (rule.ruleType === 'productFood') index.assertTerm(rule.target, TAXONOMY_IDS.productFood);
+        else if (rule.ruleType === 'foodCategory') index.assertTerm(rule.target, TAXONOMY_IDS.foodCategory);
         else if (rule.ruleType === 'flavor') index.assertTerm(rule.target, TAXONOMY_IDS.flavorProfile);
         else if (rule.ruleType === 'tag') {
           const matches = GENERIC_RECIPE_TAG_TAXONOMIES.filter(id => { try { index.assertTerm(rule.target, id); return true; } catch { return false; } });

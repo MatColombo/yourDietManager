@@ -1,3 +1,23 @@
+# 1.0.0-rc.31 — Planner Phase D3–D5
+
+- Added one shared hierarchical `product_food` picker for preferences/safety/MealClass rules and ingredient authoring.
+- Added faceted ingredient discovery by product taxonomy and technical state.
+- Added faceted recipe discovery by product taxonomy, diet, practical tag and existing nutrition/meal filters.
+- Added direct contextual `Day -> Recipe -> exact IngredientRevision` navigation with return to the exact meal slot.
+- New preference rules default to user-level `productFood` rather than source-oriented `foodCategory`.
+- Catalog/DB/data epoch remain unchanged; shell cache bumped to v34 only.
+- Added D3–D5 functional/policy gates and real-Chromium acceptance for taxonomy filters and contextual drill-down.
+
+# 1.0.0-rc.30 — Planner Phase D1+D2
+
+- Split date regeneration into explicit **Recalculate** and **Propose alternative** semantics.
+- Alternative mode uses strict current-recipe exclusion first, then an honest bounded-search fallback with retention diagnostics.
+- Added hierarchical `product_food` taxonomy: 18 categories / 203 terms, classified on all 600 IngredientRevision records.
+- Added explicit `Dairy / Latticini` category and grouped 11 noodle technical variants under one Noodles concept.
+- Added `productFood` targets to preferences, allergy/intolerance and MealClass categorical rules.
+- Bumped DB to v6, pre-V1 epoch to `v1-planner-phase-d-epoch-1`, shell/data caches to v33/v17.
+- Recipe corpus remains 1,800 fixed-serving RecipeVersion records with unchanged recipe digest; serving scaling remains forbidden.
+
 # Changelog
 
 ## [Planner Validation Phase C] - 2026-09-08
@@ -84,3 +104,11 @@ Final V1 release candidate. Stable `v1.0.0` is intentionally pending the final m
 ### Stable promotion rule
 
 After acceptance, promote only the application version to `1.0.0`, record acceptance, run the stable gate and tag `v1.0.0`. Do not regenerate the catalog or change schema/ID/data epoch during promotion.
+
+## 1.0.0-rc.32 — Phase E manual product acceptance harness
+
+- Added `/manual-acceptance` with 18 required human validation scenarios across 800–2600 kcal, hard/soft constraints, regeneration, taxonomy/discovery, contextual navigation, plan operations and reload persistence.
+- Added P0/P1/P2 finding capture, local evidence notes and JSON export.
+- Acceptance eligibility requires every required case PASS and zero P0/P1; the harness cannot promote a stable release automatically.
+- Kept planner, 1,800-recipe corpus, catalog `1.2.0-planner-phase-d`, DB v6, data epoch and data cache unchanged.
+- Bumped shell cache to v35 for the new validation UI.

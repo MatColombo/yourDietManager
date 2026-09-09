@@ -46,7 +46,7 @@ test('Phase B — every intended meal class has low, medium and high energy choi
 
 test('Phase B — public publication is validation-only and has zero structural quality blockers', async () => {
   const [catalog,pub]=await Promise.all([loadLocalCatalog(path.join(root,'public/data')),readJson(path.join(root,'corpus/production/planner-phase-b/publication-evidence.json'))]);
-  assert.equal(catalog.manifest.catalogVersion,'1.1.0-planner-phase-b');
+  assert.equal(catalog.manifest.catalogVersion,'1.2.0-planner-phase-d');
   assert.equal(catalog.manifest.publication.channel,'development'); assert.equal(catalog.manifest.publication.releaseEligible,false);
   assert.equal(catalog.recipeVersions.length,1800);
   for(const key of ['schemaErrors','unknownIngredientReferences','nutritionErrors','allergenDerivationErrors','missingRequiredLocaleFields','exactDuplicateCount','nearDuplicateCount']) assert.equal(pub.quality[key],0,key);

@@ -92,7 +92,8 @@ export function generatePlanCore(input) {
     nutritionProfile, allergyProfile, foodPreferences, mealClasses, dayClasses, cycle, recipes, ingredientRevisions,
     horizon, seed, catalogVersion, configSnapshotHash = 'pending', configSnapshot = {}, createdAt = new Date().toISOString(),
     reason = 'initial', previousGenerationRunId = null, previousPlanInstanceId = null, previousCalendarDays = [],
-    continuationPolicy = { mode: 'prompt', triggerDaysBeforeEnd: 3, extensionDays: 7 }, candidateLimit = 20, beamWidth = 100, slotOptionLimit = 40, startCycleDay = 1, candidateSets = null
+    continuationPolicy = { mode: 'prompt', triggerDaysBeforeEnd: 3, extensionDays: 7 }, candidateLimit = 20, beamWidth = 100, slotOptionLimit = 40, startCycleDay = 1, candidateSets = null,
+    regenerationPolicy = null
   } = input;
   if (!nutritionProfile || !cycle || !horizon?.startDate || !horizon?.endDate || !seed) throw new Error('Missing required plan generator input');
   const meals = mealMap(mealClasses || []); const days = dayMap(dayClasses || []); const revisions = revisionMap(ingredientRevisions || []);
@@ -136,21 +137,41 @@ export function generatePlanCore(input) {
       const context = { mealClass, dayClass, allergyProfile, foodPreferences, revisionById: revisions, history, date, nutritionProfile, slotEnergyTarget: targetEnergy, dayEnergyTarget: energyTarget };
       const sourceCandidates = candidateSets?.[mealClass.mealArchetype] || recipes || [];
       const filtered = filterCandidates(sourceCandidates, context); rejectionMerge(rejectionCounts, filtered.rejectionCounts);
-      if (!filtered.accepted.length) {
-        const diagnostic = { slotId: slot.id, mealClassId: mealClass.id, mealArchetype: mealClass.mealArchetype, targetEnergyKcal: rounded(targetEnergy), sourceCandidateCount: sourceCandidates.length, acceptedCandidateCount: 0, candidateFrontierCount: 0, optionCount: 0, sourceEnergyRange: energyRange(sourceCandidates), acceptedEnergyRange: { minKcal: null, maxKcal: null }, frontierEnergyRange: { minKcal: null, maxKcal: null }, optionEnergyRange: { minKcal: null, maxKcal: null }, hardRejectionCounts: filtered.rejectionCounts };
-        slotDiagnostics.push(diagnostic);
-        failedSlot = { slotId: slot.id, mealClassId: mealClass.id, code: 'no_candidates_after_hard_constraints', rejections: filtered.rejectionCounts, slotDiagnostic: diagnostic }; break;
+      const occurrenceId = stableHashId('meal', date, slot.id);
+      const currentRecipeIds = new Set(regenerationPolicy?.currentRecipeVersionIdsByOccurrence?.[occurrenceId] || []);
+      let acceptedForSelection = filtered.accepted;
+      let regenerationExcludedCount = 0;
+      if (regenerationPolicy?.mode === 'exclude_current' && currentRecipeIds.size) {
+        acceptedForSelection = filtered.accepted.filter(recipe => !currentRecipeIds.has(recipe.recipeVersionId));
+        regenerationExcludedCount = filtered.accepted.length - acceptedForSelection.length;
       }
-      const allScored = filtered.accepted.map(recipe => ({ recipe, score: scoreRecipe(recipe, context), tie: seededTie(seed, `${date}|${slot.id}|${recipe.recipeVersionId}`) }))
-        .sort((a, b) => a.score.total - b.score.total || a.tie - b.tie || a.recipe.recipeVersionId.localeCompare(b.recipe.recipeVersionId));
+      if (!acceptedForSelection.length) {
+        const code = filtered.accepted.length && regenerationPolicy?.mode === 'exclude_current'
+          ? 'no_alternative_candidates_after_regeneration_exclusion'
+          : 'no_candidates_after_hard_constraints';
+        const diagnostic = { slotId: slot.id, mealClassId: mealClass.id, mealArchetype: mealClass.mealArchetype, targetEnergyKcal: rounded(targetEnergy), sourceCandidateCount: sourceCandidates.length, acceptedCandidateCount: filtered.accepted.length, selectableCandidateCount: 0, candidateFrontierCount: 0, optionCount: 0, sourceEnergyRange: energyRange(sourceCandidates), acceptedEnergyRange: energyRange(filtered.accepted), frontierEnergyRange: { minKcal: null, maxKcal: null }, optionEnergyRange: { minKcal: null, maxKcal: null }, hardRejectionCounts: filtered.rejectionCounts, regeneration: { mode: regenerationPolicy?.mode || null, currentRecipeVersionIds: [...currentRecipeIds], excludedCurrentCount: regenerationExcludedCount } };
+        slotDiagnostics.push(diagnostic);
+        failedSlot = { slotId: slot.id, mealClassId: mealClass.id, code, rejections: filtered.rejectionCounts, slotDiagnostic: diagnostic }; break;
+      }
+      const allScored = acceptedForSelection.map(recipe => {
+        const score = scoreRecipe(recipe, context);
+        if (regenerationPolicy?.mode === 'prefer_alternative' && currentRecipeIds.has(recipe.recipeVersionId)) {
+          const penalty = Number(regenerationPolicy.currentRecipePenalty || 100);
+          score.total += penalty;
+          score.components = { ...score.components, regeneration: penalty };
+          score.reasons = [...score.reasons, `regeneration:current_recipe:+${penalty}`];
+        }
+        return { recipe, score, tie: seededTie(seed, `${date}|${slot.id}|${recipe.recipeVersionId}`) };
+      }).sort((a, b) => a.score.total - b.score.total || a.tie - b.tie || a.recipe.recipeVersionId.localeCompare(b.recipe.recipeVersionId));
       const scored = selectCandidateFrontier(allScored, { targetEnergy, limit: candidateLimit });
       const options = buildSlotOptions(scored, { targetEnergy, dayEnergyTarget: energyTarget, nutritionProfile, optionLimit: slotOptionLimit, seed: `${seed}|${date}|${slot.id}` });
       const diagnostic = {
         slotId: slot.id, mealClassId: mealClass.id, mealArchetype: mealClass.mealArchetype, targetEnergyKcal: rounded(targetEnergy),
-        sourceCandidateCount: sourceCandidates.length, acceptedCandidateCount: filtered.accepted.length, candidateFrontierCount: scored.length, optionCount: options.length,
+        sourceCandidateCount: sourceCandidates.length, acceptedCandidateCount: filtered.accepted.length, selectableCandidateCount: acceptedForSelection.length, candidateFrontierCount: scored.length, optionCount: options.length,
         sourceEnergyRange: energyRange(sourceCandidates), acceptedEnergyRange: energyRange(filtered.accepted), frontierEnergyRange: energyRange(scored.map(item => item.recipe)),
         optionEnergyRange: options.length ? { minKcal: rounded(Math.min(...options.map(item => item.nutrition.energyKcal))), maxKcal: rounded(Math.max(...options.map(item => item.nutrition.energyKcal))) } : { minKcal: null, maxKcal: null },
         hardRejectionCounts: filtered.rejectionCounts,
+        regeneration: { mode: regenerationPolicy?.mode || null, currentRecipeVersionIds: [...currentRecipeIds], excludedCurrentCount: regenerationExcludedCount },
         topSoftCandidates: allScored.slice(0, 5).map((item, index) => ({ recipeVersionId: item.recipe.recipeVersionId, rank: index + 1, energyKcal: rounded(item.recipe.calculatedNutrition?.energyKcal), score: Math.round(item.score.total * 1000) / 1000, scoreComponents: item.score.components, reasons: item.score.reasons.slice(0, 5) }))
       };
       slotDiagnostics.push(diagnostic);

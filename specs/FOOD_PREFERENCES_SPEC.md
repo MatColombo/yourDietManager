@@ -24,7 +24,8 @@ Gestita separatamente da `ALLERGY_INTOLERANCE_SPEC.md`; e un hard constraint di 
 Una preferenza puo riferirsi a:
 
 - `ingredient` -> `Ingredient.ingredientId`;
-- `foodCategory` -> term ID `food_category` (gruppo o sottogruppo canonico);
+- `productFood` -> term ID `product_food` (categoria, sottocategoria o concetto prodotto; scelta predefinita per nuove preferenze);
+- `foodCategory` -> term ID legacy/source `food_category` quando serve compatibilita con una regola esistente;
 - `recipeTag` -> term ID di una tassonomia tag compatibile con il consumer;
 - `cuisine` -> term ID `cuisine`.
 
@@ -53,3 +54,14 @@ Cambiare una preferenza persistita in IndexedDB non modifica il piano esistente 
 ## 6. Query e frequenze
 
 Le frequenze su finestre temporali devono usare CalendarDay/PlannedMeal da IndexedDB con query per plan/date. Non ricostruire ogni volta tutto il piano dai JSON catalogo.
+
+## Phase D2 — productFood targets
+
+Food preference rules MAY target a `product_food` category, subcategory or concept through `targetType=productFood`. Matching is true when any ingredient in a recipe has the target ID on its explicit product taxonomy path. `autoExclude=true` keeps the existing hard semantics; non-excluding preference levels remain soft scoring inputs. Product-food matching is independent from allergen matching and legacy/source food categories.
+
+
+## Phase D3 — picker tassonomico condiviso
+
+Per `targetType=productFood` la UI MUST usare il picker gerarchico condiviso `FoodCategory -> FoodSubcategory -> IngredientConcept`, mostrare il path localizzato e il numero di IngredientFamily correnti coperte dalla scelta. L'utente non deve selezionare singole revisioni tecniche per esprimere una preferenza concettuale (es. `Noodles`).
+
+Lo stesso picker e la stessa semantica ID vengono riusati da Prefer/Avoid/AutoExclude, safety rules e MealClass rules. Nuove preferenze partono da `productFood`; l'utente puo scegliere altri target type solo esplicitamente.

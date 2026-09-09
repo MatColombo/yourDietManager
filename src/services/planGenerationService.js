@@ -83,7 +83,8 @@ export async function createPlanPreview(options, { repo = repositories, registry
     reason: options.reason || (options.previousPlanInstanceId ? 'horizon_extension' : 'initial'),
     previousGenerationRunId: continuation.previousGenerationRunId, previousPlanInstanceId: continuation.previousPlanInstanceId,
     previousCalendarDays, continuationPolicy: options.continuationPolicy || { mode: 'prompt', triggerDaysBeforeEnd: 3, extensionDays: 7 },
-    startCycleDay: continuation.startCycleDay, candidateLimit: options.candidateLimit || 20, beamWidth: options.beamWidth || 100, slotOptionLimit: options.slotOptionLimit || 40
+    startCycleDay: continuation.startCycleDay, candidateLimit: options.candidateLimit || 20, beamWidth: options.beamWidth || 100, slotOptionLimit: options.slotOptionLimit || 40,
+    regenerationPolicy: options.regenerationPolicy || null
   });
   result.diagnostics.candidateRetrieval = { limitPerArchetype: options.candidateRetrievalLimit || MAX_PLANNER_CANDIDATES_PER_ARCHETYPE, counts: Object.fromEntries(Object.entries(candidates.candidateSets).map(([key, values]) => [key, values.length])), totalUniqueRecipes: candidates.recipes.length };
   if (options.validationContext) result.diagnostics.validationContext = structuredClone(options.validationContext);

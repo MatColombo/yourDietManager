@@ -11,7 +11,7 @@ import {
 import { applyTheme } from '../theme/themeEngine.js';
 import { createConfigurationExport, importConfigurationExport } from '../services/configurationTransfer.js';
 import { TAXONOMY_IDS, semanticReferenceDiagnostics } from '../services/referenceDataService.js';
-import { createAutocomplete, genericRecipeTagChoices, ingredientChoices, taxonomyChoices } from './guidedControls.js';
+import { createAutocomplete, createProductFoodPicker, genericRecipeTagChoices, ingredientChoices, taxonomyChoices } from './guidedControls.js';
 import { controlledDetails, signalDraftChange } from './uiState.js';
 
 function clone(value) { return structuredClone(value); }
@@ -73,6 +73,9 @@ function actionButton(state, key, onClick, className = 'button') {
 }
 
 function semanticTargetControl(state, kind, value, onChange) {
+  if (kind === 'productFood') return createProductFoodPicker(state, state.referenceDataIndex, {
+    value: value || null, required: true, onChange: id => onChange(id || '')
+  });
   let choices = [];
   if (kind === 'ingredient') choices = ingredientChoices(state.guidedIngredients || [], state.i18n.locale, {
     base: state.i18n.t('catalog.origin.base'), user: state.i18n.t('catalog.origin.user')
@@ -380,7 +383,7 @@ function preferenceRulesEditor(state, preferences, rerender, { compact = false }
     container.append(row);
   }
   container.append(actionButton(state, 'preference.add', () => {
-    preferences.rules.push({ id: makeId('pref'), targetType: 'foodCategory', targetId: '', level: 'normal', autoExclude: false, frequency: null }); signalDraftChange(container); rerender();
+    preferences.rules.push({ id: makeId('pref'), targetType: 'productFood', targetId: '', level: 'normal', autoExclude: false, frequency: null }); signalDraftChange(container); rerender();
   }, 'button button--secondary'));
   return container;
 }

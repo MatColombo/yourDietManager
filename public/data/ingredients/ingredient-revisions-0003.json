@@ -5,7 +5,7 @@
     "ingredientId": "ing_fdc_2515373",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Frutta a guscio e semi — Nuts, brazilnuts, raw",
@@ -60,8 +60,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2515373."
     },
-    "contentHash": "9ebc17d9f330b885a5959ddf9a62d467fc0daccf2683fb9f8d9b0093a7806c25",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "40b93983cc8f070fa1fe9fce290daf5cad09f7c8d256a716d09c304fa9a7201b",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_nuts_seeds",
+      "subcategoryId": "product_subcategory_nuts",
+      "conceptId": "product_concept_nuts_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -69,7 +74,7 @@
     "ingredientId": "ing_fdc_2515374",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Anacardo, crudo — nuts",
@@ -126,8 +131,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2515374."
     },
-    "contentHash": "281d07f280af932b119121acbe5649eb3cb180672e5be4d39d2c88a1cea976c7",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "3fc450fc3eef0dd75d71c8a3efeef5e19877d9c70ef4ab985b567358ea5bf6dd",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_nuts_seeds",
+      "subcategoryId": "product_subcategory_nuts",
+      "conceptId": "product_concept_cashew"
+    }
   },
   {
     "schemaVersion": 1,
@@ -135,7 +145,7 @@
     "ingredientId": "ing_fdc_2515375",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Nocciola, crudo — or filberts",
@@ -192,8 +202,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2515375."
     },
-    "contentHash": "f715331e264015dae618458742812051c782bc10c83c8cdcfe3b90fe7f4b2402",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "569bb3efe8f3f7aa01468cc06b1f24e08707aa85ba78fa51ed20c98ef60159e8",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_nuts_seeds",
+      "subcategoryId": "product_subcategory_nuts",
+      "conceptId": "product_concept_nuts_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -201,7 +216,7 @@
     "ingredientId": "ing_fdc_2515376",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Arachide, crudo",
@@ -258,8 +273,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2515376."
     },
-    "contentHash": "b95f9ab4a567ad68b5d5c5fed93db807da74468f4c077b6a9f6b835cfdb43053",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "068d164ee60f2d1642eebf35f6310e2cf0a11b2f06105bee41e2f9eff46e58e0",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_legumes",
+      "subcategoryId": "product_subcategory_legumes_other",
+      "conceptId": "product_concept_legumes_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -267,7 +287,7 @@
     "ingredientId": "ing_fdc_2515377",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Frutta a guscio e semi — Flour, chestnut",
@@ -325,8 +345,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2515377."
     },
-    "contentHash": "28d1737ab59870558a70478875da20f00f3b7514f8f92303dabe12f51be3dcb2",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "19ed4d0f6fe29511d967848439e6f245eaa40295294394ab841b0503509d4ef3",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_cereals",
+      "subcategoryId": "product_subcategory_grain_flours",
+      "conceptId": "product_concept_grain_flour"
+    }
   },
   {
     "schemaVersion": 1,
@@ -334,7 +359,7 @@
     "ingredientId": "ing_fdc_2515378",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Frutta a guscio e semi — Nuts, macadamia nuts, raw",
@@ -391,8 +416,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2515378."
     },
-    "contentHash": "b32cc394bd0750d5e045cbf0874b74d2f1957ab6620a40b02a81d2128a82e8ac",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "abe9157cb6ed2542f0eb894c819aea991111ce88f56fa956f58db50131e40dc4",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_nuts_seeds",
+      "subcategoryId": "product_subcategory_nuts",
+      "conceptId": "product_concept_nuts_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -400,7 +430,7 @@
     "ingredientId": "ing_fdc_2515379",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Pistacchio, crudo — nuts",
@@ -457,8 +487,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2515379."
     },
-    "contentHash": "a1f20866423a079724f3979236d907953460687d1bfb6f6291256987a9e18a1e",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "3ef30c3430ec222c461d7b80688af1e658b53b1152089ab7cc594d91617f0d69",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_nuts_seeds",
+      "subcategoryId": "product_subcategory_nuts",
+      "conceptId": "product_concept_nuts_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -466,7 +501,7 @@
     "ingredientId": "ing_fdc_2515380",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Semi di zucca, crudo — seeds (pepitas)",
@@ -521,8 +556,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2515380."
     },
-    "contentHash": "030a634c46c9552b6f023ef1e1f9ffc7519ea01a08a13a1b830cdb36244b8879",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "711a1433ad6457c96f028d7d8ab72baecea420948d43c8b666ad5776036ead50",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_nuts_seeds",
+      "subcategoryId": "product_subcategory_seeds",
+      "conceptId": "product_concept_seeds_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -530,7 +570,7 @@
     "ingredientId": "ing_fdc_2515381",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Semi di girasole, crudo — seed, kernel",
@@ -585,8 +625,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2515381."
     },
-    "contentHash": "fc7c0e4e42459e346ea398fc3be197fc86d97cb63c2e57768aa77df2c2a940ce",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "b1fd17098e120a513b95ea4d9c1fdd5ead2043b62f718f18b61a06d0f9416f21",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_nuts_seeds",
+      "subcategoryId": "product_subcategory_seeds",
+      "conceptId": "product_concept_sunflower_seed"
+    }
   },
   {
     "schemaVersion": 1,
@@ -594,7 +639,7 @@
     "ingredientId": "ing_fdc_2515382",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Frutta a guscio e semi — Flour, coconut",
@@ -650,8 +695,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2515382."
     },
-    "contentHash": "73070d2b8a438cac89d973524e63c08d0fd815c9503e9dd4431db5f7f0b1eb9e",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "c6fc5718ffb9b8b4e6e9e565117a5ca2ea8d336cff197b40fa16bfeafb25eaa9",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_cereals",
+      "subcategoryId": "product_subcategory_grain_flours",
+      "conceptId": "product_concept_grain_flour"
+    }
   },
   {
     "schemaVersion": 1,
@@ -659,7 +709,7 @@
     "ingredientId": "ing_fdc_2644285",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Fagioli, sgocciolato — black, canned, sodium added, and rinsed",
@@ -714,8 +764,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2644285."
     },
-    "contentHash": "d9261146cc1ad653137b56c16f312b3906ebb2e008bb43915ea49f48a377b61e",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "cdbc708148e459e69d26ed5ece9520ec6260bdf5c8742264758793327f12ef54",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_legumes",
+      "subcategoryId": "product_subcategory_beans_pulses",
+      "conceptId": "product_concept_beans"
+    }
   },
   {
     "schemaVersion": 1,
@@ -723,7 +778,7 @@
     "ingredientId": "ing_fdc_2644286",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Fagioli, sgocciolato — navy, canned, sodium added, and rinsed",
@@ -778,8 +833,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2644286."
     },
-    "contentHash": "c891d9429dd57eca820235fb5a11dab262aca60fabc2a1f8b1118fc3571ba609",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "ffaf74b92898be0d9186111fa25fa4690ba58149fae5800fb06966bcdf1d1e7f",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_legumes",
+      "subcategoryId": "product_subcategory_beans_pulses",
+      "conceptId": "product_concept_beans"
+    }
   },
   {
     "schemaVersion": 1,
@@ -787,7 +847,7 @@
     "ingredientId": "ing_fdc_2644287",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Fagioli, sgocciolato — cannellini, canned, sodium added, and rinsed",
@@ -842,8 +902,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2644287."
     },
-    "contentHash": "50e8d1db3c4f2479650e85f7086b3c561852a2580883276014040c5df88fe41f",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "71838289aaba15031da6079b67b3e0280a0f29f4cd5842bbe039375ed161d397",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_legumes",
+      "subcategoryId": "product_subcategory_beans_pulses",
+      "conceptId": "product_concept_beans"
+    }
   },
   {
     "schemaVersion": 1,
@@ -851,7 +916,7 @@
     "ingredientId": "ing_fdc_2644288",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Ceci, sgocciolato — (garbanzo beans, bengal gram), canned, sodium added, and rinsed",
@@ -906,8 +971,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2644288."
     },
-    "contentHash": "c38752b807dc15d1bbc891047b802d03f0dc49f3be1eacab1cd9577aad2e78c4",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "cc3f1210cf2dcfbb62e125a9544b59c9574dd1e6064bc1d1532ec4d2490e0b04",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_legumes",
+      "subcategoryId": "product_subcategory_beans_pulses",
+      "conceptId": "product_concept_chickpeas"
+    }
   },
   {
     "schemaVersion": 1,
@@ -915,7 +985,7 @@
     "ingredientId": "ing_fdc_2644289",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Fagioli, sgocciolato — kidney, dark red, canned, sodium added, sugar added, and rinsed",
@@ -970,8 +1040,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2644289."
     },
-    "contentHash": "3cffe207709de813ac8f2c477dc17433950b219cee698a55bf1c22d3ecce2768",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "920a87eae5e9b96b487b8a43e87b277930e0ad0845ad7180685e6509aa00b303",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_legumes",
+      "subcategoryId": "product_subcategory_beans_pulses",
+      "conceptId": "product_concept_beans"
+    }
   },
   {
     "schemaVersion": 1,
@@ -979,7 +1054,7 @@
     "ingredientId": "ing_fdc_2644290",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Fagioli, sgocciolato — kidney, light red, canned, sodium added, sugar added, and rinsed",
@@ -1034,8 +1109,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2644290."
     },
-    "contentHash": "c8e0e1194d232cefbca939a8693740f35d50d4d578813bc1e3b0bc6dc929ad73",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "d82c42775a2aecda52052dafe53d9edd81de1a328ce16764924d029d37e2f48d",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_legumes",
+      "subcategoryId": "product_subcategory_beans_pulses",
+      "conceptId": "product_concept_beans"
+    }
   },
   {
     "schemaVersion": 1,
@@ -1043,7 +1123,7 @@
     "ingredientId": "ing_fdc_2644291",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Piselli, sgocciolato — green, sweet, canned, sodium added, sugar added, and rinsed",
@@ -1098,8 +1178,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2644291."
     },
-    "contentHash": "65fd93679640efac91cab7c90b0792a08461f6fdaee49acb85e56d39b9c58fb9",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "0d574af2a5a8adb0fed1a2ae8b0020b55d891717e1c88dc3a4d1d434a63fffbb",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_legumes",
+      "subcategoryId": "product_subcategory_beans_pulses",
+      "conceptId": "product_concept_peas"
+    }
   },
   {
     "schemaVersion": 1,
@@ -1107,7 +1192,7 @@
     "ingredientId": "ing_fdc_2644292",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Fagioli, sgocciolato — pinto, canned, sodium added, and rinsed",
@@ -1162,8 +1247,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2644292."
     },
-    "contentHash": "257bf6c150da07007888177af76b4c6c04a3f199ec998cd82617abb587236391",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "7bc3273f65b85f2b85eeb62c1838816db3b475d7d4ab5e1cf77079e40908d70f",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_legumes",
+      "subcategoryId": "product_subcategory_beans_pulses",
+      "conceptId": "product_concept_beans"
+    }
   },
   {
     "schemaVersion": 1,
@@ -1171,7 +1261,7 @@
     "ingredientId": "ing_fdc_2644293",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Legumi — Blackeye pea, canned, sodium added, drained and rinsed",
@@ -1226,8 +1316,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2644293."
     },
-    "contentHash": "bcf7d19cb7d0495b31e9aa11f988905b2cc82ddbe97d40016cf4c9bd8f6c0d96",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "925b6c2465cd9a88e4c06461fcc7ee2a7ac239ec92ff6478800f82f4e106a4b5",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_legumes",
+      "subcategoryId": "product_subcategory_beans_pulses",
+      "conceptId": "product_concept_peas"
+    }
   },
   {
     "schemaVersion": 1,
@@ -1235,7 +1330,7 @@
     "ingredientId": "ing_fdc_2644294",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Fagioli, sgocciolato — great northern, canned, sodium added, and rinsed",
@@ -1290,8 +1385,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2644294."
     },
-    "contentHash": "26109d40241216c87090c502bc101201ea990cdef7c6c69f1c38596bc06d05e0",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "7cdac10d77316e6272f2d6327fdf3803850e79dbcd3cc429eb6a8af29e98d2b0",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_legumes",
+      "subcategoryId": "product_subcategory_beans_pulses",
+      "conceptId": "product_concept_beans"
+    }
   },
   {
     "schemaVersion": 1,
@@ -1299,7 +1399,7 @@
     "ingredientId": "ing_fdc_2685568",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Zucca, crudo — summer, green, zucchini, includes skin",
@@ -1354,8 +1454,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2685568."
     },
-    "contentHash": "92b01f11f7215036d8f384be21fc2c7e5a7fd571d4645ae994f4065aa026f2ed",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "ed9c6f31348217ac88797812edf2de3302ff696517c236a64110227be521441c",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -1363,7 +1468,7 @@
     "ingredientId": "ing_fdc_2685569",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Zucca, crudo — summer, yellow, includes skin",
@@ -1418,8 +1523,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2685569."
     },
-    "contentHash": "2afb307b988544dc4359f4d11c53210edace5b74b2f22c54223b6b62101e18b5",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "5d3e34c5ea2ff0c6a2b44bca2a7bf09dd4c1a1e06dff956e3839bec37249e6a9",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -1427,7 +1537,7 @@
     "ingredientId": "ing_fdc_2685570",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Zucca, crudo — winter, butternut",
@@ -1482,8 +1592,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2685570."
     },
-    "contentHash": "a0f25c3ba932f0841a1eaa6029206c4e03a8a368c086f9e2fd23db47d3075c39",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "c4e6f44f7f99a9082590eebf3311461c3f7864baea35b338ef897e39f21eecae",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -1491,7 +1606,7 @@
     "ingredientId": "ing_fdc_2685571",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Zucca, crudo — winter, acorn",
@@ -1546,8 +1661,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2685571."
     },
-    "contentHash": "3f2c14b6c8783df0724a2e3f82aed23ae459ca1adeeb4518eb6c59e1d044ff11",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "71c497864df0168b25cf8a077d03ea1f49fd82bc1fda2e63d77e3ea1bea0ee83",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -1555,7 +1675,7 @@
     "ingredientId": "ing_fdc_2685572",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Cavolo, crudo — bok choy",
@@ -1610,8 +1730,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2685572."
     },
-    "contentHash": "a6eee7b646853bb983a7500a648c8092e8d4c18546526db8bfd8eaf5b1983bc9",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "5b8c91a21eadd5a57113c844015c394dec6b9fef609c49262a4cf52e9614a336",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_cruciferous",
+      "conceptId": "product_concept_cruciferous"
+    }
   },
   {
     "schemaVersion": 1,
@@ -1619,7 +1744,7 @@
     "ingredientId": "ing_fdc_2685573",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Cavolfiore, crudo",
@@ -1674,8 +1799,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2685573."
     },
-    "contentHash": "bf50d37f769657d0533f00c74507d318267d8c1f6897470359751025963afa93",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "103b382fbfef4bf592f1edbf962ec3d59c258dd28ebf16ff07cc4446e12e2fad",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_cruciferous",
+      "conceptId": "product_concept_cruciferous"
+    }
   },
   {
     "schemaVersion": 1,
@@ -1683,7 +1813,7 @@
     "ingredientId": "ing_fdc_2685574",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Verdure — Collards, raw",
@@ -1738,8 +1868,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2685574."
     },
-    "contentHash": "11bedb3e82c1549c3e2c700231b837ac0e741d32b357391cfa24bfcb9b3da665",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "a8f3694852e532c61e62ec1dea06d23f8393e323150a7cb9f2ae3e3d8b15c918",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_leafy_greens",
+      "conceptId": "product_concept_leafy_green"
+    }
   },
   {
     "schemaVersion": 1,
@@ -1747,7 +1882,7 @@
     "ingredientId": "ing_fdc_2685575",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Verdure — Brussels sprouts, raw",
@@ -1802,8 +1937,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2685575."
     },
-    "contentHash": "6c7ac5d8f7b61a208f1d392e66cc9f753594892659f9701bfa4a6b49464dc5cc",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "ddbe7fbba22730ec3dae12bbc229e6d5b21e03cbfe381a70681a760b452aec31",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_cruciferous",
+      "conceptId": "product_concept_cruciferous"
+    }
   },
   {
     "schemaVersion": 1,
@@ -1811,7 +1951,7 @@
     "ingredientId": "ing_fdc_2685576",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Barbabietola, crudo",
@@ -1867,8 +2007,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2685576."
     },
-    "contentHash": "e4659c403d43883b477cf1cec8aa26f02687b4579d9dd04348ac022396392cf4",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "25d9906914e7e877b03267593212c6b76b7ad0f6013b4708d4b6eef806e2c3c2",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -1876,7 +2021,7 @@
     "ingredientId": "ing_fdc_2685577",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Melanzana, crudo",
@@ -1932,8 +2077,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2685577."
     },
-    "contentHash": "29890afe47ba994f4990026fa71733aa044c70d2fe900a4ffb9d9ce26dc8284b",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "852894b6ba76f099f00cdffc88e0d6111bcf49328b64cf2f657177c7aef2ff39",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -1941,7 +2091,7 @@
     "ingredientId": "ing_fdc_2685578",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Pomodoro, come venduto — whole, canned, solids and liquids, with salt added",
@@ -1997,8 +2147,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2685578."
     },
-    "contentHash": "d48aef1138be302643523c73a53fc2b4e34b821ed3b0ee7656d3ba333dfba603",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "83b741b23176bf3ce784f104e822d272eb758d7f5977e76d9bfe7505281ec0a6",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -2006,7 +2161,7 @@
     "ingredientId": "ing_fdc_2685579",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Verdure — Tomato, sauce, canned, with salt added",
@@ -2062,8 +2217,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2685579."
     },
-    "contentHash": "cc2cff3d6b27045f0ba3b4c746ff440958401cd47d0441074f0713da010b1dff",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "84b6919a7aac06899889455ae08fb18f00084dd36234353781fec9e3d410a05b",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_tomatoes",
+      "conceptId": "product_concept_tomato"
+    }
   },
   {
     "schemaVersion": 1,
@@ -2071,7 +2231,7 @@
     "ingredientId": "ing_fdc_2685580",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Verdure — Tomato, paste, canned, without salt added",
@@ -2127,8 +2287,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2685580."
     },
-    "contentHash": "bf872cac6ec9c7ef21646a082d55fbc74542ed25dd216407b04d56e322b3341c",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "42b9d2ce7db39bb05b112a4d053c80df2430a90db8058f2df4122c3be0247fc4",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_tomatoes",
+      "conceptId": "product_concept_tomato"
+    }
   },
   {
     "schemaVersion": 1,
@@ -2136,7 +2301,7 @@
     "ingredientId": "ing_fdc_2685581",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Pomodoro, come venduto — crushed, canned",
@@ -2192,8 +2357,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2685581."
     },
-    "contentHash": "6a3be245fe7a3bddd886c9dcb5d48717ba929f6197a133efb41a759a8069ebba",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "19e8d1b3f7833280fa530357c919ae54302d59c2cc87e8cdfa2b0af0ae0b365b",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -2201,7 +2371,7 @@
     "ingredientId": "ing_fdc_2685582",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Verdure — Tomato, puree, canned",
@@ -2257,8 +2427,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2685582."
     },
-    "contentHash": "258310b2b40922c0c65bbd5f16dca1bf32f78de565dd52cea982ea22f9ec6354",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "e5701485375cf0ddf970f72111c741acd40c98bdd34a90210fe2af3f494d5c70",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_tomatoes",
+      "conceptId": "product_concept_tomato"
+    }
   },
   {
     "schemaVersion": 1,
@@ -2266,7 +2441,7 @@
     "ingredientId": "ing_fdc_2710815",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Albicocca, crudo — with skin",
@@ -2322,8 +2497,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710815."
     },
-    "contentHash": "45c29e22bcfcea22c468f7bdf4761f42bc4833e30d0a8ca12c0901e000a213b1",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "32e87881bb98cf5458066651ebcb68979754adb59dfa783241385efd657d2eb8",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_stone_fruit",
+      "conceptId": "product_concept_stone_fruit"
+    }
   },
   {
     "schemaVersion": 1,
@@ -2331,7 +2511,7 @@
     "ingredientId": "ing_fdc_2710817",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Frutta — Plantains, ripe, raw",
@@ -2387,8 +2567,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710817."
     },
-    "contentHash": "935aa2cfeb8432f563ab86d74ce90fd23c9ccfd47748124fe14ccccb24f34f0f",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "950366a9558c36feabc1f5c1c4c67ca5b38ce6e81fdd8951c356aec02c6926c2",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_fruit_other",
+      "conceptId": "product_concept_fruit_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -2396,7 +2581,7 @@
     "ingredientId": "ing_fdc_2710818",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Frutta — Plantains, underripe, raw",
@@ -2452,8 +2637,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710818."
     },
-    "contentHash": "160cfd68722ff3d8adbcc46eacf54cd5b8b6020a99cd55b91febcfb5d9d8490e",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "330a1f0334396b224b60adc4a8a42ef4f0dfb2d0dc0afcc9d2abc6bbd2cb0f6c",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_fruit_other",
+      "conceptId": "product_concept_fruit_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -2461,7 +2651,7 @@
     "ingredientId": "ing_fdc_2710820",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Bulgur, crudo",
@@ -2516,8 +2706,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710820."
     },
-    "contentHash": "a19b0abdc4ec98a13ed5daa87f1c2859b5cc6ac6c017841adc18b6fc053f59e0",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "4888d179f516349557d737e25c4fbdf6b099f0230ddcc349e35e04e03b55859b",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_cereals",
+      "subcategoryId": "product_subcategory_cereals_other",
+      "conceptId": "product_concept_cereals_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -2525,7 +2720,7 @@
     "ingredientId": "ing_fdc_2710821",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Pasta, riso e cereali — Wild rice, dry, raw",
@@ -2580,8 +2775,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710821."
     },
-    "contentHash": "7d1adf6da629e555759ba122d952537a7f0adb5a23842af74e43041bdb8da7d4",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "b2d0e56652088791cef6f5c9f556908377c9952f679f4f451077f2bf202e1916",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_cereals",
+      "subcategoryId": "product_subcategory_rice",
+      "conceptId": "product_concept_rice"
+    }
   },
   {
     "schemaVersion": 1,
@@ -2589,7 +2789,7 @@
     "ingredientId": "ing_fdc_2710822",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Verdure — Arugula, baby, raw",
@@ -2644,8 +2844,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710822."
     },
-    "contentHash": "833201798490eb0384ff0852d983aa28f8bf2503a42bf64a87662dfe9c2d1c61",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "4757d28845ff2dfdeccfe268a4bcd8fc0d772e268a412574c05506d47453dfa6",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -2653,7 +2858,7 @@
     "ingredientId": "ing_fdc_2710823",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Asparagi, crudo — green",
@@ -2708,8 +2913,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710823."
     },
-    "contentHash": "7588ae09327cb26cd1eb6fb028171fe2386cbf9f0a8d7b66a4cd966dbe562ea5",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "d0fc9749d9b5f8f4b64eb98281b74ff5ce30a26948dddbbe277fe9671c03a0fe",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -2717,7 +2927,7 @@
     "ingredientId": "ing_fdc_2710825",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Riso, crudo — black, unenriched",
@@ -2772,8 +2982,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710825."
     },
-    "contentHash": "d3bea78feb08009044bd2c6e99ebbfd36e0617860cf88d75d2cfffdb37491f55",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "763bf58f58e3a484ecb5388c1ab30b6fe34e3da968e961b7dcb160023df3c298",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_cereals",
+      "subcategoryId": "product_subcategory_rice",
+      "conceptId": "product_concept_rice"
+    }
   },
   {
     "schemaVersion": 1,
@@ -2781,7 +2996,7 @@
     "ingredientId": "ing_fdc_2710826",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Mais, crudo — sweet, yellow and white kernels, fresh",
@@ -2837,8 +3052,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710826."
     },
-    "contentHash": "306e483425c03589515a9734e358ee2601b2ff56f127b655ab877d53d7ece49b",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "a9742a08134fff99a10cb1c9a9d5ae8a5fc95fb65f5a12967ecdab6da859e9ec",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -2846,7 +3066,7 @@
     "ingredientId": "ing_fdc_2710827",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Cereali in chicco — Einkorn, grain, dry, raw",
@@ -2901,8 +3121,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710827."
     },
-    "contentHash": "5ff9b16148de686c7f234132ebeffe30a5175570431956acc469d901965b949d",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "26a2a34cc5568cc16a00b3c9d359e970279dd4282f61822ce20be45a3fc295b5",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_cereals",
+      "subcategoryId": "product_subcategory_cereals_other",
+      "conceptId": "product_concept_cereals_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -2910,7 +3135,7 @@
     "ingredientId": "ing_fdc_2710828",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Cereali in chicco — Farro, pearled, dry, raw",
@@ -2965,8 +3190,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710828."
     },
-    "contentHash": "6e66512670f9cc149d3f60f173156f962a4e18b912fcced39d4801d71f7645f6",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "6e63ba3c18b35803ae2e07eac5f6e790ce5a9e541eebd736b8714efb2fc9608a",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_cereals",
+      "subcategoryId": "product_subcategory_cereals_other",
+      "conceptId": "product_concept_cereals_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -2974,7 +3204,7 @@
     "ingredientId": "ing_fdc_2710829",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Cereali in chicco — Fonio, grain, dry, raw",
@@ -3029,8 +3259,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710829."
     },
-    "contentHash": "70af2bbe473962b8189db1e2af62bf20eed5032de772b9289bbce165728c0841",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "bcf8099401a91897c60aeeea1896f47d407041cb03121b943ba36c3e754fb5b0",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_cereals",
+      "subcategoryId": "product_subcategory_cereals_other",
+      "conceptId": "product_concept_cereals_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -3038,7 +3273,7 @@
     "ingredientId": "ing_fdc_2710830",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Cereali in chicco — Khorasan, grain, dry, raw",
@@ -3093,8 +3328,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710830."
     },
-    "contentHash": "a4e687feced63239fce379c9dbebbbe710c8824d7094f12ce2f02344accd01db",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "f0da4ba7cfb7e47fa421c34b2449ca1f2de7fab612b43548dc80da2c17ea6298",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_cereals",
+      "subcategoryId": "product_subcategory_cereals_other",
+      "conceptId": "product_concept_cereals_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -3102,7 +3342,7 @@
     "ingredientId": "ing_fdc_2710831",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Kiwi, crudo — (kiwi), green, peeled",
@@ -3158,8 +3398,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710831."
     },
-    "contentHash": "bfbad2181f8fb10fc7e611d3536edeafa1d8b6142445438546de91415b82163c",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "e80766bb900a8f4cf2dc43027c8498eeeb372971401d098806d724b8e73d6dd1",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_fruit_other",
+      "conceptId": "product_concept_fruit_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -3167,7 +3412,7 @@
     "ingredientId": "ing_fdc_2710832",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Frutta — Mandarin, seedless, peeled, raw",
@@ -3223,8 +3468,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710832."
     },
-    "contentHash": "f543b5345e86e01a11236b476af09435f4b10cd72c41ca1bb13ae6d85049bfcb",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "10884f480028ea23b51a1b0d84b37a385c7195267cde8d04b453a1a30a5f8f82",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_citrus",
+      "conceptId": "product_concept_citrus"
+    }
   },
   {
     "schemaVersion": 1,
@@ -3232,7 +3482,7 @@
     "ingredientId": "ing_fdc_2710833",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Mango, crudo — Tommy Atkins, peeled",
@@ -3288,8 +3538,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710833."
     },
-    "contentHash": "ada41e63d0d70bbe1ad0be5dc5381f4db8f42778fb5ccd27c4227cf7cfabed11",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "770585fe92049e637f9e175fd84295ee9202d000002963470113a04eb56b1a1c",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_tropical_fruit",
+      "conceptId": "product_concept_tropical_fruit"
+    }
   },
   {
     "schemaVersion": 1,
@@ -3297,7 +3552,7 @@
     "ingredientId": "ing_fdc_2710834",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Mango, crudo — Ataulfo, peeled",
@@ -3353,8 +3608,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710834."
     },
-    "contentHash": "a653298f8b8dca90bd35d0cc4323ceff0cef9242d4654b9606a4d47195e93670",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "536fdfeaaf7063c40959d146fc7e5eec0fb2066837290dd364586f1cfb494614",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_tropical_fruit",
+      "conceptId": "product_concept_tropical_fruit"
+    }
   },
   {
     "schemaVersion": 1,
@@ -3362,7 +3622,7 @@
     "ingredientId": "ing_fdc_2710835",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Mais, crudo — flour, masa harina, white or yellow",
@@ -3417,8 +3677,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710835."
     },
-    "contentHash": "1748d24b52582b9a50966f71cfc047e09a799a4cd9936f64e86716b5aba59276",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "0a291bfac211b8b4b18da592176e7ad5b3693c3c4342b04266bb7113abc4a09f",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_cereals",
+      "subcategoryId": "product_subcategory_grain_flours",
+      "conceptId": "product_concept_grain_flour"
+    }
   },
   {
     "schemaVersion": 1,
@@ -3426,7 +3691,7 @@
     "ingredientId": "ing_fdc_2710836",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Pera, crudo — Anjou, green, with skin",
@@ -3482,8 +3747,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710836."
     },
-    "contentHash": "2526006407d963a4feafed60a5668780835a07cf80fd08700641cf2c3b0aff71",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "22d940674d8de9ea9449ce48dfdc2265013695c04994c777002e5fc5e6484380",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_apples_pears",
+      "conceptId": "product_concept_pear"
+    }
   },
   {
     "schemaVersion": 1,
@@ -3491,7 +3761,7 @@
     "ingredientId": "ing_fdc_2710837",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Prugna, crudo — black, with skin",
@@ -3547,8 +3817,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710837."
     },
-    "contentHash": "af26c9bcf73eb49b7fdbc6842701e1335f53edb016215bf0909502df816828c4",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "b79d4e4334fc564bdcd9e41b2a0e74e3de605a131ba506c86f49df1dd1e76381",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_stone_fruit",
+      "conceptId": "product_concept_plum_prune"
+    }
   },
   {
     "schemaVersion": 1,
@@ -3556,7 +3831,7 @@
     "ingredientId": "ing_fdc_2710838",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Riso, crudo — red, unenriched",
@@ -3611,8 +3886,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710838."
     },
-    "contentHash": "2cb262f1e92a0e0d1f676a220db52ed0dfe6741280c481e0cb6e289147fa6dec",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "5e02d63bb42292ee4d498b5a9b27bc2045bffaf66bfec31b7e2886aaead2c318",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_cereals",
+      "subcategoryId": "product_subcategory_rice",
+      "conceptId": "product_concept_rice"
+    }
   },
   {
     "schemaVersion": 1,
@@ -3620,7 +3900,7 @@
     "ingredientId": "ing_fdc_2710839",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Cereali in chicco — Sorghum bran, white, unenriched, dry, raw",
@@ -3675,8 +3955,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710839."
     },
-    "contentHash": "b78a1c728d42a6c2e6e452e6b0754ce393b4d798bd31a853480af6687d6b8d9b",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "f8f69ffd105ad80bd97621ef8bf4fa537ecc991daa1efbb1e35b2fa79e4e9888",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_cereals",
+      "subcategoryId": "product_subcategory_cereals_other",
+      "conceptId": "product_concept_cereals_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -3684,7 +3969,7 @@
     "ingredientId": "ing_fdc_2710840",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Cereali in chicco — Sorghum flour, white, pearled, unenriched, dry, raw",
@@ -3739,8 +4024,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710840."
     },
-    "contentHash": "a57e0cba5d5d9f7e759ee25d7950b6c5be10ffd9784f07f8fb1138ff3b503848",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "b4dd0aac1e80930c90b43f2610dd63bae0518896dc5fda64d77e59905145e9e2",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_cereals",
+      "subcategoryId": "product_subcategory_grain_flours",
+      "conceptId": "product_concept_grain_flour"
+    }
   },
   {
     "schemaVersion": 1,
@@ -3748,7 +4038,7 @@
     "ingredientId": "ing_fdc_2710841",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Cereali in chicco — Sorghum grain, white, pearled, unenriched, dry, raw",
@@ -3803,8 +4093,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710841."
     },
-    "contentHash": "a79a342855f885bafbbbfa49819a46145c3dae644606fec16fc9a9371781e8ab",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "fdb9ecd323caff756815cbb7fcbcc091aa162fe0a0fcc0e225d720d5770ceedb",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_cereals",
+      "subcategoryId": "product_subcategory_cereals_other",
+      "conceptId": "product_concept_cereals_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -3812,7 +4107,7 @@
     "ingredientId": "ing_fdc_2710842",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Cereali in chicco — Sorghum, whole grain, white, dry, raw",
@@ -3867,8 +4162,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710842."
     },
-    "contentHash": "2a4f37ab0b321b5758285b80a56d5e79b49aa4ffa6b84c9973cedd83089c833e",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "6180901ee63058cdb2221bfd7de232f859c7bb62b9ac9863bb006fc3ce4bcae7",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_cereals",
+      "subcategoryId": "product_subcategory_cereals_other",
+      "conceptId": "product_concept_cereals_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -3876,7 +4176,7 @@
     "ingredientId": "ing_fdc_2710843",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Frutta — Plantains, overripe, raw",
@@ -3932,8 +4232,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2710843."
     },
-    "contentHash": "cba31b880f52868e5a17c9c7aa678334564630304c5216cabf0898b30e747e3d",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "e6bf685f2cabd5de69b625bd9dfbf22cc751106ee3a0922776632ac44ca8ecc1",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_fruit_other",
+      "conceptId": "product_concept_fruit_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -3941,7 +4246,7 @@
     "ingredientId": "ing_fdc_2747653",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Barbabietola, crudo — greens",
@@ -3997,8 +4302,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2747653."
     },
-    "contentHash": "9115230f1c13a4e6d6d11c3499b97a9f88bba0c455469636f24b66bf9db6dfc3",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "ca2f49e7ec4033442fafbe2cbf6e4d100b947695e313c62ff1ce9497d0f655ad",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -4006,7 +4316,7 @@
     "ingredientId": "ing_fdc_2747655",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Verdure — Fennel, bulb, raw",
@@ -4062,8 +4372,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2747655."
     },
-    "contentHash": "cf11eb5a5983526aa2b483bc9bd52fca42012984049e9ab90c036d1c0a5d1eb6",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "f2db61853b264907ebed936d8f246b702e2a6d5f917bec858d59897f12f5d880",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -4071,7 +4386,7 @@
     "ingredientId": "ing_fdc_2747659",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Verdure — Parsnips, raw",
@@ -4127,8 +4442,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2747659."
     },
-    "contentHash": "5ee601aeee00d234841584697ca6aa395355721a23f875043db00278aac0da1f",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "571b66458e62973b9512fe747098729758857aaffa36e07c9a2ec697b792d2fb",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -4136,7 +4456,7 @@
     "ingredientId": "ing_fdc_2747660",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Verdure — Peppers, banana or Hungarian wax, seeded, raw",
@@ -4192,8 +4512,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2747660."
     },
-    "contentHash": "b0c68ab388578bd89c8b815497736da9d0c641796901c713631ac5ac96f651d3",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "e03bf17671b3e99f6c4df596b29063daf1d6fd0ae51be15d5d48ad65ea9d35e1",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_bananas",
+      "conceptId": "product_concept_banana"
+    }
   },
   {
     "schemaVersion": 1,
@@ -4201,7 +4526,7 @@
     "ingredientId": "ing_fdc_2747661",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Verdure — Peppers, jalapeno, seeded, raw",
@@ -4257,8 +4582,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2747661."
     },
-    "contentHash": "d06751d9705340b0336fd28a7467997be902920fbc161f40e80f54c8aa496af3",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "de4dfa9c6aab29e7953906a731847d083c192913853bffa7c53f4595dc54904a",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -4266,7 +4596,7 @@
     "ingredientId": "ing_fdc_2747662",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Verdure — Peppers, poblano, seeded, raw",
@@ -4322,8 +4652,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2747662."
     },
-    "contentHash": "027701e854e54f30ffd7c89b88ff1caf156ce6de454c134730754930d854a921",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "471a2aeeb75f62a3470c8e8fe4708f838279acf0df21ade7ebffab1e3809d4cb",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -4331,7 +4666,7 @@
     "ingredientId": "ing_fdc_2747663",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Verdure — Peppers, serrano, seeded, raw",
@@ -4387,8 +4722,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2747663."
     },
-    "contentHash": "52bb9910bd3eba8a7503f5db4c2c7aa98fe2eb14443d82d8615c495eb1a3f9c7",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "c58990c53b8c301dbcb74df0a561ffa8bc7ec83c51402fa7ceeac3c49332749f",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -4396,7 +4736,7 @@
     "ingredientId": "ing_fdc_2747664",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Verdure — Radicchio, raw",
@@ -4452,8 +4792,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2747664."
     },
-    "contentHash": "83fd8ff7f75d1f36fbcb535fe3f8a77a94a48a12b44c98d732289762d4117468",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "e7d549945c8ac5ce022c6f91aceb233fe9989c27a6b2044d50447c00d89f6da1",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -4461,7 +4806,7 @@
     "ingredientId": "ing_fdc_2747665",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Ravanello, crudo — red",
@@ -4517,8 +4862,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2747665."
     },
-    "contentHash": "4f67c5e5f97a0760707c9ea7fe5d3ef5f22491d1f6823e9a206efb70b9bde148",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "ca5b20e4f246bccf26b159ed3a844d8b77cfc388f1f2068f7b9eab8f447e7aea",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -4526,7 +4876,7 @@
     "ingredientId": "ing_fdc_2747674",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Rapa, crudo",
@@ -4582,8 +4932,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2747674."
     },
-    "contentHash": "dfd3da809bfe4710bd11fd67176c5173326d639d5cc4e24f8cd4cff0dc6e7efc",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "bd249a7758783b4cb4927899b441124b35f07eee53473ed2a548b4e78e70b510",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -4591,7 +4946,7 @@
     "ingredientId": "ing_fdc_2747676",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Anguria, crudo — seedless, rind only",
@@ -4647,8 +5002,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=2747676."
     },
-    "contentHash": "ac355eb84211b46337635d2719f42bc1df1d26acde2e603aab8da4fc3e320190",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "ac39ded977100f771f6abd4ba493ddea167032f2355421cb5afbbb79de7dd55b",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_fruit_other",
+      "conceptId": "product_concept_fruit_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -4656,7 +5016,7 @@
     "ingredientId": "ing_fdc_321358",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Legumi — Hummus, commercial",
@@ -4713,8 +5073,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=321358."
     },
-    "contentHash": "b12f579cfa452161c2e7f6369a349fb1b9ca581efb17825428a2cbd2d9beb67a",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "ffc3a1a4a89f7c7cdd939401f6953d8c358010061ab9b87878cbc79a078222d2",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_legumes",
+      "subcategoryId": "product_subcategory_legumes_other",
+      "conceptId": "product_concept_legumes_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -4722,7 +5087,7 @@
     "ingredientId": "ing_fdc_321360",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Pomodoro, crudo — grape",
@@ -4777,8 +5142,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=321360."
     },
-    "contentHash": "a845320c30d594e304fd43d4ccf62c639bee7b92986ff3a677f11f61d5c6ead6",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "52a4b74af9766d2dfe844ffca60ee202a5b277da1e4e3a730634400905a114e1",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -4786,7 +5156,7 @@
     "ingredientId": "ing_fdc_323294",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Mandorla, cotto — with salt added",
@@ -4845,8 +5215,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=323294."
     },
-    "contentHash": "72574744ef65298ffe664226944aa8e33b6e0aa569ee6d185eb0cca62b2dc5be",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "3adfa624c4aadb972ba371f12c695592b55df78934606b48019046e0bbba0065",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_nuts_seeds",
+      "subcategoryId": "product_subcategory_nuts",
+      "conceptId": "product_concept_almond"
+    }
   },
   {
     "schemaVersion": 1,
@@ -4854,7 +5229,7 @@
     "ingredientId": "ing_fdc_323505",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Cavolo riccio, crudo",
@@ -4910,8 +5285,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=323505."
     },
-    "contentHash": "336004b20aa95ce3f0f6ebd185039234194591bff7186442b1e4a9f8c9028f7d",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "3d0c86724543484ca2f76dee67eacd2542f94eff6e6825b357c584ddf29148d6",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_leafy_greens",
+      "conceptId": "product_concept_leafy_green"
+    }
   },
   {
     "schemaVersion": 1,
@@ -4919,7 +5299,7 @@
     "ingredientId": "ing_fdc_324317",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Cipolla, preparato — rings, breaded, par fried, frozen, heated in oven",
@@ -4976,8 +5356,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=324317."
     },
-    "contentHash": "c747a7409e6b3393f647157f4a0fbb1a8543620d07ce16d7b10b3e5912a46f02",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "e7132e975eade51f4030f1027fe8f7f07e91abb52144575cc7b5b6100b939b1f",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_alliums",
+      "conceptId": "product_concept_onion"
+    }
   },
   {
     "schemaVersion": 1,
@@ -4985,7 +5370,7 @@
     "ingredientId": "ing_fdc_324653",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Erbe e spezie — Pickles, cucumber, dill or kosher dill",
@@ -5041,8 +5426,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=324653."
     },
-    "contentHash": "89dae4d2c7bb7fa61682728acdbcb0c3383b0d0eb383fdd5ab2538a7bdf54ac8",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "27708907f5ed0069a0d7381146a682d98acbdd5b358170bea93cb460b667ac59",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_sauces_condiments",
+      "subcategoryId": "product_subcategory_pickles_preserves",
+      "conceptId": "product_concept_pickle"
+    }
   },
   {
     "schemaVersion": 1,
@@ -5050,7 +5440,7 @@
     "ingredientId": "ing_fdc_325287",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Frutta — Grapefruit juice, white, canned or bottled, unsweetened",
@@ -5106,8 +5496,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=325287."
     },
-    "contentHash": "26da2cb8dca66becc1702ac150f16e0fa9c47c0f04ca25ebb162d9a140d07110",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "44d4805075c4795618dd684e22934a0d6646f0bba1fef49fa156ce4403796ca4",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_fruit_juice",
+      "conceptId": "product_concept_fruit_juice"
+    }
   },
   {
     "schemaVersion": 1,
@@ -5115,7 +5510,7 @@
     "ingredientId": "ing_fdc_325430",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Pesca, crudo — yellow",
@@ -5171,8 +5566,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=325430."
     },
-    "contentHash": "9bb78fdd35740fb9c147d7c9857c440290c08de6d52d40d0224668eb6f3fc7fe",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "a086d5199aadd141413e73a8ddfaefa3e7e2c8811bace0a5a3147ff5b963029f",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_stone_fruit",
+      "conceptId": "product_concept_stone_fruit"
+    }
   },
   {
     "schemaVersion": 1,
@@ -5180,7 +5580,7 @@
     "ingredientId": "ing_fdc_325524",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Semi di girasole, cotto — seed kernels, with salt added",
@@ -5237,8 +5637,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=325524."
     },
-    "contentHash": "1012cf30a0d8a3d4694413e7c1bd48c4493447347729e66fed6372ea89397bd9",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "4e889dfb58c4a8619d4ab44e1f455a2d23deb1d7df6be1d8455eb9071497a91e",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_nuts_seeds",
+      "subcategoryId": "product_subcategory_seeds",
+      "conceptId": "product_concept_sunflower_seed"
+    }
   },
   {
     "schemaVersion": 1,
@@ -5246,7 +5651,7 @@
     "ingredientId": "ing_fdc_326698",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Senape, preparato — yellow",
@@ -5305,8 +5710,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=326698."
     },
-    "contentHash": "c7a43efb5d294be3763e312a07397183422d68022197c0165f9e614779e2e679",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "9114d486a0e61c1e0809b5d0a2c9fa886ec97e2674c246b1559d5eed41ffdc92",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_herbs_spices",
+      "subcategoryId": "product_subcategory_herbs_spices_other",
+      "conceptId": "product_concept_herb_spice_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -5314,7 +5724,7 @@
     "ingredientId": "ing_fdc_327046",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Kiwi, crudo — green",
@@ -5370,8 +5780,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=327046."
     },
-    "contentHash": "8fbb0bc7b0c31a9af6ae940035db272bc0d1b6e5c10a19fac1a05bc4f68d26c2",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "03b20d83a0a31638f9db21a846e98449abb78eed421e13582e6433a5d74e1446",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_fruit_other",
+      "conceptId": "product_concept_fruit_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -5379,7 +5794,7 @@
     "ingredientId": "ing_fdc_327357",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Frutta — Nectarines, raw",
@@ -5436,8 +5851,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=327357."
     },
-    "contentHash": "f9b70fcf9f77e88fe36475843c031ca6654b1043402157a93463ca3c6c3d419f",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "772a9cccedde711290801547f3865ac8d8b705309267f466ece4c46b51bb7a46",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_stone_fruit",
+      "conceptId": "product_concept_stone_fruit"
+    }
   },
   {
     "schemaVersion": 1,
@@ -5445,7 +5865,7 @@
     "ingredientId": "ing_fdc_330415",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Yogurt, come venduto — Greek, strawberry, nonfat",
@@ -5504,8 +5924,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=330415."
     },
-    "contentHash": "6612face729e9c5ac5133355fc8f970bb870198a91715544f6dc883914ab25ea",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "e7c8164c093f6690c88c90e818c737e68a24a60c4eb8be2e35cef55406619083",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_berries",
+      "conceptId": "product_concept_berry"
+    }
   },
   {
     "schemaVersion": 1,
@@ -5513,7 +5938,7 @@
     "ingredientId": "ing_fdc_332791",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Frutta — Olives, green, Manzanilla, stuffed with pimiento",
@@ -5570,8 +5995,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=332791."
     },
-    "contentHash": "536716bb341a0eca924cdd93e44322df359843de75a0394638b57b58adc8ed81",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "bf37ecb8862f33e8dd7b8c7c7bf92c69e09667ff0f3ef6fa61d54537e8c925c7",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_fruit_other",
+      "conceptId": "product_concept_fruit_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -5579,7 +6009,7 @@
     "ingredientId": "ing_fdc_746764",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Carota, come venduto — frozen, unprepared",
@@ -5636,8 +6066,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=746764."
     },
-    "contentHash": "067e7594e6fb1147d75f95f969eee4092d20a1cc321cbca4793083f1dac9de25",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "ac44e6769410699f42d0fd93b695c925879d0f8d755a4eb63e973853286e6a11",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_vegetables_other",
+      "conceptId": "product_concept_vegetables_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -5645,7 +6080,7 @@
     "ingredientId": "ing_fdc_746768",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Fico, secco — uncooked",
@@ -5701,8 +6136,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=746768."
     },
-    "contentHash": "6a08a8fe61dd55dbfa0c04653742e34480c7b2098418496599f78364bfeb6b2c",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "6d929ed14177fcc0fa69d41f21616a2205631413ed79d415e002abba6e3a2a78",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_dried_fruit",
+      "conceptId": "product_concept_dried_fruit"
+    }
   },
   {
     "schemaVersion": 1,
@@ -5710,7 +6150,7 @@
     "ingredientId": "ing_fdc_746769",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Lattuga, crudo — cos or romaine",
@@ -5765,8 +6205,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=746769."
     },
-    "contentHash": "884f03350f63d6ab56c83f5bcc5ebc574f0e0e5e1eba4110fb3bfcb93e8e3102",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "00d7118628fc12700a2fdf16068c1e0723ff88fec34cf7fb1714b0c46a334bff",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_leafy_greens",
+      "conceptId": "product_concept_leafy_green"
+    }
   },
   {
     "schemaVersion": 1,
@@ -5774,7 +6219,7 @@
     "ingredientId": "ing_fdc_746770",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Frutta — Melons, cantaloupe, raw",
@@ -5830,8 +6275,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=746770."
     },
-    "contentHash": "d2d04cc23c04ef3df7a55ecee8ae1011a8682aba3311c4f50bb4c6ba5a81f375",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "d07734ac9b37290b23cf1fafb73bd6a55db84156ea5649194e6df4bdf8f7a2c7",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_fruit_other",
+      "conceptId": "product_concept_fruit_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -5839,7 +6289,7 @@
     "ingredientId": "ing_fdc_746771",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Arancia, crudo — navels",
@@ -5895,8 +6345,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=746771."
     },
-    "contentHash": "2d248fbfa551c0cf72f341f28e617e7383c02e132f50ab5ac190560dbec42e3c",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "8fa3c035ff1c5dd792dee2b94468f6868372336f8a38e3be348df4572cc03ae6",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_citrus",
+      "conceptId": "product_concept_citrus"
+    }
   },
   {
     "schemaVersion": 1,
@@ -5904,7 +6359,7 @@
     "ingredientId": "ing_fdc_746773",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Pera, crudo — bartlett",
@@ -5960,8 +6415,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=746773."
     },
-    "contentHash": "5123fa45aa2a7c91ec664175bfbc2ed59b4aa09480c1ccd1c0ad99fbe938d64b",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "95c2154e99729a66f5ecee8ca4fe36f961ca5c553a90dbe2fec8d54940cf0b29",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_fruit",
+      "subcategoryId": "product_subcategory_fruit_other",
+      "conceptId": "product_concept_fruit_other"
+    }
   },
   {
     "schemaVersion": 1,
@@ -5969,7 +6429,7 @@
     "ingredientId": "ing_fdc_747447",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Broccoli, crudo",
@@ -6026,8 +6486,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=747447."
     },
-    "contentHash": "10d65b47620d7d3f0f0060e1c6520071db1992e178ed76a86f8b081ac3946703",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "8c07df07f9e250997a22f94d774c5873e92fdbe2d8a562656b45e621e12d2422",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_cruciferous",
+      "conceptId": "product_concept_cruciferous"
+    }
   },
   {
     "schemaVersion": 1,
@@ -6035,7 +6500,7 @@
     "ingredientId": "ing_fdc_748967",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Uovo, come venduto — Grade A, Large, egg whole",
@@ -6094,8 +6559,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=748967."
     },
-    "contentHash": "4696b400fb6b8d308b409344b7fb199c47362536d1a2094ed1a82c78fe855701",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "fec57699992e9b1ea302dd82b7e1bd4673e5fca38203dec8acd0c9c908c5a011",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_eggs",
+      "subcategoryId": "product_subcategory_whole_eggs",
+      "conceptId": "product_concept_egg"
+    }
   },
   {
     "schemaVersion": 1,
@@ -6103,7 +6573,7 @@
     "ingredientId": "ing_fdc_790018",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Cereali in chicco — Flour, wheat, all-purpose, unenriched, unbleached",
@@ -6160,8 +6630,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=790018."
     },
-    "contentHash": "9cd76bcd877833c9fa35dac1113f6ec58af22c8b71558c1f9e59acde54c2e394",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "f1d8bf32cf2e0d84dff8e02e116e22be49e45ac7bddd387f2dbfe68cae96364f",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_cereals",
+      "subcategoryId": "product_subcategory_grain_flours",
+      "conceptId": "product_concept_grain_flour"
+    }
   },
   {
     "schemaVersion": 1,
@@ -6169,7 +6644,7 @@
     "ingredientId": "ing_fdc_790085",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Cereali in chicco — Flour, whole wheat, unenriched",
@@ -6226,8 +6701,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=790085."
     },
-    "contentHash": "2ce2acf88a536829ea48e5d1eb89a08fa2ae2ccbe3a1bef0e898c3f2deadb3af",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "2830fe9f6f8df2ed510152bafbbde25ef55fde4a7b95add238f3152f1bc46810",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_cereals",
+      "subcategoryId": "product_subcategory_grain_flours",
+      "conceptId": "product_concept_grain_flour"
+    }
   },
   {
     "schemaVersion": 1,
@@ -6235,7 +6715,7 @@
     "ingredientId": "ing_fdc_790214",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Pasta, riso e cereali — Flour, rice, white, unenriched",
@@ -6290,8 +6770,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=790214."
     },
-    "contentHash": "891f3168269cd923772d9470eb3ca92ae8cc7ef9cccc173bf4a41ead690f39de",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "f173fe4d52ac5c9a28d1cc91c3740e2a0b994c3e49e14bbe0dfd7aada059ca87",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_cereals",
+      "subcategoryId": "product_subcategory_rice",
+      "conceptId": "product_concept_rice"
+    }
   },
   {
     "schemaVersion": 1,
@@ -6299,7 +6784,7 @@
     "ingredientId": "ing_fdc_790276",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Cereali in chicco — Flour, corn, yellow, fine meal, enriched",
@@ -6355,8 +6840,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=790276."
     },
-    "contentHash": "ead014f9421f70fe8c60a027a6d8fec50b54a2ab1a41078293fdc41149d2a4f6",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "27f68f82fa3e79b1d5648622e4e38a2868a9118fa37e0bee8f9448e1aba8dcf8",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_cereals",
+      "subcategoryId": "product_subcategory_grain_flours",
+      "conceptId": "product_concept_grain_flour"
+    }
   },
   {
     "schemaVersion": 1,
@@ -6364,7 +6854,7 @@
     "ingredientId": "ing_fdc_790577",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Cipolla, crudo — red",
@@ -6420,8 +6910,13 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=790577."
     },
-    "contentHash": "7675092b920aeffbdb0ab8b3b36a057778d9e84d5a8321939d211534afb0d540",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "0237de301053fba84e7c5a138f9388918668c39364c21baf2712936afa83f390",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_alliums",
+      "conceptId": "product_concept_onion"
+    }
   },
   {
     "schemaVersion": 1,
@@ -6429,7 +6924,7 @@
     "ingredientId": "ing_fdc_790646",
     "revisionNumber": 1,
     "origin": "base",
-    "catalogVersion": "1.0.0-production-foundation",
+    "catalogVersion": "1.2.0-planner-phase-d",
     "i18n": {
       "it": {
         "name": "Cipolla, crudo — yellow",
@@ -6485,7 +6980,12 @@
       "confidence": "high",
       "notes": "Deterministic high-confidence curation. Italian label uses a controlled food translation when available; otherwise it preserves the exact USDA English descriptor under an Italian category prefix. No fuzzy semantic merge. Source=usda-foundation-2026-04; FDC=790646."
     },
-    "contentHash": "8ffafdeaf683551e17c014f11a7ef65ffe39d121e5676ffc727731d1b60857a5",
-    "createdAt": "2026-09-04T19:43:46.058Z"
+    "contentHash": "fe2d297daabd16fdcf5d21118e3bca72aa8cdc375f1a59502f66b467f457cd53",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "productTaxonomy": {
+      "categoryId": "product_category_vegetables",
+      "subcategoryId": "product_subcategory_alliums",
+      "conceptId": "product_concept_onion"
+    }
   }
 ]

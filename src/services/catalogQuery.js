@@ -15,6 +15,11 @@ function range(lower, upper) {
 function hasIndexedPositiveFilter(filters) {
   return Boolean(tokens(filters.text).length || filters.mealArchetype || filters.origin || filters.energyMin != null || filters.energyMax != null || filters.proteinMin != null || filters.fiberMin != null || filters.prepMax != null);
 }
+function matchesProductFood(revision, termId) {
+  if (!termId) return true;
+  const product = revision?.productTaxonomy;
+  return Boolean(product && [product.categoryId, product.subcategoryId, product.conceptId].includes(termId));
+}
 
 export class CatalogQueryService {
   constructor({ repo = repositories } = {}) {
@@ -103,11 +108,12 @@ export class CatalogQueryService {
       proteinMin: filters.proteinMin == null || filters.proteinMin === '' ? null : Number(filters.proteinMin),
       fiberMin: filters.fiberMin == null || filters.fiberMin === '' ? null : Number(filters.fiberMin),
       prepMax: filters.prepMax == null || filters.prepMax === '' ? null : Number(filters.prepMax),
+      productFoodId: filters.productFoodId || '', dietTag: filters.dietTag || '', practicalTag: filters.practicalTag || '',
       excludeAllergens: new Set(filters.excludeAllergens || [])
     };
     const offset = Math.max(0, Number(filters.offset || 0));
     const limit = Math.min(100, Math.max(1, Number(filters.limit || 50)));
-    const onlyPackOrNoFilters = !hasIndexedPositiveFilter(clean) && clean.excludeAllergens.size === 0;
+    const onlyPackOrNoFilters = !hasIndexedPositiveFilter(clean) && clean.excludeAllergens.size === 0 && !clean.productFoodId && !clean.dietTag && !clean.practicalTag;
     if (onlyPackOrNoFilters) return this.fastBrowse(clean, offset, limit);
 
     const installed = await this.installedRecipeVersionIds();
@@ -116,6 +122,12 @@ export class CatalogQueryService {
     if (hasIndexedPositiveFilter(clean)) this.lastQueryDiagnostics = { strategy: 'indexed-intersection', loadedRecipeVersions: seeded.length };
     let versions = uniqueById(seeded, 'recipeVersionId');
     const families = new Map((await this.repo.getMany('recipes', [...new Set(versions.map(version => version.recipeId))])).map(record => [record.recipeId, record]));
+    let ingredientRevisionById = null;
+    if (clean.productFoodId) {
+      const revisionIds = [...new Set(versions.flatMap(version => version.ingredientLines.map(line => line.ingredientRevisionId)))];
+      const ingredientRevisions = await this.repo.getMany('ingredientRevisions', revisionIds);
+      ingredientRevisionById = new Map(ingredientRevisions.map(revision => [revision.ingredientRevisionId, revision]));
+    }
     versions = versions.filter(version => {
       const family = families.get(version.recipeId);
       if (!family || family.status !== 'active' || family.currentVersionId !== version.recipeVersionId) return false;
@@ -130,6 +142,9 @@ export class CatalogQueryService {
       if (clean.proteinMin != null && n.proteinG < clean.proteinMin) return false;
       if (clean.fiberMin != null && n.fiberG < clean.fiberMin) return false;
       if (clean.prepMax != null && version.practical.prepMinutes > clean.prepMax) return false;
+      if (clean.dietTag && !(version.tags?.diet || []).includes(clean.dietTag)) return false;
+      if (clean.practicalTag && !(version.tags?.practical || []).includes(clean.practicalTag)) return false;
+      if (clean.productFoodId && !version.ingredientLines.some(line => matchesProductFood(ingredientRevisionById?.get(line.ingredientRevisionId), clean.productFoodId))) return false;
       return true;
     });
     versions.sort((a, b) => (a.i18n.it?.title || '').localeCompare(b.i18n.it?.title || ''));
@@ -163,7 +178,7 @@ export class CatalogQueryService {
     return rows.sort((a, b) => b.revisionNumber - a.revisionNumber || b.createdAt.localeCompare(a.createdAt));
   }
 
-  async listCurrentIngredients({ text = '', origin = '', foodGroup = '' } = {}) {
+  async listCurrentIngredients({ text = '', origin = '', foodGroup = '', productFoodId = '', state = '' } = {}) {
     let families = origin ? await this.repo.getAllByIndex('ingredients', 'origin', { kind: 'only', value: origin }) : await this.repo.getAll('ingredients');
     families = families.filter(record => record.status === 'active');
     const revisions = new Map((await this.repo.getMany('ingredientRevisions', families.map(record => record.currentRevisionId))).map(record => [record.ingredientRevisionId, record]));
@@ -171,9 +186,31 @@ export class CatalogQueryService {
     return families.map(family => ({ family, revision: revisions.get(family.currentRevisionId) })).filter(item => {
       if (!item.revision) return false;
       if (foodGroup && item.revision.taxonomy.foodGroup !== foodGroup) return false;
+      if (productFoodId && !matchesProductFood(item.revision, productFoodId)) return false;
+      if (state && item.revision.basis?.state !== state) return false;
       if (!terms.length) return true;
-      const haystack = normalize(Object.values(item.revision.i18n).flatMap(value => [value.name, ...(value.aliases || [])]).join(' '));
+      const product = item.revision.productTaxonomy || {};
+      const haystack = normalize(`${Object.values(item.revision.i18n).flatMap(value => [value.name, ...(value.aliases || [])]).join(' ')} ${product.categoryId || ''} ${product.subcategoryId || ''} ${product.conceptId || ''}`);
       return terms.every(term => haystack.includes(term));
     }).sort((a, b) => (a.revision.i18n.it?.name || '').localeCompare(b.revision.i18n.it?.name || ''));
+  }
+
+  async productFoodFacetsForRecipes(recipeVersions = []) {
+    const revisionIds = [...new Set((recipeVersions || []).flatMap(version => (version.ingredientLines || []).map(line => line.ingredientRevisionId)))];
+    const revisions = await this.repo.getMany('ingredientRevisions', revisionIds);
+    const byId = new Map(revisions.map(revision => [revision.ingredientRevisionId, revision]));
+    const result = new Map();
+    for (const recipe of recipeVersions || []) {
+      const categoryIds = new Set(); const subcategoryIds = new Set(); const conceptIds = new Set();
+      for (const line of recipe.ingredientLines || []) {
+        const product = byId.get(line.ingredientRevisionId)?.productTaxonomy;
+        if (!product) continue;
+        if (product.categoryId) categoryIds.add(product.categoryId);
+        if (product.subcategoryId) subcategoryIds.add(product.subcategoryId);
+        if (product.conceptId) conceptIds.add(product.conceptId);
+      }
+      result.set(recipe.recipeVersionId, { categoryIds: [...categoryIds], subcategoryIds: [...subcategoryIds], conceptIds: [...conceptIds] });
+    }
+    return result;
   }
 }

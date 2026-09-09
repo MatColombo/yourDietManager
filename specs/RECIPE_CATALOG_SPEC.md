@@ -157,3 +157,15 @@ La duplicazione resta un'azione distinta dalla modifica: crea una nuova Recipe f
 Il catalogo usa una route dinamica canonica `/recipes/<recipeId>`. Il dettaglio risolve la Recipe family e la current RecipeVersion (oppure una `recipeVersionId` storica esplicita) direttamente dai repository catalogo; non dipende da PlanInstance, CalendarDay o GenerationRun e deve funzionare anche quando non esiste alcun piano.
 
 La route `/recipes/<recipeId>/edit` modifica la famiglia corrente tramite una nuova RecipeVersion. La UI puo mostrare origine, numero versione, storico e provenance, ma non puo nascondere l'azione Modifica in base a `origin`.
+
+## Phase D4 — faceted discovery
+
+Il catalogo ricette MUST supportare filtri combinabili per `product_food`, diet tag, practical tag e i filtri meal/nutrizione/tempo gia presenti. Il filtro `product_food` viene valutato sul grafo reale delle ingredient lines: una ricetta matcha quando almeno una IngredientRevision appartiene al nodo categoria/sottocategoria/concetto selezionato. Le card possono mostrare categorie prodotto derivate, ma gli ID tassonomici restano la sorgente autorevole.
+
+Il catalogo ingredienti MUST supportare almeno testo, origin, `product_food` e stato tecnico (`raw|cooked|dry|...`). La ricerca concettuale non sostituisce la distinzione tecnica delle IngredientRevision: la nasconde solo quando l'utente sta esprimendo una categoria/preferenza.
+
+## Phase D5 — contextual drill-down
+
+Una ricetta materializzata in un CalendarDay MUST essere direttamente apribile dalla meal card senza passaggi intermedi. Il link include l'esatta RecipeVersion e un `return` contestuale al giorno/meal occurrence. Dal dettaglio ricetta ogni ingredient line apre l'esatta IngredientRevision e conserva a sua volta il percorso di ritorno alla ricetta.
+
+Il ritorno finale al CalendarDay MUST ripristinare lo slot originario tramite anchor stabile `meal-<mealOccurrenceId>` e scroll contestuale. I return route interni vengono sanitizzati e non possono accettare URL esterni.

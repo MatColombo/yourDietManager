@@ -14,7 +14,7 @@ export const DAY_ARCHETYPES = Object.freeze([
 export const NUTRIENT_KEYS = Object.freeze(['proteinG', 'carbsG', 'fatG', 'fiberG']);
 export const NUTRITION_PRESETS = Object.freeze(['balanced', 'higher_protein', 'lower_fiber', 'moderate_fiber', 'higher_fiber', 'moderate_carbs', 'custom']);
 export const RULE_STRENGTHS = Object.freeze(['prefer', 'slight_prefer', 'neutral', 'avoid', 'forbid']);
-export const RULE_TYPES = Object.freeze(['foodCategory', 'ingredient', 'tag', 'flavor', 'nutrition', 'practical']);
+export const RULE_TYPES = Object.freeze(['productFood', 'foodCategory', 'ingredient', 'tag', 'flavor', 'nutrition', 'practical']);
 export const NUMERIC_OPERATORS = Object.freeze(['eq', 'lte', 'gte']);
 
 // V1 registry required by MEAL_CLASS_SPEC.md §8. Unknown quantitative targets are rejected.
@@ -23,9 +23,9 @@ export const MEAL_RULE_TARGET_REGISTRY = Object.freeze({
   practical: Object.freeze({ prepMinutes: 'min', cookMinutes: 'min' })
 });
 
-export const FOOD_PREFERENCE_TARGET_TYPES = Object.freeze(['ingredient', 'foodCategory', 'recipeTag', 'cuisine']);
+export const FOOD_PREFERENCE_TARGET_TYPES = Object.freeze(['productFood', 'ingredient', 'foodCategory', 'recipeTag', 'cuisine']);
 export const FOOD_PREFERENCE_LEVELS = Object.freeze(['more_often', 'normal', 'less_often', 'rarely']);
-export const ALLERGY_TARGET_TYPES = Object.freeze(['allergen', 'ingredient', 'foodCategory']);
+export const ALLERGY_TARGET_TYPES = Object.freeze(['allergen', 'productFood', 'ingredient', 'foodCategory']);
 export const ALLERGY_KINDS = Object.freeze(['allergy', 'intolerance']);
 
 export function makeId(prefix) {

@@ -132,3 +132,10 @@ Tassonomia e nutrizione vivono in IngredientRevision storiche immutabili. L'Ingr
 ## 9. Creazione dati da pipeline
 
 La pipeline ricette puo proporre/creare nuovi termini nelle tassonomie estendibili e nuovi ingredienti curati quando necessari alla coverage, ma deve completare e validare tali reference data **prima** di generare/accettare una ricetta che li usa. Vedere `REFERENCE_DATA_TAXONOMY_SPEC.md` e `RECIPE_PIPELINE_GENERATOR.md`.
+
+## Phase D2 — product food taxonomy
+
+User-facing food meaning is represented by the independent hierarchical taxonomy `product_food`: `FoodCategory -> FoodSubcategory -> IngredientConcept`. Every base IngredientRevision in the current planner-validation catalog carries `productTaxonomy.categoryId`, `subcategoryId` and `conceptId`. These IDs MUST NOT be inferred at runtime from allergens or source `taxonomy.foodGroup`. Source nutritional classification remains provenance/context only. Repeated labels across hierarchy levels are allowed; ambiguous label lookup MUST fail closed rather than select a level implicitly.
+
+`product_category_dairy` (`Dairy` / `Latticini`) is an explicit product category. Plant-based milk/yogurt/cream/cheese alternatives are classified under `product_category_plant_alternatives`, not Dairy. Technical noodle records may differ in state/composition while sharing `product_concept_noodles`.
+

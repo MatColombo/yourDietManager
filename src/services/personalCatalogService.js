@@ -77,6 +77,15 @@ export async function saveIngredient(input, { repo = repositories, registry } = 
     const subgroup = referenceIndex.assertTerm(revisionBase.taxonomy.foodSubgroup, TAXONOMY_IDS.foodCategory);
     if (subgroup.parentTermId !== revisionBase.taxonomy.foodGroup) throw new Error('Food subgroup does not belong to the selected food group');
   }
+  const productFoodTaxonomy = referenceIndex.taxonomy(TAXONOMY_IDS.productFood);
+  const requestedProductFood = input.productFoodId || previous?.productTaxonomy?.conceptId || (productFoodTaxonomy ? 'product_concept_other' : null);
+  if (requestedProductFood) {
+    const concept = referenceIndex.assertTerm(requestedProductFood, TAXONOMY_IDS.productFood);
+    const productSubcategory = concept.parentTermId ? referenceIndex.assertTerm(concept.parentTermId, TAXONOMY_IDS.productFood) : null;
+    const productCategory = productSubcategory?.parentTermId ? referenceIndex.assertTerm(productSubcategory.parentTermId, TAXONOMY_IDS.productFood) : null;
+    if (!productCategory || !productSubcategory || productCategory.parentTermId !== null || productSubcategory.parentTermId !== productCategory.termId) throw new Error('Product food selection must be an IngredientConcept');
+    revisionBase.productTaxonomy = { categoryId: productCategory.termId, subcategoryId: productSubcategory.termId, conceptId: concept.termId };
+  }
   revisionBase.contentHash = await sha256Json({ ...revisionBase, contentHash: '' });
   const family = {
     schemaVersion: 1, ingredientId, origin: 'user', currentRevisionId: ingredientRevisionId, status: 'active',

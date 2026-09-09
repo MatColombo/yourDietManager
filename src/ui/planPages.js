@@ -86,9 +86,17 @@ function adherenceEditor(state, day, slot, rerender) {
 }
 
 function mealCard(state, day, slot, recipes, { manage = false, rerender = null } = {}) {
-  const mc = mealClass(state, slot.mealClassId); const card = element('article', { className: 'meal-card', 'data-testid': 'plan-meal-card', 'data-meal-occurrence-id': slot.mealOccurrenceId }); const title = slot.mode === 'external' ? t(state, 'plan.external') : recipes.map(recipe => localeTitle(state, recipe)).join(' + ');
+  const anchorId = `meal-${slot.mealOccurrenceId}`;
+  const returnRoute = `/calendar/day?date=${encodeURIComponent(day.date)}#${encodeURIComponent(anchorId)}`;
+  const mc = mealClass(state, slot.mealClassId); const card = element('article', { id: anchorId, className: 'meal-card', 'data-testid': 'plan-meal-card', 'data-meal-occurrence-id': slot.mealOccurrenceId }); const title = slot.mode === 'external' ? t(state, 'plan.external') : recipes.map(recipe => localeTitle(state, recipe)).join(' + ');
   card.append(element('div', { className: 'meal-card__head' }, [element('div', {}, [element('span', { className: 'muted', text: `${slot.time} · ${mc?.name || slot.mealClassId}` }), element('h3', { text: title })]), element('span', { className: `status-chip status-chip--${slot.adherenceStatus || 'not_recorded'}`, text: t(state, `plan.adherence.${slot.adherenceStatus || 'not_recorded'}`) })]));
-  for (const recipe of recipes) card.append(element('a', { href: `/recipes/${encodeURIComponent(recipe.recipeId)}?version=${encodeURIComponent(recipe.recipeVersionId)}`, 'data-route': '', className: 'meal-recipe-link', 'data-testid': 'plan-recipe-link' }, [element('strong', { text: localeTitle(state, recipe) }), recipePills(state, recipe)]));
+  for (const recipe of recipes) {
+    const query = new URLSearchParams({ version: recipe.recipeVersionId, return: returnRoute });
+    card.append(element('a', { href: `/recipes/${encodeURIComponent(recipe.recipeId)}?${query}`, 'data-route': '', className: 'meal-recipe-link meal-recipe-link--direct', 'data-testid': 'plan-recipe-link' }, [
+      element('span', { className: 'meal-recipe-link__content' }, [element('strong', { text: localeTitle(state, recipe) }), recipePills(state, recipe)]),
+      element('span', { className: 'meal-recipe-link__action', text: t(state, 'plan.openRecipe') })
+    ]));
+  }
   if (slot.mode === 'external') card.append(element('p', { className: 'muted', text: t(state, `plan.external.policy.${slot.externalEstimate?.policy || 'unknown'}`) }));
   if (manage && rerender) card.append(adherenceEditor(state, day, slot, rerender)); return card;
 }
@@ -147,13 +155,84 @@ async function calendarBody(state, section) {
   if (state.planUi.rebalancePreview) section.append(rebalancePreviewCard(state, state.planUi.rebalancePreview));
 }
 
+async function requestRebalancePreview(state, { planInstanceId, startDate, endDate, mode, status = null, button = null }) {
+  try {
+    if (button) button.disabled = true;
+    const preview = await createRebalancePreview({
+      planInstanceId, startDate, endDate,
+      seed: seedValue(mode === 'alternative' ? 'regenerate' : 'recalculate', startDate),
+      mode
+    }, { repo: state.repo, registry: state.registry });
+    if (preview.status !== 'success') throw new Error(planFailure(state, preview.failure));
+    state.planUi.rebalancePreview = await addRecipeLabels(state, preview);
+    state.render();
+  } catch (error) {
+    if (status) status.error(error); else alert(error.message || error);
+    if (button) button.disabled = false;
+  }
+}
+
 function rebalanceRangeCard(state, visibleDays) {
-  const card = element('section', { className: 'plan-action-card', 'data-testid': 'rebalance-range' }); const start = element('input', { type: 'date', value: visibleDays[0]?.date || '', 'data-testid': 'rebalance-start' }); const end = element('input', { type: 'date', value: visibleDays.at(-1)?.date || '', 'data-testid': 'rebalance-end' }); const status = statusBox();
-  card.append(element('h2', { text: t(state, 'plan.rebalance.title') }), element('p', { className: 'muted', text: t(state, 'plan.rebalance.body') }), element('div', { className: 'form-grid form-grid--3' }, [field(t(state, 'plan.startDate'), start), field(t(state, 'plan.endDate'), end), element('button', { className: 'button', 'data-testid': 'rebalance-preview', text: t(state, 'plan.rebalance.preview'), onClick: async event => { const button = event.currentTarget; try { const source = visibleDays.find(day => day.date === start.value); if (!source) throw new Error(t(state, 'plan.rebalance.startMissing')); button.disabled = true; const preview = await createRebalancePreview({ planInstanceId: source.planInstanceId, startDate: start.value, endDate: end.value, seed: seedValue('rebalance', start.value) }, { repo: state.repo, registry: state.registry }); if (preview.status !== 'success') throw new Error(planFailure(state, preview.failure)); state.planUi.rebalancePreview = await addRecipeLabels(state, preview); state.render(); } catch (error) { status.error(error); button.disabled = false; } } })]), status.node); return card;
+  const card = element('section', { className: 'plan-action-card', 'data-testid': 'rebalance-range' });
+  const start = element('input', { type: 'date', value: visibleDays[0]?.date || '', 'data-testid': 'rebalance-start' });
+  const end = element('input', { type: 'date', value: visibleDays.at(-1)?.date || '', 'data-testid': 'rebalance-end' });
+  const status = statusBox();
+  const action = mode => async event => {
+    const source = visibleDays.find(day => day.date === start.value);
+    if (!source) { status.error(new Error(t(state, 'plan.rebalance.startMissing'))); return; }
+    await requestRebalancePreview(state, { planInstanceId: source.planInstanceId, startDate: start.value, endDate: end.value, mode, status, button: event.currentTarget });
+  };
+  card.append(
+    element('h2', { text: t(state, 'plan.rebalance.title') }),
+    element('p', { className: 'muted', text: t(state, 'plan.rebalance.body') }),
+    element('div', { className: 'form-grid form-grid--3' }, [
+      field(t(state, 'plan.startDate'), start),
+      field(t(state, 'plan.endDate'), end),
+      element('div', { className: 'page-actions' }, [
+        element('button', { className: 'button', 'data-testid': 'rebalance-preview', text: t(state, 'plan.rebalance.preview'), onClick: action('alternative') }),
+        element('button', { className: 'button button--secondary', 'data-testid': 'recalculate-preview', text: t(state, 'plan.rebalance.recalculate'), onClick: action('recalculate') })
+      ])
+    ]),
+    status.node
+  );
+  return card;
 }
 
 function rebalancePreviewCard(state, preview) {
-  const card = element('section', { className: 'plan-action-card plan-action-card--accent', 'data-testid': 'rebalance-preview-card' }); card.append(element('div', { className: 'section-heading' }, [element('div', {}, [element('h2', { text: t(state, 'plan.rebalance.previewTitle') }), element('p', { className: 'muted', text: t(state, 'plan.rebalance.selectDays') })]), element('button', { className: 'button button--secondary button--small', text: t(state, 'common.cancel'), onClick: () => { state.planUi.rebalancePreview = null; state.render(); } })])); const days = previewDays(state, preview, { selectable: true }); card.append(days, element('button', { className: 'button', 'data-testid': 'rebalance-confirm', text: t(state, 'plan.rebalance.confirm'), onClick: async event => { const button = event.currentTarget; try { button.disabled = true; const selectedDates = [...days.querySelectorAll('input[data-preview-date]:checked')].map(input => input.dataset.previewDate); await commitRebalancePreview(preview, { selectedDates, repo: state.repo, registry: state.registry }); state.planUi.rebalancePreview = null; state.render(); } catch (error) { alert(error.message || error); button.disabled = false; } } })); return card;
+  const summary = preview.regenerationSummary;
+  const card = element('section', { className: 'plan-action-card plan-action-card--accent', 'data-testid': 'rebalance-preview-card' });
+  card.append(element('div', { className: 'section-heading' }, [
+    element('div', {}, [
+      element('h2', { text: t(state, 'plan.rebalance.previewTitle') }),
+      element('p', { className: 'muted', text: t(state, 'plan.rebalance.selectDays') })
+    ]),
+    element('button', { className: 'button button--secondary button--small', text: t(state, 'common.cancel'), onClick: () => { state.planUi.rebalancePreview = null; state.render(); } })
+  ]));
+  if (summary) {
+    card.append(element('div', {
+      className: summary.unchangedSlots ? 'validation-box validation-box--warning' : 'validation-box',
+      'data-testid': 'rebalance-summary',
+      'data-changed': String(summary.changedSlots),
+      'data-unchanged': String(summary.unchangedSlots),
+      'data-total': String(summary.totalPlannedSlots),
+      text: t(state, 'plan.rebalance.summary', { changed: summary.changedSlots, total: summary.totalPlannedSlots, unchanged: summary.unchangedSlots })
+    }));
+    if (summary.strictFailure) card.append(element('p', { className: 'muted', text: t(state, 'plan.rebalance.boundedReason') }));
+  }
+  const days = previewDays(state, preview, { selectable: true });
+  card.append(days, element('button', {
+    className: 'button', 'data-testid': 'rebalance-confirm', text: t(state, 'plan.rebalance.confirm'),
+    onClick: async event => {
+      const button = event.currentTarget;
+      try {
+        button.disabled = true;
+        const selectedDates = [...days.querySelectorAll('input[data-preview-date]:checked')].map(input => input.dataset.previewDate);
+        await commitRebalancePreview(preview, { selectedDates, repo: state.repo, registry: state.registry });
+        state.planUi.rebalancePreview = null; state.render();
+      } catch (error) { alert(error.message || error); button.disabled = false; }
+    }
+  }));
+  return card;
 }
 
 export function calendarPage(state) { state.planUi ||= {}; const section = page(state, 'page.calendar.title', 'plan.calendar.loading', 'CALENDAR'); void calendarBody(state, section).catch(error => section.append(element('div', { className: 'validation-box validation-box--error', text: error.message || String(error) }))); return section; }
@@ -163,7 +242,15 @@ async function manageDayBody(state, section) {
   const ids = [...new Set(day.mealSlots.flatMap(slot => slot.recipeComponents.map(component => component.recipeVersionId)))]; const rows = await state.repo.getMany('recipeVersions', ids); const recipeMap = new Map(rows.map(recipe => [recipe.recipeVersionId, recipe])); const rerender = async () => state.render();
   const dc = dayClass(state, day.dayClassId); section.append(element('div', { className: 'day-heading-card' }, [element('span', { className: 'day-swatch day-swatch--large', style: `background:${dc?.color || '#888'}` }), element('div', {}, [element('strong', { text: `${dc?.name || day.dayClassId} · ${t(state, 'plan.cycleDay', { day: day.cycleDay })}` }), element('span', { className: 'muted', text: t(state, `plan.dayStatus.${day.status}`) })])]), nutritionPanel(state, day));
   const list = element('div', { className: 'meal-list' }); for (const slot of day.mealSlots) { const card = mealCard(state, day, slot, slot.recipeComponents.map(component => recipeMap.get(component.recipeVersionId)).filter(Boolean), { manage: true, rerender }); if (slot.mode === 'planned') card.append(element('button', { className: 'button button--secondary button--small', 'data-testid': 'plan-replace', text: t(state, 'plan.replace'), onClick: async event => { const button = event.currentTarget; try { button.disabled = true; state.planUi.replacePreview = await createReplacementPreview({ planInstanceId: day.planInstanceId, calendarDayId: day.calendarDayId, mealOccurrenceId: slot.mealOccurrenceId, seed: seedValue('replace', date) }, { repo: state.repo, registry: state.registry }); state.render(); } catch (error) { alert(error.message || error); button.disabled = false; } } })); list.append(card); } section.append(list);
-  section.append(element('section', { className: 'plan-action-card' }, [element('h2', { text: t(state, 'plan.rebalance.dayTitle') }), element('p', { className: 'muted', text: t(state, 'plan.rebalance.dayBody') }), element('button', { className: 'button', 'data-testid': 'rebalance-day-preview', text: t(state, 'plan.rebalance.preview'), onClick: async event => { const button = event.currentTarget; try { button.disabled = true; const preview = await createRebalancePreview({ planInstanceId: day.planInstanceId, startDate: date, endDate: date, seed: seedValue('rebalance', date) }, { repo: state.repo, registry: state.registry }); if (preview.status !== 'success') throw new Error(planFailure(state, preview.failure)); state.planUi.rebalancePreview = await addRecipeLabels(state, preview); state.render(); } catch (error) { alert(error.message || error); button.disabled = false; } } })]));
+  const dayActions = element('section', { className: 'plan-action-card' }, [
+    element('h2', { text: t(state, 'plan.rebalance.dayTitle') }),
+    element('p', { className: 'muted', text: t(state, 'plan.rebalance.dayBody') })
+  ]);
+  dayActions.append(element('div', { className: 'page-actions' }, [
+    element('button', { className: 'button', 'data-testid': 'rebalance-day-preview', text: t(state, 'plan.rebalance.preview'), onClick: event => requestRebalancePreview(state, { planInstanceId: day.planInstanceId, startDate: date, endDate: date, mode: 'alternative', button: event.currentTarget }) }),
+    element('button', { className: 'button button--secondary', 'data-testid': 'recalculate-day-preview', text: t(state, 'plan.rebalance.recalculate'), onClick: event => requestRebalancePreview(state, { planInstanceId: day.planInstanceId, startDate: date, endDate: date, mode: 'recalculate', button: event.currentTarget }) })
+  ]));
+  section.append(dayActions);
   if (state.planUi.replacePreview?.calendarDayId === day.calendarDayId) section.append(replacementPreviewCard(state, state.planUi.replacePreview)); if (state.planUi.rebalancePreview?.sourcePlanInstanceId === day.planInstanceId) section.append(rebalancePreviewCard(state, state.planUi.rebalancePreview));
 }
 

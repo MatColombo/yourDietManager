@@ -60,7 +60,7 @@ test('pre-V1 epoch reset destroys RC data, reseeds canonical reference data and 
   assert.equal(storage.getItem('unrelated'), 'keep');
   assert.deepEqual(caches.deleted.sort(), ['ydm-data-v12-root','ydm-shell-v26-root']);
   assert.deepEqual(await repo.getMeta('preV1Reset'), {
-    previousEpoch:'legacy-rc-epoch', previousCatalogVersion:'0.3.0-dev', resetAt:'2026-09-07T12:00:00.000Z', appVersion:'1.0.0-rc.29', policy:'destructive-pre-v1'
+    previousEpoch:'legacy-rc-epoch', previousCatalogVersion:'0.3.0-dev', resetAt:'2026-09-07T12:00:00.000Z', appVersion:'1.0.0-rc.32', policy:'destructive-pre-v1'
   });
 });
 
@@ -82,7 +82,7 @@ test('Planner Phase B publication is coherent: 600 ingredients, 1800 recipes and
   const revisionIds = new Set(catalog.ingredientRevisions.map(item => item.ingredientRevisionId));
   const core = catalog.manifest.packs.find(pack => pack.packId === 'core');
 
-  assert.equal(catalog.manifest.catalogVersion, '1.1.0-planner-phase-b');
+  assert.equal(catalog.manifest.catalogVersion, '1.2.0-planner-phase-d');
   assert.equal(catalog.manifest.publication.channel, 'development');
   assert.equal(catalog.manifest.publication.requiredHumanReview, false);
   assert.equal(catalog.manifest.publication.releaseEligible, false);

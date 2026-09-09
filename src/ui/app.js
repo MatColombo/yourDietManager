@@ -11,12 +11,13 @@ import { ingredientDetailPage, ingredientEditorPage, ingredientsPage, packsPage,
 import { todayPage, calendarPage, manageDayPage, historyPage } from './planPages.js';
 import { shoppingPage } from './shoppingPages.js';
 import { plannerValidationPage } from './plannerValidationPage.js';
+import { manualAcceptancePage } from './manualAcceptancePage.js';
 import { referenceDataPage } from './referenceDataPages.js';
 import { routePath } from '../lib/appBase.js';
 import { notificationRegion } from './uiState.js';
 
 const PRIMARY = [['/', 'nav.today'], ['/calendar', 'nav.calendar'], ['/recipes', 'nav.recipes'], ['/shopping', 'nav.shopping']];
-const SECONDARY = [['/configure', 'nav.configure'], ['/planner-validation', 'nav.plannerValidation'], ['/appearance', 'nav.appearance'], ['/language', 'nav.language'], ['/backup', 'nav.backup']];
+const SECONDARY = [['/configure', 'nav.configure'], ['/planner-validation', 'nav.plannerValidation'], ['/manual-acceptance', 'nav.manualAcceptance'], ['/appearance', 'nav.appearance'], ['/language', 'nav.language'], ['/backup', 'nav.backup']];
 
 function navLink(state, [href, key]) {
   const currentPath = routePath();
@@ -178,6 +179,7 @@ function routePage(state) {
   if (path === '/recipes') return recipesPage(state);
   if (path === '/shopping') return shoppingPage(state);
   if (path === '/planner-validation') return plannerValidationPage(state);
+  if (path === '/manual-acceptance') return manualAcceptancePage(state);
   if (path === '/configure/nutrition') return nutritionPage(state);
   if (path === '/configure/safety') return safetyPage(state);
   if (path === '/configure/preferences') return preferencesPage(state);
@@ -217,6 +219,14 @@ export function renderApp(root, state) {
   if (heading) document.title = `${heading.textContent} · ${state.i18n.t('app.name')}`;
   if (routeChanged && heading) {
     heading.setAttribute('tabindex', '-1');
-    queueMicrotask(() => heading.focus({ preventScroll: true }));
+    queueMicrotask(() => {
+      heading.focus({ preventScroll: true });
+      const rawHash = globalThis.location.hash?.slice(1);
+      if (rawHash) {
+        const target = document.getElementById(decodeURIComponent(rawHash));
+        target?.scrollIntoView?.({ block: 'center' });
+        target?.classList?.add('context-return-target');
+      }
+    });
   }
 }

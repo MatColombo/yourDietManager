@@ -38,13 +38,13 @@ async function releaseRepo() {
 
 test('Step3 A - V1 catalog backup validates and round-trips user configuration without replacing base catalog', async () => {
   const { repo, registry, configuration } = await releaseRepo();
-  assert.equal(await repo.getMeta('activeCatalogVersion'), '1.1.0-planner-phase-b');
+  assert.equal(await repo.getMeta('activeCatalogVersion'), '1.2.0-planner-phase-d');
   assert.equal(await repo.count('recipes'), 1800);
 
   const backup = await createBackup({ repo, registry });
   await validateBackup(backup, { repo, registry });
-  assert.equal(backup.catalog.catalogVersion, '1.1.0-planner-phase-b');
-  assert.equal(backup.appVersion, '1.0.0-rc.29');
+  assert.equal(backup.catalog.catalogVersion, '1.2.0-planner-phase-d');
+  assert.equal(backup.appVersion, '1.0.0-rc.32');
 
   const original = await repo.get('themeProfiles', configuration.themeProfileId);
   const changed = structuredClone(original);
@@ -63,7 +63,7 @@ test('Step3 B - delete local data clears private state but preserves public PWA 
   const { repo } = await releaseRepo();
   await repo.setMeta('test-private-meta', 'remove-me');
   const storage = new LocalStorageMock({ 'ydm:route': '/shopping', 'ydm:private': 'x', 'unrelated:key': 'keep' });
-  const caches = new CacheStorageMock(['ydm-shell-v32-root', 'ydm-data-v16-root', 'third-party-cache']);
+  const caches = new CacheStorageMock(['ydm-shell-v35-root', 'ydm-data-v17-root', 'third-party-cache']);
 
   const result = await deleteAllLocalData({ repo, localStorage: storage, cacheStorage: caches });
   assert.deepEqual(result.localStorageKeys.sort(), ['ydm:private', 'ydm:route']);
@@ -71,7 +71,7 @@ test('Step3 B - delete local data clears private state but preserves public PWA 
   assert.deepEqual(result.cacheNames, []);
   assert.equal(storage.getItem('ydm:private'), null);
   assert.equal(storage.getItem('unrelated:key'), 'keep');
-  assert.deepEqual(await caches.keys(), ['ydm-shell-v32-root', 'ydm-data-v16-root', 'third-party-cache']);
+  assert.deepEqual(await caches.keys(), ['ydm-shell-v35-root', 'ydm-data-v17-root', 'third-party-cache']);
   assert.equal(await repo.getMeta('activeCatalogVersion'), undefined);
   assert.equal(await repo.count('recipes'), 0);
   assert.equal(await repo.count('planInstances'), 0);
@@ -79,13 +79,13 @@ test('Step3 B - delete local data clears private state but preserves public PWA 
 
 test('Step3 C - destructive delete can clear owned public caches when explicitly requested', async () => {
   const repo = new MemoryRepository();
-  await repo.setMeta('activeCatalogVersion', '1.1.0-planner-phase-b');
+  await repo.setMeta('activeCatalogVersion', '1.2.0-planner-phase-d');
   const storage = new LocalStorageMock({ 'ydm:private': 'x' });
-  const caches = new CacheStorageMock(['ydm-shell-v32-root', 'ydm-data-v16-root', 'third-party-cache']);
+  const caches = new CacheStorageMock(['ydm-shell-v35-root', 'ydm-data-v17-root', 'third-party-cache']);
 
   const result = await deleteAllLocalData({ repo, localStorage: storage, cacheStorage: caches, clearPublicCaches: true });
   assert.equal(result.publicCachesPreserved, false);
-  assert.deepEqual(result.cacheNames.sort(), ['ydm-data-v16-root', 'ydm-shell-v32-root']);
+  assert.deepEqual(result.cacheNames.sort(), ['ydm-data-v17-root', 'ydm-shell-v35-root']);
   assert.deepEqual(await caches.keys(), ['third-party-cache']);
 });
 

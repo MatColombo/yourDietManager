@@ -238,18 +238,111 @@ export async function commitGeneratedPreview(preview, { repo = repositories, reg
   return { planInstance: preview.planInstance, operation };
 }
 
-export async function createRebalancePreview({ planInstanceId, startDate, endDate, seed = 'rebalance', createdAt = null }, { repo = repositories, registry } = {}) {
+
+function plannedRecipeIdsByOccurrence(days) {
+  const result = {};
+  for (const day of days || []) for (const slot of day.mealSlots || []) {
+    if (slot.mode !== 'planned') continue;
+    result[slot.mealOccurrenceId] = (slot.recipeComponents || []).map(component => component.recipeVersionId).sort();
+  }
+  return result;
+}
+
+function summarizeRegeneration(sourceDays, generatedDays, { mode, strictAttempt = null } = {}) {
+  const before = plannedRecipeIdsByOccurrence(sourceDays);
+  const after = plannedRecipeIdsByOccurrence(generatedDays);
+  const details = [];
+  let changedSlots = 0;
+  let unchangedSlots = 0;
+  for (const [mealOccurrenceId, previousRecipeVersionIds] of Object.entries(before)) {
+    const nextRecipeVersionIds = after[mealOccurrenceId] || [];
+    const changed = previousRecipeVersionIds.join('|') !== nextRecipeVersionIds.join('|');
+    if (changed) changedSlots += 1;
+    else unchangedSlots += 1;
+    details.push({
+      mealOccurrenceId,
+      changed,
+      previousRecipeVersionIds,
+      nextRecipeVersionIds,
+      reason: changed ? 'alternative_selected' : mode === 'recalculate'
+        ? 'recalculate_mode_same_result_allowed'
+        : strictAttempt?.status === 'failed'
+          ? 'retained_after_strict_alternative_failed_in_bounded_search'
+          : 'retained_by_bounded_search'
+    });
+  }
+  return {
+    mode,
+    totalPlannedSlots: details.length,
+    changedSlots,
+    unchangedSlots,
+    status: unchangedSlots === 0 ? 'all_changed' : changedSlots === 0 ? 'unchanged' : 'partial',
+    boundedSearch: true,
+    strictAttemptStatus: strictAttempt?.status || (mode === 'alternative' ? 'success' : 'not_applicable'),
+    strictFailure: strictAttempt?.status === 'failed' ? {
+      code: strictAttempt.failure?.code || 'no_feasible_plan',
+      reason: strictAttempt.failure?.reason || strictAttempt.failure?.detail || 'strict_alternative_not_found_in_bounded_search'
+    } : null,
+    details
+  };
+}
+
+export async function createRebalancePreview({ planInstanceId, startDate, endDate, seed = 'rebalance', createdAt = null, mode = 'alternative' }, { repo = repositories, registry } = {}) {
+  if (!['alternative', 'recalculate'].includes(mode)) throw new Error(`Unknown rebalance mode ${mode}`);
   const plan = await repo.get('planInstances', planInstanceId); if (!plan) throw new Error(`PlanInstance ${planInstanceId} not found`);
   if (startDate < plan.startDate || endDate > plan.endDate || endDate < startDate) throw new Error('Rebalance range must be inside the selected PlanInstance');
   const sourceDays = await repo.getAllByIndex('calendarDays', 'date', { kind: 'bound', lower: startDate, upper: endDate });
   const selected = sourceDays.filter(day => day.planInstanceId === planInstanceId).sort((a, b) => a.date.localeCompare(b.date));
   if (!selected.length || selected[0].date !== startDate || selected.at(-1).date !== endDate) throw new Error('Rebalance range contains missing calendar days');
-  const generated = await createPlanPreview({ horizon: { startDate, endDate }, seed, createdAt: createdAt || new Date().toISOString(), reason: 'rebalance', startCycleDayOverride: selected[0].cycleDay, historyPlanInstanceId: planInstanceId, previousGenerationRunIdOverride: plan.generationRunId, continuationPolicy: plan.continuationPolicy }, { repo, registry });
-  if (generated.status === 'success') {
-    generated.generationRun.diagnostics = { ...generated.generationRun.diagnostics, targetPlanInstanceId: planInstanceId, rebalanceRange: { startDate, endDate } };
-    registry.assert('generationRun', generated.generationRun);
+
+  const currentRecipeVersionIdsByOccurrence = plannedRecipeIdsByOccurrence(selected);
+  const baseOptions = {
+    horizon: { startDate, endDate }, seed, createdAt: createdAt || new Date().toISOString(), reason: 'rebalance',
+    startCycleDayOverride: selected[0].cycleDay, historyPlanInstanceId: planInstanceId,
+    previousGenerationRunIdOverride: plan.generationRunId, continuationPolicy: plan.continuationPolicy
+  };
+
+  let strictAttempt = null;
+  let generated;
+  if (mode === 'alternative') {
+    strictAttempt = await createPlanPreview({
+      ...baseOptions,
+      regenerationPolicy: { mode: 'exclude_current', currentRecipeVersionIdsByOccurrence }
+    }, { repo, registry });
+    generated = strictAttempt.status === 'success' ? strictAttempt : await createPlanPreview({
+      ...baseOptions,
+      regenerationPolicy: { mode: 'prefer_alternative', currentRecipePenalty: 100, currentRecipeVersionIdsByOccurrence }
+    }, { repo, registry });
+  } else {
+    generated = await createPlanPreview(baseOptions, { repo, registry });
   }
-  return { ...generated, sourcePlanInstanceId: planInstanceId, sourceDays: selected };
+
+  if (generated.status === 'success') {
+    const regenerationSummary = summarizeRegeneration(selected, generated.calendarDays, { mode, strictAttempt });
+    generated.regenerationSummary = regenerationSummary;
+    generated.generationRun.diagnostics = {
+      ...generated.generationRun.diagnostics,
+      targetPlanInstanceId: planInstanceId,
+      rebalanceRange: { startDate, endDate },
+      regeneration: regenerationSummary
+    };
+    registry.assert('generationRun', generated.generationRun);
+  } else if (mode === 'alternative' && strictAttempt?.status === 'failed') {
+    generated.diagnostics = {
+      ...generated.diagnostics,
+      regeneration: {
+        mode,
+        boundedSearch: true,
+        strictAttemptStatus: 'failed',
+        strictFailure: {
+          code: strictAttempt.failure?.code || 'no_feasible_plan',
+          reason: strictAttempt.failure?.reason || strictAttempt.failure?.detail || 'strict_alternative_not_found_in_bounded_search'
+        },
+        fallbackStatus: generated.status
+      }
+    };
+  }
+  return { ...generated, rebalanceMode: mode, sourcePlanInstanceId: planInstanceId, sourceDays: selected };
 }
 
 export async function commitRebalancePreview(preview, { selectedDates = null, repo = repositories, registry, createdAt = null } = {}) {
@@ -270,7 +363,7 @@ export async function commitRebalancePreview(preview, { selectedDates = null, re
   const beforeMeta = await metaBefore(repo, ['lastSuccessfulGenerationRunId', 'planUpdatedAt']);
   const before = mutationSnapshot({ puts: { calendarDays: oldDays, planInstances: [plan] }, deletes: { generationRuns: [run.generationRunId] }, ...beforeMeta });
   const after = mutationSnapshot({ puts: { calendarDays: nextDays, planInstances: [nextPlan], generationRuns: [run] }, metaSet: { lastSuccessfulGenerationRunId: run.generationRunId, planUpdatedAt: timestamp } });
-  const operation = await commitOperation({ planInstanceId: plan.planInstanceId, kind: 'rebalance', before, after, createdAt: timestamp, metadata: { startDate: preview.generationRun.horizon.startDate, endDate: preview.generationRun.horizon.endDate, selectedDates: [...requested].sort(), seed: run.seed, generationRunId: run.generationRunId } }, { repo, registry });
+  const operation = await commitOperation({ planInstanceId: plan.planInstanceId, kind: 'rebalance', before, after, createdAt: timestamp, metadata: { startDate: preview.generationRun.horizon.startDate, endDate: preview.generationRun.horizon.endDate, selectedDates: [...requested].sort(), seed: run.seed, generationRunId: run.generationRunId, rebalanceMode: preview.rebalanceMode || 'alternative', regenerationSummary: preview.regenerationSummary || null } }, { repo, registry });
   return { calendarDays: nextDays, generationRun: run, operation };
 }
 

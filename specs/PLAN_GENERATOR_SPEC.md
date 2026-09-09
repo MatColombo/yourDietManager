@@ -145,3 +145,8 @@ Ogni GenerationRun registra la classificazione hard/soft usata dal motore. Nutri
 Il ranking soft non puo eliminare preventivamente tutta la copertura energetica. Prima del beam il planner conserva candidati e combinazioni distribuiti lungo il fronte energetico (low/target/high/quantili), oltre ai migliori per score. Durante l'espansione il beam usa i min/max energetici ancora raggiungibili per scartare solo stati che non possono piu entrare nella finestra hard giornaliera.
 
 Un failure energetico del bounded search deve dichiarare `proof=bounded_search`. `NO_FEASIBLE_PLAN` significa che non e stata trovata una soluzione hard-valid nel catalogo/configurazione/search space corrente; non e una dimostrazione matematica di inesistenza globale.
+
+## Phase D1 — regeneration modes
+
+Date regeneration MUST distinguish `recalculate` from `alternative`. `recalculate` may return the same RecipeVersion. `alternative` MUST first exclude the currently assigned RecipeVersion per meal occurrence and rerun the same hard-constraint search. Only if that strict bounded search fails may the engine fall back to a search that permits the current RecipeVersion with a dominant soft penalty. Any retained meal MUST carry an explicit bounded-search reason. Neither mode may relax hard constraints or serving invariants.
+

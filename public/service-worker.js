@@ -1,8 +1,8 @@
 const BASE_URL = new URL('./', self.location.href);
 const BASE_PATH = BASE_URL.pathname.endsWith('/') ? BASE_URL.pathname : `${BASE_URL.pathname}/`;
 const CACHE_SCOPE_KEY = BASE_PATH.replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '') || 'root';
-const SHELL_CACHE = `ydm-shell-v32-${CACHE_SCOPE_KEY}`;
-const DATA_CACHE = `ydm-data-v16-${CACHE_SCOPE_KEY}`;
+const SHELL_CACHE = `ydm-shell-v35-${CACHE_SCOPE_KEY}`;
+const DATA_CACHE = `ydm-data-v17-${CACHE_SCOPE_KEY}`;
 const scoped = path => new URL(String(path || '').replace(/^\/+/, ''), BASE_URL).pathname;
 const DATA_PREFIX = scoped('data/');
 const SCHEMA_PREFIX = scoped('schemas/');
@@ -16,10 +16,10 @@ const SHELL = [
   'src/repositories/domainRepositories.js', 'src/repositories/repositoryHub.js',
   'src/services/backupEngine.js', 'src/services/preV1DataEpoch.js', 'src/services/catalogDataSource.js', 'src/services/catalogImporter.js', 'src/services/catalogUpdater.js', 'src/services/catalogQuery.js',
   'src/services/configurationBootstrap.js', 'src/services/configurationService.js', 'src/services/configurationTransfer.js', 'src/services/customCatalogTransfer.js', 'src/services/migrationRunner.js', 'src/services/personalCatalogService.js',
-  'src/services/planCandidateService.js', 'src/services/planGenerationService.js', 'src/services/plannerValidationService.js', 'src/services/effectivePlanService.js', 'src/services/operationHistoryService.js', 'src/services/shoppingService.js',
+  'src/services/manualAcceptanceService.js', 'src/services/planCandidateService.js', 'src/services/planGenerationService.js', 'src/services/plannerValidationService.js', 'src/services/effectivePlanService.js', 'src/services/operationHistoryService.js', 'src/services/shoppingService.js',
   'src/services/offlineCatalog.js', 'src/services/recipeHumanReviewService.js', 'src/services/storageMetrics.js', 'src/services/referenceDataService.js', 'src/services/referenceDataProposalService.js', 'src/services/referenceDataEditorService.js',
   'src/planner/seededRandom.js', 'src/planner/planMath.js', 'src/planner/recipeFeatures.js', 'src/planner/hardFilter.js', 'src/planner/softScoring.js', 'src/planner/beamSolver.js', 'src/planner/planGenerator.js', 'src/planner/validationProfiles.js',
-  'src/styles.css', 'src/theme/themeEngine.js', 'src/ui/app.js', 'src/ui/catalogPages.js', 'src/ui/configurationPages.js', 'src/ui/referenceDataPages.js', 'src/ui/guidedControls.js', 'src/ui/planPages.js', 'src/ui/plannerValidationPage.js', 'src/ui/shoppingPages.js', 'src/ui/dom.js', 'src/ui/router.js', 'src/ui/uiState.js',
+  'src/styles.css', 'src/theme/themeEngine.js', 'src/ui/app.js', 'src/ui/manualAcceptancePage.js', 'src/ui/catalogPages.js', 'src/ui/configurationPages.js', 'src/ui/referenceDataPages.js', 'src/ui/guidedControls.js', 'src/ui/planPages.js', 'src/ui/plannerValidationPage.js', 'src/ui/shoppingPages.js', 'src/ui/dom.js', 'src/ui/router.js', 'src/ui/uiState.js',
   'schemas/allergy-intolerance-profile.schema.json', 'schemas/app-config.schema.json', 'schemas/catalog-publication.schema.json', 'schemas/production-review-publication.schema.json', 'schemas/recipe-human-review.schema.json', 'schemas/recipe-human-review-bundle.schema.json', 'schemas/backup.schema.json', 'schemas/calendar-day.schema.json', 'schemas/catalog-manifest.schema.json', 'schemas/catalog-pack.schema.json', 'schemas/cycle.schema.json', 'schemas/day-class.schema.json', 'schemas/domain-enums.schema.json', 'schemas/food-preferences.schema.json', 'schemas/generation-run.schema.json', 'schemas/ingredient-revision.schema.json', 'schemas/ingredient.schema.json', 'schemas/meal-class.schema.json', 'schemas/nutrition-profile.schema.json', 'schemas/operation.schema.json', 'schemas/plan-instance.schema.json', 'schemas/recipe-corpus-orchestration-run.schema.json', 'schemas/recipe-corpus-policy.schema.json', 'schemas/recipe-corpus-snapshot.schema.json', 'schemas/recipe-generation-job.schema.json', 'schemas/recipe-version.schema.json', 'schemas/recipe.schema.json', 'schemas/shopping-checklist.schema.json', 'schemas/taxonomy.schema.json', 'schemas/taxonomy-term.schema.json', 'schemas/reference-data-proposal.schema.json', 'schemas/production-recipe-pipeline-policy.schema.json', 'schemas/production-recipe-batch-report.schema.json', 'schemas/production-recipe-review-decisions.schema.json', 'schemas/production-scale-gate-report.schema.json', 'schemas/controlled-scale-plan.schema.json', 'schemas/theme-profile.schema.json',
   'data/locales/it.json', 'data/locales/en.json', 'data/catalog-manifest.json', 'data/reference-data/taxonomies-0001.json', 'data/reference-data/taxonomy-terms-0001.json'
 ].map(scoped);

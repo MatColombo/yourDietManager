@@ -1,6 +1,6 @@
 # V1 Planner Phase C — Manual Validation Protocol
 
-**Status:** ready for user-led validation on `1.0.0-rc.29` / catalog `1.1.0-planner-phase-b`.
+**Status:** ready for user-led validation on `1.0.0-rc.30` / catalog `1.2.0-planner-phase-d`.
 
 **Purpose:** judge planner power, constraint semantics, explainability and practical variety before any return to V1 release freeze.
 
@@ -294,3 +294,11 @@ P1 findings:
 P2 findings:
 Overall planner/variety assessment:
 ```
+
+## Phase D3–D5 manual UX checks
+
+1. In Preferenze add a new rule, choose/search `Noodles`, and confirm the picker presents the conceptual path once rather than eleven technical rows; coverage should report 11 current ingredients.
+2. In Configura -> Ingredienti filter `Latticini`: expected 19 current IngredientFamily rows. Combine with State to verify technical variants remain filterable when needed.
+3. In Ricette filter `Noodles`: expected 327 recipes on catalog `1.2.0-planner-phase-d`. Filter `Latticini`: expected 637. Combine Vegan + No-cook: expected 196.
+4. Open a planned day and click a recipe directly from its meal card. From recipe detail open one ingredient. Use contextual Back twice and verify you return to the same day and the exact originating meal card is centered/highlighted.
+5. Verify these actions do not change the plan, servings, recipe quantities or current data epoch.

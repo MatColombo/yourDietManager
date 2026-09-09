@@ -1,9 +1,9 @@
 export const DB_NAME = 'yourDietManager';
-export const DB_VERSION = 5;
+export const DB_VERSION = 6;
 export const CONTENT_SCHEMA_VERSION = 3;
 export const BACKUP_FORMAT_VERSION = 1;
-export const APP_VERSION = '1.0.0-rc.29';
-export const PRE_V1_DATA_EPOCH = 'v1-planner-phase-b-epoch-1';
+export const APP_VERSION = '1.0.0-rc.32';
+export const PRE_V1_DATA_EPOCH = 'v1-planner-phase-d-epoch-1';
 
 export const STORE_DEFINITIONS = {
   meta: { keyPath: 'key', indexes: [] },
@@ -49,6 +49,9 @@ export const STORE_DEFINITIONS = {
       { name: 'catalogVersion', keyPath: 'catalogVersion' },
       { name: 'originAndCatalogVersion', keyPath: ['origin', 'catalogVersion'] },
       { name: 'taxonomy.foodGroup', keyPath: 'taxonomy.foodGroup' },
+      { name: 'productTaxonomy.categoryId', keyPath: 'productTaxonomy.categoryId' },
+      { name: 'productTaxonomy.subcategoryId', keyPath: 'productTaxonomy.subcategoryId' },
+      { name: 'productTaxonomy.conceptId', keyPath: 'productTaxonomy.conceptId' },
       { name: 'allergenIds', keyPath: 'allergenIds', options: { multiEntry: true } }
     ]
   },

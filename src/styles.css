@@ -391,3 +391,23 @@ textarea:focus-visible, summary:focus-visible { outline: 3px solid var(--ydm-col
   .validation-sweep-row { grid-template-columns: 1fr; }
   .validation-sweep-row--head { display: none; }
 }
+
+/* Phase D3-D5: taxonomy discovery and contextual navigation */
+.product-food-picker { display:grid; gap:5px; min-width:0; }
+.product-food-picker__summary { min-height:1.1em; }
+.chip-list--compact { gap:5px; margin-top:2px; }
+.chip--taxonomy { font-size:.72rem; padding:3px 7px; }
+.ingredient-card__title { font-weight:700; }
+.meal-recipe-link--direct { border:1px solid transparent; border-top-color:var(--ydm-color-border); border-radius:8px; padding:10px 8px; }
+.meal-recipe-link--direct:hover { border-color:color-mix(in srgb,var(--ydm-color-primary) 55%,var(--ydm-color-border)); background:color-mix(in srgb,var(--ydm-color-primary) 5%,var(--ydm-color-background)); }
+.meal-recipe-link__content { display:grid; gap:5px; min-width:0; }
+.meal-recipe-link__action { color:var(--ydm-color-primary); font-weight:700; white-space:nowrap; }
+.context-return-target { outline:2px solid color-mix(in srgb,var(--ydm-color-primary) 70%,transparent); outline-offset:4px; }
+.detail-list__wide { grid-column:1 / -1; }
+@media (max-width:680px) { .meal-recipe-link__action { white-space:normal; } }
+.manual-acceptance-page { align-content: start; }
+.acceptance-case { border-top: 1px solid var(--border); padding: 1rem 0; display: grid; gap: .75rem; }
+.acceptance-case:first-of-type { border-top: 0; }
+.acceptance-case__controls { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .6fr); gap: .75rem; }
+.acceptance-case textarea, .acceptance-case input { width: 100%; }
+@media (max-width: 720px) { .acceptance-case__controls { grid-template-columns: 1fr; } }

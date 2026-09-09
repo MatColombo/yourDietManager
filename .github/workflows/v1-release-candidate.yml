@@ -1,4 +1,4 @@
-name: Verify V1 Planner Phase B Corpus
+name: Verify V1 Planner Phase D
 
 on:
   workflow_dispatch:
@@ -7,11 +7,11 @@ permissions:
   contents: read
 
 concurrency:
-  group: v1-planner-phase-b-${{ github.ref }}
+  group: v1-planner-phase-d-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  verify-v1-planner-phase-b:
+  verify-v1-planner-phase-d:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -23,15 +23,17 @@ jobs:
         with:
           node-version: 22
 
-      - name: Rebuild Phase B planner corpus
+      - name: Rebuild Phase B source and Phase D taxonomy
         run: |
           npm run corpus:build-planner-phase-b
-          npm run catalog:publish-planner-phase-b
+          npm run corpus:build-planner-phase-d
+          npm run catalog:publish-planner-phase-d
 
-      - name: Verify generated Phase B data has no drift
+      - name: Verify generated planner-validation data has no drift
         run: |
           git diff --exit-code -- \
             corpus/production/planner-phase-b \
+            corpus/production/planner-phase-d \
             public/data/catalog-manifest.json \
             public/data/ingredients \
             public/data/recipes \
@@ -53,8 +55,11 @@ jobs:
         env:
           YDM_BROWSER_REQUIRED: '1'
 
-      - name: Verify Phase B explicitly
+      - name: Verify Phase B source invariants explicitly
         run: npm run v1:planner-phase-b
+
+      - name: Verify Phase D explicitly
+        run: npm run v1:planner-phase-d
 
       - name: Build GitHub Pages planner-validation artifact
         run: npm run build
@@ -67,13 +72,12 @@ jobs:
       - name: Upload planner-validation artifact
         uses: actions/upload-artifact@v4
         with:
-          name: yourdietmanager-planner-phase-b-${{ github.run_number }}
+          name: yourdietmanager-planner-phase-d-${{ github.run_number }}
           path: |
             dist
-            corpus/production/planner-phase-b/build-evidence.json
-            corpus/production/planner-phase-b/publication-evidence.json
-            corpus/production/planner-phase-b/recipe-eligibility.json
+            corpus/production/planner-phase-d/build-evidence.json
+            corpus/production/planner-phase-d/publication-evidence.json
             V1_PLANNER_VALIDATION_PLAN.md
-            V1_PLANNER_PHASE_B_REPORT.md
+            V1_PLANNER_PHASE_D_REPORT.md
           if-no-files-found: error
           retention-days: 14

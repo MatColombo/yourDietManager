@@ -74,6 +74,7 @@
         "properties": {
           "ruleType": {
             "enum": [
+              "productFood",
               "foodCategory",
               "ingredient",
               "tag",

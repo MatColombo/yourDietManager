@@ -335,7 +335,22 @@ try {
   const ingredientState = await evaluate(cdp, `({path: location.pathname, title: document.querySelector('[data-testid="ingredient-detail"] h2')?.textContent || '', edit: !!document.querySelector('[data-testid="ingredient-detail"] a[href$="/edit"]')})`);
   if (!ingredientState.title || !ingredientState.edit) throw new Error(`Ingredient detail/edit regression: ${JSON.stringify(ingredientState)}`);
 
+  // Phase D3-D4 acceptance: taxonomy facets must operate on the real catalog.
+  await cdp.send('Page.navigate', { url: `${origin}/configure/ingredients?food=product_category_dairy` });
+  await waitExpression(cdp, `!!document.querySelector('[data-testid=\"product-food-picker\"]') && document.querySelectorAll('.ingredient-card').length === 19`, 20000);
+  const dairyFacetCount = await evaluate(cdp, `Number.parseInt(document.querySelector('.ingredient-catalog-list .results-heading strong')?.textContent || '', 10)`);
+  if (dairyFacetCount !== 19) throw new Error(`Phase D4 Dairy ingredient facet regression: ${dairyFacetCount}`);
+  await cdp.send('Page.navigate', { url: `${origin}/recipes?food=product_concept_noodles` });
+  await waitExpression(cdp, `!!document.querySelector('[data-testid=\"product-food-picker\"]') && document.querySelectorAll('.recipe-card').length > 0`, 30000);
+  const noodleFacetCount = await evaluate(cdp, `Number.parseInt(document.querySelector('.catalog-results .results-heading strong')?.textContent || '', 10)`);
+  if (noodleFacetCount !== 327) throw new Error(`Phase D4 Noodles recipe facet regression: ${noodleFacetCount}`);
+
   // Phase C acceptance: the manual planner lab must run a non-persistent 7-day diagnostic case in real Chromium.
+  await cdp.send('Page.navigate', { url: `${origin}/manual-acceptance` });
+  await waitExpression(cdp, `!!document.querySelector('[data-testid="manual-acceptance-page"]') && !!document.querySelector('[data-testid="manual-acceptance-summary"]')`, 20000);
+  const phaseEManualAcceptance = await evaluate(cdp, `({ cases: document.querySelectorAll('[data-testid^="manual-acceptance-case-"]').length, eligibility: document.querySelector('[data-testid="manual-acceptance-eligibility"]')?.textContent || '' })`);
+  if (Number(phaseEManualAcceptance.cases) !== 18) throw new Error(`Phase E manual acceptance expected 18 cases, got ${phaseEManualAcceptance.cases}`);
+
   await cdp.send('Page.navigate', { url: `${origin}/planner-validation` });
   await waitExpression(cdp, `!!document.querySelector('[data-testid="planner-validation-controls"]') && !!document.querySelector('[data-testid="planner-validation-run"]')`, 20000);
   await evaluate(cdp, `document.querySelector('[data-testid="planner-validation-run"]').click(); true`);
@@ -434,11 +449,22 @@ try {
   })()`);
   if (!planCreated.planId || planCreated.dayCount !== 7) throw new Error(`Step2 plan creation regression: ${JSON.stringify(planCreated)}`);
 
-  // Recipe links from plan must resolve to canonical recipe detail route.
-  await evaluate(cdp, `document.querySelector('[data-testid="plan-recipe-link"]').click(); true`);
-  await waitExpression(cdp, `location.pathname.startsWith('/recipes/') && !!document.querySelector('[data-testid="recipe-detail"]')`);
+  // Phase D5 acceptance: Day -> Recipe -> exact IngredientRevision -> Recipe -> exact Day slot.
+  const planRecipeHref = await evaluate(cdp, `document.querySelector('[data-testid=\"plan-recipe-link\"]')?.getAttribute('href') || ''`);
+  const decodedPlanRecipeHref = decodeURIComponent(planRecipeHref);
+  if (!planRecipeHref.includes('return=') || !decodedPlanRecipeHref.includes('/calendar/day?date=') || !decodedPlanRecipeHref.includes('#meal-')) throw new Error(`Phase D5 plan recipe context regression: ${planRecipeHref}`);
+  await clickWhenReady(cdp, '[data-testid=\"plan-recipe-link\"]', 20000);
+  await waitExpression(cdp, `location.pathname.startsWith('/recipes/') && !!document.querySelector('[data-testid=\"recipe-detail\"] [data-testid=\"recipe-ingredient-link\"]')`, 20000);
   const planRecipePath = await evaluate(cdp, `location.pathname`);
   if (planRecipePath === '/recipes/' || planRecipePath === '/recipes') throw new Error(`Plan recipe route regression: ${planRecipePath}`);
+  const recipeContext = await evaluate(cdp, `({ back: document.querySelector('[data-testid=\"context-back\"]')?.getAttribute('href') || '', ingredient: document.querySelector('[data-testid=\"recipe-ingredient-link\"]')?.getAttribute('href') || '' })`);
+  if (!recipeContext.back.includes('/calendar/day?date=') || !recipeContext.back.includes('#meal-') || !recipeContext.ingredient.includes('revision=') || !recipeContext.ingredient.includes('return=')) throw new Error(`Phase D5 recipe context regression: ${JSON.stringify(recipeContext)}`);
+  await clickWhenReady(cdp, '[data-testid=\"recipe-ingredient-link\"]', 20000);
+  await waitExpression(cdp, `location.pathname.startsWith('/configure/ingredients/') && !!document.querySelector('[data-testid=\"ingredient-detail\"] [data-testid=\"context-back\"]')`, 20000);
+  await clickWhenReady(cdp, '[data-testid=\"context-back\"]', 20000);
+  await waitExpression(cdp, `location.pathname.startsWith('/recipes/') && !!document.querySelector('[data-testid=\"recipe-detail\"] [data-testid=\"context-back\"]')`, 20000);
+  await clickWhenReady(cdp, '[data-testid=\"context-back\"]', 20000);
+  await waitExpression(cdp, `location.pathname === '/calendar/day' && location.hash.startsWith('#meal-') && !!document.querySelector(location.hash + '.context-return-target')`, 20000);
   await cdp.send('Page.navigate', { url: `${origin}/` });
 
   // Manage day -> replace -> adherence -> rebalance. The today page body is rendered
@@ -480,6 +506,8 @@ try {
   await waitExpression(cdp, `!!document.querySelector('[data-testid="rebalance-day-preview"]')`);
   await evaluate(cdp, `document.querySelector('[data-testid="rebalance-day-preview"]').click(); true`);
   await waitExpression(cdp, `!!document.querySelector('[data-testid="rebalance-preview-card"] [data-testid="rebalance-confirm"]')`, 20000);
+  const regenerationSummary = await evaluate(cdp, `(() => { const node=document.querySelector('[data-testid="rebalance-summary"]'); return node ? { changed:Number(node.dataset.changed||0), unchanged:Number(node.dataset.unchanged||0), total:Number(node.dataset.total||0) } : null; })()`);
+  if (!regenerationSummary || regenerationSummary.changed < 1 || regenerationSummary.total < 1) throw new Error(`Regeneration did not produce a visible alternative summary: ${JSON.stringify(regenerationSummary)}`);
   await evaluate(cdp, `document.querySelector('[data-testid="rebalance-confirm"]').click(); true`);
   await waitExpression(cdp, `!document.querySelector('[data-testid="rebalance-preview-card"]')`, 20000);
 

@@ -1,7 +1,7 @@
 {
   "name": "yourdietmanager",
   "private": true,
-  "version": "1.0.0-rc.29",
+  "version": "1.0.0-rc.32",
   "type": "module",
   "scripts": {
     "dev": "node scripts/dev-server.mjs",
@@ -11,7 +11,7 @@
     "hardening:a11y": "node scripts/hardening/a11y-audit.mjs",
     "hardening:scale": "node scripts/hardening/scale-benchmark.mjs",
     "release:gate": "node scripts/hardening/release-gate.mjs",
-    "check": "npm run v1:engine-phase-a && npm run v1:planner-phase-b && npm run v1:planner-phase-c && npm run v1:step2-gate && npm run planner:smoke && npm run lint && npm run test && npm run hardening:a11y && npm run hardening:forms && npm run build && npm run hardening:browser && npm run hardening:revision && npm run pages:audit",
+    "check": "npm run v1:engine-phase-a && npm run v1:planner-phase-b && npm run v1:planner-phase-c && npm run v1:planner-phase-d && npm run v1:planner-phase-d-ux && npm run v1:planner-phase-e && npm run v1:step2-gate && npm run planner:smoke && npm run lint && npm run test && npm run hardening:a11y && npm run hardening:forms && npm run build && npm run hardening:browser && npm run hardening:revision && npm run pages:audit",
     "corpus:scan": "node scripts/corpus/scan.mjs",
     "corpus:plan": "node scripts/corpus/plan.mjs",
     "corpus:smoke": "node scripts/corpus/build-phase4-smoke.mjs",
@@ -66,6 +66,11 @@
     "corpus:build-planner-phase-b": "node scripts/corpus/build-v1-planner-phase-b.mjs",
     "catalog:publish-planner-phase-b": "node scripts/corpus/publish-v1-planner-phase-b.mjs --canonical",
     "v1:planner-phase-b": "node --test tests/v1-planner-phase-b.test.mjs && node scripts/hardening/v1-planner-phase-b-gate.mjs && node scripts/planner/audit-v1-feasibility.mjs --require-all-feasible",
-    "v1:planner-phase-c": "node --test tests/v1-planner-phase-c.test.mjs && node scripts/hardening/v1-planner-phase-c-gate.mjs"
+    "v1:planner-phase-c": "node --test tests/v1-planner-phase-c.test.mjs && node scripts/hardening/v1-planner-phase-c-gate.mjs",
+    "corpus:build-planner-phase-d": "node scripts/corpus/build-v1-planner-phase-d.mjs",
+    "catalog:publish-planner-phase-d": "node scripts/corpus/publish-v1-planner-phase-d.mjs --canonical",
+    "v1:planner-phase-d": "node --test tests/v1-planner-phase-d.test.mjs && node scripts/hardening/v1-planner-phase-d-gate.mjs",
+    "v1:planner-phase-d-ux": "node --test tests/v1-planner-phase-d-ux.test.mjs && node scripts/hardening/v1-planner-phase-d-ux-gate.mjs",
+    "v1:planner-phase-e": "node --test tests/v1-planner-phase-e.test.mjs && node scripts/hardening/v1-planner-phase-e-gate.mjs"
   }
 }

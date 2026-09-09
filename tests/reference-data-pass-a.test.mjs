@@ -47,7 +47,7 @@ test('Pass A reference-data seed validates with schemas, hierarchy, aliases and 
   const registry = await registryFixture();
   const { taxonomies, taxonomyTerms } = await bundledReferenceData(root);
   const index = assertReferenceData(taxonomies, taxonomyTerms, registry);
-  assert.equal(taxonomies.length, 7);
+  assert.equal(taxonomies.length, 8);
   assert.ok(taxonomyTerms.length >= 100);
   assert.equal(index.resolveLegacy('food_category', 'fish'), 'food_group_fish_seafood');
   assert.equal(index.resolveLegacy('food_category', 'Pesce e frutti di mare'), 'food_group_fish_seafood');
@@ -55,7 +55,7 @@ test('Pass A reference-data seed validates with schemas, hierarchy, aliases and 
   const digest = await referenceDataDigest(taxonomies, taxonomyTerms);
   const manifest = await readJson(path.join(root, 'public/data/catalog-manifest.json'));
   assert.equal(digest, manifest.referenceDataDigest);
-  assert.equal(manifest.referenceDataVersion, '1.0.0');
+  assert.equal(manifest.referenceDataVersion, '1.1.0-product-food');
 });
 
 test('Pass A semantic gate rejects typo references instead of silently accepting them', async () => {

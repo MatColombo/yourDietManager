@@ -64,7 +64,7 @@ export async function publishCatalogRelease({ outputDir, catalogVersion, taxonom
   const refDigest = await referenceDataDigest(taxonomies, taxonomyTerms);
   const parts={ taxonomies, taxonomyTerms, ingredientFamilies, ingredientRevisions, recipeFamilies, recipeVersions }; const manifestParts={};
   for(const [part,records] of Object.entries(parts)) {
-    const dir=path.join(dataDir,partDir(part)); await mkdir(dir,{recursive:true}); const shards=[]; const groups=chunk(records,shardSize);
+    const dir=path.join(dataDir,partDir(part)); await mkdir(dir,{recursive:true}); const shards=[]; const effectiveShardSize=(part==='taxonomies'||part==='taxonomyTerms')?Math.max(shardSize,1000):shardSize; const groups=chunk(records,effectiveShardSize);
     for(let index=0;index<groups.length;index+=1) { const recordsChunk=groups[index]; const name=`${partStem(part)}-${String(index+1).padStart(4,'0')}.json`; const rel=`${partDir(part)}/${name}`; const text=jsonText(recordsChunk); await writeFile(path.join(dataDir,rel),text); shards.push({path:rel,count:recordsChunk.length,sha256:await sha256Text(text),recordIds:recordsChunk.map(record=>record[idKey(part)])}); }
     manifestParts[part]={count:records.length,shards};
   }
