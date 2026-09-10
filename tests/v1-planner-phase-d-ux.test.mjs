@@ -108,7 +108,7 @@ test('Phase D3-D5 — real Chromium gate exercises taxonomy facets and contextua
   assert.match(browser, /product_category_dairy/);
   assert.match(browser, /document\.querySelectorAll\('\.ingredient-catalog-list \.ingredient-card'\)\.length/);
   assert.match(browser, /product_concept_noodles/);
-  assert.match(browser, /text\.match\(\/\\d\+\//);
+  assert.ok(browser.includes('text.match(/\\\\d+/)'), 'Chromium expression must preserve the regex backslash through the template string');
   assert.doesNotMatch(browser, /Number\.parseInt\(document\.querySelector\('\.ingredient-catalog-list \.results-heading strong'\)/);
   assert.match(browser, /Phase D5 acceptance/);
   assert.match(browser, /recipe-ingredient-link/);

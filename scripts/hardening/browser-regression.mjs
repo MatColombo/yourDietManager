@@ -344,7 +344,7 @@ try {
   await waitExpression(cdp, `!!document.querySelector('[data-testid=\"product-food-picker\"]') && document.querySelectorAll('.recipe-card').length > 0`, 30000);
   const noodleFacetCount = await waitExpression(cdp, `(() => {
     const text = document.querySelector('.catalog-results .results-heading strong')?.textContent || '';
-    const match = text.match(/\d+/);
+    const match = text.match(/\\d+/);
     return match ? Number(match[0]) : 0;
   })()`, 30000);
   if (noodleFacetCount !== 327) throw new Error(`Phase D4 Noodles recipe facet regression: ${noodleFacetCount}`);
