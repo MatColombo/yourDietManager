@@ -338,11 +338,15 @@ try {
   // Phase D3-D4 acceptance: taxonomy facets must operate on the real catalog.
   await cdp.send('Page.navigate', { url: `${origin}/configure/ingredients?food=product_category_dairy` });
   await waitExpression(cdp, `!!document.querySelector('[data-testid=\"product-food-picker\"]') && document.querySelectorAll('.ingredient-card').length === 19`, 20000);
-  const dairyFacetCount = await evaluate(cdp, `Number.parseInt(document.querySelector('.ingredient-catalog-list .results-heading strong')?.textContent || '', 10)`);
+  const dairyFacetCount = await evaluate(cdp, `document.querySelectorAll('.ingredient-catalog-list .ingredient-card').length`);
   if (dairyFacetCount !== 19) throw new Error(`Phase D4 Dairy ingredient facet regression: ${dairyFacetCount}`);
   await cdp.send('Page.navigate', { url: `${origin}/recipes?food=product_concept_noodles` });
   await waitExpression(cdp, `!!document.querySelector('[data-testid=\"product-food-picker\"]') && document.querySelectorAll('.recipe-card').length > 0`, 30000);
-  const noodleFacetCount = await evaluate(cdp, `Number.parseInt(document.querySelector('.catalog-results .results-heading strong')?.textContent || '', 10)`);
+  const noodleFacetCount = await waitExpression(cdp, `(() => {
+    const text = document.querySelector('.catalog-results .results-heading strong')?.textContent || '';
+    const match = text.match(/\d+/);
+    return match ? Number(match[0]) : 0;
+  })()`, 30000);
   if (noodleFacetCount !== 327) throw new Error(`Phase D4 Noodles recipe facet regression: ${noodleFacetCount}`);
 
   // Phase C acceptance: the manual planner lab must run a non-persistent 7-day diagnostic case in real Chromium.

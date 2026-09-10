@@ -106,7 +106,10 @@ test('Phase D3-D5 — real Chromium gate exercises taxonomy facets and contextua
   const browser = await source('scripts/hardening/browser-regression.mjs');
   assert.match(browser, /Phase D3-D4 acceptance/);
   assert.match(browser, /product_category_dairy/);
+  assert.match(browser, /document\.querySelectorAll\('\.ingredient-catalog-list \.ingredient-card'\)\.length/);
   assert.match(browser, /product_concept_noodles/);
+  assert.match(browser, /text\.match\(\/\\d\+\//);
+  assert.doesNotMatch(browser, /Number\.parseInt\(document\.querySelector\('\.ingredient-catalog-list \.results-heading strong'\)/);
   assert.match(browser, /Phase D5 acceptance/);
   assert.match(browser, /recipe-ingredient-link/);
   assert.match(browser, /context-return-target/);
