@@ -1,10 +1,10 @@
 import { repositories } from '../repositories/repositoryHub.js';
 import { loadConfigurationBundle, assertConfigurationBundle, activeRecords } from './configurationService.js';
-import { PlanCandidateService } from './planCandidateService.js';
+import { PlanCandidateService, MAX_PLANNER_CANDIDATES_PER_ARCHETYPE } from './planCandidateService.js';
 import { createPlanPreview, extendPlan, continuationState } from './planGenerationService.js';
 import { hardFilterRecipe } from '../planner/hardFilter.js';
 import { scoreRecipe } from '../planner/softScoring.js';
-import { addCivilDays, dayEnergyTarget, sumNutrition, nutritionPenalty } from '../planner/planMath.js';
+import { addCivilDays, dayEnergyTarget, sumNutrition, nutritionPenalty, energyConstraintStatus } from '../planner/planMath.js';
 import { seededTie } from '../planner/seededRandom.js';
 import { commitOperation, mutationSnapshot, listRecentOperations, undoLastOperation, redoNextOperation, historyState } from './operationHistoryService.js';
 
@@ -91,6 +91,13 @@ function slotEnergyTarget(slot, mealClass, target) {
   return target * 0.2;
 }
 
+function dayEnergyConstraint(day, plannedEnergyKcal, nutritionProfile) {
+  const target = Number(day.nutritionSummary?.target?.energyKcal || nutritionProfile.dailyEnergyKcal);
+  const tolerance = Number(day.nutritionSummary?.target?.energyTolerancePct ?? nutritionProfile.energyTolerancePct ?? 0);
+  const external = Number(day.nutritionSummary?.externalBudget?.energyKcal || 0);
+  return energyConstraintStatus(plannedEnergyKcal, target, tolerance, external);
+}
+
 async function loadEditContext(planInstanceId, calendarDayId, mealOccurrenceId, { repo, registry }) {
   const bundle = await loadConfigurationBundle(repo); assertConfigurationBundle(bundle, registry);
   const active = activeRecords(bundle);
@@ -120,24 +127,37 @@ export async function createReplacementPreview({ planInstanceId, calendarDayId, 
   const sourceSlot = dayClassSlot(context.dayClass, context.occurrence);
   const target = dayEnergyTarget(context.active.nutritionProfile, context.day.dayArchetype);
   const targetEnergy = slotEnergyTarget(sourceSlot, context.mealClass, target);
-  const hardAllergens = (context.active.allergyProfile?.rules || []).filter(rule => rule.enabled && rule.targetType === 'allergen').map(rule => rule.targetId);
   const service = new PlanCandidateService({ repo });
-  const candidates = await service.retrieve(context.mealClass.mealArchetype, { limit: 250, excludeAllergens: hardAllergens });
+  const candidates = await service.retrieve(context.mealClass.mealArchetype, { limit: MAX_PLANNER_CANDIDATES_PER_ARCHETYPE });
   const history = await historyForDate(planInstanceId, context.day.date, { repo });
   const allRecipes = [...candidates, ...history.map(item => item.recipe)];
   const revisionIds = [...new Set(allRecipes.flatMap(recipe => (recipe.ingredientLines || []).map(line => line.ingredientRevisionId)))];
   const revisions = await repo.getMany('ingredientRevisions', revisionIds); const revisionById = new Map(revisions.map(item => [item.ingredientRevisionId, item]));
   const current = new Set((context.occurrence.recipeComponents || []).map(component => component.recipeVersionId));
+  const dayComponentIds = context.day.mealSlots.flatMap(slot => (slot.recipeComponents || []).map(component => component.recipeVersionId));
+  const dayRecipes = await repo.getMany('recipeVersions', [...new Set(dayComponentIds)]);
+  const dayRecipeById = new Map(dayRecipes.map(item => [item.recipeVersionId, item]));
+  const currentSlotNutrition = sumNutrition((context.occurrence.recipeComponents || []).map(component => dayRecipeById.get(component.recipeVersionId)).filter(Boolean));
+  const currentDayNutrition = sumNutrition(dayComponentIds.map(id => dayRecipeById.get(id)).filter(Boolean));
+  const baseDayEnergy = Math.max(0, Number(currentDayNutrition.energyKcal || 0) - Number(currentSlotNutrition.energyKcal || 0));
   const ranked = [];
+  const energyRejected = [];
   for (const recipe of candidates) {
     if (current.has(recipe.recipeVersionId)) continue;
     const scoreContext = { mealClass: context.mealClass, dayClass: context.dayClass, allergyProfile: context.active.allergyProfile, foodPreferences: context.active.foodPreferences, revisionById, history, date: context.day.date, nutritionProfile: context.active.nutritionProfile, slotEnergyTarget: targetEnergy, dayEnergyTarget: target };
     const hard = hardFilterRecipe(recipe, scoreContext); if (!hard.allowed) continue;
+    const projectedEnergy = baseDayEnergy + Number(recipe.calculatedNutrition?.energyKcal || 0);
+    const energyConstraint = dayEnergyConstraint(context.day, projectedEnergy, context.active.nutritionProfile);
+    if (!energyConstraint.withinTolerance) { energyRejected.push({ recipeVersionId: recipe.recipeVersionId, projectedEnergyKcal: projectedEnergy, energyConstraint }); continue; }
     const score = scoreRecipe(recipe, scoreContext);
-    ranked.push({ recipe, score, tie: seededTie(seed, `${context.day.date}|${mealOccurrenceId}|${recipe.recipeVersionId}`) });
+    ranked.push({ recipe, score, energyConstraint, tie: seededTie(seed, `${context.day.date}|${mealOccurrenceId}|${recipe.recipeVersionId}`) });
   }
   ranked.sort((a, b) => a.score.total - b.score.total || a.tie - b.tie || a.recipe.recipeVersionId.localeCompare(b.recipe.recipeVersionId));
-  return { status: 'success', planInstanceId, calendarDayId, mealOccurrenceId, targetEnergy, candidates: ranked.slice(0, Math.max(1, Math.min(20, Number(limit) || 8))).map(({ recipe, score }) => ({ recipe: clone(recipe), score: clone(score) })) };
+  return {
+    status: 'success', planInstanceId, calendarDayId, mealOccurrenceId, targetEnergy,
+    hardConstraints: { dailyEnergyTolerance: true, rejectedByEnergy: energyRejected.length },
+    candidates: ranked.slice(0, Math.max(1, Math.min(20, Number(limit) || 8))).map(({ recipe, score, energyConstraint }) => ({ recipe: clone(recipe), score: clone(score), energyConstraint: clone(energyConstraint) }))
+  };
 }
 
 async function recomputeDayNutrition(day, nutritionProfile, repo) {
@@ -146,8 +166,8 @@ async function recomputeDayNutrition(day, nutritionProfile, repo) {
   const known = sumNutrition(componentIds.map(id => byId.get(id)).filter(Boolean));
   const dailyTarget = Number(day.nutritionSummary?.target?.energyKcal || nutritionProfile.dailyEnergyKcal);
   const plannedTarget = Number(day.nutritionSummary?.target?.plannedEnergyKcal || dailyTarget);
-  const scale = plannedTarget / Math.max(1, dailyTarget);
-  const score = nutritionPenalty(known, nutritionProfile, { energyTarget: plannedTarget, energyWeight: 3, nutrientScale: scale });
+  const nutrientTargetFactor = plannedTarget / Math.max(1, dailyTarget);
+  const score = nutritionPenalty(known, nutritionProfile, { energyTarget: plannedTarget, energyWeight: 3, nutrientTargetFactor });
   return { ...clone(day.nutritionSummary), knownPlanned: known, score: Math.round(score * 1000) / 1000 };
 }
 
@@ -158,14 +178,28 @@ async function metaBefore(repo, keys) {
 }
 
 export async function commitReplacement({ planInstanceId, calendarDayId, mealOccurrenceId, recipeVersionId, createdAt = null }, { repo = repositories, registry } = {}) {
-  const preview = await createReplacementPreview({ planInstanceId, calendarDayId, mealOccurrenceId, seed: `commit-${recipeVersionId}`, limit: 20 }, { repo, registry });
-  const selected = preview.candidates.find(item => item.recipe.recipeVersionId === recipeVersionId); if (!selected) throw new Error('Selected replacement is not an admissible candidate');
   const context = await loadEditContext(planInstanceId, calendarDayId, mealOccurrenceId, { repo, registry });
+  if (context.occurrence.mode !== 'planned') throw new Error('External meal occurrences cannot be replaced with catalog recipes');
+  if ((context.occurrence.recipeComponents || []).some(component => component.recipeVersionId === recipeVersionId)) throw new Error('Selected replacement is already assigned to the meal occurrence');
+  const recipe = await repo.get('recipeVersions', recipeVersionId);
+  if (!recipe) throw new Error('Selected replacement is not an admissible candidate');
+  const sourceSlot = dayClassSlot(context.dayClass, context.occurrence);
+  const target = dayEnergyTarget(context.active.nutritionProfile, context.day.dayArchetype);
+  const targetEnergy = slotEnergyTarget(sourceSlot, context.mealClass, target);
+  const history = await historyForDate(planInstanceId, context.day.date, { repo });
+  const revisionIds = [...new Set([recipe, ...history.map(item => item.recipe)].flatMap(item => (item.ingredientLines || []).map(line => line.ingredientRevisionId)))];
+  const revisions = await repo.getMany('ingredientRevisions', revisionIds);
+  const revisionById = new Map(revisions.map(item => [item.ingredientRevisionId, item]));
+  const scoreContext = { mealClass: context.mealClass, dayClass: context.dayClass, allergyProfile: context.active.allergyProfile, foodPreferences: context.active.foodPreferences, revisionById, history, date: context.day.date, nutritionProfile: context.active.nutritionProfile, slotEnergyTarget: targetEnergy, dayEnergyTarget: target };
+  if (!hardFilterRecipe(recipe, scoreContext).allowed) throw new Error('Selected replacement is not an admissible candidate');
+  const selected = { recipe };
   const timestamp = nowIso(createdAt); const nextDay = clone(context.day); const nextPlan = clone(context.plan);
   const slot = nextDay.mealSlots.find(item => item.mealOccurrenceId === mealOccurrenceId);
   const previousComponents = clone(slot.recipeComponents);
   slot.recipeComponents = [{ recipeId: selected.recipe.recipeId, recipeVersionId: selected.recipe.recipeVersionId, servings: 1 }]; slot.adherenceStatus = 'not_recorded'; slot.adherenceNotes = null;
   nextDay.status = deriveDayStatus(nextDay.mealSlots); nextDay.updatedAt = timestamp; nextDay.nutritionSummary = await recomputeDayNutrition(nextDay, context.active.nutritionProfile, repo);
+  const replacementEnergyConstraint = dayEnergyConstraint(nextDay, nextDay.nutritionSummary.knownPlanned.energyKcal, context.active.nutritionProfile);
+  if (!replacementEnergyConstraint.withinTolerance) throw new Error(`Selected replacement violates daily energy tolerance (${replacementEnergyConstraint.budgetedTotalKcal} kcal; allowed ${replacementEnergyConstraint.dailyMinKcal}-${replacementEnergyConstraint.dailyMaxKcal})`);
   nextPlan.updatedAt = timestamp;
   registry.assert('calendarDay', nextDay); registry.assert('planInstance', nextPlan);
   const beforeMeta = await metaBefore(repo, ['planUpdatedAt']);
@@ -204,18 +238,111 @@ export async function commitGeneratedPreview(preview, { repo = repositories, reg
   return { planInstance: preview.planInstance, operation };
 }
 
-export async function createRebalancePreview({ planInstanceId, startDate, endDate, seed = 'rebalance', createdAt = null }, { repo = repositories, registry } = {}) {
+
+function plannedRecipeIdsByOccurrence(days) {
+  const result = {};
+  for (const day of days || []) for (const slot of day.mealSlots || []) {
+    if (slot.mode !== 'planned') continue;
+    result[slot.mealOccurrenceId] = (slot.recipeComponents || []).map(component => component.recipeVersionId).sort();
+  }
+  return result;
+}
+
+function summarizeRegeneration(sourceDays, generatedDays, { mode, strictAttempt = null } = {}) {
+  const before = plannedRecipeIdsByOccurrence(sourceDays);
+  const after = plannedRecipeIdsByOccurrence(generatedDays);
+  const details = [];
+  let changedSlots = 0;
+  let unchangedSlots = 0;
+  for (const [mealOccurrenceId, previousRecipeVersionIds] of Object.entries(before)) {
+    const nextRecipeVersionIds = after[mealOccurrenceId] || [];
+    const changed = previousRecipeVersionIds.join('|') !== nextRecipeVersionIds.join('|');
+    if (changed) changedSlots += 1;
+    else unchangedSlots += 1;
+    details.push({
+      mealOccurrenceId,
+      changed,
+      previousRecipeVersionIds,
+      nextRecipeVersionIds,
+      reason: changed ? 'alternative_selected' : mode === 'recalculate'
+        ? 'recalculate_mode_same_result_allowed'
+        : strictAttempt?.status === 'failed'
+          ? 'retained_after_strict_alternative_failed_in_bounded_search'
+          : 'retained_by_bounded_search'
+    });
+  }
+  return {
+    mode,
+    totalPlannedSlots: details.length,
+    changedSlots,
+    unchangedSlots,
+    status: unchangedSlots === 0 ? 'all_changed' : changedSlots === 0 ? 'unchanged' : 'partial',
+    boundedSearch: true,
+    strictAttemptStatus: strictAttempt?.status || (mode === 'alternative' ? 'success' : 'not_applicable'),
+    strictFailure: strictAttempt?.status === 'failed' ? {
+      code: strictAttempt.failure?.code || 'no_feasible_plan',
+      reason: strictAttempt.failure?.reason || strictAttempt.failure?.detail || 'strict_alternative_not_found_in_bounded_search'
+    } : null,
+    details
+  };
+}
+
+export async function createRebalancePreview({ planInstanceId, startDate, endDate, seed = 'rebalance', createdAt = null, mode = 'alternative' }, { repo = repositories, registry } = {}) {
+  if (!['alternative', 'recalculate'].includes(mode)) throw new Error(`Unknown rebalance mode ${mode}`);
   const plan = await repo.get('planInstances', planInstanceId); if (!plan) throw new Error(`PlanInstance ${planInstanceId} not found`);
   if (startDate < plan.startDate || endDate > plan.endDate || endDate < startDate) throw new Error('Rebalance range must be inside the selected PlanInstance');
   const sourceDays = await repo.getAllByIndex('calendarDays', 'date', { kind: 'bound', lower: startDate, upper: endDate });
   const selected = sourceDays.filter(day => day.planInstanceId === planInstanceId).sort((a, b) => a.date.localeCompare(b.date));
   if (!selected.length || selected[0].date !== startDate || selected.at(-1).date !== endDate) throw new Error('Rebalance range contains missing calendar days');
-  const generated = await createPlanPreview({ horizon: { startDate, endDate }, seed, createdAt: createdAt || new Date().toISOString(), reason: 'rebalance', startCycleDayOverride: selected[0].cycleDay, historyPlanInstanceId: planInstanceId, previousGenerationRunIdOverride: plan.generationRunId, continuationPolicy: plan.continuationPolicy }, { repo, registry });
-  if (generated.status === 'success') {
-    generated.generationRun.diagnostics = { ...generated.generationRun.diagnostics, targetPlanInstanceId: planInstanceId, rebalanceRange: { startDate, endDate } };
-    registry.assert('generationRun', generated.generationRun);
+
+  const currentRecipeVersionIdsByOccurrence = plannedRecipeIdsByOccurrence(selected);
+  const baseOptions = {
+    horizon: { startDate, endDate }, seed, createdAt: createdAt || new Date().toISOString(), reason: 'rebalance',
+    startCycleDayOverride: selected[0].cycleDay, historyPlanInstanceId: planInstanceId,
+    previousGenerationRunIdOverride: plan.generationRunId, continuationPolicy: plan.continuationPolicy
+  };
+
+  let strictAttempt = null;
+  let generated;
+  if (mode === 'alternative') {
+    strictAttempt = await createPlanPreview({
+      ...baseOptions,
+      regenerationPolicy: { mode: 'exclude_current', currentRecipeVersionIdsByOccurrence }
+    }, { repo, registry });
+    generated = strictAttempt.status === 'success' ? strictAttempt : await createPlanPreview({
+      ...baseOptions,
+      regenerationPolicy: { mode: 'prefer_alternative', currentRecipePenalty: 100, currentRecipeVersionIdsByOccurrence }
+    }, { repo, registry });
+  } else {
+    generated = await createPlanPreview(baseOptions, { repo, registry });
   }
-  return { ...generated, sourcePlanInstanceId: planInstanceId, sourceDays: selected };
+
+  if (generated.status === 'success') {
+    const regenerationSummary = summarizeRegeneration(selected, generated.calendarDays, { mode, strictAttempt });
+    generated.regenerationSummary = regenerationSummary;
+    generated.generationRun.diagnostics = {
+      ...generated.generationRun.diagnostics,
+      targetPlanInstanceId: planInstanceId,
+      rebalanceRange: { startDate, endDate },
+      regeneration: regenerationSummary
+    };
+    registry.assert('generationRun', generated.generationRun);
+  } else if (mode === 'alternative' && strictAttempt?.status === 'failed') {
+    generated.diagnostics = {
+      ...generated.diagnostics,
+      regeneration: {
+        mode,
+        boundedSearch: true,
+        strictAttemptStatus: 'failed',
+        strictFailure: {
+          code: strictAttempt.failure?.code || 'no_feasible_plan',
+          reason: strictAttempt.failure?.reason || strictAttempt.failure?.detail || 'strict_alternative_not_found_in_bounded_search'
+        },
+        fallbackStatus: generated.status
+      }
+    };
+  }
+  return { ...generated, rebalanceMode: mode, sourcePlanInstanceId: planInstanceId, sourceDays: selected };
 }
 
 export async function commitRebalancePreview(preview, { selectedDates = null, repo = repositories, registry, createdAt = null } = {}) {
@@ -236,7 +363,7 @@ export async function commitRebalancePreview(preview, { selectedDates = null, re
   const beforeMeta = await metaBefore(repo, ['lastSuccessfulGenerationRunId', 'planUpdatedAt']);
   const before = mutationSnapshot({ puts: { calendarDays: oldDays, planInstances: [plan] }, deletes: { generationRuns: [run.generationRunId] }, ...beforeMeta });
   const after = mutationSnapshot({ puts: { calendarDays: nextDays, planInstances: [nextPlan], generationRuns: [run] }, metaSet: { lastSuccessfulGenerationRunId: run.generationRunId, planUpdatedAt: timestamp } });
-  const operation = await commitOperation({ planInstanceId: plan.planInstanceId, kind: 'rebalance', before, after, createdAt: timestamp, metadata: { startDate: preview.generationRun.horizon.startDate, endDate: preview.generationRun.horizon.endDate, selectedDates: [...requested].sort(), seed: run.seed, generationRunId: run.generationRunId } }, { repo, registry });
+  const operation = await commitOperation({ planInstanceId: plan.planInstanceId, kind: 'rebalance', before, after, createdAt: timestamp, metadata: { startDate: preview.generationRun.horizon.startDate, endDate: preview.generationRun.horizon.endDate, selectedDates: [...requested].sort(), seed: run.seed, generationRunId: run.generationRunId, rebalanceMode: preview.rebalanceMode || 'alternative', regenerationSummary: preview.regenerationSummary || null } }, { repo, registry });
   return { calendarDays: nextDays, generationRun: run, operation };
 }
 

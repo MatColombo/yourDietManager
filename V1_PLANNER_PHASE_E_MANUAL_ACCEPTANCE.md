@@ -13,8 +13,8 @@ The in-app route `/manual-acceptance` is the canonical journal. It stores only t
 ### Energy
 1. 800 kcal, ±2%.
 2. 1400 kcal, ±2%.
-3. 2000 kcal, ±2%, seven days.
-4. 2600 kcal, ±2%.
+3. 2000 kcal, ±2%, seven to fourteen days; inspect Planner Lab uniqueness and 3/7-day repeat metrics.
+4. 2600 kcal, ±2%, fourteen days; Phase F reference floor is >=70% unique recipe components and zero exact-recipe repeat pairs within three days.
 
 For every generated day inspect the hard energy window and recipe serving values. No serving scaling is permitted.
 

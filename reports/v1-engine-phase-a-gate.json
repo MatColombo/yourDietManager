@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "suite": "v1-planner-validation-phase-a",
+  "checkedAt": "2026-09-10T15:16:38.757Z",
+  "status": "passed",
+  "checks": [
+    {
+      "id": "policy-versioned",
+      "pass": true,
+      "detail": "planner-constraint-policy-1"
+    },
+    {
+      "id": "energy-tolerance-hard",
+      "pass": true,
+      "detail": "daily energy tolerance is a hard finalist constraint"
+    },
+    {
+      "id": "fixed-serving-hard",
+      "pass": true,
+      "detail": "calendar=1, recipe=1"
+    },
+    {
+      "id": "numeric-forbid-correct",
+      "pass": true,
+      "detail": "matching numeric forbid predicate is rejected"
+    },
+    {
+      "id": "cooking-hard",
+      "pass": true,
+      "detail": "cooking=false rejects cooked recipes"
+    },
+    {
+      "id": "complex-snack-hard",
+      "pass": true,
+      "detail": "simple snack prep<=10"
+    },
+    {
+      "id": "replacement-preserves-energy",
+      "pass": true,
+      "detail": "preview and commit both enforce day energy"
+    },
+    {
+      "id": "energy-frontier-before-soft-ranking",
+      "pass": true,
+      "detail": "candidate/option energy diversity and remaining-energy bounds are preserved"
+    },
+    {
+      "id": "bounded-search-honesty",
+      "pass": true,
+      "detail": "NO_FEASIBLE_PLAN is not presented as a mathematical impossibility proof"
+    },
+    {
+      "id": "planned-protein-guidance-not-fake-constraint",
+      "pass": true,
+      "detail": "proteinMinG is external-only guidance"
+    },
+    {
+      "id": "soft-semantics-explicit",
+      "pass": true,
+      "detail": "soft=nutrient_targets,meal_rule_preferences,food_preferences,frequency_limits,variety,slot_energy_share"
+    },
+    {
+      "id": "no-feasible-plan-contract",
+      "pass": true,
+      "detail": "out-of-range day cannot be success"
+    },
+    {
+      "id": "external-unknown-classified",
+      "pass": true,
+      "detail": "unknown external energy cannot certify hard daily range"
+    },
+    {
+      "id": "manual-range-800-2600",
+      "pass": true,
+      "detail": "manual envelope includes 800–2600 kcal"
+    },
+    {
+      "id": "phase-a-test-wired",
+      "pass": true,
+      "detail": "node --test tests/v1-engine-phase-a.test.mjs && node scripts/hardening/v1-engine-phase-a-gate.mjs && node scripts/planner/audit-v1-feasibility.mjs"
+    },
+    {
+      "id": "spec-energy-hard",
+      "pass": true,
+      "detail": "planner/nutrition specs agree"
+    }
+  ],
+  "failures": []
+}

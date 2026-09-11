@@ -1,6 +1,7 @@
 import { sumNutrition, nutritionPenalty, energyToleranceWindow, energyDistanceFromWindow } from './planMath.js';
 import { seededTie } from './seededRandom.js';
 import { families, cuisines, primaryIngredientId } from './recipeFeatures.js';
+import { PLANNER_SOFT_OBJECTIVE_POLICY, slotOptionSoftContribution } from './qualityPolicy.js';
 
 function keyOf(recipes) { return recipes.map(r => r.recipeVersionId).sort().join('+'); }
 function energyOfOption(option) { return Number(option?.nutrition?.energyKcal || 0); }
@@ -80,9 +81,16 @@ export function buildSlotOptions(scoredCandidates, { targetEnergy, dayEnergyTarg
         const nutrition = sumNutrition(recipes);
         const nutrientTargetFactor = targetEnergy / Math.max(1, dayEnergyTarget);
         const slotNutrition = nutritionPenalty(nutrition, nutritionProfile, { energyTarget: targetEnergy, energyWeight: 2.2, nutrientTargetFactor: nutrientTargetFactor });
-        const individual = recipes.reduce((total, recipe) => total + (scoredCandidates.find(item => item.recipe.recipeVersionId === recipe.recipeVersionId)?.score.total || 0) * 0.15, 0);
-        const score = slotNutrition + individual + (recipes.length - 1) * 0.5;
-        const entry = { recipes, nutrition, score, tie: seededTie(seed, keyOf(recipes)) };
+        const softParts = recipes.reduce((aggregate, recipe) => {
+          const scored = scoredCandidates.find(item => item.recipe.recipeVersionId === recipe.recipeVersionId)?.score;
+          const contribution = slotOptionSoftContribution(scored);
+          aggregate.total += contribution.total;
+          for (const [key, value] of Object.entries(contribution.components)) aggregate.components[key] += value;
+          return aggregate;
+        }, { total: 0, components: { nutritionTieBreak: 0, preference: 0, variety: 0, regeneration: 0 } });
+        const componentPenalty = (recipes.length - 1) * PLANNER_SOFT_OBJECTIVE_POLICY.slotOption.extraComponentPenalty;
+        const score = slotNutrition + softParts.total + componentPenalty;
+        const entry = { recipes, nutrition, score, scoreComponents: { slotNutrition, ...softParts.components, componentPenalty }, tie: seededTie(seed, keyOf(recipes)) };
         next.push(entry); options.push(entry);
       }
     }

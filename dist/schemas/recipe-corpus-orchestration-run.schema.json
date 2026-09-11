@@ -94,6 +94,12 @@
             "restrict"
           ]
         },
+        "intentStrategy": {
+          "enum": [
+            "adaptive",
+            "focus_only"
+          ]
+        },
         "focus": {
           "$ref": "#/$defs/focus"
         }

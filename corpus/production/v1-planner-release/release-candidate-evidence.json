@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "phase": "G",
+  "status": "release_candidate",
+  "appCandidateVersion": "1.0.0-rc.34",
+  "catalogVersion": "1.2.0-planner-phase-d",
+  "frozenAt": "2026-09-10T14:50:00.000Z",
+  "dataContract": {
+    "ingredientFamilies": 600,
+    "ingredientRevisions": 600,
+    "recipeFamilies": 1800,
+    "recipeVersions": 1800,
+    "coreRecipeVersions": 1800,
+    "productTaxonomyClassifiedIngredients": 600,
+    "productTaxonomyCategoryCount": 18,
+    "productTaxonomyTermCount": 203
+  },
+  "persistence": {
+    "dbVersion": 6,
+    "contentSchemaVersion": 3,
+    "backupFormatVersion": 1,
+    "preV1DataEpoch": "v1-planner-phase-d-epoch-1"
+  },
+  "plannerContract": {
+    "hardDailyEnergy": true,
+    "servingScalingAllowed": false,
+    "fixedServingCount": 1,
+    "softObjectivePolicyVersion": "phase-f-soft-objective-1",
+    "phaseFQualityEvidenceDigest": "9fc95b2a1f14fd7263936e57144a51a41037fddc0253ed1dc43afc4a0a60e8bb"
+  },
+  "publicationAtFreeze": {
+    "channel": "development",
+    "releaseEligible": false,
+    "publicationId": "planner-phase-d-1800-5e3bd7661171"
+  },
+  "manualAcceptanceRequired": true,
+  "manualAcceptanceStatus": "pending",
+  "digests": {
+    "recipeDigest": "5e3bd7661171cff9434b03bb9951d58779ed84dc2e0e9910d36d1ebc517f53f2",
+    "referenceDataDigest": "fbfed3f4545ffefe3dc1f6bc85454d16a9b62b3223e1495e67b97155325fe907",
+    "catalogContentDigest": "39bdd524fccc6e92013b747d1391336f2698e36af862ab94585863899d715056",
+    "phaseFQualityDigest": "9fc95b2a1f14fd7263936e57144a51a41037fddc0253ed1dc43afc4a0a60e8bb"
+  }
+}

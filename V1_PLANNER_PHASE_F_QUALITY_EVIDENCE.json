@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "phase": "F",
+  "policyVersion": "phase-f-soft-objective-1",
+  "appVersion": "1.0.0-rc.33",
+  "catalogVersion": "1.2.0-planner-phase-d",
+  "measurement": {
+    "startDate": "2026-09-14",
+    "horizonDays": 14,
+    "energyTolerancePct": 2,
+    "profileId": "current",
+    "fixedServings": true
+  },
+  "before": [
+    { "targetKcal": 1400, "uniqueRecipeRate": 0.446, "exactRepeatPairsWithin3Days": 5, "exactRepeatPairsWithin7Days": 33, "samePrimaryPairsWithin3Days": 5 },
+    { "targetKcal": 2000, "uniqueRecipeRate": 0.446, "exactRepeatPairsWithin3Days": 5, "exactRepeatPairsWithin7Days": 31, "samePrimaryPairsWithin3Days": 9 },
+    { "targetKcal": 2600, "uniqueRecipeRate": 0.411, "exactRepeatPairsWithin3Days": 7, "exactRepeatPairsWithin7Days": 41, "samePrimaryPairsWithin3Days": 16 }
+  ],
+  "after": [
+    { "targetKcal": 800, "uniqueRecipeRate": 0.643, "exactRepeatPairsWithin3Days": 0, "exactRepeatPairsWithin7Days": 0, "samePrimaryPairsWithin3Days": 2 },
+    { "targetKcal": 1000, "uniqueRecipeRate": 0.714, "exactRepeatPairsWithin3Days": 0, "exactRepeatPairsWithin7Days": 0, "samePrimaryPairsWithin3Days": 3 },
+    { "targetKcal": 1400, "uniqueRecipeRate": 0.821, "exactRepeatPairsWithin3Days": 0, "exactRepeatPairsWithin7Days": 0, "samePrimaryPairsWithin3Days": 0 },
+    { "targetKcal": 2000, "uniqueRecipeRate": 0.786, "exactRepeatPairsWithin3Days": 0, "exactRepeatPairsWithin7Days": 0, "samePrimaryPairsWithin3Days": 2 },
+    { "targetKcal": 2600, "uniqueRecipeRate": 0.732, "exactRepeatPairsWithin3Days": 0, "exactRepeatPairsWithin7Days": 6, "samePrimaryPairsWithin3Days": 2 }
+  ],
+  "softDirection2000Kcal7Days": {
+    "current": { "uniqueRecipeRate": 1.0, "averageDailyProteinG": 102.9, "averageDailyFiberG": 44.2, "veganOccurrences": 4 },
+    "highProtein": { "uniqueRecipeRate": 0.786, "averageDailyProteinG": 125.0, "veganOccurrences": 3 },
+    "highFiber": { "uniqueRecipeRate": 0.714, "averageDailyFiberG": 30.0, "veganOccurrences": 2 },
+    "preferVegan": { "uniqueRecipeRate": 1.0, "veganOccurrences": 6 },
+    "avoidVegan": { "uniqueRecipeRate": 1.0, "veganOccurrences": 3 },
+    "frequencyVegan": { "uniqueRecipeRate": 1.0, "veganOccurrences": 2 }
+  },
+  "acceptance": {
+    "minUniqueRecipeRate14Days": 0.6,
+    "maxExactRepeatPairsWithin3Days": 0,
+    "hardEnergyStillMandatory": true,
+    "servingScalingAllowed": false
+  }
+}

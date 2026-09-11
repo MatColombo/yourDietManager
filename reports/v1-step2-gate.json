@@ -1,0 +1,68 @@
+{
+  "suite": "v1-step2-vertical-product-engine-acceptance",
+  "checkedAt": "2026-09-10T15:18:01.527Z",
+  "status": "passed",
+  "checks": [
+    {
+      "id": "app-version-sync",
+      "pass": true,
+      "detail": "package=1.0.0-rc.34, runtime=1.0.0-rc.34"
+    },
+    {
+      "id": "plan-recipe-route",
+      "pass": true,
+      "detail": "plan recipe links use /recipes/:recipeId with exact version and contextual return"
+    },
+    {
+      "id": "plan-recipe-metrics-scope",
+      "pass": true,
+      "detail": "translation state is explicitly passed to recipe metrics"
+    },
+    {
+      "id": "plan-ui-acceptance-hooks",
+      "pass": true,
+      "detail": "vertical plan actions expose stable acceptance hooks"
+    },
+    {
+      "id": "undo-staleness-clock",
+      "pass": true,
+      "detail": "undo and redo advance planUpdatedAt"
+    },
+    {
+      "id": "shopping-recalculation-key",
+      "pass": true,
+      "detail": "shopping view invalidates derived calculation when effective plan changes"
+    },
+    {
+      "id": "shopping-ui-acceptance-hooks",
+      "pass": true,
+      "detail": "shopping/checklist flow exposes stable acceptance hooks"
+    },
+    {
+      "id": "offline-cache-parity",
+      "pass": true,
+      "detail": "direct offline cache and service worker share data cache v17"
+    },
+    {
+      "id": "shell-cache-bumped",
+      "pass": true,
+      "detail": "planner-validation shell assets invalidate prior cached JS"
+    },
+    {
+      "id": "six-engine-scenarios",
+      "pass": true,
+      "detail": "Step2 A, Step2 B, Step2 C, Step2 D, Step2 E, Step2 F"
+    },
+    {
+      "id": "browser-vertical-flow",
+      "pass": true,
+      "detail": "real Chromium gate covers create/replace/adherence/rebalance/undo-redo/shopping/reload"
+    },
+    {
+      "id": "browser-required-on-pages",
+      "pass": true,
+      "detail": "Pages deployment blocks on required browser acceptance"
+    }
+  ],
+  "failures": []
+}

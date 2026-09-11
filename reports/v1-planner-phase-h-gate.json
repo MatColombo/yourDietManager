@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "suite": "v1-planner-phase-h-final-release-handoff",
+  "checkedAt": "2026-09-10T15:21:30.175Z",
+  "status": "passed",
+  "appVersion": "1.0.0-rc.34",
+  "catalogVersion": "1.2.0-planner-phase-d",
+  "releaseState": "candidate",
+  "checks": [
+    {
+      "id": "phase-h-version-boundary",
+      "pass": true,
+      "detail": "package=1.0.0-rc.34, runtime=1.0.0-rc.34, frozenCandidate=1.0.0-rc.34"
+    },
+    {
+      "id": "phase-h-handoff-state",
+      "pass": true,
+      "detail": "development_tranche_complete 1.0.0-rc.34->1.0.0"
+    },
+    {
+      "id": "phase-h-freeze-chain",
+      "pass": true,
+      "detail": "d7b60a310ab6f3bfab6c01f2ddb90e103b7f877201029344af9e3bdee5dbe214"
+    },
+    {
+      "id": "phase-h-promotion-contract",
+      "pass": true,
+      "detail": "npm run v1:promote-stable -- --report <manual-acceptance-report.json> --decision \"ACCEPT V1\" --apply"
+    },
+    {
+      "id": "phase-h-promotion-script-fail-closed",
+      "pass": true,
+      "detail": "explicit token + report + apply required"
+    },
+    {
+      "id": "phase-h-simulation-only",
+      "pass": true,
+      "detail": "{\"syntheticOnly\":true,\"recordsUserAcceptance\":false,\"projectedReleaseGatePass\":true,\"projectedPublicationChannel\":\"production_release\",\"projectedStableVersion\":\"1.0.0\"}"
+    },
+    {
+      "id": "phase-h-frozen-runtime",
+      "pass": true,
+      "detail": "db=6, content=3, backup=1, epoch=v1-planner-phase-d-epoch-1"
+    },
+    {
+      "id": "phase-h-release-boundary",
+      "pass": true,
+      "detail": "blocked=manual-acceptance,production-release-publication,stable-app-version"
+    },
+    {
+      "id": "phase-h-stable-publication-transition",
+      "pass": true,
+      "detail": "channel=development, acceptance=pending"
+    },
+    {
+      "id": "phase-h-workflow",
+      "pass": true,
+      "detail": "CI rebuilds/drift-checks H handoff and runs H gate"
+    }
+  ],
+  "failures": []
+}

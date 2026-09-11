@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "suite": "v1-planner-phase-e",
+  "checkedAt": "2026-09-10T15:17:26.061Z",
+  "status": "passed",
+  "checks": [
+    {
+      "id": "phase-e-version",
+      "ok": true,
+      "detail": "package=1.0.0-rc.34"
+    },
+    {
+      "id": "manual-acceptance-route",
+      "ok": true,
+      "detail": "manual acceptance is a first-class route"
+    },
+    {
+      "id": "protocol-coverage",
+      "ok": true,
+      "detail": "protocol covers energy, hard/soft, regeneration, discovery, navigation and operations"
+    },
+    {
+      "id": "manual-only-storage",
+      "ok": true,
+      "detail": "acceptance journal is isolated from domain persistence"
+    },
+    {
+      "id": "release-rule",
+      "ok": true,
+      "detail": "eligibility requires all required PASS and zero P0/P1"
+    },
+    {
+      "id": "no-auto-promotion",
+      "ok": true,
+      "detail": "manual harness cannot promote stable release"
+    },
+    {
+      "id": "page-actions",
+      "ok": true,
+      "detail": "page exposes summary, eligibility and export"
+    },
+    {
+      "id": "locale-parity",
+      "ok": "Manual acceptance",
+      "detail": "it=822, en=822"
+    },
+    {
+      "id": "pwa-shell-phase-e",
+      "ok": true,
+      "detail": "shell v37 precaches Phase E harness"
+    },
+    {
+      "id": "browser-phase-e-smoke",
+      "ok": true,
+      "detail": "Chromium gate opens manual acceptance page"
+    },
+    {
+      "id": "check-chain",
+      "ok": true,
+      "detail": "repository check runs Phase E gate"
+    }
+  ],
+  "failures": []
+}

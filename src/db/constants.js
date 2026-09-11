@@ -2,7 +2,7 @@ export const DB_NAME = 'yourDietManager';
 export const DB_VERSION = 6;
 export const CONTENT_SCHEMA_VERSION = 3;
 export const BACKUP_FORMAT_VERSION = 1;
-export const APP_VERSION = '1.0.0-rc.32';
+export const APP_VERSION = '1.0.0-rc.34';
 export const PRE_V1_DATA_EPOCH = 'v1-planner-phase-d-epoch-1';
 
 export const STORE_DEFINITIONS = {

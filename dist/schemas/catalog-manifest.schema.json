@@ -166,6 +166,9 @@
           "minLength": 1
         }
       }
+    },
+    "publication": {
+      "$ref": "catalog-publication.schema.json"
     }
   },
   "$defs": {

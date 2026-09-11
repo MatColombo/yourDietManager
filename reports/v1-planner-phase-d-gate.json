@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "suite": "v1-planner-phase-d-regeneration-taxonomy",
+  "checkedAt": "2026-09-10T15:17:23.854Z",
+  "status": "passed",
+  "checks": [
+    {
+      "id": "phase-d-version",
+      "pass": true,
+      "detail": "package=1.0.0-rc.34, runtime=1.0.0-rc.34"
+    },
+    {
+      "id": "phase-d-db-epoch",
+      "pass": true,
+      "detail": "db=6, epoch=v1-planner-phase-d-epoch-1"
+    },
+    {
+      "id": "phase-d-catalog",
+      "pass": true,
+      "detail": "catalog=1.2.0-planner-phase-d, recipes=1800, revisions=600"
+    },
+    {
+      "id": "product-taxonomy-present",
+      "pass": true,
+      "detail": "terms=203, categories=18"
+    },
+    {
+      "id": "all-ingredients-classified",
+      "pass": true,
+      "detail": "classified=600/600"
+    },
+    {
+      "id": "dairy-explicit",
+      "pass": true,
+      "detail": "dairy=19"
+    },
+    {
+      "id": "noodle-concept-collapse",
+      "pass": true,
+      "detail": "noodle variants=11"
+    },
+    {
+      "id": "taxonomy-separated-from-source",
+      "pass": true,
+      "detail": "product taxonomy is separate from source foodGroup"
+    },
+    {
+      "id": "hierarchical-ambiguity-safe",
+      "pass": true,
+      "detail": "ambiguous parent/child labels are never auto-resolved"
+    },
+    {
+      "id": "product-food-constraint-types",
+      "pass": true,
+      "detail": "product taxonomy can drive preference, allergy/intolerance and MealClass rules"
+    },
+    {
+      "id": "recipe-digest-preserved",
+      "pass": true,
+      "detail": "5e3bd7661171cff9434b03bb9951d58779ed84dc2e0e9910d36d1ebc517f53f2"
+    },
+    {
+      "id": "serving-scaling-still-forbidden",
+      "pass": true,
+      "detail": "all RecipeVersion servingCount=1; no scaling"
+    },
+    {
+      "id": "regeneration-strict-first",
+      "pass": true,
+      "detail": "alternative uses strict exclusion first, bounded fallback second"
+    },
+    {
+      "id": "generator-enforces-regeneration-policy",
+      "pass": true,
+      "detail": "solver excludes/penalizes current recipe according to mode"
+    },
+    {
+      "id": "regeneration-explains-retention",
+      "pass": true,
+      "detail": "retained meals carry bounded-search reason"
+    },
+    {
+      "id": "ui-separates-actions",
+      "pass": true,
+      "detail": "range/day UI separates alternative from recalculation"
+    },
+    {
+      "id": "ui-exposes-regeneration-summary",
+      "pass": true,
+      "detail": "preview reports changed/retained meals and bounded reason"
+    },
+    {
+      "id": "pwa-phase-d-cache",
+      "pass": true,
+      "detail": "shell=v37, data=v17"
+    },
+    {
+      "id": "locale-parity",
+      "pass": true,
+      "detail": "en=822, it=822"
+    },
+    {
+      "id": "phase-d-workflow",
+      "pass": true,
+      "detail": "manual CI reproduces and drift-checks Phase D"
+    },
+    {
+      "id": "validation-only-publication",
+      "pass": true,
+      "detail": "status=planner_validation"
+    }
+  ],
+  "failures": [],
+  "metrics": {
+    "appVersion": "1.0.0-rc.34",
+    "catalogVersion": "1.2.0-planner-phase-d",
+    "ingredientCount": 600,
+    "recipeCount": 1800,
+    "productFoodTerms": 203,
+    "dairyIngredients": 19,
+    "noodleVariants": 11
+  }
+}

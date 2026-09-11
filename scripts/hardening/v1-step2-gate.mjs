@@ -14,7 +14,7 @@ const checks = [];
 const failures = [];
 const check = (id, pass, detail) => { const row = { id, pass: Boolean(pass), detail }; checks.push(row); if (!row.pass) failures.push(row); };
 
-check('app-version-sync', pkg.version === APP_VERSION && /^1\.0\.0-rc\.\d+$/.test(pkg.version), `package=${pkg.version}, runtime=${APP_VERSION}`);
+check('app-version-sync', pkg.version === APP_VERSION && /^1\.0\.0(?:-rc\.\d+)?$/.test(pkg.version), `package=${pkg.version}, runtime=${APP_VERSION}`);
 check('plan-recipe-route', planUi.includes('new URLSearchParams({ version: recipe.recipeVersionId, return: returnRoute })') && planUi.includes('href: `/recipes/${encodeURIComponent(recipe.recipeId)}?${query}`') && !planUi.includes('/recipes/?id='), 'plan recipe links use /recipes/:recipeId with exact version and contextual return');
 check('plan-recipe-metrics-scope', /function recipePills\(state, recipe\)/.test(planUi) && /recipePills\(state, item\.recipe\)/.test(planUi), 'translation state is explicitly passed to recipe metrics');
 check('plan-ui-acceptance-hooks', ['plan-generate','plan-confirm','plan-manage-today','plan-replace','adherence-save','rebalance-confirm','plan-undo','plan-redo'].every(id => planUi.includes(`'data-testid': '${id}'`)), 'vertical plan actions expose stable acceptance hooks');
@@ -22,7 +22,7 @@ check('undo-staleness-clock', (history.match(/mutation\.metaSet\.planUpdatedAt/g
 check('shopping-recalculation-key', shoppingUi.includes("await state.repo.getMeta('planUpdatedAt')") && shoppingUi.includes('ui.calculationKey !== calculationKey'), 'shopping view invalidates derived calculation when effective plan changes');
 check('shopping-ui-acceptance-hooks', ['shopping-calculate','shopping-save-checklist','shopping-check-item','shopping-page'].every(id => shoppingUi.includes(`'data-testid': '${id}'`)), 'shopping/checklist flow exposes stable acceptance hooks');
 check('offline-cache-parity', /ydm-data-v17-/.test(offline) && /ydm-data-v17-/.test(worker), 'direct offline cache and service worker share data cache v17');
-check('shell-cache-bumped', /ydm-shell-v35-/.test(worker), 'planner-validation shell assets invalidate prior cached JS');
+check('shell-cache-bumped', /ydm-shell-v37-/.test(worker), 'planner-validation shell assets invalidate prior cached JS');
 const scenarios = ['Step2 A', 'Step2 B', 'Step2 C', 'Step2 D', 'Step2 E', 'Step2 F'];
 check('six-engine-scenarios', scenarios.every(label => tests.includes(label)), scenarios.join(', '));
 check('browser-vertical-flow', browser.includes('V1 Step 2 vertical product acceptance') && browser.includes('shoppingChecklistPersisted') && browser.includes('reloadPreservedPlan'), 'real Chromium gate covers create/replace/adherence/rebalance/undo-redo/shopping/reload');

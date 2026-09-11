@@ -99,7 +99,7 @@ test('Pass C source audit centralizes disclosure state, guarded navigation, feed
   assert.match(sources['uiState.js'], /ydm:draft-change/);
   assert.match(main, /onboardingEnabled: false/);
   assert.doesNotMatch(main, /location\.pathname\s*=.*onboarding|navigate\(['"]\/onboarding/);
-  assert.match(sw, /ydm-shell-v35/);
+  assert.match(sw, /ydm-shell-v37/);
   assert.match(sw, /ydm-data-v17/);
   assert.match(sw, /src\/recoveryBootstrap\.js/);
   assert.match(index, /src\/recoveryBootstrap\.js/);

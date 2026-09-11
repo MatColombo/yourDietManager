@@ -1,129 +1,82 @@
-# YourDietManager — V1 Final Manual Test Checklist
+# YourDietManager — Final V1 Manual Acceptance Checklist
 
-> **SUPERSEDED / SUSPENDED:** The direct V1 promotion path in this document is suspended by `V1_PLANNER_VALIDATION_PLAN.md`. Planner Validation phases A–C must complete before stable V1.
+**Candidate:** `1.0.0-rc.34`  
+**Frozen catalog:** `1.2.0-planner-phase-d`  
+**Data contract:** 600 ingredients / 1,800 fixed-serving recipes  
+**Freeze:** Phase G content freeze / Phase H release handoff
 
-
-**Candidate:** `1.0.0-rc.27`
-**Frozen catalog:** `1.0.0`
-**Purpose:** final product acceptance before promoting the application to stable `v1.0.0`.
-
-This is a product test, not another corpus-production exercise. The 60-recipe stratified corpus review and automated gates are already part of Step 3. The manual test should focus on whether the application is usable end-to-end in the deployed GitHub Pages build.
+The Phase E harness is the main manual journal. This checklist is the final release decision layer after automated Phases A–H are green.
 
 ## Pass/fail rule
 
-Promotion to stable V1 is allowed only when:
+Stable promotion is allowed only when:
 
-- GitHub Actions for the candidate is green;
-- no P0/P1 blocker is found in this checklist;
-- the core vertical flow completes without data corruption;
-- you explicitly approve promotion to `v1.0.0`.
-
-A cosmetic issue that does not block or materially mislead the supported flow can be logged post-V1. A safety violation, corrupted persisted state, unusable planner flow, wrong shopping derivation, backup failure or inability to reopen the app is a release blocker.
-
----
+- GitHub Actions `Verify V1 Planner Phase H` is green;
+- all required Phase E cases are PASS;
+- no P0/P1 finding remains open;
+- the full vertical product flow completes without corruption or hard-constraint violations;
+- you explicitly record **ACCEPT V1**.
 
 ## 1. Fresh start and catalog
 
-- [ ] Open the deployed app after the Step 3 push.
-- [ ] The app starts without an IndexedDB/cache error or manual cleanup.
-- [ ] Catalog status reaches `1.0.0`.
-- [ ] Recipes shows the full **500 recipe** core catalog.
-- [ ] Open several recipe details from both catalog and plan; no broken route/detail.
-- [ ] Open ingredient details from at least two recipes.
-- [ ] Search/filter recipes and confirm results are plausible.
+- [ ] App starts without manual IndexedDB/cache cleanup.
+- [ ] Catalog status reaches `1.2.0-planner-phase-d`.
+- [ ] Recipes exposes the full **1,800 recipe** core catalog.
+- [ ] Recipe detail opens from catalog and plan.
+- [ ] Ingredient detail opens from recipe detail.
+- [ ] Product-food taxonomy filters behave coherently, including Dairy and Noodles sentinel checks.
 
-**Blocker examples:** catalog <500, immutable-record error, blank detail, unresolved ingredient/reference.
+## 2. Planner hard contract
 
-## 2. Configuration and hard safety
+- [ ] Successful days remain inside configured hard daily-energy tolerance.
+- [ ] Every planned RecipeVersion component remains `servings=1`.
+- [ ] Allergy/intolerance and auto-exclusion rules produce zero violations.
+- [ ] MealClass forbid and DayClass capability constraints produce zero violations.
+- [ ] Impossible configurations fail with classified bounded-search diagnostics instead of an out-of-range plan.
 
-- [ ] Configure nutrition/profile settings.
-- [ ] Configure at least one diet preference (for example vegetarian) or exclusion.
-- [ ] Configure at least one allergy/intolerance for a dedicated safety test.
-- [ ] Configure meal/day/cycle settings and save them.
-- [ ] Reload the app and confirm the settings persist.
+## 3. Planner quality and regeneration
 
-**Safety check:** generate a plan with the allergy/intolerance active and inspect affected meals. No excluded allergen/ingredient may appear. Try at least one replacement and one rebalance while the safety constraint is active.
+- [ ] 800, 1400, 2000 and 2600 kcal stress cases are usable at ±2% where required by the Phase E harness.
+- [ ] 2600 kcal / 14 days reaches the Phase F quality floor (>=70% unique recipes, zero exact-recipe repeat pairs within 3 days).
+- [ ] Prefer/avoid/frequency and protein/fibre soft settings move ranking in the expected direction without acting as hard filters.
+- [ ] Recalculate may keep the same recipe when it remains best.
+- [ ] Propose alternative changes recipes when a strict hard-valid alternative is found and explains fallback retention honestly.
 
-## 3. Planner vertical flow
+## 4. Vertical product flow
 
-Run one complete 7-day plan:
+Complete one real persisted flow:
 
-- [ ] Generate plan.
-- [ ] Preview appears without critical error.
-- [ ] Inspect at least 8–10 meals for culinary plausibility and reasonable quantities.
-- [ ] Confirm plan.
-- [ ] Open Today.
-- [ ] Open Calendar.
-- [ ] Open Manage day.
-- [ ] Open a recipe from the plan.
-- [ ] Replace one meal.
-- [ ] Save one adherence result.
-- [ ] Rebalance after the edit/adherence change.
-- [ ] Undo and redo at least one plan edit.
-- [ ] Reload the browser and confirm the effective plan remains coherent.
+`Configura -> Genera piano -> Preview -> Conferma -> Oggi -> Calendario -> Gestisci giorno -> Sostituisci -> Ribilancia -> Adherence -> Spesa -> Checklist -> Reload`
 
-**Blocker examples:** hard constraint violation, replacement shown but impossible to commit, rebalance corrupts another day, reload changes/loses confirmed assignments.
+- [ ] 7-day plan can be generated and confirmed.
+- [ ] Replace/rebalance preserve hard validity.
+- [ ] Undo/redo preserves coherent effective-plan state.
+- [ ] Reload preserves configuration, plan and operation state.
+- [ ] Day -> Recipe -> Ingredient -> Back returns to the originating meal slot.
 
-## 4. Shopping/checklist
+## 5. Shopping/checklist
 
-Using the confirmed/effective plan:
+- [ ] Shopping is derived from frozen effective-plan recipes.
+- [ ] External meals are excluded as specified.
+- [ ] People multiplier changes quantities correctly.
+- [ ] Ingredient state/unit aggregation is coherent.
+- [ ] Checklist state persists after reload.
+- [ ] Plan edits make derived shopping stale/recalculable as designed.
 
-- [ ] Calculate shopping list.
-- [ ] Inspect several aggregated quantities against the visible recipes.
-- [ ] If people multiplier is used, verify the multiplier changes quantities sensibly.
-- [ ] Tick several checklist items and save.
-- [ ] Reload; checked state persists.
-- [ ] Modify the plan, return to Shopping, and confirm stale shopping data is recalculated/invalidated appropriately.
+## 6. Backup, language, accessibility and PWA
 
-**Blocker examples:** ingredients from external/excluded meals counted incorrectly, quantities obviously unrelated to plan, checklist disappears after reload, stale list silently survives plan edit.
-
-## 5. Backup and restore
-
-Do this before testing destructive deletion.
-
-- [ ] Export a backup from Backup.
-- [ ] Change a harmless setting (for example appearance/density).
-- [ ] Import the backup.
-- [ ] Confirm the prior setting/configuration and plan state are restored.
-- [ ] Confirm the 500 base recipes are still available after import.
-
-**Blocker examples:** exported JSON invalid, import rejects a backup created by the same candidate, base catalog is removed/replaced, plan/configuration is corrupted.
-
-## 6. IT/EN and accessibility sanity
-
-- [ ] Switch Italian → English and visit Today, Calendar, Recipes, Shopping, Configure, Backup.
-- [ ] Switch back English → Italian.
-- [ ] No raw translation keys are visible in these main screens.
-- [ ] Keyboard Tab can reach primary navigation and major buttons/forms.
-- [ ] Focus/labels are understandable on the main configuration/planner flow.
-- [ ] Test at one mobile/narrow viewport; core actions remain usable.
-
-## 7. PWA/offline sanity
-
-- [ ] Install/open as PWA if the browser exposes the install option.
-- [ ] After one successful online load, disable network and reload/open the app.
-- [ ] Shell opens offline.
-- [ ] Existing local plan/catalog data needed for supported offline use remains accessible.
-- [ ] Re-enable network and confirm normal operation resumes.
-
-Do not classify features that inherently require fetching uncached new data as blockers if the supported local-first flow remains available.
-
-## 8. Destructive local-data deletion — perform last
-
-Only after backup/restore testing is complete:
-
-- [ ] Open Backup and choose **Delete local data**.
-- [ ] Confirm the destructive prompt.
-- [ ] App reloads to a clean bootstrap state.
-- [ ] Personal configuration, plan history and shopping checklist are gone.
-- [ ] Public app/catalog can bootstrap again without manually clearing browser storage.
-- [ ] No immutable-catalog or old-RC migration error appears.
+- [ ] Backup export/import round-trips current configuration and plan state without replacing the base catalog.
+- [ ] IT/EN main flows show no raw translation keys.
+- [ ] Primary controls are keyboard reachable and labels/focus are understandable.
+- [ ] Core flow remains usable at a narrow/mobile viewport.
+- [ ] After one online bootstrap, supported local/offline use continues to open correctly.
+- [ ] Delete local data removes private state and allows clean bootstrap without manual browser-storage repair.
 
 ## Final decision
 
-Record only one outcome:
+Record exactly one outcome:
 
-- [ ] **ACCEPT V1** — no P0/P1 blockers; promote `1.0.0-rc.27` → `1.0.0`.
-- [ ] **BLOCK V1** — list the exact failing screen/action, expected behavior, actual behavior and any visible error.
+- [ ] **ACCEPT V1** — all required Phase E cases PASS, zero P0/P1 blockers, Phase H CI green.
+- [ ] **BLOCK V1** — record screen/action, expected behavior, actual behavior and severity.
 
-If accepted, the final promotion must not regenerate the corpus or change schemas/IDs. It is a minimal release promotion plus final gate/tag.
+If accepted, export the Phase E report and use the Phase H promotion boundary. Stable promotion must preserve the Phase G frozen catalog/content, planner policy, DB/schema/backup contract, PWA data cache and pre-V1 epoch. Only the five Phase H-declared metadata/evidence paths may change unless a blocker forces a new candidate cycle. After promotion, both `npm run check` and `npm run release:gate` must pass before tagging `v1.0.0`.

@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
 import { SchemaRegistry } from '../src/lib/schemaValidator.js';
-import { PRE_V1_DATA_EPOCH } from '../src/db/constants.js';
+import { APP_VERSION, PRE_V1_DATA_EPOCH } from '../src/db/constants.js';
 import { ensurePreV1DataEpoch } from '../src/services/preV1DataEpoch.js';
 import { loadLocalCatalog } from '../scripts/corpus/io-lib.mjs';
 import { MemoryRepository, bundledReferenceData, fileLoader } from './helpers.mjs';
@@ -60,7 +60,7 @@ test('pre-V1 epoch reset destroys RC data, reseeds canonical reference data and 
   assert.equal(storage.getItem('unrelated'), 'keep');
   assert.deepEqual(caches.deleted.sort(), ['ydm-data-v12-root','ydm-shell-v26-root']);
   assert.deepEqual(await repo.getMeta('preV1Reset'), {
-    previousEpoch:'legacy-rc-epoch', previousCatalogVersion:'0.3.0-dev', resetAt:'2026-09-07T12:00:00.000Z', appVersion:'1.0.0-rc.32', policy:'destructive-pre-v1'
+    previousEpoch:'legacy-rc-epoch', previousCatalogVersion:'0.3.0-dev', resetAt:'2026-09-07T12:00:00.000Z', appVersion:APP_VERSION, policy:'destructive-pre-v1'
   });
 });
 

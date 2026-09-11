@@ -1,7 +1,7 @@
 import { element } from './dom.js';
 import { signalDraftChange } from './uiState.js';
 import { MEAL_ARCHETYPES } from '../domain/catalogEnums.js';
-import { RECIPE_TAG_TAXONOMY } from '../services/referenceDataService.js';
+import { RECIPE_TAG_TAXONOMY, TAXONOMY_IDS } from '../services/referenceDataService.js';
 
 let controlSequence = 0;
 function nextId(prefix = 'guided') { controlSequence += 1; return `${prefix}-${controlSequence}`; }
@@ -32,6 +32,102 @@ export function taxonomyChoices(index, taxonomyId, locale = 'it', { parentTermId
       return { id: term.termId, label, secondary: parent || alt, searchText: [label, alt, term.termId, parent, ...aliases, ...(term.legacyKeys || [])].join(' ') };
     })
     .sort((a, b) => a.label.localeCompare(b.label, locale));
+}
+
+
+function productFoodLevel(index, term) {
+  if (!term?.parentTermId) return 'category';
+  const parent = index?.term?.(term.parentTermId);
+  return parent?.parentTermId ? 'concept' : 'subcategory';
+}
+
+function productFoodPathTerms(index, termId) {
+  const path = [];
+  let term = index?.term?.(termId) || null;
+  const seen = new Set();
+  while (term && !seen.has(term.termId)) {
+    seen.add(term.termId);
+    path.unshift(term);
+    term = term.parentTermId ? index?.term?.(term.parentTermId) || null : null;
+  }
+  return path;
+}
+
+export function productFoodPathLabel(index, termId, locale = 'it') {
+  return productFoodPathTerms(index, termId).map(term => labelFromI18n(term.i18n, locale)).filter(Boolean).join(' › ');
+}
+
+function productFoodCoverage(ingredients, termId) {
+  if (!termId) return 0;
+  return (ingredients || []).reduce((count, item) => {
+    const product = item?.revision?.productTaxonomy;
+    return count + (product && [product.categoryId, product.subcategoryId, product.conceptId].includes(termId) ? 1 : 0);
+  }, 0);
+}
+
+export function productFoodChoices(index, locale = 'it', { ingredients = [], levels = ['category', 'subcategory', 'concept'] } = {}) {
+  const allowed = new Set(levels);
+  return (index?.byTaxonomy?.get(TAXONOMY_IDS.productFood) || [])
+    .filter(term => term.status === 'active')
+    .map(term => ({ term, level: productFoodLevel(index, term) }))
+    .filter(item => allowed.has(item.level))
+    .map(({ term, level }) => {
+      const path = productFoodPathTerms(index, term.termId);
+      const labels = path.map(item => labelFromI18n(item.i18n, locale)).filter(Boolean);
+      const alternate = path.map(item => labelFromI18n(item.i18n, locale === 'it' ? 'en' : 'it')).filter(Boolean);
+      const aliases = [...(term.aliases?.it || []), ...(term.aliases?.en || [])];
+      const coverage = productFoodCoverage(ingredients, term.termId);
+      return {
+        id: term.termId,
+        label: labels.join(' › '),
+        secondary: `${level}${ingredients.length ? ` · ${coverage}` : ''}`,
+        searchText: [...labels, ...alternate, term.termId, ...aliases, ...(term.legacyKeys || [])].join(' '),
+        data: { term, level, coverage, path: path.map(item => item.termId) }
+      };
+    })
+    .sort((a, b) => a.label.localeCompare(b.label, locale));
+}
+
+export function createProductFoodPicker(state, index, {
+  value = null, onChange = null, required = false, levels = ['category', 'subcategory', 'concept'],
+  placeholder = null, showCoverage = true
+} = {}) {
+  const root = element('div', { className: 'product-food-picker', 'data-testid': 'product-food-picker' });
+  const summary = element('small', { className: 'field__hint product-food-picker__summary', 'aria-live': 'polite' });
+  const choices = productFoodChoices(index, state.i18n.locale, { ingredients: showCoverage ? (state.guidedIngredients || []) : [], levels })
+    .map(choice => ({
+      ...choice,
+      secondary: `${state.i18n.t(`productFood.level.${choice.data?.level || 'concept'}`)}${showCoverage && Number.isFinite(choice.data?.coverage) ? ` · ${state.i18n.t('productFood.coverage').replace('{count}', String(choice.data.coverage))}` : ''}`
+    }));
+  const control = createAutocomplete({
+    choices,
+    value,
+    required,
+    placeholder: placeholder || state.i18n.t('productFood.search.placeholder'),
+    invalidMessage: state.i18n.t('guided.reference.required'),
+    emptyMessage: state.i18n.t('productFood.search.empty'),
+    onChange: (id, choice) => {
+      renderSummary(choice);
+      onChange?.(id, choice);
+    }
+  });
+  const renderSummary = choice => {
+    const selected = choice || choices.find(item => item.id === control.getValue()) || null;
+    if (!selected) { summary.textContent = state.i18n.t('productFood.search.help'); return; }
+    const levelKey = `productFood.level.${selected.data?.level || 'concept'}`;
+    const coverage = selected.data?.coverage;
+    summary.textContent = `${state.i18n.t(levelKey)}${showCoverage && Number.isFinite(coverage) ? ` · ${state.i18n.t('productFood.coverage').replace('{count}', String(coverage))}` : ''}`;
+  };
+  root.append(control.node, summary);
+  renderSummary();
+  return {
+    node: root,
+    input: control.input,
+    getValue: control.getValue,
+    setValue: next => { control.setValue(next); renderSummary(); },
+    validate: control.validate,
+    getChoice: control.getChoice
+  };
 }
 
 export function genericRecipeTagChoices(index, locale = 'it') {

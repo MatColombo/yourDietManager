@@ -295,6 +295,41 @@
             "string",
             "null"
           ]
+        },
+        "energyBasis": {
+          "enum": [
+            "atwater_general",
+            "atwater_specific",
+            "legacy_energy",
+            "unknown"
+          ]
+        },
+        "energyNutrientId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "energySourceUnit": {
+          "enum": [
+            "kcal",
+            "kJ",
+            "unknown"
+          ]
+        },
+        "energyOriginalValue": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "energyConversion": {
+          "enum": [
+            "none",
+            "kj_to_kcal",
+            "assumed_kcal_by_nutrient_id"
+          ]
         }
       }
     },
@@ -335,6 +370,29 @@
     "createdAt": {
       "type": "string",
       "format": "date-time"
+    },
+    "productTaxonomy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "categoryId",
+        "subcategoryId",
+        "conceptId"
+      ],
+      "properties": {
+        "categoryId": {
+          "type": "string",
+          "pattern": "^product_category_[a-z0-9_]+$"
+        },
+        "subcategoryId": {
+          "type": "string",
+          "pattern": "^product_subcategory_[a-z0-9_]+$"
+        },
+        "conceptId": {
+          "type": "string",
+          "pattern": "^product_concept_[a-z0-9_]+$"
+        }
+      }
     }
   }
 }

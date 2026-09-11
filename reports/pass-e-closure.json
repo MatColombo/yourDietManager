@@ -1,14 +1,14 @@
 {
   "version": 1,
-  "generatedAt": "2026-09-04T19:22:43.131Z",
-  "candidateAppVersion": "1.0.0-rc.20",
+  "generatedAt": "2026-09-10T15:19:34.900Z",
+  "candidateAppVersion": "1.0.0-rc.34",
   "requiredBrowser": false,
   "browserStatus": "skipped",
   "checks": [
     {
       "id": "app-version-sync",
       "pass": true,
-      "detail": "package=1.0.0-rc.20, runtime=1.0.0-rc.20"
+      "detail": "package=1.0.0-rc.34, runtime=1.0.0-rc.34"
     },
     {
       "id": "revision-pass-e-documented",
@@ -63,7 +63,7 @@
     {
       "id": "closure-in-main-check",
       "pass": true,
-      "detail": "check order browser=291, closure=320"
+      "detail": "check order browser=432, closure=461"
     },
     {
       "id": "browser-run-status",

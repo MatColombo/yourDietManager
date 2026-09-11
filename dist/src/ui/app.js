@@ -1,20 +1,23 @@
 import { element, clear } from './dom.js';
 import { validateThemeContrast, applyTheme } from '../theme/themeEngine.js';
 import { createBackup, importBackup } from '../services/backupEngine.js';
+import { deleteAllLocalData } from '../services/localDataService.js';
 import { loadConfigurationBundle, saveConfigurationBundle } from '../services/configurationService.js';
 import {
   configurationIndexPage, cyclePage, dayClassesPage, mealClassesPage, nutritionPage,
   preferencesPage, safetyPage
 } from './configurationPages.js';
-import { ingredientDetailPage, ingredientEditorPage, ingredientsPage, packsPage, recipeDetailPage, recipeEditorPage, recipesPage } from './catalogPages.js';
+import { ingredientDetailPage, ingredientEditorPage, ingredientsPage, packsPage, recipeDetailPage, recipeEditorPage, recipesPage, productionReviewPage } from './catalogPages.js';
 import { todayPage, calendarPage, manageDayPage, historyPage } from './planPages.js';
 import { shoppingPage } from './shoppingPages.js';
+import { plannerValidationPage } from './plannerValidationPage.js';
+import { manualAcceptancePage } from './manualAcceptancePage.js';
 import { referenceDataPage } from './referenceDataPages.js';
 import { routePath } from '../lib/appBase.js';
 import { notificationRegion } from './uiState.js';
 
 const PRIMARY = [['/', 'nav.today'], ['/calendar', 'nav.calendar'], ['/recipes', 'nav.recipes'], ['/shopping', 'nav.shopping']];
-const SECONDARY = [['/configure', 'nav.configure'], ['/appearance', 'nav.appearance'], ['/language', 'nav.language'], ['/backup', 'nav.backup']];
+const SECONDARY = [['/configure', 'nav.configure'], ['/planner-validation', 'nav.plannerValidation'], ['/manual-acceptance', 'nav.manualAcceptance'], ['/appearance', 'nav.appearance'], ['/language', 'nav.language'], ['/backup', 'nav.backup']];
 
 function navLink(state, [href, key]) {
   const currentPath = routePath();
@@ -37,6 +40,7 @@ function catalogPanel(state) {
       dl.append(element('div', {}, [element('dt', { text: state.i18n.t(key) }), element('dd', { text: value })]));
     }
     panel.append(dl);
+    if (state.humanReviewSummary) panel.append(element('a', { href: '/recipes/review', 'data-route': '', className: 'catalog-review-summary' }, [element('strong', { text: state.i18n.t('review.dashboardShort') }), element('span', { text: `${state.humanReviewSummary.reviewed}/${state.humanReviewSummary.expected}` })]));
     if (state.catalogUpdateAvailable) panel.append(element('button', { className: 'button button--secondary button--small', text: `${state.i18n.t('catalog.update')} ${state.catalogUpdateVersion || ''}`.trim(), onClick: () => state.updateCatalog() }));
   }
   if (p.phase === 'error') {
@@ -136,6 +140,19 @@ function backupPage(state) {
     section.append(element('div', { className: 'validation-box', text: state.i18n.t('backup.preImport.ready') }));
     section.append(element('button', { className: 'button button--secondary', text: state.i18n.t('backup.preImport.download'), onClick: () => downloadJson(state.preImportBackup) }));
   }
+  section.append(element('hr', { className: 'section-divider' }));
+  section.append(element('h2', { text: state.i18n.t('backup.delete.title') }));
+  section.append(element('p', { className: 'muted', text: state.i18n.t('backup.delete.description') }));
+  section.append(element('button', {
+    className: 'button button--danger', 'data-testid': 'backup-delete-local-data', text: state.i18n.t('backup.delete.button'),
+    onClick: async () => {
+      if (!confirm(state.i18n.t('backup.delete.confirm'))) return;
+      try {
+        await deleteAllLocalData({ repo: state.repo });
+        window.location.reload();
+      } catch (error) { state.notify?.('error', `${state.i18n.t('backup.delete.error')}: ${error.message || error}`); }
+    }
+  }));
   return section;
 }
 
@@ -154,12 +171,15 @@ function routePage(state) {
   if (path === '/recipes/new') return recipeEditorPage(state);
   if (path === '/recipes/edit') return recipeEditorPage(state, { edit: true }); // legacy query route
   if (path === '/recipes/packs') return packsPage(state);
+  if (path === '/recipes/review') return productionReviewPage(state);
   const recipeEditMatch = path.match(/^\/recipes\/([^/]+)\/edit$/);
   if (recipeEditMatch) return recipeEditorPage(state, { edit: true, recipeId: decodeURIComponent(recipeEditMatch[1]) });
   const recipeDetailMatch = path.match(/^\/recipes\/([^/]+)$/);
   if (recipeDetailMatch) return recipeDetailPage(state, decodeURIComponent(recipeDetailMatch[1]), new URLSearchParams(location.search).get('version'));
   if (path === '/recipes') return recipesPage(state);
   if (path === '/shopping') return shoppingPage(state);
+  if (path === '/planner-validation') return plannerValidationPage(state);
+  if (path === '/manual-acceptance') return manualAcceptancePage(state);
   if (path === '/configure/nutrition') return nutritionPage(state);
   if (path === '/configure/safety') return safetyPage(state);
   if (path === '/configure/preferences') return preferencesPage(state);
@@ -199,6 +219,14 @@ export function renderApp(root, state) {
   if (heading) document.title = `${heading.textContent} · ${state.i18n.t('app.name')}`;
   if (routeChanged && heading) {
     heading.setAttribute('tabindex', '-1');
-    queueMicrotask(() => heading.focus({ preventScroll: true }));
+    queueMicrotask(() => {
+      heading.focus({ preventScroll: true });
+      const rawHash = globalThis.location.hash?.slice(1);
+      if (rawHash) {
+        const target = document.getElementById(decodeURIComponent(rawHash));
+        target?.scrollIntoView?.({ block: 'center' });
+        target?.classList?.add('context-return-target');
+      }
+    });
   }
 }

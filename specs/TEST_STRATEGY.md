@@ -330,3 +330,11 @@ Real-artifact acceptance for rc.21 additionally records 220 -> 320 -> 420 -> 500
 Every schema loaded by the browser `SchemaRegistry` must be byte-for-byte identical between the canonical `schemas/` directory and `public/schemas/`. The test suite must also validate representative production records against the public mirror. Never fix browser validation by allowing arbitrary additional properties; evolve the canonical schema explicitly and mirror it.
 
 - Production-review browser acceptance is channel-aware: frozen base RecipeVersions expose the Human Review panel and intentionally suppress the visible Edit action, while the route-independent recipe editor is still exercised directly so Pass D edit/versioning behavior remains covered.
+
+## Planner Phase F quality tuning
+
+- Unit-test the slot-option objective decomposition: option nutrition is full, per-recipe nutrition is tie-break only, preference/variety/regeneration remain full soft contributions.
+- Unit-test 3/7/14-day quality metrics independently from the solver.
+- Run a catalog-backed 2600 kcal / 14-day / ±2% quality acceptance: hard energy valid, fixed servings, unique recipe rate >=70%, zero exact repeats within 3 days.
+- Run directional soft checks at 2000 kcal: high-protein increases planned protein without dropping uniqueness below 70%; prefer-vegan increases vegan occurrence count while avoid/frequency reduce it.
+- Phase F quality checks never replace Phase E human acceptance and never promote stable V1 automatically.

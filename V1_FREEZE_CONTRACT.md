@@ -1,59 +1,86 @@
-# YourDietManager V1 Freeze Contract
+# YourDietManager V1 Freeze Contract — Phase G content / Phase H handoff
 
-> **SUPERSEDED / SUSPENDED:** The direct V1 promotion path in this document is suspended by `V1_PLANNER_VALIDATION_PLAN.md`. Planner Validation phases A–C must complete before stable V1.
+## Current authority
 
+The authoritative V1 **product/data freeze** remains the Phase G release-candidate consolidation implemented in `1.0.0-rc.34`.
 
-## Status
+Machine-readable freeze:
 
-**Release candidate frozen. Manual product acceptance is still pending.**
+`corpus/production/v1-planner-release/freeze-contract.json`
 
-This document defines the boundary between the pre-release development model and the stable V1 compatibility model. The catalog is frozen at `1.0.0`; the application remains `1.0.0-rc.27` until the final manual test is accepted.
+Phase H is the authoritative **release handoff** over that freeze:
 
-## Frozen contract
+`corpus/production/v1-planner-release/phase-h-handoff.json`
 
-| Area | V1 candidate |
-| --- | --- |
-| App | `1.0.0-rc.27` |
-| Catalog | `1.0.0` |
-| IndexedDB schema | `5` |
-| Content schema | `3` |
-| Backup format | `1` |
-| Final pre-V1 data epoch | `v1-freeze-epoch-1` |
-| Ingredient families/revisions | `600 / 600` |
-| Recipe families/versions | `500 / 500` |
-| Required `core` recipes | `500` |
-| Stratified recipe review | `60` recipes / `12` strata |
+The earlier rc.27 / 500-recipe freeze under `corpus/production/v1-release/` is historical evidence only and does not define the current release boundary.
 
-The machine-readable source of truth is `corpus/production/v1-release/freeze-contract.json`.
+## Frozen candidate boundary
 
-## Compatibility boundary
+The Phase G candidate freezes:
 
-Everything before this freeze remains pre-release and disposable. `v1-freeze-epoch-1` is the final destructive reset boundary. Once the stable `v1.0.0` release is approved, IDs, schemas, persisted user data and backup compatibility become release contracts and future changes must use explicit migrations/versioning.
+- catalog `1.2.0-planner-phase-d`;
+- 600 IngredientFamily / 600 IngredientRevision records;
+- 1,800 RecipeFamily / 1,800 fixed-serving RecipeVersion records;
+- product-food taxonomy classification for all 600 ingredient revisions;
+- DB v6;
+- content schema v3;
+- backup format v1;
+- pre-V1 epoch `v1-planner-phase-d-epoch-1`;
+- Phase F planner policy `phase-f-soft-objective-1`;
+- hard daily energy tolerance and `servings=1` invariants;
+- recipe/reference/catalog-content/quality evidence digests recorded in the machine contract;
+- shell/data cache boundary v37/v17 for the frozen candidate.
 
-The final promotion must **not** regenerate or republish the recipe corpus. It should only:
+Phase H does not change any of these frozen properties.
 
-1. record successful manual acceptance;
-2. promote application version `1.0.0-rc.27` to `1.0.0`;
-3. leave the V1 catalog at `1.0.0` and leave the data epoch unchanged;
-4. run the final release gate;
-5. create the `v1.0.0` tag/release.
+## Final acceptance
 
-If the manual test finds a blocker requiring a schema, data-model or catalog-content change, the candidate returns to Step 3 validation rather than bypassing this contract.
+Final manual acceptance is stored separately in:
 
-## Release blockers
+`corpus/production/v1-planner-release/manual-acceptance.json`
 
-The candidate cannot be promoted while any of the following is true:
+Stable promotion is allowed only after an exported Phase E report proves every required case is PASS with zero P0/P1 and the release operator supplies the exact explicit decision `ACCEPT V1`.
 
-- manual acceptance is pending or failed;
-- catalog/reference integrity fails;
-- hard allergy/diet constraints fail in planner/replacement/rebalance;
-- effective-plan editing or undo/redo corrupts state;
-- shopping/checklist state is inconsistent after reload;
-- backup cannot validate/restore against the frozen catalog;
-- local-data deletion leaves private application state behind;
-- required Chromium acceptance fails in GitHub Pages CI;
-- locale-key parity, accessibility, form-contract, build or Pages audit fails.
+The accepted repository record must state:
 
-## Non-blocking post-V1 work
+- `status=accepted`;
+- `stablePromotionAllowed=true`;
+- `acceptedCandidateVersion=1.0.0-rc.34`;
+- `acceptedAppVersion=1.0.0`;
+- accepted catalog version equal to the Phase G frozen catalog;
+- digest of the manual acceptance report used for the decision.
 
-Corpus expansion beyond 500 recipes, broader human review, visual refinements and additional convenience features are post-V1 work unless the final acceptance test demonstrates a functional blocker.
+Development-tranche completion or provisional Phase E validity is not silently converted into final acceptance.
+
+## Stable promotion boundary
+
+Phase H defines stable promotion as metadata-only with respect to the frozen product/data contract.
+
+The only allowed repository mutations are:
+
+1. `package.json` -> application version `1.0.0`;
+2. `src/db/constants.js` -> runtime version `1.0.0`;
+3. `public/data/catalog-manifest.json` -> `production_release / releaseEligible=true` publication metadata over unchanged shards/content;
+4. `corpus/production/v1-planner-release/manual-acceptance.json` -> explicit accepted decision evidence;
+5. `corpus/production/v1-planner-release/stable-release-evidence.json` -> stable promotion evidence.
+
+The controlled command is:
+
+```bash
+npm run v1:promote-stable -- --report <manual-acceptance-report.json> --decision "ACCEPT V1" --apply
+```
+
+Without `--apply` it is read-only. Before writing, it verifies that the projected stable state passes all ten release-gate checks and that the Phase G catalog-content/reference/recipe/planner-policy digests remain unchanged.
+
+Stable promotion must **not** regenerate recipes, resize servings, change IDs, modify catalog shards, change DB/schema/backup format, change the pre-V1 epoch, alter the Phase F planner policy or bump/replace the frozen data cache.
+
+After apply:
+
+```bash
+npm run check
+npm run release:gate
+```
+
+must both pass. Only then may tag/release `v1.0.0` be created.
+
+If a blocker requires any frozen product/data change, the Phase G freeze is invalidated and a new release-candidate validation cycle is required instead of using the Phase H promotion path.

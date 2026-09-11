@@ -1,4 +1,33 @@
-# 1.0.0-rc.31 — Planner Phase D3–D5
+# Changelog
+
+## 1.0.0-rc.34 — V1 Planner Phase H final release handoff
+
+- Closed the current development tranche without fabricating final V1 acceptance.
+- Added deterministic Phase H handoff evidence chained to the Phase G freeze.
+- Added fail-closed stable-promotion tooling requiring an eligible Phase E report, exact `ACCEPT V1`, and explicit `--apply`; default mode is read-only dry-run.
+- Restricted stable promotion to five metadata/evidence paths and verified a synthetic stable projection passes the full 10-check release gate without changing frozen catalog content.
+- Refactored the stable release-state evaluator for shared gate/projection logic.
+- Made historical planner/Step 2 verification transition-safe so `npm run check` remains valid after the legal metadata-only promotion from rc.34 to `1.0.0`.
+- Updated GitHub Actions to `Verify V1 Planner Phase H`, including Phase G/H evidence drift checks and explicit proof that pre-acceptance release remains blocked by only the three intentional conditions.
+
+## 1.0.0-rc.34 — Planner Phase G release-candidate consolidation
+
+- Froze the current 600-ingredient / 1,800 fixed-serving recipe baseline with recipe, reference-data, catalog-content and Phase F quality digests.
+- Replaced stale rc.27 / 500-recipe / DB v5 release-gate assumptions with the current DB v6 / Phase D catalog / Phase F policy contract.
+- Added deterministic `v1:planner-phase-g-freeze` and `v1:planner-phase-g` gates and wired Phase G into the full check/CI workflow.
+- Kept catalog content, product-food taxonomy, pre-V1 data epoch and data cache unchanged; shell cache advances to v37.
+- Stable promotion remains fail-closed until explicit final `ACCEPT V1` evidence and a production-release manifest exist.
+
+## 1.0.0-rc.33 — Planner Phase F quality tuning
+
+- Corrected slot-option soft-objective composition so preference and variety are no longer attenuated to 15%.
+- Strengthened short-window exact-recipe repetition penalties while keeping variety strictly soft.
+- Added explicit `phase-f-soft-objective-1` policy constants and planner quality metrics.
+- Planner Lab now exposes recipe uniqueness and 3/7-day repetition metrics.
+- Added Phase F quality gate with real 2600-kcal/14-day and soft-direction acceptance checks.
+- Catalog, DB, pre-V1 epoch and data cache remain unchanged; shell cache bumped to v36.
+
+## 1.0.0-rc.31 — Planner Phase D3–D5
 
 - Added one shared hierarchical `product_food` picker for preferences/safety/MealClass rules and ingredient authoring.
 - Added faceted ingredient discovery by product taxonomy and technical state.
@@ -8,7 +37,7 @@
 - Catalog/DB/data epoch remain unchanged; shell cache bumped to v34 only.
 - Added D3–D5 functional/policy gates and real-Chromium acceptance for taxonomy filters and contextual drill-down.
 
-# 1.0.0-rc.30 — Planner Phase D1+D2
+## 1.0.0-rc.30 — Planner Phase D1+D2
 
 - Split date regeneration into explicit **Recalculate** and **Propose alternative** semantics.
 - Alternative mode uses strict current-recipe exclusion first, then an honest bounded-search fallback with retention diagnostics.
@@ -17,8 +46,6 @@
 - Added `productFood` targets to preferences, allergy/intolerance and MealClass categorical rules.
 - Bumped DB to v6, pre-V1 epoch to `v1-planner-phase-d-epoch-1`, shell/data caches to v33/v17.
 - Recipe corpus remains 1,800 fixed-serving RecipeVersion records with unchanged recipe digest; serving scaling remains forbidden.
-
-# Changelog
 
 ## [Planner Validation Phase C] - 2026-09-08
 

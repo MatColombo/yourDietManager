@@ -816,5 +816,9 @@
   "manualAcceptance.group.discovery": "Taxonomy & discovery",
   "manualAcceptance.group.navigation": "Context navigation",
   "manualAcceptance.group.operations": "Plan operations",
-  "manualAcceptance.group.persistence": "Persistence"
+  "manualAcceptance.group.persistence": "Persistence",
+  "planner.validation.uniqueRecipeRate": "Recipe uniqueness",
+  "planner.validation.repeat3d": "Repeats ≤3d",
+  "planner.validation.repeat7d": "Repeats ≤7d",
+  "planner.validation.primaryRepeat3d": "Primary repeats ≤3d"
 }

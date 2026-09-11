@@ -1,76 +1,77 @@
 {
-  "version": 1,
-  "generatedAt": "2026-09-04T19:22:09.439Z",
-  "candidateAppVersion": "1.0.0-rc.20",
-  "catalogVersion": "0.3.0-dev",
+  "schemaVersion": 3,
+  "generatedAt": "2026-09-10T15:21:30.461Z",
+  "candidateAppVersion": "1.0.0-rc.34",
+  "currentAppVersion": "1.0.0-rc.34",
+  "catalogVersion": "1.2.0-planner-phase-d",
+  "releasable": false,
   "checks": [
     {
-      "id": "reference-data-present",
+      "id": "stable-app-version",
+      "pass": false,
+      "detail": "package=1.0.0-rc.34, runtime=1.0.0-rc.34"
+    },
+    {
+      "id": "phase-g-freeze",
       "pass": true,
-      "detail": "version=1.0.0, taxonomies=7, terms=113"
+      "detail": "yourdietmanager-v1-planner-phase-g-freeze@1.0.0"
     },
     {
-      "id": "reference-data-valid",
+      "id": "manual-acceptance",
+      "pass": false,
+      "detail": "status=pending, allowed=false"
+    },
+    {
+      "id": "production-release-publication",
+      "pass": false,
+      "detail": "channel=development, eligible=false"
+    },
+    {
+      "id": "frozen-persistence",
       "pass": true,
-      "detail": "valid=true"
+      "detail": "db=6, content=3, backup=1, epoch=v1-planner-phase-d-epoch-1"
     },
     {
-      "id": "reference-data-digest",
+      "id": "data-contract-600-1800",
       "pass": true,
-      "detail": "manifest=56f3949bd1c0348f8fe65861ebcda23c2a198805cd2e9f70b00610a328753b52, actual=56f3949bd1c0348f8fe65861ebcda23c2a198805cd2e9f70b00610a328753b52"
+      "detail": "ingredients=600/600, recipes=1800/1800, core=1800"
     },
     {
-      "id": "app-version-sync",
+      "id": "frozen-recipe-digest",
       "pass": true,
-      "detail": "package=1.0.0-rc.20, runtime=1.0.0-rc.20"
+      "detail": "freeze=5e3bd7661171cff9434b03bb9951d58779ed84dc2e0e9910d36d1ebc517f53f2, current=5e3bd7661171cff9434b03bb9951d58779ed84dc2e0e9910d36d1ebc517f53f2"
     },
     {
-      "id": "recipe-corpus-minimum",
-      "pass": false,
-      "detail": "recipeVersions=3, required>=3000"
+      "id": "frozen-catalog-content",
+      "pass": true,
+      "detail": "content=39bdd524fccc6e92013b747d1391336f2698e36af862ab94585863899d715056"
     },
     {
-      "id": "production-contract-traceability",
-      "pass": false,
-      "detail": "manifest=missing, expected=ydm-v1-production-corpus@1.0.0"
+      "id": "frozen-planner-policy",
+      "pass": true,
+      "detail": "policy=phase-f-soft-objective-1"
     },
     {
-      "id": "production-pipeline",
-      "pass": false,
-      "detail": "pipelineVersion=phase3-fixture, expected=recipe-pipeline-2-production-intake"
-    },
-    {
-      "id": "curated-high-confidence-ingredients",
-      "pass": false,
-      "detail": "uncuratedBaseIngredientRevisions=4"
-    },
-    {
-      "id": "catalog-not-dev-version",
-      "pass": false,
-      "detail": "catalogVersion=0.3.0-dev"
+      "id": "product-taxonomy-freeze",
+      "pass": true,
+      "detail": "classified=600, categories=18, terms=203"
     }
   ],
-  "releasable": false,
   "blockers": [
     {
-      "id": "recipe-corpus-minimum",
-      "detail": "recipeVersions=3, required>=3000"
+      "id": "stable-app-version",
+      "pass": false,
+      "detail": "package=1.0.0-rc.34, runtime=1.0.0-rc.34"
     },
     {
-      "id": "production-contract-traceability",
-      "detail": "manifest=missing, expected=ydm-v1-production-corpus@1.0.0"
+      "id": "manual-acceptance",
+      "pass": false,
+      "detail": "status=pending, allowed=false"
     },
     {
-      "id": "production-pipeline",
-      "detail": "pipelineVersion=phase3-fixture, expected=recipe-pipeline-2-production-intake"
-    },
-    {
-      "id": "curated-high-confidence-ingredients",
-      "detail": "uncuratedBaseIngredientRevisions=4"
-    },
-    {
-      "id": "catalog-not-dev-version",
-      "detail": "catalogVersion=0.3.0-dev"
+      "id": "production-release-publication",
+      "pass": false,
+      "detail": "channel=development, eligible=false"
     }
   ]
 }

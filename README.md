@@ -1,12 +1,18 @@
 # yourDietManager — V1 Release Candidate
 
+## Current authoritative baseline — Phase H
+
+The current candidate is **`1.0.0-rc.34`** on catalog **`1.2.0-planner-phase-d`**. Phase G remains the immutable product/data freeze: **600 ingredients / 1,800 fixed-serving recipes**, DB v6, content schema v3, backup format v1, product-food taxonomy on all ingredients, Phase F planner quality policy and PWA shell/data caches **v37/v17**. Phase H closes the development tranche with a fail-closed final release handoff over that exact freeze.
+
+Use `V1_PLANNER_VALIDATION_PLAN.md`, `V1_PLANNER_PHASE_H_REPORT.md`, `V1_PLANNER_PHASE_G_REPORT.md` and `V1_FREEZE_CONTRACT.md` as the current release authority. Earlier rc.24/500-recipe/production-corpus sections below are implementation history only. Stable `v1.0.0` remains blocked until an eligible manual acceptance report is paired with the exact explicit decision `ACCEPT V1`; Phase H never converts development completion into acceptance.
+
 ## rc.24 browser schema mirror hardening
 
 Production-review browser bootstrap now enforces canonical JSON Schema parity between `schemas/` and the PWA mirror `public/schemas/`. The production ingredient energy provenance fields are accepted by the browser contract, while unknown source properties remain rejected. Production-review publications require app version `1.0.0-rc.24` or newer. See `PHASE4_PRODUCTION_REVIEW_RC24_SCHEMA_MIRROR_REPORT.md`.
 
 Local-first PWA implementation through **Phase 8 — Hardening & V1 release gates**.
 
-Candidate version: **`1.0.0-rc.24`**.
+Historical candidate in this section: **`1.0.0-rc.24`**.
 
 Phases 1–7 remain fully present: IndexedDB persistence, onboarding/configuration, backup/import, IT/EN, theme engine, indexed catalog/search/packs, versioned catalog authoring, corpus-orchestration tooling, deterministic seeded plan generation, effective-plan UX with history/undo, shopping checklists and preparation horizon.
 
@@ -25,7 +31,7 @@ See `PHASE8_IMPLEMENTATION_REPORT.md` for the full implementation and verificati
 
 ## V1 Data/UX Hardening — Pass A + Pass B + Pass C + Pass D + Pass E
 
-Pass A through Pass E are implemented on top of the release candidate. The current runtime is **IndexedDB DB v5 / content schema v3** with canonical `taxonomies` / `taxonomyTerms`, a 7-taxonomy/113-term seed registry, reference-data digest/versioning, semantic validation and audited legacy migration.
+Pass A through Pass E are preserved as historical hardening work. Their then-current runtime was **IndexedDB DB v5 / content schema v3** with canonical `taxonomies` / `taxonomyTerms`, a 7-taxonomy/113-term seed registry, reference-data digest/versioning, semantic validation and audited legacy migration.
 
 Pass B makes those contracts the normal UI path: `Configura -> Tassonomie e reference data`, canonical autocomplete selectors for entity/taxonomy references, chip multi-selects for recipe taxonomy metadata, hierarchical food group/subgroup selection, localized closed enums, ingredient-dependent recipe-line units, unified MealArchetype defaults and inline validation. Semantic CSV/free-text entry is no longer used by ordinary authoring/configuration forms.
 
@@ -64,6 +70,8 @@ npm run hardening:forms
 npm run hardening:browser
 npm run hardening:revision
 npm run release:gate
+npm run v1:planner-phase-h
+npm run v1:promote-stable -- --report <manual-acceptance-report.json> --decision "ACCEPT V1"
 ```
 
 No `npm install` is required.

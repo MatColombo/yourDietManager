@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "suite": "v1-planner-phase-b",
+  "checkedAt": "2026-09-10T15:16:54.371Z",
+  "status": "passed",
+  "checks": [
+    {
+      "id": "phase-b-app-version",
+      "pass": true,
+      "detail": "package=1.0.0-rc.34, runtime=1.0.0-rc.34"
+    },
+    {
+      "id": "phase-b-lineage-epoch",
+      "pass": true,
+      "detail": "v1-planner-phase-d-epoch-1"
+    },
+    {
+      "id": "catalog-1800-publication-state",
+      "pass": true,
+      "detail": "catalog=1.2.0-planner-phase-d, recipes=1800/1800, channel=development"
+    },
+    {
+      "id": "ingredient-base-coherent",
+      "pass": true,
+      "detail": "ingredients=600/600"
+    },
+    {
+      "id": "functional-ingredient-expansion",
+      "pass": true,
+      "detail": "eligible=311, used=302"
+    },
+    {
+      "id": "fixed-template-only",
+      "pass": true,
+      "detail": "serving scaling and target-fitting by ingredient amount are prohibited"
+    },
+    {
+      "id": "generator-no-energy-solver",
+      "pass": true,
+      "detail": "Phase B generator filters fixed templates into bands; it does not fit quantities to targets"
+    },
+    {
+      "id": "serving-count-fixed",
+      "pass": true,
+      "detail": "all RecipeVersion servingCount=1"
+    },
+    {
+      "id": "coverage-matrix-exact",
+      "pass": true,
+      "detail": "all 31 energy-band quotas match the Phase B matrix"
+    },
+    {
+      "id": "meal-energy-envelope",
+      "pass": true,
+      "detail": "{\"breakfast\":[83.2,698],\"lunch\":[180.5,942.8],\"dinner\":[186.7,935.7],\"snack\":[61,394.2],\"mini_meal\":[86.7,498.5]}"
+    },
+    {
+      "id": "diet-variety-floor",
+      "pass": true,
+      "detail": "{\"vegetarian\":1251,\"vegan\":396,\"pescatarian\":215}"
+    },
+    {
+      "id": "practical-variety-floor",
+      "pass": true,
+      "detail": "{\"quick\":1180,\"noCook\":647,\"cold\":647}"
+    },
+    {
+      "id": "publication-quality-zero",
+      "pass": true,
+      "detail": "{\"schemaErrors\":0,\"unknownIngredientReferences\":0,\"nutritionErrors\":0,\"allergenDerivationErrors\":0,\"missingRequiredLocaleFields\":0,\"exactDuplicateCount\":0,\"nearDuplicateCount\":0}"
+    },
+    {
+      "id": "core-pack-full-validation-corpus",
+      "pass": true,
+      "detail": "core=1800"
+    },
+    {
+      "id": "pwa-cache-phase-b",
+      "pass": true,
+      "detail": "shell=v37, data=v17"
+    },
+    {
+      "id": "browser-count-dynamic",
+      "pass": true,
+      "detail": "browser acceptance derives count/version from built manifest"
+    },
+    {
+      "id": "phase-b-workflow",
+      "pass": true,
+      "detail": "current manual CI rebuilds Phase B source before Phase D enrichment"
+    },
+    {
+      "id": "not-release-candidate",
+      "pass": true,
+      "detail": "status=planner_validation"
+    }
+  ],
+  "failures": [],
+  "metrics": {
+    "recipes": 1800,
+    "eligibleIngredients": 311,
+    "usedIngredients": 302,
+    "dietCounts": {
+      "vegetarian": 1251,
+      "vegan": 396,
+      "pescatarian": 215
+    },
+    "practicalCounts": {
+      "quick": 1180,
+      "noCook": 647,
+      "cold": 647
+    }
+  }
+}

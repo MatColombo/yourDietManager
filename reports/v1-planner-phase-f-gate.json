@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "suite": "v1-planner-phase-f-quality-tuning",
+  "checkedAt": "2026-09-10T15:17:35.440Z",
+  "status": "passed",
+  "checks": [
+    {
+      "id": "phase-f-version",
+      "pass": true,
+      "detail": "package=1.0.0-rc.34, runtime=1.0.0-rc.34"
+    },
+    {
+      "id": "phase-f-persistence-stable",
+      "pass": true,
+      "detail": "db=6, epoch=v1-planner-phase-d-epoch-1"
+    },
+    {
+      "id": "phase-f-catalog-stable",
+      "pass": true,
+      "detail": "catalog=1.2.0-planner-phase-d, recipes=1800"
+    },
+    {
+      "id": "phase-f-policy-version",
+      "pass": true,
+      "detail": "phase-f-soft-objective-1"
+    },
+    {
+      "id": "phase-f-short-repeat-weight",
+      "pass": true,
+      "detail": "[{\"days\":3,\"recipe\":24,\"family\":3.5,\"primary\":3,\"category\":0.9,\"cuisine\":0.7},{\"days\":7,\"recipe\":12,\"family\":1.5,\"primary\":1.2,\"category\":0.35,\"cuisine\":0.25},{\"days\":14,\"recipe\":3,\"family\":0.4,\"primary\":0.35,\"category\":0.1,\"cuisine\":0.08}]"
+    },
+    {
+      "id": "phase-f-soft-not-attenuated",
+      "pass": true,
+      "detail": "slot options preserve full preference/variety contribution"
+    },
+    {
+      "id": "phase-f-quality-visible",
+      "pass": true,
+      "detail": "Planner Lab exposes quality metrics"
+    },
+    {
+      "id": "phase-f-shell",
+      "pass": true,
+      "detail": "shell=v37, data=v17, Phase F modules precached"
+    },
+    {
+      "id": "phase-f-workflow",
+      "pass": true,
+      "detail": "manual release-candidate workflow runs Phase F"
+    },
+    {
+      "id": "phase-f-2600-feasible",
+      "pass": true,
+      "detail": "{\"allWithinTolerance\":true,\"days\":[{\"date\":\"2026-09-14\",\"targetKcal\":2600,\"minKcal\":2548,\"maxKcal\":2652,\"totalKcal\":2601.8,\"deviationPct\":0.1,\"withinTolerance\":true},{\"date\":\"2026-09-15\",\"targetKcal\":2600,\"minKcal\":2548,\"maxKcal\":2652,\"totalKcal\":2599.8,\"deviationPct\":0,\"withinTolerance\":true},{\"date\":\"2026-09-16\",\"targetKcal\":2600,\"minKcal\":2548,\"maxKcal\":2652,\"totalKcal\":2600,\"deviationPct\":0,\"withinTolerance\":true},{\"date\":\"2026-09-17\",\"targetKcal\":2600,\"minKcal\":2548,\"maxKcal\":2652,\"totalKcal\":2595.2,\"deviationPct\":-0.2,\"withinTolerance\":true},{\"date\":\"2026-09-18\",\"targetKcal\":2600,\"minKcal\":2548,\"maxKcal\":2652,\"totalKcal\":2596.3,\"deviationPct\":-0.1,\"withinTolerance\":true},{\"date\":\"2026-09-19\",\"targetKcal\":2600,\"minKcal\":2548,\"maxKcal\":2652,\"totalKcal\":2596.6,\"deviationPct\":-0.1,\"withinTolerance\":true},{\"date\":\"2026-09-20\",\"targetKcal\":2600,\"minKcal\":2548,\"maxKcal\":2652,\"totalKcal\":2601.8,\"deviationPct\":0.1,\"withinTolerance\":true},{\"date\":\"2026-09-21\",\"targetKcal\":2600,\"minKcal\":2548,\"maxKcal\":2652,\"totalKcal\":2601.2,\"deviationPct\":0,\"withinTolerance\":true},{\"date\":\"2026-09-22\",\"targetKcal\":2600,\"minKcal\":2548,\"maxKcal\":2652,\"totalKcal\":2595.3,\"deviationPct\":-0.2,\"withinTolerance\":true},{\"date\":\"2026-09-23\",\"targetKcal\":2600,\"minKcal\":2548,\"maxKcal\":2652,\"totalKcal\":2598.6,\"deviationPct\":-0.1,\"withinTolerance\":true},{\"date\":\"2026-09-24\",\"targetKcal\":2600,\"minKcal\":2548,\"maxKcal\":2652,\"totalKcal\":2600.7,\"deviationPct\":0,\"withinTolerance\":true},{\"date\":\"2026-09-25\",\"targetKcal\":2600,\"minKcal\":2548,\"maxKcal\":2652,\"totalKcal\":2595.8,\"deviationPct\":-0.2,\"withinTolerance\":true},{\"date\":\"2026-09-26\",\"targetKcal\":2600,\"minKcal\":2548,\"maxKcal\":2652,\"totalKcal\":2607.6,\"deviationPct\":0.3,\"withinTolerance\":true},{\"date\":\"2026-09-27\",\"targetKcal\":2600,\"minKcal\":2548,\"maxKcal\":2652,\"totalKcal\":2600.5,\"deviationPct\":0,\"withinTolerance\":true}]}"
+    },
+    {
+      "id": "phase-f-2600-uniqueness",
+      "pass": true,
+      "detail": "{\"plannedMealCount\":56,\"recipeComponentCount\":56,\"uniqueRecipeCount\":41,\"uniqueRecipeRate\":0.732,\"exactRepeatPairsWithin3Days\":0,\"exactRepeatPairsWithin7Days\":6,\"samePrimaryPairsWithin3Days\":2,\"sameFamilyPairsWithin3Days\":75,\"adjacentSamePrimary\":0,\"multiRecipeMealCount\":0,\"averageDailyProteinG\":134.8,\"averageDailyFiberG\":47.9}"
+    },
+    {
+      "id": "phase-f-2600-no-short-repeat",
+      "pass": true,
+      "detail": "{\"plannedMealCount\":56,\"recipeComponentCount\":56,\"uniqueRecipeCount\":41,\"uniqueRecipeRate\":0.732,\"exactRepeatPairsWithin3Days\":0,\"exactRepeatPairsWithin7Days\":6,\"samePrimaryPairsWithin3Days\":2,\"sameFamilyPairsWithin3Days\":75,\"adjacentSamePrimary\":0,\"multiRecipeMealCount\":0,\"averageDailyProteinG\":134.8,\"averageDailyFiberG\":47.9}"
+    },
+    {
+      "id": "phase-f-soft-feasible",
+      "pass": true,
+      "detail": "success,success,success,success,success"
+    },
+    {
+      "id": "phase-f-high-protein-direction",
+      "pass": true,
+      "detail": "current=102.9, high=125"
+    },
+    {
+      "id": "phase-f-high-protein-variety-floor",
+      "pass": true,
+      "detail": "{\"plannedMealCount\":28,\"recipeComponentCount\":28,\"uniqueRecipeCount\":22,\"uniqueRecipeRate\":0.786,\"exactRepeatPairsWithin3Days\":0,\"exactRepeatPairsWithin7Days\":6,\"samePrimaryPairsWithin3Days\":11,\"sameFamilyPairsWithin3Days\":44,\"adjacentSamePrimary\":1,\"multiRecipeMealCount\":0,\"averageDailyProteinG\":125,\"averageDailyFiberG\":33.6}"
+    },
+    {
+      "id": "phase-f-preference-direction",
+      "pass": true,
+      "detail": "{\"current\":4,\"prefer\":6,\"avoid\":3,\"frequency\":2}"
+    }
+  ],
+  "failures": [],
+  "metrics": {
+    "quality2600": {
+      "plannedMealCount": 56,
+      "recipeComponentCount": 56,
+      "uniqueRecipeCount": 41,
+      "uniqueRecipeRate": 0.732,
+      "exactRepeatPairsWithin3Days": 0,
+      "exactRepeatPairsWithin7Days": 6,
+      "samePrimaryPairsWithin3Days": 2,
+      "sameFamilyPairsWithin3Days": 75,
+      "adjacentSamePrimary": 0,
+      "multiRecipeMealCount": 0,
+      "averageDailyProteinG": 134.8,
+      "averageDailyFiberG": 47.9
+    },
+    "soft2000": {
+      "current": {
+        "plannedMealCount": 28,
+        "recipeComponentCount": 28,
+        "uniqueRecipeCount": 28,
+        "uniqueRecipeRate": 1,
+        "exactRepeatPairsWithin3Days": 0,
+        "exactRepeatPairsWithin7Days": 0,
+        "samePrimaryPairsWithin3Days": 0,
+        "sameFamilyPairsWithin3Days": 24,
+        "adjacentSamePrimary": 0,
+        "multiRecipeMealCount": 0,
+        "averageDailyProteinG": 102.9,
+        "averageDailyFiberG": 44.2
+      },
+      "highProtein": {
+        "plannedMealCount": 28,
+        "recipeComponentCount": 28,
+        "uniqueRecipeCount": 22,
+        "uniqueRecipeRate": 0.786,
+        "exactRepeatPairsWithin3Days": 0,
+        "exactRepeatPairsWithin7Days": 6,
+        "samePrimaryPairsWithin3Days": 11,
+        "sameFamilyPairsWithin3Days": 44,
+        "adjacentSamePrimary": 1,
+        "multiRecipeMealCount": 0,
+        "averageDailyProteinG": 125,
+        "averageDailyFiberG": 33.6
+      },
+      "vegan": {
+        "current": 4,
+        "prefer": 6,
+        "avoid": 3,
+        "frequency": 2
+      }
+    }
+  }
+}

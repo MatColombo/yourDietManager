@@ -1,5 +1,6 @@
 import { nutritionPenalty, matchOperator } from './planMath.js';
 import { recipeMatchesTarget, numericRuleSatisfied, families, cuisines, primaryIngredientId, foodCategories } from './recipeFeatures.js';
+import { PLANNER_SOFT_OBJECTIVE_POLICY } from './qualityPolicy.js';
 
 const STRENGTH = Object.freeze({ prefer: -2, slight_prefer: -1, neutral: 0, avoid: 3 });
 const PREFERENCE = Object.freeze({ more_often: -1.5, normal: 0, less_often: 1.5, rarely: 3.5 });
@@ -41,7 +42,7 @@ export function preferenceScore(recipe, { mealClass, foodPreferences, revisionBy
 export function varietyScore(recipe, { history = [], date, revisionById, foodPreferences }) {
   let score = 0;
   const reasons = [];
-  const windows = [{ days: 3, recipe: 6, family: 2.5, primary: 1.8, category: 0.8, cuisine: 0.7 }, { days: 7, recipe: 2.5, family: 1.2, primary: 0.8, category: 0.35, cuisine: 0.25 }, { days: 14, recipe: 0.8, family: 0.35, primary: 0.25, category: 0.1, cuisine: 0.08 }];
+  const windows = PLANNER_SOFT_OBJECTIVE_POLICY.varietyWindows;
   const primary = primaryIngredientId(recipe);
   const cats = [...foodCategories(recipe, revisionById)];
   for (const window of windows) {

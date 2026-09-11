@@ -1,6 +1,6 @@
 import { repositories } from '../repositories/repositoryHub.js';
 import { loadConfigurationBundle, assertConfigurationBundle, activeRecords } from './configurationService.js';
-import { PlanCandidateService } from './planCandidateService.js';
+import { PlanCandidateService, MAX_PLANNER_CANDIDATES_PER_ARCHETYPE } from './planCandidateService.js';
 import { generatePlanCore } from '../planner/planGenerator.js';
 import { sha256Json } from '../lib/crypto.js';
 import { addCivilDays, daysBetween } from '../planner/planMath.js';
@@ -17,13 +17,12 @@ function snapshotConfiguration(bundle, active) {
   };
 }
 
-async function boundedCandidates(active, catalogVersion, { repo, limit = 250 } = {}) {
+async function boundedCandidates(active, catalogVersion, { repo, limit = MAX_PLANNER_CANDIDATES_PER_ARCHETYPE } = {}) {
   const query = new PlanCandidateService({ repo });
   const archetypes = [...new Set(active.mealClasses.map(meal => meal.mealArchetype))];
-  const hardAllergens = (active.allergyProfile?.rules || []).filter(rule => rule.enabled && rule.targetType === 'allergen').map(rule => rule.targetId);
   const candidateSets = {}; const versions = new Map();
   for (const archetype of archetypes) {
-    const items = await query.retrieve(archetype, { limit, excludeAllergens: hardAllergens });
+    const items = await query.retrieve(archetype, { limit });
     candidateSets[archetype] = items;
     for (const version of items) versions.set(version.recipeVersionId, version);
   }
@@ -58,18 +57,18 @@ async function continuationContext({ previousPlanInstanceId, active, repo }) {
 
 export async function createPlanPreview(options, { repo = repositories, registry } = {}) {
   if (!registry) throw new Error('Schema registry is required');
-  const bundle = await loadConfigurationBundle(repo); assertConfigurationBundle(bundle, registry);
+  const bundle = options.configurationOverride ? structuredClone(options.configurationOverride) : await loadConfigurationBundle(repo); assertConfigurationBundle(bundle, registry);
   const active = activeRecords(bundle);
   const catalogVersion = await repo.getMeta('activeCatalogVersion');
   if (!catalogVersion) throw new Error('No active catalog version');
   const configSnapshot = snapshotConfiguration(bundle, active);
   const configSnapshotHash = await sha256Json(configSnapshot);
-  const candidates = await boundedCandidates(active, catalogVersion, { repo, limit: options.candidateRetrievalLimit || 250 });
+  const candidates = await boundedCandidates(active, catalogVersion, { repo, limit: options.candidateRetrievalLimit || MAX_PLANNER_CANDIDATES_PER_ARCHETYPE });
   const continuation = await continuationContext({ previousPlanInstanceId: options.previousPlanInstanceId || null, active, repo });
   if (options.startCycleDayOverride != null) continuation.startCycleDay = Number(options.startCycleDayOverride);
   if (options.previousGenerationRunIdOverride !== undefined) continuation.previousGenerationRunId = options.previousGenerationRunIdOverride;
   const historyPlanInstanceId = options.historyPlanInstanceId !== undefined ? options.historyPlanInstanceId : continuation.previousPlanInstanceId;
-  const previousCalendarDays = await historicalDaysBefore(options.horizon.startDate, repo, historyPlanInstanceId, 14);
+  const previousCalendarDays = options.ignorePlanHistory === true ? [] : await historicalDaysBefore(options.horizon.startDate, repo, historyPlanInstanceId, 14);
   const historicalVersionIds = [...new Set(previousCalendarDays.flatMap(day => (day.mealSlots || []).flatMap(slot => (slot.recipeComponents || []).map(component => component.recipeVersionId))))];
   const historicalRecipes = await repo.getMany('recipeVersions', historicalVersionIds);
   const recipeMap = new Map([...candidates.recipes, ...historicalRecipes].map(recipe => [recipe.recipeVersionId, recipe]));
@@ -84,9 +83,13 @@ export async function createPlanPreview(options, { repo = repositories, registry
     reason: options.reason || (options.previousPlanInstanceId ? 'horizon_extension' : 'initial'),
     previousGenerationRunId: continuation.previousGenerationRunId, previousPlanInstanceId: continuation.previousPlanInstanceId,
     previousCalendarDays, continuationPolicy: options.continuationPolicy || { mode: 'prompt', triggerDaysBeforeEnd: 3, extensionDays: 7 },
-    startCycleDay: continuation.startCycleDay, candidateLimit: options.candidateLimit || 20, beamWidth: options.beamWidth || 100, slotOptionLimit: options.slotOptionLimit || 40
+    startCycleDay: continuation.startCycleDay, candidateLimit: options.candidateLimit || 20, beamWidth: options.beamWidth || 100, slotOptionLimit: options.slotOptionLimit || 40,
+    regenerationPolicy: options.regenerationPolicy || null
   });
+  result.diagnostics.candidateRetrieval = { limitPerArchetype: options.candidateRetrievalLimit || MAX_PLANNER_CANDIDATES_PER_ARCHETYPE, counts: Object.fromEntries(Object.entries(candidates.candidateSets).map(([key, values]) => [key, values.length])), totalUniqueRecipes: candidates.recipes.length };
+  if (options.validationContext) result.diagnostics.validationContext = structuredClone(options.validationContext);
   if (result.status === 'success') {
+    result.generationRun.diagnostics = result.diagnostics;
     registry.assert('generationRun', result.generationRun); registry.assert('planInstance', result.planInstance);
     for (const day of result.calendarDays) registry.assert('calendarDay', day);
   }

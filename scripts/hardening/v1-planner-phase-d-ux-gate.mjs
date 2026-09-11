@@ -17,7 +17,7 @@ const checks = []; const failures = [];
 function check(id, pass, detail) { const row = { id, pass: Boolean(pass), detail }; checks.push(row); if (!row.pass) failures.push(row); }
 const locales = ['productFood.search.placeholder','productFood.search.help','productFood.level.category','productFood.level.subcategory','productFood.level.concept','productFood.coverage','catalog.filter.productFood','catalog.filter.diet','catalog.filter.practical','catalog.filter.state','navigation.backToContext','plan.openRecipe'];
 
-check('phase-d3-d5-version', pkg.version === APP_VERSION && APP_VERSION === '1.0.0-rc.32', `package=${pkg.version}, runtime=${APP_VERSION}`);
+check('phase-d3-d5-version', pkg.version === APP_VERSION && ['1.0.0-rc.34','1.0.0'].includes(APP_VERSION), `package=${pkg.version}, runtime=${APP_VERSION}`);
 check('phase-d3-d5-persistence-stable', DB_VERSION === 6 && PRE_V1_DATA_EPOCH === 'v1-planner-phase-d-epoch-1', `db=${DB_VERSION}, epoch=${PRE_V1_DATA_EPOCH}`);
 check('phase-d3-d5-catalog-unchanged', catalog.manifest.catalogVersion === '1.2.0-planner-phase-d' && catalog.recipeVersions.length === 1800 && catalog.ingredientRevisions.length === 600, `catalog=${catalog.manifest.catalogVersion}, recipes=${catalog.recipeVersions.length}, ingredients=${catalog.ingredientRevisions.length}`);
 check('product-food-picker', /export function createProductFoodPicker/.test(guided) && /productFoodPathLabel/.test(guided) && /productFoodCoverage/.test(guided), 'hierarchical picker exposes path + coverage');
@@ -35,7 +35,7 @@ check('recipe-ingredient-direct-link', /data-testid': 'recipe-ingredient-link'/.
 check('context-back-safe', /safeReturnRoute/.test(catalogPages) && /data-testid': 'context-back'/.test(catalogPages), 'recipe and ingredient detail provide sanitized contextual back navigation');
 check('slot-return-restored', /location\.hash/.test(app) && /scrollIntoView/.test(app) && /context-return-target/.test(app) && /context-return-target/.test(css), 'SPA restores and highlights exact returned meal slot');
 check('locale-parity-d3-d5', locales.every(key => typeof en[key] === 'string' && typeof it[key] === 'string') && Object.keys(en).length === Object.keys(it).length, `keys=${Object.keys(en).length}/${Object.keys(it).length}`);
-check('pwa-shell-bumped-only', /ydm-shell-v35-/.test(worker) && /ydm-data-v17-/.test(worker) && /ydm-data-v17-/.test(offline), 'shell=v34, data remains v17');
+check('pwa-shell-bumped-only', /ydm-shell-v37-/.test(worker) && /ydm-data-v17-/.test(worker) && /ydm-data-v17-/.test(offline), 'shell=v37, data remains v17');
 check('phase-d3-d5-check-wired', /v1:planner-phase-d-ux/.test(packageSource) && /v1:planner-phase-d && npm run v1:planner-phase-d-ux/.test(packageSource), 'focused D3-D5 gate is part of npm check');
 
 const report = { schemaVersion: 1, generatedAt: new Date().toISOString(), phase: 'D3-D5', checks, pass: failures.length === 0 };

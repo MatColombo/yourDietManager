@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "suite": "v1-planner-phase-c-manual-validation-lab",
+  "checkedAt": "2026-09-10T15:17:17.759Z",
+  "status": "passed",
+  "checks": [
+    {
+      "id": "phase-c-app-version",
+      "pass": true,
+      "detail": "package=1.0.0-rc.34, runtime=1.0.0-rc.34"
+    },
+    {
+      "id": "phase-b-catalog-preserved",
+      "pass": true,
+      "detail": "catalog=1.2.0-planner-phase-d, recipes=1800"
+    },
+    {
+      "id": "phase-b-epoch-preserved",
+      "pass": true,
+      "detail": "v1-planner-phase-d-epoch-1"
+    },
+    {
+      "id": "full-archetype-retrieval",
+      "pass": true,
+      "detail": "limit=500"
+    },
+    {
+      "id": "replacement-full-retrieval",
+      "pass": true,
+      "detail": "replacement uses the same full bounded candidate space and canonical hard filter"
+    },
+    {
+      "id": "allergen-visible-to-hard-filter",
+      "pass": true,
+      "detail": "candidate retrieval does not pre-remove allergy/allergen matches"
+    },
+    {
+      "id": "temporary-configuration-overlay",
+      "pass": true,
+      "detail": "manual validation uses a cloned configuration override"
+    },
+    {
+      "id": "validation-history-isolated",
+      "pass": true,
+      "detail": "manual stress cases are isolated from any active plan history"
+    },
+    {
+      "id": "validation-never-commits",
+      "pass": true,
+      "detail": "Phase C lab cannot persist/confirm a validation plan"
+    },
+    {
+      "id": "stress-envelope-800-2600",
+      "pass": true,
+      "detail": "targets=800,1000,1200,1400,1600,1800,2000,2200,2400,2600; tolerances=2,5,10"
+    },
+    {
+      "id": "constraint-profile-matrix",
+      "pass": true,
+      "detail": "profiles=current,hard_practical,hard_numeric_forbid,hard_categorical_forbid,hard_autoexclude,hard_intolerance_legumes,soft_high_protein,soft_high_fiber,soft_vegan_preference,soft_meal_avoid_vegan,soft_frequency_vegan,impossible_all_forbidden,external_unknown"
+    },
+    {
+      "id": "hard-safety-profile-coverage",
+      "pass": true,
+      "detail": "manual lab covers both allergen and intolerance safety paths"
+    },
+    {
+      "id": "negative-profiles-classified",
+      "pass": true,
+      "detail": "deliberately impossible cases have expected=failed"
+    },
+    {
+      "id": "soft-profile-coverage",
+      "pass": true,
+      "detail": "protein/fiber targets, MealClass avoid, FoodPreferences and frequency soft semantics have stress presets"
+    },
+    {
+      "id": "slot-pipeline-diagnostics",
+      "pass": true,
+      "detail": "source -> hard accepted -> frontier -> option diagnostics are emitted per slot"
+    },
+    {
+      "id": "selected-soft-rank-diagnostics",
+      "pass": true,
+      "detail": "selected meals expose rank and score components"
+    },
+    {
+      "id": "candidate-retrieval-diagnostics",
+      "pass": true,
+      "detail": "generation diagnostics expose retrieval limit/counts"
+    },
+    {
+      "id": "determinism-and-sweep-services",
+      "pass": true,
+      "detail": "manual lab supports same-seed determinism and 30-case energy sweep"
+    },
+    {
+      "id": "fixed-serving-verification",
+      "pass": true,
+      "detail": "manual result explicitly checks fixed servings"
+    },
+    {
+      "id": "manual-route-and-actions",
+      "pass": true,
+      "detail": "navigation route and manual actions are present"
+    },
+    {
+      "id": "diagnostic-export-and-config-links",
+      "pass": true,
+      "detail": "operator can export diagnostics and jump to constraint configuration"
+    },
+    {
+      "id": "locale-parity",
+      "pass": true,
+      "detail": "en=822, it=822"
+    },
+    {
+      "id": "pwa-phase-c-shell",
+      "pass": true,
+      "detail": "shell=v37, data=v17, Phase C modules precached"
+    },
+    {
+      "id": "browser-phase-c-smoke",
+      "pass": true,
+      "detail": "real Chromium gate opens and runs the manual validation lab"
+    },
+    {
+      "id": "browser-required-on-pages",
+      "pass": true,
+      "detail": "Pages remains blocked on required Chromium acceptance"
+    }
+  ],
+  "failures": [],
+  "metrics": {
+    "appVersion": "1.0.0-rc.34",
+    "catalogVersion": "1.2.0-planner-phase-d",
+    "recipeCount": 1800,
+    "candidateRetrievalLimit": 500,
+    "stressProfiles": 13,
+    "targets": [
+      800,
+      1000,
+      1200,
+      1400,
+      1600,
+      1800,
+      2000,
+      2200,
+      2400,
+      2600
+    ],
+    "tolerances": [
+      2,
+      5,
+      10
+    ]
+  }
+}

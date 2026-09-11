@@ -79,8 +79,11 @@ export function configurationDiagnostics(bundle, registry) {
       if (present(target) && present(max) && target > max) push(`nutritionProfiles.${profile.id}.nutrients.${key}`, 'target must be <= max');
       if (present(min) && present(max) && min > max) push(`nutritionProfiles.${profile.id}.nutrients.${key}`, 'min must be <= max');
     }
-    for (const archetype of Object.keys(profile.dayArchetypeModifiers || {})) {
+    for (const [archetype, modifier] of Object.entries(profile.dayArchetypeModifiers || {})) {
       if (!DAY_ARCHETYPES.includes(archetype)) push(`nutritionProfiles.${profile.id}.dayArchetypeModifiers.${archetype}`, 'unknown day archetype');
+      if (modifier?.mode === 'percent' && Number(modifier.value) <= -100) push(`nutritionProfiles.${profile.id}.dayArchetypeModifiers.${archetype}`, 'percent modifier must be greater than -100');
+      const resolved = modifier?.mode === 'percent' ? profile.dailyEnergyKcal * (1 + Number(modifier.value) / 100) : profile.dailyEnergyKcal + Number(modifier?.value || 0);
+      if (!(resolved > 0)) push(`nutritionProfiles.${profile.id}.dayArchetypeModifiers.${archetype}`, 'resolved daily energy target must remain greater than zero');
     }
   }
 
@@ -105,6 +108,10 @@ export function configurationDiagnostics(bundle, registry) {
     for (const slot of day.mealSlots || []) {
       if (!mealIds.has(slot.mealClassId)) push(`dayClasses.${day.id}.mealSlots.${slot.id}.mealClassId`, `MealClass ${slot.mealClassId} does not exist`);
       else if (!activeMealIds.has(slot.mealClassId)) push(`dayClasses.${day.id}.mealSlots.${slot.id}.mealClassId`, `MealClass ${slot.mealClassId} is not active in AppConfig`);
+      if (slot.energyBudgetKcal != null && slot.energyShare != null) push(`dayClasses.${day.id}.mealSlots.${slot.id}`, 'set either energyBudgetKcal or energyShare, not both');
+      if (slot.mode === 'planned' && slot.proteinMinG != null) push(`dayClasses.${day.id}.mealSlots.${slot.id}.proteinMinG`, 'proteinMinG is external-meal guidance only and must be null for planned slots');
+      if (slot.mode === 'planned' && slot.estimatedNutritionPolicy != null) push(`dayClasses.${day.id}.mealSlots.${slot.id}.estimatedNutritionPolicy`, 'estimatedNutritionPolicy is valid only for external slots');
+      if (slot.mode === 'external' && slot.estimatedNutritionPolicy !== 'unknown' && slot.energyBudgetKcal == null && slot.energyShare == null) push(`dayClasses.${day.id}.mealSlots.${slot.id}`, 'budgeted external slot requires energyBudgetKcal or energyShare');
     }
     const groups = new Map();
     for (const slot of day.mealSlots || []) {

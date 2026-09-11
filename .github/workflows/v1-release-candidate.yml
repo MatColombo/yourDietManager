@@ -1,4 +1,4 @@
-name: Verify V1 Planner Phase D
+name: Verify V1 Planner Phase H
 
 on:
   workflow_dispatch:
@@ -7,11 +7,11 @@ permissions:
   contents: read
 
 concurrency:
-  group: v1-planner-phase-d-${{ github.ref }}
+  group: v1-planner-phase-h-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  verify-v1-planner-phase-d:
+  verify-v1-planner-phase-h:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
@@ -29,11 +29,19 @@ jobs:
           npm run corpus:build-planner-phase-d
           npm run catalog:publish-planner-phase-d
 
-      - name: Verify generated planner-validation data has no drift
+      - name: Rebuild Phase G freeze and Phase H handoff
+        run: |
+          npm run v1:planner-phase-g-freeze
+          npm run v1:planner-phase-h-handoff
+
+      - name: Verify generated planner-validation and release-handoff data has no drift
         run: |
           git diff --exit-code -- \
             corpus/production/planner-phase-b \
             corpus/production/planner-phase-d \
+            corpus/production/v1-planner-release/freeze-contract.json \
+            corpus/production/v1-planner-release/release-candidate-evidence.json \
+            corpus/production/v1-planner-release/phase-h-handoff.json \
             public/data/catalog-manifest.json \
             public/data/ingredients \
             public/data/recipes \
@@ -50,7 +58,7 @@ jobs:
           echo "CHROMIUM_PATH=$browser" >> "$GITHUB_ENV"
           "$browser" --version
 
-      - name: Verify planner-validation build
+      - name: Verify final development-tranche build
         run: npm run check
         env:
           YDM_BROWSER_REQUIRED: '1'
@@ -61,7 +69,29 @@ jobs:
       - name: Verify Phase D explicitly
         run: npm run v1:planner-phase-d
 
-      - name: Build GitHub Pages planner-validation artifact
+      - name: Verify Phase F quality tuning explicitly
+        run: npm run v1:planner-phase-f
+
+      - name: Verify Phase G freeze explicitly
+        run: npm run v1:planner-phase-g
+
+      - name: Verify Phase H release handoff explicitly
+        run: npm run v1:planner-phase-h
+
+      - name: Verify stable release remains fail-closed before explicit acceptance
+        shell: bash
+        run: |
+          set +e
+          output="$(npm run release:gate 2>&1)"
+          status=$?
+          set -e
+          printf '%s\n' "$output"
+          test "$status" -eq 2
+          printf '%s\n' "$output" | grep -q 'stable-app-version'
+          printf '%s\n' "$output" | grep -q 'manual-acceptance'
+          printf '%s\n' "$output" | grep -q 'production-release-publication'
+
+      - name: Build GitHub Pages final candidate artifact
         run: npm run build
         env:
           YDM_BASE_PATH: /yourDietManager/
@@ -69,15 +99,23 @@ jobs:
       - name: Audit GitHub Pages artifact
         run: node scripts/hardening/pages-audit.mjs dist /yourDietManager/
 
-      - name: Upload planner-validation artifact
+      - name: Upload final development-tranche artifact
         uses: actions/upload-artifact@v4
         with:
-          name: yourdietmanager-planner-phase-d-${{ github.run_number }}
+          name: yourdietmanager-planner-phase-h-${{ github.run_number }}
           path: |
             dist
             corpus/production/planner-phase-d/build-evidence.json
             corpus/production/planner-phase-d/publication-evidence.json
+            corpus/production/v1-planner-release/freeze-contract.json
+            corpus/production/v1-planner-release/release-candidate-evidence.json
+            corpus/production/v1-planner-release/manual-acceptance.json
+            corpus/production/v1-planner-release/phase-h-handoff.json
             V1_PLANNER_VALIDATION_PLAN.md
             V1_PLANNER_PHASE_D_REPORT.md
+            V1_PLANNER_PHASE_F_REPORT.md
+            V1_PLANNER_PHASE_F_QUALITY_EVIDENCE.json
+            V1_PLANNER_PHASE_G_REPORT.md
+            V1_PLANNER_PHASE_H_REPORT.md
           if-no-files-found: error
           retention-days: 14

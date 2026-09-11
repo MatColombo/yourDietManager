@@ -35,9 +35,43 @@ export function dayEnergyTarget(profile, dayArchetype) {
   const base = Number(profile.dailyEnergyKcal);
   const modifier = profile.dayArchetypeModifiers?.[dayArchetype];
   if (!modifier) return base;
-  if (modifier.mode === 'percent') return Math.round(base * (1 + Number(modifier.value) / 100) * 10) / 10;
+  if (modifier.mode === 'percent') return Math.max(1, Math.round(base * (1 + Number(modifier.value) / 100) * 10) / 10);
   if (modifier.mode === 'kcal') return Math.max(1, Math.round((base + Number(modifier.value)) * 10) / 10);
   return base;
+}
+
+
+export function energyToleranceWindow(dayEnergyTargetKcal, tolerancePct, externalEnergyKcal = 0) {
+  const target = Number(dayEnergyTargetKcal);
+  const tolerance = Math.max(0, Number(tolerancePct || 0)) / 100;
+  const external = Math.max(0, Number(externalEnergyKcal || 0));
+  if (!(target > 0) || !Number.isFinite(target)) throw new Error('Daily energy target must be a positive finite number');
+  const round = value => Math.round(value * 10) / 10;
+  const dailyMinKcal = round(Math.max(0, target * (1 - tolerance)));
+  const dailyMaxKcal = round(target * (1 + tolerance));
+  const plannedMinKcal = round(Math.max(0, dailyMinKcal - external));
+  const plannedMaxKcal = round(Math.max(0, dailyMaxKcal - external));
+  return {
+    targetKcal: round(target), tolerancePct: round(tolerance * 100), externalEnergyKcal: round(external),
+    dailyMinKcal, dailyMaxKcal, plannedTargetKcal: round(Math.max(0, target - external)), plannedMinKcal, plannedMaxKcal
+  };
+}
+
+export function energyConstraintStatus(plannedEnergyKcal, dayEnergyTargetKcal, tolerancePct, externalEnergyKcal = 0) {
+  const window = energyToleranceWindow(dayEnergyTargetKcal, tolerancePct, externalEnergyKcal);
+  const planned = Math.round(Math.max(0, Number(plannedEnergyKcal || 0)) * 10) / 10;
+  const budgetedTotalKcal = Math.round((planned + window.externalEnergyKcal) * 10) / 10;
+  const within = budgetedTotalKcal >= window.dailyMinKcal - 1e-9 && budgetedTotalKcal <= window.dailyMaxKcal + 1e-9;
+  const deviationKcal = Math.round((budgetedTotalKcal - window.targetKcal) * 10) / 10;
+  const deviationPct = Math.round((deviationKcal / Math.max(1, window.targetKcal)) * 1000) / 10;
+  return { ...window, plannedEnergyKcal: planned, budgetedTotalKcal, deviationKcal, deviationPct, withinTolerance: within };
+}
+
+export function energyDistanceFromWindow(plannedEnergyKcal, window) {
+  const value = Number(plannedEnergyKcal || 0);
+  if (value < window.plannedMinKcal) return Math.round((window.plannedMinKcal - value) * 10) / 10;
+  if (value > window.plannedMaxKcal) return Math.round((value - window.plannedMaxKcal) * 10) / 10;
+  return 0;
 }
 
 export function targetPenalty(actual, target, min, max, weight = 1) {
@@ -47,15 +81,15 @@ export function targetPenalty(actual, target, min, max, weight = 1) {
   return 0;
 }
 
-export function nutritionPenalty(nutrition, profile, { energyTarget, energyWeight = 3, nutrientScale = 1 } = {}) {
+export function nutritionPenalty(nutrition, profile, { energyTarget, energyWeight = 3, nutrientTargetFactor = 1 } = {}) {
   let score = targetPenalty(nutrition.energyKcal, energyTarget, null, null, energyWeight);
   for (const key of ['proteinG', 'carbsG', 'fatG', 'fiberG']) {
     const target = profile.nutrients?.[key];
     if (!target?.enabled) continue;
-    const scale = Number(nutrientScale);
-    const min = target.min == null ? null : target.min * scale;
-    const ideal = target.target == null ? null : target.target * scale;
-    const max = target.max == null ? null : target.max * scale;
+    const factor = Number(nutrientTargetFactor);
+    const min = target.min == null ? null : target.min * factor;
+    const ideal = target.target == null ? null : target.target * factor;
+    const max = target.max == null ? null : target.max * factor;
     score += targetPenalty(nutrition[key], ideal, min, max, target.weight || 1);
   }
   return score;

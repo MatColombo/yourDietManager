@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-09-10T15:17:25.658Z",
+  "phase": "D3-D5",
+  "checks": [
+    {
+      "id": "phase-d3-d5-version",
+      "pass": true,
+      "detail": "package=1.0.0-rc.34, runtime=1.0.0-rc.34"
+    },
+    {
+      "id": "phase-d3-d5-persistence-stable",
+      "pass": true,
+      "detail": "db=6, epoch=v1-planner-phase-d-epoch-1"
+    },
+    {
+      "id": "phase-d3-d5-catalog-unchanged",
+      "pass": true,
+      "detail": "catalog=1.2.0-planner-phase-d, recipes=1800, ingredients=600"
+    },
+    {
+      "id": "product-food-picker",
+      "pass": true,
+      "detail": "hierarchical picker exposes path + coverage"
+    },
+    {
+      "id": "product-food-picker-localized",
+      "pass": true,
+      "detail": "picker level and coverage labels use locale keys"
+    },
+    {
+      "id": "configuration-reuses-product-picker",
+      "pass": true,
+      "detail": "preference/safety/meal semantic targets reuse product picker"
+    },
+    {
+      "id": "preferences-default-product-food",
+      "pass": true,
+      "detail": "new preference rule starts at productFood rather than source foodCategory"
+    },
+    {
+      "id": "ingredient-authoring-concept-required",
+      "pass": true,
+      "detail": "new ingredient revisions require a product concept"
+    },
+    {
+      "id": "ingredient-faceted-ui",
+      "pass": true,
+      "detail": "ingredient browser has product taxonomy + state facets"
+    },
+    {
+      "id": "recipe-faceted-ui",
+      "pass": true,
+      "detail": "recipe browser exposes product, diet and practical facets"
+    },
+    {
+      "id": "recipe-query-product-graph",
+      "pass": true,
+      "detail": "recipe facet resolves through ingredient product taxonomy"
+    },
+    {
+      "id": "ingredient-query-facets",
+      "pass": true,
+      "detail": "ingredient query supports product taxonomy + state"
+    },
+    {
+      "id": "recipe-taxonomy-facets-visible",
+      "pass": true,
+      "detail": "recipe cards expose product category facets"
+    },
+    {
+      "id": "day-recipe-direct-link",
+      "pass": true,
+      "detail": "day slot links directly to exact recipe with return anchor"
+    },
+    {
+      "id": "recipe-ingredient-direct-link",
+      "pass": true,
+      "detail": "recipe ingredients link to exact IngredientRevision with recipe return"
+    },
+    {
+      "id": "context-back-safe",
+      "pass": true,
+      "detail": "recipe and ingredient detail provide sanitized contextual back navigation"
+    },
+    {
+      "id": "slot-return-restored",
+      "pass": true,
+      "detail": "SPA restores and highlights exact returned meal slot"
+    },
+    {
+      "id": "locale-parity-d3-d5",
+      "pass": true,
+      "detail": "keys=822/822"
+    },
+    {
+      "id": "pwa-shell-bumped-only",
+      "pass": true,
+      "detail": "shell=v37, data remains v17"
+    },
+    {
+      "id": "phase-d3-d5-check-wired",
+      "pass": true,
+      "detail": "focused D3-D5 gate is part of npm check"
+    }
+  ],
+  "pass": true
+}

@@ -21,7 +21,7 @@ const profileIds = new Set(PLANNER_VALIDATION_PROFILES.map(item => item.id));
 const requiredProfiles = ['current','hard_practical','hard_numeric_forbid','hard_categorical_forbid','hard_autoexclude','hard_intolerance_legumes','soft_high_protein','soft_high_fiber','soft_vegan_preference','soft_meal_avoid_vegan','soft_frequency_vegan','impossible_all_forbidden','external_unknown'];
 const enKeys = Object.keys(en).sort(); const itKeys = Object.keys(it).sort();
 
-check('phase-c-app-version', pkg.version === APP_VERSION && /^1\.0\.0-rc\.\d+$/.test(APP_VERSION), `package=${pkg.version}, runtime=${APP_VERSION}`);
+check('phase-c-app-version', pkg.version === APP_VERSION && /^1\.0\.0(?:-rc\.\d+)?$/.test(APP_VERSION), `package=${pkg.version}, runtime=${APP_VERSION}`);
 check('phase-b-catalog-preserved', ['1.1.0-planner-phase-b','1.2.0-planner-phase-d'].includes(manifest.catalogVersion) && manifest.recipeVersions?.count === 1800, `catalog=${manifest.catalogVersion}, recipes=${manifest.recipeVersions?.count}`);
 check('phase-b-epoch-preserved', ['v1-planner-phase-b-epoch-1','v1-planner-phase-d-epoch-1'].includes(PRE_V1_DATA_EPOCH), PRE_V1_DATA_EPOCH);
 check('full-archetype-retrieval', MAX_PLANNER_CANDIDATES_PER_ARCHETYPE === 500 && /MAX_PLANNER_CANDIDATES_PER_ARCHETYPE\s*=\s*500/.test(candidateService), `limit=${MAX_PLANNER_CANDIDATES_PER_ARCHETYPE}`);
@@ -43,7 +43,7 @@ check('fixed-serving-verification', /component\.servings === 1/.test(validationS
 check('manual-route-and-actions', app.includes("'/planner-validation'") && ['planner-validation-run','planner-validation-determinism','planner-validation-sweep','planner-validation-result'].every(id => page.includes(id)), 'navigation route and manual actions are present');
 check('diagnostic-export-and-config-links', /downloadJson/.test(page) && /\/configure\/nutrition/.test(page) && /\/configure\/safety/.test(page) && /\/configure\/preferences/.test(page) && /\/configure\/meals/.test(page) && /\/configure\/days/.test(page), 'operator can export diagnostics and jump to constraint configuration');
 check('locale-parity', JSON.stringify(enKeys) === JSON.stringify(itKeys) && enKeys.length >= 760, `en=${enKeys.length}, it=${itKeys.length}`);
-check('pwa-phase-c-shell', /ydm-shell-v35-/.test(worker) && /ydm-data-v17-/.test(worker) && /ydm-data-v17-/.test(offline) && ['src/services/plannerValidationService.js','src/planner/validationProfiles.js','src/ui/plannerValidationPage.js'].every(file => worker.includes(file)), 'shell=v34, data=v17, Phase C modules precached');
+check('pwa-phase-c-shell', /ydm-shell-v37-/.test(worker) && /ydm-data-v17-/.test(worker) && /ydm-data-v17-/.test(offline) && ['src/services/plannerValidationService.js','src/planner/validationProfiles.js','src/ui/plannerValidationPage.js'].every(file => worker.includes(file)), 'shell=v37, data=v17, Phase C modules precached');
 check('browser-phase-c-smoke', /planner-validation/.test(browser) && /planner-validation-run/.test(browser) && /phaseCManualLab/.test(browser), 'real Chromium gate opens and runs the manual validation lab');
 check('browser-required-on-pages', /YDM_BROWSER_REQUIRED:\s*'1'/.test(pagesWorkflow) && /npm run check/.test(pagesWorkflow), 'Pages remains blocked on required Chromium acceptance');
 

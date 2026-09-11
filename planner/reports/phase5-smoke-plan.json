@@ -333,14 +333,14 @@
               "hardFiltersPassed": true,
               "softRank": 1,
               "frontierRank": 1,
-              "score": 159.417,
+              "score": 193.617,
               "scoreComponents": {
                 "nutrition": 135.85714285714286,
                 "preference": 0,
-                "variety": 23.560000000000002
+                "variety": 57.75999999999999
               },
               "reasons": [
-                "variety:23.56"
+                "variety:57.76"
               ],
               "relaxedSoftConstraints": []
             },
@@ -353,14 +353,14 @@
               "hardFiltersPassed": true,
               "softRank": 1,
               "frontierRank": 1,
-              "score": 178.51,
+              "score": 181.31,
               "scoreComponents": {
                 "nutrition": 167.10000000000002,
                 "preference": 0,
-                "variety": 11.41
+                "variety": 14.21
               },
               "reasons": [
-                "variety:11.41"
+                "variety:14.21"
               ],
               "relaxedSoftConstraints": []
             }
@@ -406,14 +406,14 @@
                   "recipeVersionId": "rv_chicken",
                   "rank": 1,
                   "energyKcal": 900,
-                  "score": 159.417,
+                  "score": 193.617,
                   "scoreComponents": {
                     "nutrition": 135.85714285714286,
                     "preference": 0,
-                    "variety": 23.560000000000002
+                    "variety": 57.75999999999999
                   },
                   "reasons": [
-                    "variety:23.56"
+                    "variety:57.76"
                   ]
                 }
               ],
@@ -462,14 +462,14 @@
                   "recipeVersionId": "rv_night",
                   "rank": 1,
                   "energyKcal": 990,
-                  "score": 178.51,
+                  "score": 181.31,
                   "scoreComponents": {
                     "nutrition": 167.10000000000002,
                     "preference": 0,
-                    "variety": 11.41
+                    "variety": 14.21
                   },
                   "reasons": [
-                    "variety:11.41"
+                    "variety:14.21"
                   ]
                 }
               ],
@@ -483,11 +483,11 @@
             "meal_archetype": 5,
             "safety:fish": 2
           },
-          "score": 459.746
+          "score": 526.471
         }
       ],
       "summary": {
-        "meanScore": 329.289,
+        "meanScore": 362.652,
         "hardConstraintViolations": 0
       }
     },
@@ -662,7 +662,7 @@
           "plannedEnergyKcal": 1890,
           "energyTolerancePct": 10
         },
-        "score": 459.746
+        "score": 526.471
       },
       "createdAt": "2026-09-03T14:00:00Z",
       "updatedAt": "2026-09-03T14:00:00Z"
@@ -985,14 +985,14 @@
             "hardFiltersPassed": true,
             "softRank": 1,
             "frontierRank": 1,
-            "score": 159.417,
+            "score": 193.617,
             "scoreComponents": {
               "nutrition": 135.85714285714286,
               "preference": 0,
-              "variety": 23.560000000000002
+              "variety": 57.75999999999999
             },
             "reasons": [
-              "variety:23.56"
+              "variety:57.76"
             ],
             "relaxedSoftConstraints": []
           },
@@ -1005,14 +1005,14 @@
             "hardFiltersPassed": true,
             "softRank": 1,
             "frontierRank": 1,
-            "score": 178.51,
+            "score": 181.31,
             "scoreComponents": {
               "nutrition": 167.10000000000002,
               "preference": 0,
-              "variety": 11.41
+              "variety": 14.21
             },
             "reasons": [
-              "variety:11.41"
+              "variety:14.21"
             ],
             "relaxedSoftConstraints": []
           }
@@ -1058,14 +1058,14 @@
                 "recipeVersionId": "rv_chicken",
                 "rank": 1,
                 "energyKcal": 900,
-                "score": 159.417,
+                "score": 193.617,
                 "scoreComponents": {
                   "nutrition": 135.85714285714286,
                   "preference": 0,
-                  "variety": 23.560000000000002
+                  "variety": 57.75999999999999
                 },
                 "reasons": [
-                  "variety:23.56"
+                  "variety:57.76"
                 ]
               }
             ],
@@ -1114,14 +1114,14 @@
                 "recipeVersionId": "rv_night",
                 "rank": 1,
                 "energyKcal": 990,
-                "score": 178.51,
+                "score": 181.31,
                 "scoreComponents": {
                   "nutrition": 167.10000000000002,
                   "preference": 0,
-                  "variety": 11.41
+                  "variety": 14.21
                 },
                 "reasons": [
-                  "variety:11.41"
+                  "variety:14.21"
                 ]
               }
             ],
@@ -1135,11 +1135,11 @@
           "meal_archetype": 5,
           "safety:fish": 2
         },
-        "score": 459.746
+        "score": 526.471
       }
     ],
     "summary": {
-      "meanScore": 329.289,
+      "meanScore": 362.652,
       "hardConstraintViolations": 0
     }
   }

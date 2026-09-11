@@ -1,38 +1,2252 @@
 [
   {
     "schemaVersion": 1,
-    "ingredientId": "ing_salmon",
+    "ingredientId": "ing_fdc_1104647",
     "origin": "base",
-    "currentRevisionId": "ingrev_salmon_raw_v2",
+    "currentRevisionId": "ing_fdc_1104647_r1",
     "status": "active",
-    "createdAt": "2026-09-03T00:00:00Z",
-    "updatedAt": "2026-09-03T12:00:00Z"
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "updatedAt": "2026-09-04T19:43:46.058Z"
   },
   {
     "schemaVersion": 1,
-    "ingredientId": "ing_rice_cooked",
+    "ingredientId": "ing_fdc_1104705",
     "origin": "base",
-    "currentRevisionId": "ingrev_rice_cooked_v2",
+    "currentRevisionId": "ing_fdc_1104705_r1",
     "status": "active",
-    "createdAt": "2026-09-03T00:00:00Z",
-    "updatedAt": "2026-09-03T12:00:00Z"
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "updatedAt": "2026-09-04T19:43:46.058Z"
   },
   {
     "schemaVersion": 1,
-    "ingredientId": "ing_zucchini",
+    "ingredientId": "ing_fdc_1104962",
     "origin": "base",
-    "currentRevisionId": "ingrev_zucchini_raw_v2",
+    "currentRevisionId": "ing_fdc_1104962_r1",
     "status": "active",
-    "createdAt": "2026-09-03T00:00:00Z",
-    "updatedAt": "2026-09-03T12:00:00Z"
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "updatedAt": "2026-09-04T19:43:46.058Z"
   },
   {
     "schemaVersion": 1,
-    "ingredientId": "ing_olive_oil",
+    "ingredientId": "ing_fdc_1105073",
     "origin": "base",
-    "currentRevisionId": "ingrev_olive_oil_v2",
+    "currentRevisionId": "ing_fdc_1105073_r1",
     "status": "active",
-    "createdAt": "2026-09-03T00:00:00Z",
-    "updatedAt": "2026-09-03T12:00:00Z"
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "updatedAt": "2026-09-04T19:43:46.058Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_1105314",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_1105314_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.058Z",
+    "updatedAt": "2026-09-04T19:43:46.058Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167602",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167602_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167603",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167603_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167604",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167604_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167605",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167605_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167606",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167606_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167684",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167684_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167687",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167687_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167688",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167688_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167691",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167691_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167692",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167692_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167693",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167693_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167695",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167695_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167697",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167697_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167699",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167699_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167700",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167700_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167702",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167702_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167703",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167703_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167704",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167704_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167705",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167705_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167708",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167708_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167709",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167709_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167710",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167710_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167712",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167712_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167713",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167713_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167714",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167714_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167715",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167715_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167716",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167716_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167717",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167717_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167719",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167719_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167722",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167722_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167724",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167724_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167725",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167725_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167730",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167730_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167735",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167735_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167736",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167736_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167737",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167737_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167742",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167742_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167744",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167744_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167745",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167745_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167746",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167746_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167747",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167747_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167748",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167748_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167749",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167749_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167750",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167750_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167751",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167751_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167752",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167752_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167753",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167753_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167754",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167754_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167755",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167755_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167756",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167756_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167757",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167757_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167758",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167758_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167759",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167759_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167760",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167760_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167761",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167761_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167762",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167762_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167763",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167763_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167764",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167764_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167765",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167765_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167766",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167766_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167767",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167767_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167768",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167768_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167769",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167769_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167770",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167770_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167771",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167771_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167772",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167772_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167773",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167773_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167775",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167775_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167776",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167776_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167777",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167777_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167778",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167778_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167779",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167779_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167780",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167780_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167781",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167781_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167782",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167782_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167783",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167783_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167784",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167784_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167785",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167785_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167786",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167786_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167787",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167787_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167788",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167788_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167789",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167789_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167790",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167790_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167792",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167792_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167793",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167793_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167794",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167794_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167795",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167795_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167796",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167796_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167797",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167797_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167798",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167798_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167799",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167799_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167800",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167800_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167802",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167802_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167803",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167803_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167804",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167804_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167805",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167805_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167806",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167806_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167808",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167808_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167809",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167809_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167810",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167810_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167811",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167811_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167812",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167812_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167813",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167813_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167814",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167814_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167815",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167815_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167816",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167816_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167817",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167817_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167818",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167818_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167819",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167819_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167820",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167820_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167821",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167821_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167822",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167822_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167823",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167823_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167824",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167824_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167825",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167825_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167826",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167826_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167827",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167827_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167828",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167828_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167829",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167829_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167830",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167830_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167831",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167831_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167832",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167832_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167833",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167833_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167834",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167834_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167835",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167835_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167836",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167836_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167837",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167837_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167838",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167838_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167839",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167839_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167840",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167840_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167841",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167841_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167842",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167842_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167843",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167843_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167844",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167844_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167845",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167845_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167846",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167846_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167847",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167847_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167848",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167848_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167849",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167849_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167850",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167850_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167851",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167851_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167852",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167852_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167853",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167853_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167854",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167854_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167855",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167855_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167856",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167856_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167857",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167857_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167858",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167858_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167859",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167859_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167860",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167860_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167861",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167861_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167862",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167862_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167863",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167863_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167864",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167864_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167865",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167865_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167866",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167866_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167867",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167867_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167868",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167868_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167869",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167869_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167870",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167870_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167871",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167871_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167872",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167872_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167873",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167873_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167874",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167874_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167875",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167875_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167876",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167876_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167877",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167877_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167878",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167878_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167879",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167879_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167880",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167880_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167881",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167881_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167882",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167882_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167883",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167883_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167884",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167884_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167885",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167885_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167886",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167886_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167887",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167887_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167888",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167888_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167889",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167889_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167890",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167890_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167891",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167891_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167892",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167892_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167893",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167893_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167894",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167894_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167895",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167895_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167896",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167896_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167897",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167897_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167898",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167898_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167899",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167899_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167900",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167900_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167901",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167901_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167902",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167902_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167903",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167903_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167904",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167904_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167905",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167905_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167906",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167906_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167907",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167907_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167908",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167908_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167912",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167912_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167913",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167913_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167914",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167914_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167915",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167915_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167916",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167916_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167917",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167917_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167918",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167918_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167919",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167919_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_167920",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_167920_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168015",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168015_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168016",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168016_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168089",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168089_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168093",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168093_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168094",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168094_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168096",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168096_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168097",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168097_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168098",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168098_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168099",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168099_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168100",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168100_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168106",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168106_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168109",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168109_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168110",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168110_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168111",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168111_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168112",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168112_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168114",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168114_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168115",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168115_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168117",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168117_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168119",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168119_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168120",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168120_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168121",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168121_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168124",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168124_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168128",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168128_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168129",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168129_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168138",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168138_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168141",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168141_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168147",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168147_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168148",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168148_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168149",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168149_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168152",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168152_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168154",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168154_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168155",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168155_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168156",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168156_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168157",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168157_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168158",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168158_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168159",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168159_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168162",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168162_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
+  },
+  {
+    "schemaVersion": 1,
+    "ingredientId": "ing_fdc_168163",
+    "origin": "base",
+    "currentRevisionId": "ing_fdc_168163_r1",
+    "status": "active",
+    "createdAt": "2026-09-04T19:43:46.435Z",
+    "updatedAt": "2026-09-04T19:43:46.435Z"
   }
 ]

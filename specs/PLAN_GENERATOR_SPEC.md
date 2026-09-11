@@ -150,3 +150,11 @@ Un failure energetico del bounded search deve dichiarare `proof=bounded_search`.
 
 Date regeneration MUST distinguish `recalculate` from `alternative`. `recalculate` may return the same RecipeVersion. `alternative` MUST first exclude the currently assigned RecipeVersion per meal occurrence and rerun the same hard-constraint search. Only if that strict bounded search fails may the engine fall back to a search that permits the current RecipeVersion with a dominant soft penalty. Any retained meal MUST carry an explicit bounded-search reason. Neither mode may relax hard constraints or serving invariants.
 
+
+## Phase F — soft-objective composition and quality floor
+
+Slot-option scoring MUST NOT attenuate preference, variety or regeneration merely because per-recipe nutrition is used as a tie-break. Option-level nutrition is recomputed for the complete fixed-serving option; per-recipe nutrition contributes only a bounded tie-break weight. Preference, variety and regeneration remain full-strength soft components.
+
+Short-window exact recipe reuse carries the strongest variety penalty, followed by family and primary-ingredient reuse. The windows are 3/7/14 days and all repetition penalties remain soft: they may never make an otherwise hard-feasible plan invalid or relax a hard constraint in the opposite direction.
+
+Planner quality diagnostics must expose unique-recipe rate and exact-repeat counts over rolling windows. The V1 Phase F quality gate requires a 2600 kcal, 14-day, ±2% standard plan to remain hard-feasible with fixed servings, at least 70% unique recipe components and zero exact-recipe repeat pairs within three days.

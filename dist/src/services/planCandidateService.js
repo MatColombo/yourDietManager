@@ -1,5 +1,7 @@
 import { repositories } from '../repositories/repositoryHub.js';
 
+export const MAX_PLANNER_CANDIDATES_PER_ARCHETYPE = 500;
+
 export class PlanCandidateService {
   constructor({ repo = repositories } = {}) { this.repo = repo; }
 
@@ -10,8 +12,8 @@ export class PlanCandidateService {
     return new Set(packs.filter(pack => pack.status === 'installed').flatMap(pack => pack.recipeVersionIds || []));
   }
 
-  async retrieve(mealArchetype, { limit = 250, excludeAllergens = [] } = {}) {
-    const bounded = Math.min(250, Math.max(1, Number(limit) || 250));
+  async retrieve(mealArchetype, { limit = MAX_PLANNER_CANDIDATES_PER_ARCHETYPE, excludeAllergens = [] } = {}) {
+    const bounded = Math.min(MAX_PLANNER_CANDIDATES_PER_ARCHETYPE, Math.max(1, Number(limit) || MAX_PLANNER_CANDIDATES_PER_ARCHETYPE));
     const versions = await this.repo.getAllByIndex('recipeVersions', 'mealArchetypes', { kind: 'only', value: mealArchetype }, bounded);
     const families = new Map((await this.repo.getMany('recipes', [...new Set(versions.map(version => version.recipeId))])).map(record => [record.recipeId, record]));
     const installed = await this.installedRecipeVersionIds();

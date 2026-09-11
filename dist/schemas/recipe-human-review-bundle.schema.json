@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/recipe-human-review-bundle.schema.json",
+  "title": "RecipeHumanReviewBundle",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "format", "reviewPolicyVersion", "catalogVersion", "publicationId", "sourceCorpusDigest", "expectedRecipeVersionIds", "generatedAt", "decisions", "summary", "sha256"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "format": { "const": "ydm-production-recipe-human-review" },
+    "reviewPolicyVersion": { "type": "string", "minLength": 1 },
+    "catalogVersion": { "type": "string", "minLength": 1 },
+    "publicationId": { "type": "string", "minLength": 3 },
+    "sourceCorpusDigest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "expectedRecipeVersionIds": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "uniqueItems": true
+    },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "decisions": { "type": "array", "items": { "$ref": "recipe-human-review.schema.json" } },
+    "summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["expected", "reviewed", "approved", "needsChanges", "rejected", "unreviewed", "complete", "pass"],
+      "properties": {
+        "expected": { "type": "integer", "minimum": 0 },
+        "reviewed": { "type": "integer", "minimum": 0 },
+        "approved": { "type": "integer", "minimum": 0 },
+        "needsChanges": { "type": "integer", "minimum": 0 },
+        "rejected": { "type": "integer", "minimum": 0 },
+        "unreviewed": { "type": "integer", "minimum": 0 },
+        "complete": { "type": "boolean" },
+        "pass": { "type": "boolean" }
+      }
+    },
+    "sha256": { "type": ["string", "null"], "pattern": "^[a-f0-9]{64}$" }
+  }
+}

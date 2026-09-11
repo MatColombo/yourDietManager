@@ -1,0 +1,419 @@
+{
+  "schemaVersion": 1,
+  "audit": "v1-planner-feasibility-baseline",
+  "generatedAt": "2026-09-10T15:17:04.350Z",
+  "targetRangeKcal": [
+    800,
+    2600
+  ],
+  "targets": [
+    800,
+    1000,
+    1200,
+    1400,
+    1600,
+    1800,
+    2000,
+    2200,
+    2400,
+    2600
+  ],
+  "tolerances": [
+    2,
+    5,
+    10
+  ],
+  "dayClass": "bootstrap-active",
+  "catalogRecipeCount": 1800,
+  "requireAllFeasible": true,
+  "interpretation": "not_found means no hard-valid plan was found within the bounded search over the current 1800-recipe corpus; it is not a mathematical proof of global infeasibility",
+  "invalidOutcomes": 0,
+  "summary": [
+    {
+      "tolerancePct": 2,
+      "feasibleTargets": [
+        800,
+        1000,
+        1200,
+        1400,
+        1600,
+        1800,
+        2000,
+        2200,
+        2400,
+        2600
+      ],
+      "notFoundTargets": [],
+      "feasibleCount": 10,
+      "totalTargets": 10
+    },
+    {
+      "tolerancePct": 5,
+      "feasibleTargets": [
+        800,
+        1000,
+        1200,
+        1400,
+        1600,
+        1800,
+        2000,
+        2200,
+        2400,
+        2600
+      ],
+      "notFoundTargets": [],
+      "feasibleCount": 10,
+      "totalTargets": 10
+    },
+    {
+      "tolerancePct": 10,
+      "feasibleTargets": [
+        800,
+        1000,
+        1200,
+        1400,
+        1600,
+        1800,
+        2000,
+        2200,
+        2400,
+        2600
+      ],
+      "notFoundTargets": [],
+      "feasibleCount": 10,
+      "totalTargets": 10
+    }
+  ],
+  "rows": [
+    {
+      "targetKcal": 800,
+      "tolerancePct": 2,
+      "status": "feasible",
+      "plannedEnergyKcal": 800.3,
+      "budgetedTotalKcal": 800.3,
+      "allowedMinKcal": 784,
+      "allowedMaxKcal": 816,
+      "deviationKcal": 0.3,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 1000,
+      "tolerancePct": 2,
+      "status": "feasible",
+      "plannedEnergyKcal": 999.9,
+      "budgetedTotalKcal": 999.9,
+      "allowedMinKcal": 980,
+      "allowedMaxKcal": 1020,
+      "deviationKcal": -0.1,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 1200,
+      "tolerancePct": 2,
+      "status": "feasible",
+      "plannedEnergyKcal": 1199.4,
+      "budgetedTotalKcal": 1199.4,
+      "allowedMinKcal": 1176,
+      "allowedMaxKcal": 1224,
+      "deviationKcal": -0.6,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 1400,
+      "tolerancePct": 2,
+      "status": "feasible",
+      "plannedEnergyKcal": 1400.5,
+      "budgetedTotalKcal": 1400.5,
+      "allowedMinKcal": 1372,
+      "allowedMaxKcal": 1428,
+      "deviationKcal": 0.5,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 1600,
+      "tolerancePct": 2,
+      "status": "feasible",
+      "plannedEnergyKcal": 1599.9,
+      "budgetedTotalKcal": 1599.9,
+      "allowedMinKcal": 1568,
+      "allowedMaxKcal": 1632,
+      "deviationKcal": -0.1,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 1800,
+      "tolerancePct": 2,
+      "status": "feasible",
+      "plannedEnergyKcal": 1799.8,
+      "budgetedTotalKcal": 1799.8,
+      "allowedMinKcal": 1764,
+      "allowedMaxKcal": 1836,
+      "deviationKcal": -0.2,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 2000,
+      "tolerancePct": 2,
+      "status": "feasible",
+      "plannedEnergyKcal": 2000.3,
+      "budgetedTotalKcal": 2000.3,
+      "allowedMinKcal": 1960,
+      "allowedMaxKcal": 2040,
+      "deviationKcal": 0.3,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 2200,
+      "tolerancePct": 2,
+      "status": "feasible",
+      "plannedEnergyKcal": 2201.4,
+      "budgetedTotalKcal": 2201.4,
+      "allowedMinKcal": 2156,
+      "allowedMaxKcal": 2244,
+      "deviationKcal": 1.4,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 2400,
+      "tolerancePct": 2,
+      "status": "feasible",
+      "plannedEnergyKcal": 2399,
+      "budgetedTotalKcal": 2399,
+      "allowedMinKcal": 2352,
+      "allowedMaxKcal": 2448,
+      "deviationKcal": -1,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 2600,
+      "tolerancePct": 2,
+      "status": "feasible",
+      "plannedEnergyKcal": 2601.8,
+      "budgetedTotalKcal": 2601.8,
+      "allowedMinKcal": 2548,
+      "allowedMaxKcal": 2652,
+      "deviationKcal": 1.8,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 800,
+      "tolerancePct": 5,
+      "status": "feasible",
+      "plannedEnergyKcal": 800.3,
+      "budgetedTotalKcal": 800.3,
+      "allowedMinKcal": 760,
+      "allowedMaxKcal": 840,
+      "deviationKcal": 0.3,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 1000,
+      "tolerancePct": 5,
+      "status": "feasible",
+      "plannedEnergyKcal": 999.9,
+      "budgetedTotalKcal": 999.9,
+      "allowedMinKcal": 950,
+      "allowedMaxKcal": 1050,
+      "deviationKcal": -0.1,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 1200,
+      "tolerancePct": 5,
+      "status": "feasible",
+      "plannedEnergyKcal": 1199.4,
+      "budgetedTotalKcal": 1199.4,
+      "allowedMinKcal": 1140,
+      "allowedMaxKcal": 1260,
+      "deviationKcal": -0.6,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 1400,
+      "tolerancePct": 5,
+      "status": "feasible",
+      "plannedEnergyKcal": 1400.5,
+      "budgetedTotalKcal": 1400.5,
+      "allowedMinKcal": 1330,
+      "allowedMaxKcal": 1470,
+      "deviationKcal": 0.5,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 1600,
+      "tolerancePct": 5,
+      "status": "feasible",
+      "plannedEnergyKcal": 1599.9,
+      "budgetedTotalKcal": 1599.9,
+      "allowedMinKcal": 1520,
+      "allowedMaxKcal": 1680,
+      "deviationKcal": -0.1,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 1800,
+      "tolerancePct": 5,
+      "status": "feasible",
+      "plannedEnergyKcal": 1799.8,
+      "budgetedTotalKcal": 1799.8,
+      "allowedMinKcal": 1710,
+      "allowedMaxKcal": 1890,
+      "deviationKcal": -0.2,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 2000,
+      "tolerancePct": 5,
+      "status": "feasible",
+      "plannedEnergyKcal": 2000.3,
+      "budgetedTotalKcal": 2000.3,
+      "allowedMinKcal": 1900,
+      "allowedMaxKcal": 2100,
+      "deviationKcal": 0.3,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 2200,
+      "tolerancePct": 5,
+      "status": "feasible",
+      "plannedEnergyKcal": 2201.4,
+      "budgetedTotalKcal": 2201.4,
+      "allowedMinKcal": 2090,
+      "allowedMaxKcal": 2310,
+      "deviationKcal": 1.4,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 2400,
+      "tolerancePct": 5,
+      "status": "feasible",
+      "plannedEnergyKcal": 2399,
+      "budgetedTotalKcal": 2399,
+      "allowedMinKcal": 2280,
+      "allowedMaxKcal": 2520,
+      "deviationKcal": -1,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 2600,
+      "tolerancePct": 5,
+      "status": "feasible",
+      "plannedEnergyKcal": 2601.8,
+      "budgetedTotalKcal": 2601.8,
+      "allowedMinKcal": 2470,
+      "allowedMaxKcal": 2730,
+      "deviationKcal": 1.8,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 800,
+      "tolerancePct": 10,
+      "status": "feasible",
+      "plannedEnergyKcal": 800.3,
+      "budgetedTotalKcal": 800.3,
+      "allowedMinKcal": 720,
+      "allowedMaxKcal": 880,
+      "deviationKcal": 0.3,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 1000,
+      "tolerancePct": 10,
+      "status": "feasible",
+      "plannedEnergyKcal": 999.9,
+      "budgetedTotalKcal": 999.9,
+      "allowedMinKcal": 900,
+      "allowedMaxKcal": 1100,
+      "deviationKcal": -0.1,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 1200,
+      "tolerancePct": 10,
+      "status": "feasible",
+      "plannedEnergyKcal": 1199.4,
+      "budgetedTotalKcal": 1199.4,
+      "allowedMinKcal": 1080,
+      "allowedMaxKcal": 1320,
+      "deviationKcal": -0.6,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 1400,
+      "tolerancePct": 10,
+      "status": "feasible",
+      "plannedEnergyKcal": 1400.5,
+      "budgetedTotalKcal": 1400.5,
+      "allowedMinKcal": 1260,
+      "allowedMaxKcal": 1540,
+      "deviationKcal": 0.5,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 1600,
+      "tolerancePct": 10,
+      "status": "feasible",
+      "plannedEnergyKcal": 1599.9,
+      "budgetedTotalKcal": 1599.9,
+      "allowedMinKcal": 1440,
+      "allowedMaxKcal": 1760,
+      "deviationKcal": -0.1,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 1800,
+      "tolerancePct": 10,
+      "status": "feasible",
+      "plannedEnergyKcal": 1799.8,
+      "budgetedTotalKcal": 1799.8,
+      "allowedMinKcal": 1620,
+      "allowedMaxKcal": 1980,
+      "deviationKcal": -0.2,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 2000,
+      "tolerancePct": 10,
+      "status": "feasible",
+      "plannedEnergyKcal": 2000.3,
+      "budgetedTotalKcal": 2000.3,
+      "allowedMinKcal": 1800,
+      "allowedMaxKcal": 2200,
+      "deviationKcal": 0.3,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 2200,
+      "tolerancePct": 10,
+      "status": "feasible",
+      "plannedEnergyKcal": 2201.4,
+      "budgetedTotalKcal": 2201.4,
+      "allowedMinKcal": 1980,
+      "allowedMaxKcal": 2420,
+      "deviationKcal": 1.4,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 2400,
+      "tolerancePct": 10,
+      "status": "feasible",
+      "plannedEnergyKcal": 2399,
+      "budgetedTotalKcal": 2399,
+      "allowedMinKcal": 2160,
+      "allowedMaxKcal": 2640,
+      "deviationKcal": -1,
+      "recipeComponents": 4
+    },
+    {
+      "targetKcal": 2600,
+      "tolerancePct": 10,
+      "status": "feasible",
+      "plannedEnergyKcal": 2601.8,
+      "budgetedTotalKcal": 2601.8,
+      "allowedMinKcal": 2340,
+      "allowedMaxKcal": 2860,
+      "deviationKcal": 1.8,
+      "recipeComponents": 4
+    }
+  ]
+}

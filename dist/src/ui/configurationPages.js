@@ -11,7 +11,7 @@ import {
 import { applyTheme } from '../theme/themeEngine.js';
 import { createConfigurationExport, importConfigurationExport } from '../services/configurationTransfer.js';
 import { TAXONOMY_IDS, semanticReferenceDiagnostics } from '../services/referenceDataService.js';
-import { createAutocomplete, genericRecipeTagChoices, ingredientChoices, taxonomyChoices } from './guidedControls.js';
+import { createAutocomplete, createProductFoodPicker, genericRecipeTagChoices, ingredientChoices, taxonomyChoices } from './guidedControls.js';
 import { controlledDetails, signalDraftChange } from './uiState.js';
 
 function clone(value) { return structuredClone(value); }
@@ -73,6 +73,9 @@ function actionButton(state, key, onClick, className = 'button') {
 }
 
 function semanticTargetControl(state, kind, value, onChange) {
+  if (kind === 'productFood') return createProductFoodPicker(state, state.referenceDataIndex, {
+    value: value || null, required: true, onChange: id => onChange(id || '')
+  });
   let choices = [];
   if (kind === 'ingredient') choices = ingredientChoices(state.guidedIngredients || [], state.i18n.locale, {
     base: state.i18n.t('catalog.origin.base'), user: state.i18n.t('catalog.origin.user')
@@ -380,7 +383,7 @@ function preferenceRulesEditor(state, preferences, rerender, { compact = false }
     container.append(row);
   }
   container.append(actionButton(state, 'preference.add', () => {
-    preferences.rules.push({ id: makeId('pref'), targetType: 'foodCategory', targetId: '', level: 'normal', autoExclude: false, frequency: null }); signalDraftChange(container); rerender();
+    preferences.rules.push({ id: makeId('pref'), targetType: 'productFood', targetId: '', level: 'normal', autoExclude: false, frequency: null }); signalDraftChange(container); rerender();
   }, 'button button--secondary'));
   return container;
 }
@@ -515,7 +518,7 @@ function mealSlotsEditor(state, draft, day, rerender) {
       field(state, 'day.slot.dayOffset', numberInput(slot.dayOffset, value => { { const parsed = requiredNumber(value); slot.dayOffset = parsed === null ? null : Math.max(0, Math.min(2, Math.round(parsed))); } }, { min: 0, max: 2, step: 1 })),
       field(state, 'day.slot.mode', selectInput(state, ['planned', 'external'], slot.mode, 'day.slot.mode', value => {
         slot.mode = value;
-        if (value === 'external') slot.estimatedNutritionPolicy ||= 'budget_only'; else delete slot.estimatedNutritionPolicy;
+        if (value === 'external') slot.estimatedNutritionPolicy ||= 'budget_only'; else { delete slot.estimatedNutritionPolicy; slot.proteinMinG = null; }
         signalDraftChange(list); rerender();
       }))
     );
@@ -523,10 +526,10 @@ function mealSlotsEditor(state, draft, day, rerender) {
     const second = element('div', { className: 'form-grid form-grid--4' });
     second.append(
       field(state, 'day.slot.energyShare', numberInput(slot.energyShare, value => { slot.energyShare = nullableNumber(value); }, { min: 0, max: 1, step: 0.01 })),
-      field(state, 'day.slot.energyBudget', numberInput(slot.energyBudgetKcal, value => { slot.energyBudgetKcal = nullableNumber(value); }, { min: 0, step: 10 })),
-      field(state, 'day.slot.proteinMin', numberInput(slot.proteinMinG, value => { slot.proteinMinG = nullableNumber(value); }, { min: 0, step: 1 })),
-      checkbox(slot.parallel === true, value => { slot.parallel = value; }, state.i18n.t('day.slot.parallel'))
+      field(state, 'day.slot.energyBudget', numberInput(slot.energyBudgetKcal, value => { slot.energyBudgetKcal = nullableNumber(value); }, { min: 0, step: 10 }))
     );
+    if (slot.mode === 'external') second.append(field(state, 'day.slot.proteinMin', numberInput(slot.proteinMinG, value => { slot.proteinMinG = nullableNumber(value); }, { min: 0, step: 1 })));
+    second.append(checkbox(slot.parallel === true, value => { slot.parallel = value; }, state.i18n.t('day.slot.parallel')));
     row.append(second);
     if (slot.mode === 'external') {
       row.append(field(state, 'day.slot.estimatePolicy', selectInput(state, ['unknown', 'budget_only', 'user_estimate'], slot.estimatedNutritionPolicy || 'budget_only', 'day.estimatePolicy', value => { slot.estimatedNutritionPolicy = value; })));

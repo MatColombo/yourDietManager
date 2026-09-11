@@ -2,7 +2,7 @@
 
 **Status:** authoritative pre-V1 plan. It supersedes the direct Step 3 → stable V1 promotion path.
 
-**Current baseline:** `1.0.0-rc.30` / catalog `1.2.0-planner-phase-d`; Phases A/B/C are preserved and Phase D1+D2 are implemented. Stable promotion remains suspended while user-led planner/product validation continues.
+**Current baseline:** `1.0.0-rc.34` / catalog `1.2.0-planner-phase-d`; Phases A–G are preserved and Phase H final release handoff is implemented. Development-tranche work is complete. Stable promotion remains suspended until an eligible Phase E report is paired with an explicit final `ACCEPT V1` decision.
 
 ## 1. Objective
 
@@ -408,8 +408,79 @@ Do not tag `v1.0.0` and do not record final manual acceptance until the planner 
 
 ## Phase E — Manual Product Acceptance
 
-Implementation status: **harness complete; operator execution pending**.
+Implementation status: **harness complete; provisionally valid for continued development; final stable-release acceptance record still pending**.
 
 The canonical manual journal is `/manual-acceptance`. It contains 18 required scenarios spanning energy 800–2600 kcal, hard and soft constraints, regeneration, product taxonomy/discovery, contextual navigation, Replace/Rebalance, shopping and reload persistence.
 
 Release rule: all required cases must be PASS and P0/P1 findings must be zero. P2 findings require an explicit release decision. Eligibility in the harness does not change release metadata or promote `1.0.0`; final freeze/promotion remains a separate explicit step after human acceptance.
+
+
+## Phase F — Planner Quality Tuning
+
+Implementation status: **COMPLETE and preserved in `1.0.0-rc.34`; final stable-release acceptance still pending.**
+
+Phase F corrects the soft-objective composition used by the slot-option beam. Option-level nutrition is recomputed at full strength, while per-recipe nutrition contributes only a 0.15 tie-break. Preference, variety and regeneration penalties retain full soft weight. No hard constraint changes.
+
+The variety policy remains soft and uses 3/7/14-day windows, with a dominant penalty for exact recipe reuse in short windows. The catalog remains 1,800 fixed-serving RecipeVersions; DB v6, `v1-planner-phase-d-epoch-1` and data cache v17 are unchanged. App advances to rc.33 and shell cache v36.
+
+Measured 14-day ±2% uniqueness after tuning is 64.3% at 800 kcal, 71.4% at 1000, 82.1% at 1400, 78.6% at 2000 and 73.2% at 2600. Exact recipe repeat pairs within 3 days are zero in all five measurements. At 2000 kcal/7 days, prefer-vegan increases vegan occurrences while avoid/frequency reduce them, and high-protein raises planned protein without collapsing variety below 70%.
+
+Phase F exit criteria:
+
+1. hard daily energy and fixed serving remain invariant;
+2. 2600 kcal / 14 days / ±2% remains feasible with >=70% unique recipes;
+3. exact recipe repeat pairs within 3 days are zero in the Phase F acceptance run;
+4. high-protein moves protein upward while preserving >=70% uniqueness;
+5. prefer/avoid/frequency soft rules move selections in the expected direction;
+6. Planner Lab exposes quality metrics for manual inspection;
+7. catalog, DB and pre-V1 epoch do not change;
+8. Phase E manual acceptance remains the release authority.
+
+All implementation criteria are met by the Phase F baseline and are frozen by Phase G. Stable promotion still requires the user's explicit final release acceptance.
+
+
+## Phase G — Release Candidate Consolidation
+
+Implementation status: **COMPLETE in `1.0.0-rc.34`.**
+
+Phase G reconciles the final release infrastructure with the actual planner-validation baseline. The previous rc.27 freeze/release gate described a superseded 500-recipe / DB v5 candidate; Phase G freezes the current 600-ingredient / 1,800-recipe / DB v6 baseline without changing recipe content, planner hard constraints, product-food taxonomy, pre-V1 epoch or data cache.
+
+The machine-readable freeze is `corpus/production/v1-planner-release/freeze-contract.json`. It records recipe, reference-data, catalog-content and Phase F quality-evidence digests. `v1:planner-phase-g-freeze` regenerates that evidence deterministically and the GitHub release-candidate workflow drift-checks it.
+
+The PWA shell advances to v37; data cache remains v17. The catalog publication remains `development / releaseEligible=false` while the app is a release candidate.
+
+Final stable release is deliberately fail-closed. `corpus/production/v1-planner-release/manual-acceptance.json` remains pending until the user explicitly records `ACCEPT V1`. The stable `release:gate` now targets the Phase G contract and additionally requires app `1.0.0` plus a `production_release / releaseEligible=true` manifest over the same frozen content.
+
+Phase G exit criteria:
+
+1. deterministic freeze binds rc.34 to the 600/1800 current catalog;
+2. recipe digest and Phase F planner-policy digest are unchanged;
+3. DB v6, content schema v3, backup v1 and pre-V1 epoch are unchanged;
+4. `v1:planner-phase-g` is green;
+5. full `npm run check` remains green;
+6. stable `release:gate` is blocked only by intentional pre-stable conditions, not stale rc.27/500/DB v5 assumptions;
+7. no stable tag is authorized without explicit final manual acceptance.
+
+
+## Phase H — Final Release Handoff
+
+Implementation status: **COMPLETE on the frozen `1.0.0-rc.34` candidate.**
+
+Phase H closes the development tranche without changing the Phase G frozen product/data contract. The machine-readable handoff is `corpus/production/v1-planner-release/phase-h-handoff.json`; it chains to the Phase G freeze digest, records the three intentional pre-stable blockers, and defines the only legal metadata/evidence mutations for stable promotion.
+
+Stable promotion is now executable but fail-closed through `npm run v1:promote-stable`. It requires an exported Phase E acceptance report with all required cases PASS and zero P0/P1, the exact decision token `ACCEPT V1`, and an explicit `--apply`. Without `--apply` it performs a read-only projection. The projected stable state is checked against the same ten-condition release gate before any write is allowed.
+
+Phase H also makes the historical phase gates transition-safe: the same frozen implementation can be verified as rc.34 before promotion and as `1.0.0` after metadata-only promotion. This does not relax catalog, persistence, hard-constraint, taxonomy or Phase F quality invariants.
+
+Phase H exit criteria:
+
+1. Phase G recipe/reference/catalog/policy digests remain unchanged;
+2. the current candidate release gate is blocked only by stable app version, final acceptance and production publication;
+3. final acceptance cannot be fabricated by a build/test script;
+4. promotion requires an eligible manual report plus exact `ACCEPT V1`;
+5. dry-run modifies no repository file;
+6. a synthetic accepted projection passes all stable release checks while preserving the frozen catalog-content digest;
+7. only package/runtime version, catalog publication metadata, final acceptance evidence and stable-release evidence may change during promotion;
+8. `npm run check` remains valid both before and after the metadata-only stable transition;
+9. GitHub Actions `Verify V1 Planner Phase H` rebuilds and drift-checks Phase G + H release evidence;
+10. stable tag/release remains forbidden until real acceptance exists and post-promotion `npm run check` plus `npm run release:gate` are both green.

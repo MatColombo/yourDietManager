@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "phase": "H",
+  "status": "development_tranche_complete",
+  "finalizedAt": "2026-09-10T15:10:00.000Z",
+  "appCandidateVersion": "1.0.0-rc.34",
+  "stableTargetVersion": "1.0.0",
+  "catalogVersion": "1.2.0-planner-phase-d",
+  "phaseGFreeze": {
+    "contractId": "yourdietmanager-v1-planner-phase-g-freeze",
+    "contractVersion": "1.0.0",
+    "digest": "d7b60a310ab6f3bfab6c01f2ddb90e103b7f877201029344af9e3bdee5dbe214",
+    "frozenDigests": {
+      "recipeDigest": "5e3bd7661171cff9434b03bb9951d58779ed84dc2e0e9910d36d1ebc517f53f2",
+      "referenceDataDigest": "fbfed3f4545ffefe3dc1f6bc85454d16a9b62b3223e1495e67b97155325fe907",
+      "catalogContentDigest": "39bdd524fccc6e92013b747d1391336f2698e36af862ab94585863899d715056",
+      "phaseFQualityDigest": "9fc95b2a1f14fd7263936e57144a51a41037fddc0253ed1dc43afc4a0a60e8bb"
+    }
+  },
+  "currentReleaseBoundary": {
+    "releasable": false,
+    "blockerIds": [
+      "manual-acceptance",
+      "production-release-publication",
+      "stable-app-version"
+    ],
+    "acceptanceStatus": "pending",
+    "publicationChannel": "development",
+    "releaseEligible": false
+  },
+  "promotionContract": {
+    "command": "npm run v1:promote-stable -- --report <manual-acceptance-report.json> --decision \"ACCEPT V1\" --apply",
+    "exactDecisionToken": "ACCEPT V1",
+    "acceptanceReportRequired": true,
+    "requiredManualCases": 18,
+    "metadataOnly": true,
+    "allowedPaths": [
+      "package.json",
+      "src/db/constants.js",
+      "public/data/catalog-manifest.json",
+      "corpus/production/v1-planner-release/manual-acceptance.json",
+      "corpus/production/v1-planner-release/stable-release-evidence.json"
+    ],
+    "stableVerification": [
+      "npm run check",
+      "npm run release:gate"
+    ],
+    "forbiddenChanges": [
+      "catalog shards",
+      "recipe or ingredient content",
+      "DB/schema/backup versions",
+      "pre-V1 epoch",
+      "planner policy",
+      "data cache"
+    ]
+  },
+  "simulatedPromotion": {
+    "syntheticOnly": true,
+    "recordsUserAcceptance": false,
+    "projectedReleaseGatePass": true,
+    "projectedPublicationChannel": "production_release",
+    "projectedStableVersion": "1.0.0"
+  }
+}

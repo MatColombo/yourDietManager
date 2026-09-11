@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/recipe-human-review.schema.json",
+  "title": "RecipeHumanReview",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "reviewId", "catalogVersion", "publicationId", "recipeId", "recipeVersionId", "recipeContentHash", "reviewer", "decision", "dimensions", "notes", "reviewedAt"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "reviewId": { "type": "string", "minLength": 3 },
+    "catalogVersion": { "type": "string", "minLength": 1 },
+    "publicationId": { "type": "string", "minLength": 3 },
+    "recipeId": { "type": "string", "minLength": 1 },
+    "recipeVersionId": { "type": "string", "minLength": 1 },
+    "recipeContentHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "reviewer": { "type": "string", "minLength": 1 },
+    "decision": { "enum": ["approved", "needs_changes", "rejected"] },
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["culinaryCoherence", "ingredientCombination", "quantityPlausibility", "instructionQuality", "titleDescriptionQuality", "differentiation"],
+      "properties": {
+        "culinaryCoherence": { "enum": ["pass", "fail"] },
+        "ingredientCombination": { "enum": ["pass", "fail"] },
+        "quantityPlausibility": { "enum": ["pass", "fail"] },
+        "instructionQuality": { "enum": ["pass", "fail"] },
+        "titleDescriptionQuality": { "enum": ["pass", "fail"] },
+        "differentiation": { "enum": ["pass", "fail"] }
+      }
+    },
+    "notes": { "type": "string" },
+    "reviewedAt": { "type": "string", "format": "date-time" }
+  }
+}

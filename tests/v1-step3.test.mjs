@@ -6,6 +6,7 @@ import { SchemaRegistry } from '../src/lib/schemaValidator.js';
 import { CatalogImporter } from '../src/services/catalogImporter.js';
 import { ensureBootstrapConfiguration } from '../src/services/configurationBootstrap.js';
 import { createBackup, importBackup, validateBackup } from '../src/services/backupEngine.js';
+import { APP_VERSION } from '../src/db/constants.js';
 import { deleteAllLocalData } from '../src/services/localDataService.js';
 import { MemoryRepository, fileFetch, fileLoader } from './helpers.mjs';
 
@@ -44,7 +45,8 @@ test('Step3 A - V1 catalog backup validates and round-trips user configuration w
   const backup = await createBackup({ repo, registry });
   await validateBackup(backup, { repo, registry });
   assert.equal(backup.catalog.catalogVersion, '1.2.0-planner-phase-d');
-  assert.equal(backup.appVersion, '1.0.0-rc.32');
+  assert.equal(backup.appVersion, APP_VERSION);
+  assert.ok(['1.0.0-rc.34','1.0.0'].includes(backup.appVersion));
 
   const original = await repo.get('themeProfiles', configuration.themeProfileId);
   const changed = structuredClone(original);
@@ -63,7 +65,7 @@ test('Step3 B - delete local data clears private state but preserves public PWA 
   const { repo } = await releaseRepo();
   await repo.setMeta('test-private-meta', 'remove-me');
   const storage = new LocalStorageMock({ 'ydm:route': '/shopping', 'ydm:private': 'x', 'unrelated:key': 'keep' });
-  const caches = new CacheStorageMock(['ydm-shell-v35-root', 'ydm-data-v17-root', 'third-party-cache']);
+  const caches = new CacheStorageMock(['ydm-shell-v37-root', 'ydm-data-v17-root', 'third-party-cache']);
 
   const result = await deleteAllLocalData({ repo, localStorage: storage, cacheStorage: caches });
   assert.deepEqual(result.localStorageKeys.sort(), ['ydm:private', 'ydm:route']);
@@ -71,7 +73,7 @@ test('Step3 B - delete local data clears private state but preserves public PWA 
   assert.deepEqual(result.cacheNames, []);
   assert.equal(storage.getItem('ydm:private'), null);
   assert.equal(storage.getItem('unrelated:key'), 'keep');
-  assert.deepEqual(await caches.keys(), ['ydm-shell-v35-root', 'ydm-data-v17-root', 'third-party-cache']);
+  assert.deepEqual(await caches.keys(), ['ydm-shell-v37-root', 'ydm-data-v17-root', 'third-party-cache']);
   assert.equal(await repo.getMeta('activeCatalogVersion'), undefined);
   assert.equal(await repo.count('recipes'), 0);
   assert.equal(await repo.count('planInstances'), 0);
@@ -81,20 +83,26 @@ test('Step3 C - destructive delete can clear owned public caches when explicitly
   const repo = new MemoryRepository();
   await repo.setMeta('activeCatalogVersion', '1.2.0-planner-phase-d');
   const storage = new LocalStorageMock({ 'ydm:private': 'x' });
-  const caches = new CacheStorageMock(['ydm-shell-v35-root', 'ydm-data-v17-root', 'third-party-cache']);
+  const caches = new CacheStorageMock(['ydm-shell-v37-root', 'ydm-data-v17-root', 'third-party-cache']);
 
   const result = await deleteAllLocalData({ repo, localStorage: storage, cacheStorage: caches, clearPublicCaches: true });
   assert.equal(result.publicCachesPreserved, false);
-  assert.deepEqual(result.cacheNames.sort(), ['ydm-data-v17-root', 'ydm-shell-v35-root']);
+  assert.deepEqual(result.cacheNames.sort(), ['ydm-data-v17-root', 'ydm-shell-v37-root']);
   assert.deepEqual(await caches.keys(), ['third-party-cache']);
 });
 
-test('Step3 D - stable release gate is intentionally blocked only by RC version/manual acceptance before final user test', () => {
+test('Step3 D - stable release gate is fail-closed on the candidate and green after metadata-only promotion', () => {
   const run = spawnSync(process.execPath, ['scripts/hardening/release-gate.mjs'], { cwd: root, encoding: 'utf8' });
-  assert.equal(run.status, 2, run.stderr || run.stdout);
-  assert.match(run.stdout, /stable-app-version/);
-  assert.match(run.stdout, /manual-acceptance/);
-  assert.doesNotMatch(run.stdout, /3000|recipe-corpus-minimum/);
-  assert.match(run.stdout, /BLOCKED/);
-  assert.match(run.stdout, /stable-app-version|manual-acceptance|catalog-version/);
+  if (APP_VERSION === '1.0.0-rc.34') {
+    assert.equal(run.status, 2, run.stderr || run.stdout);
+    assert.match(run.stdout, /stable-app-version/);
+    assert.match(run.stdout, /manual-acceptance/);
+    assert.match(run.stdout, /production-release-publication/);
+    assert.doesNotMatch(run.stdout, /3000|recipe-corpus-minimum/);
+    assert.match(run.stdout, /BLOCKED/);
+  } else {
+    assert.equal(APP_VERSION, '1.0.0');
+    assert.equal(run.status, 0, run.stderr || run.stdout);
+    assert.match(run.stdout, /PASS/);
+  }
 });

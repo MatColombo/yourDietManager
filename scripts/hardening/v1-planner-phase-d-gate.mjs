@@ -24,7 +24,7 @@ const productTerms=catalog.taxonomyTerms.filter(x=>x.taxonomyId==='product_food'
 const recipeDigestB=(await readJson('corpus/production/planner-phase-b/build-evidence.json')).recipeDigest;
 const enKeys=Object.keys(en).sort(); const itKeys=Object.keys(it).sort();
 
-check('phase-d-version', pkg.version===APP_VERSION && APP_VERSION==='1.0.0-rc.32', `package=${pkg.version}, runtime=${APP_VERSION}`);
+check('phase-d-version', pkg.version===APP_VERSION && ['1.0.0-rc.34','1.0.0'].includes(APP_VERSION), `package=${pkg.version}, runtime=${APP_VERSION}`);
 check('phase-d-db-epoch', DB_VERSION===6 && PRE_V1_DATA_EPOCH==='v1-planner-phase-d-epoch-1', `db=${DB_VERSION}, epoch=${PRE_V1_DATA_EPOCH}`);
 check('phase-d-catalog', catalog.manifest.catalogVersion==='1.2.0-planner-phase-d' && catalog.recipeVersions.length===1800 && revisions.length===600, `catalog=${catalog.manifest.catalogVersion}, recipes=${catalog.recipeVersions.length}, revisions=${revisions.length}`);
 check('product-taxonomy-present', productTaxonomy?.hierarchical===true && productTerms.length===203 && buildEvidence.productTaxonomy?.categoryCount===18, `terms=${productTerms.length}, categories=${buildEvidence.productTaxonomy?.categoryCount}`);
@@ -41,7 +41,7 @@ check('generator-enforces-regeneration-policy', /no_alternative_candidates_after
 check('regeneration-explains-retention', /retained_after_strict_alternative_failed_in_bounded_search/.test(effective) && /strictFailure/.test(effective), 'retained meals carry bounded-search reason');
 check('ui-separates-actions', /data-testid': 'rebalance-preview'/.test(planPage) && /data-testid': 'recalculate-preview'/.test(planPage) && /data-testid': 'rebalance-day-preview'/.test(planPage) && /data-testid': 'recalculate-day-preview'/.test(planPage), 'range/day UI separates alternative from recalculation');
 check('ui-exposes-regeneration-summary', /data-testid': 'rebalance-summary'/.test(planPage) && /plan\.rebalance\.boundedReason/.test(planPage), 'preview reports changed/retained meals and bounded reason');
-check('pwa-phase-d-cache', /ydm-shell-v35-/.test(worker) && /ydm-data-v17-/.test(worker) && /ydm-data-v17-/.test(offline), 'shell=v34, data=v17');
+check('pwa-phase-d-cache', /ydm-shell-v37-/.test(worker) && /ydm-data-v17-/.test(worker) && /ydm-data-v17-/.test(offline), 'shell=v37, data=v17');
 check('locale-parity', JSON.stringify(enKeys)===JSON.stringify(itKeys), `en=${enKeys.length}, it=${itKeys.length}`);
 check('phase-d-workflow', /corpus:build-planner-phase-d/.test(workflow) && /catalog:publish-planner-phase-d/.test(workflow) && /v1:planner-phase-d/.test(workflow) && /git diff --exit-code/.test(workflow), 'manual CI reproduces and drift-checks Phase D');
 check('validation-only-publication', publicationEvidence.status==='planner_validation' && publicationEvidence.publication?.releaseEligible===false, `status=${publicationEvidence.status}`);

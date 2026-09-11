@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "source": "phase-e-manual-acceptance",
+  "status": "pending",
+  "stablePromotionAllowed": false,
+  "acceptedAt": null,
+  "acceptedAppVersion": null,
+  "acceptedCatalogVersion": null,
+  "decisionNote": "Phase E is considered valid for the current development pass; final ACCEPT V1 has not been recorded."
+}
