@@ -535,12 +535,13 @@ export function ingredientsPage(state) {
   const section = page(t(state, 'catalog.ingredients.title'), t(state, 'catalog.ingredients.lead'), 'INGREDIENTS'); const params = new URLSearchParams(location.search); const editorTarget = params.get('edit');
   if (params.get('new') === '1') { section.append(ingredientEditor(state)); return section; }
   if (editorTarget) { section.append(element('p', { className: 'muted', text: t(state, 'catalog.legacyEditRoute') })); queueMicrotask(() => nav(state, `/configure/ingredients/${encodeURIComponent(editorTarget)}/edit`)); return section; }
-  const favorites=check(state.i18n.locale==='it'?'Solo preferiti':'Favorites only',params.get('favorites')==='1');form.append(favorites);
+  const favorites = check(state.i18n.locale === 'it' ? 'Solo preferiti' : 'Favorites only', params.get('favorites') === '1');
   const q = text(params.get('q') || '', { placeholder: t(state, 'catalog.ingredients.search') });
   const origin = optionSelect([['', t(state, 'catalog.filter.anyOrigin')],['base',t(state,'catalog.origin.base')],['user',t(state,'catalog.origin.user')]], params.get('origin') || '');
   const ingredientState = optionSelect([['', t(state, 'catalog.filter.anyState')], ...INGREDIENT_STATES.map(id => [id, t(state, `ingredientState.${id}`)])], params.get('state') || '');
   const productFood = createProductFoodPicker(state, state.referenceDataIndex, { value: params.get('food') || null, required: false });
   const form = element('form', { className: 'filter-panel filter-panel--compact' }, [
+    favorites,
     element('div', { className: 'form-grid form-grid--2' }, [
       field(t(state, 'catalog.search.label'), q), field(t(state, 'catalog.filter.origin'), origin),
       field(t(state, 'catalog.filter.productFood'), productFood.node), field(t(state, 'catalog.filter.state'), ingredientState)
