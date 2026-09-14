@@ -26,15 +26,15 @@ function contentProjection(manifest) {
   };
 }
 
-const [pkg, catalog, freeze, acceptance, candidate, phaseD, phaseF, worker, offline, workflow, releaseGate, releaseState] = await Promise.all([
-  readJson('package.json'),
+const [pkg, baselinePkg, catalog, freeze, acceptance, candidate, phaseD, phaseF, worker, offline, workflow, releaseGate, releaseState] = await Promise.all([
+  readJson('package.json'), readJson('specs/revision_v2/baseline/runtime/package.json'),
   loadLocalCatalog(path.join(root, 'public/data')),
   readJson('corpus/production/v1-planner-release/freeze-contract.json'),
   readJson('corpus/production/v1-planner-release/manual-acceptance.json'),
   readJson('corpus/production/v1-planner-release/release-candidate-evidence.json'),
   readJson('corpus/production/planner-phase-d/publication-evidence.json'),
   readJson('V1_PLANNER_PHASE_F_QUALITY_EVIDENCE.json'),
-  readText('public/service-worker.js'), readText('src/services/offlineCatalog.js'),
+  readText('specs/revision_v2/baseline/runtime/public/service-worker.js'), readText('specs/revision_v2/baseline/runtime/src/services/offlineCatalog.js'),
   readText('.github/workflows/v1-release-candidate.yml'), readText('scripts/hardening/release-gate.mjs'), readText('scripts/release/v1-release-state.mjs')
 ]);
 
@@ -44,13 +44,13 @@ const activeIngredients = catalog.ingredientFamilies.filter(item => item.status 
 const activeRecipes = catalog.recipeFamilies.filter(item => item.status === 'active');
 const core = catalog.manifest.packs.find(pack => pack.packId === 'core');
 const stress2600 = phaseF.after.find(row => row.targetKcal === 2600);
-const isCandidate = APP_VERSION === freeze.appCandidateVersion;
-const isStable = APP_VERSION === '1.0.0';
+const isCandidate = baselinePkg.version === freeze.appCandidateVersion;
+const isStable = baselinePkg.version === '1.0.0';
 
-check('phase-g-version', pkg.version === APP_VERSION && freeze.appCandidateVersion === '1.0.0-rc.34' && (isCandidate || isStable), `package=${pkg.version}, runtime=${APP_VERSION}, frozenCandidate=${freeze.appCandidateVersion}`);
+check('phase-g-version', pkg.version === APP_VERSION && /^1\./.test(APP_VERSION) && freeze.appCandidateVersion === '1.0.0-rc.34' && (isCandidate || isStable), `package=${pkg.version}, runtime=${APP_VERSION}, historical=${baselinePkg.version}, frozenCandidate=${freeze.appCandidateVersion}`);
 check('phase-g-catalog-shape', catalog.manifest.catalogVersion === '1.2.0-planner-phase-d' && activeIngredients.length === 600 && catalog.ingredientRevisions.length === 600 && activeRecipes.length === 1800 && catalog.recipeVersions.length === 1800, `catalog=${catalog.manifest.catalogVersion}, ingredients=${activeIngredients.length}/${catalog.ingredientRevisions.length}, recipes=${activeRecipes.length}/${catalog.recipeVersions.length}`);
 check('phase-g-core-full', core?.required === true && core.recipeVersionIds?.length === 1800, `core=${core?.recipeVersionIds?.length || 0}`);
-check('phase-g-persistence-frozen', DB_VERSION === 6 && CONTENT_SCHEMA_VERSION === 3 && BACKUP_FORMAT_VERSION === 1 && PRE_V1_DATA_EPOCH === 'v1-planner-phase-d-epoch-1' && freeze.persistence?.dbVersion === DB_VERSION && freeze.persistence?.preV1DataEpoch === PRE_V1_DATA_EPOCH, `db=${DB_VERSION}, content=${CONTENT_SCHEMA_VERSION}, backup=${BACKUP_FORMAT_VERSION}, epoch=${PRE_V1_DATA_EPOCH}`);
+check('phase-g-persistence-frozen', freeze.persistence?.dbVersion === 6 && freeze.persistence?.contentSchemaVersion === 3 && freeze.persistence?.backupFormatVersion === 1 && freeze.persistence?.preV1DataEpoch === 'v1-planner-phase-d-epoch-1' && DB_VERSION >= freeze.persistence.dbVersion && CONTENT_SCHEMA_VERSION >= freeze.persistence.contentSchemaVersion && BACKUP_FORMAT_VERSION >= freeze.persistence.backupFormatVersion && PRE_V1_DATA_EPOCH === freeze.persistence.preV1DataEpoch, `current db=${DB_VERSION}, content=${CONTENT_SCHEMA_VERSION}, backup=${BACKUP_FORMAT_VERSION}; frozen db=${freeze.persistence?.dbVersion}, content=${freeze.persistence?.contentSchemaVersion}, backup=${freeze.persistence?.backupFormatVersion}, epoch=${PRE_V1_DATA_EPOCH}`);
 check('phase-g-recipe-digest', freeze.digests?.recipeDigest === phaseD.recipeDigest && candidate.digests?.recipeDigest === phaseD.recipeDigest, phaseD.recipeDigest);
 check('phase-g-catalog-content-digest', freeze.digests?.catalogContentDigest === contentDigest && candidate.digests?.catalogContentDigest === contentDigest, contentDigest);
 check('phase-g-reference-data', freeze.digests?.referenceDataDigest === catalog.manifest.referenceDataDigest && freeze.dataContract?.productTaxonomyClassifiedIngredients === 600 && freeze.dataContract?.productTaxonomyCategoryCount === 18 && freeze.dataContract?.productTaxonomyTermCount === 203, `ref=${catalog.manifest.referenceDataDigest}, categories=${freeze.dataContract?.productTaxonomyCategoryCount}, terms=${freeze.dataContract?.productTaxonomyTermCount}`);

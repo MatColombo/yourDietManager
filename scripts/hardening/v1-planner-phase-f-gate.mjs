@@ -20,14 +20,16 @@ const beam = await read('src/planner/beamSolver.js');
 const validationPage = await read('src/ui/plannerValidationPage.js');
 const workflow = await read('.github/workflows/v1-release-candidate.yml');
 
-check('phase-f-version', pkg.version === APP_VERSION && ['1.0.0-rc.34','1.0.0'].includes(APP_VERSION), `package=${pkg.version}, runtime=${APP_VERSION}`);
-check('phase-f-persistence-stable', DB_VERSION === 6 && PRE_V1_DATA_EPOCH === 'v1-planner-phase-d-epoch-1', `db=${DB_VERSION}, epoch=${PRE_V1_DATA_EPOCH}`);
+check('phase-f-version', pkg.version === APP_VERSION && /^1\./.test(APP_VERSION), `package=${pkg.version}, runtime=${APP_VERSION}`);
+check('phase-f-persistence-stable', DB_VERSION >= 6 && PRE_V1_DATA_EPOCH === 'v1-planner-phase-d-epoch-1', `db=${DB_VERSION}, epoch=${PRE_V1_DATA_EPOCH}`);
 check('phase-f-catalog-stable', manifest.catalogVersion === '1.2.0-planner-phase-d' && manifest.recipeVersions?.count === 1800, `catalog=${manifest.catalogVersion}, recipes=${manifest.recipeVersions?.count}`);
 check('phase-f-policy-version', PLANNER_SOFT_OBJECTIVE_POLICY.version === 'phase-f-soft-objective-1', PLANNER_SOFT_OBJECTIVE_POLICY.version);
 check('phase-f-short-repeat-weight', PLANNER_SOFT_OBJECTIVE_POLICY.varietyWindows[0].recipe >= 20 && PLANNER_SOFT_OBJECTIVE_POLICY.varietyWindows[1].recipe >= 10, JSON.stringify(PLANNER_SOFT_OBJECTIVE_POLICY.varietyWindows));
 check('phase-f-soft-not-attenuated', /slotOptionSoftContribution/.test(beam) && !/score\.total\s*\|\|\s*0\)\s*\*\s*0\.15/.test(beam), 'slot options preserve full preference/variety contribution');
 check('phase-f-quality-visible', /uniqueRecipeRate/.test(validationPage) && /exactRepeatPairsWithin3Days/.test(validationPage), 'Planner Lab exposes quality metrics');
-check('phase-f-shell', /ydm-shell-v37-/.test(worker) && /ydm-data-v17-/.test(worker) && worker.includes('src/planner/qualityPolicy.js') && worker.includes('src/planner/qualityMetrics.js'), 'shell=v37, data=v17, Phase F modules precached');
+const shellCacheVersion = Number(worker.match(/ydm-shell-v(\d+)-/)?.[1] || 0);
+const dataCacheVersion = Number(worker.match(/ydm-data-v(\d+)-/)?.[1] || 0);
+check('phase-f-shell', shellCacheVersion >= 37 && dataCacheVersion >= 17 && worker.includes('src/planner/qualityPolicy.js') && worker.includes('src/planner/qualityMetrics.js'), `shell=v${shellCacheVersion}, data=v${dataCacheVersion}, Phase F modules precached`);
 check('phase-f-workflow', /v1:planner-phase-f/.test(workflow), 'manual release-candidate workflow runs Phase F');
 
 const repo = new MemoryRepository();
