@@ -2,10 +2,13 @@ import { mkdir, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import { generatePlanCore } from '../../src/planner/planGenerator.js';
 import { SchemaRegistry } from '../../src/lib/schemaValidator.js';
-import { fileLoader } from '../../tests/helpers.mjs';
+import { fileLoader, syntheticSafetyEvidence } from '../../tests/helpers.mjs';
 
 const root = process.cwd();
-const rev = (id, ingredientId, group, allergens = []) => ({ ingredientRevisionId: id, ingredientId, taxonomy: { foodGroup: group, foodSubgroup: group }, allergenIds: allergens });
+const rev = (id, ingredientId, group, allergens = []) => ({
+  ingredientRevisionId: id, ingredientId, taxonomy: { foodGroup: group, foodSubgroup: group }, allergenIds: allergens,
+  safetyEvidence: syntheticSafetyEvidence(allergens), basis: { state: 'cooked' }, source: { reference: 'synthetic-fixture' }
+});
 const rec = (id, archetype, kcal, protein, ingredientId, revisionId, allergens = []) => ({
   recipeVersionId: `rv_${id}`, recipeId: `r_${id}`, mealArchetypes: [archetype], calculatedNutrition: { energyKcal: kcal, proteinG: protein, carbsG: kcal / 10, fatG: kcal / 40, fiberG: 5 },
   practical: { prepMinutes: 5, cookMinutes: 0, reheatingRequired: false, coldSuitable: true, portable: true, fridgeRequired: false, mealPrepSuitable: true },
