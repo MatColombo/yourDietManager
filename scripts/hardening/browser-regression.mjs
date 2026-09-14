@@ -339,9 +339,14 @@ try {
 
   // Phase D3-D4 acceptance: taxonomy facets must operate on the real catalog.
   await cdp.send('Page.navigate', { url: `${origin}/configure/ingredients?food=product_category_dairy` });
-  await waitExpression(cdp, `!!document.querySelector('[data-testid=\"product-food-picker\"]') && document.querySelectorAll('.ingredient-card').length === 19`, 20000);
-  const dairyFacetCount = await evaluate(cdp, `document.querySelectorAll('.ingredient-catalog-list .ingredient-card').length`);
-  if (dairyFacetCount !== 19) throw new Error(`Phase D4 Dairy ingredient facet regression: ${dairyFacetCount}`);
+  const dairyFacetState = await waitStableExpression(cdp, `(() => {
+    if (!document.querySelector('[data-testid=\"product-food-picker\"]')) return null;
+    const heading = document.querySelector('.ingredient-catalog-list .results-heading strong')?.textContent || '';
+    const count = document.querySelectorAll('.ingredient-catalog-list .ingredient-card').length;
+    const loadingText = document.querySelector('.ingredient-catalog-list > .muted')?.textContent || '';
+    return heading && !/caricamento|loading/i.test(loadingText) ? { heading, count } : null;
+  })()`, { maxMs: 60000, stableMs: 1200 });
+  if (dairyFacetState.count !== 19) throw new Error(`Phase D4 Dairy ingredient facet regression: expected 19, got ${JSON.stringify(dairyFacetState)}`);
   await cdp.send('Page.navigate', { url: `${origin}/recipes?food=product_concept_noodles` });
   await waitExpression(cdp, `!!document.querySelector('[data-testid=\"product-food-picker\"]') && document.querySelectorAll('.recipe-card').length > 0`, 30000);
   const noodleFacetCount = await waitExpression(cdp, `(() => {

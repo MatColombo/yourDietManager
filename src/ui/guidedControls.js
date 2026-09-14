@@ -102,7 +102,7 @@ export function createIngredientPicker(state, index, {
   const formsHost = element('div'); let formControl = null;
   const choices = ingredientPickerChoices(projection, { locale, mode, levels, includeGroups, includeAllergens,
     levelLabels: Object.fromEntries(['category', 'subcategory', 'concept'].map(level => [level, state.i18n.t(`productFood.level.${level}`)])),
-    coverageLabel: count => state.i18n.t('productFood.coverage', { count }),
+    coverageLabel: count => state.i18n.t('productFood.coverage').replace('{count}', String(count)),
     allergenLabels: Object.fromEntries((state.allergenIds || ['gluten_cereals','crustaceans','eggs','fish','peanuts','soy','milk','tree_nuts','celery','mustard','sesame','sulphites','lupin','molluscs']).map(id => [id, state.i18n.t(`allergen.${id}`)])) });
   const initial = mode === 'variant' ? projection.items.find(item => item.family.ingredientId === value)?.revision?.productTaxonomy?.conceptId : value;
   function renderForms(choice, selected = null) {
