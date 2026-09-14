@@ -238,14 +238,16 @@ try {
     if (params.type === 'error') browserConsoleErrors.push((params.args || []).map(arg => arg.value || arg.description || '').join(' '));
   });
 
-  // Step 1 acceptance starts from a deliberately stale pre-V1 browser state.
+  // Step 1 acceptance starts from a deliberately stale but domain-empty pre-V1 browser state.
+  // R1 preserves any installation that already contains domain data, so seeding a legacy
+  // IngredientRevision here would intentionally select the additive-preservation path and
+  // prevent the fresh catalog bootstrap this regression is meant to exercise.
   await cdp.send('Page.navigate', { url: `${origin}/__seed` });
   await waitExpression(cdp, `location.pathname === '/__seed' && document.readyState === 'complete'`);
   const seeded = await evaluate(cdp, `(async () => {
     const { repositories } = await import('/src/repositories/repositoryHub.js');
     await repositories.setMeta('preV1DataEpoch', 'legacy-rc-epoch');
     await repositories.setMeta('activeCatalogVersion', '0.3.0-dev');
-    await repositories.put('ingredientRevisions', { ingredientRevisionId:'ingrev_salmon_raw_v2', ingredientId:'ing_salmon', origin:'base', contentHash:'legacy-browser-hash' });
     localStorage.setItem('ydm:legacy-pre-v1', '1');
     const cache = await caches.open('ydm-data-v12-root');
     await cache.put('/data/legacy-pre-v1.json', new Response('{}', { headers:{ 'content-type':'application/json' } }));
