@@ -61,6 +61,35 @@ test('R1 epoch adoption preserves existing RC data and owned browser state for a
   assert.equal((await repo.getMeta('preV1EpochAdoption')).policy, 'additive-migration-required');
 });
 
+test('pre-V1 destructive reset deletes stale owned caches but preserves current and future cache generations', async () => {
+  const repo = new MemoryRepository();
+  const registry = await registryFixture();
+  await repo.setMeta('preV1DataEpoch', 'legacy-rc-epoch');
+  await repo.setMeta('activeCatalogVersion', '0.3.0-dev');
+  const storage = new FakeStorage({ 'ydm:legacy':'1', unrelated:'keep' });
+  const caches = new FakeCaches([
+    'ydm-shell-v26-root', 'ydm-data-v12-root',
+    'ydm-shell-v42-root', 'ydm-data-v22-root',
+    'ydm-shell-v43-root', 'ydm-data-v23-root',
+    'another-app-cache'
+  ]);
+
+  const result = await ensurePreV1DataEpoch({
+    repo, registry,
+    referenceDataLoader: async () => ({ ...(await bundledReferenceData(root)), referenceDataVersion:'1.0.0' }),
+    cacheStorage:caches, localStorage:storage,
+    now:'2026-09-14T12:00:00.000Z'
+  });
+
+  assert.equal(result.reset, true);
+  assert.deepEqual(new Set(caches.deleted), new Set(['ydm-shell-v26-root', 'ydm-data-v12-root']));
+  assert.equal(caches.names.has('ydm-shell-v42-root'), true);
+  assert.equal(caches.names.has('ydm-data-v22-root'), true);
+  assert.equal(caches.names.has('ydm-shell-v43-root'), true);
+  assert.equal(caches.names.has('ydm-data-v23-root'), true);
+  assert.equal(caches.names.has('another-app-cache'), true);
+});
+
 test('current pre-V1 epoch is idempotent and does not erase current candidate data', async () => {
   const repo = new MemoryRepository();
   await repo.setMeta('preV1DataEpoch', PRE_V1_DATA_EPOCH);

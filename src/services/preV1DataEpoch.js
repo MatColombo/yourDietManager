@@ -2,10 +2,20 @@ import { APP_VERSION, CONTENT_SCHEMA_VERSION, DB_VERSION, PRE_V1_DATA_EPOCH, STO
 import { repositories } from '../repositories/repositoryHub.js';
 import { assertReferenceData, referenceDataDigest } from './referenceDataService.js';
 
+const CURRENT_CACHE_FLOORS = Object.freeze({ shell: 42, data: 22 });
+
+function isStaleOwnedCache(name) {
+  const match = /^ydm-(shell|data)-v(\d+)(?:-|$)/i.exec(String(name || ''));
+  if (!match) return false;
+  const kind = match[1].toLowerCase();
+  const generation = Number(match[2]);
+  return Number.isInteger(generation) && generation < CURRENT_CACHE_FLOORS[kind];
+}
+
 async function clearPreV1Caches(cacheStorage) {
   if (!cacheStorage?.keys || !cacheStorage?.delete) return [];
   const names = await cacheStorage.keys();
-  const owned = names.filter(name => /^ydm-(?:shell|data)-/i.test(name) && !/^ydm-shell-v38-/i.test(name) && !/^ydm-data-v18-/i.test(name));
+  const owned = names.filter(isStaleOwnedCache);
   await Promise.all(owned.map(name => cacheStorage.delete(name)));
   return owned;
 }
