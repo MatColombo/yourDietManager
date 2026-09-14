@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "suite": "v1-planner-validation-phase-a",
-  "checkedAt": "2026-09-10T15:16:38.757Z",
+  "checkedAt": "2026-09-14T09:10:31.013Z",
   "status": "passed",
   "checks": [
     {
       "id": "policy-versioned",
       "pass": true,
-      "detail": "planner-constraint-policy-1"
+      "detail": "planner-constraint-policy-r3-1"
     },
     {
       "id": "energy-tolerance-hard",
@@ -57,7 +57,7 @@
     {
       "id": "soft-semantics-explicit",
       "pass": true,
-      "detail": "soft=nutrient_targets,meal_rule_preferences,food_preferences,frequency_limits,variety,slot_energy_share"
+      "detail": "soft=frequency_ideal_v2,nutrient_targets,meal_rule_preferences,food_preferences,frequency_limits,variety,slot_energy_share"
     },
     {
       "id": "no-feasible-plan-contract",

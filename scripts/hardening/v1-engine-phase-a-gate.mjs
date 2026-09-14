@@ -18,9 +18,16 @@ function check(id, pass, detail) { const row = { id, pass: Boolean(pass), detail
 const hard = new Set(PLANNER_CONSTRAINTS.filter(item => item.strength === 'hard').map(item => item.id));
 const soft = new Set(PLANNER_CONSTRAINTS.filter(item => item.strength === 'soft').map(item => item.id));
 const componentServingConst = calendarSchema.properties.nutritionSummary ? calendarSchema.properties.mealSlots.items.properties.recipeComponents.items.properties.servings.const : null;
-const recipeServingConst = recipeSchema.properties.servingCount.const;
+const recipeServingConsts = recipeSchema.properties?.servingCount
+  ? [recipeSchema.properties.servingCount.const]
+  : await Promise.all((recipeSchema.oneOf || []).map(async variant => {
+      if (!variant?.$ref) return undefined;
+      const referencedSchema = await readJson(path.join('schemas', variant.$ref));
+      return referencedSchema.properties?.servingCount?.const;
+    }));
+const recipeServingConst = recipeServingConsts.length && recipeServingConsts.every(value => value === 1) ? 1 : null;
 
-check('policy-versioned', PLANNER_CONSTRAINT_POLICY_VERSION === 'planner-constraint-policy-1', PLANNER_CONSTRAINT_POLICY_VERSION);
+check('policy-versioned', PLANNER_CONSTRAINT_POLICY_VERSION === 'planner-constraint-policy-r3-1', PLANNER_CONSTRAINT_POLICY_VERSION);
 check('energy-tolerance-hard', hard.has('daily_energy_tolerance') && /energyToleranceWindow/.test(planMath) && /energyDistanceKcal/.test(beamSolver) && /daily_energy_tolerance/.test(generator), 'daily energy tolerance is a hard finalist constraint');
 check('fixed-serving-hard', hard.has('fixed_serving') && componentServingConst === 1 && recipeServingConst === 1 && /servings:\s*1/.test(generator) && /servings:\s*1/.test(effective), `calendar=${componentServingConst}, recipe=${recipeServingConst}`);
 check('numeric-forbid-correct', /numericRuleSatisfied\(recipe, rule\)\) reject/.test(hardFilter) && !/!numericRuleSatisfied\(recipe, rule\)\) reject/.test(hardFilter), 'matching numeric forbid predicate is rejected');
