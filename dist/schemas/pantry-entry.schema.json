@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/pantry-entry.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "entryId",
+    "conceptId",
+    "ingredientId",
+    "available",
+    "quantity",
+    "unit",
+    "expiresOn",
+    "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "entryId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "conceptId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ingredientId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "available": {
+      "type": "boolean"
+    },
+    "quantity": {
+      "type": [
+        "number",
+        "null"
+      ],
+      "exclusiveMinimum": 0
+    },
+    "unit": {
+      "enum": [
+        "g",
+        "ml",
+        null
+      ]
+    },
+    "expiresOn": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

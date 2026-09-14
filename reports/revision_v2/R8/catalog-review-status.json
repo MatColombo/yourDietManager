@@ -1,0 +1,53 @@
+{
+  "catalogAcceptance": "OPEN",
+  "r5PilotStatus": "BLOCKED",
+  "planned": {
+    "concepts": 200,
+    "forms": 307,
+    "dishes": 120
+  },
+  "reviewed": {
+    "concepts": 0,
+    "forms": 0,
+    "dishes": 0
+  },
+  "activatedStagingRecords": 0,
+  "parentCommit": "3f6a361b10730896afecedc2c312600e5d695f43",
+  "files": [
+    {
+      "file": "public/data/catalog-manifest.json",
+      "sha256": "e72e3b038ee49086b7eb4336403354e00406b7ebbd398f27569b31db7529acdf",
+      "unchangedFromParent": true
+    },
+    {
+      "file": "data/revision-v2/mediterranean/manifest.json",
+      "sha256": "c297c80ec5f618bc775fac71bff6937b7c79f1a0bc5534fbc7a05fabcaec2fd9",
+      "unchangedFromParent": true
+    },
+    {
+      "file": "data/revision-v2/mediterranean/dish-briefs.json",
+      "sha256": "3c749b0f819b6640d639101f0782fcc05dfc61a3b20a6c38d5af895874035786",
+      "unchangedFromParent": true
+    },
+    {
+      "file": "data/revision-v2/mediterranean/staging.json",
+      "sha256": "e707f8d176aafa80f50cba7095923d02dc93f6aaa3fc953565ce52a1015a8760",
+      "unchangedFromParent": true
+    },
+    {
+      "file": "data/revision-v2/mediterranean/source-register.json",
+      "sha256": "bfa366307ccec1512a63701555fc00e902701455359bf84e1f6a95d37e640351",
+      "unchangedFromParent": true
+    },
+    {
+      "file": "reports/revision_v2/R5/coverage.json",
+      "sha256": "b58abebf1333bea63b8ab6f4117502d4ccefe85c57faac46dcdaab96043365ec",
+      "unchangedFromParent": true
+    },
+    {
+      "file": "reports/revision_v2/R5/quarantine-dispositions.json",
+      "sha256": "9713189a413eb1f1c2b599b7def8053d3aef70b9ffb573fc720a13caba268598",
+      "unchangedFromParent": true
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "entryId": "SYNTHETIC_PANTRY",
+  "conceptId": "product_concept_chicken",
+  "ingredientId": "SYNTHETIC_FORM",
+  "available": true,
+  "quantity": null,
+  "unit": null,
+  "expiresOn": null,
+  "updatedAt": "2026-09-11T00:00:00.000Z"
+}

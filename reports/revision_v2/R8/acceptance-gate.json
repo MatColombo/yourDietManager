@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+  "status": "BLOCKED",
+  "implementation": "ALL_FIVE_TASKS_IMPLEMENTED",
+  "stablePromotion": false,
+  "catalogAcceptance": "OPEN",
+  "scenarios": [
+    {
+      "id": "T66",
+      "status": "PARTIAL",
+      "automatedScope": "Preferito per famiglia, filtro e priorità facoltativa; lock preservato nei due pianificatori e sicurezza prevalente",
+      "browser": "BLOCKED"
+    },
+    {
+      "id": "T67",
+      "status": "PARTIAL",
+      "automatedScope": "Modello senza note/aderenza, nuove date, ricalcolo, undo, slot bloccati, versione obsoleta e concorrenza",
+      "browser": "BLOCKED"
+    },
+    {
+      "id": "T68",
+      "status": "PARTIAL",
+      "automatedScope": "Quantità ignote/assenti/scadute mai dedotte, pool unico, forme e conversioni esplicite, export checklist",
+      "browser": "BLOCKED"
+    },
+    {
+      "id": "T69",
+      "status": "PARTIAL",
+      "automatedScope": "Quattro porzioni/quattro consumi, una produzione, date/conservazione, vincoli, riequilibrio e undo/redo",
+      "browser": "BLOCKED"
+    },
+    {
+      "id": "T70",
+      "status": "PARTIAL",
+      "automatedScope": "Stagionalità: area/mesi/fonte e peso soft. Costi: fonti locali/datate/unità, mancanti null, zero esplicito, budget incompleto",
+      "browser": "BLOCKED"
+    }
+  ],
+  "seasonality": {
+    "available": true,
+    "acceptance": "OPEN"
+  },
+  "cost": {
+    "available": true,
+    "acceptance": "OPEN"
+  },
+  "blockers": [
+    "Browser reale IT/EN, tastiera/touch/focus e responsive",
+    "Persistenza IndexedDB dopo reload; upgrade DB8→9 e offline; quota/concorrenza reale",
+    "Accettazione editoriale catalogo R5 e gate core R7 ancora aperti"
+  ]
+}

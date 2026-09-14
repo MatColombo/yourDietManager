@@ -1,7 +1,8 @@
+import { canonicalJson } from '../src/lib/crypto.js';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 
-const KEY_FIELDS = {
+const KEY_FIELDS = {recipeFavorites:'recipeId',savedMenus:'menuId',pantryEntries:'entryId',productionBatches:'batchId',seasonalityProfiles:'profileId',ingredientPrices:'priceId',
   nutritionProfiles: 'id', allergyIntoleranceProfiles: 'id', foodPreferences: 'id', themeProfiles: 'id', mealClasses: 'id', dayClasses: 'id', cycles: 'id',
   taxonomies: 'taxonomyId', taxonomyTerms: 'termId', ingredients: 'ingredientId', ingredientRevisions: 'ingredientRevisionId', recipes: 'recipeId', recipeVersions: 'recipeVersionId',
   planInstances: 'planInstanceId', calendarDays: 'calendarDayId', generationRuns: 'generationRunId', operations: 'operationId', shoppingChecklists: 'checklistId', recipeHumanReviews: 'reviewId'
@@ -11,12 +12,14 @@ export class MemoryRepository {
   constructor() { this.stores = new Map(); this.meta = new Map(); }
   store(name) { if (!this.stores.has(name)) this.stores.set(name, new Map()); return this.stores.get(name); }
   key(store, value) {
+    const versionKeys = { foodGroups: 'id', ingredientMappings: 'mappingId', ingredientConversions: 'conversionId' };
+    if (versionKeys[store]) return `${value[versionKeys[store]]}::${value.version}`;
     if (store === 'appConfigs') return 'active';
     if (store === 'catalogPacks') return `${value.catalogVersion}::${value.packId}`;
     return value[KEY_FIELDS[store]];
   }
-  async get(store, key) { return structuredClone(this.store(store).get(Array.isArray(key) ? key.join('::') : key)); }
-  async getAll(store) { return structuredClone([...this.store(store).values()]); }
+  async get(store, key) { if (store === 'meta') return this.meta.has(key) ? { key, value: structuredClone(this.meta.get(key)) } : undefined; return structuredClone(this.store(store).get(Array.isArray(key) ? key.join('::') : key)); }
+  async getAll(store) { if(store === 'meta') return [...this.meta].map(([key,value])=>({key,value:structuredClone(value)})); return structuredClone([...this.store(store).values()]); }
   async getMany(store, keys) { return structuredClone(keys.map(key => this.store(store).get(Array.isArray(key) ? key.join('::') : key)).filter(Boolean)); }
   async getAllByIndex(store, indexName, range = null, count) {
     const values = [...this.store(store).values()];
@@ -91,7 +94,12 @@ export class MemoryRepository {
       this.stores = new Map(storeBackup.map(([name, entries]) => [name, new Map(entries)])); this.meta = new Map(metaBackup); throw error;
     }
   }
-  async atomicMutate({ puts = {}, deletes = {}, metaSet = {}, metaDelete = [] } = {}) {
+  async atomicMutate({ puts = {}, deletes = {}, metaSet = {}, metaDelete = [], expected = [], expectedStores = [] } = {}) {
+    for (const item of expected) {
+      const actual = await this.get(item.store, item.key);
+      if (canonicalJson(actual ?? null) !== canonicalJson(item.value ?? null)) throw new Error('concurrent_change');
+    }
+    for (const item of expectedStores) { const norm = rows => rows.map(row => canonicalJson(row)).sort(); if (canonicalJson(norm(await this.getAll(item.store))) !== canonicalJson(norm(item.values))) { const error = new Error('Concurrent change'); error.code = 'concurrent_change'; throw error; } }
     const storeBackup = structuredClone([...this.stores.entries()].map(([name, map]) => [name, [...map.entries()]]));
     const metaBackup = structuredClone([...this.meta.entries()]);
     try {
@@ -103,13 +111,14 @@ export class MemoryRepository {
       this.stores = new Map(storeBackup.map(([name, entries]) => [name, new Map(entries)])); this.meta = new Map(metaBackup); throw error;
     }
   }
-  async atomicReplace(data) {
+  async atomicReplace(data, meta = {}) {
     const backup = structuredClone([...this.stores.entries()].map(([name, map]) => [name, [...map.entries()]]));
     try {
       for (const [store, values] of Object.entries(data)) {
         this.stores.set(store, new Map());
         for (const value of values || []) await this.put(store, value);
       }
+      for (const [key, value] of Object.entries(meta)) await this.setMeta(key, value);
     } catch (error) {
       this.stores = new Map(backup.map(([name, entries]) => [name, new Map(entries)]));
       throw error;
@@ -150,4 +159,9 @@ export function fileFetch(root) {
     }
     return new Response('Not found', { status: 404 });
   };
+}
+
+// Synthetic fixtures only. This helper must never be used to approve catalog data.
+export function syntheticSafetyEvidence(allergens = []) {
+  return { assessmentStatus: 'reviewed', containsAllergenIds: [...allergens], mayContainAllergenIds: [], compositionCompleteness: 'complete', sourceRefs: ['test-only:synthetic-composition'], reviewedBy: 'synthetic-fixture', reviewedAt: '2026-09-11T00:00:00Z', policyVersion: 'test-only-1' };
 }

@@ -8,7 +8,8 @@ export function currentRouteSignature() {
 }
 
 export function isEditableRoute(path = routePath(), search = globalThis.location?.search || '') {
-  if (['/configure/nutrition', '/configure/safety', '/configure/preferences', '/configure/meals', '/configure/days', '/configure/cycle', '/appearance'].includes(path)) return true;
+  if (['/onboarding', '/configure/nutrition', '/configure/safety', '/configure/preferences', '/configure/meals', '/configure/days', '/configure/cycle', '/appearance'].includes(path)) return true;
+  if (/^\/organize\/(menus|pantry|batches|seasonality|prices|preferences)$/.test(path)) return true;
   if (path === '/recipes/new' || path === '/recipes/edit' || /^\/recipes\/[^/]+\/edit$/.test(path)) return true;
   const params = new URLSearchParams(search || '');
   if (/^\/configure\/ingredients\/[^/]+\/edit$/.test(path)) return true;

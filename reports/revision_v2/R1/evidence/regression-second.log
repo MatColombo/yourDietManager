@@ -1,0 +1,838 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> yourdietmanager@1.1.0-dev.r1 test
+> node --test tests/*.test.mjs
+
+✔ backup round-trip restores config and preserves base catalog (617.036299ms)
+✔ catalog bootstrap validates then activates only after import (197.787378ms)
+✔ Phase 3 bootstrap installs required packs only and keeps optional packs available (244.675706ms)
+✔ indexed recipe query combines text, numeric filters, current-version and installed-pack membership (389.309273ms)
+✔ pack uninstall hides recipes without deleting immutable versions (366.785463ms)
+✔ personal ingredient edits create immutable revisions and advance the family pointer (208.206367ms)
+✔ personal recipe nutrition and allergens are derived from frozen ingredient revisions and edits create versions (194.23851ms)
+✔ personal catalog export/import preserves user family+version records with checksum (175.318366ms)
+✔ failed catalog update leaves the previous active version untouched (108.373092ms)
+✔ all distributed Phase 3 catalog records validate, including optional packs (154.069085ms)
+✔ real Phase 2 catalog fixture upgrades to Phase 3 without mutating historical immutable records (111.160758ms)
+✔ bootstrap configuration passes Phase 2 semantic validation (408.257744ms)
+✔ nutrition semantic validation rejects inverted bounds and ambiguous enabled state (170.73666ms)
+✔ DayClass overlapping slots require parallel=true on every overlapping slot (104.451616ms)
+✔ configuration validation rejects missing cross-record references (121.948107ms)
+✔ cycle normalization creates a contiguous 1..N sequence (142.491678ms)
+✔ saveConfigurationBundle validates before atomic activation (136.521259ms)
+✔ onboarding draft persists separately and completion activates atomically (116.750026ms)
+✔ unknown quantitative MealClass target is rejected by the V1 registry (72.359353ms)
+✔ structure configuration export excludes sensitive profiles and imports over local safety settings (84.090763ms)
+✔ configuration export checksum detects tampering (82.04809ms)
+✔ cycle editor domain supports the V1 maximum of 31 contiguous days (91.260191ms)
+✔ controlled-scale schema is mirrored into the public PWA schema surface (14.711229ms)
+✔ 4P-D controlled plan is schema-valid, policy-bound and bridges exactly 220 -> 500 as 100+100+80 (140.216565ms)
+✔ freshness identity helper reproduces scanCorpus content digest without re-running coverage analysis (197.478787ms)
+✔ controlled-scale generator produces deterministic lunch candidates inside the frozen energy band from curated/high ingredients only (4.398921ms)
+✔ pre-freeze controlled-scale writer workflow is retired while the historical runner remains available in Git history/source (2.109505ms)
+✔ split controlled-scale runner accumulates canonical tranche evidence instead of overwriting prior checkpoints (1.544358ms)
+✔ IndexedDB metadata contains the 22 legacy stores plus 3 versioned R1 stores and critical indexes (2.646205ms)
+✔ migration runner is idempotent (5.387316ms)
+✔ semver compatibility comparison is deterministic (0.289685ms)
+✔ i18n has English fallback (3.564594ms)
+✔ theme engine enforces WCAG guardrails (1.494551ms)
+✔ Phase 4 orchestrator schemas are addressable by runtime aliases and canonical artifacts validate (224.145635ms)
+✔ corpus scanner reproduces the smoke release snapshot quality and release gates (373.548761ms)
+✔ corpus scanner treats inputDigest drift as a nutrition/provenance quality error (234.800137ms)
+✔ orchestrator produces deterministic jobs for the same policy, snapshot, seed and goal (237.046874ms)
+✔ focused expansion turns user focus into a constraint while retaining automatic batch planning (114.170667ms)
+✔ focus_only planning freezes the first portable scale batch to generator-supported dimensions (73.458397ms)
+✔ smoke pipeline rejects an exact duplicate and a candidate outside the planned nutrition range before reaching target (67.159776ms)
+✔ published Phase 4 smoke release can be imported by the Phase 3 runtime catalog engine (154.309729ms)
+✔ catalog loader accepts immutable records introduced by an older catalog but rejects records from a future catalog (96.691957ms)
+✔ production release gate refuses development ingredient fixtures when curated high-confidence provenance is required (78.701607ms)
+✔ default V1 corpus policy remains a 3,000–5,000 production target and validates (224.028289ms)
+✔ compound coverage criteria count intersections rather than independent marginal distributions (251.970826ms)
+✔ production planner keeps compound target criteria mutually compatible and caps simultaneous targets (274.576186ms)
+✔ recipe pipeline enforces ingredient-category coverage criteria carried by the job (74.37482ms)
+✔ USDA Foundation intake stays review-only until explicit approval, then materializes schema-valid curated ingredients (1608.12866ms)
+✔ deterministic pilot generator covers every frozen pilot stratum using curated/high ingredients only (89.180518ms)
+✔ six deterministic pilot waves close with 120 accepted candidates and zero unresolved references (941.197398ms)
+✔ portable scale generator can feed a 100-accepted industrialized batch without review backlog (427.172555ms)
+✔ portable scale generator solves high-density USDA-style combinations without creating nutrition review backlog (468.869294ms)
+✔ focus_only production planning excludes compound coverage cells unless every criterion is explicitly focused (621.973683ms)
+✔ portable scale generator fails before batch execution when job requires unsupported protein or fiber bands (16.642904ms)
+✔ 4P-A production contract is schema-valid, policy-aligned and defines a 120-candidate pilot (196.161197ms)
+✔ 4P-A readiness audit exposes the real current blocker: all four active ingredient fixtures are non-production (112.680825ms)
+✔ production planner excludes non-curated ingredients instead of emitting a production RecipeGenerationJob (137.169232ms)
+✔ taxonomy intake reuses a canonical term instead of creating a duplicate proposal (87.849959ms)
+✔ new extensible taxonomy concepts are proposed, reviewed and materialized before recipe use (146.17491ms)
+✔ pilot intake distinguishes taxonomy resolution from ingredient production readiness (119.098227ms)
+✔ an unresolved intake record cannot enter the production recipe processor (138.475296ms)
+✔ ready production intake stamps accepted RecipeVersion with candidate, intake and contract provenance (96.33909ms)
+✔ 4P-B freezes a two-source curation policy because Foundation published inventory is below the 400 ingredient minimum (380.640231ms)
+✔ USDA curation import produces a source-digested review batch whose heuristics cannot materialize without explicit checks (295.780205ms)
+✔ USDA importer converts kJ-only Energy to kcal instead of relabeling the numeric value (220.587491ms)
+✔ approved curation record remains blocked unless every editorial review dimension is explicitly complete (49.247363ms)
+✔ pilot wave 1 stays blocked until production ingredient readiness passes and wave 2 cannot bypass wave 1 closure (253.686487ms)
+✔ pilot readiness ignores final 3000-recipe and production-manifest blockers once ingredient/reference readiness is green (304.266956ms)
+✔ SR Legacy supplemental importer is source-bound and remains review-only (686.8481ms)
+✔ legacy fixture retirement is an explicit schema-governed map, never an implicit replacement (163.387793ms)
+✔ 4P-B governance is mirrored in the normative spec and project Skill (5.507109ms)
+✔ 4P-C production recipe pipeline policy is schema-valid and bound to 4P-A/4P-B policies (144.541119ms)
+✔ 4P-C scale job intake is deterministic and never starts candidates as ready (150.437514ms)
+✔ industrialized production batch accepts only a full-score clean candidate and freezes report digest (98.04139ms)
+✔ non-approved culinary candidate becomes needs_recipe_review and can be explicitly requeued (57.471915ms)
+✔ numeric plausibility failures are quarantined as nutrition_outlier rather than silently rejected (64.283235ms)
+✔ semantic taxonomy exceptions are routed to needs_reference_review (100.953486ms)
+✔ exact duplicates are classified explicitly as duplicate and are terminal rejected in intake (227.807863ms)
+✔ fresh snapshot guard detects corpus mutation after job planning (66.519297ms)
+✔ current scale-500 gate is hard-blocked by unfinished 4P-B data/pilot, not by missing 3000 production recipes (70.307397ms)
+✔ scale-500 gate becomes pass only after pilot completion, corpus quality and pro-rata hard coverage all pass (52.413177ms)
+✔ scale-500 gate cannot become ready while the current corpus snapshot has quality errors (436.404092ms)
+✔ Pass B guided taxonomy choices expose canonical IDs and preserve food hierarchy (6990.675241ms)
+✔ Pass B uses the same MealArchetype default/min-one semantics for ingredient and recipe editors (1.125455ms)
+✔ Pass B recipe-line unit choices are restricted to the selected ingredient basis and explicit conversions (0.24632ms)
+✔ Pass B reference-data configurator creates canonical user terms and blocks label/alias collisions (7753.198267ms)
+✔ Pass B authoring boundary rejects legacy semantic strings and blank authoritative nutrition (5041.142827ms)
+✔ Pass B UI source removes semantic CSV/free-text controls from operational forms and precaches guided modules (6.475255ms)
+✔ Pass C standard bootstrap is neutral, complete and schema-valid (204.085691ms)
+✔ Pass C bootstrap upgrades only untouched legacy defaults and preserves explicit user configuration (127.844113ms)
+✔ Pass C editable-route registry and dirty confirmation use one global navigation rule (1.106472ms)
+✖ Pass C source audit centralizes disclosure state, guarded navigation, feedback and DayClass capabilities (70.874917ms)
+✔ Pass D edits bundled recipes in-place at family level while preserving historical versions (584.986396ms)
+✔ Pass D edits bundled ingredients with a new user revision and preserves the base revision (184.830577ms)
+✔ Pass D personal catalog transfer can carry local overrides of bundled family IDs (527.390258ms)
+✔ Pass D catalog pack reinstall does not overwrite a locally edited bundled recipe family (479.867599ms)
+✔ Pass D routing normalizes trailing slashes and marks dynamic edit routes dirty-trackable (1.651876ms)
+✔ Pass D source audit keeps details independent of plan state and removes origin edit gates (5.612513ms)
+✔ Pass D deployment requires browser regression and origin labels describe provenance, not editability (5.297458ms)
+✔ Pass E browser harness covers the final editor interaction acceptance surface (30.645032ms)
+✔ Pass E closure gate runs after the browser gate and CI requires a real browser pass (15.787311ms)
+✔ Pass E is reflected in the revision, specs and reusable project Skill (46.936324ms)
+✔ refines mixed dairy and egg category by food descriptor (2.278998ms)
+✔ conservative allergen derivation distinguishes seafood and common major allergens (2.025779ms)
+✔ Italian label uses controlled translation where available and source-preserving fallback otherwise (5.151708ms)
+✔ auto curation is deterministic, rejects complex categories, avoids exact display duplicates and meets target when eligible inventory exists (7.712873ms)
+✔ deterministic curation rejects source rows whose declared energy is grossly inconsistent with macros (0.420179ms)
+✔ deterministic curation protects explicit replacements for all four Phase 1 ingredient fixtures (1.466046ms)
+✔ Atwater Specific and SR legacy energy are not rejected by a General-factor-only 4/4/9 check (0.507741ms)
+✔ USDA descriptor refinement covers common pasta forms and herb/spice foods outside narrow category labels (0.960697ms)
+✔ frozen group minimum selection can use valid USDA specific/legacy energy without lowering quotas (1.417123ms)
+✔ auto curation applies the same frozen nutrition bounds as materialization before approval (1.157705ms)
+✔ GitHub Pages base path helpers support project sites and root sites (1.349199ms)
+✔ GitHub Pages deployment sources avoid root-absolute entry assets and include Pages Actions workflow (19.920826ms)
+✔ bootstrap configuration fetch is deployment-base aware (7.985717ms)
+✖ Pass A structural schema is DB v5 and applies the new compound catalog indexes without deleting stores (2.712302ms)
+✖ content migration resumes after interruption and is idempotent (123.074447ms)
+✔ 10k unfiltered catalog browsing reads only the requested page of RecipeVersion records (490.259114ms)
+✔ 10k operation history uses persisted head/redo pointers for new commits and bounded recent reads (521.413279ms)
+✔ offline pack planner selects only the shard families needed by the installed recipe versions (27.070066ms)
+✔ catalog update can roll back to the previous active family pointers while retaining immutable staged records (218.83141ms)
+✔ failed catalog update records recoverable state without switching the active version (124.773305ms)
+✔ runtime storage metrics persist record counts and quota estimates in meta (0.624825ms)
+✔ Phase 8 accessibility and offline source gates are present (2.75301ms)
+✔ day adherence summary is derived from meal occurrence states (18.544919ms)
+✔ plan creation is one undoable and redoable atomic operation (360.345374ms)
+✔ adherence update persists per meal, derives day status, and undo restores previous day (59.900193ms)
+✔ replacement preview excludes current recipe and hard-allergen candidates; commit is undoable (95.338409ms)
+✔ rebalance creates a dedicated GenerationRun, commits selected dates, and rolls back atomically (73.191885ms)
+✔ new edit after undo invalidates the redo branch without deleting audit history (47.650038ms)
+✔ today view uses civil consumption date and includes carry-over meals from prior diet date (64.444814ms)
+✔ external adherence can persist a retrospective user estimate only when policy allows it (95.667545ms)
+✔ same seed and frozen inputs produce identical plan assignments (61.032995ms)
+✔ allergy is a hard filter and never reaches scoring/selection (2.943456ms)
+✔ external slots have no recipes, servings stay at 1, and carry-over civil date is preserved (5.464199ms)
+✔ soft MealClass avoid rule penalizes but does not hard-exclude a matching recipe (10.998762ms)
+✔ planner returns classified failure instead of violating hard constraints (0.980627ms)
+✔ startCycleDay supports rolling-horizon continuation without reset (0.730266ms)
+✔ candidate retrieval remains bounded with a 10k-recipe archetype (1339.806942ms)
+✔ preview validates schemas, commit is atomic, and extension continues the cycle (407.457061ms)
+✔ continuation state exposes prompt/auto/fixed temporal guardrails (0.790461ms)
+✔ 365-day horizon materializes the cycle independently of month boundaries (3963.223362ms)
+✔ horizon extension resolves historical RecipeVersion after family currentVersion changes (526.881193ms)
+✔ pre-freeze network corpus writer stays retired while the active workflow rebuilds Phase B source and Phase D validation data (22.841461ms)
+✔ first scale runner binds the specialized portable generator to focus_only planning and persists failure evidence (8.656304ms)
+✔ production execution spec keeps deterministic review bounded and non-fuzzy (27.260093ms)
+✔ pilot-strict readiness fails closed on the immutable development fixture even when public catalog is production-review (1042.76279ms)
+✔ development-baseline production tests are isolated from canonical workflow mutations (20.884262ms)
+✔ production review schemas are loaded and the publication contract is review-only (97.917554ms)
+✔ human review requires all six explicit dimensions and consistent decisions (112.859773ms)
+✔ human review export/import is checksum-bound to the frozen publication and rejects duplicate or stale decisions (699.023897ms)
+✔ review summary counts one current decision per frozen RecipeVersion (0.370678ms)
+✔ legacy 5000 policy field is advisory: build planning can continue above 5000 (671.574246ms)
+✔ planner Phase B workflow rebuilds the 1800-recipe validation corpus and verifies generated drift (1.846467ms)
+✔ Phase 4 smoke builder is isolated from the mutable published review catalog (11.615597ms)
+✔ published 500-recipe review catalog bootstraps all required recipes with the browser public schema surface (94.867829ms)
+✔ browser regression gives production-scale catalog bootstrap a bounded window, waits for stable rendered results and fails fast on catalog errors (3.195573ms)
+✔ browser regression respects frozen production-review UX while preserving the route-independent recipe editor (3.903705ms)
+✔ published review recipes remain editable through version promotion without mutating the frozen reviewed version (46.376548ms)
+✔ Pass A reference-data seed validates with schemas, hierarchy, aliases and deterministic digest (326.730549ms)
+✔ Pass A semantic gate rejects typo references instead of silently accepting them (102.010235ms)
+✖ Pass A migration maps legacy strings to canonical IDs without mutating historical ingredient/recipe records (452.48544ms)
+✔ Pass A migration explicitly retypes legacy soft preference ingredient text when it resolves to a canonical food category (523.913744ms)
+✔ Pass A migration does not broaden legacy auto-exclude ingredient text into a food category (297.372545ms)
+✔ Pass A migration blocks unresolved legacy semantic text and leaves immutable pointer changes unapplied (366.816241ms)
+✔ ingredient and recipe schemas use the same MealArchetype rule: at least one is required (118.157435ms)
+✔ pipeline reference-data proposal requires an extensible taxonomy, resolves collisions, and materializes before use (995.681399ms)
+✔ RecipeGenerationJob freezes reference-data version and digest (747.545793ms)
+✔ Pass A corpus policies use canonical taxonomy term IDs for every semantic coverage criterion (17.589192ms)
+✔ T07 R0 stale safety configuration rejects commitPlanPreview without plan writes (142.476195ms)
+✔ T07 R0 stale safety configuration rejects commitGeneratedPreview without plan writes (176.121154ms)
+✔ T07 R0 extension rejects an intervening edit to the source plan (149.665375ms)
+✔ T07/T45 R0 replacement validates preview target, configuration and current day (74.069795ms)
+✔ T45 R0 rebalance rejects newer adherence and preserves authoritative before (91.690713ms)
+✔ T45 R0 rejects tampered payload, changed catalog and replay after undo (112.360258ms)
+✔ T03 R0 missing revision and empty legacy allergen array fail closed (0.299799ms)
+✔ T01 R0 pasta/rice pasta and peanut butter/butter use individual evidence, not generic search names (1.407581ms)
+✔ T10 R0 explicit quarantine covers all 20 baseline recipe IDs without deleting historical records (10.540204ms)
+✔ T12 R0 a valid replacement retains saved notes and can be undone (86.317901ms)
+✔ T72 R1 miglio generic query aggregates forms without merging IDs, quantities or nutrients (443.990165ms)
+✔ T72 R1 inconsistent or non-leaf product paths are rejected instead of inferred from names (422.812886ms)
+✔ T06 R1 FoodGroup rejects nested, unknown and duplicate members; membership history is immutable (659.857583ms)
+✔ T17/T18 R1 directional shopping yield cannot alter nutritional basis or invent g/ml equivalence (256.040512ms)
+✔ T59/T72 R1 migration is additive, restartable, idempotent and preserves current local pointer and old records (319.168108ms)
+✔ T59 R1 preserves existing data without legacy epoch and rejects content downgrade (568.976912ms)
+✔ T59 R1 interrupted batches and changed local pointer cannot be overwritten (624.932486ms)
+✔ T72 R1 unresolved mapping is retained for review without changing the family (194.277409ms)
+✔ T72 R1 lexical similarity never merges forms; explicit redirects retain source and reject cycles (188.00246ms)
+✔ T23/T39 R1 strict frequency draft validates bounds, half ideals and target references without activating V2 (138.582053ms)
+✔ T01/T05 R1 strict safety contract cannot invent reviewer or contain/trace equivalence (149.861837ms)
+✔ T21 R1 recipe V2 writes omit instructions and legacy versions remain lossless (68.732033ms)
+✔ T59 R1 same-catalog backup 2 round-trips new registries and staged configuration (834.02578ms)
+✔ every browser-loaded JSON schema is an exact mirror of the canonical schema (248.690041ms)
+✖ public ingredientRevision schema accepts production energy provenance but remains closed (77.558126ms)
+✔ runtime JSON Schema validator accepts all canonical examples (62.656105ms)
+✔ runtime JSON Schema validator rejects an invalid allergen id (1.808473ms)
+✔ shopping uses civil consumption date, includes carry-over, excludes external slots, and resolves historical versions (191.425581ms)
+✔ shopping multiplier scales quantities linearly without mutating the plan (75.824837ms)
+✔ aggregation keeps incompatible ingredient states separate even for the same ingredient family (20.551188ms)
+✔ persistent checklist tracks staleness and preserves derived user state plus manual items across refresh (29.440608ms)
+✔ derived quantities are read-only while manual items can be removed (23.855155ms)
+✔ preparation horizon follows civil dates, excludes external meals, and exposes frozen recipe practical metadata (44.203434ms)
+✔ Phase A — daily calorie tolerance is a hard window, not a score preference (6.974982ms)
+✔ Phase A — feasible 800 kcal plan succeeds with fixed servings only (89.042872ms)
+✔ Phase A — feasible 2600 kcal plan succeeds without recipe scaling (3.58378ms)
+✔ Phase A — impossible calorie window returns NO_FEASIBLE_PLAN diagnostics rather than out-of-range plan (4.158547ms)
+✔ Phase A — soft ranking cannot erase the energy frontier before hard-feasibility search (0.549233ms)
+✖ Phase A — numeric MealClass forbid rejects matching values and allows non-matching values (5.665643ms)
+✖ Phase A — cooking and simple-snack capabilities are enforced as hard filters (0.387067ms)
+✖ Phase A — soft avoid changes ranking but does not exclude candidate (0.354544ms)
+✔ Phase A — constraint policy exposes hard and soft semantics explicitly (0.237006ms)
+✔ Phase A — replacement preview only exposes candidates that preserve the daily hard energy window (17804.870961ms)
+✔ Phase A — planned slots cannot expose external-only protein guidance as a fake constraint (4929.314411ms)
+✔ Phase A — unknown external energy cannot be reported as a hard-valid calorie day (3042.801509ms)
+✔ Phase B — eligibility expands real culinary coverage without inventing ingredient families (91.021305ms)
+✔ Phase B — 1800 RecipeVersions are fixed single servings and use at least 300 distinct ingredients (14.042056ms)
+✔ Phase B — every intended meal class has low, medium and high energy choices (8.870543ms)
+✔ Phase B — public publication is validation-only and has zero structural quality blockers (2224.500234ms)
+✔ Phase B — narrow ±2% energy windows are feasible at both 800 and 2600 kcal without scaling (8593.892095ms)
+✔ Phase B — generator source contains no energy-fitting solver path (1.318954ms)
+✔ Phase C — runtime retrieval exposes the full Phase B archetype instead of truncating at 250 (8091.53719ms)
+✔ Phase C — validation profiles are non-destructive configuration overlays (3.409867ms)
+✔ Phase C — successful manual case exposes slot pipeline diagnostics, fixed servings and no persisted plan (1140.828434ms)
+✖ Phase C — hard allergen remains visible in hard-filter rejection diagnostics (683.030092ms)
+✔ Phase C — intolerance and fiber stress presets exercise safety-hard and nutrient-soft paths (1.38231ms)
+✔ Phase C — soft MealClass avoid and frequency presets remain non-excluding scoring rules (0.493586ms)
+✔ Phase C — soft MealClass avoid changes scores without changing hard eligibility counts (2332.620531ms)
+✔ Phase C — deliberately impossible and external-unknown profiles fail with classified hard reasons (3860.144152ms)
+✔ Phase C — soft profile changes scoring without becoming a hard constraint (2319.625935ms)
+✔ Phase C — same seed and configuration produce the same plan signature (1762.679866ms)
+✔ Phase C — UI exposes the manual validation route and diagnostic actions (4.775491ms)
+✔ Phase C — browser vertical flow uses retry-safe click after asynchronous today-page rerender (4.761874ms)
+✔ Phase D3 — product-food picker collapses technical variants into conceptual taxonomy choices with coverage (7686.266724ms)
+✔ Phase D4 — ingredient facets filter by product taxonomy and technical state without exposing revision noise as preference semantics (71.600471ms)
+✔ Phase D4 — recipe facets combine product taxonomy, diet and practical tags and filter the actual ingredient graph (712.996297ms)
+✔ Phase D3 — the same product-food picker is wired into preference/safety/meal rules and ingredient authoring (4.221217ms)
+✔ Phase D5 — Day → Recipe → Ingredient carries contextual return routes down to the exact meal slot (1.673822ms)
+✔ Phase D3-D5 — real Chromium gate exercises taxonomy facets and contextual drill-down (1.051074ms)
+✖ Phase D2 - all 600 ingredient revisions have a valid three-level product taxonomy (7371.73401ms)
+✔ Phase D2 - Dairy productFood autoExclude is enforced as a hard planner constraint (10029.428521ms)
+✔ Phase D1 - propose alternative changes every planned slot when strict alternative search is feasible (8960.219564ms)
+✔ Phase D1 - recalculate and alternative are distinct, explicit modes (5630.975891ms)
+✔ Phase E protocol has the required manual product coverage (6.028536ms)
+✔ Phase E acceptance stays blocked until every required case passes (18.137034ms)
+✔ Phase E normalizer requires fail severity and strips severity from passing cases (0.880221ms)
+✔ Phase F — slot option keeps nutrition as a tie-break while applying preference and variety at full strength (1.45533ms)
+✔ Phase F — short-window exact recipe repetition is strongly penalized but remains soft (0.806083ms)
+✔ Phase F — quality metrics expose uniqueness and rolling repetition windows (8.866581ms)
+✔ Phase F — Planner Lab surfaces quality metrics and raw export contains them (26.335413ms)
+✖ Phase G — release-candidate freeze binds rc.34 to the 600/1800 planner baseline without mutating recipe content (103.791041ms)
+✔ Phase G — product taxonomy and Phase F quality evidence are part of the freeze contract (20.54537ms)
+✖ Phase G — freeze records the fail-closed boundary even after a later metadata-only stable promotion (7.331891ms)
+✖ Phase G — PWA shell/data cache and pre-V1 epoch stay frozen through stable metadata promotion (8.198979ms)
+✔ Phase H — handoff closes development while preserving the Phase G frozen content (377.415ms)
+✔ Phase H — stable promotion requires exact ACCEPT V1 and a fully passing manual report (333.018988ms)
+✖ Phase H — a synthetic accepted projection passes the stable gate without changing frozen catalog content (338.585229ms)
+✔ Phase H — promotion CLI is dry-run by default and does not embed an acceptance decision (8.061332ms)
+✖ pre-V1 epoch reset destroys RC data, reseeds canonical reference data and clears owned browser state (97.305331ms)
+✔ current pre-V1 epoch is idempotent and does not erase current candidate data (2.609007ms)
+✔ Planner Phase B publication is coherent: 600 ingredients, 1800 recipes and core contains the validation corpus (505.808284ms)
+✔ Step2 A — default 7-day plan is deterministic, complete, within energy tolerance and reloadable (16971.533802ms)
+✔ Step2 B — vegetarian auto-exclusions hold during generation and replacement (9130.539438ms)
+✖ Step2 C — hard milk allergy survives generation, replacement and rebalance (4741.822133ms)
+✔ Step2 D — configurable external meal, capability filtering and carry-over civil date work together (4271.648721ms)
+✔ Step2 E — replacement, adherence, rebalance, undo/redo and reload preserve an effective plan (10460.107577ms)
+✔ Step2 F — shopping is derived from frozen effective plan, scales, persists checklist state and stays stale after undo/redo (7221.125759ms)
+✖ Step3 A - V1 catalog backup validates and round-trips user configuration without replacing base catalog (6398.096761ms)
+✔ Step3 B - delete local data clears private state but preserves public PWA caches by default (4457.083067ms)
+✔ Step3 C - destructive delete can clear owned public caches when explicitly requested (0.726484ms)
+✖ Step3 D - stable release gate is fail-closed on the candidate and green after metadata-only promotion (557.100818ms)
+ℹ tests 270
+ℹ suites 0
+ℹ pass 252
+ℹ fail 18
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 64586.508437
+
+✖ failing tests:
+
+test at tests/data-ux-pass-c.test.mjs:78:1
+✖ Pass C source audit centralizes disclosure state, guarded navigation, feedback and DayClass capabilities (70.874917ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /ydm-shell-v37/. Input:
+  
+  "const BASE_URL = new URL('./', self.location.href);\n" +
+    "const BASE_PATH = BASE_URL.pathname.endsWith('/') ? BASE_URL.pathname : `${BASE_URL.pathname}/`;\n" +
+    "const CACHE_SCOPE_KEY = BASE_PATH.replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '') || 'root';\n" +
+    'const SHELL_CACHE = `ydm-shell-v38-${CACHE_SCOPE_KEY}`;\n' +
+    'const DATA_CACHE = `ydm-data-v18-${CACHE_SCOPE_KEY}`;\n' +
+    "const scoped = path => new URL(String(path || '').replace(/^\\/+/, ''), BASE_URL).pathname;\n" +
+    "const DATA_PREFIX = scoped('data/');\n" +
+    "const SCHEMA_PREFIX = scoped('schemas/');\n" +
+    "const MANIFEST_PATH = scoped('data/catalog-manifest.json');\n" +
+    "const INDEX_PATH = scoped('index.html');\n" +
+    '\n' +
+    'const SHELL = [\n' +
+    "  'src/domain/catalogQuarantine.js', 'src/domain/safetyCompatibility.js', 'src/domain/ingredientIdentity.js', 'src/domain/ingredientConversion.js', 'src/domain/revisionV2Contracts.js', 'src/domain/productFoodTaxonomy.js', 'src/services/planPreviewGuard.js', 'src/services/ingredientModelMigration.js', 'src/services/revisionV2Service.js', 'schemas/safety-evidence.schema.json', 'schemas/food-preferences-v2.schema.json', 'schemas/production-corpus-intake.schema.json', 'schemas/ingredient-revision-v2.schema.json', 'schemas/recipe-version-v1.schema.json', 'schemas/ingredient-curation-batch.schema.json', 'schemas/allergy-intolerance-profile-v1.schema.json', 'schemas/ingredient-retirement-map.schema.json', 'schemas/production-corpus-contract.schema.json', 'schemas/ingredient-curation-policy.schema.json', 'schemas/backup-v2.schema.json', 'schemas/ingredient-conversion.schema.json', 'schemas/ingredient-curation-report.schema.json', 'schemas/ingredient-revision-v1.schema.json', 'schemas/food-group.schema.json', 'schemas/allergy-intolerance-profile-v2.schema.json', 'schemas/production-corpus-readiness-report.schema.json', 'schemas/ingredient-mapping.schema.json', 'schemas/recipe-version-v2.schema.json', 'schemas/backup-v1.schema.json', 'schemas/food-preferences-v1.schema.json', 'schemas/pilot-wave-report.schema.json',\n" +
+    "  '', 'index.html', 'manifest.webmanifest', 'icons/icon.svg',\n" +
+    "  'src/bootstrapVisual.js', 'src/recoveryBootstrap.js', 'src/db/constants.js', 'src/db/database.js', 'src/domain/configurationRules.js', 'src/domain/catalogEnums.js', 'src/domain/nutritionCore.js',\n" +
+    "  'src/i18n/i18n.js', 'src/lib/appBase.js', 'src/lib/crypto.js', 'src/lib/schemaValidator.js', 'src/lib/semver.js', 'src/main.js',\n" +
+    "  'src/repositories/domainRepositories.js', 'src/repositories/repositoryHub.js',\n" +
+    "  'src/services/backupEngine.js', 'src/services/preV1DataEpoch.js', 'src/services/catalogDataSource.js', 'src/services/catalogImporter.js', 'src/services/catalogUpdater.js', 'src/services/catalogQuery.js',\n" +
+    "  'src/services/configurationBootstrap.js', 'src/services/configurationService.js', 'src/services/configurationTransfer.js', 'src/services/customCatalogTransfer.js', 'src/services/migrationRunner.js', 'src/services/personalCatalogService.js',\n" +
+    "  'src/services/manualAcceptanceService.js', 'src/services/planCandidateService.js', 'src/services/planGenerationService.js', 'src/services/plannerValidationService.js', 'src/services/effectivePlanService.js', 'src/services/operationHistoryService.js', 'src/services/shoppingService.js',\n" +
+    "  'src/services/offlineCatalog.js', 'src/services/recipeHumanReviewService.js', 'src/services/storageMetrics.js', 'src/services/referenceDataService.js', 'src/services/referenceDataProposalService.js', 'src/services/referenceDataEditorService.js',\n" +
+    "  'src/planner/seededRandom.js', 'src/planner/planMath.js', 'src/planner/recipeFeatures.js', 'src/planner/hardFilter.js', 'src/planner/qualityPolicy.js', 'src/planner/qualityMetrics.js', 'src/planner/softScoring.js', 'src/planner/beamSolver.js', 'src/planner/planGenerator.js', 'src/planner/validationProfiles.js',\n" +
+    "  'src/styles.css', 'src/theme/themeEngine.js', 'src/ui/app.js', 'src/ui/manualAcceptancePage.js', 'src/ui/catalogPages.js', 'src/ui/configurationPages.js', 'src/ui/referenceDataPages.js', 'src/ui/guidedControls.js', 'src/ui/planPages.js', 'src/ui/plannerValidationPage.js', 'src/ui/shoppingPages.js', 'src/ui/dom.js', 'src/ui/router.js', 'src/ui/uiState.js',\n" +
+    "  'schemas/allergy-intolerance-profile.schema.json', 'schemas/app-config.schema.json', 'schemas/catalog-publication.schema.json', 'schemas/production-review-publication.schema.json', 'schemas/recipe-human-review.schema.json', 'schemas/recipe-human-review-bundle.schema.json', 'schemas/backup.schema.json', 'schemas/calendar-day.schema.json', 'schemas/catalog-manifest.schema.json', 'schemas/catalog-pack.schema.json', 'schemas/cycle.schema.json', 'schemas/day-class.schema.json', 'schemas/domain-enums.schema.json', 'schemas/food-preferences.schema.json', 'schemas/generation-run.schema.json', 'schemas/ingredient-revision.schema.json', 'schemas/ingredient.schema.json', 'schemas/meal-class.schema.json', 'schemas/nutrition-profile.schema.json', 'schemas/operation.schema.json', 'schemas/plan-instance.schema.json', 'schemas/recipe-corpus-orchestration-run.schema.json', 'schemas/recipe-corpus-policy.schema.json', 'schemas/recipe-corpus-snapshot.schema.json', 'schemas/recipe-generation-job.schema.json', 'schemas/recipe-version.schema.json', 'schemas/recipe.schema.json', 'schemas/shopping-checklist.schema.json', 'schemas/taxonomy.schema.json', 'schemas/taxonomy-term.schema.json', 'schemas/reference-data-proposal.schema.json', 'schemas/production-recipe-pipeline-policy.schema.json', 'schemas/production-recipe-batch-report.schema.json', 'schemas/production-recipe-review-decisions.schema.json', 'schemas/production-scale-gate-report.schema.json', 'schemas/controlled-scale-plan.schema.json', 'schemas/theme-profile.schema.json',\n" +
+    "  'data/locales/it.json', 'data/locales/en.json', 'data/catalog-manifest.json', 'data/reference-data/taxonomies-0001.json', 'data/reference-data/taxonomy-terms-0001.json'\n" +
+    '].map(scoped);\n' +
+    '\n' +
+    "self.addEventListener('install', event => {\n" +
+    '  event.waitUntil(caches.open(SHELL_CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));\n' +
+    '});\n' +
+    '\n' +
+    "self.addEventListener('activate', event => {\n" +
+    '  event.waitUntil(Promise.all([\n' +
+    '    self.clients.claim(),\n' +
+    '    caches.keys().then(keys => {\n' +
+    "      const legacy = new Set(['ydm-shell-v9', 'ydm-data-v5']);\n" +
+    '      return Promise.all(keys.filter(key => (legacy.has(key) || key.endsWith(`-${CACHE_SCOPE_KEY}`)) && ![SHELL_CACHE, DATA_CACHE].includes(key)).map(key => caches.delete(key)));\n' +
+    '    })\n' +
+    '  ]));\n' +
+    '});\n' +
+    '\n' +
+    "self.addEventListener('message', event => {\n" +
+    "  if (event.data?.type !== 'YDM_CACHE_URLS') return;\n" +
+    "  const urls = [...new Set((event.data.urls || []).filter(value => typeof value === 'string'))];\n" +
+    '  event.waitUntil((async () => {\n' +
+    '    const cache = await caches.open(DATA_CACHE);\n' +
+    '    let count = 0;\n' +
+    '    const failed = [];\n' +
+    '    for (const raw of urls) {\n' +
+    '      const url = new URL(raw, self.location.origin);\n' +
+    '      const allowed = url.pathname.startsWith(DATA_PREFIX) || url.pathname.startsWith(SCHEMA_PREFIX);\n' +
+    '      if (url.origin !== self.location.origin || !allowed) { failed.push(raw); continue; }\n' +
+    '      try {\n' +
+    '        const existing = await cache.match(url.href);\n' +
+    '        if (existing) { count += 1; continue; }\n' +
+    "        const response = await fetch(url.href, { cache: 'no-cache' });\n" +
+    '        if (!response.ok) { failed.push(raw); continue; }\n' +
+    '        await cache.put(url.href, response.clone());\n' +
+    '        count += 1;\n' +
+    '      } catch { failed.push(raw); }\n' +
+    '    }\n' +
+    '    event.ports?.[0]?.postMessage({ cached: failed.length === 0, count, failed });\n' +
+    '  })());\n' +
+    '});\n' +
+    '\n' +
+    "self.addEventListener('fetch', event => {\n" +
+    '  const url = new URL(event.request.url);\n' +
+    "  if (event.request.method !== 'GET' || url.origin !== self.location.origin) return;\n" +
+    '  if (!url.pathname.startsWith(BASE_PATH)) return;\n' +
+    '\n' +
+    '  if (url.pathname === MANIFEST_PATH) {\n' +
+    '    event.respondWith(caches.open(DATA_CACHE).then(async cache => {\n' +
+    '      try {\n' +
+    '        const response = await fetch(event.request);\n' +
+    '        if (response.ok) await cache.put(event.request, response.clone());\n' +
+    '        return response;\n' +
+    '      } catch {\n' +
+    '        return (await cache.match(event.request)) || Response.error();\n' +
+    '      }\n' +
+    '    }));\n' +
+    '    return;\n' +
+    '  }\n' +
+    '\n' +
+    '  if (url.pathname.startsWith(DATA_PREFIX) || url.pathname.startsWith(SCHEMA_PREFIX)) {\n' +
+    '    event.respondWith(caches.open(DATA_CACHE).then(async cache => {\n' +
+    '      const cached = await cache.match(event.request);\n' +
+    '      if (cached) return cached;\n' +
+    '      const response = await fetch(event.request);\n' +
+    '      if (response.ok) await cache.put(event.request, response.clone());\n' +
+    '      return response;\n' +
+    '    }));\n' +
+    '    return;\n' +
+    '  }\n' +
+    '\n' +
+    "  if (event.request.mode === 'navigate') {\n" +
+    '    event.respondWith(fetch(event.request).catch(() => caches.match(INDEX_PATH)));\n' +
+    '    return;\n' +
+    '  }\n' +
+    '\n' +
+    '  event.respondWith(caches.match(event.request).then(async cached => {\n' +
+    '    if (cached) return cached;\n' +
+    '    const response = await fetch(event.request);\n' +
+    '    if (response.ok && /\\.(?:js|css|svg|webmanifest)$/.test(url.pathname)) {\n' +
+    '      const cache = await caches.open(SHELL_CACHE);\n' +
+    '      await cache.put(event.request, response.clone());\n' +
+    '    }\n' +
+    '    return response;\n' +
+    '  }));\n' +
+    '});\n'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/data-ux-pass-c.test.mjs:102:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: "const BASE_URL = new URL('./', self.location.href);\nconst BASE_PATH = BASE_URL.pathname.endsWith('/') ? BASE_URL.pathname : `${BASE_URL.pathname}/`;\nconst CACHE_SCOPE_KEY = BASE_PATH.replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '') || 'root';\nconst SHELL_CACHE = `ydm-shell-v38-${CACHE_SCOPE_KEY}`;\nconst DATA_CACHE = `ydm-data-v18-${CACHE_SCOPE_KEY}`;\nconst scoped = path => new URL(String(path || '').replace(/^\\/+/, ''), BASE_URL).pathname;\nconst DATA_PREFIX = scoped('data/');\nconst SCHEMA_PREFIX = scoped('schemas/');\nconst MANIFEST_PATH = scoped('data/catalog-manifest.json');\nconst INDEX_PATH = scoped('index.html');\n\nconst SHELL = [\n  'src/domain/catalogQuarantine.js', 'src/domain/safetyCompatibility.js', 'src/domain/ingredientIdentity.js', 'src/domain/ingredientConversion.js', 'src/domain/revisionV2Contracts.js', 'src/domain/productFoodTaxonomy.js', 'src/services/planPreviewGuard.js', 'src/services/ingredientModelMigration.js', 'src/services/revisionV2Service.js', 'schemas/safety-evidence.schema.json', 'schemas/food-preferences-v2.schema.json', 'schemas/production-corpus-intake.schema.json', 'schemas/ingredient-revision-v2.schema.json', 'schemas/recipe-version-v1.schema.json', 'schemas/ingredient-curation-batch.schema.json', 'schemas/allergy-intolerance-profile-v1.schema.json', 'schemas/ingredient-retirement-map.schema.json', 'schemas/production-corpus-contract.schema.json', 'schemas/ingredient-curation-policy.schema.json', 'schemas/backup-v2.schema.json', 'schemas/ingredient-conversion.schema.json', 'schemas/ingredient-curation-report.schema.json', 'schemas/ingredient-revision-v1.schema.json', 'schemas/food-group.schema.json', 'schemas/allergy-intolerance-profile-v2.schema.json', 'schemas/production-corpus-readiness-report.schema.json', 'schemas/ingredient-mapping.schema.json', 'schemas/recipe-version-v2.schema.json', 'schemas/backup-v1.schema.json', 'schemas/food-preferences-v1.schema.json', 'schemas/pilot-wave-report.schema.json',\n  '', 'index.html', 'manifest.webmanifest', 'icons/icon.svg',\n  'src/bootstrapVisual.js', 'src/recoveryBootstrap.js', 'src/db/constants.js', 'src/db/database.js', 'src/domain/configurationRules.js', 'src/domain/catalogEnums.js', 'src/domain/nutritionCore.js',\n  'src/i18n/i18n.js', 'src/lib/appBase.js', 'src/lib/crypto.js', 'src/lib/schemaValidator.js', 'src/lib/semver.js', 'src/main.js',\n  'src/repositories/domainRepositories.js', 'src/repositories/repositoryHub.js',\n  'src/services/backupEngine.js', 'src/services/preV1DataEpoch.js', 'src/services/catalogDataSource.js', 'src/services/catalogImporter.js', 'src/services/catalogUpdater.js', 'src/services/catalogQuery.js',\n  'src/services/configurationBootstrap.js', 'src/services/configurationService.js', 'src/services/configurationTransfer.js', 'src/services/customCatalogTransfer.js', 'src/services/migrationRunner.js', 'src/services/personalCatalogService.js',\n  'src/services/manualAcceptanceService.js', 'src/services/planCandidateService.js', 'src/services/planGenerationService.js', 'src/services/plannerValidationService.js', 'src/services/effectivePlanService.js', 'src/services/operationHistoryService.js', 'src/services/shoppingService.js',\n  'src/services/offlineCatalog.js', 'src/services/recipeHumanReviewService.js', 'src/services/storageMetrics.js', 'src/services/referenceDataService.js', 'src/services/referenceDataProposalService.js', 'src/services/referenceDataEditorService.js',\n  'src/planner/seededRandom.js', 'src/planner/planMath.js', 'src/planner/recipeFeatures.js', 'src/planner/hardFilter.js', 'src/planner/qualityPolicy.js', 'src/planner/qualityMetrics.js', 'src/planner/softScoring.js', 'src/planner/beamSolver.js', 'src/planner/planGenerator.js', 'src/planner/validationProfiles.js',\n  'src/styles.css', 'src/theme/themeEngine.js', 'src/ui/app.js', 'src/ui/manualAcceptancePage.js', 'src/ui/catalogPages.js', 'src/ui/configurationPages.js', 'src/ui/referenceDataPages.js', 'src/ui/guidedControls.js', 'src/ui/planPages.js', 'src/ui/plannerValidationPage.js', 'src/ui/shoppingPages.js', 'src/ui/dom.js', 'src/ui/router.js', 'src/ui/uiState.js',\n  'schemas/allergy-intolerance-profile.schema.json', 'schemas/app-config.schema.json', 'schemas/catalog-publication.schema.json', 'schemas/production-review-publication.schema.json', 'schemas/recipe-human-review.schema.json', 'schemas/recipe-human-review-bundle.schema.json', 'schemas/backup.schema.json', 'schemas/calendar-day.schema.json', 'schemas/catalog-manifest.schema.json', 'schemas/catalog-pack.schema.json', 'schemas/cycle.schema.json', 'schemas/day-class.schema.json', 'schemas/domain-enums.schema.json', 'schemas/food-preferences.schema.json', 'schemas/generation-run.schema.json', 'schemas/ingredient-revision.schema.json', 'schemas/ingredient.schema.json', 'schemas/meal-class.schema.json', 'schemas/nutrition-profile.schema.json', 'schemas/operation.schema.json', 'schemas/plan-instance.schema.json', 'schemas/recipe-corpus-orchestration-run.schema.json', 'schemas/recipe-corpus-policy.schema.json', 'schemas/recipe-corpus-snapshot.schema.json', 'schemas/recipe-generation-job.schema.json', 'schemas/recipe-version.schema.json', 'schemas/recipe.schema.json', 'schemas/shopping-checklist.schema.json', 'schemas/taxonomy.schema.json', 'schemas/taxonomy-term.schema.json', 'schemas/reference-data-proposal.schema.json', 'schemas/production-recipe-pipeline-policy.schema.json', 'schemas/production-recipe-batch-report.schema.json', 'schemas/production-recipe-review-decisions.schema.json', 'schemas/production-scale-gate-report.schema.json', 'schemas/controlled-scale-plan.schema.json', 'schemas/theme-profile.schema.json',\n  'data/locales/it.json', 'data/locales/en.json', 'data/catalog-manifest.json', 'data/reference-data/taxonomies-0001.json', 'data/reference-data/taxonomy-terms-0001.json'\n].map(scoped);\n\nself.addEventListener('install', event => {\n  event.waitUntil(caches.open(SHELL_CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));\n});\n\nself.addEventListener('activate', event => {\n  event.waitUntil(Promise.all([\n    self.clients.claim(),\n    caches.keys().then(keys => {\n      const legacy = new Set(['ydm-shell-v9', 'ydm-data-v5']);\n      return Promise.all(keys.filter(key => (legacy.has(key) || key.endsWith(`-${CACHE_SCOPE_KEY}`)) && ![SHELL_CACHE, DATA_CACHE].includes(key)).map(key => caches.delete(key)));\n    })\n  ]));\n});\n\nself.addEventListener('message', event => {\n  if (event.data?.type !== 'YDM_CACHE_URLS') return;\n  const urls = [...new Set((event.data.urls || []).filter(value => typeof value === 'string'))];\n  event.waitUntil((async () => {\n    const cache = await caches.open(DATA_CACHE);\n    let count = 0;\n    const failed = [];\n    for (const raw of urls) {\n      const url = new URL(raw, self.location.origin);\n      const allowed = url.pathname.startsWith(DATA_PREFIX) || url.pathname.startsWith(SCHEMA_PREFIX);\n      if (url.origin !== self.location.origin || !allowed) { failed.push(raw); continue; }\n      try {\n        const existing = await cache.match(url.href);\n        if (existing) { count += 1; continue; }\n        const response = await fetch(url.href, { cache: 'no-cache' });\n        if (!response.ok) { failed.push(raw); continue; }\n        await cache.put(url.href, response.clone());\n        count += 1;\n      } catch { failed.push(raw); }\n    }\n    event.ports?.[0]?.postMessage({ cached: failed.length === 0, count, failed });\n  })());\n});\n\nself.addEventListener('fetch', event => {\n  const url = new URL(event.request.url);\n  if (event.request.method !== 'GET' || url.origin !== self.location.origin) return;\n  if (!url.pathname.startsWith(BASE_PATH)) return;\n\n  if (url.pathname === MANIFEST_PATH) {\n    event.respondWith(caches.open(DATA_CACHE).then(async cache => {\n      try {\n        const response = await fetch(event.request);\n        if (response.ok) await cache.put(event.request, response.clone());\n        return response;\n      } catch {\n        return (await cache.match(event.request)) || Response.error();\n      }\n    }));\n    return;\n  }\n\n  if (url.pathname.startsWith(DATA_PREFIX) || url.pathname.startsWith(SCHEMA_PREFIX)) {\n    event.respondWith(caches.open(DATA_CACHE).then(async cache => {\n      const cached = await cache.match(event.request);\n      if (cached) return cached;\n      const response = await fetch(event.request);\n      if (response.ok) await cache.put(event.request, response.clone());\n      return response;\n    }));\n    return;\n  }\n\n  if (event.request.mode === 'navigate') {\n    event.respondWith(fetch(event.request).catch(() => caches.match(INDEX_PATH)));\n    return;\n  }\n\n  event.respondWith(caches.match(event.request).then(async cached => {\n    if (cached) return cached;\n    const response = await fetch(event.request);\n    if (response.ok && /\\.(?:js|css|svg|webmanifest)$/.test(url.pathname)) {\n      const cache = await caches.open(SHELL_CACHE);\n      await cache.put(event.request, response.clone());\n    }\n    return response;\n  }));\n});\n",
+    expected: /ydm-shell-v37/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/hardening-phase8.test.mjs:38:1
+✖ Pass A structural schema is DB v5 and applies the new compound catalog indexes without deleting stores (2.712302ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  7 !== 6
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/hardening-phase8.test.mjs:39:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 7,
+    expected: 6,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/hardening-phase8.test.mjs:49:1
+✖ content migration resumes after interruption and is idempotent (123.074447ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  4 !== 3
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/hardening-phase8.test.mjs:58:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 4,
+    expected: 3,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/reference-data-pass-a.test.mjs:72:1
+✖ Pass A migration maps legacy strings to canonical IDs without mutating historical ingredient/recipe records (452.48544ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  4 !== 3
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/reference-data-pass-a.test.mjs:107:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 4,
+    expected: 3,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/schema-public-mirrors.test.mjs:20:1
+✖ public ingredientRevision schema accepts production energy provenance but remains closed (77.558126ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /additional properties not allowed: uncontrolledField/. Input:
+  
+  'Error: ingredientRevision schema validation failed: $: must match exactly one oneOf branch'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/schema-public-mirrors.test.mjs:36:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: ingredientRevision schema validation failed: $: must match exactly one oneOf branch
+        at SchemaRegistry.assert (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/src/lib/schemaValidator.js:100:30)
+        at file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/schema-public-mirrors.test.mjs:36:32
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/schema-public-mirrors.test.mjs:36:10)
+        at async Test.run (node:internal/test_runner/test:1389:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:960:7),
+    expected: /additional properties not allowed: uncontrolledField/,
+    operator: 'throws',
+    diff: 'simple'
+  }
+
+test at tests/v1-engine-phase-a.test.mjs:104:1
+✖ Phase A — numeric MealClass forbid rejects matching values and allows non-matching values (5.665643ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/v1-engine-phase-a.test.mjs:108:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/v1-engine-phase-a.test.mjs:111:1
+✖ Phase A — cooking and simple-snack capabilities are enforced as hard filters (0.387067ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/v1-engine-phase-a.test.mjs:117:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/v1-engine-phase-a.test.mjs:121:1
+✖ Phase A — soft avoid changes ranking but does not exclude candidate (0.354544ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/v1-engine-phase-a.test.mjs:126:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/v1-planner-phase-c.test.mjs:56:1
+✖ Phase C — hard allergen remains visible in hard-filter rejection diagnostics (683.030092ms)
+  AssertionError [ERR_ASSERTION]: {"date":"2026-09-08","slotId":"slot-breakfast","mealClassId":"mc-breakfast","code":"no_candidates_after_hard_constraints","rejections":{"safety_unverified:validation-allergen-gluten_cereals":326,"safety:validation-allergen-gluten_cereals":24},"slotDiagnostic":{"slotId":"slot-breakfast","mealClassId":"mc-breakfast","mealArchetype":"breakfast","targetEnergyKcal":360,"sourceCandidateCount":350,"acceptedCandidateCount":0,"selectableCandidateCount":0,"candidateFrontierCount":0,"optionCount":0,"sourceEnergyRange":{"minKcal":83.2,"maxKcal":698},"acceptedEnergyRange":{"minKcal":null,"maxKcal":null},"frontierEnergyRange":{"minKcal":null,"maxKcal":null},"optionEnergyRange":{"minKcal":null,"maxKcal":null},"hardRejectionCounts":{"safety_unverified:validation-allergen-gluten_cereals":326,"safety:validation-allergen-gluten_cereals":24},"regeneration":{"mode":null,"currentRecipeVersionIds":[],"excludedCurrentCount":0}},"rejectionCounts":{"safety_unverified:validation-allergen-gluten_cereals":326,"safety:validation-allergen-gluten_cereals":24},"slotDiagnostics":[{"slotId":"slot-breakfast","mealClassId":"mc-breakfast","mealArchetype":"breakfast","targetEnergyKcal":360,"sourceCandidateCount":350,"acceptedCandidateCount":0,"selectableCandidateCount":0,"candidateFrontierCount":0,"optionCount":0,"sourceEnergyRange":{"minKcal":83.2,"maxKcal":698},"acceptedEnergyRange":{"minKcal":null,"maxKcal":null},"frontierEnergyRange":{"minKcal":null,"maxKcal":null},"optionEnergyRange":{"minKcal":null,"maxKcal":null},"hardRejectionCounts":{"safety_unverified:validation-allergen-gluten_cereals":326,"safety:validation-allergen-gluten_cereals":24},"regeneration":{"mode":null,"currentRecipeVersionIds":[],"excludedCurrentCount":0}}]}
+  + actual - expected
+  
+  + 'failed'
+  - 'success'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/v1-planner-phase-c.test.mjs:59:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'failed',
+    expected: 'success',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/v1-planner-phase-d.test.mjs:33:1
+✖ Phase D2 - all 600 ingredient revisions have a valid three-level product taxonomy (7371.73401ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  1200 !== 600
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/v1-planner-phase-d.test.mjs:36:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 1200,
+    expected: 600,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/v1-planner-phase-g.test.mjs:8:1
+✖ Phase G — release-candidate freeze binds rc.34 to the 600/1800 planner baseline without mutating recipe content (103.791041ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok([freeze.appCandidateVersion, '1.0.0'].includes(pkg.version))
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/v1-planner-phase-g.test.mjs:16:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/v1-planner-phase-g.test.mjs:48:1
+✖ Phase G — freeze records the fail-closed boundary even after a later metadata-only stable promotion (7.331891ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '1.1.0-dev.r1'
+  - '1.0.0'
+       ^
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/v1-planner-phase-g.test.mjs:67:12)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '1.1.0-dev.r1',
+    expected: '1.0.0',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/v1-planner-phase-g.test.mjs:79:1
+✖ Phase G — PWA shell/data cache and pre-V1 epoch stay frozen through stable metadata promotion (8.198979ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /ydm-shell-v37-/. Input:
+  
+  "const BASE_URL = new URL('./', self.location.href);\n" +
+    "const BASE_PATH = BASE_URL.pathname.endsWith('/') ? BASE_URL.pathname : `${BASE_URL.pathname}/`;\n" +
+    "const CACHE_SCOPE_KEY = BASE_PATH.replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '') || 'root';\n" +
+    'const SHELL_CACHE = `ydm-shell-v38-${CACHE_SCOPE_KEY}`;\n' +
+    'const DATA_CACHE = `ydm-data-v18-${CACHE_SCOPE_KEY}`;\n' +
+    "const scoped = path => new URL(String(path || '').replace(/^\\/+/, ''), BASE_URL).pathname;\n" +
+    "const DATA_PREFIX = scoped('data/');\n" +
+    "const SCHEMA_PREFIX = scoped('schemas/');\n" +
+    "const MANIFEST_PATH = scoped('data/catalog-manifest.json');\n" +
+    "const INDEX_PATH = scoped('index.html');\n" +
+    '\n' +
+    'const SHELL = [\n' +
+    "  'src/domain/catalogQuarantine.js', 'src/domain/safetyCompatibility.js', 'src/domain/ingredientIdentity.js', 'src/domain/ingredientConversion.js', 'src/domain/revisionV2Contracts.js', 'src/domain/productFoodTaxonomy.js', 'src/services/planPreviewGuard.js', 'src/services/ingredientModelMigration.js', 'src/services/revisionV2Service.js', 'schemas/safety-evidence.schema.json', 'schemas/food-preferences-v2.schema.json', 'schemas/production-corpus-intake.schema.json', 'schemas/ingredient-revision-v2.schema.json', 'schemas/recipe-version-v1.schema.json', 'schemas/ingredient-curation-batch.schema.json', 'schemas/allergy-intolerance-profile-v1.schema.json', 'schemas/ingredient-retirement-map.schema.json', 'schemas/production-corpus-contract.schema.json', 'schemas/ingredient-curation-policy.schema.json', 'schemas/backup-v2.schema.json', 'schemas/ingredient-conversion.schema.json', 'schemas/ingredient-curation-report.schema.json', 'schemas/ingredient-revision-v1.schema.json', 'schemas/food-group.schema.json', 'schemas/allergy-intolerance-profile-v2.schema.json', 'schemas/production-corpus-readiness-report.schema.json', 'schemas/ingredient-mapping.schema.json', 'schemas/recipe-version-v2.schema.json', 'schemas/backup-v1.schema.json', 'schemas/food-preferences-v1.schema.json', 'schemas/pilot-wave-report.schema.json',\n" +
+    "  '', 'index.html', 'manifest.webmanifest', 'icons/icon.svg',\n" +
+    "  'src/bootstrapVisual.js', 'src/recoveryBootstrap.js', 'src/db/constants.js', 'src/db/database.js', 'src/domain/configurationRules.js', 'src/domain/catalogEnums.js', 'src/domain/nutritionCore.js',\n" +
+    "  'src/i18n/i18n.js', 'src/lib/appBase.js', 'src/lib/crypto.js', 'src/lib/schemaValidator.js', 'src/lib/semver.js', 'src/main.js',\n" +
+    "  'src/repositories/domainRepositories.js', 'src/repositories/repositoryHub.js',\n" +
+    "  'src/services/backupEngine.js', 'src/services/preV1DataEpoch.js', 'src/services/catalogDataSource.js', 'src/services/catalogImporter.js', 'src/services/catalogUpdater.js', 'src/services/catalogQuery.js',\n" +
+    "  'src/services/configurationBootstrap.js', 'src/services/configurationService.js', 'src/services/configurationTransfer.js', 'src/services/customCatalogTransfer.js', 'src/services/migrationRunner.js', 'src/services/personalCatalogService.js',\n" +
+    "  'src/services/manualAcceptanceService.js', 'src/services/planCandidateService.js', 'src/services/planGenerationService.js', 'src/services/plannerValidationService.js', 'src/services/effectivePlanService.js', 'src/services/operationHistoryService.js', 'src/services/shoppingService.js',\n" +
+    "  'src/services/offlineCatalog.js', 'src/services/recipeHumanReviewService.js', 'src/services/storageMetrics.js', 'src/services/referenceDataService.js', 'src/services/referenceDataProposalService.js', 'src/services/referenceDataEditorService.js',\n" +
+    "  'src/planner/seededRandom.js', 'src/planner/planMath.js', 'src/planner/recipeFeatures.js', 'src/planner/hardFilter.js', 'src/planner/qualityPolicy.js', 'src/planner/qualityMetrics.js', 'src/planner/softScoring.js', 'src/planner/beamSolver.js', 'src/planner/planGenerator.js', 'src/planner/validationProfiles.js',\n" +
+    "  'src/styles.css', 'src/theme/themeEngine.js', 'src/ui/app.js', 'src/ui/manualAcceptancePage.js', 'src/ui/catalogPages.js', 'src/ui/configurationPages.js', 'src/ui/referenceDataPages.js', 'src/ui/guidedControls.js', 'src/ui/planPages.js', 'src/ui/plannerValidationPage.js', 'src/ui/shoppingPages.js', 'src/ui/dom.js', 'src/ui/router.js', 'src/ui/uiState.js',\n" +
+    "  'schemas/allergy-intolerance-profile.schema.json', 'schemas/app-config.schema.json', 'schemas/catalog-publication.schema.json', 'schemas/production-review-publication.schema.json', 'schemas/recipe-human-review.schema.json', 'schemas/recipe-human-review-bundle.schema.json', 'schemas/backup.schema.json', 'schemas/calendar-day.schema.json', 'schemas/catalog-manifest.schema.json', 'schemas/catalog-pack.schema.json', 'schemas/cycle.schema.json', 'schemas/day-class.schema.json', 'schemas/domain-enums.schema.json', 'schemas/food-preferences.schema.json', 'schemas/generation-run.schema.json', 'schemas/ingredient-revision.schema.json', 'schemas/ingredient.schema.json', 'schemas/meal-class.schema.json', 'schemas/nutrition-profile.schema.json', 'schemas/operation.schema.json', 'schemas/plan-instance.schema.json', 'schemas/recipe-corpus-orchestration-run.schema.json', 'schemas/recipe-corpus-policy.schema.json', 'schemas/recipe-corpus-snapshot.schema.json', 'schemas/recipe-generation-job.schema.json', 'schemas/recipe-version.schema.json', 'schemas/recipe.schema.json', 'schemas/shopping-checklist.schema.json', 'schemas/taxonomy.schema.json', 'schemas/taxonomy-term.schema.json', 'schemas/reference-data-proposal.schema.json', 'schemas/production-recipe-pipeline-policy.schema.json', 'schemas/production-recipe-batch-report.schema.json', 'schemas/production-recipe-review-decisions.schema.json', 'schemas/production-scale-gate-report.schema.json', 'schemas/controlled-scale-plan.schema.json', 'schemas/theme-profile.schema.json',\n" +
+    "  'data/locales/it.json', 'data/locales/en.json', 'data/catalog-manifest.json', 'data/reference-data/taxonomies-0001.json', 'data/reference-data/taxonomy-terms-0001.json'\n" +
+    '].map(scoped);\n' +
+    '\n' +
+    "self.addEventListener('install', event => {\n" +
+    '  event.waitUntil(caches.open(SHELL_CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));\n' +
+    '});\n' +
+    '\n' +
+    "self.addEventListener('activate', event => {\n" +
+    '  event.waitUntil(Promise.all([\n' +
+    '    self.clients.claim(),\n' +
+    '    caches.keys().then(keys => {\n' +
+    "      const legacy = new Set(['ydm-shell-v9', 'ydm-data-v5']);\n" +
+    '      return Promise.all(keys.filter(key => (legacy.has(key) || key.endsWith(`-${CACHE_SCOPE_KEY}`)) && ![SHELL_CACHE, DATA_CACHE].includes(key)).map(key => caches.delete(key)));\n' +
+    '    })\n' +
+    '  ]));\n' +
+    '});\n' +
+    '\n' +
+    "self.addEventListener('message', event => {\n" +
+    "  if (event.data?.type !== 'YDM_CACHE_URLS') return;\n" +
+    "  const urls = [...new Set((event.data.urls || []).filter(value => typeof value === 'string'))];\n" +
+    '  event.waitUntil((async () => {\n' +
+    '    const cache = await caches.open(DATA_CACHE);\n' +
+    '    let count = 0;\n' +
+    '    const failed = [];\n' +
+    '    for (const raw of urls) {\n' +
+    '      const url = new URL(raw, self.location.origin);\n' +
+    '      const allowed = url.pathname.startsWith(DATA_PREFIX) || url.pathname.startsWith(SCHEMA_PREFIX);\n' +
+    '      if (url.origin !== self.location.origin || !allowed) { failed.push(raw); continue; }\n' +
+    '      try {\n' +
+    '        const existing = await cache.match(url.href);\n' +
+    '        if (existing) { count += 1; continue; }\n' +
+    "        const response = await fetch(url.href, { cache: 'no-cache' });\n" +
+    '        if (!response.ok) { failed.push(raw); continue; }\n' +
+    '        await cache.put(url.href, response.clone());\n' +
+    '        count += 1;\n' +
+    '      } catch { failed.push(raw); }\n' +
+    '    }\n' +
+    '    event.ports?.[0]?.postMessage({ cached: failed.length === 0, count, failed });\n' +
+    '  })());\n' +
+    '});\n' +
+    '\n' +
+    "self.addEventListener('fetch', event => {\n" +
+    '  const url = new URL(event.request.url);\n' +
+    "  if (event.request.method !== 'GET' || url.origin !== self.location.origin) return;\n" +
+    '  if (!url.pathname.startsWith(BASE_PATH)) return;\n' +
+    '\n' +
+    '  if (url.pathname === MANIFEST_PATH) {\n' +
+    '    event.respondWith(caches.open(DATA_CACHE).then(async cache => {\n' +
+    '      try {\n' +
+    '        const response = await fetch(event.request);\n' +
+    '        if (response.ok) await cache.put(event.request, response.clone());\n' +
+    '        return response;\n' +
+    '      } catch {\n' +
+    '        return (await cache.match(event.request)) || Response.error();\n' +
+    '      }\n' +
+    '    }));\n' +
+    '    return;\n' +
+    '  }\n' +
+    '\n' +
+    '  if (url.pathname.startsWith(DATA_PREFIX) || url.pathname.startsWith(SCHEMA_PREFIX)) {\n' +
+    '    event.respondWith(caches.open(DATA_CACHE).then(async cache => {\n' +
+    '      const cached = await cache.match(event.request);\n' +
+    '      if (cached) return cached;\n' +
+    '      const response = await fetch(event.request);\n' +
+    '      if (response.ok) await cache.put(event.request, response.clone());\n' +
+    '      return response;\n' +
+    '    }));\n' +
+    '    return;\n' +
+    '  }\n' +
+    '\n' +
+    "  if (event.request.mode === 'navigate') {\n" +
+    '    event.respondWith(fetch(event.request).catch(() => caches.match(INDEX_PATH)));\n' +
+    '    return;\n' +
+    '  }\n' +
+    '\n' +
+    '  event.respondWith(caches.match(event.request).then(async cached => {\n' +
+    '    if (cached) return cached;\n' +
+    '    const response = await fetch(event.request);\n' +
+    '    if (response.ok && /\\.(?:js|css|svg|webmanifest)$/.test(url.pathname)) {\n' +
+    '      const cache = await caches.open(SHELL_CACHE);\n' +
+    '      await cache.put(event.request, response.clone());\n' +
+    '    }\n' +
+    '    return response;\n' +
+    '  }));\n' +
+    '});\n'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/v1-planner-phase-g.test.mjs:84:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: "const BASE_URL = new URL('./', self.location.href);\nconst BASE_PATH = BASE_URL.pathname.endsWith('/') ? BASE_URL.pathname : `${BASE_URL.pathname}/`;\nconst CACHE_SCOPE_KEY = BASE_PATH.replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '') || 'root';\nconst SHELL_CACHE = `ydm-shell-v38-${CACHE_SCOPE_KEY}`;\nconst DATA_CACHE = `ydm-data-v18-${CACHE_SCOPE_KEY}`;\nconst scoped = path => new URL(String(path || '').replace(/^\\/+/, ''), BASE_URL).pathname;\nconst DATA_PREFIX = scoped('data/');\nconst SCHEMA_PREFIX = scoped('schemas/');\nconst MANIFEST_PATH = scoped('data/catalog-manifest.json');\nconst INDEX_PATH = scoped('index.html');\n\nconst SHELL = [\n  'src/domain/catalogQuarantine.js', 'src/domain/safetyCompatibility.js', 'src/domain/ingredientIdentity.js', 'src/domain/ingredientConversion.js', 'src/domain/revisionV2Contracts.js', 'src/domain/productFoodTaxonomy.js', 'src/services/planPreviewGuard.js', 'src/services/ingredientModelMigration.js', 'src/services/revisionV2Service.js', 'schemas/safety-evidence.schema.json', 'schemas/food-preferences-v2.schema.json', 'schemas/production-corpus-intake.schema.json', 'schemas/ingredient-revision-v2.schema.json', 'schemas/recipe-version-v1.schema.json', 'schemas/ingredient-curation-batch.schema.json', 'schemas/allergy-intolerance-profile-v1.schema.json', 'schemas/ingredient-retirement-map.schema.json', 'schemas/production-corpus-contract.schema.json', 'schemas/ingredient-curation-policy.schema.json', 'schemas/backup-v2.schema.json', 'schemas/ingredient-conversion.schema.json', 'schemas/ingredient-curation-report.schema.json', 'schemas/ingredient-revision-v1.schema.json', 'schemas/food-group.schema.json', 'schemas/allergy-intolerance-profile-v2.schema.json', 'schemas/production-corpus-readiness-report.schema.json', 'schemas/ingredient-mapping.schema.json', 'schemas/recipe-version-v2.schema.json', 'schemas/backup-v1.schema.json', 'schemas/food-preferences-v1.schema.json', 'schemas/pilot-wave-report.schema.json',\n  '', 'index.html', 'manifest.webmanifest', 'icons/icon.svg',\n  'src/bootstrapVisual.js', 'src/recoveryBootstrap.js', 'src/db/constants.js', 'src/db/database.js', 'src/domain/configurationRules.js', 'src/domain/catalogEnums.js', 'src/domain/nutritionCore.js',\n  'src/i18n/i18n.js', 'src/lib/appBase.js', 'src/lib/crypto.js', 'src/lib/schemaValidator.js', 'src/lib/semver.js', 'src/main.js',\n  'src/repositories/domainRepositories.js', 'src/repositories/repositoryHub.js',\n  'src/services/backupEngine.js', 'src/services/preV1DataEpoch.js', 'src/services/catalogDataSource.js', 'src/services/catalogImporter.js', 'src/services/catalogUpdater.js', 'src/services/catalogQuery.js',\n  'src/services/configurationBootstrap.js', 'src/services/configurationService.js', 'src/services/configurationTransfer.js', 'src/services/customCatalogTransfer.js', 'src/services/migrationRunner.js', 'src/services/personalCatalogService.js',\n  'src/services/manualAcceptanceService.js', 'src/services/planCandidateService.js', 'src/services/planGenerationService.js', 'src/services/plannerValidationService.js', 'src/services/effectivePlanService.js', 'src/services/operationHistoryService.js', 'src/services/shoppingService.js',\n  'src/services/offlineCatalog.js', 'src/services/recipeHumanReviewService.js', 'src/services/storageMetrics.js', 'src/services/referenceDataService.js', 'src/services/referenceDataProposalService.js', 'src/services/referenceDataEditorService.js',\n  'src/planner/seededRandom.js', 'src/planner/planMath.js', 'src/planner/recipeFeatures.js', 'src/planner/hardFilter.js', 'src/planner/qualityPolicy.js', 'src/planner/qualityMetrics.js', 'src/planner/softScoring.js', 'src/planner/beamSolver.js', 'src/planner/planGenerator.js', 'src/planner/validationProfiles.js',\n  'src/styles.css', 'src/theme/themeEngine.js', 'src/ui/app.js', 'src/ui/manualAcceptancePage.js', 'src/ui/catalogPages.js', 'src/ui/configurationPages.js', 'src/ui/referenceDataPages.js', 'src/ui/guidedControls.js', 'src/ui/planPages.js', 'src/ui/plannerValidationPage.js', 'src/ui/shoppingPages.js', 'src/ui/dom.js', 'src/ui/router.js', 'src/ui/uiState.js',\n  'schemas/allergy-intolerance-profile.schema.json', 'schemas/app-config.schema.json', 'schemas/catalog-publication.schema.json', 'schemas/production-review-publication.schema.json', 'schemas/recipe-human-review.schema.json', 'schemas/recipe-human-review-bundle.schema.json', 'schemas/backup.schema.json', 'schemas/calendar-day.schema.json', 'schemas/catalog-manifest.schema.json', 'schemas/catalog-pack.schema.json', 'schemas/cycle.schema.json', 'schemas/day-class.schema.json', 'schemas/domain-enums.schema.json', 'schemas/food-preferences.schema.json', 'schemas/generation-run.schema.json', 'schemas/ingredient-revision.schema.json', 'schemas/ingredient.schema.json', 'schemas/meal-class.schema.json', 'schemas/nutrition-profile.schema.json', 'schemas/operation.schema.json', 'schemas/plan-instance.schema.json', 'schemas/recipe-corpus-orchestration-run.schema.json', 'schemas/recipe-corpus-policy.schema.json', 'schemas/recipe-corpus-snapshot.schema.json', 'schemas/recipe-generation-job.schema.json', 'schemas/recipe-version.schema.json', 'schemas/recipe.schema.json', 'schemas/shopping-checklist.schema.json', 'schemas/taxonomy.schema.json', 'schemas/taxonomy-term.schema.json', 'schemas/reference-data-proposal.schema.json', 'schemas/production-recipe-pipeline-policy.schema.json', 'schemas/production-recipe-batch-report.schema.json', 'schemas/production-recipe-review-decisions.schema.json', 'schemas/production-scale-gate-report.schema.json', 'schemas/controlled-scale-plan.schema.json', 'schemas/theme-profile.schema.json',\n  'data/locales/it.json', 'data/locales/en.json', 'data/catalog-manifest.json', 'data/reference-data/taxonomies-0001.json', 'data/reference-data/taxonomy-terms-0001.json'\n].map(scoped);\n\nself.addEventListener('install', event => {\n  event.waitUntil(caches.open(SHELL_CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));\n});\n\nself.addEventListener('activate', event => {\n  event.waitUntil(Promise.all([\n    self.clients.claim(),\n    caches.keys().then(keys => {\n      const legacy = new Set(['ydm-shell-v9', 'ydm-data-v5']);\n      return Promise.all(keys.filter(key => (legacy.has(key) || key.endsWith(`-${CACHE_SCOPE_KEY}`)) && ![SHELL_CACHE, DATA_CACHE].includes(key)).map(key => caches.delete(key)));\n    })\n  ]));\n});\n\nself.addEventListener('message', event => {\n  if (event.data?.type !== 'YDM_CACHE_URLS') return;\n  const urls = [...new Set((event.data.urls || []).filter(value => typeof value === 'string'))];\n  event.waitUntil((async () => {\n    const cache = await caches.open(DATA_CACHE);\n    let count = 0;\n    const failed = [];\n    for (const raw of urls) {\n      const url = new URL(raw, self.location.origin);\n      const allowed = url.pathname.startsWith(DATA_PREFIX) || url.pathname.startsWith(SCHEMA_PREFIX);\n      if (url.origin !== self.location.origin || !allowed) { failed.push(raw); continue; }\n      try {\n        const existing = await cache.match(url.href);\n        if (existing) { count += 1; continue; }\n        const response = await fetch(url.href, { cache: 'no-cache' });\n        if (!response.ok) { failed.push(raw); continue; }\n        await cache.put(url.href, response.clone());\n        count += 1;\n      } catch { failed.push(raw); }\n    }\n    event.ports?.[0]?.postMessage({ cached: failed.length === 0, count, failed });\n  })());\n});\n\nself.addEventListener('fetch', event => {\n  const url = new URL(event.request.url);\n  if (event.request.method !== 'GET' || url.origin !== self.location.origin) return;\n  if (!url.pathname.startsWith(BASE_PATH)) return;\n\n  if (url.pathname === MANIFEST_PATH) {\n    event.respondWith(caches.open(DATA_CACHE).then(async cache => {\n      try {\n        const response = await fetch(event.request);\n        if (response.ok) await cache.put(event.request, response.clone());\n        return response;\n      } catch {\n        return (await cache.match(event.request)) || Response.error();\n      }\n    }));\n    return;\n  }\n\n  if (url.pathname.startsWith(DATA_PREFIX) || url.pathname.startsWith(SCHEMA_PREFIX)) {\n    event.respondWith(caches.open(DATA_CACHE).then(async cache => {\n      const cached = await cache.match(event.request);\n      if (cached) return cached;\n      const response = await fetch(event.request);\n      if (response.ok) await cache.put(event.request, response.clone());\n      return response;\n    }));\n    return;\n  }\n\n  if (event.request.mode === 'navigate') {\n    event.respondWith(fetch(event.request).catch(() => caches.match(INDEX_PATH)));\n    return;\n  }\n\n  event.respondWith(caches.match(event.request).then(async cached => {\n    if (cached) return cached;\n    const response = await fetch(event.request);\n    if (response.ok && /\\.(?:js|css|svg|webmanifest)$/.test(url.pathname)) {\n      const cache = await caches.open(SHELL_CACHE);\n      await cache.put(event.request, response.clone());\n    }\n    return response;\n  }));\n});\n",
+    expected: /ydm-shell-v37-/,
+    operator: 'match',
+    diff: 'simple'
+  }
+
+test at tests/v1-planner-phase-h.test.mjs:55:1
+✖ Phase H — a synthetic accepted projection passes the stable gate without changing frozen catalog content (338.585229ms)
+  Error: Promotion must start from frozen candidate 1.0.0-rc.34
+      at buildStableProjection (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/scripts/release/v1-stable-promotion-lib.mjs:53:110)
+      at async TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/v1-planner-phase-h.test.mjs:61:20)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/v1-step1.test.mjs:33:1
+✖ pre-V1 epoch reset destroys RC data, reseeds canonical reference data and clears owned browser state (97.305331ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  false !== true
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/v1-step1.test.mjs:51:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/v1-step2.test.mjs:129:1
+✖ Step2 C — hard milk allergy survives generation, replacement and rebalance (4741.822133ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'failed'
+  - 'success'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/v1-step2.test.mjs:137:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'failed',
+    expected: 'success',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/v1-step3.test.mjs:40:1
+✖ Step3 A - V1 catalog backup validates and round-trips user configuration without replacing base catalog (6398.096761ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(['1.0.0-rc.34','1.0.0'].includes(backup.appVersion))
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/v1-step3.test.mjs:49:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/v1-step3.test.mjs:94:1
+✖ Step3 D - stable release gate is fail-closed on the candidate and green after metadata-only promotion (557.100818ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '1.1.0-dev.r1'
+  - '1.0.0'
+       ^
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/v1-step3.test.mjs:104:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '1.1.0-dev.r1',
+    expected: '1.0.0',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.0.2
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.2
+npm notice To update run: npm install -g npm@12.0.2
+npm notice

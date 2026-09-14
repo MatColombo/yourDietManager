@@ -1,0 +1,51 @@
+{
+  "sourceArchive": "yourDietManager_v1_planner_phaseH_full(1).zip",
+  "sourceSha256": "9210fba9cbbe5fc3311790b2fc6554e115a63856a97d555b8a173ee8b2306800",
+  "appVersion": "1.0.0-rc.34",
+  "catalogVersion": "1.2.0-planner-phase-d",
+  "dbVersion": 6,
+  "contentSchemaVersion": 3,
+  "backupFormatVersion": 1,
+  "files": [
+    {
+      "file": "specs/revision_v2/baseline/audit_evidence.json",
+      "sha256": "4d16b860f0cb9751df114192ff04674efb15e2f8f1432287adef449cf12189a8"
+    },
+    {
+      "file": "specs/revision_v2/baseline/runtime/package.json",
+      "sha256": "756d9f10601aa76f92a017243b29efeab6bbe02b29cf6402146267b017dbdabb"
+    },
+    {
+      "file": "specs/revision_v2/baseline/runtime/public/service-worker.js",
+      "sha256": "5fd00f6d595ffed36009d9ef9a0acd6450daafa63f28dfb4a64a2c67542dea7f"
+    },
+    {
+      "file": "specs/revision_v2/baseline/runtime/src/db/constants.js",
+      "sha256": "34f4efd38274c4a0d2f326874e37a39cc315780137a279f3a903cf76074e66fd"
+    },
+    {
+      "file": "specs/revision_v2/baseline/runtime/src/services/offlineCatalog.js",
+      "sha256": "90875df04cf7e9fcfbf4fc70527c31bad859d4b0b74f88641d76b60b89627b88"
+    },
+    {
+      "file": "specs/revision_v2/baseline/runtime/src/services/preV1DataEpoch.js",
+      "sha256": "b265dd966ee5e2ee9889035a020f2d1fa875b5158193e3f455591b6594e12a0e"
+    },
+    {
+      "file": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac"
+    },
+    {
+      "file": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a"
+    },
+    {
+      "file": "specs/revision_v2/baseline/yourDietManager_REVIEW_FASE_H.md",
+      "sha256": "0f47c9b404e816ff540037f9279f2393c33e864e4ee0e30288b31229fb1acc36"
+    },
+    {
+      "file": "specs/revision_v2/FASI_SVILUPPO.md",
+      "sha256": "c15762496dadbc426669599ed463351ba4ca5fdedd300754e4d3562035615830"
+    }
+  ]
+}

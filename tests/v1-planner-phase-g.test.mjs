@@ -5,9 +5,9 @@ import { readFile } from 'node:fs/promises';
 const json = async file => JSON.parse(await readFile(file, 'utf8'));
 const text = file => readFile(file, 'utf8');
 
-test('Phase G — release-candidate freeze binds rc.34 to the 600/1800 planner baseline without mutating recipe content', async () => {
+test('Historical Phase G — release-candidate freeze binds rc.34 to the 600/1800 planner baseline without mutating recipe content', async () => {
   const [pkg, manifest, freeze, phaseD, phaseF] = await Promise.all([
-    json('package.json'), json('public/data/catalog-manifest.json'),
+    json('specs/revision_v2/baseline/runtime/package.json'), json('public/data/catalog-manifest.json'),
     json('corpus/production/v1-planner-release/freeze-contract.json'),
     json('corpus/production/planner-phase-d/publication-evidence.json'),
     json('V1_PLANNER_PHASE_F_QUALITY_EVIDENCE.json')
@@ -27,7 +27,7 @@ test('Phase G — release-candidate freeze binds rc.34 to the 600/1800 planner b
   assert.equal(freeze.plannerContract.servingScalingAllowed, false);
 });
 
-test('Phase G — product taxonomy and Phase F quality evidence are part of the freeze contract', async () => {
+test('Historical Phase G — product taxonomy and Phase F quality evidence are part of the freeze contract', async () => {
   const [freeze, phaseD, phaseF] = await Promise.all([
     json('corpus/production/v1-planner-release/freeze-contract.json'),
     json('corpus/production/planner-phase-d/publication-evidence.json'),
@@ -45,14 +45,14 @@ test('Phase G — product taxonomy and Phase F quality evidence are part of the 
   assert.equal(stress2600.exactRepeatPairsWithin3Days, 0);
 });
 
-test('Phase G — freeze records the fail-closed boundary even after a later metadata-only stable promotion', async () => {
+test('Historical Phase G — freeze records the fail-closed boundary even after a later metadata-only stable promotion', async () => {
   const [freeze, acceptance, manifest, releaseGate, releaseState, pkg] = await Promise.all([
     json('corpus/production/v1-planner-release/freeze-contract.json'),
     json('corpus/production/v1-planner-release/manual-acceptance.json'),
     json('public/data/catalog-manifest.json'),
     text('scripts/hardening/release-gate.mjs'),
     text('scripts/release/v1-release-state.mjs'),
-    json('package.json')
+    json('specs/revision_v2/baseline/runtime/package.json')
   ]);
   assert.equal(freeze.status, 'release_candidate_frozen');
   assert.equal(freeze.manualAcceptance.required, true);
@@ -76,10 +76,10 @@ test('Phase G — freeze records the fail-closed boundary even after a later met
   assert.match(releaseState, /1800/);
 });
 
-test('Phase G — PWA shell/data cache and pre-V1 epoch stay frozen through stable metadata promotion', async () => {
+test('Historical Phase G — PWA shell/data cache and pre-V1 epoch stay frozen through stable metadata promotion', async () => {
   const [sw, offline, epoch, constants] = await Promise.all([
-    text('public/service-worker.js'), text('src/services/offlineCatalog.js'),
-    text('src/services/preV1DataEpoch.js'), text('src/db/constants.js')
+    text('specs/revision_v2/baseline/runtime/public/service-worker.js'), text('specs/revision_v2/baseline/runtime/src/services/offlineCatalog.js'),
+    text('specs/revision_v2/baseline/runtime/src/services/preV1DataEpoch.js'), text('specs/revision_v2/baseline/runtime/src/db/constants.js')
   ]);
   assert.match(sw, /ydm-shell-v37-/);
   assert.match(sw, /ydm-data-v17-/);

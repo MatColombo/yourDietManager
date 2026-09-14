@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/production-batch.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "batchId",
+    "planInstanceId",
+    "recipeVersionId",
+    "portionsProduced",
+    "productionDate",
+    "storage",
+    "assignments",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "batchId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "planInstanceId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "recipeVersionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "portionsProduced": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100
+    },
+    "productionDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "storage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "useByDate",
+        "sourceRef"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "unverified",
+            "documented"
+          ]
+        },
+        "useByDate": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date"
+        },
+        "sourceRef": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "assignments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "calendarDayId",
+          "mealOccurrenceId",
+          "componentIndex",
+          "civilDate"
+        ],
+        "properties": {
+          "calendarDayId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "mealOccurrenceId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "componentIndex": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 2
+          },
+          "civilDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "minItems": 1,
+      "maxItems": 100
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

@@ -8,8 +8,8 @@ import { I18n, normalizeLocale } from '../src/i18n/i18n.js';
 import { MemoryRepository } from './helpers.mjs';
 import theme from '../examples/theme-profile.example.json' with { type: 'json' };
 
-test('IndexedDB metadata contains all 22 V1 stores and critical indexes', () => {
-  assert.equal(STORE_NAMES.length, 22);
+test('IndexedDB metadata contains the 22 legacy stores plus 3 R1 and 6 R8 stores and critical indexes', () => {
+  assert.equal(STORE_NAMES.length, 31);
   assert.ok(STORE_DEFINITIONS.recipeVersions.indexes.some(index => index.name === 'searchTokens' && index.options?.multiEntry));
   assert.ok(STORE_DEFINITIONS.calendarDays.indexes.some(index => index.name === 'planAndDate' && index.options?.unique));
   assert.ok(STORE_DEFINITIONS.operations.indexes.some(index => index.name === 'planAndSequence' && index.options?.unique));
@@ -17,7 +17,7 @@ test('IndexedDB metadata contains all 22 V1 stores and critical indexes', () => 
 
 test('migration runner is idempotent', async () => {
   const repo = new MemoryRepository(); await runMigrations(repo); await runMigrations(repo);
-  assert.equal(await repo.getMeta('contentSchemaVersion'), 3);
+  assert.equal(await repo.getMeta('contentSchemaVersion'), 5);
   assert.equal((await repo.getMeta('contentMigration:1')).status, 'complete');
   assert.equal((await repo.getMeta('contentMigration:2')).status, 'complete');
   assert.equal((await repo.getMeta('contentMigration:3')).status, 'complete');

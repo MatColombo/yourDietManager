@@ -1,3 +1,5 @@
+> Contratto corrente R0/R1 — 11 settembre 2026: Schema 2 in staging: none/frequency/never, min/ideale/max, meal/day, rolling 1–90. Attivazione e conversione legacy R3. Vedere [CONTRATTO_R0_R1](revision_v2/CONTRATTO_R0_R1.md), che prevale sulle parti V1 sotto riportate per il perimetro modificato.
+
 # Food Preferences Spec V1
 
 ## 1. Tre livelli distinti

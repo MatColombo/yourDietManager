@@ -1,0 +1,14 @@
+✔ Phase D3 — product-food picker collapses technical variants into conceptual taxonomy choices with coverage (6319.601092ms)
+✔ Phase D4 — ingredient facets filter by product taxonomy and technical state without exposing revision noise as preference semantics (63.031652ms)
+✔ Phase D4 — recipe facets combine product taxonomy, diet and practical tags and filter the actual ingredient graph (605.198506ms)
+✔ Phase D3 — the same product-food picker is wired into preference/safety/meal rules and ingredient authoring (2.831512ms)
+✔ Phase D5 — Day → Recipe → Ingredient carries contextual return routes down to the exact meal slot (1.713875ms)
+✔ Phase D3-D5 — real Chromium gate exercises taxonomy facets and contextual drill-down (0.851912ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7130.035428

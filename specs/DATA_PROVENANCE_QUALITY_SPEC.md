@@ -1,3 +1,5 @@
+> Contratto corrente R0/R1 — 11 settembre 2026: Migrazione non equivale a revisione alimentare. Nessuna compatibilità dedotta da array vuoti o sinonimi. Vedere [CONTRATTO_R0_R1](revision_v2/CONTRATTO_R0_R1.md), che prevale sulle parti V1 sotto riportate per il perimetro modificato.
+
 # Data Provenance & Quality Spec V1
 
 ## 1. Obiettivo

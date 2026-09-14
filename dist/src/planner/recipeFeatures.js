@@ -1,3 +1,4 @@
+import { effectiveProductTaxonomy } from '../domain/foodPresentationCorrections.js';
 import { matchOperator } from './planMath.js';
 
 export function tagValues(recipe) { return Object.values(recipe.tags || {}).flatMap(value => Array.isArray(value) ? value : []); }
@@ -8,6 +9,7 @@ export function primaryIngredientId(recipe) { return recipe.ingredientLines?.fin
 export function foodCategories(recipe, revisionById) {
   const values = new Set();
   for (const line of recipe.ingredientLines || []) {
+    if (line.included === false) continue;
     const taxonomy = revisionById.get(line.ingredientRevisionId)?.taxonomy;
     if (taxonomy?.foodGroup) values.add(taxonomy.foodGroup);
     if (taxonomy?.foodSubgroup) values.add(taxonomy.foodSubgroup);
@@ -18,7 +20,8 @@ export function foodCategories(recipe, revisionById) {
 export function productFoodTerms(recipe, revisionById) {
   const values = new Set();
   for (const line of recipe.ingredientLines || []) {
-    const product = revisionById.get(line.ingredientRevisionId)?.productTaxonomy;
+    if (line.included === false) continue;
+    const product = effectiveProductTaxonomy(revisionById.get(line.ingredientRevisionId));
     if (product?.categoryId) values.add(product.categoryId);
     if (product?.subcategoryId) values.add(product.subcategoryId);
     if (product?.conceptId) values.add(product.conceptId);
@@ -26,8 +29,9 @@ export function productFoodTerms(recipe, revisionById) {
   return values;
 }
 
-export function recipeMatchesTarget(recipe, targetType, targetId, revisionById) {
-  if (targetType === 'ingredient') return recipe.ingredientLines?.some(line => line.ingredientId === targetId) || false;
+export function recipeMatchesTarget(recipe, targetType, targetId, revisionById, foodGroups = []) {
+  if (targetType === 'foodGroup') { const group = foodGroups.find(item => item.id === targetId && item.status === 'active'); return Boolean(group?.members.some(member => recipeMatchesTarget(recipe, member.type, member.id, revisionById, []))); }
+  if (targetType === 'ingredient') return recipe.ingredientLines?.some(line => line.included !== false && line.ingredientId === targetId) || false;
   if (targetType === 'productFood') return productFoodTerms(recipe, revisionById).has(targetId);
   if (targetType === 'foodCategory') return foodCategories(recipe, revisionById).has(targetId);
   if (targetType === 'recipeTag' || targetType === 'tag') return tagValues(recipe).includes(targetId);

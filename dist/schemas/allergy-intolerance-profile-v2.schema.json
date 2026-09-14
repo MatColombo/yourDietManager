@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/allergy-intolerance-profile-v2.schema.json",
+  "title": "SafetyProfile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "rules"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "id": {
+      "type": "string"
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "target",
+          "enabled",
+          "notes",
+          "effectiveFrom"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "allergy",
+              "intolerance",
+              "coeliac"
+            ]
+          },
+          "target": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "type",
+              "id"
+            ],
+            "properties": {
+              "type": {
+                "enum": [
+                  "allergen",
+                  "productFood",
+                  "foodGroup",
+                  "ingredient"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "effectiveFrom": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "target": {
+                  "properties": {
+                    "type": {
+                      "const": "allergen"
+                    }
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "target": {
+                  "properties": {
+                    "id": {
+                      "$ref": "domain-enums.schema.json#/$defs/allergenId"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "uniqueItems": true
+    },
+    "legacyRules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "targetType",
+          "targetId",
+          "enabled"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "allergy",
+              "intolerance"
+            ]
+          },
+          "targetType": {
+            "enum": [
+              "productFood",
+              "allergen",
+              "ingredient",
+              "foodCategory"
+            ]
+          },
+          "targetId": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "targetType": {
+                  "const": "allergen"
+                }
+              },
+              "required": [
+                "targetType"
+              ]
+            },
+            "then": {
+              "properties": {
+                "targetId": {
+                  "$ref": "domain-enums.schema.json#/$defs/allergenId"
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

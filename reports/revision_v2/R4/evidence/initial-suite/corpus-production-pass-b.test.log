@@ -1,0 +1,58 @@
+✔ 4P-B freezes a two-source curation policy because Foundation published inventory is below the 400 ingredient minimum (36.321507ms)
+✖ USDA curation import produces a source-digested review batch whose heuristics cannot materialize without explicit checks (24.775524ms)
+✖ USDA importer converts kJ-only Energy to kcal instead of relabeling the numeric value (28.659065ms)
+✔ approved curation record remains blocked unless every editorial review dimension is explicitly complete (32.976272ms)
+✔ pilot wave 1 stays blocked until production ingredient readiness passes and wave 2 cannot bypass wave 1 closure (42.055793ms)
+✔ pilot readiness ignores final 3000-recipe and production-manifest blockers once ingredient/reference readiness is green (29.46672ms)
+✖ SR Legacy supplemental importer is source-bound and remains review-only (26.860648ms)
+✔ legacy fixture retirement is an explicit schema-governed map, never an implicit replacement (21.669063ms)
+✔ 4P-B governance is mirrored in the normative spec and project Skill (1.41091ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 6
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 351.568019
+
+✖ failing tests:
+
+test at tests/corpus-production-pass-b.test.mjs:47:1
+✖ USDA curation import produces a source-digested review batch whose heuristics cannot materialize without explicit checks (24.775524ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/ydm-4pb-import-43nnaZ'
+      at async mkdtemp (node:internal/fs/promises:1254:10)
+      at async TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R4_R5/tests/corpus-production-pass-b.test.mjs:49:16)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/ydm-4pb-import-43nnaZ'
+  }
+
+test at tests/corpus-production-pass-b.test.mjs:80:1
+✖ USDA importer converts kJ-only Energy to kcal instead of relabeling the numeric value (28.659065ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/ydm-4pb-kj-import-1tXFaA'
+      at async mkdtemp (node:internal/fs/promises:1254:10)
+      at async TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R4_R5/tests/corpus-production-pass-b.test.mjs:82:16)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/ydm-4pb-kj-import-1tXFaA'
+  }
+
+test at tests/corpus-production-pass-b.test.mjs:141:1
+✖ SR Legacy supplemental importer is source-bound and remains review-only (26.860648ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/ydm-4pb-sr-import-x6ytJZ'
+      at async mkdtemp (node:internal/fs/promises:1254:10)
+      at async TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R4_R5/tests/corpus-production-pass-b.test.mjs:143:16)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/ydm-4pb-sr-import-x6ytJZ'
+  }

@@ -1,3 +1,4 @@
+import { productFoodReferenceTaxonomy, productFoodReferenceTerms } from '../src/domain/productFoodTaxonomy.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
@@ -14,6 +15,7 @@ const devRoot = path.join(root, 'tests/fixtures/catalog-0.3');
 async function fixture() {
   const repo = new MemoryRepository(); const registry = new SchemaRegistry(fileLoader(path.join(root, 'schemas'))); await registry.loadAll();
   const importer = new CatalogImporter({ repo, registry, fetcher: fileFetch(devRoot), storage: null }); await importer.bootstrap();
+  await repo.put('taxonomies', productFoodReferenceTaxonomy()); await repo.putMany('taxonomyTerms', productFoodReferenceTerms());
   return { repo, registry, query: new CatalogQueryService({ repo }), updater: new CatalogUpdater({ repo, registry, fetcher: fileFetch(devRoot), storage: null }) };
 }
 

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/ingredient-conversion.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "conversionId",
+    "fromIngredientId",
+    "toIngredientId",
+    "fromUnit",
+    "toUnit",
+    "factor",
+    "purpose",
+    "sourceRef",
+    "reviewStatus",
+    "version"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "conversionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fromIngredientId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "toIngredientId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fromUnit": {
+      "type": "string",
+      "minLength": 1
+    },
+    "toUnit": {
+      "type": "string",
+      "minLength": 1
+    },
+    "factor": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "purpose": {
+      "enum": [
+        "unit",
+        "shopping_yield"
+      ]
+    },
+    "sourceRef": {
+      "type": "string",
+      "minLength": 1
+    },
+    "reviewStatus": {
+      "enum": [
+        "reviewed",
+        "unreviewed"
+      ]
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    }
+  }
+}

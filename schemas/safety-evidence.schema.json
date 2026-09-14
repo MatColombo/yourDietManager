@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/safety-evidence.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "assessmentStatus",
+    "containsAllergenIds",
+    "mayContainAllergenIds",
+    "compositionCompleteness",
+    "sourceRefs",
+    "reviewedBy",
+    "reviewedAt",
+    "policyVersion"
+  ],
+  "properties": {
+    "assessmentStatus": {
+      "enum": [
+        "reviewed",
+        "unreviewed"
+      ]
+    },
+    "containsAllergenIds": {
+      "type": "array",
+      "items": {
+        "$ref": "domain-enums.schema.json#/$defs/allergenId"
+      },
+      "uniqueItems": true
+    },
+    "mayContainAllergenIds": {
+      "type": "array",
+      "items": {
+        "$ref": "domain-enums.schema.json#/$defs/allergenId"
+      },
+      "uniqueItems": true
+    },
+    "compositionCompleteness": {
+      "enum": [
+        "complete",
+        "partial",
+        "unknown"
+      ]
+    },
+    "sourceRefs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "reviewedBy": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "reviewedAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "policyVersion": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "assessmentStatus": {
+            "const": "reviewed"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "sourceRefs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "reviewedBy": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reviewedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  ]
+}

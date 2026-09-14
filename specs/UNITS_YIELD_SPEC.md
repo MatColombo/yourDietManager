@@ -1,3 +1,5 @@
+> Contratto corrente R0/R1 — 11 settembre 2026: Conversioni direzionali unit/shopping_yield revisionate, senza inverse o g/ml impliciti e senza ricalcolo nutrizionale della spesa. Vedere [CONTRATTO_R0_R1](revision_v2/CONTRATTO_R0_R1.md), che prevale sulle parti V1 sotto riportate per il perimetro modificato.
+
 # Units, Conversions & Yield Spec V1
 
 ## 1. Unita canoniche

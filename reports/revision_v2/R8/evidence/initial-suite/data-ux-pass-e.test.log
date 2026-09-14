@@ -1,0 +1,157 @@
+✖ Pass E browser harness covers the final editor interaction acceptance surface (7.966821ms)
+✔ Pass E closure gate runs after the browser gate and CI requires a real browser pass (5.076015ms)
+✔ Pass E is reflected in the revision, specs and reusable project Skill (5.208319ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 116.875404
+
+✖ failing tests:
+
+test at tests/data-ux-pass-e.test.mjs:10:1
+✖ Pass E browser harness covers the final editor interaction acceptance surface (7.966821ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /SECONDARY = \[\['\/configure', 'nav\.configure'/. Input:
+  
+  "import { parseBackupText, MAX_BACKUP_BYTES } from '../services/portableBackup.js';\n" +
+    "import { createLocalDiagnostics } from '../services/localDiagnostics.js';\n" +
+    "import { element, clear } from './dom.js';\n" +
+    "import { validateThemeContrast, applyTheme } from '../theme/themeEngine.js';\n" +
+    "import { createBackup, importBackup, validateBackup } from '../services/backupEngine.js';\n" +
+    "import { deleteAllLocalData } from '../services/localDataService.js';\n" +
+    "import { loadConfigurationBundle, saveConfigurationBundle } from '../services/configurationService.js';\n" +
+    'import {\n' +
+    '  configurationIndexPage, cyclePage, dayClassesPage, mealClassesPage, nutritionPage,\n' +
+    '  preferencesPage, safetyPage, profileSetupPage\n' +
+    "} from './configurationPages.js';\n" +
+    "import { ingredientDetailPage, ingredientEditorPage, ingredientsPage, packsPage, recipeDetailPage, recipeEditorPage, recipesPage, productionReviewPage } from './catalogPages.js';\n" +
+    "import { todayPage, calendarPage, manageDayPage, historyPage } from './planPages.js';\n" +
+    "import { productExtensionPage } from './productExtensionPages.js';\n" +
+    "import { shoppingPage } from './shoppingPages.js';\n" +
+    "import { plannerValidationPage } from './plannerValidationPage.js';\n" +
+    "import { manualAcceptancePage } from './manualAcceptancePage.js';\n" +
+    "import { referenceDataPage } from './referenceDataPages.js';\n" +
+    "import { routePath } from '../lib/appBase.js';\n" +
+    "import { notificationRegion, controlledDetails } from './uiState.js';\n" +
+    '\n' +
+    "const PRIMARY = [['/', 'nav.today'], ['/calendar', 'nav.calendar'], ['/recipes', 'nav.recipes'], ['/shopping', 'nav.shopping']];\n" +
+    "const SECONDARY = [['/organize/favorites', 'nav.organize'], ['/configure', 'nav.configure'], ['/appearance', 'nav.appearance'], ['/language', 'nav.language'], ['/backup', 'nav.backup']];\n" +
+    '\n' +
+    'function navLink(state, [href, key]) {\n' +
+    '  const currentPath = routePath();\n' +
+    "  const active = (href.startsWith('/organize') && currentPath.startsWith('/organize')) || currentPath === href || (href === '/recipes' && currentPath.startsWith('/recipes')) || (href === '/configure' && currentPath.startsWith('/configure'));\n" +
+    "  return element('a', { href, 'data-route': '', className: `nav-link${active ? ' nav-link--active' : ''}`, 'aria-current': active ? 'page' : null, text: key==='nav.organize'?(state.i18n.locale==='it'?'Organizza':'Organize'):state.i18n.t(key) });\n" +
+    '}\n' +
+    '\n' +
+    'function catalogPanel(state) {\n' +
+    '  const p = state.catalogProgress;\n' +
+    "  const panel = element('section', { className: 'catalog-panel', role: 'status', 'aria-live': 'polite', 'aria-atomic': 'false' });\n" +
+    "  panel.append(element('div', { className: 'catalog-panel__heading' }, [\n" +
+    "    element('strong', { text: state.i18n.t('catalog.title') }),\n" +
+    "    element('span', { className: `status-dot status-dot--${p.phase}`, 'aria-hidden': 'true' })\n" +
+    '  ]));\n' +
+    "  panel.append(element('p', { className: 'muted', text: state.i18n.t(p.messageKey) }));\n" +
+    "  if (['checking', 'validating', 'importing'].includes(p.phase)) panel.append(element('progress', { max: 100, value: p.total ? Math.round(p.completed / p.total * 100) : 0, 'aria-label': state.i18n.t('a11y.catalogProgress') }));\n" +
+    "  if (p.phase === 'complete') {\n" +
+    "    const dl = element('dl', { className: 'catalog-stats' });\n" +
+    "    for (const [key, value] of [['catalog.version', state.catalogVersion || '—'], ['catalog.ingredients', state.ingredientCount], ['catalog.recipes', state.recipeCount]]) {\n" +
+    "      dl.append(element('div', {}, [element('dt', { text: state.i18n.t(key) }), element('dd', { text: value })]));\n" +
+    '    }\n' +
+    '    panel.append(dl);\n' +
+    "    if (state.humanReviewSummary) panel.append(element('a', { href: '/recipes/review', 'data-route': '', className: 'catalog-review-summary' }, [element('strong', { text: state.i18n.t('review.dashboardShort') }), element('span', { text: `${state.humanReviewSummary.reviewed}/${state.humanReviewSummary.expected}` })]));\n" +
+    "    if (state.catalogUpdateAvailable) panel.append(element('button', { className: 'button button--secondary button--small', text: `${state.i18n.t('catalog.update')} ${state.catalogUpdateVersion || ''}`.trim(), onClick: () => state.updateCatalog() }));\n" +
+    '  }\n' +
+    "  if (p.phase === 'error') {\n" +
+    "    panel.append(element('p', { className: 'error-text', text: p.error || state.i18n.t('common.error') }));\n" +
+    "    panel.append(element('button', { className: 'button button--secondary', text: state.i18n.t('catalog.retry'), onClick: () => state.retryCatalog() }));\n" +
+    '  }\n' +
+    '  return panel;\n' +
+    '}\n' +
+    '\n' +
+    'function pageCard(state, pageKey) {\n' +
+    "  const section = element('section', { className: 'page-card' });\n" +
+    "  section.append(element('p', { className: 'eyebrow', text: 'V1' }));\n" +
+    "  section.append(element('h1', { text: state.i18n.t(`page.${pageKey}.title`) }));\n" +
+    "  section.append(element('p', { className: 'lead', text: state.i18n.t(`page.${pageKey}.body`) }));\n" +
+    "  section.append(element('div', { className: 'phase-placeholder', 'aria-hidden': 'true' }, [element('span'), element('span'), element('span')]));\n" +
+    '  return section;\n' +
+    '}\n' +
+    '\n' +
+    'async function persistShellConfiguration(state, bundle) {\n' +
+    '  const saved = await saveConfigurationBundle(bundle, { repo: state.repo, registry: state.registry });\n' +
+    '  state.configuration = saved; state.config = saved.appConfig;\n' +
+    '  return saved;\n' +
+    '}\n' +
+    '\n' +
+    'function languagePage(state) {\n' +
+    "  const section = element('section', { className: 'page-card page-card--narrow' });\n" +
+    "  section.append(element('p', { className: 'eyebrow', text: 'I18N' }), element('h1', { text: state.i18n.t('page.language.title') }), element('p', { className: 'lead', text: state.i18n.t('page.language.description') }));\n" +
+    "  const group = element('div', { className: 'segmented', role: 'group' });\n" +
+    "  for (const locale of ['it', 'en']) group.append(element('button', {\n" +
+    "    className: `segmented__item${state.i18n.locale === locale ? ' segmented__item--active' : ''}`,\n" +
+    "    'aria-pressed': state.i18n.locale === locale ? 'true' : 'false',\n" +
+    '    text: state.i18n.t(`language.${locale}`),\n' +
+    '    onClick: async () => {\n' +
+    '      try {\n' +
+    '        const draft = structuredClone(state.configuration); draft.appConfig.locale = locale;\n' +
+    '        await persistShellConfiguration(state, draft);\n' +
+    "        state.i18n.setLocale(locale); document.documentElement.lang = locale; localStorage.setItem('ydm:locale-bootstrap', locale);\n" +
+    "        state.notify?.('success', state.i18n.t('config.saved')); state.render({ force: true });\n" +
+    "      } catch (error) { state.notify?.('error', `${state.i18n.t('config.saveFailed')}: ${error.message || error}`); }\n" +
+    '    }\n' +
+    '  }));\n' +
+    '  section.append(group); return section;\n' +
+    '}\n' +
+    '\n' +
+    'function appearancePage(state) {\n' +
+    "  const section = element('section', { className: 'page-card page-card--narrow' });\n" +
+    '  const draftBundle = structuredClone(state.configuration);\n' +
+    '  const draft = draftBundle.themeProfiles.find(theme => theme.id === draftBundle.appConfig.themeProfileId);\n' +
+    "  section.append(element('p', { className: 'eyebrow', text: 'THEME' }), element('h1', { text: state.i18n.t('page.appearance.title') }), element('p', { className: 'lead', text: state.i18n.t('page.appearance.description') }));\n" +
+    "  const mode = element('select'); for (const value of ['system', 'light', 'dark']) mode.append(element('option', { value, text: state.i18n.t(`theme.mode.${value}`) })); mode.value = draft.mode;\n" +
+    "  const density = element('select'); for (const value of ['compact', 'comfortable']) density.append(element('option', { value, text: state.i18n.t(`theme.density.${value}`) })); density.value = draft.density;\n" +
+    "  const scale = element('input', { type: 'range', min: 0.9, max: 1.25, step: 0.05, value: draft.fontScale });\n" +
+    "  const validation = element('div', { className: 'validation-box' }); const save = element('button', { className: 'button', text: state.i18n.t('common.save') });\n" +
+    '  const refresh = () => {\n' +
+    '    draft.mode = mode.value; draft.density = density.value; draft.fontScale = Number(scale.value);\n' +
+    "    const failures = validateThemeContrast(draft); validation.className = `validation-box${failures.length ? ' validation-box--error' : ''}`;\n" +
+    "    validation.textContent = state.i18n.t(failures.length ? 'theme.contrast.fail' : 'theme.contrast.ok'); save.disabled = failures.length > 0;\n" +
+    '  };\n' +
+    "  mode.addEventListener('change', refresh); density.addEventListener('change', refresh); scale.addEventListener('input', refresh);\n" +
+    "  save.addEventListener('click', async () => {\n" +
+    '    try {\n' +
+    "      refresh(); state.registry.assert('themeProfile', draft); await persistShellConfiguration(state, draftBundle); state.theme = structuredClone(draft); applyTheme(state.theme);\n" +
+    "      state.markSaved?.(); state.notify?.('success', state.i18n.t('config.saved')); state.render({ force: true });\n" +
+    "    } catch (error) { state.notify?.('error', `${state.i18n.t('config.saveFailed')}: ${error.message || error}`); }\n" +
+    '  });\n' +
+    "  section.append(element('label', { className: 'field' }, [element('span', { text: state.i18n.t('theme.mode.label') }), mode]));\n" +
+    "  section.append(element('label', { className: 'field' }, [element('span', { text: state.i18n.t('theme.density.label') }), density]));\n" +
+    "  section.append(element('label', { className: 'field' }, [element('span', { text: state.i18n.t('theme.fontScale') }), scale]));\n" +
+    '  section.append(validation, save); refresh(); return section;\n' +
+    '}\n' +
+    '\n' +
+    'function downloadJson(backup) {\n' +
+    "  const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob);\n" +
+    "  const anchor = element('a', { href: url, download: `yourDietManager-backup-${backup.createdAt.slice(0, 10)}.json` });\n" +
+    '  document.body?.append?.(anchor); anchor.click(); anchor.remove(); URL.revokeObjectURL(url);\n' +
+    '}\n' +
+    '\n' +
+    'function backupPage(state) {\n' +
+    "  const section = element('section', { className: 'page-card page-card--narrow' });\n" +
+    "  section.append(element('p', { className: 'eyebrow', text: 'JSON' }), element('h1', { text: state.i18n.t('page.backup.title') }), element('p', { className: 'lead', text: state.i18n.t('page.backup.description') }));\n" +
+    "  const status = element('div'); const input = element('input', { type: 'file', accept: 'application/json,.json', className: 'visually-hidden' });\n" +
+    "  const exportButton = element('button', { className: 'button', text: state.i18n.t('backup"... 10257 more characters
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/tests/data-ux-pass-e.test.mjs:18:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: "import { parseBackupText, MAX_BACKUP_BYTES } from '../services/portableBackup.js';\nimport { createLocalDiagnostics } from '../services/localDiagnostics.js';\nimport { element, clear } from './dom.js';\nimport { validateThemeContrast, applyTheme } from '../theme/themeEngine.js';\nimport { createBackup, importBackup, validateBackup } from '../services/backupEngine.js';\nimport { deleteAllLocalData } from '../services/localDataService.js';\nimport { loadConfigurationBundle, saveConfigurationBundle } from '../services/configurationService.js';\nimport {\n  configurationIndexPage, cyclePage, dayClassesPage, mealClassesPage, nutritionPage,\n  preferencesPage, safetyPage, profileSetupPage\n} from './configurationPages.js';\nimport { ingredientDetailPage, ingredientEditorPage, ingredientsPage, packsPage, recipeDetailPage, recipeEditorPage, recipesPage, productionReviewPage } from './catalogPages.js';\nimport { todayPage, calendarPage, manageDayPage, historyPage } from './planPages.js';\nimport { productExtensionPage } from './productExtensionPages.js';\nimport { shoppingPage } from './shoppingPages.js';\nimport { plannerValidationPage } from './plannerValidationPage.js';\nimport { manualAcceptancePage } from './manualAcceptancePage.js';\nimport { referenceDataPage } from './referenceDataPages.js';\nimport { routePath } from '../lib/appBase.js';\nimport { notificationRegion, controlledDetails } from './uiState.js';\n\nconst PRIMARY = [['/', 'nav.today'], ['/calendar', 'nav.calendar'], ['/recipes', 'nav.recipes'], ['/shopping', 'nav.shopping']];\nconst SECONDARY = [['/organize/favorites', 'nav.organize'], ['/configure', 'nav.configure'], ['/appearance', 'nav.appearance'], ['/language', 'nav.language'], ['/backup', 'nav.backup']];\n\nfunction navLink(state, [href, key]) {\n  const currentPath = routePath();\n  const active = (href.startsWith('/organize') && currentPath.startsWith('/organize')) || currentPath === href || (href === '/recipes' && currentPath.startsWith('/recipes')) || (href === '/configure' && currentPath.startsWith('/configure'));\n  return element('a', { href, 'data-route': '', className: `nav-link${active ? ' nav-link--active' : ''}`, 'aria-current': active ? 'page' : null, text: key==='nav.organize'?(state.i18n.locale==='it'?'Organizza':'Organize'):state.i18n.t(key) });\n}\n\nfunction catalogPanel(state) {\n  const p = state.catalogProgress;\n  const panel = element('section', { className: 'catalog-panel', role: 'status', 'aria-live': 'polite', 'aria-atomic': 'false' });\n  panel.append(element('div', { className: 'catalog-panel__heading' }, [\n    element('strong', { text: state.i18n.t('catalog.title') }),\n    element('span', { className: `status-dot status-dot--${p.phase}`, 'aria-hidden': 'true' })\n  ]));\n  panel.append(element('p', { className: 'muted', text: state.i18n.t(p.messageKey) }));\n  if (['checking', 'validating', 'importing'].includes(p.phase)) panel.append(element('progress', { max: 100, value: p.total ? Math.round(p.completed / p.total * 100) : 0, 'aria-label': state.i18n.t('a11y.catalogProgress') }));\n  if (p.phase === 'complete') {\n    const dl = element('dl', { className: 'catalog-stats' });\n    for (const [key, value] of [['catalog.version', state.catalogVersion || '—'], ['catalog.ingredients', state.ingredientCount], ['catalog.recipes', state.recipeCount]]) {\n      dl.append(element('div', {}, [element('dt', { text: state.i18n.t(key) }), element('dd', { text: value })]));\n    }\n    panel.append(dl);\n    if (state.humanReviewSummary) panel.append(element('a', { href: '/recipes/review', 'data-route': '', className: 'catalog-review-summary' }, [element('strong', { text: state.i18n.t('review.dashboardShort') }), element('span', { text: `${state.humanReviewSummary.reviewed}/${state.humanReviewSummary.expected}` })]));\n    if (state.catalogUpdateAvailable) panel.append(element('button', { className: 'button button--secondary button--small', text: `${state.i18n.t('catalog.update')} ${state.catalogUpdateVersion || ''}`.trim(), onClick: () => state.updateCatalog() }));\n  }\n  if (p.phase === 'error') {\n    panel.append(element('p', { className: 'error-text', text: p.error || state.i18n.t('common.error') }));\n    panel.append(element('button', { className: 'button button--secondary', text: state.i18n.t('catalog.retry'), onClick: () => state.retryCatalog() }));\n  }\n  return panel;\n}\n\nfunction pageCard(state, pageKey) {\n  const section = element('section', { className: 'page-card' });\n  section.append(element('p', { className: 'eyebrow', text: 'V1' }));\n  section.append(element('h1', { text: state.i18n.t(`page.${pageKey}.title`) }));\n  section.append(element('p', { className: 'lead', text: state.i18n.t(`page.${pageKey}.body`) }));\n  section.append(element('div', { className: 'phase-placeholder', 'aria-hidden': 'true' }, [element('span'), element('span'), element('span')]));\n  return section;\n}\n\nasync function persistShellConfiguration(state, bundle) {\n  const saved = await saveConfigurationBundle(bundle, { repo: state.repo, registry: state.registry });\n  state.configuration = saved; state.config = saved.appConfig;\n  return saved;\n}\n\nfunction languagePage(state) {\n  const section = element('section', { className: 'page-card page-card--narrow' });\n  section.append(element('p', { className: 'eyebrow', text: 'I18N' }), element('h1', { text: state.i18n.t('page.language.title') }), element('p', { className: 'lead', text: state.i18n.t('page.language.description') }));\n  const group = element('div', { className: 'segmented', role: 'group' });\n  for (const locale of ['it', 'en']) group.append(element('button', {\n    className: `segmented__item${state.i18n.locale === locale ? ' segmented__item--active' : ''}`,\n    'aria-pressed': state.i18n.locale === locale ? 'true' : 'false',\n    text: state.i18n.t(`language.${locale}`),\n    onClick: async () => {\n      try {\n        const draft = structuredClone(state.configuration); draft.appConfig.locale = locale;\n        await persistShellConfiguration(state, draft);\n        state.i18n.setLocale(locale); document.documentElement.lang = locale; localStorage.setItem('ydm:locale-bootstrap', locale);\n        state.notify?.('success', state.i18n.t('config.saved')); state.render({ force: true });\n      } catch (error) { state.notify?.('error', `${state.i18n.t('config.saveFailed')}: ${error.message || error}`); }\n    }\n  }));\n  section.append(group); return section;\n}\n\nfunction appearancePage(state) {\n  const section = element('section', { className: 'page-card page-card--narrow' });\n  const draftBundle = structuredClone(state.configuration);\n  const draft = draftBundle.themeProfiles.find(theme => theme.id === draftBundle.appConfig.themeProfileId);\n  section.append(element('p', { className: 'eyebrow', text: 'THEME' }), element('h1', { text: state.i18n.t('page.appearance.title') }), element('p', { className: 'lead', text: state.i18n.t('page.appearance.description') }));\n  const mode = element('select'); for (const value of ['system', 'light', 'dark']) mode.append(element('option', { value, text: state.i18n.t(`theme.mode.${value}`) })); mode.value = draft.mode;\n  const density = element('select'); for (const value of ['compact', 'comfortable']) density.append(element('option', { value, text: state.i18n.t(`theme.density.${value}`) })); density.value = draft.density;\n  const scale = element('input', { type: 'range', min: 0.9, max: 1.25, step: 0.05, value: draft.fontScale });\n  const validation = element('div', { className: 'validation-box' }); const save = element('button', { className: 'button', text: state.i18n.t('common.save') });\n  const refresh = () => {\n    draft.mode = mode.value; draft.density = density.value; draft.fontScale = Number(scale.value);\n    const failures = validateThemeContrast(draft); validation.className = `validation-box${failures.length ? ' validation-box--error' : ''}`;\n    validation.textContent = state.i18n.t(failures.length ? 'theme.contrast.fail' : 'theme.contrast.ok'); save.disabled = failures.length > 0;\n  };\n  mode.addEventListener('change', refresh); density.addEventListener('change', refresh); scale.addEventListener('input', refresh);\n  save.addEventListener('click', async () => {\n    try {\n      refresh(); state.registry.assert('themeProfile', draft); await persistShellConfiguration(state, draftBundle); state.theme = structuredClone(draft); applyTheme(state.theme);\n      state.markSaved?.(); state.notify?.('success', state.i18n.t('config.saved')); state.render({ force: true });\n    } catch (error) { state.notify?.('error', `${state.i18n.t('config.saveFailed')}: ${error.message || error}`); }\n  });\n  section.append(element('label', { className: 'field' }, [element('span', { text: state.i18n.t('theme.mode.label') }), mode]));\n  section.append(element('label', { className: 'field' }, [element('span', { text: state.i18n.t('theme.density.label') }), density]));\n  section.append(element('label', { className: 'field' }, [element('span', { text: state.i18n.t('theme.fontScale') }), scale]));\n  section.append(validation, save); refresh(); return section;\n}\n\nfunction downloadJson(backup) {\n  const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' }); const url = URL.createObjectURL(blob);\n  const anchor = element('a', { href: url, download: `yourDietManager-backup-${backup.createdAt.slice(0, 10)}.json` });\n  document.body?.append?.(anchor); anchor.click(); anchor.remove(); URL.revokeObjectURL(url);\n}\n\nfunction backupPage(state) {\n  const section = element('section', { className: 'page-card page-card--narrow' });\n  section.append(element('p', { className: 'eyebrow', text: 'JSON' }), element('h1', { text: state.i18n.t('page.backup.title') }), element('p', { className: 'lead', text: state.i18n.t('page.backup.description') }));\n  const status = element('div'); const input = element('input', { type: 'file', accept: 'application/json,.json', className: 'visually-hidden' });\n  const exportButton = element('button', { className: 'button', text: state.i18n.t('backup"... 10257 more characters,
+    expected: /SECONDARY = \[\['\/configure', 'nav\.configure'/,
+    operator: 'match',
+    diff: 'simple'
+  }

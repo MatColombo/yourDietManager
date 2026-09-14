@@ -1,0 +1,50 @@
+✔ T07 R0 stale safety configuration rejects commitPlanPreview without plan writes (134.008923ms)
+✔ T07 R0 stale safety configuration rejects commitGeneratedPreview without plan writes (53.590498ms)
+✔ T07 R0 extension rejects an intervening edit to the source plan (73.790529ms)
+✔ T07/T45 R0 replacement validates preview target, configuration and current day (54.184394ms)
+✔ T45 R0 rebalance rejects newer adherence and preserves authoritative before (102.657449ms)
+✔ T45 R0 rejects tampered payload, changed catalog and replay after undo (60.165721ms)
+✔ T03 R0 missing revision and empty legacy allergen array fail closed (0.458649ms)
+✔ T01 R0 pasta/rice pasta and peanut butter/butter use individual evidence, not generic search names (0.387598ms)
+✔ T10 R0 explicit quarantine covers all 20 baseline recipe IDs without deleting historical records (2.314244ms)
+✔ T12 R0 a valid replacement retains saved notes and can be undone (64.844708ms)
+✔ T10 R0 fish template accepts only a documented cooked/ready form (11.994816ms)
+✔ T72 R1 miglio generic query aggregates forms without merging IDs, quantities or nutrients (180.377684ms)
+✔ T72 R1 inconsistent or non-leaf product paths are rejected instead of inferred from names (75.310643ms)
+✔ T06 R1 FoodGroup rejects nested, unknown and duplicate members; membership history is immutable (136.379222ms)
+✔ T17/T18 R1 directional shopping yield cannot alter nutritional basis or invent g/ml equivalence (102.24768ms)
+✔ T59/T72 R1 migration is additive, restartable, idempotent and preserves current local pointer and old records (108.069397ms)
+✔ T59 R1 preserves existing data without legacy epoch and rejects content downgrade (63.550058ms)
+✔ T59 R1 interrupted batches and changed local pointer cannot be overwritten (69.18919ms)
+✔ T72 R1 unresolved mapping is retained for review without changing the family (59.238655ms)
+✔ T72 R1 lexical similarity never merges forms; explicit redirects retain source and reject cycles (84.056749ms)
+✔ T23/T39 R1 strict frequency draft validates bounds, half ideals and target references without activating V2 (57.238495ms)
+✔ T01/T05 R1 strict safety contract cannot invent reviewer or contain/trace equivalence (44.437177ms)
+✔ T21 R1 recipe V2 writes omit instructions and legacy versions remain lossless (55.510913ms)
+✔ T59 R1 same-catalog backup 2 round-trips new registries and staged configuration (156.900368ms)
+✔ T18 R1 V2 unit conversion requires a reviewed directional density; legacy unsourced conversion cannot be used (67.717414ms)
+✖ T59/T74 R1 app/DB/cache contracts are current and every declared offline shell asset exists (9.139202ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 25
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1442.2792
+
+✖ failing tests:
+
+test at tests/revision-v2-r1.test.mjs:145:1
+✖ T59/T74 R1 app/DB/cache contracts are current and every declared offline shell asset exists (9.139202ms)
+  Error: ENOENT: no such file or directory, open 'public/, '
+      at async open (node:internal/fs/promises:697:25)
+      at async readFile (node:internal/fs/promises:1348:14)
+      at async TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/revision-v2-r1.test.mjs:151:43)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: 'public/, '
+  }

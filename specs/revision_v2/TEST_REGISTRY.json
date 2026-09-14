@@ -1,0 +1,2524 @@
+{
+  "schemaVersion": 1,
+  "coreCount": 74,
+  "extensionCount": 5,
+  "tests": [
+    {
+      "id": "T01",
+      "title": "Metadati allergeni non ridotti a sottostringhe",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "Requisiti SAFE-05/09/10, CAT-13 · P0. Importare F04. Verificare semola/farro e noci del Brasile, variante riso e burro di arachidi. Atteso: i primi hanno gli allergeni appropriati, il riso non eredita glutine solo perché appartiene a Pasta, il burro di arachidi non riceve latte per la parola butter. L'evidenza deve distinguere assenza verificata, non noto e tracce. Non usare la funzione da testare per generare gli expected.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": "1.2.0-planner-phase-d",
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R1-001",
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        {
+          "status": "PASS",
+          "scope": "Contratto di dominio/servizio R0/R1: non equivale al test V2 completo",
+          "evidenceIds": [
+            "EV-R1-001"
+          ]
+        },
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T02",
+      "title": "Ricetta non ammessa con allergene pertinente",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "SAFE-06/10/11 · P0. Attivare esclusione glutine; generare, cercare alternative e tentare assegnazione diretta di una ricetta con semola. Atteso: esclusa prima del ranking e rifiutata anche dal service commit. Ripetere con noci del Brasile e allergene frutta a guscio. Un array recipe.allergenIds manomesso a vuoto non deve superare la derivazione autorevole.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": "1.2.0-planner-phase-d",
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R1-001",
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        {
+          "status": "PASS",
+          "scope": "Contratto di dominio/servizio R0/R1: non equivale al test V2 completo",
+          "evidenceIds": [
+            "EV-R1-001"
+          ]
+        },
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T03",
+      "title": "Compatibilità non verificata",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "SAFE-05/06 · P0. Con una regola sicurezza attiva usare una forma priva di assessment pertinente. Atteso: nessuna assegnazione automatica; motivo «Compatibilità non verificata». Un array allergeni vuoto non basta. La consultazione del record resta possibile.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": "1.2.0-planner-phase-d",
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R1-001",
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        {
+          "status": "PASS",
+          "scope": "Contratto di dominio/servizio R0/R1: non equivale al test V2 completo",
+          "evidenceIds": [
+            "EV-R1-001"
+          ]
+        },
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T04",
+      "title": "Tracce e alimento composto",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "SAFE-07/10 · P0. Ingrediente con tracce note dell'allergene escluso; altro composto con composizione incompleta. Atteso: esclusione coerente con la policy conservativa e spiegazione distinta per tracce/composizione ignota; nessuna dicitura certificata inventata. Variante con composizione verificata usa soltanto la propria evidenza.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": "1.2.0-planner-phase-d",
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R1-001",
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        {
+          "status": "PASS",
+          "scope": "Contratto di dominio/servizio R0/R1: non equivale al test V2 completo",
+          "evidenceIds": [
+            "EV-R1-001"
+          ]
+        },
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T05",
+      "title": "Famiglia sicurezza su tutte le forme",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "SAFE-01–04 · P0. Escludere Miglio tramite concetto; provare cotto e soffiato, poi una nuova forma correttamente mappata. Atteso: tutte escluse. Una regola esplicita sulla sola forma soffiata deve escludere quella forma senza essere visualizzata come esclusione dell'intero alimento.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": "1.2.0-planner-phase-d",
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R1-001",
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        {
+          "status": "PASS",
+          "scope": "Contratto di dominio/servizio R0/R1: non equivale al test V2 completo",
+          "evidenceIds": [
+            "EV-R1-001"
+          ]
+        },
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T06",
+      "title": "Gruppo personalizzato senza testo libero",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "SAFE-02/04 · P1. Creare un gruppo da due concetti e una forma; cercarlo nel profilo sicurezza e nelle preferenze. Atteso: stesso ID e membri visibili. Vietati membri sconosciuti, duplicati, cicli o gruppi annidati. La modifica membership segnala regole e piani interessati.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": "1.2.0-planner-phase-d",
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R1-001",
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        {
+          "status": "PASS",
+          "scope": "Contratto di dominio/servizio R0/R1: non equivale al test V2 completo",
+          "evidenceIds": [
+            "EV-R1-001"
+          ]
+        },
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T07",
+      "title": "Anteprima invalidata da cambio sicurezza",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "SAFE-11/12, HARD-01–03 · P0. Generare anteprima contenente A; aggiungere una regola che esclude A; confermare la vecchia anteprima. Atteso: `STALE_PREVIEW` o errore di sicurezza tipizzato, nessuna scrittura, aggiornamento proposto. Eseguire per generazione iniziale, estensione, sostituzione e riequilibrio.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": "1.2.0-planner-phase-d",
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R1-001",
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        {
+          "status": "PASS",
+          "scope": "Contratto di dominio/servizio R0/R1: non equivale al test V2 completo",
+          "evidenceIds": [
+            "EV-R1-001"
+          ]
+        },
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T08",
+      "title": "Piano esistente e nuova incompatibilità",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "SAFE-12/13 · P0. Salvare un piano, cambiare allergia, poi aprire Oggi e Calendario. Atteso: pasti futuri incompatibili segnalati subito; nessuna modifica silenziosa a ricette/quantità. Lo storico resta leggibile; «Trova alternative» crea una preview.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T09",
+      "title": "Undo con sicurezza cambiata",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "SAFE-13 · P0. Sostituire A con B, escludere A, eseguire undo. Atteso: se lo snapshot viene ripristinato, compare incompatibilità corrente; non è presentato come conforme e non può essere copiato in un nuovo pasto. Nutrienti e hash storici rimangono quelli originari.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T10",
+      "title": "Pesce crudo e zero cottura",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R0",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "CAT-12, REC-05 · P0. Passare al template mini-fish-grain una revisione pesce raw non qualificata per consumo crudo. Atteso: record non pubblicabile/assegnabile come no-cook. Verificare tutte le 20 ricette baseline elencate nell'evidenza e relativa destinazione di correzione/quarantena.",
+      "status": "PASS",
+      "completeScope": true,
+      "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "catalog": "1.2.0-planner-phase-d",
+      "fixture": "tests/revision-v2-r0.test.mjs, tests/revision-v2-r1.test.mjs; fixture dichiarate sintetiche; corpus allegato per quarantena",
+      "actions": [
+        "CAT-12, REC-05 · P0. Passare al template mini-fish-grain una revisione pesce raw non qualificata per consumo crudo. Atteso: record non pubblicabile/assegnabile come no-cook. Verificare tutte le 20 ricette baseline elencate nell'evidenza e relativa destinazione di correzione/quarantena."
+      ],
+      "expected": "CAT-12, REC-05 · P0. Passare al template mini-fish-grain una revisione pesce raw non qualificata per consumo crudo. Atteso: record non pubblicabile/assegnabile come no-cook. Verificare tutte le 20 ricette baseline elencate nell'evidenza e relativa destinazione di correzione/quarantena.",
+      "actual": "Asserzioni pertinenti PASS; vedere test nominati con ID padre nei log",
+      "evidenceIds": [
+        "EV-R8-REGRESSION"
+      ],
+      "partialScopes": [],
+      "remainingScopes": [],
+      "historicalEvidenceIds": [
+        "EV-R0-002",
+        "EV-R1-002"
+      ]
+    },
+    {
+      "id": "T11",
+      "title": "Preview cambiata da altra tab",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R4",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "HARD-02/04/06 · P0. Tab A prepara riequilibrio; tab B salva sostituzione o aderenza nella stessa giornata; tab A conferma. Atteso: precondizione fallita e nessuna perdita della modifica B. Il confronto non deve affidarsi al solo stato JS della tab A.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": null,
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": null,
+      "evidenceIds": [],
+      "partialScopes": [],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R4-REGRESSION",
+        "EV-R5-STAGING"
+      ]
+    },
+    {
+      "id": "T12",
+      "title": "Commit idempotente e atomico",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R4",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "HARD-05/07 · P0. Invocare due volte lo stesso commandId e simulare retry dopo timeout. Atteso: una mutazione logica e una sola history entry. Interrompere la transazione: nessun mezzo piano, puntatore o checklist parzialmente aggiornato.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "caac4ac89441b02fd07cb166d2f1683102e47e1540855986fc6161d31122a087",
+      "catalog": "1.2.0-planner-phase-d",
+      "fixture": "tests/revision-v2-r0.test.mjs, tests/revision-v2-r1.test.mjs; fixture dichiarate sintetiche; corpus allegato per quarantena",
+      "actions": [],
+      "expected": null,
+      "actual": null,
+      "evidenceIds": [
+        "EV-R1-001"
+      ],
+      "partialScopes": [
+        {
+          "status": "PASS",
+          "scope": "Contratto di dominio/servizio R0/R1: non equivale al test V2 completo",
+          "evidenceIds": [
+            "EV-R1-001"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R4-REGRESSION",
+        "EV-R5-STAGING"
+      ]
+    },
+    {
+      "id": "T13",
+      "title": "Ricerca generica Miglio",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R2",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "ING-01/07–09 · P1. Cercare miglio nel catalogo. Atteso: un risultato concetto con due forme; selezionandolo come filtro si ottengono ricette con entrambe. Nessuna forma cruda viene inventata perché assente dalla fixture.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": "1.2.0-planner-phase-d",
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R1-001",
+        "EV-R2-CATALOG",
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        {
+          "status": "PASS",
+          "scope": "Contratto di dominio/servizio R0/R1: non equivale al test V2 completo",
+          "evidenceIds": [
+            "EV-R1-001"
+          ]
+        },
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T14",
+      "title": "Ricerca in tutti i campi",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R2",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "ING-08/10/11 · P1. Eseguire query nome IT, alias IT/EN, nome forma, categoria e descrizione originale. Ripetere nei selettori di preferenze, sicurezza, classi pasto, editor ricetta, sostituzione e spesa. Atteso: stessi ID e copertura, anche quando il titolo ricetta non contiene più l'ingrediente cercato.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R2-CATALOG",
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T15",
+      "title": "Sinonimi e ambiguità",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R2",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "ING-08/09 · P1. Zucchina, zucchine e zucchini risolvono lo stesso concetto. Una stringa incompleta o un possibile typo propone scelte ma non salva un ID finché l'utente non seleziona. Una fonte «squash, zucchini» non viene approvata come zucca invernale per semplice traduzione del primo token.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R2-CATALOG",
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T16",
+      "title": "Forma obbligatoria nella ricetta",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R2",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "ING-07/12, NUT-01 · P1. Nell'editor selezionare il concetto con due forme e inserire quantità senza scegliere la forma. Atteso: salvataggio bloccato con spiegazione. Dopo selezione, ID revisione e stato di pesatura sono visibili e persistiti.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R2-CATALOG",
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T17",
+      "title": "Nutrienti diversi per forme diverse",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R2",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "NUT-01/02 · P0. Usare F03 e alternare A/B a 50 g. Atteso: 50/100 kcal rispettivamente; anteprima evidenzia differenza; nessuna copia dei nutrienti del concetto comune o conversione 1:1 implicita.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": "1.2.0-planner-phase-d",
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R1-001",
+        "EV-R2-CATALOG",
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        {
+          "status": "PASS",
+          "scope": "Contratto di dominio/servizio R0/R1: non equivale al test V2 completo",
+          "evidenceIds": [
+            "EV-R1-001"
+          ]
+        },
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T18",
+      "title": "Unità e conversione mancante",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R1",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "NUT-01–03 · P1. Chiedere ml per forma con sola base g e nessuna densità. Atteso: non disponibile o errore prima del salvataggio. Aggiungere una conversione verificata e riprovare; solo quella direzione e quello scopo sono permessi.",
+      "status": "PASS",
+      "completeScope": true,
+      "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "catalog": "1.2.0-planner-phase-d",
+      "fixture": "tests/revision-v2-r0.test.mjs, tests/revision-v2-r1.test.mjs; fixture dichiarate sintetiche; corpus allegato per quarantena",
+      "actions": [
+        "NUT-01–03 · P1. Chiedere ml per forma con sola base g e nessuna densità. Atteso: non disponibile o errore prima del salvataggio. Aggiungere una conversione verificata e riprovare; solo quella direzione e quello scopo sono permessi."
+      ],
+      "expected": "NUT-01–03 · P1. Chiedere ml per forma con sola base g e nessuna densità. Atteso: non disponibile o errore prima del salvataggio. Aggiungere una conversione verificata e riprovare; solo quella direzione e quello scopo sono permessi.",
+      "actual": "Asserzioni pertinenti PASS; vedere test nominati con ID padre nei log",
+      "evidenceIds": [
+        "EV-R8-REGRESSION"
+      ],
+      "partialScopes": [],
+      "remainingScopes": [],
+      "historicalEvidenceIds": [
+        "EV-R1-001"
+      ]
+    },
+    {
+      "id": "T19",
+      "title": "Separazione resa spesa e nutrizione",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R6",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "NUT-02/03, SHOP-02/03 · P0. 150 g cotti e resa sintetica 0,4 verso secco. Atteso: acquisto equivalente 60 g quando scelto; nutrienti del pasto restano quelli dei 150 g cotti. Senza resa, 150 g cotti resta riga separata.",
+      "status": "PARZIALE",
+      "completeScope": false,
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+      "catalog": "1.2.0-planner-phase-d",
+      "fixture": "tests/revision-v2-r0.test.mjs, tests/revision-v2-r1.test.mjs; fixture dichiarate sintetiche; corpus allegato per quarantena",
+      "actions": [],
+      "expected": null,
+      "actual": "Sottoprove automatiche nella suite R7. Browser/rete/offline/catalogo editoriale non certificati.",
+      "evidenceIds": [
+        "EV-R1-001"
+      ],
+      "partialScopes": [
+        {
+          "status": "PASS",
+          "scope": "Contratto di dominio/servizio R0/R1: non equivale al test V2 completo",
+          "evidenceIds": [
+            "EV-R1-001"
+          ]
+        },
+        {
+          "phase": "R6/R7",
+          "status": "PASS",
+          "scope": "Solo test nominativi di servizio/sorgente e benchmark sintetico",
+          "evidenceIds": [
+            "EV-R6-SERVICES",
+            "EV-R7-REGRESSION"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R6-SERVICES",
+        "EV-R7-REGRESSION"
+      ]
+    },
+    {
+      "id": "T20",
+      "title": "Origine e definizione nutrienti",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R5",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "NUT-04/05, CAT-06 · P0. Adapter con energia kJ, carboidrati disponibili, fibra mancante e zero misurato. Atteso: conversione documentata kJ/kcal; definizione carboidrati preservata; mancante distinto da zero; record non eleggibile finché mancano valori obbligatori. Nessuna media automatica di due dataset.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": null,
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": null,
+      "evidenceIds": [],
+      "partialScopes": [],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T21",
+      "title": "Versioni correnti oltre il limite retrieval",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "PERF-01/02 · P1. Inserire 500 versioni storiche prima di una versione corrente valida, più famiglie archiviate e pack non installati. Atteso: il candidato corrente valido è recuperato; il limite viene applicato all'insieme corretto e la truncation è diagnosticata.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": "1.2.0-planner-phase-d",
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R1-001",
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        {
+          "status": "PASS",
+          "scope": "Contratto di dominio/servizio R0/R1: non equivale al test V2 completo",
+          "evidenceIds": [
+            "EV-R1-001"
+          ]
+        },
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T22",
+      "title": "Aggiornamento alias e indici",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R2",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "ING-11, PERF-03 · P1. Aggiungere alias, cambiare current pointer e aggiornare catalogo con una ricetta locale promossa. Atteso: indice aggiornato, alias cercabile offline, storico risolvibile e current locale preservato.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R2-CATALOG",
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T23",
+      "title": "Validazione form minimo ideale massimo",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "PREF-01–06 · P1. Provare vuoti, zero, negativi, decimali, min>max, target fuori intervallo, W=0 e W=91. Atteso: semantica vuoto distinta da zero; min/max interi; target a passi 0,5; errori specifici e nessuna correzione silenziosa. Serve almeno un valore nella modalità Frequenza.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": "1.2.0-planner-phase-d",
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R1-001",
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        {
+          "status": "PASS",
+          "scope": "Contratto di dominio/servizio R0/R1: non equivale al test V2 completo",
+          "evidenceIds": [
+            "EV-R1-001"
+          ]
+        },
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T24",
+      "title": "Minimo 2 ideale 3 massimo 4",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "PREF-05/17/19 · P1. Fixture con soluzioni note di conteggio 1, 2, 3, 4 e 5 su W=7. Atteso: 1 e 5 non ammissibili; 2/3/4 ammissibili; 3 favorito a parità degli altri obiettivi. Conteggio reale e motivi concordano nel riepilogo.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T25",
+      "title": "Semantica Mai",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "PREF-02/04 · P1. Impostare Mai su Miglio. Atteso: nessuna nuova assegnazione automatica o manuale contenente una forma; la consultazione resta possibile. Il pannello sostituzione non offre bypass monouso. Disabilitare la regola conserva i valori salvati.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T26",
+      "title": "Confine esatto di sette giorni",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "PREF-08 · P1. Con D=11 settembre, inserire presenze il 4, il 5 e l'11. Atteso: il 4 è escluso e 5/11 inclusi. W=1 include solo la data civile corrente, anche con più pasti.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T27",
+      "title": "Presenze nello stesso giorno",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "PREF-08/09 · P1. Miglio a pranzo e proposta miglio a cena, massimo 1 in W=7. Atteso: la cena violerebbe il massimo. La validazione deve tenerne conto durante generazione e sostituzione, non soltanto nel report finale.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T28",
+      "title": "Più ingredienti o componenti nello stesso pasto",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "PREF-09/10 · P1. Un pasto contiene due forme di Miglio e un secondo componente con Miglio. Atteso: una occorrenza per la regola Miglio/countUnit meal. Un gruppo Legumi con due figli nello stesso pasto conta uno. Non deduplicare invece pasti con mealOccurrenceId diversi.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T29",
+      "title": "Unità giorni",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "PREF-10 · P1. Miglio a pranzo/cena dello stesso giorno e a pranzo il giorno successivo. Atteso: countUnit meal=3; day=2. La UI spiega l'unità attiva e non somma i due conteggi.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T30",
+      "title": "Storico oltre quattordici giorni",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "PREF-12 · P1. W=31 con presenza a D-20 nella catena precedente. Atteso: la presenza influisce su generazione/estensione/sostituzione. Aggiungere W=90 e almeno due segmenti piano; nessun limite silenzioso a 14 o al numero di record caricati.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T31",
+      "title": "Finestre future dopo edit",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "PREF-12, HARD-06 · P1. Giorno D e D+3 contengono già il target al massimo; inserire una presenza in D-1. Atteso: le finestre future interessate vengono ricontrollate e il commit non viola il limite lasciando intatti altri giorni. Coprire anche rimozione che viola un minimo futuro.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T32",
+      "title": "Data civile e carry over",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "PREF-08/12 · P1. Slot del giorno dieta D con dayOffset=1. Atteso: il conteggio avviene su D+1. Provare i cambi ora di Europe/Rome, una timezone con offset diverso e un range che include il bordo della catena: nessun doppio conteggio o salto.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T33",
+      "title": "Orizzonte incompleto e attivazione",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "PREF-13/14 · P1. Attivare oggi una regola W=14 min=3 e chiedere piano 7 giorni. Atteso: proposta di estendere a 14; mantenendo 7, stato pending con prima data verificabile. Non dichiarare min soddisfatto né violato usando giorni futuri come zeri.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T34",
+      "title": "Pasti esterni sconosciuti",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "PREF-11 · P1. Un pasto esterno senza composizione nella finestra. Atteso: non conta come presenza, ma il report riporta la lacuna e limita le conclusioni ai pasti noti pianificati. Nessuna dichiarazione di rispetto totale di dieta/allergie dell'alimentazione esterna.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T35",
+      "title": "Famiglia e figlio in conflitto",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "PREF-15/16 · P1. Mai Legumi e minimo 2 Ceci nello stesso scope. Atteso: conflitto con entrambe le regole mostrate, nessuna priorità implicita del figlio. Per regole compatibili si applica la loro intersezione.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T36",
+      "title": "Scope classi pasto",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "PREF-06/15 · P1. Regola solo Cena, poi Tutti i pasti. Atteso: il pranzo conta solo nel secondo caso. Una classe pasto duplicata non deve essere inclusa in uno scope ristretto senza scelta; scope vuoto è visualizzato come Tutti i pasti.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T37",
+      "title": "Ideale frazionario",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "PREF-05 · P1. Target=2,5, min=2, max=3. Atteso: piani con 2 o 3 occorrenze intere; nessuna porzione 0,5 generata per far tornare la frequenza. Il report mostra scostamento e non promette media esatta.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T38",
+      "title": "Impossibile o ricerca esaurita",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "PREF-16–18 · P1. Una fixture con impossibilità dimostrabile e una con budget ricerca volutamente ridotto. Atteso: `infeasible_proven` nella prima, `search_exhausted` nella seconda, nessun allargamento automatico di vincoli. La UI spiega la differenza in lingua utente.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T39",
+      "title": "Migrazione preferenze V1",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R3",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "PREF-20, MIG-02 · P1. Importare more_often, rarely, max soft e autoExclude. Atteso: adapter compatibile, avviso di conversione, nessun numero inventato e nessun massimo reso hard senza salvataggio esplicito. Dopo conversione la regola vecchia non continua a sommare penalità nascoste.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": "1.2.0-planner-phase-d",
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R1-001",
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        {
+          "status": "PASS",
+          "scope": "Contratto di dominio/servizio R0/R1: non equivale al test V2 completo",
+          "evidenceIds": [
+            "EV-R1-001"
+          ]
+        },
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T40",
+      "title": "Pulsante Sostituisci visibile e contestuale",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R4",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "SWAP-01–05 · P1. Dal primo pasto di una giornata lunga cliccare il pulsante con mouse/touch/Enter. Atteso: pannello subito visibile nel viewport, titolo del pasto corretto, caricamento e risultati. Non basta un elemento aggiunto nel DOM fuori schermo.",
+      "status": "BLOCKED",
+      "completeScope": false,
+      "buildSha256": null,
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": null,
+      "evidenceIds": [],
+      "partialScopes": [],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R4-REGRESSION",
+        "EV-R5-STAGING"
+      ]
+    },
+    {
+      "id": "T41",
+      "title": "Nessuna alternativa",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R4",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "SWAP-08 · P1. Fixture con tutte le alternative escluse per vincoli. Atteso: messaggio esplicito, cause pertinenti e azioni utili; nessun vuoto, pulsante permanentemente disabilitato o eccezione non gestita.",
+      "status": "BLOCKED",
+      "completeScope": false,
+      "buildSha256": null,
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": null,
+      "evidenceIds": [],
+      "partialScopes": [],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R4-REGRESSION",
+        "EV-R5-STAGING"
+      ]
+    },
+    {
+      "id": "T42",
+      "title": "Errore asincrono e retry",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R4",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "SWAP-02, UX-13/14 · P1. Simulare errore repository durante retrieval. Atteso: errore locale comprensibile, Annulla e Riprova operativi, nessuna scrittura e nessun alert tecnico come unica risposta.",
+      "status": "BLOCKED",
+      "completeScope": false,
+      "buildSha256": null,
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": null,
+      "evidenceIds": [],
+      "partialScopes": [],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R4-REGRESSION",
+        "EV-R5-STAGING"
+      ]
+    },
+    {
+      "id": "T43",
+      "title": "Richieste fuori ordine e annullamento",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R4",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "SWAP-02/03 · P1. Avviare sostituzione pranzo, poi cena; completare pranzo per ultima. Atteso: il pannello mostra cena. Chiudere durante caricamento: la risposta successiva non riapre il pannello e non cambia il piano.",
+      "status": "BLOCKED",
+      "completeScope": false,
+      "buildSha256": null,
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": null,
+      "evidenceIds": [],
+      "partialScopes": [],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R4-REGRESSION",
+        "EV-R5-STAGING"
+      ]
+    },
+    {
+      "id": "T44",
+      "title": "Focus tastiera e ritorno",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R4",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "SWAP-03, UX-11 · P1. Aprire drawer, percorrerlo con Tab/Shift+Tab, chiudere con Escape. Atteso: focus confinato se modale, nome accessibile, sfondo non azionabile, ritorno al comando originario. Eseguire nel browser reale.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": null,
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": null,
+      "evidenceIds": [],
+      "partialScopes": [],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R4-REGRESSION",
+        "EV-R5-STAGING"
+      ]
+    },
+    {
+      "id": "T45",
+      "title": "Sostituzione singolo componente",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R4",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "SWAP-06/09 · P1. Pasto di tre componenti, scegliere il secondo. Atteso: primo e terzo identici; quantità, revisioni e attributi conservati. Rivalutare energia e frequenze del pasto/giorno completo.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "caac4ac89441b02fd07cb166d2f1683102e47e1540855986fc6161d31122a087",
+      "catalog": "1.2.0-planner-phase-d",
+      "fixture": "tests/revision-v2-r0.test.mjs, tests/revision-v2-r1.test.mjs; fixture dichiarate sintetiche; corpus allegato per quarantena",
+      "actions": [],
+      "expected": null,
+      "actual": null,
+      "evidenceIds": [
+        "EV-R1-001"
+      ],
+      "partialScopes": [
+        {
+          "status": "PASS",
+          "scope": "Contratto di dominio/servizio R0/R1: non equivale al test V2 completo",
+          "evidenceIds": [
+            "EV-R1-001"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R4-REGRESSION",
+        "EV-R5-STAGING"
+      ]
+    },
+    {
+      "id": "T46",
+      "title": "Sostituzione intero pasto composto",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R4",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "SWAP-07 · P1. Fixture energetica in cui nessuna singola ricetta basta ma due componenti approvati sì. Atteso: proposta composta oppure fallimento motivato con ricerca esaurita, non falsa impossibilità dovuta a ricerca solo singola. Nessuna porzione moltiplicata o ridimensionata.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": null,
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": null,
+      "evidenceIds": [],
+      "partialScopes": [],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R4-REGRESSION",
+        "EV-R5-STAGING"
+      ]
+    },
+    {
+      "id": "T47",
+      "title": "Conferma annullamento e spesa",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R6",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "SWAP-09, HARD-05, SHOP-05 · P1. Confermare una sostituzione; usare undo; ricaricare. Atteso: una sola operazione, messaggi corretti, stato ripristinato e checklist aggiornata come obsoleta solo quando il contenuto necessario cambia.",
+      "status": "PARZIALE",
+      "completeScope": false,
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": "Sottoprove automatiche nella suite R7. Browser/rete/offline/catalogo editoriale non certificati.",
+      "evidenceIds": [],
+      "partialScopes": [
+        {
+          "phase": "R6/R7",
+          "status": "PASS",
+          "scope": "Solo test nominativi di servizio/sorgente e benchmark sintetico",
+          "evidenceIds": [
+            "EV-R6-SERVICES",
+            "EV-R7-REGRESSION"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R6-SERVICES",
+        "EV-R7-REGRESSION"
+      ]
+    },
+    {
+      "id": "T48",
+      "title": "Bozza aderenza e note",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R4",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "UX-07/14 · P1. Scrivere una nota non salvata in un pasto, aprire Sostituisci su un altro e tornare. Atteso: nota preservata o scelta esplicita prima della perdita. Salvare: feedback persistente e coerente dopo render/reload.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": null,
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": null,
+      "evidenceIds": [],
+      "partialScopes": [],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R4-REGRESSION",
+        "EV-R5-STAGING"
+      ]
+    },
+    {
+      "id": "T49",
+      "title": "Titoli brevi e veri",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R5",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "REC-01–03 · P1. Controllo completo dei titoli distribuiti: lunghezza 5–70, assenza di descrittori tecnici vietati, corrispondenza agli ingredienti. Ispezione editoriale dei 120 piatti. Nessun Parmigiano Reggiano dedotto da parmesan USDA, nessuna denominazione italiana falsa.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": null,
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": null,
+      "evidenceIds": [],
+      "partialScopes": [],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T50",
+      "title": "Procedimento rimosso end to end",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R2",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "REC-04–07 · P1. Dettaglio, nuova ricetta, modifica, duplicazione, import nuova ricetta, pipeline, export e ricerca. Atteso: nessun campo o sezione procedimento, nessun requisito instructions e nessun testo generato equivalente. Il backup e il lettore schema 1 preservano lo storico senza errore.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R2-CATALOG",
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T51",
+      "title": "Archetipi coerenti",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R2",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "INV-08 · P1. Aprire nuovi editor ingrediente e ricetta: tutti selezionati. Deselezionare tutti: salvataggio disabilitato con messaggio. Riabilitare uno: valida stessa regola in entrambi i form e nel service.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R2-CATALOG",
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T52",
+      "title": "Peso finale e praticità reali",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R2",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "NUT-06, REC-05 · P1. Ricetta con cereale secco che assorbe acqua e senza resa documentata. Atteso: finalWeightG nullo o dato verificato; somma pesi indicata soltanto come peso ingredienti. Tempi/preparabilità non inferiti da un template privo di revisione.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R2-CATALOG",
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T53",
+      "title": "Pilot e copertura catalogo",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R5",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "CAT-01–04 · P1. Validare prima manifest 40 concetti/60 forme, poi 200/300 e 120 piatti distinti. Atteso: ogni riga nominale risolta, totale categorie uguale alla somma senza duplicati, nessun «altro» conteggiato. Ricette con soli grammi o stati diversi non aumentano la varietà culinaria dichiarata.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": null,
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": null,
+      "evidenceIds": [],
+      "partialScopes": [],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R4-REGRESSION",
+        "EV-R5-STAGING"
+      ]
+    },
+    {
+      "id": "T54",
+      "title": "Provenance e condizioni d'uso",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R5",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "CAT-05–10 · P1. Per ogni nuova forma verificare record originale, dataset/versione, hash, trasformazioni e condizioni. Atteso: nessuna API o licenza inventata, nessun valore derivato da LLM senza fonte. Un adapter può accettare un estratto manuale autorizzato e riprodurre l'import con lo stesso output.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": null,
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": null,
+      "evidenceIds": [],
+      "partialScopes": [],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R4-REGRESSION",
+        "EV-R5-STAGING"
+      ]
+    },
+    {
+      "id": "T55",
+      "title": "Distinzione delle approvazioni",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R5",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "CAT-11 · P1. Eseguire generazione deterministica e validazione tecnica senza revisore umano. Atteso: automatedChecks valorizzati; humanAcceptance non valorizzata; nessuno stato di revisione culinaria umana inventato. Le approvazioni richiedono identità/tipo revisore e data reali.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": null,
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": null,
+      "evidenceIds": [],
+      "partialScopes": [],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R4-REGRESSION",
+        "EV-R5-STAGING"
+      ]
+    },
+    {
+      "id": "T56",
+      "title": "Fattibilità e varietà reali",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R5",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "CAT-04/14, PERF-06 · P1. Usare il nuovo catalogo con profili standard, vegetariano, senza latte, senza glutine, preferenze di frequenza e vincoli pratici, su fixture nutrizionali software dichiarate. Atteso: solo soluzioni conformi o fallimenti spiegati; misurare ripetizioni per concetto e piatto, non solo recipeId. Non importare vecchie ricette problematiche per recuperare il numero nominale di soluzioni.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": null,
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": null,
+      "evidenceIds": [],
+      "partialScopes": [],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R4-REGRESSION",
+        "EV-R5-STAGING"
+      ]
+    },
+    {
+      "id": "T57",
+      "title": "Spesa generica senza somme scorrette",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R6",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "SHOP-01–03 · P1. Piano con 100 g miglio secco e 150 g cotto. Atteso: gruppo Miglio con due righe; con conversione F03 scelta, 160 g equivalenti secchi; senza conversione mai 250 g indifferenziati. Moltiplicatore persone applicato alla sola spesa.",
+      "status": "PARZIALE",
+      "completeScope": false,
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": "Sottoprove automatiche nella suite R7. Browser/rete/offline/catalogo editoriale non certificati.",
+      "evidenceIds": [],
+      "partialScopes": [
+        {
+          "phase": "R6/R7",
+          "status": "PASS",
+          "scope": "Solo test nominativi di servizio/sorgente e benchmark sintetico",
+          "evidenceIds": [
+            "EV-R6-SERVICES",
+            "EV-R7-REGRESSION"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R6-SERVICES",
+        "EV-R7-REGRESSION"
+      ]
+    },
+    {
+      "id": "T58",
+      "title": "Checklist dopo cambio quantità",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R6",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "SHOP-04/05 · P1. Spuntare una riga, aggiungere un pasto che aumenta la quantità, aggiornare da piano. Atteso: quantità cambiata da verificare, note e righe manuali conservate. Cambiare sola aderenza: nessuna obsolescenza se gli input acquisto sono identici.",
+      "status": "PARZIALE",
+      "completeScope": false,
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": "Sottoprove automatiche nella suite R7. Browser/rete/offline/catalogo editoriale non certificati.",
+      "evidenceIds": [],
+      "partialScopes": [
+        {
+          "phase": "R6/R7",
+          "status": "PASS",
+          "scope": "Solo test nominativi di servizio/sorgente e benchmark sintetico",
+          "evidenceIds": [
+            "EV-R6-SERVICES",
+            "EV-R7-REGRESSION"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R6-SERVICES",
+        "EV-R7-REGRESSION"
+      ]
+    },
+    {
+      "id": "T59",
+      "title": "Migrazione senza reset",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R1",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "MIG-01–04 · P0. Usare F07; migrare, interrompere a checkpoint e riprendere due volte. Atteso: stessi dati utente e ID storici, nuova struttura coerente, nessuna duplicazione o chiamata distruttiva per cambio epoch. Report completo degli irrisolti.",
+      "status": "PARZIALE",
+      "completeScope": false,
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+      "catalog": "1.2.0-planner-phase-d",
+      "fixture": "tests/revision-v2-r0.test.mjs, tests/revision-v2-r1.test.mjs; fixture dichiarate sintetiche; corpus allegato per quarantena",
+      "actions": [],
+      "expected": null,
+      "actual": "Sottoprove automatiche nella suite R7. Browser/rete/offline/catalogo editoriale non certificati.",
+      "evidenceIds": [
+        "EV-R1-001"
+      ],
+      "partialScopes": [
+        {
+          "status": "PASS",
+          "scope": "Contratto di dominio/servizio R0/R1: non equivale al test V2 completo",
+          "evidenceIds": [
+            "EV-R1-001"
+          ]
+        },
+        {
+          "phase": "R6/R7",
+          "status": "PASS",
+          "scope": "Solo test nominativi di servizio/sorgente e benchmark sintetico",
+          "evidenceIds": [
+            "EV-R6-SERVICES",
+            "EV-R7-REGRESSION"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R6-SERVICES",
+        "EV-R7-REGRESSION"
+      ]
+    },
+    {
+      "id": "T60",
+      "title": "Backup indipendente dal catalogo corrente",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R6",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "MIG-05–08 · P0. Esportare backup2 con piano storico; installazione vuota con diverso catalogo pubblico; importare offline. Atteso: ricette e ingredienti necessari allo storico risolvibili, nutrienti e note identici, nessuna dipendenza nascosta dal vecchio endpoint.",
+      "status": "PARZIALE",
+      "completeScope": false,
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": "Sottoprove automatiche nella suite R7. Browser/rete/offline/catalogo editoriale non certificati.",
+      "evidenceIds": [],
+      "partialScopes": [
+        {
+          "phase": "R6/R7",
+          "status": "PASS",
+          "scope": "Solo test nominativi di servizio/sorgente e benchmark sintetico",
+          "evidenceIds": [
+            "EV-R6-SERVICES",
+            "EV-R7-REGRESSION"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R6-SERVICES",
+        "EV-R7-REGRESSION"
+      ]
+    },
+    {
+      "id": "T61",
+      "title": "Import malformato e riferimenti orfani",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R6",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "MIG-07, OPS-05 · P0. Backup con checksum errato, schema futuro, ID mancanti, quantità invalide, label con HTML, URL non ammessi e file oltre limite. Atteso: rifiuto prima della mutazione o rendering sicuro per testo valido; dati attuali intatti, nessuno script eseguito.",
+      "status": "PARZIALE",
+      "completeScope": false,
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": "Sottoprove automatiche nella suite R7. Browser/rete/offline/catalogo editoriale non certificati.",
+      "evidenceIds": [],
+      "partialScopes": [
+        {
+          "phase": "R6/R7",
+          "status": "PASS",
+          "scope": "Solo test nominativi di servizio/sorgente e benchmark sintetico",
+          "evidenceIds": [
+            "EV-R6-SERVICES",
+            "EV-R7-REGRESSION"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R6-SERVICES",
+        "EV-R7-REGRESSION"
+      ]
+    },
+    {
+      "id": "T62",
+      "title": "Upgrade PWA con due tab e offline",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R6",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "OPS-01/02 · P0. Tab vecchia, upgrade DB/cat nella nuova, interruzione download, offline/reload. Atteso: nessun bundle misto, tab vecchia non scrive, messaggio di ricarica utile e recupero al checkpoint. Non cancellare automaticamente i dati personali.",
+      "status": "PARZIALE",
+      "completeScope": false,
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": "Sottoprove automatiche nella suite R7. Browser/rete/offline/catalogo editoriale non certificati.",
+      "evidenceIds": [],
+      "partialScopes": [
+        {
+          "phase": "R6/R7",
+          "status": "PASS",
+          "scope": "Solo test nominativi di servizio/sorgente e benchmark sintetico",
+          "evidenceIds": [
+            "EV-R6-SERVICES",
+            "EV-R7-REGRESSION"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R6-SERVICES",
+        "EV-R7-REGRESSION"
+      ]
+    },
+    {
+      "id": "T63",
+      "title": "UX completa e accessibilità",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R7",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "UX-01–14 · P1. Su F05 eseguire onboarding, ricerca, editor, giornata, sostituzione, spesa e backup. Atteso: niente scroll orizzontale di pagina, titoli e stati leggibili, target conformi, focus e label reali, errori associati, ritorno contestuale conservato. Audit sorgente regex non sostituisce questa prova.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": null,
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": null,
+      "evidenceIds": [],
+      "partialScopes": [],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R4-REGRESSION",
+        "EV-R5-STAGING"
+      ]
+    },
+    {
+      "id": "T64",
+      "title": "Performance e annullabilità",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R7",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "PERF-01–05 · P1. Dataset 10.000 ricette, benchmark caldo e primo import separati, almeno 30 query rappresentative e 10 esecuzioni per scenario planner. Atteso: budget p95 della specifica, metadata macchina e seed nel report, UI responsiva e generazione annullabile. Documentare outlier; non eliminare i casi lenti dal campione.",
+      "status": "PARZIALE",
+      "completeScope": false,
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": "Sottoprove automatiche nella suite R7. Browser/rete/offline/catalogo editoriale non certificati.",
+      "evidenceIds": [],
+      "partialScopes": [
+        {
+          "phase": "R6/R7",
+          "status": "PASS",
+          "scope": "Solo test nominativi di servizio/sorgente e benchmark sintetico",
+          "evidenceIds": [
+            "EV-R6-SERVICES",
+            "EV-R7-REGRESSION"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R6-SERVICES",
+        "EV-R7-REGRESSION"
+      ]
+    },
+    {
+      "id": "T65",
+      "title": "Documentazione e gate della nuova linea",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R7",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "DOC-01–04, sezione 20 della specifica · P1. Verificare schemi mirrors, md attivi, skill di progetto, esempi e pipeline. Atteso: nessun contratto attivo opposto alle nuove regole; report H conservati come storici; nuovo dossier con nuovi digest. Tutti i gate necessari passano; accettazione umana resta distinta dall'esito automatico.",
+      "status": "PARZIALE",
+      "completeScope": false,
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": "Sottoprove automatiche nella suite R7. Browser/rete/offline/catalogo editoriale non certificati.",
+      "evidenceIds": [],
+      "partialScopes": [
+        {
+          "phase": "R6/R7",
+          "status": "PASS",
+          "scope": "Solo test nominativi di servizio/sorgente e benchmark sintetico",
+          "evidenceIds": [
+            "EV-R6-SERVICES",
+            "EV-R7-REGRESSION"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R6-SERVICES",
+        "EV-R7-REGRESSION"
+      ]
+    },
+    {
+      "id": "T66",
+      "title": "Favoriti e lock",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R8",
+      "finalGate": "R8 se estensione abilitata",
+      "core": false,
+      "scenario": "Favoriti e lock",
+      "status": "PARZIALE",
+      "completeScope": false,
+      "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "catalog": "Synthetic planner fixture; bundled catalog for portable-backup closure. R5 staging not activated.",
+      "fixture": "tests/revision-v2-r8.test.mjs",
+      "actions": [
+        "Preferito per famiglia, filtro e priorità facoltativa; lock preservato nei due pianificatori e sicurezza prevalente"
+      ],
+      "expected": "Invariants and cross-record constraints hold; browser reload and visual scope require separate evidence",
+      "actual": "Automated service scopes PASS; browser acceptance not executed",
+      "evidenceIds": [
+        "EV-R8-SERVICES"
+      ],
+      "partialScopes": [
+        {
+          "phase": "R8",
+          "status": "PASS",
+          "scope": "Preferito per famiglia, filtro e priorità facoltativa; lock preservato nei due pianificatori e sicurezza prevalente",
+          "evidenceIds": [
+            "EV-R8-SERVICES"
+          ]
+        },
+        {
+          "phase": "R8",
+          "status": "BLOCKED",
+          "scope": "Real browser/IndexedDB/reload/offline",
+          "evidenceIds": [
+            "EV-R8-BROWSER"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Browser reale IT/EN, tastiera/touch/focus e responsive",
+        "Persistenza IndexedDB dopo reload; upgrade DB8→9 e offline; quota/concorrenza reale",
+        "Accettazione editoriale catalogo R5 e gate core R7 ancora aperti"
+      ]
+    },
+    {
+      "id": "T67",
+      "title": "Menu salvato",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R8",
+      "finalGate": "R8 se estensione abilitata",
+      "core": false,
+      "scenario": "Menu salvato",
+      "status": "PARZIALE",
+      "completeScope": false,
+      "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "catalog": "Synthetic planner fixture; bundled catalog for portable-backup closure. R5 staging not activated.",
+      "fixture": "tests/revision-v2-r8.test.mjs",
+      "actions": [
+        "Modello senza note/aderenza, nuove date, ricalcolo, undo, slot bloccati, versione obsoleta e concorrenza"
+      ],
+      "expected": "Invariants and cross-record constraints hold; browser reload and visual scope require separate evidence",
+      "actual": "Automated service scopes PASS; browser acceptance not executed",
+      "evidenceIds": [
+        "EV-R8-SERVICES"
+      ],
+      "partialScopes": [
+        {
+          "phase": "R8",
+          "status": "PASS",
+          "scope": "Modello senza note/aderenza, nuove date, ricalcolo, undo, slot bloccati, versione obsoleta e concorrenza",
+          "evidenceIds": [
+            "EV-R8-SERVICES"
+          ]
+        },
+        {
+          "phase": "R8",
+          "status": "BLOCKED",
+          "scope": "Real browser/IndexedDB/reload/offline",
+          "evidenceIds": [
+            "EV-R8-BROWSER"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Browser reale IT/EN, tastiera/touch/focus e responsive",
+        "Persistenza IndexedDB dopo reload; upgrade DB8→9 e offline; quota/concorrenza reale",
+        "Accettazione editoriale catalogo R5 e gate core R7 ancora aperti"
+      ]
+    },
+    {
+      "id": "T68",
+      "title": "Dispensa",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R8",
+      "finalGate": "R8 se estensione abilitata",
+      "core": false,
+      "scenario": "Dispensa",
+      "status": "PARZIALE",
+      "completeScope": false,
+      "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "catalog": "Synthetic planner fixture; bundled catalog for portable-backup closure. R5 staging not activated.",
+      "fixture": "tests/revision-v2-r8.test.mjs",
+      "actions": [
+        "Quantità ignote/assenti/scadute mai dedotte, pool unico, forme e conversioni esplicite, export checklist"
+      ],
+      "expected": "Invariants and cross-record constraints hold; browser reload and visual scope require separate evidence",
+      "actual": "Automated service scopes PASS; browser acceptance not executed",
+      "evidenceIds": [
+        "EV-R8-SERVICES"
+      ],
+      "partialScopes": [
+        {
+          "phase": "R8",
+          "status": "PASS",
+          "scope": "Quantità ignote/assenti/scadute mai dedotte, pool unico, forme e conversioni esplicite, export checklist",
+          "evidenceIds": [
+            "EV-R8-SERVICES"
+          ]
+        },
+        {
+          "phase": "R8",
+          "status": "BLOCKED",
+          "scope": "Real browser/IndexedDB/reload/offline",
+          "evidenceIds": [
+            "EV-R8-BROWSER"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Browser reale IT/EN, tastiera/touch/focus e responsive",
+        "Persistenza IndexedDB dopo reload; upgrade DB8→9 e offline; quota/concorrenza reale",
+        "Accettazione editoriale catalogo R5 e gate core R7 ancora aperti"
+      ]
+    },
+    {
+      "id": "T69",
+      "title": "Avanzi",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R8",
+      "finalGate": "R8 se estensione abilitata",
+      "core": false,
+      "scenario": "Avanzi",
+      "status": "PARZIALE",
+      "completeScope": false,
+      "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "catalog": "Synthetic planner fixture; bundled catalog for portable-backup closure. R5 staging not activated.",
+      "fixture": "tests/revision-v2-r8.test.mjs",
+      "actions": [
+        "Quattro porzioni/quattro consumi, una produzione, date/conservazione, vincoli, riequilibrio e undo/redo"
+      ],
+      "expected": "Invariants and cross-record constraints hold; browser reload and visual scope require separate evidence",
+      "actual": "Automated service scopes PASS; browser acceptance not executed",
+      "evidenceIds": [
+        "EV-R8-SERVICES"
+      ],
+      "partialScopes": [
+        {
+          "phase": "R8",
+          "status": "PASS",
+          "scope": "Quattro porzioni/quattro consumi, una produzione, date/conservazione, vincoli, riequilibrio e undo/redo",
+          "evidenceIds": [
+            "EV-R8-SERVICES"
+          ]
+        },
+        {
+          "phase": "R8",
+          "status": "BLOCKED",
+          "scope": "Real browser/IndexedDB/reload/offline",
+          "evidenceIds": [
+            "EV-R8-BROWSER"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Browser reale IT/EN, tastiera/touch/focus e responsive",
+        "Persistenza IndexedDB dopo reload; upgrade DB8→9 e offline; quota/concorrenza reale",
+        "Accettazione editoriale catalogo R5 e gate core R7 ancora aperti"
+      ]
+    },
+    {
+      "id": "T70",
+      "title": "Stagionalità e costo",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sourceSha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a",
+      "firstCompletePhase": "R8",
+      "finalGate": "R8 se estensione abilitata",
+      "core": false,
+      "scenario": "Stagionalità e costo",
+      "status": "PARZIALE",
+      "completeScope": false,
+      "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "catalog": "Synthetic planner fixture; bundled catalog for portable-backup closure. R5 staging not activated.",
+      "fixture": "tests/revision-v2-r8.test.mjs",
+      "actions": [
+        "Stagionalità: area/mesi/fonte e peso soft. Costi: fonti locali/datate/unità, mancanti null, zero esplicito, budget incompleto"
+      ],
+      "expected": "Invariants and cross-record constraints hold; browser reload and visual scope require separate evidence",
+      "actual": "Automated service scopes PASS; browser acceptance not executed",
+      "evidenceIds": [
+        "EV-R8-SERVICES"
+      ],
+      "partialScopes": [
+        {
+          "phase": "R8",
+          "status": "PASS",
+          "scope": "Stagionalità: area/mesi/fonte e peso soft. Costi: fonti locali/datate/unità, mancanti null, zero esplicito, budget incompleto",
+          "evidenceIds": [
+            "EV-R8-SERVICES"
+          ]
+        },
+        {
+          "phase": "R8",
+          "status": "BLOCKED",
+          "scope": "Real browser/IndexedDB/reload/offline",
+          "evidenceIds": [
+            "EV-R8-BROWSER"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Browser reale IT/EN, tastiera/touch/focus e responsive",
+        "Persistenza IndexedDB dopo reload; upgrade DB8→9 e offline; quota/concorrenza reale",
+        "Accettazione editoriale catalogo R5 e gate core R7 ancora aperti"
+      ]
+    },
+    {
+      "id": "T71",
+      "title": "Porzioni energia ed esterni invariati",
+      "sourceFile": "specs/revision_v2/FASI_SVILUPPO.md",
+      "sourceSha256": "c15762496dadbc426669599ed463351ba4ca5fdedd300754e4d3562035615830",
+      "firstCompletePhase": "R6",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "Prima esecuzione completa R6. Usare una fixture con piano energeticamente ammissibile e una in cui una soluzione richiederebbe porzioni diverse da uno. Eseguire generazione, estensione, modifica manuale, sostituzione e riequilibrio; ripetere i percorsi introdotti in R4. Atteso: nessun moltiplicatore o tolleranza energetica ampliata di nascosto; risultato rifiutato o ricerca esaurita quando serve. Energia esterna stimata distinta da energia nota. Cambiare persone nella spesa in R6 lascia identici nutrienti e porzioni del piano.",
+      "status": "PARZIALE",
+      "completeScope": false,
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": "Sottoprove automatiche nella suite R7. Browser/rete/offline/catalogo editoriale non certificati.",
+      "evidenceIds": [],
+      "partialScopes": [
+        {
+          "phase": "R6/R7",
+          "status": "PASS",
+          "scope": "Solo test nominativi di servizio/sorgente e benchmark sintetico",
+          "evidenceIds": [
+            "EV-R6-SERVICES",
+            "EV-R7-REGRESSION"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R6-SERVICES",
+        "EV-R7-REGRESSION"
+      ]
+    },
+    {
+      "id": "T72",
+      "title": "Identità mapping e fusioni senza perdita dello storico",
+      "sourceFile": "specs/revision_v2/FASI_SVILUPPO.md",
+      "sourceSha256": "c15762496dadbc426669599ed463351ba4ca5fdedd300754e4d3562035615830",
+      "firstCompletePhase": "R1",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "Prima esecuzione completa R1. Creare due fonti che descrivono la stessa forma e due forme con nomi simili ma composizione diversa; aggiungere un piano storico e una revisione gestita localmente. Tentare mapping mancante, doppio percorso, fusione solo lessicale e reindirizzamento ciclico. Atteso: nessuna fusione automatica; ogni forma corrente ha un solo percorso valido; mapping approvato con motivazione e reindirizzamenti versionati; nessuna media automatica dei nutrienti; ID e valori storici restano risolvibili; il current locale non è sovrascritto. Un concetto Altro non soddisfa la copertura curata.",
+      "status": "PASS",
+      "completeScope": true,
+      "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "catalog": "1.2.0-planner-phase-d",
+      "fixture": "tests/revision-v2-r0.test.mjs, tests/revision-v2-r1.test.mjs; fixture dichiarate sintetiche; corpus allegato per quarantena",
+      "actions": [
+        "Prima esecuzione completa R1. Creare due fonti che descrivono la stessa forma e due forme con nomi simili ma composizione diversa; aggiungere un piano storico e una revisione gestita localmente. Tentare mapping mancante, doppio percorso, fusione solo lessicale e reindirizzamento ciclico. Atteso: nessuna fusione automatica; ogni forma corrente ha un solo percorso valido; mapping approvato con motivazione e reindirizzamenti versionati; nessuna media automatica dei nutrienti; ID e valori storici restano risolvibili; il current locale non è sovrascritto. Un concetto Altro non soddisfa la copertura curata."
+      ],
+      "expected": "Prima esecuzione completa R1. Creare due fonti che descrivono la stessa forma e due forme con nomi simili ma composizione diversa; aggiungere un piano storico e una revisione gestita localmente. Tentare mapping mancante, doppio percorso, fusione solo lessicale e reindirizzamento ciclico. Atteso: nessuna fusione automatica; ogni forma corrente ha un solo percorso valido; mapping approvato con motivazione e reindirizzamenti versionati; nessuna media automatica dei nutrienti; ID e valori storici restano risolvibili; il current locale non è sovrascritto. Un concetto Altro non soddisfa la copertura curata.",
+      "actual": "Asserzioni pertinenti PASS; vedere test nominati con ID padre nei log",
+      "evidenceIds": [
+        "EV-R8-REGRESSION"
+      ],
+      "partialScopes": [],
+      "remainingScopes": [],
+      "historicalEvidenceIds": [
+        "EV-R1-001"
+      ]
+    },
+    {
+      "id": "T73",
+      "title": "Autore italiano senza compilazione inglese obbligatoria",
+      "sourceFile": "specs/revision_v2/FASI_SVILUPPO.md",
+      "sourceSha256": "c15762496dadbc426669599ed463351ba4ca5fdedd300754e4d3562035615830",
+      "firstCompletePhase": "R2",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "Prima esecuzione completa R2. Creare e modificare una ricetta locale compilando soltanto l’italiano; salvare, duplicare, ricaricare e passare a EN. Atteso: salvataggio valido con forma e quantità corrette; fallback linguistico esplicito, nessun testo tradotto inventato né campo inglese obbligatorio nascosto. Esportazione e reimport mantengono il contenuto. Il catalogo pubblico continua a richiedere etichette curate secondo INV-09.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": null,
+      "fixture": "tests/revision-v2-r2-r3.test.mjs; fixtures sintetiche e corpus allegato nell’audit R2",
+      "actions": [],
+      "expected": null,
+      "actual": "Sotto-prove di dominio/service e audit sorgenti passati; vedere log nominativi. Lo scenario end-to-end completo resta aperto.",
+      "evidenceIds": [
+        "EV-R2-CATALOG",
+        "EV-R3-REGRESSION"
+      ],
+      "partialScopes": [
+        "R2/R3: test automatici e migrazione disponibili; browser, dispositivi, reload/IndexedDB/offline e intero scenario non certificati."
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ]
+    },
+    {
+      "id": "T74",
+      "title": "Privacy della pianificazione e integrità del bundle",
+      "sourceFile": "specs/revision_v2/FASI_SVILUPPO.md",
+      "sourceSha256": "c15762496dadbc426669599ed463351ba4ca5fdedd300754e4d3562035615830",
+      "firstCompletePhase": "R6",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "Prima esecuzione completa R6. Usare esclusivamente un profilo sintetico riconoscibile e registrare le richieste di rete durante configurazione, generazione, ricerca, sostituzione ed export. Atteso: nessun dato del profilo, delle allergie o delle note inviato a servizi esterni; asset e cataloghi pubblici identificati separatamente. Ispezionare configurazione e bundle pubblicato: nessuna credenziale o telemetria obbligatoria. Disconnettere la rete dopo il download: i flussi locali previsti restano disponibili senza account. Il log di prova non deve contenere credenziali reali.",
+      "status": "PARZIALE",
+      "completeScope": false,
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+      "catalog": "1.2.0-planner-phase-d",
+      "fixture": "tests/revision-v2-r0.test.mjs, tests/revision-v2-r1.test.mjs; fixture dichiarate sintetiche; corpus allegato per quarantena",
+      "actions": [],
+      "expected": null,
+      "actual": "Sottoprove automatiche nella suite R7. Browser/rete/offline/catalogo editoriale non certificati.",
+      "evidenceIds": [
+        "EV-R1-001"
+      ],
+      "partialScopes": [
+        {
+          "status": "PASS",
+          "scope": "Contratto di dominio/servizio R0/R1: non equivale al test V2 completo",
+          "evidenceIds": [
+            "EV-R1-001"
+          ]
+        },
+        {
+          "phase": "R6/R7",
+          "status": "PASS",
+          "scope": "Solo test nominativi di servizio/sorgente e benchmark sintetico",
+          "evidenceIds": [
+            "EV-R6-SERVICES",
+            "EV-R7-REGRESSION"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R6-SERVICES",
+        "EV-R7-REGRESSION"
+      ]
+    },
+    {
+      "id": "T75",
+      "title": "Diagnostica locale con contenuti sensibili esclusi",
+      "sourceFile": "specs/revision_v2/FASI_SVILUPPO.md",
+      "sourceSha256": "c15762496dadbc426669599ed463351ba4ca5fdedd300754e4d3562035615830",
+      "firstCompletePhase": "R6",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "Prima esecuzione completa R6. Con nomi di regole e note sintetiche, provocare un errore controllato e generare il rapporto diagnostico predefinito. Atteso: versioni, contatori ed error code utili; nomi sensibili e note omessi; nessun upload. L’inclusione facoltativa di dati scelti richiede un’azione esplicita e un’anteprima chiara; annullare non crea una condivisione. Il normale messaggio UI resta leggibile e non mostra stack o ID al posto della spiegazione.",
+      "status": "PARZIALE",
+      "completeScope": false,
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": "Sottoprove automatiche nella suite R7. Browser/rete/offline/catalogo editoriale non certificati.",
+      "evidenceIds": [],
+      "partialScopes": [
+        {
+          "phase": "R6/R7",
+          "status": "PASS",
+          "scope": "Solo test nominativi di servizio/sorgente e benchmark sintetico",
+          "evidenceIds": [
+            "EV-R6-SERVICES",
+            "EV-R7-REGRESSION"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R6-SERVICES",
+        "EV-R7-REGRESSION"
+      ]
+    },
+    {
+      "id": "T76",
+      "title": "Spesa esportata per periodo e reparti persistenti",
+      "sourceFile": "specs/revision_v2/FASI_SVILUPPO.md",
+      "sourceSha256": "c15762496dadbc426669599ed463351ba4ca5fdedd300754e4d3562035615830",
+      "firstCompletePhase": "R6",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "Prima esecuzione completa R6. Creare due periodi con pasti noti, uno esterno ignoto e righe manuali; cambiare l’ordine dei reparti. Selezionare un periodo, esportare il testo e aprire l’anteprima di stampa. Atteso: solo acquisti del periodo secondo le regole dichiarate, righe manuali gestite esplicitamente, forme non aggregabili distinte, ordine reparti persistito dopo reload. L’esportazione indica che gli esterni ignoti non contribuiscono al calcolo; la tassonomia nutrizionale non cambia.",
+      "status": "PARZIALE",
+      "completeScope": false,
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": "Sottoprove automatiche nella suite R7. Browser/rete/offline/catalogo editoriale non certificati.",
+      "evidenceIds": [],
+      "partialScopes": [
+        {
+          "phase": "R6/R7",
+          "status": "PASS",
+          "scope": "Solo test nominativi di servizio/sorgente e benchmark sintetico",
+          "evidenceIds": [
+            "EV-R6-SERVICES",
+            "EV-R7-REGRESSION"
+          ]
+        }
+      ],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R6-SERVICES",
+        "EV-R7-REGRESSION"
+      ]
+    },
+    {
+      "id": "T77",
+      "title": "Editor Base e Avanzate senza decisioni implicite",
+      "sourceFile": "specs/revision_v2/FASI_SVILUPPO.md",
+      "sourceSha256": "c15762496dadbc426669599ed463351ba4ca5fdedd300754e4d3562035615830",
+      "firstCompletePhase": "R4",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "Prima esecuzione completa R4. Aprire editor ingrediente, ricetta e configurazione; modificare valori, alternare Base e Avanzate, applicare un preset e duplicare una classe con scope di preferenze ristretto. Atteso: draft conservato, modifica del preset resa esplicita, nessun errore o campo obbligatorio irraggiungibile, ID generati. La nuova classe non entra automaticamente in scope ristretto. Nel dettaglio ingrediente nome comune, forma e nutrienti precedono i dati tecnici espandibili.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": null,
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": null,
+      "evidenceIds": [],
+      "partialScopes": [],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R4-REGRESSION",
+        "EV-R5-STAGING"
+      ]
+    },
+    {
+      "id": "T78",
+      "title": "Operazioni asincrone del catalogo con editor modificato",
+      "sourceFile": "specs/revision_v2/FASI_SVILUPPO.md",
+      "sourceSha256": "c15762496dadbc426669599ed463351ba4ca5fdedd300754e4d3562035615830",
+      "firstCompletePhase": "R4",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "Prima esecuzione completa R4. Tenere aperto un editor con testo non salvato; completare una ricerca vecchia, aggiornare indici/import pubblico e provocare un errore asincrono. Atteso: il draft non viene sostituito né salvato implicitamente; richieste obsolete ignorate, comando riabilitato, errore locale e ripresa possibili. Generare un piano costoso e annullarlo: l’interfaccia continua a rispondere e nessuna risposta tardiva scrive il risultato. Ripetere con Worker o chunking effettivamente scelti.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": null,
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": null,
+      "evidenceIds": [],
+      "partialScopes": [],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R4-REGRESSION",
+        "EV-R5-STAGING"
+      ]
+    },
+    {
+      "id": "T79",
+      "title": "Stato del profilo e distinzioni di sicurezza",
+      "sourceFile": "specs/revision_v2/FASI_SVILUPPO.md",
+      "sourceSha256": "c15762496dadbc426669599ed463351ba4ca5fdedd300754e4d3562035615830",
+      "firstCompletePhase": "R4",
+      "finalGate": "R7",
+      "core": true,
+      "scenario": "Prima esecuzione completa R4. Aprire una nuova installazione, lasciare la sicurezza non verificata, riprendere l’onboarding e dichiarare esplicitamente nessuna allergia. Atteso: due stati diversi con riepiloghi coerenti; valori dimostrativi riconoscibili. Importare una regola legacy sul glutine: non viene dedotta una diagnosi. Creare separatamente allergia al latte, intolleranza scelta dall’utente e celiachia; nessuna conversione automatica fra condizioni, soglia clinica inventata o override monouso nel picker. Per correggere una regola si apre l’editor, si mostra l’impatto e si salva esplicitamente.",
+      "status": "DA ESEGUIRE",
+      "completeScope": false,
+      "buildSha256": null,
+      "catalog": null,
+      "fixture": null,
+      "actions": [],
+      "expected": null,
+      "actual": null,
+      "evidenceIds": [],
+      "partialScopes": [],
+      "remainingScopes": [
+        "Scenario completo nelle fasi indicate dal piano; browser reale dove pertinente"
+      ],
+      "implementationEvidenceIds": [
+        "EV-R4-REGRESSION",
+        "EV-R5-STAGING"
+      ]
+    }
+  ]
+}

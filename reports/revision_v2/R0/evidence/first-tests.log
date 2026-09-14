@@ -1,0 +1,186 @@
+✔ day adherence summary is derived from meal occurrence states (1.259081ms)
+✖ plan creation is one undoable and redoable atomic operation (46.385088ms)
+✖ adherence update persists per meal, derives day status, and undo restores previous day (33.433057ms)
+✖ replacement preview excludes current recipe and hard-allergen candidates; commit is undoable (32.105987ms)
+✖ rebalance creates a dedicated GenerationRun, commits selected dates, and rolls back atomically (20.403379ms)
+✖ new edit after undo invalidates the redo branch without deleting audit history (16.791158ms)
+✖ today view uses civil consumption date and includes carry-over meals from prior diet date (18.213313ms)
+✖ external adherence can persist a retrospective user estimate only when policy allows it (17.897088ms)
+✔ every browser-loaded JSON schema is an exact mirror of the canonical schema (37.200407ms)
+✖ public ingredientRevision schema accepts production energy provenance but remains closed (26.842136ms)
+✔ runtime JSON Schema validator accepts all canonical examples (32.626029ms)
+✔ runtime JSON Schema validator rejects an invalid allergen id (1.859155ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 4
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 335.707786
+
+✖ failing tests:
+
+test at tests/plan-phase6.test.mjs:67:1
+✖ plan creation is one undoable and redoable atomic operation (46.385088ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'failed'
+  - 'success'
+  
+      at committedPlan (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/plan-phase6.test.mjs:56:10)
+      at async TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/plan-phase6.test.mjs:68:39)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'failed',
+    expected: 'success',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/plan-phase6.test.mjs:76:1
+✖ adherence update persists per meal, derives day status, and undo restores previous day (33.433057ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'failed'
+  - 'success'
+  
+      at committedPlan (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/plan-phase6.test.mjs:56:10)
+      at async TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/plan-phase6.test.mjs:77:39)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'failed',
+    expected: 'success',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/plan-phase6.test.mjs:84:1
+✖ replacement preview excludes current recipe and hard-allergen candidates; commit is undoable (32.105987ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'failed'
+  - 'success'
+  
+      at committedPlan (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/plan-phase6.test.mjs:56:10)
+      at async TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/plan-phase6.test.mjs:85:39)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'failed',
+    expected: 'success',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/plan-phase6.test.mjs:95:1
+✖ rebalance creates a dedicated GenerationRun, commits selected dates, and rolls back atomically (20.403379ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'failed'
+  - 'success'
+  
+      at committedPlan (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/plan-phase6.test.mjs:56:10)
+      at async TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/plan-phase6.test.mjs:96:39)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'failed',
+    expected: 'success',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/plan-phase6.test.mjs:105:1
+✖ new edit after undo invalidates the redo branch without deleting audit history (16.791158ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'failed'
+  - 'success'
+  
+      at committedPlan (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/plan-phase6.test.mjs:56:10)
+      at async TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/plan-phase6.test.mjs:106:39)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'failed',
+    expected: 'success',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/plan-phase6.test.mjs:114:1
+✖ today view uses civil consumption date and includes carry-over meals from prior diet date (18.213313ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'failed'
+  - 'success'
+  
+      at committedPlan (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/plan-phase6.test.mjs:56:10)
+      at async TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/plan-phase6.test.mjs:115:20)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'failed',
+    expected: 'success',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/plan-phase6.test.mjs:119:1
+✖ external adherence can persist a retrospective user estimate only when policy allows it (17.897088ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'failed'
+  - 'success'
+  
+      at committedPlan (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/plan-phase6.test.mjs:56:10)
+      at async TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/plan-phase6.test.mjs:120:39)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'failed',
+    expected: 'success',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/schema-public-mirrors.test.mjs:20:1
+✖ public ingredientRevision schema accepts production energy provenance but remains closed (26.842136ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /additional properties not allowed: uncontrolledField/. Input:
+  
+  'Error: ingredientRevision schema validation failed: $: must match exactly one oneOf branch'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/schema-public-mirrors.test.mjs:36:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: ingredientRevision schema validation failed: $: must match exactly one oneOf branch
+        at SchemaRegistry.assert (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/src/lib/schemaValidator.js:100:30)
+        at file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/schema-public-mirrors.test.mjs:36:32
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/schema-public-mirrors.test.mjs:36:10)
+        at async Test.run (node:internal/test_runner/test:1389:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:960:7),
+    expected: /additional properties not allowed: uncontrolledField/,
+    operator: 'throws',
+    diff: 'simple'
+  }

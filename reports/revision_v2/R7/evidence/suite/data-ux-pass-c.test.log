@@ -1,0 +1,12 @@
+✔ Pass C standard bootstrap is neutral, complete and schema-valid (57.207633ms)
+✔ Pass C bootstrap upgrades only untouched legacy defaults and preserves explicit user configuration (51.459235ms)
+✔ Pass C editable-route registry and dirty confirmation use one global navigation rule (0.760879ms)
+✔ Pass C source audit centralizes disclosure state, guarded navigation, feedback and DayClass capabilities (5.974673ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 237.718475

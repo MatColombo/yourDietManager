@@ -1,3 +1,5 @@
+import { extensionPreferenceScore } from '../domain/productExtensions.js';
+import { legacyPreferenceRules } from '../domain/frequencyCounter.js';
 import { nutritionPenalty, matchOperator } from './planMath.js';
 import { recipeMatchesTarget, numericRuleSatisfied, families, cuisines, primaryIngredientId, foodCategories } from './recipeFeatures.js';
 import { PLANNER_SOFT_OBJECTIVE_POLICY } from './qualityPolicy.js';
@@ -29,7 +31,7 @@ export function preferenceScore(recipe, { mealClass, foodPreferences, revisionBy
       reasons.push(`${rule.strength}:${rule.ruleType}:${rule.target}`);
     } else if ((rule.ruleType === 'nutrition' || rule.ruleType === 'practical') && ['prefer', 'slight_prefer'].includes(rule.strength)) score += 0.75;
   }
-  for (const rule of foodPreferences?.rules || []) {
+  for (const rule of legacyPreferenceRules(foodPreferences)) {
     if (rule.autoExclude) continue;
     if (recipeMatchesTarget(recipe, rule.targetType, rule.targetId, revisionById)) {
       score += PREFERENCE[rule.level] || 0;
@@ -54,7 +56,7 @@ export function varietyScore(recipe, { history = [], date, revisionById, foodPre
     const cuisineCount = countFeature(entries, r => cuisines(r), cuisines(recipe));
     score += recipeCount * window.recipe + familyCount * window.family + primaryCount * window.primary + categoryCount * window.category + cuisineCount * window.cuisine;
   }
-  for (const rule of foodPreferences?.rules || []) {
+  for (const rule of legacyPreferenceRules(foodPreferences)) {
     if (!rule.frequency || !recipeMatchesTarget(recipe, rule.targetType, rule.targetId, revisionById)) continue;
     const entries = recent(history, date, rule.frequency.windowDays);
     const occurrences = entries.filter(entry => recipeMatchesTarget(entry.recipe, rule.targetType, rule.targetId, revisionById)).length;
@@ -70,7 +72,7 @@ export function varietyScore(recipe, { history = [], date, revisionById, foodPre
 }
 
 export function scoreRecipe(recipe, context) {
-  const pref = preferenceScore(recipe, context);
+  const pref = preferenceScore(recipe, context); const extension = extensionPreferenceScore(recipe, context); pref.score += extension.score; pref.reasons.push(...extension.reasons);
   const variety = varietyScore(recipe, context);
   const target = context.slotEnergyTarget;
   const nutrientTargetFactor = target / Math.max(1, context.dayEnergyTarget);

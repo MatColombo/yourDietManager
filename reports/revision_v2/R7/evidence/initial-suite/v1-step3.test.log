@@ -1,0 +1,31 @@
+✖ Step3 A - V1 catalog backup validates and round-trips user configuration without replacing base catalog (9463.969351ms)
+✔ Step3 B - delete local data clears private state but preserves public PWA caches by default (6616.37519ms)
+✔ Step3 C - destructive delete can clear owned public caches when explicitly requested (0.801167ms)
+✔ Step3 D - stable release gate is fail-closed on the candidate and green after metadata-only promotion (237.060516ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16494.55887
+
+✖ failing tests:
+
+test at tests/v1-step3.test.mjs:40:1
+✖ Step3 A - V1 catalog backup validates and round-trips user configuration without replacing base catalog (9463.969351ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  3 !== 2
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R6_R7/tests/v1-step3.test.mjs:49:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 3,
+    expected: 2,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,17 @@
+✔ R1 structural schema is DB v7 and applies the new compound catalog indexes without deleting stores (1.738771ms)
+✔ content migration resumes after interruption and is idempotent (36.954961ms)
+✔ 10k unfiltered catalog browsing reads only the requested page of RecipeVersion records (323.426456ms)
+✔ 10k operation history uses persisted head/redo pointers for new commits and bounded recent reads (185.939105ms)
+✔ offline pack planner selects only the shard families needed by the installed recipe versions (11.023107ms)
+✔ catalog update can roll back to the previous active family pointers while retaining immutable staged records (68.254407ms)
+✔ failed catalog update records recoverable state without switching the active version (42.888064ms)
+✔ runtime storage metrics persist record counts and quota estimates in meta (0.482978ms)
+✔ Phase 8 accessibility and offline source gates are present (1.581141ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 810.246812

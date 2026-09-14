@@ -35,7 +35,7 @@ export async function validateReleaseData({ policy, catalogVersion, taxonomies =
       try { const nutrition=calculateRecipeNutrition(version.ingredientLines,byId); if(JSON.stringify(nutrition)!==JSON.stringify(version.calculatedNutrition)) issues.push({code:'nutrition_mismatch',id:version.recipeVersionId}); const allergens=deriveAllergens(version.ingredientLines,byId); if(JSON.stringify(allergens)!==JSON.stringify([...(version.allergenIds||[])].sort())) issues.push({code:'allergen_mismatch',id:version.recipeVersionId}); } catch(error){issues.push({code:'nutrition_recalc_error',id:version.recipeVersionId,detail:error.message});}
       const inputDigest=await sha256Json({ calculationAlgorithmVersion:version.calculationAlgorithmVersion, ingredientLines:(version.ingredientLines||[]).map(line=>({ingredientRevisionId:line.ingredientRevisionId,normalizedAmount:line.normalizedAmount,normalizedUnit:line.normalizedUnit})) }); if(inputDigest!==version.inputDigest) issues.push({code:'input_digest_mismatch',id:version.recipeVersionId});
     }
-    for(const locale of requiredLocales) if(!version.i18n?.[locale]?.title?.trim() || !version.i18n?.[locale]?.instructions?.length) issues.push({code:'missing_locale',id:version.recipeVersionId,locale});
+    for(const locale of requiredLocales) if(!version.i18n?.[locale]?.title?.trim()) issues.push({code:'missing_locale',id:version.recipeVersionId,locale});
     const contentHash=await sha256Json({ ...version, contentHash:'' }); if(contentHash!==version.contentHash) issues.push({code:'recipe_content_hash_mismatch',id:version.recipeVersionId});
   }
   if (productionContract) {

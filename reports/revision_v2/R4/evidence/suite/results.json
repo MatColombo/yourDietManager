@@ -1,0 +1,212 @@
+[
+  {
+    "file": "tests/backup.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.41
+  },
+  {
+    "file": "tests/catalog-importer.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.32
+  },
+  {
+    "file": "tests/catalog-phase3.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.81
+  },
+  {
+    "file": "tests/configuration.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.68
+  },
+  {
+    "file": "tests/controlled-scale-500.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.27
+  },
+  {
+    "file": "tests/core.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.23
+  },
+  {
+    "file": "tests/corpus-phase4.test.mjs",
+    "exitCode": 0,
+    "seconds": 1.07
+  },
+  {
+    "file": "tests/corpus-production-execution.test.mjs",
+    "exitCode": 0,
+    "seconds": 1.35
+  },
+  {
+    "file": "tests/corpus-production-pass-a.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.6
+  },
+  {
+    "file": "tests/corpus-production-pass-b.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.73
+  },
+  {
+    "file": "tests/corpus-production-pass-c.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.62
+  },
+  {
+    "file": "tests/data-ux-pass-b.test.mjs",
+    "exitCode": 0,
+    "seconds": 19.71
+  },
+  {
+    "file": "tests/data-ux-pass-c.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.36
+  },
+  {
+    "file": "tests/data-ux-pass-d.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.7
+  },
+  {
+    "file": "tests/data-ux-pass-e.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.21
+  },
+  {
+    "file": "tests/fdc-auto-curation.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.25
+  },
+  {
+    "file": "tests/github-pages.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.27
+  },
+  {
+    "file": "tests/hardening-phase8.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.9
+  },
+  {
+    "file": "tests/plan-phase6.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.79
+  },
+  {
+    "file": "tests/planner-phase5.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.85
+  },
+  {
+    "file": "tests/production-execution-workflow.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.48
+  },
+  {
+    "file": "tests/production-review-500.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.74
+  },
+  {
+    "file": "tests/reference-data-pass-a.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.73
+  },
+  {
+    "file": "tests/revision-v2-r0.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.71
+  },
+  {
+    "file": "tests/revision-v2-r1.test.mjs",
+    "exitCode": 0,
+    "seconds": 1.49
+  },
+  {
+    "file": "tests/revision-v2-r2-r3.test.mjs",
+    "exitCode": 0,
+    "seconds": 10.09
+  },
+  {
+    "file": "tests/revision-v2-r4-r5.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.69
+  },
+  {
+    "file": "tests/schema-public-mirrors.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.33
+  },
+  {
+    "file": "tests/schema-validator.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.28
+  },
+  {
+    "file": "tests/shopping-phase7.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.39
+  },
+  {
+    "file": "tests/v1-engine-phase-a.test.mjs",
+    "exitCode": 0,
+    "seconds": 36.05
+  },
+  {
+    "file": "tests/v1-planner-phase-b.test.mjs",
+    "exitCode": 0,
+    "seconds": 12.38
+  },
+  {
+    "file": "tests/v1-planner-phase-c.test.mjs",
+    "exitCode": 0,
+    "seconds": 19.05
+  },
+  {
+    "file": "tests/v1-planner-phase-d-ux.test.mjs",
+    "exitCode": 0,
+    "seconds": 7.44
+  },
+  {
+    "file": "tests/v1-planner-phase-d.test.mjs",
+    "exitCode": 0,
+    "seconds": 47.65
+  },
+  {
+    "file": "tests/v1-planner-phase-e.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.2
+  },
+  {
+    "file": "tests/v1-planner-phase-f.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.21
+  },
+  {
+    "file": "tests/v1-planner-phase-g.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.23
+  },
+  {
+    "file": "tests/v1-planner-phase-h.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.61
+  },
+  {
+    "file": "tests/v1-step1.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.39
+  },
+  {
+    "file": "tests/v1-step2.test.mjs",
+    "exitCode": 0,
+    "seconds": 91.83
+  },
+  {
+    "file": "tests/v1-step3.test.mjs",
+    "exitCode": 0,
+    "seconds": 15.19
+  }
+]

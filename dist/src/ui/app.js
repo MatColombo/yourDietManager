@@ -1,28 +1,31 @@
+import { parseBackupText, MAX_BACKUP_BYTES } from '../services/portableBackup.js';
+import { createLocalDiagnostics } from '../services/localDiagnostics.js';
 import { element, clear } from './dom.js';
 import { validateThemeContrast, applyTheme } from '../theme/themeEngine.js';
-import { createBackup, importBackup } from '../services/backupEngine.js';
+import { createBackup, importBackup, validateBackup } from '../services/backupEngine.js';
 import { deleteAllLocalData } from '../services/localDataService.js';
 import { loadConfigurationBundle, saveConfigurationBundle } from '../services/configurationService.js';
 import {
   configurationIndexPage, cyclePage, dayClassesPage, mealClassesPage, nutritionPage,
-  preferencesPage, safetyPage
+  preferencesPage, safetyPage, profileSetupPage
 } from './configurationPages.js';
 import { ingredientDetailPage, ingredientEditorPage, ingredientsPage, packsPage, recipeDetailPage, recipeEditorPage, recipesPage, productionReviewPage } from './catalogPages.js';
 import { todayPage, calendarPage, manageDayPage, historyPage } from './planPages.js';
+import { productExtensionPage } from './productExtensionPages.js';
 import { shoppingPage } from './shoppingPages.js';
 import { plannerValidationPage } from './plannerValidationPage.js';
 import { manualAcceptancePage } from './manualAcceptancePage.js';
 import { referenceDataPage } from './referenceDataPages.js';
 import { routePath } from '../lib/appBase.js';
-import { notificationRegion } from './uiState.js';
+import { notificationRegion, controlledDetails } from './uiState.js';
 
 const PRIMARY = [['/', 'nav.today'], ['/calendar', 'nav.calendar'], ['/recipes', 'nav.recipes'], ['/shopping', 'nav.shopping']];
-const SECONDARY = [['/configure', 'nav.configure'], ['/planner-validation', 'nav.plannerValidation'], ['/manual-acceptance', 'nav.manualAcceptance'], ['/appearance', 'nav.appearance'], ['/language', 'nav.language'], ['/backup', 'nav.backup']];
+const SECONDARY = [['/configure', 'nav.configure'], ['/organize/favorites', 'nav.organize'], ['/appearance', 'nav.appearance'], ['/language', 'nav.language'], ['/backup', 'nav.backup']];
 
 function navLink(state, [href, key]) {
   const currentPath = routePath();
-  const active = currentPath === href || (href === '/recipes' && currentPath.startsWith('/recipes')) || (href === '/configure' && currentPath.startsWith('/configure'));
-  return element('a', { href, 'data-route': '', className: `nav-link${active ? ' nav-link--active' : ''}`, 'aria-current': active ? 'page' : null, text: state.i18n.t(key) });
+  const active = (href.startsWith('/organize') && currentPath.startsWith('/organize')) || currentPath === href || (href === '/recipes' && currentPath.startsWith('/recipes')) || (href === '/configure' && currentPath.startsWith('/configure'));
+  return element('a', { href, 'data-route': '', className: `nav-link${active ? ' nav-link--active' : ''}`, 'aria-current': active ? 'page' : null, text: key==='nav.organize'?(state.i18n.locale==='it'?'Organizza':'Organize'):state.i18n.t(key) });
 }
 
 function catalogPanel(state) {
@@ -127,13 +130,19 @@ function backupPage(state) {
   input.addEventListener('change', async () => {
     const file = input.files?.[0]; if (!file) return;
     try {
-      const result = await importBackup(JSON.parse(await file.text()), { repo: state.repo, registry: state.registry }); state.preImportBackup = result.preImportBackup;
+      if (file.size > MAX_BACKUP_BYTES) throw new Error('Backup exceeds 64 MiB');
+      const candidate = parseBackupText(await file.text());
+      await validateBackup(candidate, {repo:state.repo,registry:state.registry});
+      const approved = await confirmBackupRestore(candidate,state); if (!approved) return;
+      const result = await importBackup(candidate, { repo: state.repo, registry: state.registry }); state.preImportBackup = result.preImportBackup;
       state.configuration = await loadConfigurationBundle(state.repo); state.config = state.configuration.appConfig;
       state.theme = state.configuration.themeProfiles.find(theme => theme.id === state.config.themeProfileId); state.i18n.setLocale(state.config.locale); applyTheme(state.theme);
       state.notice = state.i18n.t('backup.import.success'); state.notify?.('success', state.notice); state.render();
     } catch (error) { status.className = 'validation-box validation-box--error'; status.textContent = `${state.i18n.t('backup.import.error')}: ${error.message || error}`; }
     finally { input.value = ''; }
   });
+  const diagnostics = element('button', {className:'button button--secondary',text:state.i18n.locale==='it'?'Esporta diagnostica senza dati personali':'Export diagnostics without personal data',onClick:async()=>{try {const report=await createLocalDiagnostics({repo:state.repo}); const blob=new Blob([JSON.stringify(report,null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=element('a',{href:url,download:'yourDietManager-diagnostics.json'});document.body.append(a);a.click();a.remove();URL.revokeObjectURL(url);}catch(e){status.textContent=e.message;}}});
+  section.append(diagnostics, element('button',{className:'button button--secondary',text:state.i18n.locale==='it'?'Scarica copia precedente all’ultimo ripristino':'Download copy before last restore',onClick:async()=>{const recovery=await state.repo.getMeta('backupRecovery');if(recovery)downloadJson(recovery);else status.textContent=state.i18n.locale==='it'?'Nessun ripristino precedente disponibile.':'No previous restore available.';}}));
   section.append(element('div', { className: 'button-row' }, [exportButton, importButton]), input, status);
   if (state.notice) section.append(element('div', { className: 'validation-box', text: state.notice }));
   if (state.preImportBackup) {
@@ -164,7 +173,7 @@ function onboardingDisabledPage(state) {
 
 function routePage(state) {
   const path = routePath();
-  if (path === '/onboarding') return onboardingDisabledPage(state);
+  if (path === '/onboarding') return profileSetupPage(state);
   if (path === '/calendar/day') return manageDayPage(state);
   if (path === '/calendar') return calendarPage(state);
   if (path === '/history') return historyPage(state);
@@ -177,6 +186,7 @@ function routePage(state) {
   const recipeDetailMatch = path.match(/^\/recipes\/([^/]+)$/);
   if (recipeDetailMatch) return recipeDetailPage(state, decodeURIComponent(recipeDetailMatch[1]), new URLSearchParams(location.search).get('version'));
   if (path === '/recipes') return recipesPage(state);
+  if (/^\/organize(?:\/(favorites|menus|pantry|batches|seasonality|prices|preferences))?$/.test(path)) return productExtensionPage(state, path.split('/')[2] || 'favorites');
   if (path === '/shopping') return shoppingPage(state);
   if (path === '/planner-validation') return plannerValidationPage(state);
   if (path === '/manual-acceptance') return manualAcceptancePage(state);
@@ -212,7 +222,7 @@ export function renderApp(root, state) {
   const sidebar = element('aside', { className: 'sidebar', 'aria-label': state.i18n.t('a11y.mainNavigation') });
   const primary = element('nav', { className: 'nav-group' }, PRIMARY.map(item => navLink(state, item)));
   const secondary = element('nav', { className: 'nav-group nav-group--secondary' }, SECONDARY.map(item => navLink(state, item)));
-  sidebar.append(primary, element('div', { className: 'nav-divider' }), secondary, catalogPanel(state));
+  sidebar.append(primary, element('div', { className: 'nav-divider' }), secondary, controlledDetails(state, 'advanced-diagnostics', { children: [element('summary', { text: state.i18n.locale === 'it' ? 'Diagnostica avanzata' : 'Advanced diagnostics' }), navLink(state, ['/planner-validation', 'nav.plannerValidation']), navLink(state, ['/manual-acceptance', 'nav.manualAcceptance']), catalogPanel(state)] }));
   const content = element('main', { className: 'content', id: 'main-content', tabindex: '-1' }, [routePage(state)]);
   shell.append(skip, topbar, sidebar, content, notificationRegion(state)); root.append(shell);
   const heading = content.querySelector('h1');
@@ -229,4 +239,9 @@ export function renderApp(root, state) {
       }
     });
   }
+}
+
+function confirmBackupRestore(candidate,state) {
+  const it=state.i18n.locale==='it';return new Promise(resolve=>{const dialog=element('dialog',{'aria-label':it?'Conferma ripristino':'Confirm restore'});let accepted=false;
+    dialog.append(element('h2',{text:it?'Ripristina questo backup?':'Restore this backup?'}),element('p',{text:`${candidate.createdAt} · ${candidate.payload.plans.length} ${it?'piani':'plans'} · ${candidate.payload.shoppingChecklists.length} checklist`}),element('p',{text:it?'Sostituisce i dati locali. Una copia dello stato precedente verrà conservata sul dispositivo.':'Replaces local data. A copy of the previous state will be kept on this device.'}),element('button',{className:'button button--secondary',text:it?'Annulla':'Cancel',onClick:()=>dialog.close()}),element('button',{className:'button',text:it?'Ripristina':'Restore',onClick:()=>{accepted=true;dialog.close();}}));dialog.addEventListener('close',()=>{dialog.remove();resolve(accepted);},{once:true});document.body.append(dialog);dialog.showModal();});
 }

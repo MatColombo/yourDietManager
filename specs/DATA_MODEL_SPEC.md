@@ -1,3 +1,5 @@
+> Contratto corrente R0/R1 — 11 settembre 2026: Concetto product_food, forma ingredientId, revisione V2, gruppi/mapping/conversioni versionati. Nessuna fusione dal nome. Vedere [CONTRATTO_R0_R1](revision_v2/CONTRATTO_R0_R1.md), che prevale sulle parti V1 sotto riportate per il perimetro modificato.
+
 # Data Model Spec V1
 
 ## 1. Convenzioni

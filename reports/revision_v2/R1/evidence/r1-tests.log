@@ -1,0 +1,48 @@
+✔ T72 R1 miglio generic query aggregates forms without merging IDs, quantities or nutrients (110.736295ms)
+✔ T72 R1 inconsistent or non-leaf product paths are rejected instead of inferred from names (85.132591ms)
+✔ T06 R1 FoodGroup rejects nested, unknown and duplicate members; membership history is immutable (86.600187ms)
+✔ T17/T18 R1 directional shopping yield cannot alter nutritional basis or invent g/ml equivalence (59.101911ms)
+✔ T59/T72 R1 migration is additive, restartable, idempotent and preserves current local pointer and old records (90.245115ms)
+✔ T59 R1 preserves existing data without legacy epoch and rejects content downgrade (50.743121ms)
+✔ T59 R1 interrupted batches and changed local pointer cannot be overwritten (58.738518ms)
+✔ T72 R1 unresolved mapping is retained for review without changing the family (43.58802ms)
+✔ T72 R1 lexical similarity never merges forms; explicit redirects retain source and reject cycles (80.33703ms)
+✖ T23/T39 R1 strict frequency draft validates bounds, half ideals and target references without activating V2 (28.99314ms)
+✔ T01/T05 R1 strict safety contract cannot invent reviewer or contain/trace equivalence (33.828575ms)
+✔ T21 R1 recipe V2 writes omit instructions and legacy versions remain lossless (51.245582ms)
+✔ T59 R1 same-catalog backup 2 round-trips new registries and staged configuration (135.403952ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 12
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1054.510391
+
+✖ failing tests:
+
+test at tests/revision-v2-r1.test.mjs:107:1
+✖ T23/T39 R1 strict frequency draft validates bounds, half ideals and target references without activating V2 (28.99314ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /Duplicate/. Input:
+  
+  'Error: food-preferences-v2.schema.json schema validation failed: $.rules: items must be unique'
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/revision-v2-r1.test.mjs:111:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: food-preferences-v2.schema.json schema validation failed: $.rules: items must be unique
+        at SchemaRegistry.assert (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/src/lib/schemaValidator.js:100:30)
+        at assertFoodPreferencesV2 (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/src/domain/revisionV2Contracts.js:34:20)
+        at file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/revision-v2-r1.test.mjs:111:23
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R0_R1/tests/revision-v2-r1.test.mjs:111:10)
+        at async Test.run (node:internal/test_runner/test:1389:7)
+        at async Test.processPendingSubtests (node:internal/test_runner/test:960:7),
+    expected: /Duplicate/,
+    operator: 'throws',
+    diff: 'simple'
+  }

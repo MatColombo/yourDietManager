@@ -1,0 +1,19 @@
+✔ production review schemas are loaded and the publication contract is review-only (36.973139ms)
+✔ human review requires all six explicit dimensions and consistent decisions (22.923281ms)
+✔ human review export/import is checksum-bound to the frozen publication and rejects duplicate or stale decisions (91.850482ms)
+✔ review summary counts one current decision per frozen RecipeVersion (0.80465ms)
+✔ legacy 5000 policy field is advisory: build planning can continue above 5000 (118.703256ms)
+✔ planner Phase B workflow rebuilds the 1800-recipe validation corpus and verifies generated drift (1.459083ms)
+✔ Phase 4 smoke builder is isolated from the mutable published review catalog (0.879536ms)
+✔ published 500-recipe review catalog bootstraps all required recipes with the browser public schema surface (21.65421ms)
+✔ browser regression gives production-scale catalog bootstrap a bounded window, waits for stable rendered results and fails fast on catalog errors (1.160893ms)
+✔ browser regression respects frozen production-review UX while preserving the route-independent recipe editor (0.888421ms)
+✔ published review recipes remain editable through version promotion without mutating the frozen reviewed version (21.391579ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 511.975149

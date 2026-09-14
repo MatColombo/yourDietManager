@@ -1,0 +1,17 @@
+✔ 4P-B freezes a two-source curation policy because Foundation published inventory is below the 400 ingredient minimum (53.17044ms)
+✔ USDA curation import produces a source-digested review batch whose heuristics cannot materialize without explicit checks (185.407847ms)
+✔ USDA importer converts kJ-only Energy to kcal instead of relabeling the numeric value (123.66057ms)
+✔ approved curation record remains blocked unless every editorial review dimension is explicitly complete (24.060982ms)
+✔ pilot wave 1 stays blocked until production ingredient readiness passes and wave 2 cannot bypass wave 1 closure (56.514387ms)
+✔ pilot readiness ignores final 3000-recipe and production-manifest blockers once ingredient/reference readiness is green (29.044207ms)
+✔ SR Legacy supplemental importer is source-bound and remains review-only (120.841294ms)
+✔ legacy fixture retirement is an explicit schema-governed map, never an implicit replacement (38.185107ms)
+✔ 4P-B governance is mirrored in the normative spec and project Skill (1.818366ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 750.253307

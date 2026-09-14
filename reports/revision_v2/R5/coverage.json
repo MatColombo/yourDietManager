@@ -1,0 +1,107 @@
+{
+  "planned": {
+    "concepts": 200,
+    "forms": 307,
+    "dishes": 120
+  },
+  "reviewed": {
+    "concepts": 0,
+    "forms": 0,
+    "dishes": 0
+  },
+  "pilot": {
+    "concepts": 0,
+    "forms": 0,
+    "status": "BLOCKED"
+  },
+  "groups": [
+    {
+      "groupId": "med_group_cereals",
+      "minimumConcepts": 25,
+      "planned": 25,
+      "published": 0
+    },
+    {
+      "groupId": "med_group_legumes",
+      "minimumConcepts": 15,
+      "planned": 15,
+      "published": 0
+    },
+    {
+      "groupId": "med_group_vegetables",
+      "minimumConcepts": 45,
+      "planned": 45,
+      "published": 0
+    },
+    {
+      "groupId": "med_group_fruit",
+      "minimumConcepts": 35,
+      "planned": 35,
+      "published": 0
+    },
+    {
+      "groupId": "med_group_dairy_eggs",
+      "minimumConcepts": 20,
+      "planned": 20,
+      "published": 0
+    },
+    {
+      "groupId": "med_group_seafood",
+      "minimumConcepts": 20,
+      "planned": 20,
+      "published": 0
+    },
+    {
+      "groupId": "med_group_proteins",
+      "minimumConcepts": 15,
+      "planned": 15,
+      "published": 0
+    },
+    {
+      "groupId": "med_group_nuts_fats",
+      "minimumConcepts": 15,
+      "planned": 15,
+      "published": 0
+    },
+    {
+      "groupId": "med_group_herbs",
+      "minimumConcepts": 10,
+      "planned": 10,
+      "published": 0
+    }
+  ],
+  "rejected": [
+    {
+      "source": "CREA",
+      "sourceRecordId": "004000",
+      "reasons": [
+        "identity_unresolved",
+        "nutrition_review_missing_or_stale",
+        "safety_review_missing_or_stale",
+        "culinary_review_missing_or_stale"
+      ]
+    },
+    {
+      "source": "CREA",
+      "sourceRecordId": "004005",
+      "reasons": [
+        "identity_unresolved",
+        "nutrition_review_missing_or_stale",
+        "safety_review_missing_or_stale",
+        "culinary_review_missing_or_stale"
+      ]
+    },
+    {
+      "source": "CREA",
+      "sourceRecordId": "004010",
+      "reasons": [
+        "identity_unresolved",
+        "nutrition_review_missing_or_stale",
+        "safety_review_missing_or_stale",
+        "culinary_review_missing_or_stale"
+      ]
+    }
+  ],
+  "scaleStatus": "BLOCKED",
+  "activeCatalogChanged": false
+}

@@ -1,0 +1,253 @@
+[
+  {
+    "file": "tests/backup.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.419,
+    "log": "reports/revision_v2/R3/evidence/suite/backup.test.log"
+  },
+  {
+    "file": "tests/catalog-importer.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.367,
+    "log": "reports/revision_v2/R3/evidence/suite/catalog-importer.test.log"
+  },
+  {
+    "file": "tests/catalog-phase3.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.872,
+    "log": "reports/revision_v2/R3/evidence/suite/catalog-phase3.test.log"
+  },
+  {
+    "file": "tests/configuration.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.717,
+    "log": "reports/revision_v2/R3/evidence/suite/configuration.test.log"
+  },
+  {
+    "file": "tests/controlled-scale-500.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.322,
+    "log": "reports/revision_v2/R3/evidence/suite/controlled-scale-500.test.log"
+  },
+  {
+    "file": "tests/core.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.267,
+    "log": "reports/revision_v2/R3/evidence/suite/core.test.log"
+  },
+  {
+    "file": "tests/corpus-phase4.test.mjs",
+    "exitCode": 0,
+    "seconds": 1.069,
+    "log": "reports/revision_v2/R3/evidence/suite/corpus-phase4.test.log"
+  },
+  {
+    "file": "tests/corpus-production-execution.test.mjs",
+    "exitCode": 0,
+    "seconds": 1.373,
+    "log": "reports/revision_v2/R3/evidence/suite/corpus-production-execution.test.log"
+  },
+  {
+    "file": "tests/corpus-production-pass-a.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.668,
+    "log": "reports/revision_v2/R3/evidence/suite/corpus-production-pass-a.test.log"
+  },
+  {
+    "file": "tests/corpus-production-pass-b.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.872,
+    "log": "reports/revision_v2/R3/evidence/suite/corpus-production-pass-b.test.log"
+  },
+  {
+    "file": "tests/corpus-production-pass-c.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.872,
+    "log": "reports/revision_v2/R3/evidence/suite/corpus-production-pass-c.test.log",
+    "rerunAfterFix": true
+  },
+  {
+    "file": "tests/data-ux-pass-b.test.mjs",
+    "exitCode": 0,
+    "seconds": 21.998,
+    "log": "reports/revision_v2/R3/evidence/suite/data-ux-pass-b.test.log"
+  },
+  {
+    "file": "tests/data-ux-pass-c.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.368,
+    "log": "reports/revision_v2/R3/evidence/suite/data-ux-pass-c.test.log",
+    "rerunAfterFix": true
+  },
+  {
+    "file": "tests/data-ux-pass-d.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.773,
+    "log": "reports/revision_v2/R3/evidence/suite/data-ux-pass-d.test.log"
+  },
+  {
+    "file": "tests/data-ux-pass-e.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.268,
+    "log": "reports/revision_v2/R3/evidence/suite/data-ux-pass-e.test.log"
+  },
+  {
+    "file": "tests/fdc-auto-curation.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.269,
+    "log": "reports/revision_v2/R3/evidence/suite/fdc-auto-curation.test.log"
+  },
+  {
+    "file": "tests/github-pages.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.27,
+    "log": "reports/revision_v2/R3/evidence/suite/github-pages.test.log"
+  },
+  {
+    "file": "tests/hardening-phase8.test.mjs",
+    "exitCode": 0,
+    "seconds": 1.26,
+    "log": "reports/revision_v2/R3/evidence/suite/hardening-phase8.test.log"
+  },
+  {
+    "file": "tests/plan-phase6.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.57,
+    "log": "reports/revision_v2/R3/evidence/suite/plan-phase6.test.log",
+    "rerunAfterFix": true
+  },
+  {
+    "file": "tests/planner-phase5.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.929,
+    "log": "reports/revision_v2/R3/evidence/suite/planner-phase5.test.log"
+  },
+  {
+    "file": "tests/production-execution-workflow.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.422,
+    "log": "reports/revision_v2/R3/evidence/suite/production-execution-workflow.test.log"
+  },
+  {
+    "file": "tests/production-review-500.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.625,
+    "log": "reports/revision_v2/R3/evidence/suite/production-review-500.test.log"
+  },
+  {
+    "file": "tests/reference-data-pass-a.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.718,
+    "log": "reports/revision_v2/R3/evidence/suite/reference-data-pass-a.test.log"
+  },
+  {
+    "file": "tests/revision-v2-r0.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.623,
+    "log": "reports/revision_v2/R3/evidence/suite/revision-v2-r0.test.log"
+  },
+  {
+    "file": "tests/revision-v2-r1.test.mjs",
+    "exitCode": 0,
+    "seconds": 1.32,
+    "log": "reports/revision_v2/R3/evidence/suite/revision-v2-r1.test.log",
+    "rerunAfterFix": true
+  },
+  {
+    "file": "tests/revision-v2-r2-r3.test.mjs",
+    "exitCode": 0,
+    "seconds": 10.424,
+    "log": "reports/revision_v2/R3/evidence/suite/revision-v2-r2-r3.test.log"
+  },
+  {
+    "file": "tests/schema-public-mirrors.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.317,
+    "log": "reports/revision_v2/R3/evidence/suite/schema-public-mirrors.test.log"
+  },
+  {
+    "file": "tests/schema-validator.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.267,
+    "log": "reports/revision_v2/R3/evidence/suite/schema-validator.test.log"
+  },
+  {
+    "file": "tests/shopping-phase7.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.368,
+    "log": "reports/revision_v2/R3/evidence/suite/shopping-phase7.test.log"
+  },
+  {
+    "file": "tests/v1-engine-phase-a.test.mjs",
+    "exitCode": 0,
+    "seconds": 30.231,
+    "log": "reports/revision_v2/R3/evidence/suite/v1-engine-phase-a.test.log"
+  },
+  {
+    "file": "tests/v1-planner-phase-b.test.mjs",
+    "exitCode": 0,
+    "seconds": 10.455,
+    "log": "reports/revision_v2/R3/evidence/suite/v1-planner-phase-b.test.log"
+  },
+  {
+    "file": "tests/v1-planner-phase-c.test.mjs",
+    "exitCode": 0,
+    "seconds": 17.521,
+    "log": "reports/revision_v2/R3/evidence/suite/v1-planner-phase-c.test.log"
+  },
+  {
+    "file": "tests/v1-planner-phase-d-ux.test.mjs",
+    "exitCode": 0,
+    "seconds": 7.284,
+    "log": "reports/revision_v2/R3/evidence/suite/v1-planner-phase-d-ux.test.log",
+    "rerunAfterFix": true
+  },
+  {
+    "file": "tests/v1-planner-phase-d.test.mjs",
+    "exitCode": 0,
+    "seconds": 41.647,
+    "log": "reports/revision_v2/R3/evidence/suite/v1-planner-phase-d.test.log"
+  },
+  {
+    "file": "tests/v1-planner-phase-e.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.217,
+    "log": "reports/revision_v2/R3/evidence/suite/v1-planner-phase-e.test.log"
+  },
+  {
+    "file": "tests/v1-planner-phase-f.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.217,
+    "log": "reports/revision_v2/R3/evidence/suite/v1-planner-phase-f.test.log"
+  },
+  {
+    "file": "tests/v1-planner-phase-g.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.292,
+    "log": "reports/revision_v2/R3/evidence/suite/v1-planner-phase-g.test.log"
+  },
+  {
+    "file": "tests/v1-planner-phase-h.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.709,
+    "log": "reports/revision_v2/R3/evidence/suite/v1-planner-phase-h.test.log"
+  },
+  {
+    "file": "tests/v1-step1.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.468,
+    "log": "reports/revision_v2/R3/evidence/suite/v1-step1.test.log"
+  },
+  {
+    "file": "tests/v1-step2.test.mjs",
+    "exitCode": 0,
+    "seconds": 79.731,
+    "log": "reports/revision_v2/R3/evidence/suite/v1-step2.test.log"
+  },
+  {
+    "file": "tests/v1-step3.test.mjs",
+    "exitCode": 0,
+    "seconds": 15.681,
+    "log": "reports/revision_v2/R3/evidence/suite/v1-step3.test.log"
+  }
+]

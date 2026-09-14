@@ -1,0 +1,88 @@
+✔ day adherence summary is derived from meal occurrence states (1.762854ms)
+✖ plan creation is one undoable and redoable atomic operation (80.897683ms)
+✖ adherence update persists per meal, derives day status, and undo restores previous day (35.433288ms)
+✖ replacement preview excludes current recipe and hard-allergen candidates; commit is undoable (26.364739ms)
+✖ rebalance creates a dedicated GenerationRun, commits selected dates, and rolls back atomically (35.705487ms)
+✖ new edit after undo invalidates the redo branch without deleting audit history (23.555353ms)
+✖ today view uses civil consumption date and includes carry-over meals from prior diet date (22.203494ms)
+✖ external adherence can persist a retrospective user estimate only when policy allows it (19.869644ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 1
+ℹ fail 7
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 416.026326
+
+✖ failing tests:
+
+test at tests/plan-phase6.test.mjs:67:1
+✖ plan creation is one undoable and redoable atomic operation (80.897683ms)
+  Error: Piano non ammissibile / Plan constraints not met: invalid_nutrition_reference, daily_energy_tolerance
+      at assertPlanPolicy (file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/planPolicyValidation.js:81:19)
+      at async file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/effectivePlanService.js:255:5
+      at async run (file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/planPreviewGuard.js:54:20) {
+    code: 'plan_constraint_violation',
+    violations: [ { code: 'invalid_nutrition_reference', detail: 'Unresolved nutritional basis', mealOccurrenceId: 'meal_32fee79c' }, { code: 'invalid_nutrition_reference', detail: 'Unresolved nutritional basis', mealOccurrenceId: 'meal_d96a1017' }, { code: 'daily_energy_tolerance', date: '2026-09-07', energy: [Object] } ]
+  }
+
+test at tests/plan-phase6.test.mjs:76:1
+✖ adherence update persists per meal, derives day status, and undo restores previous day (35.433288ms)
+  Error: Piano non ammissibile / Plan constraints not met: invalid_nutrition_reference, daily_energy_tolerance
+      at assertPlanPolicy (file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/planPolicyValidation.js:81:19)
+      at async file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/effectivePlanService.js:255:5
+      at async run (file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/planPreviewGuard.js:54:20) {
+    code: 'plan_constraint_violation',
+    violations: [ { code: 'invalid_nutrition_reference', detail: 'Unresolved nutritional basis', mealOccurrenceId: 'meal_32fee79c' }, { code: 'invalid_nutrition_reference', detail: 'Unresolved nutritional basis', mealOccurrenceId: 'meal_d96a1017' }, { code: 'daily_energy_tolerance', date: '2026-09-07', energy: [Object] } ]
+  }
+
+test at tests/plan-phase6.test.mjs:84:1
+✖ replacement preview excludes current recipe and hard-allergen candidates; commit is undoable (26.364739ms)
+  Error: Piano non ammissibile / Plan constraints not met: invalid_nutrition_reference, daily_energy_tolerance
+      at assertPlanPolicy (file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/planPolicyValidation.js:81:19)
+      at async file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/effectivePlanService.js:255:5
+      at async run (file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/planPreviewGuard.js:54:20) {
+    code: 'plan_constraint_violation',
+    violations: [ { code: 'invalid_nutrition_reference', detail: 'Unresolved nutritional basis', mealOccurrenceId: 'meal_32fee79c' }, { code: 'invalid_nutrition_reference', detail: 'Unresolved nutritional basis', mealOccurrenceId: 'meal_d96a1017' }, { code: 'daily_energy_tolerance', date: '2026-09-07', energy: [Object] } ]
+  }
+
+test at tests/plan-phase6.test.mjs:95:1
+✖ rebalance creates a dedicated GenerationRun, commits selected dates, and rolls back atomically (35.705487ms)
+  Error: Piano non ammissibile / Plan constraints not met: invalid_nutrition_reference, daily_energy_tolerance
+      at assertPlanPolicy (file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/planPolicyValidation.js:81:19)
+      at async file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/effectivePlanService.js:255:5
+      at async run (file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/planPreviewGuard.js:54:20) {
+    code: 'plan_constraint_violation',
+    violations: [ { code: 'invalid_nutrition_reference', detail: 'Unresolved nutritional basis', mealOccurrenceId: 'meal_32fee79c' }, { code: 'invalid_nutrition_reference', detail: 'Unresolved nutritional basis', mealOccurrenceId: 'meal_d96a1017' }, { code: 'daily_energy_tolerance', date: '2026-09-07', energy: [Object] }, { code: 'invalid_nutrition_reference', detail: 'Unresolved nutritional basis', mealOccurrenceId: 'meal_271fd3ad' }, { code: 'invalid_nutrition_reference', detail: 'Unresolved nutritional basis', mealOccurrenceId: 'meal_6d12f3fa' }, { code: 'invalid_nutrition_reference', detail: 'Unresolved nutritional basis', mealOccurrenceId: 'meal_6d12f3fa' }, { code: 'daily_energy_tolerance', date: '2026-09-08', energy: [Object] } ]
+  }
+
+test at tests/plan-phase6.test.mjs:105:1
+✖ new edit after undo invalidates the redo branch without deleting audit history (23.555353ms)
+  Error: Piano non ammissibile / Plan constraints not met: invalid_nutrition_reference, daily_energy_tolerance
+      at assertPlanPolicy (file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/planPolicyValidation.js:81:19)
+      at async file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/effectivePlanService.js:255:5
+      at async run (file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/planPreviewGuard.js:54:20) {
+    code: 'plan_constraint_violation',
+    violations: [ { code: 'invalid_nutrition_reference', detail: 'Unresolved nutritional basis', mealOccurrenceId: 'meal_32fee79c' }, { code: 'invalid_nutrition_reference', detail: 'Unresolved nutritional basis', mealOccurrenceId: 'meal_d96a1017' }, { code: 'daily_energy_tolerance', date: '2026-09-07', energy: [Object] } ]
+  }
+
+test at tests/plan-phase6.test.mjs:114:1
+✖ today view uses civil consumption date and includes carry-over meals from prior diet date (22.203494ms)
+  Error: Piano non ammissibile / Plan constraints not met: invalid_nutrition_reference, daily_energy_tolerance
+      at assertPlanPolicy (file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/planPolicyValidation.js:81:19)
+      at async file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/effectivePlanService.js:255:5
+      at async run (file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/planPreviewGuard.js:54:20) {
+    code: 'plan_constraint_violation',
+    violations: [ { code: 'invalid_nutrition_reference', detail: 'Unresolved nutritional basis', mealOccurrenceId: 'meal_32fee79c' }, { code: 'invalid_nutrition_reference', detail: 'Unresolved nutritional basis', mealOccurrenceId: 'meal_d96a1017' }, { code: 'daily_energy_tolerance', date: '2026-09-07', energy: [Object] }, { code: 'invalid_nutrition_reference', detail: 'Unresolved nutritional basis', mealOccurrenceId: 'meal_271fd3ad' }, { code: 'invalid_nutrition_reference', detail: 'Unresolved nutritional basis', mealOccurrenceId: 'meal_6d12f3fa' }, { code: 'invalid_nutrition_reference', detail: 'Unresolved nutritional basis', mealOccurrenceId: 'meal_6d12f3fa' }, { code: 'daily_energy_tolerance', date: '2026-09-08', energy: [Object] } ]
+  }
+
+test at tests/plan-phase6.test.mjs:119:1
+✖ external adherence can persist a retrospective user estimate only when policy allows it (19.869644ms)
+  Error: Piano non ammissibile / Plan constraints not met: invalid_nutrition_reference, daily_energy_tolerance
+      at assertPlanPolicy (file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/planPolicyValidation.js:81:19)
+      at async file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/effectivePlanService.js:255:5
+      at async run (file:///workspace/scratch/621114de952a/yourDietManager_v2_R2_R3/src/services/planPreviewGuard.js:54:20) {
+    code: 'plan_constraint_violation',
+    violations: [ { code: 'invalid_nutrition_reference', detail: 'Unresolved nutritional basis', mealOccurrenceId: 'meal_32fee79c' }, { code: 'invalid_nutrition_reference', detail: 'Unresolved nutritional basis', mealOccurrenceId: 'meal_d96a1017' }, { code: 'daily_energy_tolerance', date: '2026-09-07', energy: [Object] } ]
+  }

@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 3,
+  "generatedAt": "2026-09-11T10:49:03.634Z",
+  "candidateAppVersion": "1.0.0-rc.34",
+  "currentAppVersion": "1.1.0-dev.r1",
+  "catalogVersion": "1.2.0-planner-phase-d",
+  "releasable": false,
+  "checks": [
+    {
+      "id": "stable-app-version",
+      "pass": false,
+      "detail": "package=1.1.0-dev.r1, runtime=1.1.0-dev.r1"
+    },
+    {
+      "id": "phase-g-freeze",
+      "pass": true,
+      "detail": "yourdietmanager-v1-planner-phase-g-freeze@1.0.0"
+    },
+    {
+      "id": "manual-acceptance",
+      "pass": false,
+      "detail": "status=pending, allowed=false"
+    },
+    {
+      "id": "production-release-publication",
+      "pass": false,
+      "detail": "channel=development, eligible=false"
+    },
+    {
+      "id": "frozen-persistence",
+      "pass": false,
+      "detail": "db=7, content=4, backup=2, epoch=v1-planner-phase-d-epoch-1"
+    },
+    {
+      "id": "data-contract-600-1800",
+      "pass": true,
+      "detail": "ingredients=600/600, recipes=1800/1800, core=1800"
+    },
+    {
+      "id": "frozen-recipe-digest",
+      "pass": true,
+      "detail": "freeze=5e3bd7661171cff9434b03bb9951d58779ed84dc2e0e9910d36d1ebc517f53f2, current=5e3bd7661171cff9434b03bb9951d58779ed84dc2e0e9910d36d1ebc517f53f2"
+    },
+    {
+      "id": "frozen-catalog-content",
+      "pass": true,
+      "detail": "content=39bdd524fccc6e92013b747d1391336f2698e36af862ab94585863899d715056"
+    },
+    {
+      "id": "frozen-planner-policy",
+      "pass": true,
+      "detail": "policy=phase-f-soft-objective-1"
+    },
+    {
+      "id": "product-taxonomy-freeze",
+      "pass": true,
+      "detail": "classified=600, categories=18, terms=203"
+    }
+  ],
+  "blockers": [
+    {
+      "id": "stable-app-version",
+      "pass": false,
+      "detail": "package=1.1.0-dev.r1, runtime=1.1.0-dev.r1"
+    },
+    {
+      "id": "manual-acceptance",
+      "pass": false,
+      "detail": "status=pending, allowed=false"
+    },
+    {
+      "id": "production-release-publication",
+      "pass": false,
+      "detail": "channel=development, eligible=false"
+    },
+    {
+      "id": "frozen-persistence",
+      "pass": false,
+      "detail": "db=7, content=4, backup=2, epoch=v1-planner-phase-d-epoch-1"
+    }
+  ]
+}

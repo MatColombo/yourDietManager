@@ -1,3 +1,6 @@
+import { assessRecipeSafety } from '../domain/safetyPolicy.js';
+import { frequencyRules, legacyPreferenceRules, inRuleScope } from '../domain/frequencyCounter.js';
+import { allergenCompatibility, recipeQuarantineReasons } from '../domain/safetyCompatibility.js';
 import { recipeMatchesTarget, numericRuleSatisfied } from './recipeFeatures.js';
 
 export const SIMPLE_SNACK_MAX_PREP_MINUTES = 10;
@@ -5,17 +8,19 @@ export const SIMPLE_SNACK_MAX_PREP_MINUTES = 10;
 function reject(reasons, code) { reasons.push(code); }
 
 export function hardFilterRecipe(recipe, context) {
-  const reasons = [];
+  const reasons = recipeQuarantineReasons(recipe, context.revisionById);
   const { mealClass, dayClass, allergyProfile, foodPreferences, revisionById } = context;
   if (!recipe.mealArchetypes?.includes(mealClass.mealArchetype)) reject(reasons, 'meal_archetype');
   if (!['validated', 'curated'].includes(recipe.quality?.status)) reject(reasons, 'quality_not_ready');
 
-  for (const rule of allergyProfile?.rules || []) {
-    if (!rule.enabled) continue;
-    if (recipeMatchesTarget(recipe, rule.targetType, rule.targetId, revisionById)) reject(reasons, `safety:${rule.id}`);
+  const safety = assessRecipeSafety(recipe, { allergyProfile, revisionById: context.safetyRevisionById || revisionById, foodGroups: context.foodGroups || [], date: context.date });
+  for (const check of safety.rules) if (check.status !== 'compatible') reject(reasons, `${check.status === 'unknown' ? 'safety_unverified' : 'safety'}:${check.ruleId}:${check.reason}`);
+  for (const rule of legacyPreferenceRules(foodPreferences)) {
+    if (rule.autoExclude && recipeMatchesTarget(recipe, rule.targetType, rule.targetId, revisionById, context.foodGroups)) reject(reasons, `auto_exclude:${rule.id}`);
   }
-  for (const rule of foodPreferences?.rules || []) {
-    if (rule.autoExclude && recipeMatchesTarget(recipe, rule.targetType, rule.targetId, revisionById)) reject(reasons, `auto_exclude:${rule.id}`);
+  for (const rule of frequencyRules(foodPreferences)) {
+    if (rule.mode !== 'never' || (context.date && context.date < rule.effectiveFrom) || !inRuleScope(rule, { mealClassId: mealClass.id })) continue;
+    if (recipeMatchesTarget(recipe, rule.target.type, rule.target.id, revisionById, context.foodGroups)) reject(reasons, `never:${rule.id}`);
   }
   for (const rule of mealClass.rules || []) {
     if (rule.strength !== 'forbid') continue;

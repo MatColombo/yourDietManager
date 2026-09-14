@@ -9,12 +9,12 @@ import { scoreRecipe } from '../src/planner/softScoring.js';
 import { PlanCandidateService } from '../src/services/planCandidateService.js';
 import { createPlanPreview, commitPlanPreview, extendPlan, continuationState } from '../src/services/planGenerationService.js';
 import { SchemaRegistry } from '../src/lib/schemaValidator.js';
-import { MemoryRepository, fileLoader } from './helpers.mjs';
+import { MemoryRepository, fileLoader, syntheticSafetyEvidence } from './helpers.mjs';
 
 const root = process.cwd();
 
 function revision(id, ingredientId, foodGroup, allergens = []) {
-  return { ingredientRevisionId: id, ingredientId, taxonomy: { foodGroup, foodSubgroup: foodGroup }, allergenIds: allergens };
+  return { ingredientRevisionId: id, ingredientId, taxonomy: { foodGroup, foodSubgroup: foodGroup }, allergenIds: allergens, safetyEvidence: syntheticSafetyEvidence(allergens), basis: { state: 'cooked' }, source: { reference: 'synthetic-fixture' } };
 }
 
 function recipe(id, archetype, energy, protein, { ingredient = 'ing_generic', revisionId = 'rev_generic', allergens = [], portable = true, prep = 5, family = 'simple', cuisine = 'test', tags = [] } = {}) {
@@ -122,7 +122,7 @@ test('soft MealClass avoid rule penalizes but does not hard-exclude a matching r
 
 test('planner returns classified failure instead of violating hard constraints', () => {
   const input = coreInput({ recipes: catalogFixture().recipes.filter(r => r.mealArchetypes[0] !== 'breakfast') });
-  const result = generatePlanCore(input); assert.equal(result.status, 'failed');
+  const result = generatePlanCore(input); assert.equal(result.status, 'search_exhausted');
   assert.equal(result.failure.code, 'no_candidates_after_hard_constraints');
   assert.equal(result.failure.slotId, 'breakfast');
 });
@@ -140,6 +140,7 @@ async function serviceFixture() {
     nutritionProfiles: [config.nutritionProfile], allergyIntoleranceProfiles: [config.allergyProfile], foodPreferences: [config.foodPreferences], themeProfiles: [theme], mealClasses: config.mealClasses, dayClasses: config.dayClasses, cycles: [config.cycle]
   };
   await repo.put('appConfigs', bundle.appConfig); for (const [store, records] of Object.entries({ nutritionProfiles: bundle.nutritionProfiles, allergyIntoleranceProfiles: bundle.allergyIntoleranceProfiles, foodPreferences: bundle.foodPreferences, themeProfiles: bundle.themeProfiles, mealClasses: bundle.mealClasses, dayClasses: bundle.dayClasses, cycles: bundle.cycles })) await repo.putMany(store, records);
+  for (const rec of catalog.recipes) { const line = rec.ingredientLines[0]; const original = catalog.revisions.find(r => r.ingredientRevisionId === line.ingredientRevisionId); const rev = { ...structuredClone(original), ingredientRevisionId: `${original.ingredientRevisionId}_${rec.recipeId}`, basis: { ...original.basis, amount: 100, unit: 'g' }, nutrition: { ...rec.calculatedNutrition } }; catalog.revisions.push(rev); line.ingredientRevisionId = rev.ingredientRevisionId; }
   for (const rev of catalog.revisions) await repo.put('ingredientRevisions', rev);
   for (const rec of catalog.recipes) {
     await repo.put('recipes', { recipeId: rec.recipeId, currentVersionId: rec.recipeVersionId, origin: 'base', status: 'active' }); await repo.put('recipeVersions', rec);
@@ -178,10 +179,9 @@ test('continuation state exposes prompt/auto/fixed temporal guardrails', () => {
 });
 
 
-test('365-day horizon materializes the cycle independently of month boundaries', () => {
+test('R3 rejects a 365-day request outside the explicit 1–90 day horizon', () => {
   const result = generatePlanCore(coreInput({ horizon: { startDate: '2026-01-01', endDate: '2026-12-31' }, candidateLimit: 8, beamWidth: 30, slotOptionLimit: 12 }));
-  assert.equal(result.status, 'success'); assert.equal(result.calendarDays.length, 365);
-  for (let i = 0; i < result.calendarDays.length; i += 1) assert.equal(result.calendarDays[i].cycleDay, (i % 2) + 1);
+  assert.equal(result.status, 'invalid_input'); assert.equal(result.calendarDays, undefined);
 });
 
 test('horizon extension resolves historical RecipeVersion after family currentVersion changes', async () => {

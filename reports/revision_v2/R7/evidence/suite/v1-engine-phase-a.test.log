@@ -1,0 +1,20 @@
+✔ Phase A — daily calorie tolerance is a hard window, not a score preference (2.114544ms)
+✔ Phase A — feasible 800 kcal plan succeeds with fixed servings only (17.504243ms)
+✔ Phase A — feasible 2600 kcal plan succeeds without recipe scaling (1.381265ms)
+✔ Phase A — impossible calorie window returns NO_FEASIBLE_PLAN diagnostics rather than out-of-range plan (0.964788ms)
+✔ Phase A — soft ranking cannot erase the energy frontier before hard-feasibility search (0.690651ms)
+✔ Phase A — numeric MealClass forbid rejects matching values and allows non-matching values (0.287764ms)
+✔ Phase A — cooking and simple-snack capabilities are enforced as hard filters (0.30285ms)
+✔ Phase A — soft avoid changes ranking but does not exclude candidate (0.540043ms)
+✔ Phase A — constraint policy exposes hard and soft semantics explicitly (0.52037ms)
+✔ Phase A — replacement preview only exposes candidates that preserve the daily hard energy window (19965.109022ms)
+✔ Phase A — planned slots cannot expose external-only protein guidance as a fake constraint (6883.467107ms)
+✔ Phase A — unknown external energy cannot be reported as a hard-valid calorie day (8129.984513ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 35247.283736

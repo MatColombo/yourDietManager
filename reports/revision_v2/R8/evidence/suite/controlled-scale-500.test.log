@@ -1,0 +1,14 @@
+✔ controlled-scale schema is mirrored into the public PWA schema surface (6.149054ms)
+✔ 4P-D controlled plan is schema-valid, policy-bound and bridges exactly 220 -> 500 as 100+100+80 (68.523018ms)
+✔ freshness identity helper reproduces scanCorpus content digest without re-running coverage analysis (95.815017ms)
+✔ controlled-scale generator produces deterministic lunch candidates inside the frozen energy band from curated/high ingredients only (17.477751ms)
+✔ pre-freeze controlled-scale writer workflow is retired while the historical runner remains available in Git history/source (8.337662ms)
+✔ split controlled-scale runner accumulates canonical tranche evidence instead of overwriting prior checkpoints (8.084777ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 346.451728

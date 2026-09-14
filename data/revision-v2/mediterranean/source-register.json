@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-09-11",
+  "sources": [
+    {
+      "id": "CREA",
+      "version": "2019 displayed",
+      "url": "https://www.alimentinutrizione.it/tabelle-nutrizionali",
+      "terms": "Attribution required by displayed notice",
+      "acquired": "3 manual extracts; no bulk archive",
+      "status": "partial"
+    },
+    {
+      "id": "CIQUAL",
+      "version": "2025",
+      "url": "https://ciqual.anses.fr/cms/fr/la-table-ciqual-2025",
+      "terms": "Dataset-specific redistribution license not yet verified",
+      "acquired": null,
+      "status": "blocked_pending_dataset_and_terms"
+    },
+    {
+      "id": "USDA",
+      "version": "Foundation April 2026 advertised; SR Legacy 2018 final",
+      "url": "https://fdc.nal.usda.gov/",
+      "terms": "CC0 1.0/public domain, source attribution requested",
+      "acquired": "No new USDA archive in R5",
+      "status": "adapter_ready"
+    },
+    {
+      "id": "LABEL",
+      "version": null,
+      "terms": "Product identity and reuse authorization required",
+      "acquired": null,
+      "status": "adapter_ready"
+    }
+  ]
+}

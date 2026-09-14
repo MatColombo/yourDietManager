@@ -1,6 +1,8 @@
 import { assetPath } from './appBase.js';
 
 export const SCHEMA_FILES = [
+'recipe-favorite.schema.json', 'saved-menu.schema.json', 'pantry-entry.schema.json', 'production-batch.schema.json', 'seasonality-profile.schema.json', 'ingredient-price.schema.json', 'backup-v4.schema.json',
+  'ingredient-revision-v1.schema.json', 'ingredient-revision-v2.schema.json', 'recipe-version-v1.schema.json', 'recipe-version-v2.schema.json', 'food-preferences-v1.schema.json', 'food-preferences-v2.schema.json', 'allergy-intolerance-profile-v1.schema.json', 'allergy-intolerance-profile-v2.schema.json', 'backup-v1.schema.json', 'backup-v2.schema.json', 'backup-v3.schema.json', 'safety-evidence.schema.json', 'food-group.schema.json', 'ingredient-conversion.schema.json', 'ingredient-mapping.schema.json',
   'allergy-intolerance-profile.schema.json', 'app-config.schema.json', 'backup.schema.json', 'calendar-day.schema.json',
   'catalog-manifest.schema.json', 'catalog-publication.schema.json', 'production-review-publication.schema.json', 'recipe-human-review.schema.json', 'recipe-human-review-bundle.schema.json', 'catalog-pack.schema.json', 'cycle.schema.json', 'day-class.schema.json',
   'domain-enums.schema.json', 'food-preferences.schema.json', 'generation-run.schema.json', 'ingredient-revision.schema.json',
@@ -13,6 +15,8 @@ export const SCHEMA_FILES = [
 ];
 
 export const SCHEMA_BY_NAME = {
+recipeFavorite: 'recipe-favorite.schema.json', savedMenu: 'saved-menu.schema.json', pantryEntry: 'pantry-entry.schema.json', productionBatch: 'production-batch.schema.json', seasonalityProfile: 'seasonality-profile.schema.json', ingredientPrice: 'ingredient-price.schema.json',
+  foodGroup: 'food-group.schema.json', ingredientConversion: 'ingredient-conversion.schema.json', ingredientMapping: 'ingredient-mapping.schema.json', safetyEvidence: 'safety-evidence.schema.json',
   catalogManifest: 'catalog-manifest.schema.json', catalogPublication: 'catalog-publication.schema.json', productionReviewPublication: 'production-review-publication.schema.json', recipeHumanReview: 'recipe-human-review.schema.json', recipeHumanReviewBundle: 'recipe-human-review-bundle.schema.json', catalogPack: 'catalog-pack.schema.json', ingredient: 'ingredient.schema.json',
   ingredientRevision: 'ingredient-revision.schema.json', recipe: 'recipe.schema.json', recipeVersion: 'recipe-version.schema.json',
   appConfig: 'app-config.schema.json', themeProfile: 'theme-profile.schema.json', nutritionProfile: 'nutrition-profile.schema.json',
@@ -55,7 +59,7 @@ function pointerGet(root, fragment) {
   return pointer.split('/').reduce((value, token) => value?.[token.replace(/~1/g, '/').replace(/~0/g, '~')], root);
 }
 function validFormat(format, value) {
-  if (format === 'date') return /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(`${value}T00:00:00Z`));
+  if (format === 'date') return /^\d{4}-\d{2}-\d{2}$/.test(value) && !Number.isNaN(Date.parse(`${value}T00:00:00Z`)) && new Date(`${value}T00:00:00Z`).toISOString().slice(0, 10) === value;
   if (format === 'date-time') return /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})$/.test(value) && !Number.isNaN(Date.parse(value));
   return true;
 }
@@ -116,12 +120,17 @@ export class SchemaRegistry {
       if (matches === 0) errors.push(`${path}: must match at least one anyOf branch`);
     }
     if (schema.oneOf) {
-      const matches = schema.oneOf.filter(part => {
-        const local = [];
-        this.validateNode(part, value, path, root, local);
-        return local.length === 0;
-      }).length;
-      if (matches !== 1) errors.push(`${path}: must match exactly one oneOf branch`);
+      const branches = schema.oneOf.map(part => {
+        const local = []; this.validateNode(part, value, path, root, local);
+        const target = part.$ref ? this.resolveRef(part.$ref, root).schema : part;
+        return { errors: local, target };
+      });
+      const matches = branches.filter(branch => branch.errors.length === 0).length;
+      if (matches !== 1) {
+        const selected = branches.find(branch => ['schemaVersion', 'formatVersion'].some(key => branch.target?.properties?.[key]?.const !== undefined && branch.target.properties[key].const === value?.[key]));
+        if (matches === 0 && selected) errors.push(...selected.errors);
+        else errors.push(`${path}: must match exactly one oneOf branch`);
+      }
     }
     if (schema.if) {
       const conditionErrors = [];

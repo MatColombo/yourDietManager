@@ -1,0 +1,1770 @@
+{
+  "algorithm": "sha256(sorted path/file-sha256 JSON)",
+  "sha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+  "files": [
+    {
+      "file": "data/revision-v2/mediterranean/dish-briefs.json",
+      "sha256": "3c749b0f819b6640d639101f0782fcc05dfc61a3b20a6c38d5af895874035786"
+    },
+    {
+      "file": "data/revision-v2/mediterranean/manifest.json",
+      "sha256": "c297c80ec5f618bc775fac71bff6937b7c79f1a0bc5534fbc7a05fabcaec2fd9"
+    },
+    {
+      "file": "data/revision-v2/mediterranean/source-register.json",
+      "sha256": "bfa366307ccec1512a63701555fc00e902701455359bf84e1f6a95d37e640351"
+    },
+    {
+      "file": "data/revision-v2/mediterranean/sources/crea-004000.json",
+      "sha256": "12db8a7ed7440c8713ea8ec6d48589f51d8de3fb5ac1e41ebd6116cd0890c499"
+    },
+    {
+      "file": "data/revision-v2/mediterranean/sources/crea-004005.json",
+      "sha256": "b5fc78a20ee4910544890334d071fbf1057d219404b7f801a370a3ac6fd5f549"
+    },
+    {
+      "file": "data/revision-v2/mediterranean/sources/crea-004010.json",
+      "sha256": "3d9eaeca4d478a7e123c3f7dd0350f435c85f98dd0b98409cc453edfd6397c72"
+    },
+    {
+      "file": "data/revision-v2/mediterranean/staging.json",
+      "sha256": "e707f8d176aafa80f50cba7095923d02dc93f6aaa3fc953565ce52a1015a8760"
+    },
+    {
+      "file": "index.html",
+      "sha256": "90e2fb416df3f0a67a686790115b99d9e53f0c07c47fb14c1810fdcb7001c80e"
+    },
+    {
+      "file": "package.json",
+      "sha256": "ea8267a8e9f87e1bc3f17b998ac0d548ab3b2dae7cdf7e6323160d9bf6e75edf"
+    },
+    {
+      "file": "public/data/bootstrap/default-configuration.json",
+      "sha256": "d1c57992e2ee640bbeb7fed986bf6d1c7f94b3aae0877412f39f1a160433d334"
+    },
+    {
+      "file": "public/data/catalog-manifest.json",
+      "sha256": "e72e3b038ee49086b7eb4336403354e00406b7ebbd398f27569b31db7529acdf"
+    },
+    {
+      "file": "public/data/ingredients/ingredient-families-0001.json",
+      "sha256": "7d9629ed19dba10bcf6f4727c2e64fa119dcf0937ccd954a69d1fe756ce071c5"
+    },
+    {
+      "file": "public/data/ingredients/ingredient-families-0002.json",
+      "sha256": "7541b42182bab1c094cc75c97f5b251a2ce2d5f323fd9b9a02cd1bf6b7853e40"
+    },
+    {
+      "file": "public/data/ingredients/ingredient-families-0003.json",
+      "sha256": "6acc61ebbe5bb03f5ad2f0fc78b9e2274c3ef852e63284e2d7a810e770bd268a"
+    },
+    {
+      "file": "public/data/ingredients/ingredient-revisions-0001.json",
+      "sha256": "462b21509b97a1a25888b23cc2d28a682ba39898f9157b3be33ad8b0bfb86be8"
+    },
+    {
+      "file": "public/data/ingredients/ingredient-revisions-0002.json",
+      "sha256": "5c693ede254c8129d5e5933ec6651eccf01d15535e0f43858d80a44f5ecd6052"
+    },
+    {
+      "file": "public/data/ingredients/ingredient-revisions-0003.json",
+      "sha256": "40b591bfbd34715447a706c6995a39cca095a8180420f754e88b456458f9849f"
+    },
+    {
+      "file": "public/data/locales/en.json",
+      "sha256": "da910383ad026f5a60f04f449aba35778ea3d8e4e3a62592f1d4985c77e3cc30"
+    },
+    {
+      "file": "public/data/locales/it.json",
+      "sha256": "8e2a28a0452224e471e472efc2ab46cc3226ae09833fdbf2f563571847156321"
+    },
+    {
+      "file": "public/data/recipes/recipe-families-0001.json",
+      "sha256": "09a36ceb330689fcf356811c74df83e44af25fddff44f2815dfa6f9e4397a6bf"
+    },
+    {
+      "file": "public/data/recipes/recipe-families-0002.json",
+      "sha256": "f0dda28404b1b8b6afb48132ff8b5c7fd09cefd7a4553dc8670d45311618474c"
+    },
+    {
+      "file": "public/data/recipes/recipe-families-0003.json",
+      "sha256": "6f685c7d353fba0ea7e33b3a91fdd6e78eca69d4c0cd4595e006ef1100e5aa6c"
+    },
+    {
+      "file": "public/data/recipes/recipe-families-0004.json",
+      "sha256": "83b5e2c2fde52c099709f37df53579da06f740727347ddf48d1201f1c5ceacaf"
+    },
+    {
+      "file": "public/data/recipes/recipe-families-0005.json",
+      "sha256": "c669cf555f1f3b33f1aa3758c63f448954cd72da568bb5b8e11e6bb4914ba273"
+    },
+    {
+      "file": "public/data/recipes/recipe-families-0006.json",
+      "sha256": "c802ea67d8fd9c8f3298f8abd36b9755a9d14b8eaee746786a586f50fdb95a74"
+    },
+    {
+      "file": "public/data/recipes/recipe-families-0007.json",
+      "sha256": "947cc3f5800f90c6217374e81cc43df05d07023c72e25106e94f3f2c7288505e"
+    },
+    {
+      "file": "public/data/recipes/recipe-families-0008.json",
+      "sha256": "1db846f2db540f1c0bb3bf74d1f8b242be548c3eb59b2775be1dc3a4e61fb15d"
+    },
+    {
+      "file": "public/data/recipes/recipe-versions-0001.json",
+      "sha256": "8e8f45fb6c816868087e0bc3bb41796f3e2a37706ef5bcbbd95e234808ac09a5"
+    },
+    {
+      "file": "public/data/recipes/recipe-versions-0002.json",
+      "sha256": "63223eae9a6c500f99f724294496a1156bc36e7104799ed5c6e6a25311d49c27"
+    },
+    {
+      "file": "public/data/recipes/recipe-versions-0003.json",
+      "sha256": "676bd9c1758414340d8268d66cf950d58de80bbd6190eeaae6877b14def685a9"
+    },
+    {
+      "file": "public/data/recipes/recipe-versions-0004.json",
+      "sha256": "7fb9b55de68638852d29c13d5be5b3f060a1a8238b47998a9c73d8372c5cf69a"
+    },
+    {
+      "file": "public/data/recipes/recipe-versions-0005.json",
+      "sha256": "0b3cc9c28aa93640d6ffb9644375af16e610034173ef2b52ebe89cfdc60833c7"
+    },
+    {
+      "file": "public/data/recipes/recipe-versions-0006.json",
+      "sha256": "e4c0df21326263bd0137a9461e24b411f508b598bbf8c066aa4d3b4af54eca0c"
+    },
+    {
+      "file": "public/data/recipes/recipe-versions-0007.json",
+      "sha256": "0ae7130b382656c99e6cce96f5d96679ab2c1a6aaaa13df073a6502bbc608fdf"
+    },
+    {
+      "file": "public/data/recipes/recipe-versions-0008.json",
+      "sha256": "a25898bfeaaffcc0bb93ff38234f67892644ef375584e62fe955f11560190dcc"
+    },
+    {
+      "file": "public/data/reference-data/taxonomies-0001.json",
+      "sha256": "0b0314365a4a6f2b9bc17904f4808358cd5184b5d4012629f85dd55c6725ee76"
+    },
+    {
+      "file": "public/data/reference-data/taxonomy-terms-0001.json",
+      "sha256": "a2b434b48f53777d4e078b7f3f23df89c3cee8acd69f12720b742286ce12e708"
+    },
+    {
+      "file": "public/icons/icon.svg",
+      "sha256": "43c533d3f3ba9eca7d8120127927686481cdd50cfdb0ca2ed55c54ea1c79a1ab"
+    },
+    {
+      "file": "public/manifest.webmanifest",
+      "sha256": "4dddffbdc8bacc9b36baf0c5c00bb3fe7b65ae91251a42e9b2c9fddf62089800"
+    },
+    {
+      "file": "public/schemas/allergy-intolerance-profile-v1.schema.json",
+      "sha256": "533d27f00708834a3f001602fbadecc1de44cdaba976c1302812fb1a50b58c2c"
+    },
+    {
+      "file": "public/schemas/allergy-intolerance-profile-v2.schema.json",
+      "sha256": "58e956c0de8b264389a28552775fa1ba7c4df9868b93b4f7a31c207e1bd205e6"
+    },
+    {
+      "file": "public/schemas/allergy-intolerance-profile.schema.json",
+      "sha256": "e2930a231e4c2bdee90da859f88065fead635f37fda40f742a48d4bb51ea9053"
+    },
+    {
+      "file": "public/schemas/app-config.schema.json",
+      "sha256": "16a2f73e3000680d2e937a399bcdd4bffdd0bdf290a381cb300a8510ee731de0"
+    },
+    {
+      "file": "public/schemas/backup-v1.schema.json",
+      "sha256": "5d0b70b6fbd18f713307be17c217c67d1d92b380f3300efb203b1b87c03341de"
+    },
+    {
+      "file": "public/schemas/backup-v2.schema.json",
+      "sha256": "fc5498609f5f35427b3b86769c41baaa6e6370dd2fa3a681275f27008d0703f7"
+    },
+    {
+      "file": "public/schemas/backup-v3.schema.json",
+      "sha256": "8a9d8be8f3061b520cb0d091e4b57773be934612b67a54fe4b6da8961c84294c"
+    },
+    {
+      "file": "public/schemas/backup-v4.schema.json",
+      "sha256": "b8e27ca68b18fb1c8df9db61800ecd1ed3596e6df4aa54b3157979804889fde8"
+    },
+    {
+      "file": "public/schemas/backup.schema.json",
+      "sha256": "18907b3bc3da49d736c7d743b8d43f285fd695efd07a9e3b576a8ce85ef206de"
+    },
+    {
+      "file": "public/schemas/calendar-day.schema.json",
+      "sha256": "6ec4aa3d63ab17d2a92485f707b10302a613de0a8e3352e813c964c71401d7f2"
+    },
+    {
+      "file": "public/schemas/catalog-manifest.schema.json",
+      "sha256": "4a217cd20c8086e15fcd835c9feda11ef5d32daf59c7436f17825193ba75d75d"
+    },
+    {
+      "file": "public/schemas/catalog-pack.schema.json",
+      "sha256": "05b906ab85123837eda1727862997a68d1d1aebda793560118b3ac70bcbe08c7"
+    },
+    {
+      "file": "public/schemas/catalog-publication.schema.json",
+      "sha256": "7b3a58f8c651dbec5c9751d489a43615184024d6cd297bcf14b013a96c2f0636"
+    },
+    {
+      "file": "public/schemas/controlled-scale-plan.schema.json",
+      "sha256": "9e74bcc6a6ce3b093dabb57d634ed6a3631717f30ee0ee10cec8087974a02278"
+    },
+    {
+      "file": "public/schemas/cycle.schema.json",
+      "sha256": "91cebbd338c47915272b1a448089321fc1839c38761b47c20fba9f86bcb83e5f"
+    },
+    {
+      "file": "public/schemas/day-class.schema.json",
+      "sha256": "a71bcb61f14fa6f2c69e7df9f5c27a28c68bb055ccf00a107614a802a2dcddac"
+    },
+    {
+      "file": "public/schemas/domain-enums.schema.json",
+      "sha256": "4990a0eb7b968fdf37fe620b46107da251183fed51114713dd2a370a298859f6"
+    },
+    {
+      "file": "public/schemas/food-group.schema.json",
+      "sha256": "3c8a81a0d174d90b5870695cbca40c5c10b177b13e7633c6e171ba38adb6ea07"
+    },
+    {
+      "file": "public/schemas/food-preferences-v1.schema.json",
+      "sha256": "e94b39ff98be9ba109583de8dfd6acc9c0264b3987a343da9238f1fcbf58f011"
+    },
+    {
+      "file": "public/schemas/food-preferences-v2.schema.json",
+      "sha256": "4f03c6ae0dbf7077fe328c40fabdc2d076f1a5568a3b8271f4e369279d61728a"
+    },
+    {
+      "file": "public/schemas/food-preferences.schema.json",
+      "sha256": "cc8fb2692b4ff55fda2e8e6374ace8c54aa0c03d9dc1ac2a8294d1ecb03d2c03"
+    },
+    {
+      "file": "public/schemas/generation-run.schema.json",
+      "sha256": "94436b9298dd9cefddef3e8b6b818878179072d5f84e9a830ec15ef942a89a51"
+    },
+    {
+      "file": "public/schemas/ingredient-conversion.schema.json",
+      "sha256": "0abf25eadda4807abef81667039a5090c891a5e24fbed794a0a4206bcc17832f"
+    },
+    {
+      "file": "public/schemas/ingredient-curation-batch.schema.json",
+      "sha256": "062dd45eae6ff0c2c73b91367f1bf83dcc035224c649fdb2bc1ca856ddca0384"
+    },
+    {
+      "file": "public/schemas/ingredient-curation-policy.schema.json",
+      "sha256": "91adcdbdac6f01779eddd724a34ce399982fd82a1afb2607b06faa3e9564cf40"
+    },
+    {
+      "file": "public/schemas/ingredient-curation-report.schema.json",
+      "sha256": "7cac9535fa9f613856492e86d6ba1f732e2adb3215c364c531e3631326221ac5"
+    },
+    {
+      "file": "public/schemas/ingredient-mapping.schema.json",
+      "sha256": "72232a8123ea5410714034835621b8abee7d380c247a90830ff5c37c81fcb3c9"
+    },
+    {
+      "file": "public/schemas/ingredient-price.schema.json",
+      "sha256": "f62bd5bf5a323d8c1d01a3c83897c88d685824a2cd95a78f155039953edeffe9"
+    },
+    {
+      "file": "public/schemas/ingredient-retirement-map.schema.json",
+      "sha256": "aa8622a6a9dd6d86243ea6a5ce2423d14656aeaea1aa8f27d828d5a7ed406daf"
+    },
+    {
+      "file": "public/schemas/ingredient-revision-v1.schema.json",
+      "sha256": "693e30afcdce8d5d2ff076aaa11cdc22f0d58330ff7cf5fd933bd74fdfb50aed"
+    },
+    {
+      "file": "public/schemas/ingredient-revision-v2.schema.json",
+      "sha256": "111602534e333fdeecd692ff2207006b94b2daae1f64af6deb255ff8ddda482b"
+    },
+    {
+      "file": "public/schemas/ingredient-revision.schema.json",
+      "sha256": "1b9a5bb1db0e09dbc6121954abbb87d45e8bad4349ae097d7a1ed4430877b32d"
+    },
+    {
+      "file": "public/schemas/ingredient.schema.json",
+      "sha256": "e66a8ddf9eeb7ea91561f7644da81aa78273e910fda5de11220983a72abe60f5"
+    },
+    {
+      "file": "public/schemas/meal-class.schema.json",
+      "sha256": "c36ec462d44f2cf7b643552f6785ee911d0bdb55a693644c5bda98e4b57d2212"
+    },
+    {
+      "file": "public/schemas/nutrition-profile.schema.json",
+      "sha256": "f8f4fe172c494dab3cf5cef3acc3168247a69243b27f684bd87f19c75a0b3c02"
+    },
+    {
+      "file": "public/schemas/operation.schema.json",
+      "sha256": "e78daa2e547056a71ff58f7b7f6750b3cb62870817def0691bd9fe339e7e3203"
+    },
+    {
+      "file": "public/schemas/pantry-entry.schema.json",
+      "sha256": "b69c49279da92c1c4d7016e1e24bbd11b392e64a19c3c2dcc654202cb39669af"
+    },
+    {
+      "file": "public/schemas/pilot-wave-report.schema.json",
+      "sha256": "25e81a943ea388701798e0fa19535e8738664619071f0bf24c712e36ff0135d1"
+    },
+    {
+      "file": "public/schemas/plan-instance.schema.json",
+      "sha256": "01ef26f18e2fe844b6dd85ebfe94089471a038daf72381846405f788c86fe6c1"
+    },
+    {
+      "file": "public/schemas/production-batch.schema.json",
+      "sha256": "cea3c78760db3cc7be5fc92dc652e0faa23323c9026d50ccdab38ae4646a33ac"
+    },
+    {
+      "file": "public/schemas/production-corpus-contract.schema.json",
+      "sha256": "72c18c9a8479a17aa3dc1107cfb427f5b0c96a6b29d326e571747dc88457b996"
+    },
+    {
+      "file": "public/schemas/production-corpus-intake.schema.json",
+      "sha256": "528fb0d928c661288cd1e0979c5ea6dabbf09bf57e915e0dc3080a8952aa9068"
+    },
+    {
+      "file": "public/schemas/production-corpus-readiness-report.schema.json",
+      "sha256": "7ea43776657afbf202698db33d9e4834c10335b6b49928aec97532f392fe37d8"
+    },
+    {
+      "file": "public/schemas/production-recipe-batch-report.schema.json",
+      "sha256": "e201be779672fcc9e73ed0c8bceaf85dabe0f6c6dfd71f551016e141e3b2504b"
+    },
+    {
+      "file": "public/schemas/production-recipe-pipeline-policy.schema.json",
+      "sha256": "208d29db224d92d93e9c8b8958886265f352e8e8baf8158e23167fe871b4bd86"
+    },
+    {
+      "file": "public/schemas/production-recipe-review-decisions.schema.json",
+      "sha256": "7dde51781eecf5d52bd9b99f631cf2ebd8030447ae03e3a9f846cb061e4fffc1"
+    },
+    {
+      "file": "public/schemas/production-review-publication.schema.json",
+      "sha256": "1cc0b8a36fd50b0eac5c79578054f15a2c95c6846cd9fbfcb0d57f3101a4784d"
+    },
+    {
+      "file": "public/schemas/production-scale-gate-report.schema.json",
+      "sha256": "3bb168159051954336cbf7a93dcbe7210280f4a1bfa3464322ffde88b4279336"
+    },
+    {
+      "file": "public/schemas/recipe-corpus-orchestration-run.schema.json",
+      "sha256": "d35ed1db2d9312d64bfc8110e4252c6799c91d93cbff2cd0ebdca68107427406"
+    },
+    {
+      "file": "public/schemas/recipe-corpus-policy.schema.json",
+      "sha256": "a48cb447fa44d6dadeaa80d23c1329d9c30bf642b7550600427e427736bb8187"
+    },
+    {
+      "file": "public/schemas/recipe-corpus-snapshot.schema.json",
+      "sha256": "5987c07307fb9124c94a6ba1890a3bec0409f2bf8eaa1413c8bc53b64cf6d46c"
+    },
+    {
+      "file": "public/schemas/recipe-favorite.schema.json",
+      "sha256": "2dce4b11b1722755ee38eae2639925483c91f06865b04f60d750aa0b7b1a072f"
+    },
+    {
+      "file": "public/schemas/recipe-generation-job.schema.json",
+      "sha256": "a110144b3b46219a5d6fc46949b91fb890554fa168eac130f1da24d22fefc069"
+    },
+    {
+      "file": "public/schemas/recipe-human-review-bundle.schema.json",
+      "sha256": "937a02a397741682babc1b1f956f00f98689be04bd0256e036f9198c7b79674f"
+    },
+    {
+      "file": "public/schemas/recipe-human-review.schema.json",
+      "sha256": "d7195f24a78a13b465d25b95d733cdb27374da441d033c67e4683e6c5b1ea38b"
+    },
+    {
+      "file": "public/schemas/recipe-version-v1.schema.json",
+      "sha256": "b1b84792c142226b44a12098ec350f4798c3ecde40767a9ddcf55b3a9a73e28e"
+    },
+    {
+      "file": "public/schemas/recipe-version-v2.schema.json",
+      "sha256": "849f614dc2ee1d0efd606cc78e43168375b8211b723821f438d28f55e0c4431b"
+    },
+    {
+      "file": "public/schemas/recipe-version.schema.json",
+      "sha256": "6ce42a7361a8f6ba0c3c08df48add4200b5709565c7ac0f564daed803cbbd943"
+    },
+    {
+      "file": "public/schemas/recipe.schema.json",
+      "sha256": "b43efbd9a8b5e0584a99bb6b90960aba7d6c88c22aac7964a908a0cd8af657df"
+    },
+    {
+      "file": "public/schemas/reference-data-proposal.schema.json",
+      "sha256": "2d39f223b476b8d3e87f491d2ad2704f9c13a6d16409cc1f4372ffe59aace34a"
+    },
+    {
+      "file": "public/schemas/safety-evidence.schema.json",
+      "sha256": "f08c700c74dcf7b8495b68bba15aa6a8d52defba9d7b10b90247cd074f983da5"
+    },
+    {
+      "file": "public/schemas/saved-menu.schema.json",
+      "sha256": "dfc77f3a67b26576762e3452e00c52c968c5f5e64f94ff20e6afb4b42e2c073a"
+    },
+    {
+      "file": "public/schemas/seasonality-profile.schema.json",
+      "sha256": "41e913b1049e6381e891b10d2adda9974f7dd0161cd9290ec4352aa3d376014c"
+    },
+    {
+      "file": "public/schemas/shopping-checklist.schema.json",
+      "sha256": "af34821d919db071e563ac9daf629e1cc29bb91efdd8549af95692962fa463e5"
+    },
+    {
+      "file": "public/schemas/taxonomy-term.schema.json",
+      "sha256": "8fe2133354bbc42a89f1b293e382f69f1cf4fdbfabc3cee353b2ff1cb3784a89"
+    },
+    {
+      "file": "public/schemas/taxonomy.schema.json",
+      "sha256": "0078a98bda68e93ae95422bb9b55167a2194431f525ec04a0abda63227e7d742"
+    },
+    {
+      "file": "public/schemas/theme-profile.schema.json",
+      "sha256": "cc1ac913af858dbdfbcee401ccbadd729d042479d353f9f3382b05678c0f35a3"
+    },
+    {
+      "file": "public/service-worker.js",
+      "sha256": "58ca11b22a7a9af750ae5c5ceb29ea4d798f78f5595dea38ad40072a484441ae"
+    },
+    {
+      "file": "schemas/allergy-intolerance-profile-v1.schema.json",
+      "sha256": "533d27f00708834a3f001602fbadecc1de44cdaba976c1302812fb1a50b58c2c"
+    },
+    {
+      "file": "schemas/allergy-intolerance-profile-v2.schema.json",
+      "sha256": "58e956c0de8b264389a28552775fa1ba7c4df9868b93b4f7a31c207e1bd205e6"
+    },
+    {
+      "file": "schemas/allergy-intolerance-profile.schema.json",
+      "sha256": "e2930a231e4c2bdee90da859f88065fead635f37fda40f742a48d4bb51ea9053"
+    },
+    {
+      "file": "schemas/app-config.schema.json",
+      "sha256": "16a2f73e3000680d2e937a399bcdd4bffdd0bdf290a381cb300a8510ee731de0"
+    },
+    {
+      "file": "schemas/backup-v1.schema.json",
+      "sha256": "5d0b70b6fbd18f713307be17c217c67d1d92b380f3300efb203b1b87c03341de"
+    },
+    {
+      "file": "schemas/backup-v2.schema.json",
+      "sha256": "fc5498609f5f35427b3b86769c41baaa6e6370dd2fa3a681275f27008d0703f7"
+    },
+    {
+      "file": "schemas/backup-v3.schema.json",
+      "sha256": "8a9d8be8f3061b520cb0d091e4b57773be934612b67a54fe4b6da8961c84294c"
+    },
+    {
+      "file": "schemas/backup-v4.schema.json",
+      "sha256": "b8e27ca68b18fb1c8df9db61800ecd1ed3596e6df4aa54b3157979804889fde8"
+    },
+    {
+      "file": "schemas/backup.schema.json",
+      "sha256": "18907b3bc3da49d736c7d743b8d43f285fd695efd07a9e3b576a8ce85ef206de"
+    },
+    {
+      "file": "schemas/calendar-day.schema.json",
+      "sha256": "6ec4aa3d63ab17d2a92485f707b10302a613de0a8e3352e813c964c71401d7f2"
+    },
+    {
+      "file": "schemas/catalog-manifest.schema.json",
+      "sha256": "4a217cd20c8086e15fcd835c9feda11ef5d32daf59c7436f17825193ba75d75d"
+    },
+    {
+      "file": "schemas/catalog-pack.schema.json",
+      "sha256": "05b906ab85123837eda1727862997a68d1d1aebda793560118b3ac70bcbe08c7"
+    },
+    {
+      "file": "schemas/catalog-publication.schema.json",
+      "sha256": "7b3a58f8c651dbec5c9751d489a43615184024d6cd297bcf14b013a96c2f0636"
+    },
+    {
+      "file": "schemas/controlled-scale-plan.schema.json",
+      "sha256": "9e74bcc6a6ce3b093dabb57d634ed6a3631717f30ee0ee10cec8087974a02278"
+    },
+    {
+      "file": "schemas/cycle.schema.json",
+      "sha256": "91cebbd338c47915272b1a448089321fc1839c38761b47c20fba9f86bcb83e5f"
+    },
+    {
+      "file": "schemas/day-class.schema.json",
+      "sha256": "a71bcb61f14fa6f2c69e7df9f5c27a28c68bb055ccf00a107614a802a2dcddac"
+    },
+    {
+      "file": "schemas/domain-enums.schema.json",
+      "sha256": "4990a0eb7b968fdf37fe620b46107da251183fed51114713dd2a370a298859f6"
+    },
+    {
+      "file": "schemas/food-group.schema.json",
+      "sha256": "3c8a81a0d174d90b5870695cbca40c5c10b177b13e7633c6e171ba38adb6ea07"
+    },
+    {
+      "file": "schemas/food-preferences-v1.schema.json",
+      "sha256": "e94b39ff98be9ba109583de8dfd6acc9c0264b3987a343da9238f1fcbf58f011"
+    },
+    {
+      "file": "schemas/food-preferences-v2.schema.json",
+      "sha256": "4f03c6ae0dbf7077fe328c40fabdc2d076f1a5568a3b8271f4e369279d61728a"
+    },
+    {
+      "file": "schemas/food-preferences.schema.json",
+      "sha256": "cc8fb2692b4ff55fda2e8e6374ace8c54aa0c03d9dc1ac2a8294d1ecb03d2c03"
+    },
+    {
+      "file": "schemas/generation-run.schema.json",
+      "sha256": "94436b9298dd9cefddef3e8b6b818878179072d5f84e9a830ec15ef942a89a51"
+    },
+    {
+      "file": "schemas/ingredient-conversion.schema.json",
+      "sha256": "0abf25eadda4807abef81667039a5090c891a5e24fbed794a0a4206bcc17832f"
+    },
+    {
+      "file": "schemas/ingredient-curation-batch.schema.json",
+      "sha256": "062dd45eae6ff0c2c73b91367f1bf83dcc035224c649fdb2bc1ca856ddca0384"
+    },
+    {
+      "file": "schemas/ingredient-curation-policy.schema.json",
+      "sha256": "91adcdbdac6f01779eddd724a34ce399982fd82a1afb2607b06faa3e9564cf40"
+    },
+    {
+      "file": "schemas/ingredient-curation-report.schema.json",
+      "sha256": "7cac9535fa9f613856492e86d6ba1f732e2adb3215c364c531e3631326221ac5"
+    },
+    {
+      "file": "schemas/ingredient-mapping.schema.json",
+      "sha256": "72232a8123ea5410714034835621b8abee7d380c247a90830ff5c37c81fcb3c9"
+    },
+    {
+      "file": "schemas/ingredient-price.schema.json",
+      "sha256": "f62bd5bf5a323d8c1d01a3c83897c88d685824a2cd95a78f155039953edeffe9"
+    },
+    {
+      "file": "schemas/ingredient-retirement-map.schema.json",
+      "sha256": "aa8622a6a9dd6d86243ea6a5ce2423d14656aeaea1aa8f27d828d5a7ed406daf"
+    },
+    {
+      "file": "schemas/ingredient-revision-v1.schema.json",
+      "sha256": "693e30afcdce8d5d2ff076aaa11cdc22f0d58330ff7cf5fd933bd74fdfb50aed"
+    },
+    {
+      "file": "schemas/ingredient-revision-v2.schema.json",
+      "sha256": "111602534e333fdeecd692ff2207006b94b2daae1f64af6deb255ff8ddda482b"
+    },
+    {
+      "file": "schemas/ingredient-revision.schema.json",
+      "sha256": "1b9a5bb1db0e09dbc6121954abbb87d45e8bad4349ae097d7a1ed4430877b32d"
+    },
+    {
+      "file": "schemas/ingredient.schema.json",
+      "sha256": "e66a8ddf9eeb7ea91561f7644da81aa78273e910fda5de11220983a72abe60f5"
+    },
+    {
+      "file": "schemas/meal-class.schema.json",
+      "sha256": "c36ec462d44f2cf7b643552f6785ee911d0bdb55a693644c5bda98e4b57d2212"
+    },
+    {
+      "file": "schemas/nutrition-profile.schema.json",
+      "sha256": "f8f4fe172c494dab3cf5cef3acc3168247a69243b27f684bd87f19c75a0b3c02"
+    },
+    {
+      "file": "schemas/operation.schema.json",
+      "sha256": "e78daa2e547056a71ff58f7b7f6750b3cb62870817def0691bd9fe339e7e3203"
+    },
+    {
+      "file": "schemas/pantry-entry.schema.json",
+      "sha256": "b69c49279da92c1c4d7016e1e24bbd11b392e64a19c3c2dcc654202cb39669af"
+    },
+    {
+      "file": "schemas/pilot-wave-report.schema.json",
+      "sha256": "25e81a943ea388701798e0fa19535e8738664619071f0bf24c712e36ff0135d1"
+    },
+    {
+      "file": "schemas/plan-instance.schema.json",
+      "sha256": "01ef26f18e2fe844b6dd85ebfe94089471a038daf72381846405f788c86fe6c1"
+    },
+    {
+      "file": "schemas/production-batch.schema.json",
+      "sha256": "cea3c78760db3cc7be5fc92dc652e0faa23323c9026d50ccdab38ae4646a33ac"
+    },
+    {
+      "file": "schemas/production-corpus-contract.schema.json",
+      "sha256": "72c18c9a8479a17aa3dc1107cfb427f5b0c96a6b29d326e571747dc88457b996"
+    },
+    {
+      "file": "schemas/production-corpus-intake.schema.json",
+      "sha256": "528fb0d928c661288cd1e0979c5ea6dabbf09bf57e915e0dc3080a8952aa9068"
+    },
+    {
+      "file": "schemas/production-corpus-readiness-report.schema.json",
+      "sha256": "7ea43776657afbf202698db33d9e4834c10335b6b49928aec97532f392fe37d8"
+    },
+    {
+      "file": "schemas/production-recipe-batch-report.schema.json",
+      "sha256": "e201be779672fcc9e73ed0c8bceaf85dabe0f6c6dfd71f551016e141e3b2504b"
+    },
+    {
+      "file": "schemas/production-recipe-pipeline-policy.schema.json",
+      "sha256": "208d29db224d92d93e9c8b8958886265f352e8e8baf8158e23167fe871b4bd86"
+    },
+    {
+      "file": "schemas/production-recipe-review-decisions.schema.json",
+      "sha256": "7dde51781eecf5d52bd9b99f631cf2ebd8030447ae03e3a9f846cb061e4fffc1"
+    },
+    {
+      "file": "schemas/production-review-publication.schema.json",
+      "sha256": "1cc0b8a36fd50b0eac5c79578054f15a2c95c6846cd9fbfcb0d57f3101a4784d"
+    },
+    {
+      "file": "schemas/production-scale-gate-report.schema.json",
+      "sha256": "3bb168159051954336cbf7a93dcbe7210280f4a1bfa3464322ffde88b4279336"
+    },
+    {
+      "file": "schemas/recipe-corpus-orchestration-run.schema.json",
+      "sha256": "d35ed1db2d9312d64bfc8110e4252c6799c91d93cbff2cd0ebdca68107427406"
+    },
+    {
+      "file": "schemas/recipe-corpus-policy.schema.json",
+      "sha256": "a48cb447fa44d6dadeaa80d23c1329d9c30bf642b7550600427e427736bb8187"
+    },
+    {
+      "file": "schemas/recipe-corpus-snapshot.schema.json",
+      "sha256": "5987c07307fb9124c94a6ba1890a3bec0409f2bf8eaa1413c8bc53b64cf6d46c"
+    },
+    {
+      "file": "schemas/recipe-favorite.schema.json",
+      "sha256": "2dce4b11b1722755ee38eae2639925483c91f06865b04f60d750aa0b7b1a072f"
+    },
+    {
+      "file": "schemas/recipe-generation-job.schema.json",
+      "sha256": "a110144b3b46219a5d6fc46949b91fb890554fa168eac130f1da24d22fefc069"
+    },
+    {
+      "file": "schemas/recipe-human-review-bundle.schema.json",
+      "sha256": "937a02a397741682babc1b1f956f00f98689be04bd0256e036f9198c7b79674f"
+    },
+    {
+      "file": "schemas/recipe-human-review.schema.json",
+      "sha256": "d7195f24a78a13b465d25b95d733cdb27374da441d033c67e4683e6c5b1ea38b"
+    },
+    {
+      "file": "schemas/recipe-version-v1.schema.json",
+      "sha256": "b1b84792c142226b44a12098ec350f4798c3ecde40767a9ddcf55b3a9a73e28e"
+    },
+    {
+      "file": "schemas/recipe-version-v2.schema.json",
+      "sha256": "849f614dc2ee1d0efd606cc78e43168375b8211b723821f438d28f55e0c4431b"
+    },
+    {
+      "file": "schemas/recipe-version.schema.json",
+      "sha256": "6ce42a7361a8f6ba0c3c08df48add4200b5709565c7ac0f564daed803cbbd943"
+    },
+    {
+      "file": "schemas/recipe.schema.json",
+      "sha256": "b43efbd9a8b5e0584a99bb6b90960aba7d6c88c22aac7964a908a0cd8af657df"
+    },
+    {
+      "file": "schemas/reference-data-proposal.schema.json",
+      "sha256": "2d39f223b476b8d3e87f491d2ad2704f9c13a6d16409cc1f4372ffe59aace34a"
+    },
+    {
+      "file": "schemas/safety-evidence.schema.json",
+      "sha256": "f08c700c74dcf7b8495b68bba15aa6a8d52defba9d7b10b90247cd074f983da5"
+    },
+    {
+      "file": "schemas/saved-menu.schema.json",
+      "sha256": "dfc77f3a67b26576762e3452e00c52c968c5f5e64f94ff20e6afb4b42e2c073a"
+    },
+    {
+      "file": "schemas/seasonality-profile.schema.json",
+      "sha256": "41e913b1049e6381e891b10d2adda9974f7dd0161cd9290ec4352aa3d376014c"
+    },
+    {
+      "file": "schemas/shopping-checklist.schema.json",
+      "sha256": "af34821d919db071e563ac9daf629e1cc29bb91efdd8549af95692962fa463e5"
+    },
+    {
+      "file": "schemas/taxonomy-term.schema.json",
+      "sha256": "8fe2133354bbc42a89f1b293e382f69f1cf4fdbfabc3cee353b2ff1cb3784a89"
+    },
+    {
+      "file": "schemas/taxonomy.schema.json",
+      "sha256": "0078a98bda68e93ae95422bb9b55167a2194431f525ec04a0abda63227e7d742"
+    },
+    {
+      "file": "schemas/theme-profile.schema.json",
+      "sha256": "cc1ac913af858dbdfbcee401ccbadd729d042479d353f9f3382b05678c0f35a3"
+    },
+    {
+      "file": "scripts/build.mjs",
+      "sha256": "9aaa51bcd2976f468f5047b5bfba296e9bc12baca2f5137f091f64a978a046a1"
+    },
+    {
+      "file": "scripts/corpus/apply-batch.mjs",
+      "sha256": "912642db940ad633839d190f4ec6ddc832480c8c0a7d17d7a6cd216508e9e499"
+    },
+    {
+      "file": "scripts/corpus/apply-production-batch.mjs",
+      "sha256": "87a319aa18632506f92f2efa86ba1a318949eb72da0b964f241e366671463c0f"
+    },
+    {
+      "file": "scripts/corpus/auto-curate-fdc.mjs",
+      "sha256": "bc3b4b7f9ea4a7c87f0086e29b31c712df7b9cc8cb9e544a4538a328cc91ea36"
+    },
+    {
+      "file": "scripts/corpus/build-phase4-smoke.mjs",
+      "sha256": "afaf5550fcc6da82efeb35cfa65778c8dbb022a3833b601327687ba917b3df41"
+    },
+    {
+      "file": "scripts/corpus/build-v1-planner-phase-b.mjs",
+      "sha256": "b320c6a2c9f174bd1302210fe473661f6557bd52b948fcc0519ff964e1090f29"
+    },
+    {
+      "file": "scripts/corpus/build-v1-planner-phase-d.mjs",
+      "sha256": "a993c6597c378a5b0fa38b9c50cfb8d70f9bd02618de72f37ec9f76c41c717d6"
+    },
+    {
+      "file": "scripts/corpus/build-v1-release-corpus.mjs",
+      "sha256": "d12f24b14fb642cd20c7e67763dc4e8906c8bcda07a1d116b3336860efc9af7d"
+    },
+    {
+      "file": "scripts/corpus/combine-materialized-ingredients.mjs",
+      "sha256": "abecc5907bbd376ecf00667b02bf3ed6dd4ccd483c3ba77fc67ad987965e7609"
+    },
+    {
+      "file": "scripts/corpus/create-production-job-intake.mjs",
+      "sha256": "752828fc7602696e5f6e133345d4e1fe8760fc86ed1a0eabcc02e92e6f9cf500"
+    },
+    {
+      "file": "scripts/corpus/execute-controlled-scale-500.mjs",
+      "sha256": "d0d93cd4ee706be28f552f3c00fe346350304719270263d02ff36d0e1f93a71d"
+    },
+    {
+      "file": "scripts/corpus/execute-first-scale-batch.mjs",
+      "sha256": "14594eed5055f0ca9f4819eac638a6bee1cd9d0394123347855ad1ce1331793d"
+    },
+    {
+      "file": "scripts/corpus/execute-production-pilot.mjs",
+      "sha256": "60fe703a141efb522ec4cde01317289696a72673c72e04643cac70a028fda69d"
+    },
+    {
+      "file": "scripts/corpus/fdc-import-lib.mjs",
+      "sha256": "ca46ec73a7c7fe9b7c1634026815ba24ae839beb3e53e555103073a074f17e6d"
+    },
+    {
+      "file": "scripts/corpus/fetch-fdc-source.mjs",
+      "sha256": "f05358254ff2a52cd2ccc98ef10cd73a6b597cf303881f2f1949bde716883913"
+    },
+    {
+      "file": "scripts/corpus/generate-legacy-retirement-map.mjs",
+      "sha256": "9de7de5ccb126dc6282e41f2d01393502e352473d1c1111618b9a000add1fb7e"
+    },
+    {
+      "file": "scripts/corpus/import-usda-foundation.mjs",
+      "sha256": "4249aebaee5882fa2ab02b9680d5ce1066ea4389314dcf02f374ca5cf46b758d"
+    },
+    {
+      "file": "scripts/corpus/import-usda-sr-legacy.mjs",
+      "sha256": "6d5a10e8d78a35361142a8ce6ef2ef41ccb4b9f7af92f7b0e76cf54343aedd07"
+    },
+    {
+      "file": "scripts/corpus/ingredient-curation-report.mjs",
+      "sha256": "9abf5a72357d11266b82b613d2929dcdf17cab05141b216c5e20be4d2d01f5cb"
+    },
+    {
+      "file": "scripts/corpus/io-lib.mjs",
+      "sha256": "425da0aa2e2635ef2445a16ec2493735b7736b71b02fde57cdcb870d0a38bd42"
+    },
+    {
+      "file": "scripts/corpus/materialize-usda-reviewed.mjs",
+      "sha256": "b584a216fa62233c798da23f56f37582ddbb18004438e4dd8068db7f101f9213"
+    },
+    {
+      "file": "scripts/corpus/merge-curated-ingredients.mjs",
+      "sha256": "c1b4ffc77ea6fe656c28c20270978b221d77d4589fe875c9bddfb4ebe21d81ac"
+    },
+    {
+      "file": "scripts/corpus/pilot-wave-report.mjs",
+      "sha256": "ab1fc4b9025455912b4fa2a8adbdeb11cd75d170f898cf542c2e5cbd4009d2d3"
+    },
+    {
+      "file": "scripts/corpus/plan-pilot.mjs",
+      "sha256": "f0813ca44e140134353167df3ceab0c27af23ae0223654756d0ad9ea2f9ada80"
+    },
+    {
+      "file": "scripts/corpus/plan.mjs",
+      "sha256": "f9730604bf7a18e2a22f090fec1e21ff678c915d243f081691263b043054faf1"
+    },
+    {
+      "file": "scripts/corpus/process-batch.mjs",
+      "sha256": "be530dbc343fd2359d06215f63ef89fc4714e9bc295bc5e0982d8f2517056438"
+    },
+    {
+      "file": "scripts/corpus/process-production-batch.mjs",
+      "sha256": "d17b6d9d596ba9aae439e036610f63b11e872664ab6705aa41c3f4bdd219a528"
+    },
+    {
+      "file": "scripts/corpus/production-readiness.mjs",
+      "sha256": "d9be7ded3a2ac61f687835aabb655438cd5af3cc1792aadac1a4f0fd547306f4"
+    },
+    {
+      "file": "scripts/corpus/publish-production-review-500.mjs",
+      "sha256": "4c00521eb5d662981fad30992eba3f6390b193b0d3287d93b4d2f97307acc4ff"
+    },
+    {
+      "file": "scripts/corpus/publish-release.mjs",
+      "sha256": "fee67f01b703e7281c654eb0a80f539cde4cf2bc785f815b9b31fcb6236618e0"
+    },
+    {
+      "file": "scripts/corpus/publish-v1-planner-phase-b.mjs",
+      "sha256": "87a91b1e411cdc68b95efb8672028078cb52250b2a591759f4cdb2df61ab5fe4"
+    },
+    {
+      "file": "scripts/corpus/publish-v1-planner-phase-d.mjs",
+      "sha256": "69997505774418a29ba5e569766a6cfae21f2210eb463a9fecb5634108bc51c1"
+    },
+    {
+      "file": "scripts/corpus/publish-v1-release.mjs",
+      "sha256": "c09a23e7df388e201bc072b64462d76749e9e34a8abb696702b226ec05ae97b4"
+    },
+    {
+      "file": "scripts/corpus/release-lib.mjs",
+      "sha256": "472feb5836c6fa7bc8672f702e9aa9203572789cab2e8a9ab9551774db492e70"
+    },
+    {
+      "file": "scripts/corpus/resolve-pilot-intake.mjs",
+      "sha256": "d81d7046053ba1d7a385f8596282581d5519c86eed491bac921c56a662a12751"
+    },
+    {
+      "file": "scripts/corpus/retire-development-recipe-fixtures.mjs",
+      "sha256": "a79fa8d6cbdafa87e2db7861daf0c6bdd4cf1684e078a7330d7a3f365095c58c"
+    },
+    {
+      "file": "scripts/corpus/review-production-batch.mjs",
+      "sha256": "003c857b0e80872d30093289fe8aed70129e8b35868ca126e6a99eb9d2198883"
+    },
+    {
+      "file": "scripts/corpus/run-production-batch.mjs",
+      "sha256": "7f02c0179f1b0aef66c79f032db05c510a245c97a2c5ae5ac3f9e1393d39c6c1"
+    },
+    {
+      "file": "scripts/corpus/scale-gate-500.mjs",
+      "sha256": "e2eac2671679f4e303e6b661dfa5ff02b35dacc2a8685422aa0074aad5710913"
+    },
+    {
+      "file": "scripts/corpus/scan.mjs",
+      "sha256": "33bde66aedf13e0f9a76e4646633e1ddae98c82096327cb654ba83bab931b7d3"
+    },
+    {
+      "file": "scripts/corpus/v1-stratified-review.mjs",
+      "sha256": "5b22490c1a744f1f5ad224493ae17f4aece77ccfab4eb2508953e0c6bad378dd"
+    },
+    {
+      "file": "scripts/corpus/validate-controlled-scale-500.mjs",
+      "sha256": "5e215235f517017271978bcad2b8d6a32084951e205cd021932dd04857055b2b"
+    },
+    {
+      "file": "scripts/corpus/validate-human-review-500.mjs",
+      "sha256": "d28a771ae60a9f4f48778ad1ac9377c020d863a16b0e2e1881a13fde688c3eab"
+    },
+    {
+      "file": "scripts/corpus/validate-production-contract.mjs",
+      "sha256": "cb7da4bfbfa012ca0d0e11baf4c906501d23f468a54ead9e3c8f1d04b00aa753"
+    },
+    {
+      "file": "scripts/corpus/validate-production-execution.mjs",
+      "sha256": "f6862345ef86d37120debf69a49c9f751fb4359db3ddf1c23ce84a27e66153aa"
+    },
+    {
+      "file": "scripts/corpus/validate-production-pass-b.mjs",
+      "sha256": "4e4ac687abf12f9fc479a86f9c443eeff3ca3452efb2dbb5d09e8a5abc2a4567"
+    },
+    {
+      "file": "scripts/corpus/validate-production-pass-c.mjs",
+      "sha256": "9b5727c31b552293978a03535ce933d1c12e4d29ae4bcbd54217feede277e50f"
+    },
+    {
+      "file": "scripts/corpus/validate-production-review-control-plane.mjs",
+      "sha256": "4fbd2654dd358c8aad350672f36752682f6c017f786d7097b3e786071aa4b50c"
+    },
+    {
+      "file": "scripts/corpus/validate-production-review-publication.mjs",
+      "sha256": "e0ed22fcf1cf8ebbb74aeec04f598f49bd237139214fd6ed6548b535078e2cca"
+    },
+    {
+      "file": "scripts/dev-server.mjs",
+      "sha256": "c2967a949978e86012eb54e0426b31a3f24c005e8f250d0b17802c4e97f7dd22"
+    },
+    {
+      "file": "scripts/hardening/a11y-audit.mjs",
+      "sha256": "e0b026fb78358328c3ad840fc6b018adf160bba14866f788f867879a6b6b73f8"
+    },
+    {
+      "file": "scripts/hardening/browser-regression.mjs",
+      "sha256": "175da9dc80354ba731c648e6ac6a4f78f689b7719bd37b33a0557fc8d9ff8309"
+    },
+    {
+      "file": "scripts/hardening/form-contract-audit.mjs",
+      "sha256": "447e5786e3f84ba366cb95f4891dfce2a1c8a397993db96e00e6a2c465a11ea8"
+    },
+    {
+      "file": "scripts/hardening/pages-audit.mjs",
+      "sha256": "970423e154b0d513d68e28520b40d2269e9f669cf7d8ea8cc04c4fbfb6231d6d"
+    },
+    {
+      "file": "scripts/hardening/release-gate.mjs",
+      "sha256": "56eb09fc114fa1bbafa201a01e2e6f5cb781bce2145fe4f62bb5eda02a48d322"
+    },
+    {
+      "file": "scripts/hardening/revision-closure.mjs",
+      "sha256": "f2c43086130cb2c5bc510aef7ee6e20dc33f9ad7f9bed792f7b3fa7f786d774e"
+    },
+    {
+      "file": "scripts/hardening/scale-benchmark.mjs",
+      "sha256": "57ca65c7db6d9dd71286601d5c1c7a99d0c734a189fc12219dc71205e880be34"
+    },
+    {
+      "file": "scripts/hardening/v1-engine-phase-a-gate.mjs",
+      "sha256": "3ed295dfd15a64bb1346266c2af953531539af47eaaefb5ccb47825985542ccb"
+    },
+    {
+      "file": "scripts/hardening/v1-planner-phase-b-gate.mjs",
+      "sha256": "a8ba15efeacd0f9db74f4d4c56ea501bdf9aab282976cb3fb91d5d61aa92d932"
+    },
+    {
+      "file": "scripts/hardening/v1-planner-phase-c-gate.mjs",
+      "sha256": "8b2fcb7839e82cddd9b91258995bcd560a48d1cdeb9823128ff53bef365371fe"
+    },
+    {
+      "file": "scripts/hardening/v1-planner-phase-d-gate.mjs",
+      "sha256": "b4782d8d5f5b713f9e96e4b9395173d16f5244bc89c2df895f632b0b01bf6ff8"
+    },
+    {
+      "file": "scripts/hardening/v1-planner-phase-d-ux-gate.mjs",
+      "sha256": "29cccd0e8f61d38c040b04d4ef7265cf7675fd5e8cb2834bc00f328e6a9a34cd"
+    },
+    {
+      "file": "scripts/hardening/v1-planner-phase-e-gate.mjs",
+      "sha256": "42d5b670b72f331e8f254d355f0555dffe108665f49160b0e89618b0d85710fe"
+    },
+    {
+      "file": "scripts/hardening/v1-planner-phase-f-gate.mjs",
+      "sha256": "03bcc4ca93cfda9625b7342ea0a5ba822186c3dca213def5d412f2e3cf8063f5"
+    },
+    {
+      "file": "scripts/hardening/v1-planner-phase-g-gate.mjs",
+      "sha256": "776e35535cadd5eeeab73ac45f47d8b669274c37552e298471f5a7383cf12db0"
+    },
+    {
+      "file": "scripts/hardening/v1-planner-phase-h-gate.mjs",
+      "sha256": "658c37d5f022ee72f0904781b2f223d8a71b1edc73d9dbc32903c3378b815c07"
+    },
+    {
+      "file": "scripts/hardening/v1-step1-gate.mjs",
+      "sha256": "f16f074cd68a6e52a4ba6bcda70f8ebff72a5d750322895008bb09849339f3fc"
+    },
+    {
+      "file": "scripts/hardening/v1-step2-gate.mjs",
+      "sha256": "eb05ee5d7191a48306676171044b745a71e6c4a58dd45737f02019a282ed3b9c"
+    },
+    {
+      "file": "scripts/hardening/v1-step3-gate.mjs",
+      "sha256": "b31f2dc254ee300da6958d7a8f5276a767ef282da1192a6a6b7b9105143718c7"
+    },
+    {
+      "file": "scripts/lint.mjs",
+      "sha256": "4a345989ada375719e908102a2ad2a516b1735cb4b48a63bdb304d6207847863"
+    },
+    {
+      "file": "scripts/planner/audit-v1-feasibility.mjs",
+      "sha256": "fe1bfed1ba315425f0bf16510f92ad3d422817dcdab1d7e44f9e55ef83c08910"
+    },
+    {
+      "file": "scripts/planner/build-phase5-smoke.mjs",
+      "sha256": "3013ea154e4cc05f0f73817f356a5e36ec0523a52c3264c010cae82c10a9b1a5"
+    },
+    {
+      "file": "scripts/release/build-v1-planner-phase-g-freeze.mjs",
+      "sha256": "5ae3578a10ec30dfc91ee3402b6512e02fa5220b1c1ce8d88995327f67852229"
+    },
+    {
+      "file": "scripts/release/build-v1-planner-phase-h-handoff.mjs",
+      "sha256": "9e74462289d6de88d01698a18e17054e8969c8abcf4cbf75729e4c8234557418"
+    },
+    {
+      "file": "scripts/release/promote-v1-stable.mjs",
+      "sha256": "fe516d71a0e944fde3038155fe2f09a5add06db2a70e9544faa707ba8ca8850d"
+    },
+    {
+      "file": "scripts/release/v1-release-state.mjs",
+      "sha256": "b918ff4237f34381df550273ffbda12811b7ec7580a8a6b8024c88289e998486"
+    },
+    {
+      "file": "scripts/release/v1-stable-promotion-lib.mjs",
+      "sha256": "3e6e32879f4edcc8ad039130d716d4bcead8124e4080181e4fb61df72b8e78b6"
+    },
+    {
+      "file": "scripts/revision-v2/audit-catalog-migration.mjs",
+      "sha256": "6b08118e2d1b3b84afef3baf019e053008dbb76548012177949dda270c871391"
+    },
+    {
+      "file": "scripts/revision-v2/audit-r2-r3.mjs",
+      "sha256": "74294c583760b13968af3e777568ff28b0029b51ece18d1c86304a8c11a13d10"
+    },
+    {
+      "file": "scripts/revision-v2/benchmark-r7.mjs",
+      "sha256": "360c5f658ba044e8b00b06d6c51d9305a8d16564908a078d212028f65dce4152"
+    },
+    {
+      "file": "scripts/revision-v2/build-identity.mjs",
+      "sha256": "d1232395fb3a6622bec13628665ce6ec9a4d74713ed55cb0fcce405692ab87f4"
+    },
+    {
+      "file": "scripts/revision-v2/core-gate.mjs",
+      "sha256": "bc9797df2036b8ac241279fe0f5af56ec5eb3957efd148bd4693f682a32017f0"
+    },
+    {
+      "file": "scripts/revision-v2/import-mediterranean-reviews.mjs",
+      "sha256": "9a1ac3a9f3c70d686e2065d3d3698dbb473133cfba1ab907f5b66ff0cf51eea0"
+    },
+    {
+      "file": "scripts/revision-v2/run-regression.mjs",
+      "sha256": "e637a49d218b831ef9ef2ac1178206b5c46f8ca9cef28e788cec350b5bc3cc3c"
+    },
+    {
+      "file": "scripts/revision-v2/stage-mediterranean.mjs",
+      "sha256": "f6a492e4f30c11dd51e5e902107d461fe6640bfb8cd92bdb18d2838890e7db72"
+    },
+    {
+      "file": "scripts/revision-v2/update-r2-r3-dossier.py",
+      "sha256": "71299f12c4de651d88a1c143279740c0ad8b512993449c14f52c0452c4fde611"
+    },
+    {
+      "file": "scripts/revision-v2/update-r4-r5-dossier.mjs",
+      "sha256": "dd4ee8359418555030b3f7ffb8107a9d82996c453edbca45951c4207b22df420"
+    },
+    {
+      "file": "scripts/revision-v2/update-r6-r7-dossier.mjs",
+      "sha256": "6691422068d2ce43776ec901e5c66322237b78ba414a4ebc4739e628b9539350"
+    },
+    {
+      "file": "scripts/revision-v2/update-r8-dossier.mjs",
+      "sha256": "fc2f9b9f5e54de677d891102ddada7b568e42298b538e1e68b422e82a8db0fa8"
+    },
+    {
+      "file": "scripts/validate-revision-v2-traceability.mjs",
+      "sha256": "a7a675e72dc1608e0e74ce0cef6645a9b8114e242a406485c2b0d58bf9a8d3c0"
+    },
+    {
+      "file": "src/bootstrapVisual.js",
+      "sha256": "c23e869d8809951b9cc1ef83ed3b58f835915fa5751fea6d26611130f74114b4"
+    },
+    {
+      "file": "src/corpus/controlledScale.js",
+      "sha256": "9cd11b906b44bae0c3726dcef7dd6109055f2b6b93bf8b0b8d6965c8291ad98a"
+    },
+    {
+      "file": "src/corpus/corpusMath.js",
+      "sha256": "356b2b196b103e526cc0a5e6c9c3abe64a24c0ef2d6d49ebac64927e809c40af"
+    },
+    {
+      "file": "src/corpus/corpusOrchestrator.js",
+      "sha256": "48d6b09400cbaf9765428a0ba0d803629877a7a62ce5acced8d9360148612c62"
+    },
+    {
+      "file": "src/corpus/corpusScanner.js",
+      "sha256": "063860d89fd987c1e3bc4928a501767e34e85e9e302abeeaf2c7f4ac6d0a211f"
+    },
+    {
+      "file": "src/corpus/deterministicRecipeGenerator.js",
+      "sha256": "f423b1097933196a43c85b975b628acd89462f2d9ccba6f7b67698807e456858"
+    },
+    {
+      "file": "src/corpus/fdcAutoCuration.js",
+      "sha256": "b8884bbfcd51872d0de3206aa9306eb096dc627f09e5ed6dfffa71b11c9d793b"
+    },
+    {
+      "file": "src/corpus/ingredientCuration.js",
+      "sha256": "68034cc26a0d5a365b4e4bbb7d7c2557be9eca1b4c7da6f93bd50306bb89949b"
+    },
+    {
+      "file": "src/corpus/mediterranean/coverage.js",
+      "sha256": "c8550260a9fbe77b0903bf98d1c5b4c017108a879dfba4b662ebe4306fb3f537"
+    },
+    {
+      "file": "src/corpus/mediterranean/sourceAdapters.js",
+      "sha256": "12a8c9cafeaba7051e56c3908a63114077bd968be3522406b7d43e765b79a776"
+    },
+    {
+      "file": "src/corpus/productionCorpus.js",
+      "sha256": "ef11e0b31a82cb607c4cdfbd0a779cb3dcd537f3ffd41d0b85027a449cf53673"
+    },
+    {
+      "file": "src/corpus/productionRecipePipeline.js",
+      "sha256": "a67ad7e737e64a5a8e27c5ade712a272ea12e8bc4c6ecfc0cea8a894c35166b0"
+    },
+    {
+      "file": "src/corpus/recipePipeline.js",
+      "sha256": "abe4c73947af504665ed271537ad70ba61f58b62955e297460a639c2ea8818e6"
+    },
+    {
+      "file": "src/corpus/v1PhaseBRecipeGenerator.js",
+      "sha256": "5a4dd3df5591ade0cea697936109379ef1ae4fca8840b6a5de3920102df4dce9"
+    },
+    {
+      "file": "src/corpus/v1PhaseBRoleClassifier.js",
+      "sha256": "f7e4198a58797311d110c0c6d0f20c8e59dacafaac41cd8a6d2b78f3a8e8e289"
+    },
+    {
+      "file": "src/corpus/v1ReleaseRecipeGenerator.js",
+      "sha256": "48b0f5e82bd1713a5723535a11d0f4c16c2ff54d78533c6df533702a45012612"
+    },
+    {
+      "file": "src/db/constants.js",
+      "sha256": "5f53b46195a2a02626f305c69a74e351f02e4fbf62c0e85aa620724efbe6e66f"
+    },
+    {
+      "file": "src/db/database.js",
+      "sha256": "7cc5bad074f29c0ccd32940f6b81effdccace900c3610973c6b73d9c418dc6b4"
+    },
+    {
+      "file": "src/domain/catalogEnums.js",
+      "sha256": "83fa7f0af23facd10b9d896b08fe18fb44ae03a39ab6c66f0f1331ae51735ffd"
+    },
+    {
+      "file": "src/domain/catalogQuarantine.js",
+      "sha256": "88ff19c40bf8b37888fc4084c57e06142762a32265fcefd25d722a91977157ed"
+    },
+    {
+      "file": "src/domain/configurationRules.js",
+      "sha256": "67c48c71fbf99eed9f5b2ff013809f30a5d802fc6869e58e54d1761e81bf943a"
+    },
+    {
+      "file": "src/domain/foodPresentationCorrections.js",
+      "sha256": "e955b1ed793e879c12431eaeaed133d66b6b86f5bae1ae1d4ecb534ba782d86a"
+    },
+    {
+      "file": "src/domain/frequencyCounter.js",
+      "sha256": "a60e741d69fe310439de93c9c0f6f5c85a44dc98ec38675ae1eabbb53cdecb4c"
+    },
+    {
+      "file": "src/domain/ingredientConversion.js",
+      "sha256": "4975b9a9dea321a15eac10301af80f4ad77a19e495dc53c4f36466bf191c7f62"
+    },
+    {
+      "file": "src/domain/ingredientIdentity.js",
+      "sha256": "1fc4e598c70839eeafb8ffabf6a8acded272d14792597a154f4b6b2867f08e1a"
+    },
+    {
+      "file": "src/domain/ingredientPresentation.js",
+      "sha256": "d5cd7ae13cf8073dafc855a4dbd90414e54af3c1cd5b7a66543ec375ea177657"
+    },
+    {
+      "file": "src/domain/legacyRuleAdapter.js",
+      "sha256": "da839ce29983e02a198bc3a3d66f804cfb10fcff90c1a6de9d74401a53cf123d"
+    },
+    {
+      "file": "src/domain/nutritionCore.js",
+      "sha256": "a607d85efddaaa5fd1d90fa98d52482d10c1a5faa0d1759e42cca4deb3a3aa71"
+    },
+    {
+      "file": "src/domain/productExtensions.js",
+      "sha256": "c41f118480a0b354f0580732eff71c1e5575bf5b1e6e3642e9924441d5ff1d3b"
+    },
+    {
+      "file": "src/domain/productFoodTaxonomy.js",
+      "sha256": "f759eae762efffc3f0fbb615ea28b5ad033ccd05adb33565eb35d1e8697fe154"
+    },
+    {
+      "file": "src/domain/recipePresentation.js",
+      "sha256": "ee6a8601d5465a8fb9cd41a1516d837f8ca7f80e2a029b0c07d795569d10a7a4"
+    },
+    {
+      "file": "src/domain/revisionV2Contracts.js",
+      "sha256": "e74116ea6162981428ca485250dc4790a0a689dbffe4b5ab4110d9c1d31ed8a1"
+    },
+    {
+      "file": "src/domain/safetyCompatibility.js",
+      "sha256": "2045ad5673e936af33571d3cbced0cea37b5ee285573303307ff45d3aac06868"
+    },
+    {
+      "file": "src/domain/safetyPolicy.js",
+      "sha256": "68ca46bb372bd0f73f7ac57baad8e3f0355690cb075e4a496a1129fc4ce4fca6"
+    },
+    {
+      "file": "src/i18n/i18n.js",
+      "sha256": "0aca1ec0281ca8c27d4df521db538753c3fb9c8c0393e5a0c4239e03d1c09d3d"
+    },
+    {
+      "file": "src/lib/appBase.js",
+      "sha256": "2b88a81d98c28ea4322ecc789e83225dd0318b01d44e449d248d8687ba0632be"
+    },
+    {
+      "file": "src/lib/crypto.js",
+      "sha256": "7aa80986ebac2fd7776123c013e45352dee8c3d7366cb6bc495715a4296407ce"
+    },
+    {
+      "file": "src/lib/schemaValidator.js",
+      "sha256": "ac4c073fddbd5a303a73f0bdf24900117c8d1926c9d528ff1fce5d8fd295329b"
+    },
+    {
+      "file": "src/lib/semver.js",
+      "sha256": "b4208c9fc27c6fe848a3b432be64d11a7be1246ffc9e12f4194b56d446080722"
+    },
+    {
+      "file": "src/main.js",
+      "sha256": "af65e3671100c77e1d66fee9d7ffd75716328674f724dc0a8f392dab62b5191c"
+    },
+    {
+      "file": "src/planner/beamSolver.js",
+      "sha256": "5aaa4ada759a70fcdeebd8601ebb2139141567cd34a1c4d79704e82c2548c9ca"
+    },
+    {
+      "file": "src/planner/constraintPolicy.js",
+      "sha256": "3c3fa620b4dd2f9061e5de3152c66c5846fdd6eec502737e3a519685de341389"
+    },
+    {
+      "file": "src/planner/frequencyPlanGenerator.js",
+      "sha256": "ef0ba1ec4ac8587e92547cfb61b3c1d0f0816c6e4f2e031bf175e2962a101804"
+    },
+    {
+      "file": "src/planner/hardFilter.js",
+      "sha256": "23d59a31221ec04dff37e8533efb70b9cb39520bc224f080e16a9d2fee5655a2"
+    },
+    {
+      "file": "src/planner/planGenerator.js",
+      "sha256": "0336b0f5f9d82f09088b5489668ccc58567ac53936f9133eb0fe46eb64d722de"
+    },
+    {
+      "file": "src/planner/planMath.js",
+      "sha256": "642b029d4991d5e389be3be59691e31686c4da0537a59d57d5d3e5ee0355cdcd"
+    },
+    {
+      "file": "src/planner/qualityMetrics.js",
+      "sha256": "18d73efae1d2e06050061e36d09923003fac5640aa8f4f8a8c3717c4a5fcc686"
+    },
+    {
+      "file": "src/planner/qualityPolicy.js",
+      "sha256": "3abefe4ec6ebc122f4d07bc15fdffe9f8ec41bc97e263e6864fe028b7a31aca4"
+    },
+    {
+      "file": "src/planner/recipeFeatures.js",
+      "sha256": "bb5e1789eba71be7228c52524b29148f7c7f89bf68e59da5cc0a06bcf8ea1a4d"
+    },
+    {
+      "file": "src/planner/seededRandom.js",
+      "sha256": "72d9195d80bf858c4fdb7f45c699ed2182d8f64dd31961a02fafd01b1e35d34b"
+    },
+    {
+      "file": "src/planner/softScoring.js",
+      "sha256": "74b23fa01cf658c41bdec2f4981ec11b10e890613bdd6a91d903d2dd75a89adb"
+    },
+    {
+      "file": "src/planner/validationProfiles.js",
+      "sha256": "2bbd8d9818595f7d7af289dee61a0c3e594c98782d8086e2bf0c75fd04905001"
+    },
+    {
+      "file": "src/recoveryBootstrap.js",
+      "sha256": "4d1238f92e6242f934147d4d51fa652076bac2bf540bbadf5e250eeea9cb5143"
+    },
+    {
+      "file": "src/repositories/domainRepositories.js",
+      "sha256": "e864c8f1130b990dfa009504f23ff4186e92c9763a59af7a45dc29b54e624e0f"
+    },
+    {
+      "file": "src/repositories/repositoryHub.js",
+      "sha256": "bee6e58f46e6d34ca3563680eb5bc283fc2f4e691d6a0e4f590643ce28cb9a9e"
+    },
+    {
+      "file": "src/services/backupEngine.js",
+      "sha256": "61fb1546b42017a9c48f780821ee771af569e531c401ec891d6f7a9e2e997886"
+    },
+    {
+      "file": "src/services/catalogAvailability.js",
+      "sha256": "8f39b84c8383c69c0ea13647162680c09412fc2810d5823013173474f95e2bed"
+    },
+    {
+      "file": "src/services/catalogDataSource.js",
+      "sha256": "d42dace7b1c9a0497b7cc2d5b16c3a1cf81a280542a4922493ef1e72be0ffdb5"
+    },
+    {
+      "file": "src/services/catalogImporter.js",
+      "sha256": "7f72f35a55a17d43124fbc1210700c5bad506cff6f6b94c58c73876cbf637be5"
+    },
+    {
+      "file": "src/services/catalogQuery.js",
+      "sha256": "d863cf15badad12bd3191b497e2018deb4cbbfc4586e999a076ddf9545d615a2"
+    },
+    {
+      "file": "src/services/catalogUpdater.js",
+      "sha256": "ae744b02142539299145f22e5049375c38ba315ce3304cdf2357067a98a2d546"
+    },
+    {
+      "file": "src/services/configurationBootstrap.js",
+      "sha256": "1d3265ecd7f56bd39808b45977646488339a227db9c15196f336979f047b3e42"
+    },
+    {
+      "file": "src/services/configurationService.js",
+      "sha256": "a6a0b0c7960b3ecff1553e4d08ff5dcc12f20e5318b4c4953252b2af9c6b2908"
+    },
+    {
+      "file": "src/services/configurationTransfer.js",
+      "sha256": "412e58af2bec3840f5bf10e10a4844bbd21acbdf5876800f0741485a1d0e98ae"
+    },
+    {
+      "file": "src/services/customCatalogTransfer.js",
+      "sha256": "249e99acea8e533aecabb2437e2d29fae6ccbf6121bb99c5c0ec5bfd346c071c"
+    },
+    {
+      "file": "src/services/effectivePlanService.js",
+      "sha256": "4964dbd9f8aa59da98548b13a1249cb2916d1f7ddb6587031da3605b2b178c70"
+    },
+    {
+      "file": "src/services/foodPresentationMigration.js",
+      "sha256": "8c637c959c83bcb1675dc8feeee1691a2ca91f0382456d650c9faf6ccd4198aa"
+    },
+    {
+      "file": "src/services/ingredientConceptQuery.js",
+      "sha256": "b96f9c60aee96e05453929ab48515b9f73b0c84478b7bf69818d4e1f3fe7b15b"
+    },
+    {
+      "file": "src/services/ingredientModelMigration.js",
+      "sha256": "9c8071d20fbaca8eb569e319bf8e0f68982f39a601c03b1e0bd4e3b7fda333e5"
+    },
+    {
+      "file": "src/services/localDataService.js",
+      "sha256": "769058b4f8840c631d0d272eb2ae2727cee6d61b6a6f17867fb43bac3ebf55bc"
+    },
+    {
+      "file": "src/services/localDiagnostics.js",
+      "sha256": "e212618f83152e0201cc8d90b76f188166fd3e4ef87a38b38020dcf0aa32b3eb"
+    },
+    {
+      "file": "src/services/manualAcceptanceService.js",
+      "sha256": "f169454f1e19ace1184c235fce0428cbaf6b99c58723d72fbc865b516a81610b"
+    },
+    {
+      "file": "src/services/migrationRunner.js",
+      "sha256": "f0b314db87ee9abcafb581da5d53b16f5b277a22b164e30e8eae3fd295a9c307"
+    },
+    {
+      "file": "src/services/offlineCatalog.js",
+      "sha256": "b0f107faa4ac1312d1050b24aa3e0ff52ae7e96d6efe1a93936d91c53dc7faf2"
+    },
+    {
+      "file": "src/services/operationHistoryService.js",
+      "sha256": "ac5c52f08f158b50873204f0e739a673d23f76dc95d51ed4a531a506e4d9e98c"
+    },
+    {
+      "file": "src/services/personalCatalogService.js",
+      "sha256": "356a36a5a7ae4b43b0b8b15640a85c739a07e2eb3db0fc977a9b5cc6d9ec4099"
+    },
+    {
+      "file": "src/services/planCandidateService.js",
+      "sha256": "cda9615cdfa1fddb8d8ac645843095d22045dde00c164b1f816a82d89f6b5946"
+    },
+    {
+      "file": "src/services/planGenerationService.js",
+      "sha256": "459954cc431f7cf81795dcd0dd4e48eb1ae4dda6bc6f8deee08da4fe533f129c"
+    },
+    {
+      "file": "src/services/planPolicyValidation.js",
+      "sha256": "9259dc54b33b6cd599ebc39a89355a59a33314c34aaada16ca7b3ee69abcc35d"
+    },
+    {
+      "file": "src/services/planPreviewGuard.js",
+      "sha256": "699856b331e574df700d734a61b8906e2b982daa893b285dfac5458abe543592"
+    },
+    {
+      "file": "src/services/plannerExecution.js",
+      "sha256": "f168be20aa37a403b57271b75bae0c0e69c3786847b6ef43c0c9d1e4ec831c58"
+    },
+    {
+      "file": "src/services/plannerValidationService.js",
+      "sha256": "b8f56ddf5c61679d22e09359e7e5fa04d253f6d9175fc965efc489f30e50e7f1"
+    },
+    {
+      "file": "src/services/plannerWorker.js",
+      "sha256": "f84edd4d494c0087a7f398bac2b2a3b5071a6aacfbe98ac56d5fe71e1318c75f"
+    },
+    {
+      "file": "src/services/portableBackup.js",
+      "sha256": "697e7089b4b9bc1d63bdfeaca158046b34240aa1827b97c20657b4f55f3c703a"
+    },
+    {
+      "file": "src/services/preV1DataEpoch.js",
+      "sha256": "48de1160c9b1c2a029eb3f45f5ca05bd87470fddbcd481688a8b455ea6b91c1e"
+    },
+    {
+      "file": "src/services/productExtensionService.js",
+      "sha256": "94c773afb6664c43011cf7352172c65c8e03436ac35ea7be5ac0217b02fb88a0"
+    },
+    {
+      "file": "src/services/recipeHumanReviewService.js",
+      "sha256": "82655e8f46a09996d4e3349c47b68c38661ef884c173042681e5e4a0064cd29c"
+    },
+    {
+      "file": "src/services/recipePresentationMigration.js",
+      "sha256": "c313f569489e688d7eb6a93516c3977e3735d51fd001512648919b504a5cb55d"
+    },
+    {
+      "file": "src/services/referenceDataEditorService.js",
+      "sha256": "48003ce73639c7b6900ce033c478b1998e7df804bf59e74ceae6608c2496726a"
+    },
+    {
+      "file": "src/services/referenceDataProposalService.js",
+      "sha256": "d0c6ad65ccd845d3ab0c987523b24192eaa3365564093cfa5b3df86db76c2a45"
+    },
+    {
+      "file": "src/services/referenceDataService.js",
+      "sha256": "21cb9a0d0b514bb63be0d51f1384266ad99978fd31c76a5f79bf6f5a6c71a522"
+    },
+    {
+      "file": "src/services/revisionV2Service.js",
+      "sha256": "41b3e8e63204fd3633f316a8c5036c33bb489055c96e4e7e0568ed59f2e7fc78"
+    },
+    {
+      "file": "src/services/shoppingService.js",
+      "sha256": "137fa63d7fb5ce9555b79698bcb21dca3cf8c1a3bfddec7937ebffca892551d4"
+    },
+    {
+      "file": "src/services/storageMetrics.js",
+      "sha256": "d141748e5d7134c08ba45e7f37ced72f73478fba7c1dd4e7b5b36fd3de9d9609"
+    },
+    {
+      "file": "src/styles.css",
+      "sha256": "9471017c8308cdbc64cd24da2802fb0f258bb953bd5f1a68951e5e1385621419"
+    },
+    {
+      "file": "src/theme/themeEngine.js",
+      "sha256": "fb62f3e55d2b2c28fffd25576852934c8213321844a8e453b250b472a045f23d"
+    },
+    {
+      "file": "src/ui/app.js",
+      "sha256": "dab3d7d8c9c7e875d88825277ff89a692a65bc6e52b24fe4541ef839d4d23401"
+    },
+    {
+      "file": "src/ui/catalogPages.js",
+      "sha256": "19b3ea310e170542021fd202b6232f5d0cb293ae698f37befc42d9577dd2c327"
+    },
+    {
+      "file": "src/ui/configurationPages.js",
+      "sha256": "05a012e58108eba2d3d7742f4518ae1d615f53cf29df7f37f389b079c848cd1a"
+    },
+    {
+      "file": "src/ui/configurationRulesV2Ui.js",
+      "sha256": "cdd731e5f7b10b6d7caca1eefacb1179d551440cad0f7f1d0b9edb7eedd84cde"
+    },
+    {
+      "file": "src/ui/dom.js",
+      "sha256": "233faf59b1d29c24b3a0e0ac7560b521c761751ea3df09f297f4f9f14b9a5b5a"
+    },
+    {
+      "file": "src/ui/foodGroupEditor.js",
+      "sha256": "c0ddf8ed75a5da14f92294972ace452972b25ae208b555c72b5d013bd35c4980"
+    },
+    {
+      "file": "src/ui/frequencySummary.js",
+      "sha256": "0734980b423725714956595b14b6bef2338c4f3769c8f6c032e8ccd25dc64f16"
+    },
+    {
+      "file": "src/ui/guidedControls.js",
+      "sha256": "1d0565d1925efe9e883c6d527e56748417d85e78dcc3dd2a70c42d6b08fb447c"
+    },
+    {
+      "file": "src/ui/manualAcceptancePage.js",
+      "sha256": "d38939858a11eb4a24124ec82cc19a558ac24dfa4be6f8e274f0997d79903a19"
+    },
+    {
+      "file": "src/ui/planPages.js",
+      "sha256": "2d953d389dc936e8ccadf821d3d2e39b87c35f7ba7883ecd3b2c205c9ef67bdf"
+    },
+    {
+      "file": "src/ui/plannerValidationPage.js",
+      "sha256": "b1fe79574bbb5e0f20497a2c27fae7fb340f1c8a6f369ede3f34435f23fa4127"
+    },
+    {
+      "file": "src/ui/productExtensionPages.js",
+      "sha256": "a0bc2b4b3e3ca23d8559dc112f21d6ca4e3ea8e600ff738d7ec8dfa9ed7b3812"
+    },
+    {
+      "file": "src/ui/profileStatus.js",
+      "sha256": "a4bff8a5cd3291ec5156cfe2b6663d89375b9b24df0d356668b4786e4fa418d5"
+    },
+    {
+      "file": "src/ui/referenceDataPages.js",
+      "sha256": "fbf06ea3fea5ded05045baa82918cf1fac1ab2ba310e306099b863d12ba9f524"
+    },
+    {
+      "file": "src/ui/router.js",
+      "sha256": "a3fb51eef8a37c7671f83b66309d94c806bde95b25aecaf4a069474d3338ef18"
+    },
+    {
+      "file": "src/ui/shoppingPages.js",
+      "sha256": "07846bb05011aedd9b1f7d852f778f119dd7f12412a3a8382fdfc9ff3acdb84f"
+    },
+    {
+      "file": "src/ui/uiState.js",
+      "sha256": "10a2f7c002aa173fc2b8d1a931e6470c6084a58d4e4b1b5c4b25b91b7493888a"
+    },
+    {
+      "file": "tests/backup.test.mjs",
+      "sha256": "9b3b96eecff4f47505e9ee4ae0b5dab61e7d7e2403b9c1eb8e42f9000f78bf5e"
+    },
+    {
+      "file": "tests/catalog-importer.test.mjs",
+      "sha256": "b2b7518fff7b0c8bdc750682be10638b24a354cd246e9dca86714887fce2baa8"
+    },
+    {
+      "file": "tests/catalog-phase3.test.mjs",
+      "sha256": "08c3b95be059451f8f98af030c1ecfbe985a1fc1a46d807e168c138011f18870"
+    },
+    {
+      "file": "tests/configuration.test.mjs",
+      "sha256": "7a825ae7b54671229d213bfabb27495cd0546481973d5ac0dcb1979dbac3a668"
+    },
+    {
+      "file": "tests/controlled-scale-500.test.mjs",
+      "sha256": "3de58bf847f418a4dc8c6b41c22cb90011495f10b63d2748982b21a1955fcffc"
+    },
+    {
+      "file": "tests/core.test.mjs",
+      "sha256": "afcf6a99cdf667f6d07c762d3a04f5d84cddfae168fb1ba48eecae79a86da857"
+    },
+    {
+      "file": "tests/corpus-phase4.test.mjs",
+      "sha256": "7a3bf93617a3ccf547569d0ee9f835e6d704b2d5d77df4eb5b5af2f12363040d"
+    },
+    {
+      "file": "tests/corpus-production-execution.test.mjs",
+      "sha256": "92cf578ed7403185e32158ed17eaa6f835cd6b48d381ac72ec6da2bc89b73338"
+    },
+    {
+      "file": "tests/corpus-production-pass-a.test.mjs",
+      "sha256": "e2cd57a207c50633ca4a633c8031736a5d81f41c279b2a1e7cc071794d44051d"
+    },
+    {
+      "file": "tests/corpus-production-pass-b.test.mjs",
+      "sha256": "bb8ab0f7d44b5be4c8e9614316f44d22051b068d62bd95ebe5cc795fec859a89"
+    },
+    {
+      "file": "tests/corpus-production-pass-c.test.mjs",
+      "sha256": "a6bafeea2cf56f7f59c303a34bc37cc05c6e40fe56e8422e0ff4eddb22cb6563"
+    },
+    {
+      "file": "tests/data-ux-pass-b.test.mjs",
+      "sha256": "994d2be5b97ec45b6bb31cae6966fde433b8cf235abdc994c058c19c0d1629e0"
+    },
+    {
+      "file": "tests/data-ux-pass-c.test.mjs",
+      "sha256": "7f2841044520a85551ac167ea20141ed82f856a2979b5a1d2cfb4e2f29e5c065"
+    },
+    {
+      "file": "tests/data-ux-pass-d.test.mjs",
+      "sha256": "024c07f14d79fcbeba9e4a76b210423217b8e67935a87822667469ee7087bc80"
+    },
+    {
+      "file": "tests/data-ux-pass-e.test.mjs",
+      "sha256": "05e930f59395a5036445c208ec126c4d644f33593b15dd54ac549ecb377de9a3"
+    },
+    {
+      "file": "tests/fdc-auto-curation.test.mjs",
+      "sha256": "3f4de95a36d9abb8a477d7459f0ee14372843802b8b16c2937dfc1fb7db99c89"
+    },
+    {
+      "file": "tests/fixtures/catalog-0.1/public/data/bootstrap/default-configuration.json",
+      "sha256": "4a9f2e68b84ff152d212aa8744d5a8915bb58e17e325f0f92d60d63968057be1"
+    },
+    {
+      "file": "tests/fixtures/catalog-0.1/public/data/catalog-manifest.json",
+      "sha256": "b8b5f802649460414ff22daebe6be4b55de637366b1d5f4041d0e3fd1137e185"
+    },
+    {
+      "file": "tests/fixtures/catalog-0.1/public/data/ingredients/ingredient-families-0001.json",
+      "sha256": "3937e7e0b8401c473f9b69a910ea8dc779558b5c6100f9e203373826bc977a23"
+    },
+    {
+      "file": "tests/fixtures/catalog-0.1/public/data/ingredients/ingredient-revisions-0001.json",
+      "sha256": "9e94e871acf457134b5181979f8b10c009e188022bc3bd0647ed2e281b3cb895"
+    },
+    {
+      "file": "tests/fixtures/catalog-0.1/public/data/locales/en.json",
+      "sha256": "953518cce68cea853f525f1bb66db67575a1779f72264dd11bdfc61defb5d05a"
+    },
+    {
+      "file": "tests/fixtures/catalog-0.1/public/data/locales/it.json",
+      "sha256": "4db739eac26caf2f9416531d1c4fa95355d2fcfc357a327a69e34b7cdededfed"
+    },
+    {
+      "file": "tests/fixtures/catalog-0.1/public/data/recipes/recipe-families-0001.json",
+      "sha256": "3d673794dafb085a1ada409d59a636e8d943edd73f5f4343927a0b569cfb5e4f"
+    },
+    {
+      "file": "tests/fixtures/catalog-0.1/public/data/recipes/recipe-versions-0001.json",
+      "sha256": "3bdc1f2c5d5429559e32f5951fe641edc253229462c27036281ad8acfdb979f3"
+    },
+    {
+      "file": "tests/fixtures/catalog-0.3/public/data/bootstrap/default-configuration.json",
+      "sha256": "d1c57992e2ee640bbeb7fed986bf6d1c7f94b3aae0877412f39f1a160433d334"
+    },
+    {
+      "file": "tests/fixtures/catalog-0.3/public/data/catalog-manifest.json",
+      "sha256": "071e70fe6219dfeba02cc2aefecbe5674edcf8bebd9114236f6d66f663511eb9"
+    },
+    {
+      "file": "tests/fixtures/catalog-0.3/public/data/ingredients/ingredient-families-0001.json",
+      "sha256": "cfa280c127e9ec1e5eb5ee7a13a1c539a9ec64a321df7c667d386c7ff916c5c6"
+    },
+    {
+      "file": "tests/fixtures/catalog-0.3/public/data/ingredients/ingredient-revisions-0001.json",
+      "sha256": "6eec90083706d1ebff386c4d881b28303d297c0a72aa000316b7dc3cd39f2ce6"
+    },
+    {
+      "file": "tests/fixtures/catalog-0.3/public/data/locales/en.json",
+      "sha256": "ac76bb22fe402f0c69a4c633a16eba1ff07b4e4462af3d325f5865c2e316fdaf"
+    },
+    {
+      "file": "tests/fixtures/catalog-0.3/public/data/locales/it.json",
+      "sha256": "db8aa6a328e7776f6326d9ae117f52d597b2526eb99d5eefc99a50d0a9868d29"
+    },
+    {
+      "file": "tests/fixtures/catalog-0.3/public/data/recipes/recipe-families-0001.json",
+      "sha256": "aa9929dfb0c47ad677e3dc790eb98041ab838d353effb1885f2a9aed73a2e706"
+    },
+    {
+      "file": "tests/fixtures/catalog-0.3/public/data/recipes/recipe-versions-0001.json",
+      "sha256": "828ccd5a84d68cc765ded423958be42a845010b525e8f659a135a8ed6a0e398d"
+    },
+    {
+      "file": "tests/fixtures/catalog-0.3/public/data/reference-data/taxonomies-0001.json",
+      "sha256": "393100f18d3d818e1ebcbcdb1bf102dba38a5efb3e3fa68fa4b19c9d0a987198"
+    },
+    {
+      "file": "tests/fixtures/catalog-0.3/public/data/reference-data/taxonomy-terms-0001.json",
+      "sha256": "d29a5262b23895d4419f69fc824a63a0146f9377bc2c408c2fc78a7329ed3329"
+    },
+    {
+      "file": "tests/github-pages.test.mjs",
+      "sha256": "09eee93811db716a5852a89876c4dfa23e464b6f4c6f4e101ccd2a0b821fb3d9"
+    },
+    {
+      "file": "tests/hardening-phase8.test.mjs",
+      "sha256": "861e621f5395a5238bb1f05c77d3c518962c27485521acb09ebe61a2e57d91c9"
+    },
+    {
+      "file": "tests/helpers.mjs",
+      "sha256": "3201d6a8f6b629777748e204fd3d22842e3fee056fd2fc4dae97372513b0d37c"
+    },
+    {
+      "file": "tests/plan-phase6.test.mjs",
+      "sha256": "702d6e7e12404f2dc69642524185d42c0a315799c451867acb2bb6ade2f2b75a"
+    },
+    {
+      "file": "tests/planner-phase5.test.mjs",
+      "sha256": "8006f1a07677c6ec270ac52dfa1823d64f154e48790285eadc2b1ee18c87092e"
+    },
+    {
+      "file": "tests/production-execution-workflow.test.mjs",
+      "sha256": "696c444343060bb6c555fbc4d7fb3580ca1568a5c0200ed50a4a6d818994a8f2"
+    },
+    {
+      "file": "tests/production-review-500.test.mjs",
+      "sha256": "6d93779fc1bfbd3f1073a7f5290f10d570eedc7be6a413ac2c55d4aa9b37deb4"
+    },
+    {
+      "file": "tests/reference-data-pass-a.test.mjs",
+      "sha256": "99f9ffb887f67b6b8bac028d6bc607898226ade278f00e5a82d5295cd5124b94"
+    },
+    {
+      "file": "tests/revision-v2-fixture.mjs",
+      "sha256": "7e1d426a0c474dec4e3d287c8fc65f8ff6ae859a3ef2a56ee684643f85e8d56d"
+    },
+    {
+      "file": "tests/revision-v2-r0.test.mjs",
+      "sha256": "24a0361cd6ef352ac5358381e6a3daaaa32b0432d3e7a3b02e2b0769144c8474"
+    },
+    {
+      "file": "tests/revision-v2-r1.test.mjs",
+      "sha256": "5a0034b16a925ba0f9013cd4ce56cada784d25bd8f8349769da0d369a9d71011"
+    },
+    {
+      "file": "tests/revision-v2-r2-r3.test.mjs",
+      "sha256": "5751360a7cfac3c92cbc5c685dadcb51dc43cf07f872e0676e66de5bf7b8917e"
+    },
+    {
+      "file": "tests/revision-v2-r4-r5.test.mjs",
+      "sha256": "9ee27b3a1fd5632938e26112ea2708f1e254f490138e559d903856f15729b4a7"
+    },
+    {
+      "file": "tests/revision-v2-r6-r7.test.mjs",
+      "sha256": "42ce9cdcacc579fe3c719f7414f2f3dcd65ea531e917b0d08719b5fe799b07cf"
+    },
+    {
+      "file": "tests/revision-v2-r8.test.mjs",
+      "sha256": "f9dbe7a1160ca401d29aedbee7fb009f0a1fa1c01b0273b943c3e1134b00f9a5"
+    },
+    {
+      "file": "tests/schema-public-mirrors.test.mjs",
+      "sha256": "df8ba4dd201f4485847fe3a6a1bcd28759d1c071e17462e0d7c30a6e625e9ba2"
+    },
+    {
+      "file": "tests/schema-validator.test.mjs",
+      "sha256": "9c7e39f1d8b13d345a1df3f6cdd4212b375725baf4ca5d5c6001a2251fd303e2"
+    },
+    {
+      "file": "tests/shopping-phase7.test.mjs",
+      "sha256": "a27411ad3517b9d85a5235a6ea46cf7a4eadaf0fa75a3982da1904253e80f88f"
+    },
+    {
+      "file": "tests/v1-engine-phase-a.test.mjs",
+      "sha256": "125333a1c7a42383c38112d36cce42898c9bc8724311c0595511a77306f79f58"
+    },
+    {
+      "file": "tests/v1-planner-phase-b.test.mjs",
+      "sha256": "a1baefe897b002995386778aa0960f3db1204bf3a63ee041202c3bd31796cfa3"
+    },
+    {
+      "file": "tests/v1-planner-phase-c.test.mjs",
+      "sha256": "d26e55bbc734407164ceb9f5c1658d8cec370fa9de8929ee29e53ef8ccf12513"
+    },
+    {
+      "file": "tests/v1-planner-phase-d-ux.test.mjs",
+      "sha256": "03e0fd4475dbc6df5aca021d36c1d860c0f6cf57e5c5821f7711b893d47688a5"
+    },
+    {
+      "file": "tests/v1-planner-phase-d.test.mjs",
+      "sha256": "867fe814da8d87663ae38932300e34b64c85a217f72cc3296babb4eae5365c8f"
+    },
+    {
+      "file": "tests/v1-planner-phase-e.test.mjs",
+      "sha256": "7d07a95c188251c18101a3707434bc61fdd523fd557ad9737eeaa47bc58845f5"
+    },
+    {
+      "file": "tests/v1-planner-phase-f.test.mjs",
+      "sha256": "03b1050a59c883d3d4937f5c3a6ba7210f6406bf346554098a02d4b378cd06d1"
+    },
+    {
+      "file": "tests/v1-planner-phase-g.test.mjs",
+      "sha256": "d81aaf3fa27125c52f369c8d087df263738477b11bfd9bbfb1ff5a693bcc98b6"
+    },
+    {
+      "file": "tests/v1-planner-phase-h.test.mjs",
+      "sha256": "ab34dc889ad7c6afcd40004b3988c7e82dc84aa0e7a1cd1e1bdcdb047c5ef862"
+    },
+    {
+      "file": "tests/v1-step1.test.mjs",
+      "sha256": "7acad62660ce6c2922084d4ffa60865f8985f1b76149665228a7277f769d8552"
+    },
+    {
+      "file": "tests/v1-step2.test.mjs",
+      "sha256": "5b3dd4ab450f73ec829ea1918aa5df2085945ebdd9a0dbbbb637a551b4df6105"
+    },
+    {
+      "file": "tests/v1-step3.test.mjs",
+      "sha256": "ae063d7fd3c6cc7cf967f8e5dae8a3de29c086d19686d5b73581207b8cd5ef00"
+    }
+  ]
+}

@@ -1,0 +1,3199 @@
+{
+  "result": "PASS",
+  "scope": "Integration with in-memory repository and exact bundled catalog; not a browser or real IndexedDB test",
+  "startedAt": "2026-09-11T10:47:42.641Z",
+  "completedAt": "2026-09-11T10:47:46.478Z",
+  "buildSha256": "caac4ac89441b02fd07cb166d2f1683102e47e1540855986fc6161d31122a087",
+  "appVersion": "1.1.0-dev.r1",
+  "dbVersion": 7,
+  "contentSchemaVersion": 4,
+  "backupFormatVersion": 2,
+  "catalogVersion": "1.2.0-planner-phase-d",
+  "ingredientFamilies": 600,
+  "oldRevisionsPreservedExactly": 600,
+  "recipeVersionsPreservedExactly": 1800,
+  "totalIngredientRevisions": 1200,
+  "currentSchema2": 600,
+  "migration": {
+    "status": "complete",
+    "version": "ingredient-model-r1-1",
+    "attempts": 1,
+    "startedAt": "2026-09-11T10:47:44.700Z",
+    "checkpoint": "complete",
+    "migrated": [
+      {
+        "ingredientId": "ing_fdc_1104647",
+        "sourceRevisionId": "ing_fdc_1104647_r1",
+        "targetRevisionId": "ing_fdc_1104647_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_1104705",
+        "sourceRevisionId": "ing_fdc_1104705_r1",
+        "targetRevisionId": "ing_fdc_1104705_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_1104962",
+        "sourceRevisionId": "ing_fdc_1104962_r1",
+        "targetRevisionId": "ing_fdc_1104962_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_1105073",
+        "sourceRevisionId": "ing_fdc_1105073_r1",
+        "targetRevisionId": "ing_fdc_1105073_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_1105314",
+        "sourceRevisionId": "ing_fdc_1105314_r1",
+        "targetRevisionId": "ing_fdc_1105314_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167602",
+        "sourceRevisionId": "ing_fdc_167602_r1",
+        "targetRevisionId": "ing_fdc_167602_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167603",
+        "sourceRevisionId": "ing_fdc_167603_r1",
+        "targetRevisionId": "ing_fdc_167603_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167604",
+        "sourceRevisionId": "ing_fdc_167604_r1",
+        "targetRevisionId": "ing_fdc_167604_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167605",
+        "sourceRevisionId": "ing_fdc_167605_r1",
+        "targetRevisionId": "ing_fdc_167605_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167606",
+        "sourceRevisionId": "ing_fdc_167606_r1",
+        "targetRevisionId": "ing_fdc_167606_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167684",
+        "sourceRevisionId": "ing_fdc_167684_r1",
+        "targetRevisionId": "ing_fdc_167684_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167687",
+        "sourceRevisionId": "ing_fdc_167687_r1",
+        "targetRevisionId": "ing_fdc_167687_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167688",
+        "sourceRevisionId": "ing_fdc_167688_r1",
+        "targetRevisionId": "ing_fdc_167688_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167691",
+        "sourceRevisionId": "ing_fdc_167691_r1",
+        "targetRevisionId": "ing_fdc_167691_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167692",
+        "sourceRevisionId": "ing_fdc_167692_r1",
+        "targetRevisionId": "ing_fdc_167692_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167693",
+        "sourceRevisionId": "ing_fdc_167693_r1",
+        "targetRevisionId": "ing_fdc_167693_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167695",
+        "sourceRevisionId": "ing_fdc_167695_r1",
+        "targetRevisionId": "ing_fdc_167695_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167697",
+        "sourceRevisionId": "ing_fdc_167697_r1",
+        "targetRevisionId": "ing_fdc_167697_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167699",
+        "sourceRevisionId": "ing_fdc_167699_r1",
+        "targetRevisionId": "ing_fdc_167699_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167700",
+        "sourceRevisionId": "ing_fdc_167700_r1",
+        "targetRevisionId": "ing_fdc_167700_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167702",
+        "sourceRevisionId": "ing_fdc_167702_r1",
+        "targetRevisionId": "ing_fdc_167702_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167703",
+        "sourceRevisionId": "ing_fdc_167703_r1",
+        "targetRevisionId": "ing_fdc_167703_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167704",
+        "sourceRevisionId": "ing_fdc_167704_r1",
+        "targetRevisionId": "ing_fdc_167704_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167705",
+        "sourceRevisionId": "ing_fdc_167705_r1",
+        "targetRevisionId": "ing_fdc_167705_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167708",
+        "sourceRevisionId": "ing_fdc_167708_r1",
+        "targetRevisionId": "ing_fdc_167708_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167709",
+        "sourceRevisionId": "ing_fdc_167709_r1",
+        "targetRevisionId": "ing_fdc_167709_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167710",
+        "sourceRevisionId": "ing_fdc_167710_r1",
+        "targetRevisionId": "ing_fdc_167710_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167712",
+        "sourceRevisionId": "ing_fdc_167712_r1",
+        "targetRevisionId": "ing_fdc_167712_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167713",
+        "sourceRevisionId": "ing_fdc_167713_r1",
+        "targetRevisionId": "ing_fdc_167713_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167714",
+        "sourceRevisionId": "ing_fdc_167714_r1",
+        "targetRevisionId": "ing_fdc_167714_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167715",
+        "sourceRevisionId": "ing_fdc_167715_r1",
+        "targetRevisionId": "ing_fdc_167715_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167716",
+        "sourceRevisionId": "ing_fdc_167716_r1",
+        "targetRevisionId": "ing_fdc_167716_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167717",
+        "sourceRevisionId": "ing_fdc_167717_r1",
+        "targetRevisionId": "ing_fdc_167717_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167719",
+        "sourceRevisionId": "ing_fdc_167719_r1",
+        "targetRevisionId": "ing_fdc_167719_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167722",
+        "sourceRevisionId": "ing_fdc_167722_r1",
+        "targetRevisionId": "ing_fdc_167722_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167724",
+        "sourceRevisionId": "ing_fdc_167724_r1",
+        "targetRevisionId": "ing_fdc_167724_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167725",
+        "sourceRevisionId": "ing_fdc_167725_r1",
+        "targetRevisionId": "ing_fdc_167725_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167730",
+        "sourceRevisionId": "ing_fdc_167730_r1",
+        "targetRevisionId": "ing_fdc_167730_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167735",
+        "sourceRevisionId": "ing_fdc_167735_r1",
+        "targetRevisionId": "ing_fdc_167735_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167736",
+        "sourceRevisionId": "ing_fdc_167736_r1",
+        "targetRevisionId": "ing_fdc_167736_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167737",
+        "sourceRevisionId": "ing_fdc_167737_r1",
+        "targetRevisionId": "ing_fdc_167737_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167742",
+        "sourceRevisionId": "ing_fdc_167742_r1",
+        "targetRevisionId": "ing_fdc_167742_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167744",
+        "sourceRevisionId": "ing_fdc_167744_r1",
+        "targetRevisionId": "ing_fdc_167744_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167745",
+        "sourceRevisionId": "ing_fdc_167745_r1",
+        "targetRevisionId": "ing_fdc_167745_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167746",
+        "sourceRevisionId": "ing_fdc_167746_r1",
+        "targetRevisionId": "ing_fdc_167746_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167747",
+        "sourceRevisionId": "ing_fdc_167747_r1",
+        "targetRevisionId": "ing_fdc_167747_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167748",
+        "sourceRevisionId": "ing_fdc_167748_r1",
+        "targetRevisionId": "ing_fdc_167748_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167749",
+        "sourceRevisionId": "ing_fdc_167749_r1",
+        "targetRevisionId": "ing_fdc_167749_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167750",
+        "sourceRevisionId": "ing_fdc_167750_r1",
+        "targetRevisionId": "ing_fdc_167750_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167751",
+        "sourceRevisionId": "ing_fdc_167751_r1",
+        "targetRevisionId": "ing_fdc_167751_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167752",
+        "sourceRevisionId": "ing_fdc_167752_r1",
+        "targetRevisionId": "ing_fdc_167752_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167753",
+        "sourceRevisionId": "ing_fdc_167753_r1",
+        "targetRevisionId": "ing_fdc_167753_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167754",
+        "sourceRevisionId": "ing_fdc_167754_r1",
+        "targetRevisionId": "ing_fdc_167754_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167755",
+        "sourceRevisionId": "ing_fdc_167755_r1",
+        "targetRevisionId": "ing_fdc_167755_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167756",
+        "sourceRevisionId": "ing_fdc_167756_r1",
+        "targetRevisionId": "ing_fdc_167756_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167757",
+        "sourceRevisionId": "ing_fdc_167757_r1",
+        "targetRevisionId": "ing_fdc_167757_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167758",
+        "sourceRevisionId": "ing_fdc_167758_r1",
+        "targetRevisionId": "ing_fdc_167758_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167759",
+        "sourceRevisionId": "ing_fdc_167759_r1",
+        "targetRevisionId": "ing_fdc_167759_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167760",
+        "sourceRevisionId": "ing_fdc_167760_r1",
+        "targetRevisionId": "ing_fdc_167760_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167761",
+        "sourceRevisionId": "ing_fdc_167761_r1",
+        "targetRevisionId": "ing_fdc_167761_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167762",
+        "sourceRevisionId": "ing_fdc_167762_r1",
+        "targetRevisionId": "ing_fdc_167762_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167763",
+        "sourceRevisionId": "ing_fdc_167763_r1",
+        "targetRevisionId": "ing_fdc_167763_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167764",
+        "sourceRevisionId": "ing_fdc_167764_r1",
+        "targetRevisionId": "ing_fdc_167764_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167765",
+        "sourceRevisionId": "ing_fdc_167765_r1",
+        "targetRevisionId": "ing_fdc_167765_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167766",
+        "sourceRevisionId": "ing_fdc_167766_r1",
+        "targetRevisionId": "ing_fdc_167766_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167767",
+        "sourceRevisionId": "ing_fdc_167767_r1",
+        "targetRevisionId": "ing_fdc_167767_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167768",
+        "sourceRevisionId": "ing_fdc_167768_r1",
+        "targetRevisionId": "ing_fdc_167768_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167769",
+        "sourceRevisionId": "ing_fdc_167769_r1",
+        "targetRevisionId": "ing_fdc_167769_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167770",
+        "sourceRevisionId": "ing_fdc_167770_r1",
+        "targetRevisionId": "ing_fdc_167770_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167771",
+        "sourceRevisionId": "ing_fdc_167771_r1",
+        "targetRevisionId": "ing_fdc_167771_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167772",
+        "sourceRevisionId": "ing_fdc_167772_r1",
+        "targetRevisionId": "ing_fdc_167772_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167773",
+        "sourceRevisionId": "ing_fdc_167773_r1",
+        "targetRevisionId": "ing_fdc_167773_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167775",
+        "sourceRevisionId": "ing_fdc_167775_r1",
+        "targetRevisionId": "ing_fdc_167775_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167776",
+        "sourceRevisionId": "ing_fdc_167776_r1",
+        "targetRevisionId": "ing_fdc_167776_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167777",
+        "sourceRevisionId": "ing_fdc_167777_r1",
+        "targetRevisionId": "ing_fdc_167777_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167778",
+        "sourceRevisionId": "ing_fdc_167778_r1",
+        "targetRevisionId": "ing_fdc_167778_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167779",
+        "sourceRevisionId": "ing_fdc_167779_r1",
+        "targetRevisionId": "ing_fdc_167779_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167780",
+        "sourceRevisionId": "ing_fdc_167780_r1",
+        "targetRevisionId": "ing_fdc_167780_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167781",
+        "sourceRevisionId": "ing_fdc_167781_r1",
+        "targetRevisionId": "ing_fdc_167781_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167782",
+        "sourceRevisionId": "ing_fdc_167782_r1",
+        "targetRevisionId": "ing_fdc_167782_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167783",
+        "sourceRevisionId": "ing_fdc_167783_r1",
+        "targetRevisionId": "ing_fdc_167783_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167784",
+        "sourceRevisionId": "ing_fdc_167784_r1",
+        "targetRevisionId": "ing_fdc_167784_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167785",
+        "sourceRevisionId": "ing_fdc_167785_r1",
+        "targetRevisionId": "ing_fdc_167785_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167786",
+        "sourceRevisionId": "ing_fdc_167786_r1",
+        "targetRevisionId": "ing_fdc_167786_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167787",
+        "sourceRevisionId": "ing_fdc_167787_r1",
+        "targetRevisionId": "ing_fdc_167787_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167788",
+        "sourceRevisionId": "ing_fdc_167788_r1",
+        "targetRevisionId": "ing_fdc_167788_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167789",
+        "sourceRevisionId": "ing_fdc_167789_r1",
+        "targetRevisionId": "ing_fdc_167789_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167790",
+        "sourceRevisionId": "ing_fdc_167790_r1",
+        "targetRevisionId": "ing_fdc_167790_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167792",
+        "sourceRevisionId": "ing_fdc_167792_r1",
+        "targetRevisionId": "ing_fdc_167792_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167793",
+        "sourceRevisionId": "ing_fdc_167793_r1",
+        "targetRevisionId": "ing_fdc_167793_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167794",
+        "sourceRevisionId": "ing_fdc_167794_r1",
+        "targetRevisionId": "ing_fdc_167794_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167795",
+        "sourceRevisionId": "ing_fdc_167795_r1",
+        "targetRevisionId": "ing_fdc_167795_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167796",
+        "sourceRevisionId": "ing_fdc_167796_r1",
+        "targetRevisionId": "ing_fdc_167796_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167797",
+        "sourceRevisionId": "ing_fdc_167797_r1",
+        "targetRevisionId": "ing_fdc_167797_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167798",
+        "sourceRevisionId": "ing_fdc_167798_r1",
+        "targetRevisionId": "ing_fdc_167798_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167799",
+        "sourceRevisionId": "ing_fdc_167799_r1",
+        "targetRevisionId": "ing_fdc_167799_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167800",
+        "sourceRevisionId": "ing_fdc_167800_r1",
+        "targetRevisionId": "ing_fdc_167800_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167802",
+        "sourceRevisionId": "ing_fdc_167802_r1",
+        "targetRevisionId": "ing_fdc_167802_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167803",
+        "sourceRevisionId": "ing_fdc_167803_r1",
+        "targetRevisionId": "ing_fdc_167803_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167804",
+        "sourceRevisionId": "ing_fdc_167804_r1",
+        "targetRevisionId": "ing_fdc_167804_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167805",
+        "sourceRevisionId": "ing_fdc_167805_r1",
+        "targetRevisionId": "ing_fdc_167805_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167806",
+        "sourceRevisionId": "ing_fdc_167806_r1",
+        "targetRevisionId": "ing_fdc_167806_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167808",
+        "sourceRevisionId": "ing_fdc_167808_r1",
+        "targetRevisionId": "ing_fdc_167808_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167809",
+        "sourceRevisionId": "ing_fdc_167809_r1",
+        "targetRevisionId": "ing_fdc_167809_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167810",
+        "sourceRevisionId": "ing_fdc_167810_r1",
+        "targetRevisionId": "ing_fdc_167810_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167811",
+        "sourceRevisionId": "ing_fdc_167811_r1",
+        "targetRevisionId": "ing_fdc_167811_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167812",
+        "sourceRevisionId": "ing_fdc_167812_r1",
+        "targetRevisionId": "ing_fdc_167812_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167813",
+        "sourceRevisionId": "ing_fdc_167813_r1",
+        "targetRevisionId": "ing_fdc_167813_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167814",
+        "sourceRevisionId": "ing_fdc_167814_r1",
+        "targetRevisionId": "ing_fdc_167814_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167815",
+        "sourceRevisionId": "ing_fdc_167815_r1",
+        "targetRevisionId": "ing_fdc_167815_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167816",
+        "sourceRevisionId": "ing_fdc_167816_r1",
+        "targetRevisionId": "ing_fdc_167816_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167817",
+        "sourceRevisionId": "ing_fdc_167817_r1",
+        "targetRevisionId": "ing_fdc_167817_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167818",
+        "sourceRevisionId": "ing_fdc_167818_r1",
+        "targetRevisionId": "ing_fdc_167818_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167819",
+        "sourceRevisionId": "ing_fdc_167819_r1",
+        "targetRevisionId": "ing_fdc_167819_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167820",
+        "sourceRevisionId": "ing_fdc_167820_r1",
+        "targetRevisionId": "ing_fdc_167820_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167821",
+        "sourceRevisionId": "ing_fdc_167821_r1",
+        "targetRevisionId": "ing_fdc_167821_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167822",
+        "sourceRevisionId": "ing_fdc_167822_r1",
+        "targetRevisionId": "ing_fdc_167822_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167823",
+        "sourceRevisionId": "ing_fdc_167823_r1",
+        "targetRevisionId": "ing_fdc_167823_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167824",
+        "sourceRevisionId": "ing_fdc_167824_r1",
+        "targetRevisionId": "ing_fdc_167824_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167825",
+        "sourceRevisionId": "ing_fdc_167825_r1",
+        "targetRevisionId": "ing_fdc_167825_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167826",
+        "sourceRevisionId": "ing_fdc_167826_r1",
+        "targetRevisionId": "ing_fdc_167826_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167827",
+        "sourceRevisionId": "ing_fdc_167827_r1",
+        "targetRevisionId": "ing_fdc_167827_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167828",
+        "sourceRevisionId": "ing_fdc_167828_r1",
+        "targetRevisionId": "ing_fdc_167828_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167829",
+        "sourceRevisionId": "ing_fdc_167829_r1",
+        "targetRevisionId": "ing_fdc_167829_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167830",
+        "sourceRevisionId": "ing_fdc_167830_r1",
+        "targetRevisionId": "ing_fdc_167830_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167831",
+        "sourceRevisionId": "ing_fdc_167831_r1",
+        "targetRevisionId": "ing_fdc_167831_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167832",
+        "sourceRevisionId": "ing_fdc_167832_r1",
+        "targetRevisionId": "ing_fdc_167832_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167833",
+        "sourceRevisionId": "ing_fdc_167833_r1",
+        "targetRevisionId": "ing_fdc_167833_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167834",
+        "sourceRevisionId": "ing_fdc_167834_r1",
+        "targetRevisionId": "ing_fdc_167834_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167835",
+        "sourceRevisionId": "ing_fdc_167835_r1",
+        "targetRevisionId": "ing_fdc_167835_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167836",
+        "sourceRevisionId": "ing_fdc_167836_r1",
+        "targetRevisionId": "ing_fdc_167836_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167837",
+        "sourceRevisionId": "ing_fdc_167837_r1",
+        "targetRevisionId": "ing_fdc_167837_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167838",
+        "sourceRevisionId": "ing_fdc_167838_r1",
+        "targetRevisionId": "ing_fdc_167838_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167839",
+        "sourceRevisionId": "ing_fdc_167839_r1",
+        "targetRevisionId": "ing_fdc_167839_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167840",
+        "sourceRevisionId": "ing_fdc_167840_r1",
+        "targetRevisionId": "ing_fdc_167840_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167841",
+        "sourceRevisionId": "ing_fdc_167841_r1",
+        "targetRevisionId": "ing_fdc_167841_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167842",
+        "sourceRevisionId": "ing_fdc_167842_r1",
+        "targetRevisionId": "ing_fdc_167842_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167843",
+        "sourceRevisionId": "ing_fdc_167843_r1",
+        "targetRevisionId": "ing_fdc_167843_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167844",
+        "sourceRevisionId": "ing_fdc_167844_r1",
+        "targetRevisionId": "ing_fdc_167844_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167845",
+        "sourceRevisionId": "ing_fdc_167845_r1",
+        "targetRevisionId": "ing_fdc_167845_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167846",
+        "sourceRevisionId": "ing_fdc_167846_r1",
+        "targetRevisionId": "ing_fdc_167846_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167847",
+        "sourceRevisionId": "ing_fdc_167847_r1",
+        "targetRevisionId": "ing_fdc_167847_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167848",
+        "sourceRevisionId": "ing_fdc_167848_r1",
+        "targetRevisionId": "ing_fdc_167848_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167849",
+        "sourceRevisionId": "ing_fdc_167849_r1",
+        "targetRevisionId": "ing_fdc_167849_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167850",
+        "sourceRevisionId": "ing_fdc_167850_r1",
+        "targetRevisionId": "ing_fdc_167850_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167851",
+        "sourceRevisionId": "ing_fdc_167851_r1",
+        "targetRevisionId": "ing_fdc_167851_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167852",
+        "sourceRevisionId": "ing_fdc_167852_r1",
+        "targetRevisionId": "ing_fdc_167852_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167853",
+        "sourceRevisionId": "ing_fdc_167853_r1",
+        "targetRevisionId": "ing_fdc_167853_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167854",
+        "sourceRevisionId": "ing_fdc_167854_r1",
+        "targetRevisionId": "ing_fdc_167854_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167855",
+        "sourceRevisionId": "ing_fdc_167855_r1",
+        "targetRevisionId": "ing_fdc_167855_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167856",
+        "sourceRevisionId": "ing_fdc_167856_r1",
+        "targetRevisionId": "ing_fdc_167856_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167857",
+        "sourceRevisionId": "ing_fdc_167857_r1",
+        "targetRevisionId": "ing_fdc_167857_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167858",
+        "sourceRevisionId": "ing_fdc_167858_r1",
+        "targetRevisionId": "ing_fdc_167858_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167859",
+        "sourceRevisionId": "ing_fdc_167859_r1",
+        "targetRevisionId": "ing_fdc_167859_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167860",
+        "sourceRevisionId": "ing_fdc_167860_r1",
+        "targetRevisionId": "ing_fdc_167860_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167861",
+        "sourceRevisionId": "ing_fdc_167861_r1",
+        "targetRevisionId": "ing_fdc_167861_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167862",
+        "sourceRevisionId": "ing_fdc_167862_r1",
+        "targetRevisionId": "ing_fdc_167862_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167863",
+        "sourceRevisionId": "ing_fdc_167863_r1",
+        "targetRevisionId": "ing_fdc_167863_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167864",
+        "sourceRevisionId": "ing_fdc_167864_r1",
+        "targetRevisionId": "ing_fdc_167864_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167865",
+        "sourceRevisionId": "ing_fdc_167865_r1",
+        "targetRevisionId": "ing_fdc_167865_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167866",
+        "sourceRevisionId": "ing_fdc_167866_r1",
+        "targetRevisionId": "ing_fdc_167866_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167867",
+        "sourceRevisionId": "ing_fdc_167867_r1",
+        "targetRevisionId": "ing_fdc_167867_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167868",
+        "sourceRevisionId": "ing_fdc_167868_r1",
+        "targetRevisionId": "ing_fdc_167868_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167869",
+        "sourceRevisionId": "ing_fdc_167869_r1",
+        "targetRevisionId": "ing_fdc_167869_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167870",
+        "sourceRevisionId": "ing_fdc_167870_r1",
+        "targetRevisionId": "ing_fdc_167870_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167871",
+        "sourceRevisionId": "ing_fdc_167871_r1",
+        "targetRevisionId": "ing_fdc_167871_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167872",
+        "sourceRevisionId": "ing_fdc_167872_r1",
+        "targetRevisionId": "ing_fdc_167872_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167873",
+        "sourceRevisionId": "ing_fdc_167873_r1",
+        "targetRevisionId": "ing_fdc_167873_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167874",
+        "sourceRevisionId": "ing_fdc_167874_r1",
+        "targetRevisionId": "ing_fdc_167874_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167875",
+        "sourceRevisionId": "ing_fdc_167875_r1",
+        "targetRevisionId": "ing_fdc_167875_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167876",
+        "sourceRevisionId": "ing_fdc_167876_r1",
+        "targetRevisionId": "ing_fdc_167876_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167877",
+        "sourceRevisionId": "ing_fdc_167877_r1",
+        "targetRevisionId": "ing_fdc_167877_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167878",
+        "sourceRevisionId": "ing_fdc_167878_r1",
+        "targetRevisionId": "ing_fdc_167878_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167879",
+        "sourceRevisionId": "ing_fdc_167879_r1",
+        "targetRevisionId": "ing_fdc_167879_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167880",
+        "sourceRevisionId": "ing_fdc_167880_r1",
+        "targetRevisionId": "ing_fdc_167880_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167881",
+        "sourceRevisionId": "ing_fdc_167881_r1",
+        "targetRevisionId": "ing_fdc_167881_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167882",
+        "sourceRevisionId": "ing_fdc_167882_r1",
+        "targetRevisionId": "ing_fdc_167882_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167883",
+        "sourceRevisionId": "ing_fdc_167883_r1",
+        "targetRevisionId": "ing_fdc_167883_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167884",
+        "sourceRevisionId": "ing_fdc_167884_r1",
+        "targetRevisionId": "ing_fdc_167884_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167885",
+        "sourceRevisionId": "ing_fdc_167885_r1",
+        "targetRevisionId": "ing_fdc_167885_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167886",
+        "sourceRevisionId": "ing_fdc_167886_r1",
+        "targetRevisionId": "ing_fdc_167886_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167887",
+        "sourceRevisionId": "ing_fdc_167887_r1",
+        "targetRevisionId": "ing_fdc_167887_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167888",
+        "sourceRevisionId": "ing_fdc_167888_r1",
+        "targetRevisionId": "ing_fdc_167888_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167889",
+        "sourceRevisionId": "ing_fdc_167889_r1",
+        "targetRevisionId": "ing_fdc_167889_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167890",
+        "sourceRevisionId": "ing_fdc_167890_r1",
+        "targetRevisionId": "ing_fdc_167890_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167891",
+        "sourceRevisionId": "ing_fdc_167891_r1",
+        "targetRevisionId": "ing_fdc_167891_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167892",
+        "sourceRevisionId": "ing_fdc_167892_r1",
+        "targetRevisionId": "ing_fdc_167892_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167893",
+        "sourceRevisionId": "ing_fdc_167893_r1",
+        "targetRevisionId": "ing_fdc_167893_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167894",
+        "sourceRevisionId": "ing_fdc_167894_r1",
+        "targetRevisionId": "ing_fdc_167894_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167895",
+        "sourceRevisionId": "ing_fdc_167895_r1",
+        "targetRevisionId": "ing_fdc_167895_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167896",
+        "sourceRevisionId": "ing_fdc_167896_r1",
+        "targetRevisionId": "ing_fdc_167896_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167897",
+        "sourceRevisionId": "ing_fdc_167897_r1",
+        "targetRevisionId": "ing_fdc_167897_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167898",
+        "sourceRevisionId": "ing_fdc_167898_r1",
+        "targetRevisionId": "ing_fdc_167898_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167899",
+        "sourceRevisionId": "ing_fdc_167899_r1",
+        "targetRevisionId": "ing_fdc_167899_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167900",
+        "sourceRevisionId": "ing_fdc_167900_r1",
+        "targetRevisionId": "ing_fdc_167900_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167901",
+        "sourceRevisionId": "ing_fdc_167901_r1",
+        "targetRevisionId": "ing_fdc_167901_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167902",
+        "sourceRevisionId": "ing_fdc_167902_r1",
+        "targetRevisionId": "ing_fdc_167902_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167903",
+        "sourceRevisionId": "ing_fdc_167903_r1",
+        "targetRevisionId": "ing_fdc_167903_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167904",
+        "sourceRevisionId": "ing_fdc_167904_r1",
+        "targetRevisionId": "ing_fdc_167904_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167905",
+        "sourceRevisionId": "ing_fdc_167905_r1",
+        "targetRevisionId": "ing_fdc_167905_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167906",
+        "sourceRevisionId": "ing_fdc_167906_r1",
+        "targetRevisionId": "ing_fdc_167906_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167907",
+        "sourceRevisionId": "ing_fdc_167907_r1",
+        "targetRevisionId": "ing_fdc_167907_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167908",
+        "sourceRevisionId": "ing_fdc_167908_r1",
+        "targetRevisionId": "ing_fdc_167908_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167912",
+        "sourceRevisionId": "ing_fdc_167912_r1",
+        "targetRevisionId": "ing_fdc_167912_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167913",
+        "sourceRevisionId": "ing_fdc_167913_r1",
+        "targetRevisionId": "ing_fdc_167913_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167914",
+        "sourceRevisionId": "ing_fdc_167914_r1",
+        "targetRevisionId": "ing_fdc_167914_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167915",
+        "sourceRevisionId": "ing_fdc_167915_r1",
+        "targetRevisionId": "ing_fdc_167915_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167916",
+        "sourceRevisionId": "ing_fdc_167916_r1",
+        "targetRevisionId": "ing_fdc_167916_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167917",
+        "sourceRevisionId": "ing_fdc_167917_r1",
+        "targetRevisionId": "ing_fdc_167917_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167918",
+        "sourceRevisionId": "ing_fdc_167918_r1",
+        "targetRevisionId": "ing_fdc_167918_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167919",
+        "sourceRevisionId": "ing_fdc_167919_r1",
+        "targetRevisionId": "ing_fdc_167919_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_167920",
+        "sourceRevisionId": "ing_fdc_167920_r1",
+        "targetRevisionId": "ing_fdc_167920_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168015",
+        "sourceRevisionId": "ing_fdc_168015_r1",
+        "targetRevisionId": "ing_fdc_168015_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168016",
+        "sourceRevisionId": "ing_fdc_168016_r1",
+        "targetRevisionId": "ing_fdc_168016_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168089",
+        "sourceRevisionId": "ing_fdc_168089_r1",
+        "targetRevisionId": "ing_fdc_168089_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168093",
+        "sourceRevisionId": "ing_fdc_168093_r1",
+        "targetRevisionId": "ing_fdc_168093_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168094",
+        "sourceRevisionId": "ing_fdc_168094_r1",
+        "targetRevisionId": "ing_fdc_168094_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168096",
+        "sourceRevisionId": "ing_fdc_168096_r1",
+        "targetRevisionId": "ing_fdc_168096_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168097",
+        "sourceRevisionId": "ing_fdc_168097_r1",
+        "targetRevisionId": "ing_fdc_168097_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168098",
+        "sourceRevisionId": "ing_fdc_168098_r1",
+        "targetRevisionId": "ing_fdc_168098_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168099",
+        "sourceRevisionId": "ing_fdc_168099_r1",
+        "targetRevisionId": "ing_fdc_168099_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168100",
+        "sourceRevisionId": "ing_fdc_168100_r1",
+        "targetRevisionId": "ing_fdc_168100_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168106",
+        "sourceRevisionId": "ing_fdc_168106_r1",
+        "targetRevisionId": "ing_fdc_168106_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168109",
+        "sourceRevisionId": "ing_fdc_168109_r1",
+        "targetRevisionId": "ing_fdc_168109_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168110",
+        "sourceRevisionId": "ing_fdc_168110_r1",
+        "targetRevisionId": "ing_fdc_168110_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168111",
+        "sourceRevisionId": "ing_fdc_168111_r1",
+        "targetRevisionId": "ing_fdc_168111_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168112",
+        "sourceRevisionId": "ing_fdc_168112_r1",
+        "targetRevisionId": "ing_fdc_168112_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168114",
+        "sourceRevisionId": "ing_fdc_168114_r1",
+        "targetRevisionId": "ing_fdc_168114_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168115",
+        "sourceRevisionId": "ing_fdc_168115_r1",
+        "targetRevisionId": "ing_fdc_168115_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168117",
+        "sourceRevisionId": "ing_fdc_168117_r1",
+        "targetRevisionId": "ing_fdc_168117_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168119",
+        "sourceRevisionId": "ing_fdc_168119_r1",
+        "targetRevisionId": "ing_fdc_168119_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168120",
+        "sourceRevisionId": "ing_fdc_168120_r1",
+        "targetRevisionId": "ing_fdc_168120_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168121",
+        "sourceRevisionId": "ing_fdc_168121_r1",
+        "targetRevisionId": "ing_fdc_168121_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168124",
+        "sourceRevisionId": "ing_fdc_168124_r1",
+        "targetRevisionId": "ing_fdc_168124_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168128",
+        "sourceRevisionId": "ing_fdc_168128_r1",
+        "targetRevisionId": "ing_fdc_168128_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168129",
+        "sourceRevisionId": "ing_fdc_168129_r1",
+        "targetRevisionId": "ing_fdc_168129_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168138",
+        "sourceRevisionId": "ing_fdc_168138_r1",
+        "targetRevisionId": "ing_fdc_168138_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168141",
+        "sourceRevisionId": "ing_fdc_168141_r1",
+        "targetRevisionId": "ing_fdc_168141_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168147",
+        "sourceRevisionId": "ing_fdc_168147_r1",
+        "targetRevisionId": "ing_fdc_168147_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168148",
+        "sourceRevisionId": "ing_fdc_168148_r1",
+        "targetRevisionId": "ing_fdc_168148_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168149",
+        "sourceRevisionId": "ing_fdc_168149_r1",
+        "targetRevisionId": "ing_fdc_168149_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168152",
+        "sourceRevisionId": "ing_fdc_168152_r1",
+        "targetRevisionId": "ing_fdc_168152_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168154",
+        "sourceRevisionId": "ing_fdc_168154_r1",
+        "targetRevisionId": "ing_fdc_168154_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168155",
+        "sourceRevisionId": "ing_fdc_168155_r1",
+        "targetRevisionId": "ing_fdc_168155_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168156",
+        "sourceRevisionId": "ing_fdc_168156_r1",
+        "targetRevisionId": "ing_fdc_168156_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168157",
+        "sourceRevisionId": "ing_fdc_168157_r1",
+        "targetRevisionId": "ing_fdc_168157_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168158",
+        "sourceRevisionId": "ing_fdc_168158_r1",
+        "targetRevisionId": "ing_fdc_168158_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168159",
+        "sourceRevisionId": "ing_fdc_168159_r1",
+        "targetRevisionId": "ing_fdc_168159_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168162",
+        "sourceRevisionId": "ing_fdc_168162_r1",
+        "targetRevisionId": "ing_fdc_168162_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168163",
+        "sourceRevisionId": "ing_fdc_168163_r1",
+        "targetRevisionId": "ing_fdc_168163_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168164",
+        "sourceRevisionId": "ing_fdc_168164_r1",
+        "targetRevisionId": "ing_fdc_168164_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168165",
+        "sourceRevisionId": "ing_fdc_168165_r1",
+        "targetRevisionId": "ing_fdc_168165_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168166",
+        "sourceRevisionId": "ing_fdc_168166_r1",
+        "targetRevisionId": "ing_fdc_168166_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168167",
+        "sourceRevisionId": "ing_fdc_168167_r1",
+        "targetRevisionId": "ing_fdc_168167_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168168",
+        "sourceRevisionId": "ing_fdc_168168_r1",
+        "targetRevisionId": "ing_fdc_168168_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168169",
+        "sourceRevisionId": "ing_fdc_168169_r1",
+        "targetRevisionId": "ing_fdc_168169_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168172",
+        "sourceRevisionId": "ing_fdc_168172_r1",
+        "targetRevisionId": "ing_fdc_168172_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168173",
+        "sourceRevisionId": "ing_fdc_168173_r1",
+        "targetRevisionId": "ing_fdc_168173_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168174",
+        "sourceRevisionId": "ing_fdc_168174_r1",
+        "targetRevisionId": "ing_fdc_168174_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168175",
+        "sourceRevisionId": "ing_fdc_168175_r1",
+        "targetRevisionId": "ing_fdc_168175_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168176",
+        "sourceRevisionId": "ing_fdc_168176_r1",
+        "targetRevisionId": "ing_fdc_168176_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168177",
+        "sourceRevisionId": "ing_fdc_168177_r1",
+        "targetRevisionId": "ing_fdc_168177_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168178",
+        "sourceRevisionId": "ing_fdc_168178_r1",
+        "targetRevisionId": "ing_fdc_168178_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168179",
+        "sourceRevisionId": "ing_fdc_168179_r1",
+        "targetRevisionId": "ing_fdc_168179_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168180",
+        "sourceRevisionId": "ing_fdc_168180_r1",
+        "targetRevisionId": "ing_fdc_168180_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168181",
+        "sourceRevisionId": "ing_fdc_168181_r1",
+        "targetRevisionId": "ing_fdc_168181_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168182",
+        "sourceRevisionId": "ing_fdc_168182_r1",
+        "targetRevisionId": "ing_fdc_168182_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168183",
+        "sourceRevisionId": "ing_fdc_168183_r1",
+        "targetRevisionId": "ing_fdc_168183_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168184",
+        "sourceRevisionId": "ing_fdc_168184_r1",
+        "targetRevisionId": "ing_fdc_168184_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168185",
+        "sourceRevisionId": "ing_fdc_168185_r1",
+        "targetRevisionId": "ing_fdc_168185_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168186",
+        "sourceRevisionId": "ing_fdc_168186_r1",
+        "targetRevisionId": "ing_fdc_168186_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168554",
+        "sourceRevisionId": "ing_fdc_168554_r1",
+        "targetRevisionId": "ing_fdc_168554_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168555",
+        "sourceRevisionId": "ing_fdc_168555_r1",
+        "targetRevisionId": "ing_fdc_168555_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168563",
+        "sourceRevisionId": "ing_fdc_168563_r1",
+        "targetRevisionId": "ing_fdc_168563_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168586",
+        "sourceRevisionId": "ing_fdc_168586_r1",
+        "targetRevisionId": "ing_fdc_168586_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168588",
+        "sourceRevisionId": "ing_fdc_168588_r1",
+        "targetRevisionId": "ing_fdc_168588_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168592",
+        "sourceRevisionId": "ing_fdc_168592_r1",
+        "targetRevisionId": "ing_fdc_168592_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168593",
+        "sourceRevisionId": "ing_fdc_168593_r1",
+        "targetRevisionId": "ing_fdc_168593_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168594",
+        "sourceRevisionId": "ing_fdc_168594_r1",
+        "targetRevisionId": "ing_fdc_168594_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168595",
+        "sourceRevisionId": "ing_fdc_168595_r1",
+        "targetRevisionId": "ing_fdc_168595_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168597",
+        "sourceRevisionId": "ing_fdc_168597_r1",
+        "targetRevisionId": "ing_fdc_168597_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168598",
+        "sourceRevisionId": "ing_fdc_168598_r1",
+        "targetRevisionId": "ing_fdc_168598_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168599",
+        "sourceRevisionId": "ing_fdc_168599_r1",
+        "targetRevisionId": "ing_fdc_168599_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168600",
+        "sourceRevisionId": "ing_fdc_168600_r1",
+        "targetRevisionId": "ing_fdc_168600_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168601",
+        "sourceRevisionId": "ing_fdc_168601_r1",
+        "targetRevisionId": "ing_fdc_168601_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168602",
+        "sourceRevisionId": "ing_fdc_168602_r1",
+        "targetRevisionId": "ing_fdc_168602_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168603",
+        "sourceRevisionId": "ing_fdc_168603_r1",
+        "targetRevisionId": "ing_fdc_168603_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168604",
+        "sourceRevisionId": "ing_fdc_168604_r1",
+        "targetRevisionId": "ing_fdc_168604_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168867",
+        "sourceRevisionId": "ing_fdc_168867_r1",
+        "targetRevisionId": "ing_fdc_168867_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168868",
+        "sourceRevisionId": "ing_fdc_168868_r1",
+        "targetRevisionId": "ing_fdc_168868_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168869",
+        "sourceRevisionId": "ing_fdc_168869_r1",
+        "targetRevisionId": "ing_fdc_168869_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168870",
+        "sourceRevisionId": "ing_fdc_168870_r1",
+        "targetRevisionId": "ing_fdc_168870_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168871",
+        "sourceRevisionId": "ing_fdc_168871_r1",
+        "targetRevisionId": "ing_fdc_168871_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168872",
+        "sourceRevisionId": "ing_fdc_168872_r1",
+        "targetRevisionId": "ing_fdc_168872_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168873",
+        "sourceRevisionId": "ing_fdc_168873_r1",
+        "targetRevisionId": "ing_fdc_168873_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168874",
+        "sourceRevisionId": "ing_fdc_168874_r1",
+        "targetRevisionId": "ing_fdc_168874_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168875",
+        "sourceRevisionId": "ing_fdc_168875_r1",
+        "targetRevisionId": "ing_fdc_168875_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168876",
+        "sourceRevisionId": "ing_fdc_168876_r1",
+        "targetRevisionId": "ing_fdc_168876_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168877",
+        "sourceRevisionId": "ing_fdc_168877_r1",
+        "targetRevisionId": "ing_fdc_168877_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168878",
+        "sourceRevisionId": "ing_fdc_168878_r1",
+        "targetRevisionId": "ing_fdc_168878_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168879",
+        "sourceRevisionId": "ing_fdc_168879_r1",
+        "targetRevisionId": "ing_fdc_168879_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168880",
+        "sourceRevisionId": "ing_fdc_168880_r1",
+        "targetRevisionId": "ing_fdc_168880_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168881",
+        "sourceRevisionId": "ing_fdc_168881_r1",
+        "targetRevisionId": "ing_fdc_168881_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168883",
+        "sourceRevisionId": "ing_fdc_168883_r1",
+        "targetRevisionId": "ing_fdc_168883_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168884",
+        "sourceRevisionId": "ing_fdc_168884_r1",
+        "targetRevisionId": "ing_fdc_168884_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168885",
+        "sourceRevisionId": "ing_fdc_168885_r1",
+        "targetRevisionId": "ing_fdc_168885_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168886",
+        "sourceRevisionId": "ing_fdc_168886_r1",
+        "targetRevisionId": "ing_fdc_168886_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168897",
+        "sourceRevisionId": "ing_fdc_168897_r1",
+        "targetRevisionId": "ing_fdc_168897_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168898",
+        "sourceRevisionId": "ing_fdc_168898_r1",
+        "targetRevisionId": "ing_fdc_168898_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168899",
+        "sourceRevisionId": "ing_fdc_168899_r1",
+        "targetRevisionId": "ing_fdc_168899_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168900",
+        "sourceRevisionId": "ing_fdc_168900_r1",
+        "targetRevisionId": "ing_fdc_168900_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168903",
+        "sourceRevisionId": "ing_fdc_168903_r1",
+        "targetRevisionId": "ing_fdc_168903_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168904",
+        "sourceRevisionId": "ing_fdc_168904_r1",
+        "targetRevisionId": "ing_fdc_168904_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168905",
+        "sourceRevisionId": "ing_fdc_168905_r1",
+        "targetRevisionId": "ing_fdc_168905_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168908",
+        "sourceRevisionId": "ing_fdc_168908_r1",
+        "targetRevisionId": "ing_fdc_168908_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168910",
+        "sourceRevisionId": "ing_fdc_168910_r1",
+        "targetRevisionId": "ing_fdc_168910_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168911",
+        "sourceRevisionId": "ing_fdc_168911_r1",
+        "targetRevisionId": "ing_fdc_168911_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168914",
+        "sourceRevisionId": "ing_fdc_168914_r1",
+        "targetRevisionId": "ing_fdc_168914_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168915",
+        "sourceRevisionId": "ing_fdc_168915_r1",
+        "targetRevisionId": "ing_fdc_168915_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168916",
+        "sourceRevisionId": "ing_fdc_168916_r1",
+        "targetRevisionId": "ing_fdc_168916_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168919",
+        "sourceRevisionId": "ing_fdc_168919_r1",
+        "targetRevisionId": "ing_fdc_168919_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168926",
+        "sourceRevisionId": "ing_fdc_168926_r1",
+        "targetRevisionId": "ing_fdc_168926_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168927",
+        "sourceRevisionId": "ing_fdc_168927_r1",
+        "targetRevisionId": "ing_fdc_168927_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168928",
+        "sourceRevisionId": "ing_fdc_168928_r1",
+        "targetRevisionId": "ing_fdc_168928_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168933",
+        "sourceRevisionId": "ing_fdc_168933_r1",
+        "targetRevisionId": "ing_fdc_168933_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168934",
+        "sourceRevisionId": "ing_fdc_168934_r1",
+        "targetRevisionId": "ing_fdc_168934_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168935",
+        "sourceRevisionId": "ing_fdc_168935_r1",
+        "targetRevisionId": "ing_fdc_168935_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_168937",
+        "sourceRevisionId": "ing_fdc_168937_r1",
+        "targetRevisionId": "ing_fdc_168937_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169050",
+        "sourceRevisionId": "ing_fdc_169050_r1",
+        "targetRevisionId": "ing_fdc_169050_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169051",
+        "sourceRevisionId": "ing_fdc_169051_r1",
+        "targetRevisionId": "ing_fdc_169051_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169052",
+        "sourceRevisionId": "ing_fdc_169052_r1",
+        "targetRevisionId": "ing_fdc_169052_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169053",
+        "sourceRevisionId": "ing_fdc_169053_r1",
+        "targetRevisionId": "ing_fdc_169053_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169065",
+        "sourceRevisionId": "ing_fdc_169065_r1",
+        "targetRevisionId": "ing_fdc_169065_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169066",
+        "sourceRevisionId": "ing_fdc_169066_r1",
+        "targetRevisionId": "ing_fdc_169066_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169067",
+        "sourceRevisionId": "ing_fdc_169067_r1",
+        "targetRevisionId": "ing_fdc_169067_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169068",
+        "sourceRevisionId": "ing_fdc_169068_r1",
+        "targetRevisionId": "ing_fdc_169068_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169069",
+        "sourceRevisionId": "ing_fdc_169069_r1",
+        "targetRevisionId": "ing_fdc_169069_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169073",
+        "sourceRevisionId": "ing_fdc_169073_r1",
+        "targetRevisionId": "ing_fdc_169073_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169078",
+        "sourceRevisionId": "ing_fdc_169078_r1",
+        "targetRevisionId": "ing_fdc_169078_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169231",
+        "sourceRevisionId": "ing_fdc_169231_r1",
+        "targetRevisionId": "ing_fdc_169231_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169298",
+        "sourceRevisionId": "ing_fdc_169298_r1",
+        "targetRevisionId": "ing_fdc_169298_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169299",
+        "sourceRevisionId": "ing_fdc_169299_r1",
+        "targetRevisionId": "ing_fdc_169299_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169372",
+        "sourceRevisionId": "ing_fdc_169372_r1",
+        "targetRevisionId": "ing_fdc_169372_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169699",
+        "sourceRevisionId": "ing_fdc_169699_r1",
+        "targetRevisionId": "ing_fdc_169699_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169700",
+        "sourceRevisionId": "ing_fdc_169700_r1",
+        "targetRevisionId": "ing_fdc_169700_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169731",
+        "sourceRevisionId": "ing_fdc_169731_r1",
+        "targetRevisionId": "ing_fdc_169731_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169732",
+        "sourceRevisionId": "ing_fdc_169732_r1",
+        "targetRevisionId": "ing_fdc_169732_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169733",
+        "sourceRevisionId": "ing_fdc_169733_r1",
+        "targetRevisionId": "ing_fdc_169733_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169734",
+        "sourceRevisionId": "ing_fdc_169734_r1",
+        "targetRevisionId": "ing_fdc_169734_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169755",
+        "sourceRevisionId": "ing_fdc_169755_r1",
+        "targetRevisionId": "ing_fdc_169755_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169762",
+        "sourceRevisionId": "ing_fdc_169762_r1",
+        "targetRevisionId": "ing_fdc_169762_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169765",
+        "sourceRevisionId": "ing_fdc_169765_r1",
+        "targetRevisionId": "ing_fdc_169765_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169868",
+        "sourceRevisionId": "ing_fdc_169868_r1",
+        "targetRevisionId": "ing_fdc_169868_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169869",
+        "sourceRevisionId": "ing_fdc_169869_r1",
+        "targetRevisionId": "ing_fdc_169869_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169885",
+        "sourceRevisionId": "ing_fdc_169885_r1",
+        "targetRevisionId": "ing_fdc_169885_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169886",
+        "sourceRevisionId": "ing_fdc_169886_r1",
+        "targetRevisionId": "ing_fdc_169886_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169887",
+        "sourceRevisionId": "ing_fdc_169887_r1",
+        "targetRevisionId": "ing_fdc_169887_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169888",
+        "sourceRevisionId": "ing_fdc_169888_r1",
+        "targetRevisionId": "ing_fdc_169888_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169893",
+        "sourceRevisionId": "ing_fdc_169893_r1",
+        "targetRevisionId": "ing_fdc_169893_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169897",
+        "sourceRevisionId": "ing_fdc_169897_r1",
+        "targetRevisionId": "ing_fdc_169897_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169898",
+        "sourceRevisionId": "ing_fdc_169898_r1",
+        "targetRevisionId": "ing_fdc_169898_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169899",
+        "sourceRevisionId": "ing_fdc_169899_r1",
+        "targetRevisionId": "ing_fdc_169899_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169902",
+        "sourceRevisionId": "ing_fdc_169902_r1",
+        "targetRevisionId": "ing_fdc_169902_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169903",
+        "sourceRevisionId": "ing_fdc_169903_r1",
+        "targetRevisionId": "ing_fdc_169903_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169904",
+        "sourceRevisionId": "ing_fdc_169904_r1",
+        "targetRevisionId": "ing_fdc_169904_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169905",
+        "sourceRevisionId": "ing_fdc_169905_r1",
+        "targetRevisionId": "ing_fdc_169905_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_169997",
+        "sourceRevisionId": "ing_fdc_169997_r1",
+        "targetRevisionId": "ing_fdc_169997_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170037",
+        "sourceRevisionId": "ing_fdc_170037_r1",
+        "targetRevisionId": "ing_fdc_170037_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170039",
+        "sourceRevisionId": "ing_fdc_170039_r1",
+        "targetRevisionId": "ing_fdc_170039_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170040",
+        "sourceRevisionId": "ing_fdc_170040_r1",
+        "targetRevisionId": "ing_fdc_170040_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170041",
+        "sourceRevisionId": "ing_fdc_170041_r1",
+        "targetRevisionId": "ing_fdc_170041_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170042",
+        "sourceRevisionId": "ing_fdc_170042_r1",
+        "targetRevisionId": "ing_fdc_170042_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170172",
+        "sourceRevisionId": "ing_fdc_170172_r1",
+        "targetRevisionId": "ing_fdc_170172_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170416",
+        "sourceRevisionId": "ing_fdc_170416_r1",
+        "targetRevisionId": "ing_fdc_170416_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170445",
+        "sourceRevisionId": "ing_fdc_170445_r1",
+        "targetRevisionId": "ing_fdc_170445_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170446",
+        "sourceRevisionId": "ing_fdc_170446_r1",
+        "targetRevisionId": "ing_fdc_170446_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170448",
+        "sourceRevisionId": "ing_fdc_170448_r1",
+        "targetRevisionId": "ing_fdc_170448_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170450",
+        "sourceRevisionId": "ing_fdc_170450_r1",
+        "targetRevisionId": "ing_fdc_170450_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170486",
+        "sourceRevisionId": "ing_fdc_170486_r1",
+        "targetRevisionId": "ing_fdc_170486_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170493",
+        "sourceRevisionId": "ing_fdc_170493_r1",
+        "targetRevisionId": "ing_fdc_170493_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170857",
+        "sourceRevisionId": "ing_fdc_170857_r1",
+        "targetRevisionId": "ing_fdc_170857_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170858",
+        "sourceRevisionId": "ing_fdc_170858_r1",
+        "targetRevisionId": "ing_fdc_170858_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170859",
+        "sourceRevisionId": "ing_fdc_170859_r1",
+        "targetRevisionId": "ing_fdc_170859_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170860",
+        "sourceRevisionId": "ing_fdc_170860_r1",
+        "targetRevisionId": "ing_fdc_170860_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170893",
+        "sourceRevisionId": "ing_fdc_170893_r1",
+        "targetRevisionId": "ing_fdc_170893_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170895",
+        "sourceRevisionId": "ing_fdc_170895_r1",
+        "targetRevisionId": "ing_fdc_170895_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170917",
+        "sourceRevisionId": "ing_fdc_170917_r1",
+        "targetRevisionId": "ing_fdc_170917_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170918",
+        "sourceRevisionId": "ing_fdc_170918_r1",
+        "targetRevisionId": "ing_fdc_170918_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170919",
+        "sourceRevisionId": "ing_fdc_170919_r1",
+        "targetRevisionId": "ing_fdc_170919_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170920",
+        "sourceRevisionId": "ing_fdc_170920_r1",
+        "targetRevisionId": "ing_fdc_170920_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170921",
+        "sourceRevisionId": "ing_fdc_170921_r1",
+        "targetRevisionId": "ing_fdc_170921_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170922",
+        "sourceRevisionId": "ing_fdc_170922_r1",
+        "targetRevisionId": "ing_fdc_170922_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170923",
+        "sourceRevisionId": "ing_fdc_170923_r1",
+        "targetRevisionId": "ing_fdc_170923_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170924",
+        "sourceRevisionId": "ing_fdc_170924_r1",
+        "targetRevisionId": "ing_fdc_170924_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170925",
+        "sourceRevisionId": "ing_fdc_170925_r1",
+        "targetRevisionId": "ing_fdc_170925_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170926",
+        "sourceRevisionId": "ing_fdc_170926_r1",
+        "targetRevisionId": "ing_fdc_170926_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170927",
+        "sourceRevisionId": "ing_fdc_170927_r1",
+        "targetRevisionId": "ing_fdc_170927_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_170928",
+        "sourceRevisionId": "ing_fdc_170928_r1",
+        "targetRevisionId": "ing_fdc_170928_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171047",
+        "sourceRevisionId": "ing_fdc_171047_r1",
+        "targetRevisionId": "ing_fdc_171047_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171050",
+        "sourceRevisionId": "ing_fdc_171050_r1",
+        "targetRevisionId": "ing_fdc_171050_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171051",
+        "sourceRevisionId": "ing_fdc_171051_r1",
+        "targetRevisionId": "ing_fdc_171051_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171052",
+        "sourceRevisionId": "ing_fdc_171052_r1",
+        "targetRevisionId": "ing_fdc_171052_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171053",
+        "sourceRevisionId": "ing_fdc_171053_r1",
+        "targetRevisionId": "ing_fdc_171053_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171054",
+        "sourceRevisionId": "ing_fdc_171054_r1",
+        "targetRevisionId": "ing_fdc_171054_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171055",
+        "sourceRevisionId": "ing_fdc_171055_r1",
+        "targetRevisionId": "ing_fdc_171055_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171056",
+        "sourceRevisionId": "ing_fdc_171056_r1",
+        "targetRevisionId": "ing_fdc_171056_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171057",
+        "sourceRevisionId": "ing_fdc_171057_r1",
+        "targetRevisionId": "ing_fdc_171057_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171058",
+        "sourceRevisionId": "ing_fdc_171058_r1",
+        "targetRevisionId": "ing_fdc_171058_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171059",
+        "sourceRevisionId": "ing_fdc_171059_r1",
+        "targetRevisionId": "ing_fdc_171059_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171060",
+        "sourceRevisionId": "ing_fdc_171060_r1",
+        "targetRevisionId": "ing_fdc_171060_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171061",
+        "sourceRevisionId": "ing_fdc_171061_r1",
+        "targetRevisionId": "ing_fdc_171061_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171062",
+        "sourceRevisionId": "ing_fdc_171062_r1",
+        "targetRevisionId": "ing_fdc_171062_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171064",
+        "sourceRevisionId": "ing_fdc_171064_r1",
+        "targetRevisionId": "ing_fdc_171064_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171065",
+        "sourceRevisionId": "ing_fdc_171065_r1",
+        "targetRevisionId": "ing_fdc_171065_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171066",
+        "sourceRevisionId": "ing_fdc_171066_r1",
+        "targetRevisionId": "ing_fdc_171066_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171067",
+        "sourceRevisionId": "ing_fdc_171067_r1",
+        "targetRevisionId": "ing_fdc_171067_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171068",
+        "sourceRevisionId": "ing_fdc_171068_r1",
+        "targetRevisionId": "ing_fdc_171068_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171069",
+        "sourceRevisionId": "ing_fdc_171069_r1",
+        "targetRevisionId": "ing_fdc_171069_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171070",
+        "sourceRevisionId": "ing_fdc_171070_r1",
+        "targetRevisionId": "ing_fdc_171070_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171071",
+        "sourceRevisionId": "ing_fdc_171071_r1",
+        "targetRevisionId": "ing_fdc_171071_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171072",
+        "sourceRevisionId": "ing_fdc_171072_r1",
+        "targetRevisionId": "ing_fdc_171072_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171287",
+        "sourceRevisionId": "ing_fdc_171287_r1",
+        "targetRevisionId": "ing_fdc_171287_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171413",
+        "sourceRevisionId": "ing_fdc_171413_r1",
+        "targetRevisionId": "ing_fdc_171413_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171948",
+        "sourceRevisionId": "ing_fdc_171948_r1",
+        "targetRevisionId": "ing_fdc_171948_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171949",
+        "sourceRevisionId": "ing_fdc_171949_r1",
+        "targetRevisionId": "ing_fdc_171949_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171950",
+        "sourceRevisionId": "ing_fdc_171950_r1",
+        "targetRevisionId": "ing_fdc_171950_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171951",
+        "sourceRevisionId": "ing_fdc_171951_r1",
+        "targetRevisionId": "ing_fdc_171951_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171952",
+        "sourceRevisionId": "ing_fdc_171952_r1",
+        "targetRevisionId": "ing_fdc_171952_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171953",
+        "sourceRevisionId": "ing_fdc_171953_r1",
+        "targetRevisionId": "ing_fdc_171953_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171954",
+        "sourceRevisionId": "ing_fdc_171954_r1",
+        "targetRevisionId": "ing_fdc_171954_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171955",
+        "sourceRevisionId": "ing_fdc_171955_r1",
+        "targetRevisionId": "ing_fdc_171955_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171956",
+        "sourceRevisionId": "ing_fdc_171956_r1",
+        "targetRevisionId": "ing_fdc_171956_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171957",
+        "sourceRevisionId": "ing_fdc_171957_r1",
+        "targetRevisionId": "ing_fdc_171957_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171958",
+        "sourceRevisionId": "ing_fdc_171958_r1",
+        "targetRevisionId": "ing_fdc_171958_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171959",
+        "sourceRevisionId": "ing_fdc_171959_r1",
+        "targetRevisionId": "ing_fdc_171959_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171960",
+        "sourceRevisionId": "ing_fdc_171960_r1",
+        "targetRevisionId": "ing_fdc_171960_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171961",
+        "sourceRevisionId": "ing_fdc_171961_r1",
+        "targetRevisionId": "ing_fdc_171961_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171962",
+        "sourceRevisionId": "ing_fdc_171962_r1",
+        "targetRevisionId": "ing_fdc_171962_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171963",
+        "sourceRevisionId": "ing_fdc_171963_r1",
+        "targetRevisionId": "ing_fdc_171963_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171964",
+        "sourceRevisionId": "ing_fdc_171964_r1",
+        "targetRevisionId": "ing_fdc_171964_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171965",
+        "sourceRevisionId": "ing_fdc_171965_r1",
+        "targetRevisionId": "ing_fdc_171965_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171966",
+        "sourceRevisionId": "ing_fdc_171966_r1",
+        "targetRevisionId": "ing_fdc_171966_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171967",
+        "sourceRevisionId": "ing_fdc_171967_r1",
+        "targetRevisionId": "ing_fdc_171967_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171968",
+        "sourceRevisionId": "ing_fdc_171968_r1",
+        "targetRevisionId": "ing_fdc_171968_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171969",
+        "sourceRevisionId": "ing_fdc_171969_r1",
+        "targetRevisionId": "ing_fdc_171969_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171970",
+        "sourceRevisionId": "ing_fdc_171970_r1",
+        "targetRevisionId": "ing_fdc_171970_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171971",
+        "sourceRevisionId": "ing_fdc_171971_r1",
+        "targetRevisionId": "ing_fdc_171971_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171972",
+        "sourceRevisionId": "ing_fdc_171972_r1",
+        "targetRevisionId": "ing_fdc_171972_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171973",
+        "sourceRevisionId": "ing_fdc_171973_r1",
+        "targetRevisionId": "ing_fdc_171973_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171975",
+        "sourceRevisionId": "ing_fdc_171975_r1",
+        "targetRevisionId": "ing_fdc_171975_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171976",
+        "sourceRevisionId": "ing_fdc_171976_r1",
+        "targetRevisionId": "ing_fdc_171976_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171977",
+        "sourceRevisionId": "ing_fdc_171977_r1",
+        "targetRevisionId": "ing_fdc_171977_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171978",
+        "sourceRevisionId": "ing_fdc_171978_r1",
+        "targetRevisionId": "ing_fdc_171978_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171980",
+        "sourceRevisionId": "ing_fdc_171980_r1",
+        "targetRevisionId": "ing_fdc_171980_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171981",
+        "sourceRevisionId": "ing_fdc_171981_r1",
+        "targetRevisionId": "ing_fdc_171981_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171982",
+        "sourceRevisionId": "ing_fdc_171982_r1",
+        "targetRevisionId": "ing_fdc_171982_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_171985",
+        "sourceRevisionId": "ing_fdc_171985_r1",
+        "targetRevisionId": "ing_fdc_171985_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_172183",
+        "sourceRevisionId": "ing_fdc_172183_r1",
+        "targetRevisionId": "ing_fdc_172183_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_172184",
+        "sourceRevisionId": "ing_fdc_172184_r1",
+        "targetRevisionId": "ing_fdc_172184_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_172420",
+        "sourceRevisionId": "ing_fdc_172420_r1",
+        "targetRevisionId": "ing_fdc_172420_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_172421",
+        "sourceRevisionId": "ing_fdc_172421_r1",
+        "targetRevisionId": "ing_fdc_172421_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_172422",
+        "sourceRevisionId": "ing_fdc_172422_r1",
+        "targetRevisionId": "ing_fdc_172422_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_172423",
+        "sourceRevisionId": "ing_fdc_172423_r1",
+        "targetRevisionId": "ing_fdc_172423_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_172424",
+        "sourceRevisionId": "ing_fdc_172424_r1",
+        "targetRevisionId": "ing_fdc_172424_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_172427",
+        "sourceRevisionId": "ing_fdc_172427_r1",
+        "targetRevisionId": "ing_fdc_172427_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_172428",
+        "sourceRevisionId": "ing_fdc_172428_r1",
+        "targetRevisionId": "ing_fdc_172428_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_172429",
+        "sourceRevisionId": "ing_fdc_172429_r1",
+        "targetRevisionId": "ing_fdc_172429_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_172430",
+        "sourceRevisionId": "ing_fdc_172430_r1",
+        "targetRevisionId": "ing_fdc_172430_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_172431",
+        "sourceRevisionId": "ing_fdc_172431_r1",
+        "targetRevisionId": "ing_fdc_172431_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_172432",
+        "sourceRevisionId": "ing_fdc_172432_r1",
+        "targetRevisionId": "ing_fdc_172432_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_172433",
+        "sourceRevisionId": "ing_fdc_172433_r1",
+        "targetRevisionId": "ing_fdc_172433_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_172434",
+        "sourceRevisionId": "ing_fdc_172434_r1",
+        "targetRevisionId": "ing_fdc_172434_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_172435",
+        "sourceRevisionId": "ing_fdc_172435_r1",
+        "targetRevisionId": "ing_fdc_172435_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_1750339",
+        "sourceRevisionId": "ing_fdc_1750339_r1",
+        "targetRevisionId": "ing_fdc_1750339_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_1750340",
+        "sourceRevisionId": "ing_fdc_1750340_r1",
+        "targetRevisionId": "ing_fdc_1750340_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_1750341",
+        "sourceRevisionId": "ing_fdc_1750341_r1",
+        "targetRevisionId": "ing_fdc_1750341_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_1750342",
+        "sourceRevisionId": "ing_fdc_1750342_r1",
+        "targetRevisionId": "ing_fdc_1750342_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_1750343",
+        "sourceRevisionId": "ing_fdc_1750343_r1",
+        "targetRevisionId": "ing_fdc_1750343_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2003586",
+        "sourceRevisionId": "ing_fdc_2003586_r1",
+        "targetRevisionId": "ing_fdc_2003586_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2003587",
+        "sourceRevisionId": "ing_fdc_2003587_r1",
+        "targetRevisionId": "ing_fdc_2003587_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2003588",
+        "sourceRevisionId": "ing_fdc_2003588_r1",
+        "targetRevisionId": "ing_fdc_2003588_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2003589",
+        "sourceRevisionId": "ing_fdc_2003589_r1",
+        "targetRevisionId": "ing_fdc_2003589_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2003603",
+        "sourceRevisionId": "ing_fdc_2003603_r1",
+        "targetRevisionId": "ing_fdc_2003603_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2258586",
+        "sourceRevisionId": "ing_fdc_2258586_r1",
+        "targetRevisionId": "ing_fdc_2258586_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2258587",
+        "sourceRevisionId": "ing_fdc_2258587_r1",
+        "targetRevisionId": "ing_fdc_2258587_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2258588",
+        "sourceRevisionId": "ing_fdc_2258588_r1",
+        "targetRevisionId": "ing_fdc_2258588_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2258589",
+        "sourceRevisionId": "ing_fdc_2258589_r1",
+        "targetRevisionId": "ing_fdc_2258589_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2258590",
+        "sourceRevisionId": "ing_fdc_2258590_r1",
+        "targetRevisionId": "ing_fdc_2258590_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2258591",
+        "sourceRevisionId": "ing_fdc_2258591_r1",
+        "targetRevisionId": "ing_fdc_2258591_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2261420",
+        "sourceRevisionId": "ing_fdc_2261420_r1",
+        "targetRevisionId": "ing_fdc_2261420_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2261422",
+        "sourceRevisionId": "ing_fdc_2261422_r1",
+        "targetRevisionId": "ing_fdc_2261422_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2346392",
+        "sourceRevisionId": "ing_fdc_2346392_r1",
+        "targetRevisionId": "ing_fdc_2346392_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2346393",
+        "sourceRevisionId": "ing_fdc_2346393_r1",
+        "targetRevisionId": "ing_fdc_2346393_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2346394",
+        "sourceRevisionId": "ing_fdc_2346394_r1",
+        "targetRevisionId": "ing_fdc_2346394_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2346395",
+        "sourceRevisionId": "ing_fdc_2346395_r1",
+        "targetRevisionId": "ing_fdc_2346395_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2346398",
+        "sourceRevisionId": "ing_fdc_2346398_r1",
+        "targetRevisionId": "ing_fdc_2346398_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2346400",
+        "sourceRevisionId": "ing_fdc_2346400_r1",
+        "targetRevisionId": "ing_fdc_2346400_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2346404",
+        "sourceRevisionId": "ing_fdc_2346404_r1",
+        "targetRevisionId": "ing_fdc_2346404_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2512380",
+        "sourceRevisionId": "ing_fdc_2512380_r1",
+        "targetRevisionId": "ing_fdc_2512380_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2512381",
+        "sourceRevisionId": "ing_fdc_2512381_r1",
+        "targetRevisionId": "ing_fdc_2512381_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2515373",
+        "sourceRevisionId": "ing_fdc_2515373_r1",
+        "targetRevisionId": "ing_fdc_2515373_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2515374",
+        "sourceRevisionId": "ing_fdc_2515374_r1",
+        "targetRevisionId": "ing_fdc_2515374_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2515375",
+        "sourceRevisionId": "ing_fdc_2515375_r1",
+        "targetRevisionId": "ing_fdc_2515375_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2515376",
+        "sourceRevisionId": "ing_fdc_2515376_r1",
+        "targetRevisionId": "ing_fdc_2515376_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2515377",
+        "sourceRevisionId": "ing_fdc_2515377_r1",
+        "targetRevisionId": "ing_fdc_2515377_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2515378",
+        "sourceRevisionId": "ing_fdc_2515378_r1",
+        "targetRevisionId": "ing_fdc_2515378_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2515379",
+        "sourceRevisionId": "ing_fdc_2515379_r1",
+        "targetRevisionId": "ing_fdc_2515379_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2515380",
+        "sourceRevisionId": "ing_fdc_2515380_r1",
+        "targetRevisionId": "ing_fdc_2515380_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2515381",
+        "sourceRevisionId": "ing_fdc_2515381_r1",
+        "targetRevisionId": "ing_fdc_2515381_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2515382",
+        "sourceRevisionId": "ing_fdc_2515382_r1",
+        "targetRevisionId": "ing_fdc_2515382_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2644285",
+        "sourceRevisionId": "ing_fdc_2644285_r1",
+        "targetRevisionId": "ing_fdc_2644285_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2644286",
+        "sourceRevisionId": "ing_fdc_2644286_r1",
+        "targetRevisionId": "ing_fdc_2644286_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2644287",
+        "sourceRevisionId": "ing_fdc_2644287_r1",
+        "targetRevisionId": "ing_fdc_2644287_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2644288",
+        "sourceRevisionId": "ing_fdc_2644288_r1",
+        "targetRevisionId": "ing_fdc_2644288_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2644289",
+        "sourceRevisionId": "ing_fdc_2644289_r1",
+        "targetRevisionId": "ing_fdc_2644289_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2644290",
+        "sourceRevisionId": "ing_fdc_2644290_r1",
+        "targetRevisionId": "ing_fdc_2644290_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2644291",
+        "sourceRevisionId": "ing_fdc_2644291_r1",
+        "targetRevisionId": "ing_fdc_2644291_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2644292",
+        "sourceRevisionId": "ing_fdc_2644292_r1",
+        "targetRevisionId": "ing_fdc_2644292_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2644293",
+        "sourceRevisionId": "ing_fdc_2644293_r1",
+        "targetRevisionId": "ing_fdc_2644293_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2644294",
+        "sourceRevisionId": "ing_fdc_2644294_r1",
+        "targetRevisionId": "ing_fdc_2644294_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2685568",
+        "sourceRevisionId": "ing_fdc_2685568_r1",
+        "targetRevisionId": "ing_fdc_2685568_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2685569",
+        "sourceRevisionId": "ing_fdc_2685569_r1",
+        "targetRevisionId": "ing_fdc_2685569_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2685570",
+        "sourceRevisionId": "ing_fdc_2685570_r1",
+        "targetRevisionId": "ing_fdc_2685570_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2685571",
+        "sourceRevisionId": "ing_fdc_2685571_r1",
+        "targetRevisionId": "ing_fdc_2685571_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2685572",
+        "sourceRevisionId": "ing_fdc_2685572_r1",
+        "targetRevisionId": "ing_fdc_2685572_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2685573",
+        "sourceRevisionId": "ing_fdc_2685573_r1",
+        "targetRevisionId": "ing_fdc_2685573_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2685574",
+        "sourceRevisionId": "ing_fdc_2685574_r1",
+        "targetRevisionId": "ing_fdc_2685574_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2685575",
+        "sourceRevisionId": "ing_fdc_2685575_r1",
+        "targetRevisionId": "ing_fdc_2685575_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2685576",
+        "sourceRevisionId": "ing_fdc_2685576_r1",
+        "targetRevisionId": "ing_fdc_2685576_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2685577",
+        "sourceRevisionId": "ing_fdc_2685577_r1",
+        "targetRevisionId": "ing_fdc_2685577_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2685578",
+        "sourceRevisionId": "ing_fdc_2685578_r1",
+        "targetRevisionId": "ing_fdc_2685578_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2685579",
+        "sourceRevisionId": "ing_fdc_2685579_r1",
+        "targetRevisionId": "ing_fdc_2685579_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2685580",
+        "sourceRevisionId": "ing_fdc_2685580_r1",
+        "targetRevisionId": "ing_fdc_2685580_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2685581",
+        "sourceRevisionId": "ing_fdc_2685581_r1",
+        "targetRevisionId": "ing_fdc_2685581_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2685582",
+        "sourceRevisionId": "ing_fdc_2685582_r1",
+        "targetRevisionId": "ing_fdc_2685582_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710815",
+        "sourceRevisionId": "ing_fdc_2710815_r1",
+        "targetRevisionId": "ing_fdc_2710815_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710817",
+        "sourceRevisionId": "ing_fdc_2710817_r1",
+        "targetRevisionId": "ing_fdc_2710817_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710818",
+        "sourceRevisionId": "ing_fdc_2710818_r1",
+        "targetRevisionId": "ing_fdc_2710818_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710820",
+        "sourceRevisionId": "ing_fdc_2710820_r1",
+        "targetRevisionId": "ing_fdc_2710820_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710821",
+        "sourceRevisionId": "ing_fdc_2710821_r1",
+        "targetRevisionId": "ing_fdc_2710821_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710822",
+        "sourceRevisionId": "ing_fdc_2710822_r1",
+        "targetRevisionId": "ing_fdc_2710822_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710823",
+        "sourceRevisionId": "ing_fdc_2710823_r1",
+        "targetRevisionId": "ing_fdc_2710823_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710825",
+        "sourceRevisionId": "ing_fdc_2710825_r1",
+        "targetRevisionId": "ing_fdc_2710825_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710826",
+        "sourceRevisionId": "ing_fdc_2710826_r1",
+        "targetRevisionId": "ing_fdc_2710826_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710827",
+        "sourceRevisionId": "ing_fdc_2710827_r1",
+        "targetRevisionId": "ing_fdc_2710827_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710828",
+        "sourceRevisionId": "ing_fdc_2710828_r1",
+        "targetRevisionId": "ing_fdc_2710828_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710829",
+        "sourceRevisionId": "ing_fdc_2710829_r1",
+        "targetRevisionId": "ing_fdc_2710829_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710830",
+        "sourceRevisionId": "ing_fdc_2710830_r1",
+        "targetRevisionId": "ing_fdc_2710830_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710831",
+        "sourceRevisionId": "ing_fdc_2710831_r1",
+        "targetRevisionId": "ing_fdc_2710831_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710832",
+        "sourceRevisionId": "ing_fdc_2710832_r1",
+        "targetRevisionId": "ing_fdc_2710832_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710833",
+        "sourceRevisionId": "ing_fdc_2710833_r1",
+        "targetRevisionId": "ing_fdc_2710833_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710834",
+        "sourceRevisionId": "ing_fdc_2710834_r1",
+        "targetRevisionId": "ing_fdc_2710834_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710835",
+        "sourceRevisionId": "ing_fdc_2710835_r1",
+        "targetRevisionId": "ing_fdc_2710835_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710836",
+        "sourceRevisionId": "ing_fdc_2710836_r1",
+        "targetRevisionId": "ing_fdc_2710836_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710837",
+        "sourceRevisionId": "ing_fdc_2710837_r1",
+        "targetRevisionId": "ing_fdc_2710837_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710838",
+        "sourceRevisionId": "ing_fdc_2710838_r1",
+        "targetRevisionId": "ing_fdc_2710838_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710839",
+        "sourceRevisionId": "ing_fdc_2710839_r1",
+        "targetRevisionId": "ing_fdc_2710839_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710840",
+        "sourceRevisionId": "ing_fdc_2710840_r1",
+        "targetRevisionId": "ing_fdc_2710840_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710841",
+        "sourceRevisionId": "ing_fdc_2710841_r1",
+        "targetRevisionId": "ing_fdc_2710841_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710842",
+        "sourceRevisionId": "ing_fdc_2710842_r1",
+        "targetRevisionId": "ing_fdc_2710842_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2710843",
+        "sourceRevisionId": "ing_fdc_2710843_r1",
+        "targetRevisionId": "ing_fdc_2710843_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2747653",
+        "sourceRevisionId": "ing_fdc_2747653_r1",
+        "targetRevisionId": "ing_fdc_2747653_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2747655",
+        "sourceRevisionId": "ing_fdc_2747655_r1",
+        "targetRevisionId": "ing_fdc_2747655_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2747659",
+        "sourceRevisionId": "ing_fdc_2747659_r1",
+        "targetRevisionId": "ing_fdc_2747659_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2747660",
+        "sourceRevisionId": "ing_fdc_2747660_r1",
+        "targetRevisionId": "ing_fdc_2747660_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2747661",
+        "sourceRevisionId": "ing_fdc_2747661_r1",
+        "targetRevisionId": "ing_fdc_2747661_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2747662",
+        "sourceRevisionId": "ing_fdc_2747662_r1",
+        "targetRevisionId": "ing_fdc_2747662_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2747663",
+        "sourceRevisionId": "ing_fdc_2747663_r1",
+        "targetRevisionId": "ing_fdc_2747663_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2747664",
+        "sourceRevisionId": "ing_fdc_2747664_r1",
+        "targetRevisionId": "ing_fdc_2747664_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2747665",
+        "sourceRevisionId": "ing_fdc_2747665_r1",
+        "targetRevisionId": "ing_fdc_2747665_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2747674",
+        "sourceRevisionId": "ing_fdc_2747674_r1",
+        "targetRevisionId": "ing_fdc_2747674_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_2747676",
+        "sourceRevisionId": "ing_fdc_2747676_r1",
+        "targetRevisionId": "ing_fdc_2747676_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_321358",
+        "sourceRevisionId": "ing_fdc_321358_r1",
+        "targetRevisionId": "ing_fdc_321358_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_321360",
+        "sourceRevisionId": "ing_fdc_321360_r1",
+        "targetRevisionId": "ing_fdc_321360_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_323294",
+        "sourceRevisionId": "ing_fdc_323294_r1",
+        "targetRevisionId": "ing_fdc_323294_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_323505",
+        "sourceRevisionId": "ing_fdc_323505_r1",
+        "targetRevisionId": "ing_fdc_323505_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_324317",
+        "sourceRevisionId": "ing_fdc_324317_r1",
+        "targetRevisionId": "ing_fdc_324317_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_324653",
+        "sourceRevisionId": "ing_fdc_324653_r1",
+        "targetRevisionId": "ing_fdc_324653_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_325287",
+        "sourceRevisionId": "ing_fdc_325287_r1",
+        "targetRevisionId": "ing_fdc_325287_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_325430",
+        "sourceRevisionId": "ing_fdc_325430_r1",
+        "targetRevisionId": "ing_fdc_325430_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_325524",
+        "sourceRevisionId": "ing_fdc_325524_r1",
+        "targetRevisionId": "ing_fdc_325524_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_326698",
+        "sourceRevisionId": "ing_fdc_326698_r1",
+        "targetRevisionId": "ing_fdc_326698_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_327046",
+        "sourceRevisionId": "ing_fdc_327046_r1",
+        "targetRevisionId": "ing_fdc_327046_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_327357",
+        "sourceRevisionId": "ing_fdc_327357_r1",
+        "targetRevisionId": "ing_fdc_327357_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_330415",
+        "sourceRevisionId": "ing_fdc_330415_r1",
+        "targetRevisionId": "ing_fdc_330415_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_332791",
+        "sourceRevisionId": "ing_fdc_332791_r1",
+        "targetRevisionId": "ing_fdc_332791_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_746764",
+        "sourceRevisionId": "ing_fdc_746764_r1",
+        "targetRevisionId": "ing_fdc_746764_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_746768",
+        "sourceRevisionId": "ing_fdc_746768_r1",
+        "targetRevisionId": "ing_fdc_746768_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_746769",
+        "sourceRevisionId": "ing_fdc_746769_r1",
+        "targetRevisionId": "ing_fdc_746769_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_746770",
+        "sourceRevisionId": "ing_fdc_746770_r1",
+        "targetRevisionId": "ing_fdc_746770_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_746771",
+        "sourceRevisionId": "ing_fdc_746771_r1",
+        "targetRevisionId": "ing_fdc_746771_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_746773",
+        "sourceRevisionId": "ing_fdc_746773_r1",
+        "targetRevisionId": "ing_fdc_746773_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_747447",
+        "sourceRevisionId": "ing_fdc_747447_r1",
+        "targetRevisionId": "ing_fdc_747447_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_748967",
+        "sourceRevisionId": "ing_fdc_748967_r1",
+        "targetRevisionId": "ing_fdc_748967_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_790018",
+        "sourceRevisionId": "ing_fdc_790018_r1",
+        "targetRevisionId": "ing_fdc_790018_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_790085",
+        "sourceRevisionId": "ing_fdc_790085_r1",
+        "targetRevisionId": "ing_fdc_790085_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_790214",
+        "sourceRevisionId": "ing_fdc_790214_r1",
+        "targetRevisionId": "ing_fdc_790214_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_790276",
+        "sourceRevisionId": "ing_fdc_790276_r1",
+        "targetRevisionId": "ing_fdc_790276_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_790577",
+        "sourceRevisionId": "ing_fdc_790577_r1",
+        "targetRevisionId": "ing_fdc_790577_r1_v2_r1"
+      },
+      {
+        "ingredientId": "ing_fdc_790646",
+        "sourceRevisionId": "ing_fdc_790646_r1",
+        "targetRevisionId": "ing_fdc_790646_r1_v2_r1"
+      }
+    ],
+    "unresolved": [],
+    "reconciliation": [],
+    "coverageExcluded": [
+      "ing_fdc_167714",
+      "ing_fdc_167745",
+      "ing_fdc_167746",
+      "ing_fdc_167754",
+      "ing_fdc_167758",
+      "ing_fdc_167759",
+      "ing_fdc_167760",
+      "ing_fdc_167761",
+      "ing_fdc_167763",
+      "ing_fdc_167765",
+      "ing_fdc_167772",
+      "ing_fdc_167773",
+      "ing_fdc_167776",
+      "ing_fdc_167777",
+      "ing_fdc_167778",
+      "ing_fdc_167779",
+      "ing_fdc_167781",
+      "ing_fdc_167782",
+      "ing_fdc_167783",
+      "ing_fdc_167786",
+      "ing_fdc_167787",
+      "ing_fdc_167788",
+      "ing_fdc_167789",
+      "ing_fdc_167790",
+      "ing_fdc_167793",
+      "ing_fdc_167806",
+      "ing_fdc_167869",
+      "ing_fdc_168016",
+      "ing_fdc_168106",
+      "ing_fdc_168119",
+      "ing_fdc_168129",
+      "ing_fdc_168148",
+      "ing_fdc_168154",
+      "ing_fdc_168155",
+      "ing_fdc_168163",
+      "ing_fdc_168164",
+      "ing_fdc_168165",
+      "ing_fdc_168166",
+      "ing_fdc_168167",
+      "ing_fdc_168168",
+      "ing_fdc_168169",
+      "ing_fdc_168175",
+      "ing_fdc_168176",
+      "ing_fdc_168177",
+      "ing_fdc_168178",
+      "ing_fdc_168182",
+      "ing_fdc_168598",
+      "ing_fdc_168601",
+      "ing_fdc_168604",
+      "ing_fdc_168872",
+      "ing_fdc_168873",
+      "ing_fdc_168874",
+      "ing_fdc_168884",
+      "ing_fdc_168933",
+      "ing_fdc_169699",
+      "ing_fdc_169700",
+      "ing_fdc_169888",
+      "ing_fdc_170918",
+      "ing_fdc_170920",
+      "ing_fdc_170922",
+      "ing_fdc_170923",
+      "ing_fdc_170925",
+      "ing_fdc_172423",
+      "ing_fdc_172424",
+      "ing_fdc_172430",
+      "ing_fdc_172432",
+      "ing_fdc_172434",
+      "ing_fdc_1750339",
+      "ing_fdc_1750340",
+      "ing_fdc_1750341",
+      "ing_fdc_1750342",
+      "ing_fdc_1750343",
+      "ing_fdc_2258586",
+      "ing_fdc_2258587",
+      "ing_fdc_2258588",
+      "ing_fdc_2258589",
+      "ing_fdc_2258590",
+      "ing_fdc_2346392",
+      "ing_fdc_2346394",
+      "ing_fdc_2346395",
+      "ing_fdc_2515373",
+      "ing_fdc_2515375",
+      "ing_fdc_2515376",
+      "ing_fdc_2515378",
+      "ing_fdc_2515379",
+      "ing_fdc_2515380",
+      "ing_fdc_2685568",
+      "ing_fdc_2685569",
+      "ing_fdc_2685570",
+      "ing_fdc_2685571",
+      "ing_fdc_2685576",
+      "ing_fdc_2685577",
+      "ing_fdc_2685578",
+      "ing_fdc_2685581",
+      "ing_fdc_2710817",
+      "ing_fdc_2710818",
+      "ing_fdc_2710820",
+      "ing_fdc_2710822",
+      "ing_fdc_2710823",
+      "ing_fdc_2710826",
+      "ing_fdc_2710827",
+      "ing_fdc_2710828",
+      "ing_fdc_2710829",
+      "ing_fdc_2710830",
+      "ing_fdc_2710831",
+      "ing_fdc_2710839",
+      "ing_fdc_2710841",
+      "ing_fdc_2710842",
+      "ing_fdc_2710843",
+      "ing_fdc_2747653",
+      "ing_fdc_2747655",
+      "ing_fdc_2747659",
+      "ing_fdc_2747661",
+      "ing_fdc_2747662",
+      "ing_fdc_2747663",
+      "ing_fdc_2747664",
+      "ing_fdc_2747665",
+      "ing_fdc_2747674",
+      "ing_fdc_2747676",
+      "ing_fdc_321358",
+      "ing_fdc_321360",
+      "ing_fdc_326698",
+      "ing_fdc_327046",
+      "ing_fdc_332791",
+      "ing_fdc_746764",
+      "ing_fdc_746770",
+      "ing_fdc_746773"
+    ],
+    "completedAt": "2026-09-11T10:47:45.773Z",
+    "totalIdentityMappings": 600
+  },
+  "quarantine": {
+    "count": 28,
+    "recipeVersionIds": [
+      "recver_0ef01a18acc7f5f05037c200_v1",
+      "recver_284e2d58be57ce529e7aef16_v1",
+      "recver_2a65937018be84aa58f7b092_v1",
+      "recver_4173426a84cffc9ba280b8d7_v1",
+      "recver_51661d6876729fe6118521f2_v1",
+      "recver_6a28b2aa2d3064c774302bdc_v1",
+      "recver_6ad064d67b7bb65013296f1a_v1",
+      "recver_786c3abc13beeed12a7a1600_v1",
+      "recver_7d1fde8a5561ff24d01fdad1_v1",
+      "recver_7e82a845d701bfe7c655cc7a_v1",
+      "recver_85aa9e7bee6964bc32c79e13_v1",
+      "recver_9f4c7c3ba8865515c51e9f10_v1",
+      "recver_a36b25c78520f34488d0f03e_v1",
+      "recver_cbb793617efd8013de096abc_v1",
+      "recver_dd47ef5237ca6b92a720e7d2_v1",
+      "recver_e26e2b42e3efe5fbde3d8710_v1",
+      "recver_e2c64242f607cb644fc7c0d1_v1",
+      "recver_e8c048b9ad939072bd5200b3_v1",
+      "recver_e9aa1127abf29051b7c404a9_v1",
+      "recver_ebc8da97e3be543088b6a2f6_v1",
+      "recver_ebcc9056222932bbd3107ca4_v1",
+      "recver_eedd957e0495ae0f5244c6b6_v1",
+      "recver_ef5937e31a0d48f8aa8b9502_v1",
+      "recver_f194474a7959982e13cfc194_v1",
+      "recver_f3db6988d4200681b6c02db6_v1",
+      "recver_f48906be0de3d2272c4af0c6_v1",
+      "recver_f52a220a3f61258adb2a0e1c_v1",
+      "recver_fa4448133f658a99e26d6e71_v1"
+    ]
+  },
+  "glutenCompatibility": {
+    "compatible": 0,
+    "incompatible": 106,
+    "unknown": 1694
+  },
+  "repeatedMigrationAddsRecords": false,
+  "curatedSafetyReviewsInvented": 0
+}

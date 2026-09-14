@@ -1,0 +1,12 @@
+✔ Step3 A - V1 catalog backup validates and round-trips user configuration without replacing base catalog (26251.335615ms)
+✔ Step3 B - delete local data clears private state but preserves public PWA caches by default (11425.439022ms)
+✔ Step3 C - destructive delete can clear owned public caches when explicitly requested (1.616392ms)
+✔ Step3 D - stable release gate is fail-closed on the candidate and green after metadata-only promotion (958.285216ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 39339.734019

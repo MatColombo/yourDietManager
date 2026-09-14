@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/food-preferences-v2.schema.json",
+  "title": "FoodPreferences",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "id",
+    "rules"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "id": {
+      "type": "string"
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "enabled",
+          "mode",
+          "target",
+          "scope",
+          "countUnit",
+          "countBasis",
+          "window",
+          "minOccurrences",
+          "targetOccurrences",
+          "maxOccurrences",
+          "priority",
+          "effectiveFrom"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "mode": {
+            "enum": [
+              "none",
+              "frequency",
+              "never"
+            ]
+          },
+          "target": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "type",
+              "id"
+            ],
+            "properties": {
+              "type": {
+                "enum": [
+                  "productFood",
+                  "foodGroup",
+                  "ingredient",
+                  "recipeTag",
+                  "cuisine",
+                  "flavor"
+                ]
+              },
+              "id": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "scope": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "mealClassIds"
+            ],
+            "properties": {
+              "mealClassIds": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              }
+            }
+          },
+          "countUnit": {
+            "enum": [
+              "meal",
+              "day"
+            ]
+          },
+          "countBasis": {
+            "const": "planned"
+          },
+          "window": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "kind",
+              "days"
+            ],
+            "properties": {
+              "kind": {
+                "const": "rolling"
+              },
+              "days": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 90
+              }
+            }
+          },
+          "minOccurrences": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "targetOccurrences": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "maxOccurrences": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "priority": {
+            "enum": [
+              "low",
+              "normal",
+              "high"
+            ]
+          },
+          "effectiveFrom": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "uniqueItems": true
+    },
+    "legacyRules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "targetType",
+          "targetId",
+          "level",
+          "autoExclude"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "targetType": {
+            "enum": [
+              "productFood",
+              "ingredient",
+              "foodCategory",
+              "recipeTag",
+              "cuisine"
+            ]
+          },
+          "targetId": {
+            "type": "string"
+          },
+          "level": {
+            "enum": [
+              "more_often",
+              "normal",
+              "less_often",
+              "rarely"
+            ]
+          },
+          "autoExclude": {
+            "type": "boolean"
+          },
+          "frequency": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "additionalProperties": false,
+            "required": [
+              "maxOccurrences",
+              "windowDays"
+            ],
+            "properties": {
+              "maxOccurrences": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "windowDays": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 31
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

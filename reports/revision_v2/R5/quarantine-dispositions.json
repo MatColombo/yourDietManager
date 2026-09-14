@@ -1,0 +1,352 @@
+{
+  "policyVersion": "r0-quarantine-1",
+  "sourceRef": "specs/revision_v2/baseline/audit_evidence.json",
+  "recipes": [
+    {
+      "recipeVersionId": "recver_2a65937018be84aa58f7b092_v1",
+      "reason": "raw_seafood_without_cooking",
+      "status": "blocked",
+      "destination": "R5 editorial and safety review; historical record retained",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "recipeVersionId": "recver_51661d6876729fe6118521f2_v1",
+      "reason": "raw_seafood_without_cooking",
+      "status": "blocked",
+      "destination": "R5 editorial and safety review; historical record retained",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "recipeVersionId": "recver_6ad064d67b7bb65013296f1a_v1",
+      "reason": "raw_seafood_without_cooking",
+      "status": "blocked",
+      "destination": "R5 editorial and safety review; historical record retained",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "recipeVersionId": "recver_7d1fde8a5561ff24d01fdad1_v1",
+      "reason": "raw_seafood_without_cooking",
+      "status": "blocked",
+      "destination": "R5 editorial and safety review; historical record retained",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "recipeVersionId": "recver_7e82a845d701bfe7c655cc7a_v1",
+      "reason": "raw_seafood_without_cooking",
+      "status": "blocked",
+      "destination": "R5 editorial and safety review; historical record retained",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "recipeVersionId": "recver_85aa9e7bee6964bc32c79e13_v1",
+      "reason": "raw_seafood_without_cooking",
+      "status": "blocked",
+      "destination": "R5 editorial and safety review; historical record retained",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "recipeVersionId": "recver_cbb793617efd8013de096abc_v1",
+      "reason": "raw_seafood_without_cooking",
+      "status": "blocked",
+      "destination": "R5 editorial and safety review; historical record retained",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "recipeVersionId": "recver_dd47ef5237ca6b92a720e7d2_v1",
+      "reason": "raw_seafood_without_cooking",
+      "status": "blocked",
+      "destination": "R5 editorial and safety review; historical record retained",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "recipeVersionId": "recver_e26e2b42e3efe5fbde3d8710_v1",
+      "reason": "raw_seafood_without_cooking",
+      "status": "blocked",
+      "destination": "R5 editorial and safety review; historical record retained",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "recipeVersionId": "recver_e8c048b9ad939072bd5200b3_v1",
+      "reason": "raw_seafood_without_cooking",
+      "status": "blocked",
+      "destination": "R5 editorial and safety review; historical record retained",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "recipeVersionId": "recver_e9aa1127abf29051b7c404a9_v1",
+      "reason": "raw_seafood_without_cooking",
+      "status": "blocked",
+      "destination": "R5 editorial and safety review; historical record retained",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "recipeVersionId": "recver_ebc8da97e3be543088b6a2f6_v1",
+      "reason": "raw_seafood_without_cooking",
+      "status": "blocked",
+      "destination": "R5 editorial and safety review; historical record retained",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "recipeVersionId": "recver_ebcc9056222932bbd3107ca4_v1",
+      "reason": "raw_seafood_without_cooking",
+      "status": "blocked",
+      "destination": "R5 editorial and safety review; historical record retained",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "recipeVersionId": "recver_eedd957e0495ae0f5244c6b6_v1",
+      "reason": "raw_seafood_without_cooking",
+      "status": "blocked",
+      "destination": "R5 editorial and safety review; historical record retained",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "recipeVersionId": "recver_ef5937e31a0d48f8aa8b9502_v1",
+      "reason": "raw_seafood_without_cooking",
+      "status": "blocked",
+      "destination": "R5 editorial and safety review; historical record retained",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "recipeVersionId": "recver_f194474a7959982e13cfc194_v1",
+      "reason": "raw_seafood_without_cooking",
+      "status": "blocked",
+      "destination": "R5 editorial and safety review; historical record retained",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "recipeVersionId": "recver_f3db6988d4200681b6c02db6_v1",
+      "reason": "raw_seafood_without_cooking",
+      "status": "blocked",
+      "destination": "R5 editorial and safety review; historical record retained",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "recipeVersionId": "recver_f48906be0de3d2272c4af0c6_v1",
+      "reason": "raw_seafood_without_cooking",
+      "status": "blocked",
+      "destination": "R5 editorial and safety review; historical record retained",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "recipeVersionId": "recver_f52a220a3f61258adb2a0e1c_v1",
+      "reason": "raw_seafood_without_cooking",
+      "status": "blocked",
+      "destination": "R5 editorial and safety review; historical record retained",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "recipeVersionId": "recver_fa4448133f658a99e26d6e71_v1",
+      "reason": "raw_seafood_without_cooking",
+      "status": "blocked",
+      "destination": "R5 editorial and safety review; historical record retained",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    }
+  ],
+  "ingredients": [
+    {
+      "ingredientId": "ing_fdc_168927",
+      "reason": "allergen_metadata_requires_review",
+      "status": "unreviewed",
+      "sourceRef": "specs/revision_v2/baseline/audit_evidence.json:R01/R03; source description at pinned ingredient revision",
+      "destination": "R1 safetyEvidence unreviewed; R3/R5 review required",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "ingredientId": "ing_fdc_168928",
+      "reason": "allergen_metadata_requires_review",
+      "status": "unreviewed",
+      "sourceRef": "specs/revision_v2/baseline/audit_evidence.json:R01/R03; source description at pinned ingredient revision",
+      "destination": "R1 safetyEvidence unreviewed; R3/R5 review required",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "ingredientId": "ing_fdc_169699",
+      "reason": "allergen_metadata_requires_review",
+      "status": "unreviewed",
+      "sourceRef": "specs/revision_v2/baseline/audit_evidence.json:R01/R03; source description at pinned ingredient revision",
+      "destination": "R1 safetyEvidence unreviewed; R3/R5 review required",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "ingredientId": "ing_fdc_169700",
+      "reason": "allergen_metadata_requires_review",
+      "status": "unreviewed",
+      "sourceRef": "specs/revision_v2/baseline/audit_evidence.json:R01/R03; source description at pinned ingredient revision",
+      "destination": "R1 safetyEvidence unreviewed; R3/R5 review required",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "ingredientId": "ing_fdc_2710820",
+      "reason": "allergen_metadata_requires_review",
+      "status": "unreviewed",
+      "sourceRef": "specs/revision_v2/baseline/audit_evidence.json:R01/R03; source description at pinned ingredient revision",
+      "destination": "R1 safetyEvidence unreviewed; R3/R5 review required",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "ingredientId": "ing_fdc_2710828",
+      "reason": "allergen_metadata_requires_review",
+      "status": "unreviewed",
+      "sourceRef": "specs/revision_v2/baseline/audit_evidence.json:R01/R03; source description at pinned ingredient revision",
+      "destination": "R1 safetyEvidence unreviewed; R3/R5 review required",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "ingredientId": "ing_fdc_2515373",
+      "reason": "allergen_metadata_requires_review",
+      "status": "unreviewed",
+      "sourceRef": "specs/revision_v2/baseline/audit_evidence.json:R01/R03; source description at pinned ingredient revision",
+      "destination": "R1 safetyEvidence unreviewed; R3/R5 review required",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "ingredientId": "ing_fdc_169869",
+      "reason": "allergen_metadata_requires_review",
+      "status": "unreviewed",
+      "sourceRef": "specs/revision_v2/baseline/audit_evidence.json:R01/R03; source description at pinned ingredient revision",
+      "destination": "R1 safetyEvidence unreviewed; R3/R5 review required",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "ingredientId": "ing_fdc_168919",
+      "reason": "allergen_metadata_requires_review",
+      "status": "unreviewed",
+      "sourceRef": "specs/revision_v2/baseline/audit_evidence.json:R01/R03; source description at pinned ingredient revision",
+      "destination": "R1 safetyEvidence unreviewed; R3/R5 review required",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "ingredientId": "ing_fdc_168926",
+      "reason": "allergen_metadata_requires_review",
+      "status": "unreviewed",
+      "sourceRef": "specs/revision_v2/baseline/audit_evidence.json:R01/R03; source description at pinned ingredient revision",
+      "destination": "R1 safetyEvidence unreviewed; R3/R5 review required",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "ingredientId": "ing_fdc_169731",
+      "reason": "allergen_metadata_requires_review",
+      "status": "unreviewed",
+      "sourceRef": "specs/revision_v2/baseline/audit_evidence.json:R01/R03; source description at pinned ingredient revision",
+      "destination": "R1 safetyEvidence unreviewed; R3/R5 review required",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "ingredientId": "ing_fdc_169732",
+      "reason": "allergen_metadata_requires_review",
+      "status": "unreviewed",
+      "sourceRef": "specs/revision_v2/baseline/audit_evidence.json:R01/R03; source description at pinned ingredient revision",
+      "destination": "R1 safetyEvidence unreviewed; R3/R5 review required",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "ingredientId": "ing_fdc_169733",
+      "reason": "allergen_metadata_requires_review",
+      "status": "unreviewed",
+      "sourceRef": "specs/revision_v2/baseline/audit_evidence.json:R01/R03; source description at pinned ingredient revision",
+      "destination": "R1 safetyEvidence unreviewed; R3/R5 review required",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "ingredientId": "ing_fdc_169734",
+      "reason": "allergen_metadata_requires_review",
+      "status": "unreviewed",
+      "sourceRef": "specs/revision_v2/baseline/audit_evidence.json:R01/R03; source description at pinned ingredient revision",
+      "destination": "R1 safetyEvidence unreviewed; R3/R5 review required",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "ingredientId": "ing_fdc_169755",
+      "reason": "allergen_metadata_requires_review",
+      "status": "unreviewed",
+      "sourceRef": "specs/revision_v2/baseline/audit_evidence.json:R01/R03; source description at pinned ingredient revision",
+      "destination": "R1 safetyEvidence unreviewed; R3/R5 review required",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    },
+    {
+      "ingredientId": "ing_fdc_169762",
+      "reason": "allergen_metadata_requires_review",
+      "status": "unreviewed",
+      "sourceRef": "specs/revision_v2/baseline/audit_evidence.json:R01/R03; source description at pinned ingredient revision",
+      "destination": "R1 safetyEvidence unreviewed; R3/R5 review required",
+      "r5Disposition": "still_excluded",
+      "replacementRevisionId": null,
+      "reviewEvidence": null
+    }
+  ],
+  "sourceManifestSha256": "ea9cf02b34a3a6c18b72d4b67bea2170054ab209fcfc24fb48397a517ebf5e10",
+  "reviewPhase": "R5",
+  "checkedAt": "2026-09-11",
+  "activeCatalogChanged": false
+}

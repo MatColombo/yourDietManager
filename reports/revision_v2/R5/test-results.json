@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "phase": "R5",
+  "buildSha256": "157fa90504477a7b8de42c886d190d897df3087a6df40f38c8b98855e523735b",
+  "overallFunctionalStatus": "STAGING_ONLY",
+  "phaseGate": "BLOCKED",
+  "actual": "200 concepts/307 forms/120 dish proposals planned; 3 extracts; 0 reviewed forms. Pilot and scale not accepted.",
+  "evidence": [
+    {
+      "id": "EV-R5-STAGING",
+      "path": "reports/revision_v2/R5/coverage.json",
+      "sha256": "b58abebf1333bea63b8ab6f4117502d4ccefe85c57faac46dcdaab96043365ec",
+      "result": "PASS",
+      "buildSha256": "157fa90504477a7b8de42c886d190d897df3087a6df40f38c8b98855e523735b",
+      "scope": "Nominal manifest, three CREA extracts and blocked coverage gate; not published catalog",
+      "environment": "Node/Linux; no real browser execution",
+      "historical": true
+    },
+    {
+      "id": "EV-R5-QUARANTINE",
+      "path": "reports/revision_v2/R5/quarantine-dispositions.json",
+      "sha256": "9713189a413eb1f1c2b599b7def8053d3aef70b9ffb573fc720a13caba268598",
+      "result": "PASS",
+      "buildSha256": "157fa90504477a7b8de42c886d190d897df3087a6df40f38c8b98855e523735b",
+      "scope": "All R0 IDs/reasons retained, still excluded",
+      "environment": "Node/Linux; no real browser execution",
+      "historical": true
+    }
+  ],
+  "historical": true
+}

@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "phase": "R4",
+  "buildSha256": "157fa90504477a7b8de42c886d190d897df3087a6df40f38c8b98855e523735b",
+  "overallFunctionalStatus": "PASS",
+  "phaseGate": "BLOCKED",
+  "actual": "302 automated tests pass. Real browser acceptance remains blocked. Shopping material digest remains R6.",
+  "evidence": [
+    {
+      "id": "EV-R4-REGRESSION",
+      "path": "reports/revision_v2/R4/evidence/suite/summary.json",
+      "sha256": "484e69682acbc4ad7cf378122521f32a17891e6a1a80b776f1b8cee7df13c068",
+      "result": "PASS",
+      "buildSha256": "157fa90504477a7b8de42c886d190d897df3087a6df40f38c8b98855e523735b",
+      "scope": "302 tests; unit and service scopes including synthetic concurrency/abort and composition fixtures",
+      "environment": "Node/Linux; no real browser execution",
+      "historical": true
+    },
+    {
+      "id": "EV-R4-BUILD",
+      "path": "reports/revision_v2/R4/evidence/build.log",
+      "sha256": "19985e242ad6032e1f89cbd2fefac84ecb9698f4a8ed026250404b0d087b7734",
+      "result": "PASS",
+      "buildSha256": "157fa90504477a7b8de42c886d190d897df3087a6df40f38c8b98855e523735b",
+      "scope": "Static build; no runtime/offline certification",
+      "environment": "Node/Linux; no real browser execution",
+      "historical": true
+    },
+    {
+      "id": "EV-R4-FORMS",
+      "path": "reports/revision_v2/R4/evidence/forms.log",
+      "sha256": "c5cd5d21e6cb1c09f80af1665478e15e157783074749860073139572086a3f06",
+      "result": "PASS",
+      "buildSha256": "157fa90504477a7b8de42c886d190d897df3087a6df40f38c8b98855e523735b",
+      "scope": "Source contract checks only",
+      "environment": "Node/Linux; no real browser execution",
+      "historical": true
+    },
+    {
+      "id": "EV-R4-A11Y",
+      "path": "reports/revision_v2/R4/evidence/a11y.log",
+      "sha256": "b762e94665bdd38443948e1787d794cbe5c772250bfab8411e21b71366f66ff7",
+      "result": "PASS",
+      "buildSha256": "157fa90504477a7b8de42c886d190d897df3087a6df40f38c8b98855e523735b",
+      "scope": "Source checks only; no visual accessibility certification",
+      "environment": "Node/Linux; no real browser execution",
+      "historical": true
+    },
+    {
+      "id": "EV-R4-BROWSER",
+      "path": "reports/revision_v2/R4/browser-matrix.json",
+      "sha256": "0523936e3000e96f2d21cc7bf15fc90974e74d60d4082fe82c4cd1250a10fa4a",
+      "result": "BLOCKED",
+      "buildSha256": "157fa90504477a7b8de42c886d190d897df3087a6df40f38c8b98855e523735b",
+      "scope": "Browser/IndexedDB/multi-tab/offline acceptance unavailable",
+      "environment": "Node/Linux; no real browser execution",
+      "historical": true
+    }
+  ],
+  "historical": true
+}

@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "phase": "R3",
+  "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+  "overallFunctionalStatus": "PASS",
+  "phaseGate": "BLOCKED",
+  "gateReason": "Browser/IndexedDB/offline reali e scenari end-to-end completi non verificati",
+  "expected": "Implementation scope passes without relabeling partial acceptance tests as complete",
+  "actual": "288 automated tests pass; source audits/build pass; browser acceptance blocked",
+  "evidence": [
+    {
+      "id": "EV-R3-REGRESSION",
+      "path": "reports/revision_v2/R3/evidence/suite/summary.json",
+      "sha256": "a1ef4c50662b86d477af49ab9354441be78280b6eab3876d0b87d0f292fd93df",
+      "command": "node --test <each tests/*.test.mjs>; corrected groups rerun",
+      "exitCode": 0,
+      "result": "PASS",
+      "scope": "288 automated tests; scopes identified in the individual logs",
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": "1.2.0-planner-phase-d",
+      "environment": "Node 24.19.0 / Linux x64; in-memory repositories; no browser execution",
+      "historical": true
+    },
+    {
+      "id": "EV-R3-FORMS",
+      "path": "reports/revision_v2/R3/evidence/forms.log",
+      "sha256": "c5cd5d21e6cb1c09f80af1665478e15e157783074749860073139572086a3f06",
+      "command": "node scripts/hardening/form-contract-audit.mjs",
+      "exitCode": 0,
+      "result": "PASS",
+      "scope": "Source contract audit only",
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": "1.2.0-planner-phase-d",
+      "environment": "Node 24.19.0 / Linux x64; in-memory repositories; no browser execution",
+      "historical": true
+    },
+    {
+      "id": "EV-R3-BUILD",
+      "path": "reports/revision_v2/R3/evidence/build.log",
+      "sha256": "19985e242ad6032e1f89cbd2fefac84ecb9698f4a8ed026250404b0d087b7734",
+      "command": "node scripts/build.mjs",
+      "exitCode": 0,
+      "result": "PASS",
+      "scope": "Static build and schema mirrors",
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": "1.2.0-planner-phase-d",
+      "environment": "Node 24.19.0 / Linux x64; in-memory repositories; no browser execution",
+      "historical": true
+    },
+    {
+      "id": "EV-R3-A11Y",
+      "path": "reports/revision_v2/R3/evidence/a11y.log",
+      "sha256": "b762e94665bdd38443948e1787d794cbe5c772250bfab8411e21b71366f66ff7",
+      "command": "node scripts/hardening/a11y-audit.mjs",
+      "exitCode": 0,
+      "result": "PASS",
+      "scope": "16 source checks, not runtime accessibility",
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": "1.2.0-planner-phase-d",
+      "environment": "Node 24.19.0 / Linux x64; in-memory repositories; no browser execution",
+      "historical": true
+    },
+    {
+      "id": "EV-R3-PAGES",
+      "path": "reports/revision_v2/R3/evidence/pages.log",
+      "sha256": "8562e355bb545c33d2d33a98fdca476dc362077761c23175973dbae22e96ac9d",
+      "command": "node scripts/hardening/pages-audit.mjs dist",
+      "exitCode": 0,
+      "result": "PASS",
+      "scope": "Static artifact paths",
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": "1.2.0-planner-phase-d",
+      "environment": "Node 24.19.0 / Linux x64; in-memory repositories; no browser execution",
+      "historical": true
+    },
+    {
+      "id": "EV-R3-LINT",
+      "path": "reports/revision_v2/R3/evidence/lint.log",
+      "sha256": "13149ef497da851f6e03ba243419165d9ddbf96a7b63ff17b4bca1087efd675d",
+      "command": "node scripts/lint.mjs",
+      "exitCode": 0,
+      "result": "PASS",
+      "scope": "229 JavaScript syntax checks",
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": "1.2.0-planner-phase-d",
+      "environment": "Node 24.19.0 / Linux x64; in-memory repositories; no browser execution",
+      "historical": true
+    }
+  ],
+  "historical": true
+}

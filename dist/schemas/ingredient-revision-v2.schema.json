@@ -1,0 +1,442 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/ingredient-revision-v2.schema.json",
+  "title": "IngredientRevision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "ingredientRevisionId",
+    "ingredientId",
+    "revisionNumber",
+    "origin",
+    "catalogVersion",
+    "i18n",
+    "basis",
+    "nutrition",
+    "taxonomy",
+    "allergenIds",
+    "conversions",
+    "source",
+    "quality",
+    "contentHash",
+    "createdAt",
+    "productTaxonomy",
+    "display",
+    "safetyEvidence"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "ingredientRevisionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ingredientId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "revisionNumber": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "origin": {
+      "enum": [
+        "base",
+        "user"
+      ]
+    },
+    "catalogVersion": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "i18n": {
+      "type": "object",
+      "required": [
+        "it",
+        "en"
+      ],
+      "additionalProperties": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "aliases": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "basis": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "amount",
+        "unit",
+        "state"
+      ],
+      "properties": {
+        "amount": {
+          "const": 100
+        },
+        "unit": {
+          "enum": [
+            "g",
+            "ml"
+          ]
+        },
+        "state": {
+          "enum": [
+            "raw",
+            "cooked",
+            "dry",
+            "drained",
+            "prepared",
+            "ready_to_eat",
+            "as_sold",
+            "unknown"
+          ]
+        }
+      }
+    },
+    "nutrition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "energyKcal",
+        "proteinG",
+        "carbsG",
+        "fatG",
+        "fiberG"
+      ],
+      "properties": {
+        "energyKcal": {
+          "type": "number",
+          "minimum": 0
+        },
+        "proteinG": {
+          "type": "number",
+          "minimum": 0
+        },
+        "carbsG": {
+          "type": "number",
+          "minimum": 0
+        },
+        "fatG": {
+          "type": "number",
+          "minimum": 0
+        },
+        "fiberG": {
+          "type": "number",
+          "minimum": 0
+        },
+        "sugarsG": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "saturatedFatG": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "saltG": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "sodiumMg": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        }
+      }
+    },
+    "taxonomy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "foodGroup",
+        "foodSubgroup",
+        "flavorProfile",
+        "mealArchetypes"
+      ],
+      "properties": {
+        "foodGroup": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "foodSubgroup": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "flavorProfile": {
+          "type": "string",
+          "pattern": "^[a-z][a-z0-9_]*$"
+        },
+        "mealArchetypes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "domain-enums.schema.json#/$defs/mealArchetype"
+          },
+          "uniqueItems": true
+        },
+        "proteinRole": {
+          "$ref": "domain-enums.schema.json#/$defs/nutrientRole"
+        },
+        "carbRole": {
+          "$ref": "domain-enums.schema.json#/$defs/nutrientRole"
+        },
+        "fatRole": {
+          "$ref": "domain-enums.schema.json#/$defs/nutrientRole"
+        },
+        "fiberRole": {
+          "$ref": "domain-enums.schema.json#/$defs/nutrientRole"
+        }
+      }
+    },
+    "allergenIds": {
+      "type": "array",
+      "items": {
+        "$ref": "domain-enums.schema.json#/$defs/allergenId"
+      },
+      "uniqueItems": true
+    },
+    "conversions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "unit",
+          "canonicalAmount",
+          "canonicalUnit"
+        ],
+        "properties": {
+          "unit": {
+            "type": "string",
+            "minLength": 1
+          },
+          "canonicalAmount": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "canonicalUnit": {
+            "enum": [
+              "g",
+              "ml"
+            ]
+          }
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "label"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "manual",
+            "curated",
+            "imported",
+            "generated_mapping"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reference": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sourceRecordId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "checkedAt": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "licenseNote": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "energyBasis": {
+          "enum": [
+            "atwater_general",
+            "atwater_specific",
+            "legacy_energy",
+            "unknown"
+          ]
+        },
+        "energyNutrientId": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "energySourceUnit": {
+          "enum": [
+            "kcal",
+            "kJ",
+            "unknown"
+          ]
+        },
+        "energyOriginalValue": {
+          "type": [
+            "number",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "energyConversion": {
+          "enum": [
+            "none",
+            "kj_to_kcal",
+            "assumed_kcal_by_nutrient_id"
+          ]
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "confidence"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "draft",
+            "validated",
+            "curated"
+          ]
+        },
+        "confidence": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "notes": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "contentHash": {
+      "type": "string",
+      "minLength": 16
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "productTaxonomy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "categoryId",
+        "subcategoryId",
+        "conceptId"
+      ],
+      "properties": {
+        "categoryId": {
+          "type": "string",
+          "pattern": "^product_category_[a-z0-9_]+$"
+        },
+        "subcategoryId": {
+          "type": "string",
+          "pattern": "^product_subcategory_[a-z0-9_]+$"
+        },
+        "conceptId": {
+          "type": "string",
+          "pattern": "^product_concept_[a-z0-9_]+$"
+        }
+      }
+    },
+    "display": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "it",
+        "en"
+      ],
+      "properties": {
+        "it": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "variantLabel"
+          ],
+          "properties": {
+            "variantLabel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 60
+            }
+          }
+        },
+        "en": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "variantLabel"
+          ],
+          "properties": {
+            "variantLabel": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 60
+            }
+          }
+        }
+      }
+    },
+    "safetyEvidence": {
+      "$ref": "safety-evidence.schema.json"
+    }
+  }
+}

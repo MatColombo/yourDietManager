@@ -1,0 +1,23 @@
+✔ Phase 4 orchestrator schemas are addressable by runtime aliases and canonical artifacts validate (138.368361ms)
+✔ corpus scanner reproduces the smoke release snapshot quality and release gates (179.687947ms)
+✔ corpus scanner treats inputDigest drift as a nutrition/provenance quality error (49.675847ms)
+✔ orchestrator produces deterministic jobs for the same policy, snapshot, seed and goal (54.481356ms)
+✔ focused expansion turns user focus into a constraint while retaining automatic batch planning (34.267308ms)
+✔ focus_only planning freezes the first portable scale batch to generator-supported dimensions (35.034991ms)
+✔ smoke pipeline rejects an exact duplicate and a candidate outside the planned nutrition range before reaching target (31.10435ms)
+✔ published Phase 4 smoke release can be imported by the Phase 3 runtime catalog engine (104.238769ms)
+✔ catalog loader accepts immutable records introduced by an older catalog but rejects records from a future catalog (45.339308ms)
+✔ production release gate refuses development ingredient fixtures when curated high-confidence provenance is required (63.28263ms)
+✔ default V1 corpus policy remains a 3,000–5,000 production target and validates (19.440135ms)
+✔ compound coverage criteria count intersections rather than independent marginal distributions (36.395492ms)
+✔ production planner keeps compound target criteria mutually compatible and caps simultaneous targets (81.937509ms)
+✔ recipe pipeline enforces ingredient-category coverage criteria carried by the job (46.986274ms)
+✔ USDA Foundation intake stays review-only until explicit approval, then materializes schema-valid curated ingredients (529.284929ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1668.398587

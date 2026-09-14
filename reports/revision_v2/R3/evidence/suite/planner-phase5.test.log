@@ -1,0 +1,19 @@
+✔ same seed and frozen inputs produce identical plan assignments (26.498809ms)
+✔ allergy is a hard filter and never reaches scoring/selection (1.241792ms)
+✔ external slots have no recipes, servings stay at 1, and carry-over civil date is preserved (0.94805ms)
+✔ soft MealClass avoid rule penalizes but does not hard-exclude a matching recipe (0.643322ms)
+✔ planner returns classified failure instead of violating hard constraints (0.495141ms)
+✔ startCycleDay supports rolling-horizon continuation without reset (0.652379ms)
+✔ candidate retrieval remains bounded with a 10k-recipe archetype (432.913158ms)
+✔ preview validates schemas, commit is atomic, and extension continues the cycle (122.910835ms)
+✔ continuation state exposes prompt/auto/fixed temporal guardrails (0.456133ms)
+✔ R3 rejects a 365-day request outside the explicit 1–90 day horizon (0.667968ms)
+✔ horizon extension resolves historical RecipeVersion after family currentVersion changes (58.348686ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 826.221818

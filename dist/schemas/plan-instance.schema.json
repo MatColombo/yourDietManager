@@ -72,7 +72,7 @@
         "extensionDays": {
           "type": "integer",
           "minimum": 1,
-          "maximum": 31
+          "maximum": 90
         }
       }
     },

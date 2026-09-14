@@ -1,3 +1,4 @@
+import { recipeTextV2, recipeTitleFromIngredients } from '../domain/recipePresentation.js';
 import { CALCULATION_ALGORITHM_VERSION, calculateRecipeNutrition, deriveAllergens, normalizeIngredientAmount } from '../domain/nutritionCore.js';
 import { sha256Json, sha256Text } from '../lib/crypto.js';
 import { bandIdFor, exactRecipeSignature, jaccard, primaryIngredientId, recipeIngredientSet, textTokens, tokenSimilarity, unique } from './corpusMath.js';
@@ -18,7 +19,7 @@ function normalizePractical(value = {}) {
     freezerSuitable: boolean(value.freezerSuitable), mealPrepSuitable: boolean(value.mealPrepSuitable), finalWeightG: value.finalWeightG == null ? null : Number(value.finalWeightG), finalVolumeMl: value.finalVolumeMl == null ? null : Number(value.finalVolumeMl), yieldNotes: value.yieldNotes == null || value.yieldNotes === '' ? null : String(value.yieldNotes)
   };
 }
-function requiredLocalesPresent(candidate, locales) { return locales.every(locale => candidate.i18n?.[locale]?.title?.trim() && Array.isArray(candidate.i18n?.[locale]?.instructions) && candidate.i18n[locale].instructions.length && candidate.i18n[locale].instructions.every(item => String(item).trim())); }
+function requiredLocalesPresent(candidate, locales) { return Boolean(candidate.i18n?.it?.title?.trim() || candidate.i18n?.en?.title?.trim()); }
 function practicalMatches(target, practical, tags) {
   if (target === 'practical_quick') return totalMinutes(practical) <= 20;
   if (target === 'practical_portable') return practical.portable;
@@ -35,11 +36,7 @@ function nearDuplicate(a, b, policy, locales) {
   return ingredient >= policy.similarity.highJaccardThreshold || title >= policy.similarity.titleSimilarityThreshold;
 }
 function pairKeys(ids) { const sorted = [...new Set(ids)].sort(); const keys=[]; for(let i=0;i<sorted.length;i+=1) for(let j=i+1;j<sorted.length;j+=1) keys.push(`${sorted[i]}\u0000${sorted[j]}`); return keys; }
-function cleanI18n(i18n, locales) {
-  const out = {};
-  for (const locale of locales) { const value = i18n[locale]; out[locale] = { title: String(value.title).trim(), description: String(value.description || '').trim(), instructions: value.instructions.map(item => String(item).trim()).filter(Boolean) }; }
-  return out;
-}
+function cleanI18n(i18n) { return recipeTextV2(i18n); }
 function deriveDietTags(revisions, explicit = []) {
   const tags = new Set(explicit); const groups = new Set(revisions.map(revision => revision.taxonomy?.foodGroup));
   const hasAnimal = [...groups].some(group => ['food_group_meat','food_group_poultry','food_group_fish_seafood'].includes(group));
@@ -48,7 +45,7 @@ function deriveDietTags(revisions, explicit = []) {
 }
 function searchTokensFor(recipe, revisions) {
   const values = [
-    ...Object.values(recipe.i18n).flatMap(text => [text.title, text.description, ...(text.instructions || [])]),
+    ...Object.values(recipe.i18n).flatMap(text => [text.title, text.description]),
     ...revisions.flatMap(revision => Object.values(revision.i18n || {}).flatMap(text => [text.name, ...(text.aliases || [])])),
     ...Object.values(recipe.tags || {}).flat()
   ];
@@ -114,7 +111,7 @@ export async function processCandidateBatch({ job, candidates, policy, ingredien
       const normalizedTotal = lines.reduce((sum,line) => sum + Number(line.normalizedAmount || 0), 0); if (normalizedTotal < 40 || normalizedTotal > 2500) { rejected.push(reject(candidate, 'portion_size_implausible', normalizedTotal)); continue; }
       const nutrition = calculateRecipeNutrition(lines, new Map(usedRevisions.map(record => [record.ingredientRevisionId, record])));
       if (!rangeIncludes(nutrition.energyKcal, job.energyKcal) || !rangeIncludes(nutrition.proteinG, job.proteinG) || !rangeIncludes(nutrition.fiberG, job.fiberG)) { rejected.push(reject(candidate, 'nutrition_outside_job', nutrition)); continue; }
-      const practical = normalizePractical(candidate.practical); if (job.maxTotalMinutes != null && totalMinutes(practical) > job.maxTotalMinutes) { rejected.push(reject(candidate, 'prep_time_outside_job')); continue; }
+      const practical = normalizePractical(candidate.practical); practical.finalWeightG = null; practical.finalVolumeMl = null; practical.yieldNotes = null; if (job.maxTotalMinutes != null && totalMinutes(practical) > job.maxTotalMinutes) { rejected.push(reject(candidate, 'prep_time_outside_job')); continue; }
       let tags = normalizeTags(candidate.tags); tags.diet = deriveDietTags(usedRevisions, tags.diet || []);
       const flatTags = flattenTags(tags); if ((job.requiredTags || []).some(tag => !flatTags.has(tag))) { rejected.push(reject(candidate, 'missing_required_tag')); continue; }
       if ((job.forbiddenTags || []).some(tag => flatTags.has(tag))) { rejected.push(reject(candidate, 'forbidden_tag')); continue; }
@@ -130,10 +127,10 @@ export async function processCandidateBatch({ job, candidates, policy, ingredien
       if (primary && (primaryCounts.get(primary) || 0) + 1 > job.diversityTargets.maxPrimaryIngredientFrequency) { rejected.push(reject(candidate, 'diversity_primary_frequency', primary)); continue; }
       const pairs = pairKeys(lines.map(line => line.ingredientId)); const repeatedPair = pairs.find(key => (pairCounts.get(key) || 0) + 1 > job.diversityTargets.maxIngredientPairFrequency); if (repeatedPair) { rejected.push(reject(candidate, 'diversity_pair_frequency', repeatedPair.replace('\u0000','+'))); continue; }
       const identityDigest = await sha256Text(`${job.seed}\n${candidate.candidateId}\n${signature}`); const recipeId = `rec_${identityDigest.slice(0,20)}`; const recipeVersionId = `recver_${identityDigest.slice(0,24)}_v1`;
-      const i18n = cleanI18n(candidate.i18n, job.requiredLocales);
+      const i18n = cleanI18n(Object.fromEntries(['it', 'en'].map(locale => { const text = candidate.i18n[locale] || candidate.i18n.it || candidate.i18n.en; return [locale, { title: text.title?.length > 70 || /[()]/.test(text.title) ? recipeTitleFromIngredients(usedRevisions, referenceIndex, locale) : text.title, description: text.description || '' }]; })));
       const inputDigest = await sha256Json({ calculationAlgorithmVersion: CALCULATION_ALGORITHM_VERSION, ingredientLines: lines.map(line => ({ ingredientRevisionId: line.ingredientRevisionId, normalizedAmount: line.normalizedAmount, normalizedUnit: line.normalizedUnit })) });
       const version = {
-        schemaVersion: 1, recipeVersionId, recipeId, versionNumber: 1, supersedesVersionId: null, origin: 'base', catalogVersion: job.targetCatalogVersion, i18n, servingCount: 1, mealArchetypes: candidateMeals, ingredientLines: lines, calculatedNutrition: nutrition, practical, tags, allergenIds,
+        schemaVersion: 2, recipeVersionId, recipeId, versionNumber: 1, supersedesVersionId: null, origin: 'base', catalogVersion: job.targetCatalogVersion, i18n, servingCount: 1, mealArchetypes: candidateMeals, ingredientLines: lines, calculatedNutrition: nutrition, practical, practicalEvidence: { status: 'unverified', sourceRef: null }, tags, allergenIds,
         searchTokens: [], calculationAlgorithmVersion: CALCULATION_ALGORITHM_VERSION, inputDigest, contentHash: '', generation: { jobId: job.jobId, candidateId: candidate.candidateId, pipelineVersion: job.pipelineVersion, sourceLocale: job.sourceLocale, generatedAt: timestamp, ...(productionContext ? { intakeId: productionContext.intakeId, productionContractId: productionContext.contractId, productionContractVersion: productionContext.contractVersion } : {}) }, quality: { status: 'validated', reviewNotes: candidate.culinaryReview?.notes || null }, createdAt: timestamp
       };
       if (referenceIndex) assertSemanticReferences({ index: referenceIndex, ingredientRevisions: usedRevisions, recipeVersions: [version], ingredientIds: ingredientFamilies.map(item => item.ingredientId) });

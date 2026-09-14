@@ -1,0 +1,386 @@
+{
+  "schemaVersion": 1,
+  "records": [
+    {
+      "schemaVersion": 1,
+      "source": "CREA",
+      "sourceRecordId": "004000",
+      "sourceLabel": "Ceci, secchi",
+      "original": {
+        "id": "004000",
+        "label": "Ceci, secchi",
+        "basisAmount": 100,
+        "basisUnit": "g",
+        "edibleBasis": true,
+        "nutrients": {
+          "energyKcal": {
+            "value": 343,
+            "unit": "kcal",
+            "definition": "CREA Southgate energy"
+          },
+          "proteinG": {
+            "value": 20.9,
+            "unit": "g",
+            "definition": "Protein N x 6.25"
+          },
+          "carbsG": {
+            "value": 46.9,
+            "unit": "g",
+            "definition": "Available carbohydrate calculated from sugar and starch"
+          },
+          "fatG": {
+            "value": 6.3,
+            "unit": "g",
+            "definition": "Total lipid"
+          },
+          "fiberG": {
+            "value": 13.6,
+            "unit": "g",
+            "definition": "Total dietary fibre enzymatic-gravimetric"
+          },
+          "sodiumMg": {
+            "value": 6,
+            "unit": "mg",
+            "definition": "Sodium"
+          }
+        }
+      },
+      "sourceContext": {
+        "version": "December 2019 (displayed on source website)",
+        "url": "https://www.alimentinutrizione.it/tabelle-nutrizionali/004000",
+        "acquiredAt": "2026-09-11",
+        "acquisitionMode": "manual_extract_from_official_web_table",
+        "originalPageArchiveAvailable": false,
+        "licenseEvidence": {
+          "url": "https://www.alimentinutrizione.it/tabelle-nutrizionali",
+          "checkedAt": "2026-09-11",
+          "reuseAllowed": true,
+          "condition": "Attribute CREA Centro di ricerca Alimenti e Nutrizione and source page; attribution preserved in this extract."
+        },
+        "attribution": "CREA Centro di ricerca Alimenti e Nutrizione; https://www.crea.gov.it/alimenti-e-nutrizione; https://www.alimentinutrizione.it",
+        "limitations": [
+          "Faithful six-nutrient manual extract, not a complete original-page archive",
+          "Source describes canned chickpeas as raw in English: state review remains mandatory",
+          "Source nutrients do not establish allergy or trace absence"
+        ]
+      },
+      "inputDigest": "9c6387b0c1634cb4fcca49b7b68dd12a9be7d8b776eb019c141df2244cfeb57f",
+      "nutrients": {
+        "energyKcal": {
+          "value": 343,
+          "status": "measured",
+          "unit": "kcal",
+          "definition": "CREA Southgate energy",
+          "raw": 343
+        },
+        "proteinG": {
+          "value": 20.9,
+          "status": "measured",
+          "unit": "g",
+          "definition": "Protein N x 6.25",
+          "raw": 20.9
+        },
+        "carbsG": {
+          "value": 46.9,
+          "status": "measured",
+          "unit": "g",
+          "definition": "Available carbohydrate calculated from sugar and starch",
+          "raw": 46.9
+        },
+        "fatG": {
+          "value": 6.3,
+          "status": "measured",
+          "unit": "g",
+          "definition": "Total lipid",
+          "raw": 6.3
+        },
+        "fiberG": {
+          "value": 13.6,
+          "status": "measured",
+          "unit": "g",
+          "definition": "Total dietary fibre enzymatic-gravimetric",
+          "raw": 13.6
+        },
+        "sodiumMg": {
+          "value": 6,
+          "status": "measured",
+          "unit": "mg",
+          "definition": "Sodium",
+          "raw": 6
+        }
+      },
+      "transformations": [],
+      "resolution": "needs_review",
+      "missingEssentialNutrients": [],
+      "mapping": {
+        "conceptId": "med_ceci",
+        "formId": "med_ceci_1",
+        "status": "proposed"
+      },
+      "reviews": {
+        "automatic": {
+          "status": "pass",
+          "method": "r5-structural-v1"
+        },
+        "nutrition": null,
+        "safety": null,
+        "culinary": null
+      },
+      "contentDigest": "319b78da924903b87b16754ee4f1c993eae3da81c25f4ff546a7a6ed291b7a70"
+    },
+    {
+      "schemaVersion": 1,
+      "source": "CREA",
+      "sourceRecordId": "004005",
+      "sourceLabel": "Ceci, secchi, cotti, bolliti",
+      "original": {
+        "id": "004005",
+        "label": "Ceci, secchi, cotti, bolliti",
+        "basisAmount": 100,
+        "basisUnit": "g",
+        "edibleBasis": true,
+        "nutrients": {
+          "energyKcal": {
+            "value": 132,
+            "unit": "kcal",
+            "definition": "CREA Southgate energy"
+          },
+          "proteinG": {
+            "value": 7,
+            "unit": "g",
+            "definition": "Protein N x 6.25"
+          },
+          "carbsG": {
+            "value": 18.9,
+            "unit": "g",
+            "definition": "Available carbohydrate calculated from sugar and starch"
+          },
+          "fatG": {
+            "value": 2.4,
+            "unit": "g",
+            "definition": "Total lipid"
+          },
+          "fiberG": {
+            "value": 5.8,
+            "unit": "g",
+            "definition": "Total dietary fibre enzymatic-gravimetric"
+          },
+          "sodiumMg": {
+            "value": 5,
+            "unit": "mg",
+            "definition": "Sodium"
+          }
+        }
+      },
+      "sourceContext": {
+        "version": "December 2019 (displayed on source website)",
+        "url": "https://www.alimentinutrizione.it/tabelle-nutrizionali/004005",
+        "acquiredAt": "2026-09-11",
+        "acquisitionMode": "manual_extract_from_official_web_table",
+        "originalPageArchiveAvailable": false,
+        "licenseEvidence": {
+          "url": "https://www.alimentinutrizione.it/tabelle-nutrizionali",
+          "checkedAt": "2026-09-11",
+          "reuseAllowed": true,
+          "condition": "Attribute CREA Centro di ricerca Alimenti e Nutrizione and source page; attribution preserved in this extract."
+        },
+        "attribution": "CREA Centro di ricerca Alimenti e Nutrizione; https://www.crea.gov.it/alimenti-e-nutrizione; https://www.alimentinutrizione.it",
+        "limitations": [
+          "Faithful six-nutrient manual extract, not a complete original-page archive",
+          "Source describes canned chickpeas as raw in English: state review remains mandatory",
+          "Source nutrients do not establish allergy or trace absence"
+        ]
+      },
+      "inputDigest": "86b55d63f90ec935c5768f769363508f955d9c830f88cb6d198e4ac05dd521c0",
+      "nutrients": {
+        "energyKcal": {
+          "value": 132,
+          "status": "measured",
+          "unit": "kcal",
+          "definition": "CREA Southgate energy",
+          "raw": 132
+        },
+        "proteinG": {
+          "value": 7,
+          "status": "measured",
+          "unit": "g",
+          "definition": "Protein N x 6.25",
+          "raw": 7
+        },
+        "carbsG": {
+          "value": 18.9,
+          "status": "measured",
+          "unit": "g",
+          "definition": "Available carbohydrate calculated from sugar and starch",
+          "raw": 18.9
+        },
+        "fatG": {
+          "value": 2.4,
+          "status": "measured",
+          "unit": "g",
+          "definition": "Total lipid",
+          "raw": 2.4
+        },
+        "fiberG": {
+          "value": 5.8,
+          "status": "measured",
+          "unit": "g",
+          "definition": "Total dietary fibre enzymatic-gravimetric",
+          "raw": 5.8
+        },
+        "sodiumMg": {
+          "value": 5,
+          "status": "measured",
+          "unit": "mg",
+          "definition": "Sodium",
+          "raw": 5
+        }
+      },
+      "transformations": [],
+      "resolution": "needs_review",
+      "missingEssentialNutrients": [],
+      "mapping": {
+        "conceptId": "med_ceci",
+        "formId": "med_ceci_2",
+        "status": "proposed"
+      },
+      "reviews": {
+        "automatic": {
+          "status": "pass",
+          "method": "r5-structural-v1"
+        },
+        "nutrition": null,
+        "safety": null,
+        "culinary": null
+      },
+      "contentDigest": "77b2d9b1b979edc641d6935cbdd4f51b75104c2507202e11b0866e17f33eab51"
+    },
+    {
+      "schemaVersion": 1,
+      "source": "CREA",
+      "sourceRecordId": "004010",
+      "sourceLabel": "Ceci, in scatola, scolati",
+      "original": {
+        "id": "004010",
+        "label": "Ceci, in scatola, scolati",
+        "basisAmount": 100,
+        "basisUnit": "g",
+        "edibleBasis": true,
+        "nutrients": {
+          "energyKcal": {
+            "value": 111,
+            "unit": "kcal",
+            "definition": "CREA Southgate energy"
+          },
+          "proteinG": {
+            "value": 6.7,
+            "unit": "g",
+            "definition": "Protein N x 6.25"
+          },
+          "carbsG": {
+            "value": 13.9,
+            "unit": "g",
+            "definition": "Available carbohydrate calculated from sugar and starch"
+          },
+          "fatG": {
+            "value": 2.3,
+            "unit": "g",
+            "definition": "Total lipid"
+          },
+          "fiberG": {
+            "value": 5.7,
+            "unit": "g",
+            "definition": "Total dietary fibre enzymatic-gravimetric"
+          },
+          "sodiumMg": {
+            "value": 311,
+            "unit": "mg",
+            "definition": "Sodium"
+          }
+        }
+      },
+      "sourceContext": {
+        "version": "December 2019 (displayed on source website)",
+        "url": "https://www.alimentinutrizione.it/tabelle-nutrizionali/004010",
+        "acquiredAt": "2026-09-11",
+        "acquisitionMode": "manual_extract_from_official_web_table",
+        "originalPageArchiveAvailable": false,
+        "licenseEvidence": {
+          "url": "https://www.alimentinutrizione.it/tabelle-nutrizionali",
+          "checkedAt": "2026-09-11",
+          "reuseAllowed": true,
+          "condition": "Attribute CREA Centro di ricerca Alimenti e Nutrizione and source page; attribution preserved in this extract."
+        },
+        "attribution": "CREA Centro di ricerca Alimenti e Nutrizione; https://www.crea.gov.it/alimenti-e-nutrizione; https://www.alimentinutrizione.it",
+        "limitations": [
+          "Faithful six-nutrient manual extract, not a complete original-page archive",
+          "Source describes canned chickpeas as raw in English: state review remains mandatory",
+          "Source nutrients do not establish allergy or trace absence"
+        ]
+      },
+      "inputDigest": "1ce04d1fd7707347d84ae7f9d4f080f197e85955c4d04389269c5ee11e104733",
+      "nutrients": {
+        "energyKcal": {
+          "value": 111,
+          "status": "measured",
+          "unit": "kcal",
+          "definition": "CREA Southgate energy",
+          "raw": 111
+        },
+        "proteinG": {
+          "value": 6.7,
+          "status": "measured",
+          "unit": "g",
+          "definition": "Protein N x 6.25",
+          "raw": 6.7
+        },
+        "carbsG": {
+          "value": 13.9,
+          "status": "measured",
+          "unit": "g",
+          "definition": "Available carbohydrate calculated from sugar and starch",
+          "raw": 13.9
+        },
+        "fatG": {
+          "value": 2.3,
+          "status": "measured",
+          "unit": "g",
+          "definition": "Total lipid",
+          "raw": 2.3
+        },
+        "fiberG": {
+          "value": 5.7,
+          "status": "measured",
+          "unit": "g",
+          "definition": "Total dietary fibre enzymatic-gravimetric",
+          "raw": 5.7
+        },
+        "sodiumMg": {
+          "value": 311,
+          "status": "measured",
+          "unit": "mg",
+          "definition": "Sodium",
+          "raw": 311
+        }
+      },
+      "transformations": [],
+      "resolution": "needs_review",
+      "missingEssentialNutrients": [],
+      "mapping": {
+        "conceptId": "med_ceci",
+        "formId": "med_ceci_3",
+        "status": "proposed"
+      },
+      "reviews": {
+        "automatic": {
+          "status": "pass",
+          "method": "r5-structural-v1"
+        },
+        "nutrition": null,
+        "safety": null,
+        "culinary": null
+      },
+      "contentDigest": "38af730bcc92940658e5e34d6ad6ff3919e7cf426229bb33c4cc76e1698bcdd4"
+    }
+  ]
+}

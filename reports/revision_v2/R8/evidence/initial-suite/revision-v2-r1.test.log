@@ -1,0 +1,76 @@
+✔ T72 R1 miglio generic query aggregates forms without merging IDs, quantities or nutrients (90.204156ms)
+✔ T72 R1 inconsistent or non-leaf product paths are rejected instead of inferred from names (45.467344ms)
+✔ T06 R1 FoodGroup rejects nested, unknown and duplicate members; membership history is immutable (75.45474ms)
+✔ T17/T18 R1 directional shopping yield cannot alter nutritional basis or invent g/ml equivalence (73.648566ms)
+✔ T59/T72 R1 migration is additive, restartable, idempotent and preserves current local pointer and old records (106.525836ms)
+✖ T59 R1 preserves existing data without legacy epoch and rejects content downgrade (61.692945ms)
+✔ T59 R1 interrupted batches and changed local pointer cannot be overwritten (53.894311ms)
+✔ T72 R1 unresolved mapping is retained for review without changing the family (56.751865ms)
+✔ T72 R1 lexical similarity never merges forms; explicit redirects retain source and reject cycles (64.070517ms)
+✔ T23/T39 R1 strict frequency draft validates bounds, half ideals and target references without activating V2 (40.693259ms)
+✔ T01/T05 R1 strict safety contract cannot invent reviewer or contain/trace equivalence (36.056355ms)
+✔ T21 R1 recipe V2 writes omit instructions and legacy versions remain lossless (50.782405ms)
+✖ T59 R1 portable backup 3 round-trips new registries and staged configuration (89.597824ms)
+✔ T18 R1 V2 unit conversion requires a reviewed directional density; legacy unsourced conversion cannot be used (45.632317ms)
+✖ T59/T74 R1 app/DB/cache contracts are current and every declared offline shell asset exists (1.124976ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 12
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1019.63879
+
+✖ failing tests:
+
+test at tests/revision-v2-r1.test.mjs:84:1
+✖ T59 R1 preserves existing data without legacy epoch and rejects content downgrade (61.692945ms)
+  AssertionError [ERR_ASSERTION]: Missing expected rejection.
+      at async TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/tests/revision-v2-r1.test.mjs:86:55)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: /downgrade refused/,
+    operator: 'rejects',
+    diff: 'simple'
+  }
+
+test at tests/revision-v2-r1.test.mjs:129:1
+✖ T59 R1 portable backup 3 round-trips new registries and staged configuration (89.597824ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  4 !== 3
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/tests/revision-v2-r1.test.mjs:131:51)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 4,
+    expected: 3,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/revision-v2-r1.test.mjs:145:1
+✖ T59/T74 R1 app/DB/cache contracts are current and every declared offline shell asset exists (1.124976ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '1.1.0-dev.r8'
+  - '1.1.0-dev.r7'
+                ^
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/tests/revision-v2-r1.test.mjs:147:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '1.1.0-dev.r8',
+    expected: '1.1.0-dev.r7',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

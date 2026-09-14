@@ -1,0 +1,16 @@
+{
+  "status": "BLOCKED",
+  "url": "http://localhost:4174",
+  "error": "net::ERR_BLOCKED_BY_CLIENT",
+  "reason": "Cloud browser URL policy blocks local app; no alternate browser, raw CDP or network workaround used",
+  "observedAt": "2026-09-11",
+  "verifiedScope": [],
+  "notVerified": [
+    "visual replacement flow",
+    "real IndexedDB migration",
+    "two tabs",
+    "offline upgrade"
+  ],
+  "buildSha256": "caac4ac89441b02fd07cb166d2f1683102e47e1540855986fc6161d31122a087",
+  "attemptedBuildScope": "R0/R1 working build before final verification; route access blocked before app loaded"
+}

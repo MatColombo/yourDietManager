@@ -1,0 +1,10 @@
+{
+  "files": 42,
+  "tests": 302,
+  "pass": 302,
+  "fail": 0,
+  "cancelled": 0,
+  "skipped": 0,
+  "environment": "Node 24.19.0 Linux; memory repositories, no browser; TMPDIR in scratch",
+  "buildSha256": "157fa90504477a7b8de42c886d190d897df3087a6df40f38c8b98855e523735b"
+}

@@ -119,6 +119,31 @@
               "string",
               "null"
             ]
+          },
+          "variant": {
+            "type": "string"
+          },
+          "conceptId": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "department": {
+            "type": "string"
+          },
+          "quantityChanged": {
+            "type": "boolean"
+          },
+          "conversions": {
+            "type": "array",
+            "items": {
+              "$ref": "ingredient-conversion.schema.json"
+            }
+          },
+          "pantryDeducted": {
+            "type": "number",
+            "minimum": 0
           }
         },
         "allOf": [
@@ -175,6 +200,22 @@
     "updatedAt": {
       "type": "string",
       "format": "date-time"
+    },
+    "sourceInputDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "externalOccurrenceCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "batchConsumptionCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "pantryEntryCount": {
+      "type": "integer",
+      "minimum": 0
     }
   }
 }

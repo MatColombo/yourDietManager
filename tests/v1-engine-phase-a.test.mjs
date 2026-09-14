@@ -77,7 +77,7 @@ test('Phase A — feasible 2600 kcal plan succeeds without recipe scaling', () =
 
 test('Phase A — impossible calorie window returns NO_FEASIBLE_PLAN diagnostics rather than out-of-range plan', () => {
   const result = generatePlanCore(energyFixture(800, 2, [300, 300, 300, 300]));
-  assert.equal(result.status, 'failed');
+  assert.equal(result.status, 'search_exhausted');
   assert.equal(result.failure.code, 'no_feasible_plan');
   assert.equal(result.failure.constraintId, 'daily_energy_tolerance');
   assert.equal(result.failure.hardConstraint, true);
@@ -103,13 +103,13 @@ test('Phase A — soft ranking cannot erase the energy frontier before hard-feas
 
 test('Phase A — numeric MealClass forbid rejects matching values and allows non-matching values', () => {
   const mealClass = { id: 'mc', mealArchetype: 'dinner', rules: [{ ruleType: 'practical', target: 'prepMinutes', operator: 'gte', value: 20, strength: 'forbid' }] };
-  const context = { mealClass, dayClass: { capabilities: { cooking: true, complexSnack: true } }, allergyProfile: { rules: [] }, foodPreferences: { rules: [] }, revisionById: new Map() };
+  const context = { mealClass, dayClass: { capabilities: { cooking: true, complexSnack: true } }, allergyProfile: { rules: [] }, foodPreferences: { rules: [] }, revisionById: new Map(['slow', 'fast', 'cooked', 'simple-snack', 'complex-snack'].map(id => [`rev_${id}`, revision(id)])) };
   assert.equal(hardFilterRecipe(recipe('slow', 'dinner', 500, { prep: 25 }), context).allowed, false);
   assert.equal(hardFilterRecipe(recipe('fast', 'dinner', 500, { prep: 10 }), context).allowed, true);
 });
 
 test('Phase A — cooking and simple-snack capabilities are enforced as hard filters', () => {
-  const dinnerContext = { mealClass: { id: 'd', mealArchetype: 'dinner', rules: [] }, dayClass: { capabilities: { cooking: false, complexSnack: true } }, allergyProfile: { rules: [] }, foodPreferences: { rules: [] }, revisionById: new Map() };
+  const dinnerContext = { mealClass: { id: 'd', mealArchetype: 'dinner', rules: [] }, dayClass: { capabilities: { cooking: false, complexSnack: true } }, allergyProfile: { rules: [] }, foodPreferences: { rules: [] }, revisionById: new Map(['slow', 'fast', 'cooked', 'simple-snack', 'complex-snack'].map(id => [`rev_${id}`, revision(id)])) };
   const cooked = hardFilterRecipe(recipe('cooked', 'dinner', 500, { cook: 15 }), dinnerContext);
   assert.equal(cooked.allowed, false); assert.ok(cooked.reasons.includes('capability:cooking'));
   const snackContext = { ...dinnerContext, mealClass: { id: 's', mealArchetype: 'snack', rules: [] }, dayClass: { capabilities: { cooking: true, complexSnack: false } } };
@@ -122,7 +122,8 @@ test('Phase A — soft avoid changes ranking but does not exclude candidate', ()
   const fish = recipe('fish-soft', 'dinner', 500, { ingredient: 'fish', revisionId: 'fish' });
   fish.tags.cuisines = ['cuisine_x'];
   const mealClass = { id: 'mc', mealArchetype: 'dinner', rules: [{ ruleType: 'cuisine', target: 'cuisine_x', strength: 'avoid' }] };
-  const context = { mealClass, dayClass: { capabilities: { cooking: true, complexSnack: true } }, allergyProfile: { rules: [] }, foodPreferences: { rules: [] }, revisionById: new Map(), history: [], date: '2026-09-07', nutritionProfile: energyFixture(2000).nutritionProfile, slotEnergyTarget: 500, dayEnergyTarget: 2000 };
+  const context = { mealClass, dayClass: { capabilities: { cooking: true, complexSnack: true } }, allergyProfile: { rules: [] }, foodPreferences: { rules: [] }, revisionById: new Map(['slow', 'fast', 'cooked', 'simple-snack', 'complex-snack'].map(id => [`rev_${id}`, revision(id)])), history: [], date: '2026-09-07', nutritionProfile: energyFixture(2000).nutritionProfile, slotEnergyTarget: 500, dayEnergyTarget: 2000 };
+  context.revisionById.set('fish', { ...revision('fish'), ingredientId: 'fish' });
   assert.equal(hardFilterRecipe(fish, context).allowed, true);
   assert.ok(scoreRecipe(fish, context).components.preference > 0);
 });
@@ -178,7 +179,7 @@ test('Phase A — unknown external energy cannot be reported as a hard-valid cal
   slot.proteinMinG = null;
   await saveConfigurationBundle(bundle, { repo, registry });
   const result = await createInitialPreview({ horizon: { startDate: '2026-09-07', endDate: '2026-09-07' }, seed: 'phase-a-external-unknown' }, { repo, registry });
-  assert.equal(result.status, 'failed');
+  assert.equal(result.status, 'invalid_input');
   assert.equal(result.failure.code, 'external_energy_unknown');
   assert.equal(result.failure.constraintId, 'daily_energy_tolerance');
 });

@@ -1,0 +1,38 @@
+✖ R1 structural schema is DB v7 and applies the new compound catalog indexes without deleting stores (6.045184ms)
+✔ content migration resumes after interruption and is idempotent (74.134752ms)
+✔ 10k unfiltered catalog browsing reads only the requested page of RecipeVersion records (253.431287ms)
+✔ 10k operation history uses persisted head/redo pointers for new commits and bounded recent reads (206.200081ms)
+✔ offline pack planner selects only the shard families needed by the installed recipe versions (29.123581ms)
+✔ catalog update can roll back to the previous active family pointers while retaining immutable staged records (96.526781ms)
+✔ failed catalog update records recoverable state without switching the active version (76.787565ms)
+✔ runtime storage metrics persist record counts and quota estimates in meta (0.580486ms)
+✔ Phase 8 accessibility and offline source gates are present (3.362779ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 8
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 985.971066
+
+✖ failing tests:
+
+test at tests/hardening-phase8.test.mjs:38:1
+✖ R1 structural schema is DB v7 and applies the new compound catalog indexes without deleting stores (6.045184ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  8 !== 7
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R6_R7/tests/hardening-phase8.test.mjs:39:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 8,
+    expected: 7,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

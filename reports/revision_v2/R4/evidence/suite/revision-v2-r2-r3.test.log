@@ -1,0 +1,23 @@
+✔ T26/T28/T29 R3 one occurrence per meal, inclusive rolling boundaries and independent day count (21.895439ms)
+✔ T32/T33/T34 R3 carryover uses civil date; unknown external is separate; incomplete minimum stays pending (0.62665ms)
+✔ T25/T27/T37 R3 maxima and never apply to prefixes; half ideals never create half meals (1.476164ms)
+✔ T31 R3 edit revalidates future windows and remaining capacity (1.350832ms)
+✔ T35/T36 R3 parent exclusion conflict respects scope (0.456875ms)
+✔ T39 R3 conversion is explicit and removes the exact legacy penalty (0.366639ms)
+✔ T03/T05/T06 R3 dynamic group excludes forms, and incomplete evidence fails closed (0.530215ms)
+✔ T13/T15/T50/T52 R2 explicit form presentation, short truthful titles and no operational steps (5.189417ms)
+✔ T24/T27/T31 R3 solver enforces min/max across days and keeps fixed servings (149.995132ms)
+✔ T38 R3 bounded exhaustion is distinct from proof and cancellation (71.732663ms)
+✔ T30/T38 R3 31/90 day horizons preserve complete rolling windows without fractional servings (9283.983934ms)
+✔ T07/T08 R3 current safety overlay annotates stored history without mutating frozen records (64.208363ms)
+✔ T17 R2 title editing keeps exact nutrient arithmetic and rejects stale/invalid form input (1.515476ms)
+✔ T17/T50/T73 R2 Italian-only authoring, variant nutrition, duplicate, ordinary export and import (94.061093ms)
+✔ T21 R3 retrieval filters current and hard-eligible recipes before the 500 limit (49.785856ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9992.244872

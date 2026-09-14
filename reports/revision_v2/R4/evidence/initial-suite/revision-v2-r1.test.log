@@ -1,0 +1,45 @@
+✔ T72 R1 miglio generic query aggregates forms without merging IDs, quantities or nutrients (120.9515ms)
+✔ T72 R1 inconsistent or non-leaf product paths are rejected instead of inferred from names (38.362799ms)
+✔ T06 R1 FoodGroup rejects nested, unknown and duplicate members; membership history is immutable (75.536968ms)
+✔ T17/T18 R1 directional shopping yield cannot alter nutritional basis or invent g/ml equivalence (50.551411ms)
+✔ T59/T72 R1 migration is additive, restartable, idempotent and preserves current local pointer and old records (90.24597ms)
+✔ T59 R1 preserves existing data without legacy epoch and rejects content downgrade (44.172289ms)
+✔ T59 R1 interrupted batches and changed local pointer cannot be overwritten (70.910771ms)
+✔ T72 R1 unresolved mapping is retained for review without changing the family (52.577378ms)
+✔ T72 R1 lexical similarity never merges forms; explicit redirects retain source and reject cycles (90.586236ms)
+✔ T23/T39 R1 strict frequency draft validates bounds, half ideals and target references without activating V2 (42.583635ms)
+✔ T01/T05 R1 strict safety contract cannot invent reviewer or contain/trace equivalence (33.31098ms)
+✔ T21 R1 recipe V2 writes omit instructions and legacy versions remain lossless (59.516199ms)
+✔ T59 R1 same-catalog backup 2 round-trips new registries and staged configuration (156.414279ms)
+✔ T18 R1 V2 unit conversion requires a reviewed directional density; legacy unsourced conversion cannot be used (51.091862ms)
+✖ T59/T74 R1 app/DB/cache contracts are current and every declared offline shell asset exists (2.087324ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 14
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1120.709969
+
+✖ failing tests:
+
+test at tests/revision-v2-r1.test.mjs:145:1
+✖ T59/T74 R1 app/DB/cache contracts are current and every declared offline shell asset exists (2.087324ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + '1.1.0-dev.r5'
+  - '1.1.0-dev.r3'
+                ^
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R4_R5/tests/revision-v2-r1.test.mjs:147:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: '1.1.0-dev.r5',
+    expected: '1.1.0-dev.r3',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

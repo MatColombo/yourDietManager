@@ -170,7 +170,7 @@ function assertTagSet(index, values, taxonomyId, path, errors) {
   }
 }
 
-export function semanticReferenceDiagnostics({ index, ingredientRevisions = [], recipeVersions = [], configuration = null, ingredientIds = [] }) {
+export function semanticReferenceDiagnostics({ index, ingredientRevisions = [], recipeVersions = [], configuration = null, ingredientIds = [], foodGroups = [] }) {
   const errors = [];
   const ingredientSet = new Set(ingredientIds);
   for (const revision of ingredientRevisions) {
@@ -201,10 +201,13 @@ export function semanticReferenceDiagnostics({ index, ingredientRevisions = [], 
     for (const [key, taxonomyId] of Object.entries(RECIPE_TAG_TAXONOMY)) assertTagSet(index, recipe.tags?.[key], taxonomyId, `${base}.tags.${key}`, errors);
   }
   if (configuration) {
-    for (const prefs of configuration.foodPreferences || []) for (const rule of prefs.rules || []) {
+    for (const prefs of configuration.foodPreferences || []) for (const sourceRule of [...(prefs.rules || []), ...(prefs.legacyRules || [])]) {
+      const rule = sourceRule.target ? { ...sourceRule, targetType: sourceRule.target.type, targetId: sourceRule.target.id } : sourceRule;
       const path = `foodPreferences:${prefs.id}.rule:${rule.id}`;
       try {
-        if (rule.targetType === 'productFood') index.assertTerm(rule.targetId, TAXONOMY_IDS.productFood);
+        if (rule.targetType === 'foodGroup') { if (!foodGroups.some(group => group.id === rule.targetId && group.status === 'active')) throw new Error(`Unknown or inactive food group ${rule.targetId}`); }
+        else if (rule.targetType === 'flavor') index.assertTerm(rule.targetId, TAXONOMY_IDS.flavorProfile);
+        else if (rule.targetType === 'productFood') index.assertTerm(rule.targetId, TAXONOMY_IDS.productFood);
         else if (rule.targetType === 'foodCategory') index.assertTerm(rule.targetId, TAXONOMY_IDS.foodCategory);
         else if (rule.targetType === 'cuisine') index.assertTerm(rule.targetId, TAXONOMY_IDS.cuisine);
         else if (rule.targetType === 'recipeTag') {
@@ -212,10 +215,13 @@ export function semanticReferenceDiagnostics({ index, ingredientRevisions = [], 
         } else if (rule.targetType === 'ingredient' && ingredientSet.size && !ingredientSet.has(rule.targetId)) throw new Error(`Unknown ingredient ${rule.targetId}`);
       } catch (error) { errors.push(`${path}: ${error.message}`); }
     }
-    for (const profile of configuration.allergyIntoleranceProfiles || []) for (const rule of profile.rules || []) {
+    for (const profile of configuration.allergyIntoleranceProfiles || []) for (const sourceRule of [...(profile.rules || []), ...(profile.legacyRules || [])]) {
+      const rule = sourceRule.target ? { ...sourceRule, targetType: sourceRule.target.type, targetId: sourceRule.target.id } : sourceRule;
       const path = `allergyIntoleranceProfile:${profile.id}.rule:${rule.id}`;
       try {
-        if (rule.targetType === 'productFood') index.assertTerm(rule.targetId, TAXONOMY_IDS.productFood);
+        if (rule.targetType === 'foodGroup') { if (!foodGroups.some(group => group.id === rule.targetId && group.status === 'active')) throw new Error(`Unknown or inactive food group ${rule.targetId}`); }
+        else if (rule.targetType === 'flavor') index.assertTerm(rule.targetId, TAXONOMY_IDS.flavorProfile);
+        else if (rule.targetType === 'productFood') index.assertTerm(rule.targetId, TAXONOMY_IDS.productFood);
         else if (rule.targetType === 'foodCategory') index.assertTerm(rule.targetId, TAXONOMY_IDS.foodCategory);
         else if (rule.targetType === 'ingredient' && ingredientSet.size && !ingredientSet.has(rule.targetId)) throw new Error(`Unknown ingredient ${rule.targetId}`);
       } catch (error) { errors.push(`${path}: ${error.message}`); }

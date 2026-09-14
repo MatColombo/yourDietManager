@@ -1,0 +1,2406 @@
+{
+  "schemaVersion": 1,
+  "status": "design_proposals_only",
+  "dishes": [
+    {
+      "dishId": "dish_pane_e_ricotta_con_miele",
+      "titleIt": "Pane e ricotta con miele",
+      "editorialGroup": "breakfast",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_yogurt_con_frutta_e_avena",
+      "titleIt": "Yogurt con frutta e avena",
+      "editorialGroup": "breakfast",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_porridge_mela_e_cannella",
+      "titleIt": "Porridge mela e cannella",
+      "editorialGroup": "breakfast",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_latte_e_fette_biscottate",
+      "titleIt": "Latte e fette biscottate",
+      "editorialGroup": "breakfast",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pane_tostato_al_pomodoro",
+      "titleIt": "Pane tostato al pomodoro",
+      "editorialGroup": "breakfast",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_farinata",
+      "titleIt": "Farinata",
+      "editorialGroup": "breakfast",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_frittata_alle_erbe",
+      "titleIt": "Frittata alle erbe",
+      "editorialGroup": "breakfast",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pancake_di_avena_e_banana",
+      "titleIt": "Pancake di avena e banana",
+      "editorialGroup": "breakfast",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_budino_di_riso_al_latte",
+      "titleIt": "Budino di riso al latte",
+      "editorialGroup": "breakfast",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_crostata_di_albicocche",
+      "titleIt": "Crostata di albicocche",
+      "editorialGroup": "breakfast",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_ciambella_allo_yogurt",
+      "titleIt": "Ciambella allo yogurt",
+      "editorialGroup": "breakfast",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pane_con_crema_di_nocciole",
+      "titleIt": "Pane con crema di nocciole",
+      "editorialGroup": "breakfast",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_ricotta_con_cacao_e_pera",
+      "titleIt": "Ricotta con cacao e pera",
+      "editorialGroup": "breakfast",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_crema_di_miglio_alle_mandorle",
+      "titleIt": "Crema di miglio alle mandorle",
+      "editorialGroup": "breakfast",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_toast_con_uovo_e_spinaci",
+      "titleIt": "Toast con uovo e spinaci",
+      "editorialGroup": "breakfast",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_macedonia_di_stagione",
+      "titleIt": "Macedonia di stagione",
+      "editorialGroup": "snack",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_yogurt_con_noci",
+      "titleIt": "Yogurt con noci",
+      "editorialGroup": "snack",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pane_e_olio",
+      "titleIt": "Pane e olio",
+      "editorialGroup": "snack",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_hummus_con_carote",
+      "titleIt": "Hummus con carote",
+      "editorialGroup": "snack",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_ricotta_al_limone",
+      "titleIt": "Ricotta al limone",
+      "editorialGroup": "snack",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_ceci_croccanti",
+      "titleIt": "Ceci croccanti",
+      "editorialGroup": "snack",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_frutta_fresca_e_mandorle",
+      "titleIt": "Frutta fresca e mandorle",
+      "editorialGroup": "snack",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_bruschetta_al_pomodoro",
+      "titleIt": "Bruschetta al pomodoro",
+      "editorialGroup": "snack",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_crostino_con_cannellini",
+      "titleIt": "Crostino con cannellini",
+      "editorialGroup": "snack",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_fichi_e_yogurt",
+      "titleIt": "Fichi e yogurt",
+      "editorialGroup": "snack",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_mela_cotta_alle_noci",
+      "titleIt": "Mela cotta alle noci",
+      "editorialGroup": "snack",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pinzimonio_con_salsa_yogurt",
+      "titleIt": "Pinzimonio con salsa yogurt",
+      "editorialGroup": "snack",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_frittatina_di_zucchine",
+      "titleIt": "Frittatina di zucchine",
+      "editorialGroup": "snack",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_mini_panino_al_formaggio",
+      "titleIt": "Mini panino al formaggio",
+      "editorialGroup": "snack",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_frullato_di_latte_e_banana",
+      "titleIt": "Frullato di latte e banana",
+      "editorialGroup": "snack",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pasta_al_pomodoro",
+      "titleIt": "Pasta al pomodoro",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pasta_e_ceci",
+      "titleIt": "Pasta e ceci",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pasta_e_fagioli",
+      "titleIt": "Pasta e fagioli",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pasta_con_le_sarde",
+      "titleIt": "Pasta con le sarde",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pasta_alla_norma",
+      "titleIt": "Pasta alla norma",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pasta_al_pesto",
+      "titleIt": "Pasta al pesto",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_spaghetti_alle_vongole",
+      "titleIt": "Spaghetti alle vongole",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pasta_con_broccoli",
+      "titleIt": "Pasta con broccoli",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pasta_con_zucchine_e_ricotta",
+      "titleIt": "Pasta con zucchine e ricotta",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pasta_con_tonno_e_capperi",
+      "titleIt": "Pasta con tonno e capperi",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pasta_al_ragu",
+      "titleIt": "Pasta al ragù",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pasta_e_lenticchie",
+      "titleIt": "Pasta e lenticchie",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_risotto_ai_funghi",
+      "titleIt": "Risotto ai funghi",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_risotto_alla_zucca",
+      "titleIt": "Risotto alla zucca",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_risotto_agli_asparagi",
+      "titleIt": "Risotto agli asparagi",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_risi_e_bisi",
+      "titleIt": "Risi e bisi",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_riso_al_pomodoro",
+      "titleIt": "Riso al pomodoro",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_insalata_di_riso",
+      "titleIt": "Insalata di riso",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_insalata_di_farro",
+      "titleIt": "Insalata di farro",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_zuppa_di_orzo",
+      "titleIt": "Zuppa di orzo",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_minestrone",
+      "titleIt": "Minestrone",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_ribollita",
+      "titleIt": "Ribollita",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_zuppa_di_lenticchie",
+      "titleIt": "Zuppa di lenticchie",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_vellutata_di_zucca_e_ceci",
+      "titleIt": "Vellutata di zucca e ceci",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_cous_cous_alle_verdure",
+      "titleIt": "Cous cous alle verdure",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_cous_cous_di_pesce",
+      "titleIt": "Cous cous di pesce",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_polenta_con_funghi",
+      "titleIt": "Polenta con funghi",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_gnocchi_al_pomodoro",
+      "titleIt": "Gnocchi al pomodoro",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_orecchiette_alle_cime_di_rapa",
+      "titleIt": "Orecchiette alle cime di rapa",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pasta_con_cavolfiore",
+      "titleIt": "Pasta con cavolfiore",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pasta_con_crema_di_peperoni",
+      "titleIt": "Pasta con crema di peperoni",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_miglio_con_ceci_e_verdure",
+      "titleIt": "Miglio con ceci e verdure",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_grano_saraceno_con_spinaci",
+      "titleIt": "Grano saraceno con spinaci",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pizza_margherita",
+      "titleIt": "Pizza margherita",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_piadina_con_pollo_e_verdure",
+      "titleIt": "Piadina con pollo e verdure",
+      "editorialGroup": "first_main",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pollo_al_limone",
+      "titleIt": "Pollo al limone",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_pollo_alla_cacciatora",
+      "titleIt": "Pollo alla cacciatora",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_tacchino_alle_erbe",
+      "titleIt": "Tacchino alle erbe",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_coniglio_alla_ligure",
+      "titleIt": "Coniglio alla ligure",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_spezzatino_di_manzo",
+      "titleIt": "Spezzatino di manzo",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_scaloppine_di_vitello",
+      "titleIt": "Scaloppine di vitello",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_lonza_al_rosmarino",
+      "titleIt": "Lonza al rosmarino",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_agnello_al_forno",
+      "titleIt": "Agnello al forno",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_polpette_al_sugo",
+      "titleIt": "Polpette al sugo",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_bollito_con_salsa_verde",
+      "titleIt": "Bollito con salsa verde",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_orata_al_cartoccio",
+      "titleIt": "Orata al cartoccio",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_spigola_al_forno",
+      "titleIt": "Spigola al forno",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_sgombro_al_pomodoro",
+      "titleIt": "Sgombro al pomodoro",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_sardine_al_forno",
+      "titleIt": "Sardine al forno",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_alici_gratinate",
+      "titleIt": "Alici gratinate",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_merluzzo_in_umido",
+      "titleIt": "Merluzzo in umido",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_salmone_agli_agrumi",
+      "titleIt": "Salmone agli agrumi",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_trota_alle_erbe",
+      "titleIt": "Trota alle erbe",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_seppie_con_piselli",
+      "titleIt": "Seppie con piselli",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_polpo_con_patate",
+      "titleIt": "Polpo con patate",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_calamari_ripieni",
+      "titleIt": "Calamari ripieni",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_cozze_al_pomodoro",
+      "titleIt": "Cozze al pomodoro",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_uova_al_pomodoro",
+      "titleIt": "Uova al pomodoro",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_frittata_di_patate",
+      "titleIt": "Frittata di patate",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_frittata_di_carciofi",
+      "titleIt": "Frittata di carciofi",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_ceci_in_umido",
+      "titleIt": "Ceci in umido",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_polpette_di_lenticchie",
+      "titleIt": "Polpette di lenticchie",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_tofu_alla_mediterranea",
+      "titleIt": "Tofu alla mediterranea",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_tempeh_con_peperoni",
+      "titleIt": "Tempeh con peperoni",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_ricotta_al_forno_con_verdure",
+      "titleIt": "Ricotta al forno con verdure",
+      "editorialGroup": "second",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_caponata",
+      "titleIt": "Caponata",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_peperonata",
+      "titleIt": "Peperonata",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_zucchine_trifolate",
+      "titleIt": "Zucchine trifolate",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_melanzane_grigliate",
+      "titleIt": "Melanzane grigliate",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_finocchi_al_forno",
+      "titleIt": "Finocchi al forno",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_carciofi_alla_romana",
+      "titleIt": "Carciofi alla romana",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_bietole_ripassate",
+      "titleIt": "Bietole ripassate",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_cicoria_ripassata",
+      "titleIt": "Cicoria ripassata",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_radicchio_alla_piastra",
+      "titleIt": "Radicchio alla piastra",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_broccoli_al_vapore",
+      "titleIt": "Broccoli al vapore",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_zucca_al_forno",
+      "titleIt": "Zucca al forno",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_patate_al_rosmarino",
+      "titleIt": "Patate al rosmarino",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_carote_al_limone",
+      "titleIt": "Carote al limone",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_fagiolini_al_pomodoro",
+      "titleIt": "Fagiolini al pomodoro",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_insalata_di_pomodori",
+      "titleIt": "Insalata di pomodori",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_insalata_greca",
+      "titleIt": "Insalata greca",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_insalata_caprese",
+      "titleIt": "Insalata caprese",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_insalata_di_finocchi_e_arance",
+      "titleIt": "Insalata di finocchi e arance",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_insalata_di_cavolo_rosso",
+      "titleIt": "Insalata di cavolo rosso",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_insalata_di_ceci",
+      "titleIt": "Insalata di ceci",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_insalata_di_cannellini",
+      "titleIt": "Insalata di cannellini",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_funghi_trifolati",
+      "titleIt": "Funghi trifolati",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_asparagi_al_limone",
+      "titleIt": "Asparagi al limone",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_scarola_con_olive_e_capperi",
+      "titleIt": "Scarola con olive e capperi",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    },
+    {
+      "dishId": "dish_barbabietole_con_yogurt",
+      "titleIt": "Barbabietole con yogurt",
+      "editorialGroup": "side",
+      "status": "proposed",
+      "ingredientRevisionLines": [],
+      "practicalEvidence": null,
+      "nutrition": null,
+      "review": {
+        "culinary": "pending",
+        "nutrition": "pending",
+        "safety": "pending"
+      },
+      "publicationBlockers": [
+        "Resolve and review ingredient forms",
+        "Freeze quantities and calculate nutrition",
+        "Review culinary plausibility, time, readiness and yield",
+        "Validate planner coverage"
+      ]
+    }
+  ]
+}

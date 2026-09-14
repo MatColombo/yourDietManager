@@ -1,0 +1,11 @@
+✔ GitHub Pages base path helpers support project sites and root sites (1.571317ms)
+✔ GitHub Pages deployment sources avoid root-absolute entry assets and include Pages Actions workflow (13.867548ms)
+✔ bootstrap configuration fetch is deployment-base aware (4.587362ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 154.602003

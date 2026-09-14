@@ -1,0 +1,18 @@
+✔ refines mixed dairy and egg category by food descriptor (1.715653ms)
+✔ conservative allergen derivation distinguishes seafood and common major allergens (1.913006ms)
+✔ Italian label uses controlled translation where available and source-preserving fallback otherwise (3.638875ms)
+✔ auto curation is deterministic, rejects complex categories, avoids exact display duplicates and meets target when eligible inventory exists (7.521879ms)
+✔ deterministic curation rejects source rows whose declared energy is grossly inconsistent with macros (1.940309ms)
+✔ deterministic curation protects explicit replacements for all four Phase 1 ingredient fixtures (0.879557ms)
+✔ Atwater Specific and SR legacy energy are not rejected by a General-factor-only 4/4/9 check (5.800312ms)
+✔ USDA descriptor refinement covers common pasta forms and herb/spice foods outside narrow category labels (0.165696ms)
+✔ frozen group minimum selection can use valid USDA specific/legacy energy without lowering quotas (3.481689ms)
+✔ auto curation applies the same frozen nutrition bounds as materialization before approval (3.164933ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 172.211693

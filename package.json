@@ -1,7 +1,7 @@
 {
   "name": "yourdietmanager",
   "private": true,
-  "version": "1.0.0-rc.34",
+  "version": "1.1.0-dev.r8",
   "type": "module",
   "scripts": {
     "dev": "node scripts/dev-server.mjs",
@@ -78,6 +78,14 @@
     "v1:planner-phase-h-handoff": "node scripts/release/build-v1-planner-phase-h-handoff.mjs",
     "v1:planner-phase-h": "node --test tests/v1-planner-phase-h.test.mjs && node scripts/hardening/v1-planner-phase-h-gate.mjs",
     "v1:promote-stable": "node scripts/release/promote-v1-stable.mjs",
-    "v1:stable-verify": "npm run check && npm run release:gate"
+    "v1:stable-verify": "npm run check && npm run release:gate",
+    "revision:v2:test": "node --test tests/revision-v2-*.test.mjs",
+    "revision:v2:trace": "node scripts/validate-revision-v2-traceability.mjs",
+    "revision:v2:audit": "node scripts/revision-v2/audit-r2-r3.mjs",
+    "revision:v2:dossier": "node scripts/revision-v2/update-r8-dossier.mjs && node scripts/validate-revision-v2-traceability.mjs",
+    "revision:v2:mediterranean": "node scripts/revision-v2/stage-mediterranean.mjs",
+    "revision:v2:gate": "node scripts/revision-v2/core-gate.mjs",
+    "revision:v2:benchmark": "node scripts/revision-v2/benchmark-r7.mjs",
+    "revision:v2:regression": "node scripts/revision-v2/run-regression.mjs"
   }
 }

@@ -1,0 +1,23 @@
+✔ T72 R1 miglio generic query aggregates forms without merging IDs, quantities or nutrients (101.159418ms)
+✔ T72 R1 inconsistent or non-leaf product paths are rejected instead of inferred from names (33.576964ms)
+✔ T06 R1 FoodGroup rejects nested, unknown and duplicate members; membership history is immutable (73.81167ms)
+✔ T17/T18 R1 directional shopping yield cannot alter nutritional basis or invent g/ml equivalence (67.624389ms)
+✔ T59/T72 R1 migration is additive, restartable, idempotent and preserves current local pointer and old records (94.705147ms)
+✔ T59 R1 preserves existing data without legacy epoch and rejects content downgrade (41.782254ms)
+✔ T59 R1 interrupted batches and changed local pointer cannot be overwritten (69.219099ms)
+✔ T72 R1 unresolved mapping is retained for review without changing the family (72.548081ms)
+✔ T72 R1 lexical similarity never merges forms; explicit redirects retain source and reject cycles (84.936287ms)
+✔ T23/T39 R1 strict frequency draft validates bounds, half ideals and target references without activating V2 (47.235904ms)
+✔ T01/T05 R1 strict safety contract cannot invent reviewer or contain/trace equivalence (39.763693ms)
+✔ T21 R1 recipe V2 writes omit instructions and legacy versions remain lossless (67.174666ms)
+✔ T59 R1 portable backup 4 round-trips new registries and staged configuration (222.401786ms)
+✔ T18 R1 V2 unit conversion requires a reviewed directional density; legacy unsourced conversion cannot be used (73.664449ms)
+✔ T59/T74 R1 app/DB/cache contracts are current and every declared offline shell asset exists (26.471398ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1261.272101

@@ -5,6 +5,22 @@ description: "Design, build, review, or extend the yourDietManager local-first P
 
 # yourDietManager Builder
 
+## Revisione attiva R0–R8
+
+Per `1.1.0-dev.r8` leggere `specs/revision_v2/CONTRATTO_R8.md`, `FASI_SVILUPPO.md`, `TRACEABILITY.json`, `TEST_REGISTRY.json`, `MATRICE_R8.md` e `reports/revision_v2/STATE.json`. L'utente ha autorizzato tutte le cinque attività R8 con accettazione catalogo ancora aperta: questo consente di superare solo l'ingresso R7 del piano storico, senza certificare R5/R7 o autorizzare stable. I rapporti precedenti sono storici.
+
+R8: DB 9/31 store, contenuti 5, backup writer 4/reader 1–4, shell 42/dati 22, epoch invariato. Sei store personali: recipeFavorites, savedMenus, pantryEntries, productionBatches, seasonalityProfiles, ingredientPrices; impostazioni in productExtensions:R8. Favoriti per famiglia e stagionalità per area scelta: peso soft zero di default, mai superare hard constraints. Blocchi e assegnazioni lotto preservano gli slot e rivalidano la sicurezza. Menu e lotti usano anteprime sigillate e commit atomici con cronologia. Lotto: una produzione negli acquisti, ogni consumo nelle frequenze, sempre servings 1 per componente. Dispensa sconosciuta non sottratta; quantità nota solo su scelta esplicita e forma/conversione valida. Non inventare conservabilità, tempi per lotto, calendari regionali o prezzi. Prezzo mancante è null; subtotale noto non è totale. Snapshot backup copre i sei store e i riferimenti di undo. Non attivare staging R5 né modificare il catalogo distribuito per abilitare estensioni.
+
+R6 mantiene spesa con digest materiale e conversioni reviewed selezionate; backup autosufficienti con copie pre-import e confronto di tutti gli store nella transazione. R7: `revision:v2:gate` non certifica il core finché i 74 scenari non sono completi; benchmark sintetico e test in memoria non chiudono browser, offline o catalogo R5. R8 disponibile in sviluppo è distinta da accettazione delle estensioni: T66–T70 restano parziali finché mancano scope browser. Non segnare R8 COMPLETATA o estensioni certificate sulla sola base dei test Node.
+
+I commit del piano passano da `commitOperation` e da `RepositoryHub.atomicMutate`: confrontare in una transazione readwrite il read set sigillato, il before autorevole, il puntatore history e la ricevuta persistente del comando. Non sostituire il confronto con BroadcastChannel o lock in memoria. Una nuova anteprima ha un nuovo ID; un comando già consumato non si riapplica dopo undo. Conservare integralmente i componenti non selezionati; insiemi multipli richiedono una composizione approvata legata al digest delle versioni.
+
+R5 usa `data/revision-v2/mediterranean/manifest.json`, `dish-briefs.json`, gli estratti `sources/` e gli adapter `src/corpus/mediterranean/`. I 200 concetti, 307 forme e 120 brief sono obiettivi nominali, non contenuti pubblicati. Eseguire `npm run revision:v2:mediterranean` per rigenerare staging e copertura. Preservare definizioni nutrizionali e valori mancanti/tracce/zero; non convertire carboidrati totali e disponibili in modo implicito. Hash dell’estratto non significa hash della pagina originale. Le revisioni nutrizionali, di sicurezza e culinarie non sono create automaticamente. Il gate pilot resta bloccato finché le 40/60 voci non sono realmente revisionate; la scala e la pubblicazione vengono dopo il pilot. Conservare ogni esclusione R0 con ID e motivo in `reports/revision_v2/R5/quarantine-dispositions.json`.
+
+Onboarding R4 esplicito, riprendibile e non bloccante per il catalogo. Non dedurre “nessuna allergia” dall’assenza di regole. La dichiarazione è legata al digest del profilo di sicurezza; un cambiamento invalida il riepilogo precedente. Usare selettore comune, frequenze R3, titoli V2 senza procedimento, disclosure controllati e protezione delle bozze.
+
+Browser, IndexedDB reale, multi-tab e offline non eseguiti restano BLOCCATI. Test in memoria e controlli del sorgente non equivalgono ad accettazione visiva. Riportare sempre i limiti del gate, senza produrre approvazioni editoriali simulate.
+
 ## Core invariants
 - Keep every browser-loaded schema byte-for-byte synchronized between canonical `schemas/` and deployment mirror `public/schemas/`; never loosen `additionalProperties` to hide mirror drift. Production provenance fields must be modeled explicitly in the canonical schema and mirrored to the PWA.
 

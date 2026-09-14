@@ -1,0 +1,14 @@
+✔ Phase B — eligibility expands real culinary coverage without inventing ingredient families (20.139609ms)
+✔ Phase B — 1800 RecipeVersions are fixed single servings and use at least 300 distinct ingredients (3.438049ms)
+✔ Phase B — every intended meal class has low, medium and high energy choices (1.207371ms)
+✔ Phase B — public publication is validation-only and has zero structural quality blockers (145.156451ms)
+✔ Phase B — narrow ±2% energy windows are feasible at both 800 and 2600 kcal without scaling (9815.090979ms)
+✔ Phase B — generator source contains no energy-fitting solver path (1.662289ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 10368.824379

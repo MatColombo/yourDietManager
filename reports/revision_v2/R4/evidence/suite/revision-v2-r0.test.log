@@ -1,0 +1,19 @@
+✔ T07 R0 stale safety configuration rejects commitPlanPreview without plan writes (115.842966ms)
+✔ T07 R0 stale safety configuration rejects commitGeneratedPreview without plan writes (69.175499ms)
+✔ T07 R0 extension rejects an intervening edit to the source plan (68.698351ms)
+✔ T07/T45 R0 replacement validates preview target, configuration and current day (38.423746ms)
+✔ T45 R0 rebalance rejects newer adherence and preserves authoritative before (61.279378ms)
+✔ T45 R0 rejects tampered payload, changed catalog and replay after undo (45.953892ms)
+✔ T03 R0 missing revision and empty legacy allergen array fail closed (0.337011ms)
+✔ T01 R0 pasta/rice pasta and peanut butter/butter use individual evidence, not generic search names (0.404393ms)
+✔ T10 R0 explicit quarantine covers all 20 baseline recipe IDs without deleting historical records (1.769897ms)
+✔ T12 R0 a valid replacement retains saved notes and can be undone (46.107645ms)
+✔ T10 R0 fish template accepts only a documented cooked/ready form (7.017722ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 631.096509

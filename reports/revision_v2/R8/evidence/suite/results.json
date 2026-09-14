@@ -1,0 +1,222 @@
+[
+  {
+    "file": "tests/backup.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.448
+  },
+  {
+    "file": "tests/catalog-importer.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.301
+  },
+  {
+    "file": "tests/catalog-phase3.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.903
+  },
+  {
+    "file": "tests/configuration.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.717
+  },
+  {
+    "file": "tests/controlled-scale-500.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.439
+  },
+  {
+    "file": "tests/core.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.24
+  },
+  {
+    "file": "tests/corpus-phase4.test.mjs",
+    "exitCode": 0,
+    "seconds": 1.894
+  },
+  {
+    "file": "tests/corpus-production-execution.test.mjs",
+    "exitCode": 0,
+    "seconds": 1.418
+  },
+  {
+    "file": "tests/corpus-production-pass-a.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.804
+  },
+  {
+    "file": "tests/corpus-production-pass-b.test.mjs",
+    "exitCode": 0,
+    "seconds": 1.446
+  },
+  {
+    "file": "tests/corpus-production-pass-c.test.mjs",
+    "exitCode": 0,
+    "seconds": 1.406
+  },
+  {
+    "file": "tests/data-ux-pass-b.test.mjs",
+    "exitCode": 0,
+    "seconds": 20.648
+  },
+  {
+    "file": "tests/data-ux-pass-c.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.38
+  },
+  {
+    "file": "tests/data-ux-pass-d.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.61
+  },
+  {
+    "file": "tests/data-ux-pass-e.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.223
+  },
+  {
+    "file": "tests/fdc-auto-curation.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.206
+  },
+  {
+    "file": "tests/github-pages.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.186
+  },
+  {
+    "file": "tests/hardening-phase8.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.727
+  },
+  {
+    "file": "tests/plan-phase6.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.567
+  },
+  {
+    "file": "tests/planner-phase5.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.755
+  },
+  {
+    "file": "tests/production-execution-workflow.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.326
+  },
+  {
+    "file": "tests/production-review-500.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.494
+  },
+  {
+    "file": "tests/reference-data-pass-a.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.672
+  },
+  {
+    "file": "tests/revision-v2-r0.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.618
+  },
+  {
+    "file": "tests/revision-v2-r1.test.mjs",
+    "exitCode": 0,
+    "seconds": 1.339
+  },
+  {
+    "file": "tests/revision-v2-r2-r3.test.mjs",
+    "exitCode": 0,
+    "seconds": 10.155
+  },
+  {
+    "file": "tests/revision-v2-r4-r5.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.601
+  },
+  {
+    "file": "tests/revision-v2-r6-r7.test.mjs",
+    "exitCode": 0,
+    "seconds": 16.947
+  },
+  {
+    "file": "tests/revision-v2-r8.test.mjs",
+    "exitCode": 0,
+    "seconds": 31.905
+  },
+  {
+    "file": "tests/schema-public-mirrors.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.259
+  },
+  {
+    "file": "tests/schema-validator.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.225
+  },
+  {
+    "file": "tests/shopping-phase7.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.366
+  },
+  {
+    "file": "tests/v1-engine-phase-a.test.mjs",
+    "exitCode": 0,
+    "seconds": 31.598
+  },
+  {
+    "file": "tests/v1-planner-phase-b.test.mjs",
+    "exitCode": 0,
+    "seconds": 13.017
+  },
+  {
+    "file": "tests/v1-planner-phase-c.test.mjs",
+    "exitCode": 0,
+    "seconds": 18.014
+  },
+  {
+    "file": "tests/v1-planner-phase-d-ux.test.mjs",
+    "exitCode": 0,
+    "seconds": 7.213
+  },
+  {
+    "file": "tests/v1-planner-phase-d.test.mjs",
+    "exitCode": 0,
+    "seconds": 41.133
+  },
+  {
+    "file": "tests/v1-planner-phase-e.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.196
+  },
+  {
+    "file": "tests/v1-planner-phase-f.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.205
+  },
+  {
+    "file": "tests/v1-planner-phase-g.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.206
+  },
+  {
+    "file": "tests/v1-planner-phase-h.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.696
+  },
+  {
+    "file": "tests/v1-step1.test.mjs",
+    "exitCode": 0,
+    "seconds": 0.42
+  },
+  {
+    "file": "tests/v1-step2.test.mjs",
+    "exitCode": 0,
+    "seconds": 96.039
+  },
+  {
+    "file": "tests/v1-step3.test.mjs",
+    "exitCode": 0,
+    "seconds": 39.685
+  }
+]

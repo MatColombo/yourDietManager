@@ -1,0 +1,11 @@
+✔ Pass E browser harness covers the final editor interaction acceptance surface (8.33807ms)
+✔ Pass E closure gate runs after the browser gate and CI requires a real browser pass (4.612406ms)
+✔ Pass E is reflected in the revision, specs and reusable project Skill (4.929375ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 124.605121

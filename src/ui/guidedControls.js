@@ -1,3 +1,5 @@
+import { buildIngredientProjection, ingredientPickerChoices, variantPickerChoices } from '../services/ingredientConceptQuery.js';
+import { foodSearchRank } from '../domain/ingredientPresentation.js';
 import { element } from './dom.js';
 import { signalDraftChange } from './uiState.js';
 import { MEAL_ARCHETYPES } from '../domain/catalogEnums.js';
@@ -88,46 +90,45 @@ export function productFoodChoices(index, locale = 'it', { ingredients = [], lev
     .sort((a, b) => a.label.localeCompare(b.label, locale));
 }
 
-export function createProductFoodPicker(state, index, {
-  value = null, onChange = null, required = false, levels = ['category', 'subcategory', 'concept'],
-  placeholder = null, showCoverage = true
+export function createIngredientPicker(state, index, {
+  mode = 'concept', value = null, onChange = null, required = false, levels = ['category', 'subcategory', 'concept'],
+  includeGroups = false, includeAllergens = false, placeholder = null, items = null
 } = {}) {
-  const root = element('div', { className: 'product-food-picker', 'data-testid': 'product-food-picker' });
-  const summary = element('small', { className: 'field__hint product-food-picker__summary', 'aria-live': 'polite' });
-  const choices = productFoodChoices(index, state.i18n.locale, { ingredients: showCoverage ? (state.guidedIngredients || []) : [], levels })
-    .map(choice => ({
-      ...choice,
-      secondary: `${state.i18n.t(`productFood.level.${choice.data?.level || 'concept'}`)}${showCoverage && Number.isFinite(choice.data?.coverage) ? ` · ${state.i18n.t('productFood.coverage').replace('{count}', String(choice.data.coverage))}` : ''}`
-    }));
-  const control = createAutocomplete({
-    choices,
-    value,
-    required,
-    placeholder: placeholder || state.i18n.t('productFood.search.placeholder'),
-    invalidMessage: state.i18n.t('guided.reference.required'),
-    emptyMessage: state.i18n.t('productFood.search.empty'),
-    onChange: (id, choice) => {
-      renderSummary(choice);
-      onChange?.(id, choice);
-    }
-  });
-  const renderSummary = choice => {
-    const selected = choice || choices.find(item => item.id === control.getValue()) || null;
-    if (!selected) { summary.textContent = state.i18n.t('productFood.search.help'); return; }
-    const levelKey = `productFood.level.${selected.data?.level || 'concept'}`;
-    const coverage = selected.data?.coverage;
-    summary.textContent = `${state.i18n.t(levelKey)}${showCoverage && Number.isFinite(coverage) ? ` · ${state.i18n.t('productFood.coverage').replace('{count}', String(coverage))}` : ''}`;
+  const locale = state.i18n.locale;
+  const projection = items ? buildIngredientProjection(items, index, state.foodGroups || [])
+    : state.ingredientProjection || buildIngredientProjection(state.guidedIngredients || [], index, state.foodGroups || []);
+  const root = element('div', { className: 'ingredient-picker', 'data-testid': 'ingredient-picker', 'data-mode': mode });
+  const summary = element('small', { className: 'field__hint', 'aria-live': 'polite' });
+  const formsHost = element('div'); let formControl = null;
+  const choices = ingredientPickerChoices(projection, { locale, mode, levels, includeGroups, includeAllergens,
+    allergenLabels: Object.fromEntries((state.allergenIds || ['gluten_cereals','crustaceans','eggs','fish','peanuts','soy','milk','tree_nuts','celery','mustard','sesame','sulphites','lupin','molluscs']).map(id => [id, state.i18n.t(`allergen.${id}`)])) });
+  const initial = mode === 'variant' ? projection.items.find(item => item.family.ingredientId === value)?.revision?.productTaxonomy?.conceptId : value;
+  function renderForms(choice, selected = null) {
+    formsHost.replaceChildren(); formControl = null;
+    if (!choice) { summary.textContent = state.i18n.t('productFood.search.help'); return; }
+    summary.textContent = choice.secondary || '';
+    if (mode !== 'variant') return;
+    formControl = createAutocomplete({ choices: variantPickerChoices(choice.data.forms, index, locale), value: selected, required: true,
+      placeholder: state.i18n.t('r2.variant.choose'), ariaLabel: state.i18n.t('r2.variant.choose'), invalidMessage: state.i18n.t('r2.variant.required'),
+      onChange: (id, form) => onChange?.(id, form) });
+    formsHost.append(formControl.node);
+  }
+  const control = createAutocomplete({ choices, value: initial, required,
+    placeholder: placeholder || state.i18n.t('productFood.search.placeholder'), invalidMessage: state.i18n.t('guided.reference.required'),
+    emptyMessage: state.i18n.t('productFood.search.empty'), onChange: (id, choice) => {
+      renderForms(choice); onChange?.(mode === 'variant' ? null : id, mode === 'variant' ? null : choice);
+    } });
+  root.append(control.node, summary, formsHost); renderForms(control.getChoice(), mode === 'variant' ? value : null);
+  return { node: root, input: control.input,
+    getValue: () => mode === 'variant' ? formControl?.getValue() || null : control.getValue(),
+    getTarget: () => mode === 'variant' ? (formControl?.getValue() ? { type: 'ingredient', id: formControl.getValue() } : null) : control.getChoice()?.data?.target || null,
+    getChoice: () => mode === 'variant' ? formControl?.getChoice() : control.getChoice(),
+    validate: () => control.validate() && (mode !== 'variant' || Boolean(formControl?.validate())),
+    setValue: next => { if (mode === 'variant') { const item = projection.items.find(item => item.family.ingredientId === next); control.setValue(item?.revision?.productTaxonomy?.conceptId); renderForms(control.getChoice(), next); } else { control.setValue(next); renderForms(control.getChoice()); } }
   };
-  root.append(control.node, summary);
-  renderSummary();
-  return {
-    node: root,
-    input: control.input,
-    getValue: control.getValue,
-    setValue: next => { control.setValue(next); renderSummary(); },
-    validate: control.validate,
-    getChoice: control.getChoice
-  };
+}
+export function createProductFoodPicker(state, index, options = {}) {
+  return createIngredientPicker(state, index, { ...options, mode: 'concept' });
 }
 
 export function genericRecipeTagChoices(index, locale = 'it') {
@@ -152,8 +153,9 @@ export function ingredientChoices(items, locale = 'it', originLabels = {}) {
   }).sort((a, b) => a.label.localeCompare(b.label, locale));
 }
 
-export function unitsForIngredientRevision(revision) {
+export function unitsForIngredientRevision(revision, conversions = []) {
   if (!revision) return [];
+  if (revision.schemaVersion === 2) return unique([revision.basis?.unit, ...conversions.filter(item => item.reviewStatus === 'reviewed' && item.purpose === 'unit' && item.fromIngredientId === revision.ingredientId && item.toIngredientId === revision.ingredientId && item.toUnit === revision.basis.unit).map(item => item.fromUnit)]).map(id => ({ id, label: id }));
   return unique([revision.basis?.unit, ...(revision.conversions || []).map(item => item.unit)]).map(id => ({ id, label: id }));
 }
 
@@ -163,16 +165,8 @@ export function mealArchetypeDefault(values) {
 }
 
 function searchChoices(choices, query, limit = 12) {
-  const tokens = normalize(query).split(/\s+/).filter(Boolean);
-  const scored = (choices || []).map(choice => {
-    const haystack = normalize(`${choice.label || ''} ${choice.secondary || ''} ${choice.searchText || ''} ${choice.id || ''}`);
-    if (tokens.some(token => !haystack.includes(token))) return null;
-    const label = normalize(choice.label);
-    const prefix = tokens.length && tokens.every(token => label.startsWith(token) || label.includes(` ${token}`));
-    return { choice, score: prefix ? 0 : 1 };
-  }).filter(Boolean);
-  scored.sort((a, b) => a.score - b.score || a.choice.label.localeCompare(b.choice.label));
-  return scored.slice(0, limit).map(item => item.choice);
+  return choices.map(choice => ({ choice, rank: foodSearchRank(query, { names: choice.searchNames || [choice.label], aliases: choice.searchAliases || [], fields: [choice.secondary || '', choice.searchText || ''] }) }))
+    .filter(row => Number.isFinite(row.rank)).sort((a, b) => a.rank - b.rank || a.choice.label.localeCompare(b.choice.label) || a.choice.id.localeCompare(b.choice.id)).slice(0, limit).map(row => row.choice);
 }
 
 export function createAutocomplete({ choices = [], value = null, onChange = null, placeholder = '', required = false, invalidMessage = 'Select a value from the suggestions.', emptyMessage = 'No matching values.', ariaLabel = null } = {}) {
@@ -187,7 +181,7 @@ export function createAutocomplete({ choices = [], value = null, onChange = null
   const byId = id => allChoices.find(choice => choice.id === id) || null;
   const close = () => { list.hidden = true; input.setAttribute('aria-expanded', 'false'); active = -1; input.removeAttribute('aria-activedescendant'); };
   const validate = () => {
-    const valid = !required || Boolean(selectedId);
+    const valid = Boolean(selectedId) || (!required && !input.value.trim());
     input.setCustomValidity(valid ? '' : invalidMessage);
     message.textContent = valid ? '' : invalidMessage;
     root.classList.toggle('guided-control--invalid', !valid);
@@ -210,7 +204,8 @@ export function createAutocomplete({ choices = [], value = null, onChange = null
         const button = element('button', { type: 'button', id: optionId, className: `guided-suggestion${index === active ? ' guided-suggestion--active' : ''}`, role: 'option', 'aria-selected': index === active ? 'true' : 'false' });
         button.append(element('span', { text: choice.label }));
         if (choice.secondary) button.append(element('small', { text: choice.secondary }));
-        button.addEventListener('mousedown', event => { event.preventDefault(); choose(choice); });
+        button.addEventListener('mousedown', event => event.preventDefault());
+        button.addEventListener('click', () => choose(choice));
         list.append(button);
       });
     }

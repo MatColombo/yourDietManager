@@ -1,3 +1,4 @@
+import { migrateIngredientModel } from './ingredientModelMigration.js';
 import { repositories } from '../repositories/repositoryHub.js';
 import { fetchCatalogManifest, loadCatalogSelection, validateCatalogReferences } from './catalogDataSource.js';
 import { cachePackOffline } from './offlineCatalog.js';
@@ -47,7 +48,7 @@ export class CatalogImporter {
     const started = Date.now();
     try {
       const active = await this.repo.getMeta('activeCatalogVersion');
-      if (active) { this.emit(listener, 'complete', 1, 1, 'catalog.status.ready'); return active; }
+      if (active) { await migrateIngredientModel({ repo: this.repo, registry: this.registry }); this.emit(listener, 'complete', 1, 1, 'catalog.status.ready'); return active; }
       const catalog = await this.loadAndValidate(listener);
       const total = catalog.taxonomies.length + catalog.taxonomyTerms.length + catalog.ingredientFamilies.length + catalog.ingredientRevisions.length + catalog.recipeFamilies.length + catalog.recipeVersions.length + catalog.manifest.packs.length;
       let done = 0;
@@ -72,6 +73,7 @@ export class CatalogImporter {
         referenceDataVersion: catalog.manifest.referenceDataVersion || null,
         referenceDataDigest: catalog.manifest.referenceDataDigest || null
       });
+      await migrateIngredientModel({ repo: this.repo, registry: this.registry });
       for (const pack of catalog.requiredPacks) {
         const offline = await cachePackOffline(catalog.manifest, pack, catalog.recipeVersions, { serviceWorker: this.serviceWorker });
         await this.repo.setMeta(`offlinePack:${catalog.manifest.catalogVersion}:${pack.packId}`, { ...offline, cachedAt: new Date().toISOString() });

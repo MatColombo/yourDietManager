@@ -1,0 +1,1537 @@
+{
+  "schemaVersion": 1,
+  "appVersion": "1.1.0-dev.r8",
+  "catalogVersion": "1.2.0-planner-phase-d",
+  "dbVersion": 9,
+  "contentSchemaVersion": 5,
+  "backupFormatVersion": 4,
+  "sourceArchiveSha256": "9210fba9cbbe5fc3311790b2fc6554e115a63856a97d555b8a173ee8b2306800",
+  "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+  "phases": [
+    {
+      "id": "R0",
+      "title": "Mitigazioni dei problemi bloccanti e dossier iniziale",
+      "dependencies": [],
+      "status": "BLOCCATO",
+      "implementationStatus": "IMPLEMENTATO",
+      "gateBlockers": [
+        "Browser reale / IndexedDB / upgrade offline non verificati"
+      ],
+      "report": "reports/revision_v2/R0/REPORT.md",
+      "buildSha256": "caac4ac89441b02fd07cb166d2f1683102e47e1540855986fc6161d31122a087"
+    },
+    {
+      "id": "R1",
+      "title": "Identità, schemi, conversioni e migrazione additiva",
+      "dependencies": [
+        "R0"
+      ],
+      "status": "BLOCCATO",
+      "implementationStatus": "IMPLEMENTATO",
+      "gateBlockers": [
+        "Browser reale / IndexedDB / upgrade offline non verificati"
+      ],
+      "report": "reports/revision_v2/R1/REPORT.md",
+      "buildSha256": "caac4ac89441b02fd07cb166d2f1683102e47e1540855986fc6161d31122a087"
+    },
+    {
+      "id": "R2",
+      "title": "Ricerca generica, forme, titoli e rimozione procedimento",
+      "dependencies": [
+        "R1"
+      ],
+      "status": "BLOCCATO",
+      "implementationStatus": "IMPLEMENTATO",
+      "gateBlockers": [
+        "Browser reale, IndexedDB, upgrade offline e interazioni end-to-end non verificati"
+      ],
+      "report": "reports/revision_v2/R2/REPORT.md",
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400"
+    },
+    {
+      "id": "R3",
+      "title": "Frequenze, sicurezza e validazione del piano",
+      "dependencies": [
+        "R1",
+        "R2"
+      ],
+      "status": "BLOCCATO",
+      "implementationStatus": "IMPLEMENTATO",
+      "gateBlockers": [
+        "Browser reale, IndexedDB, upgrade offline e interazioni end-to-end non verificati"
+      ],
+      "report": "reports/revision_v2/R3/REPORT.md",
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400"
+    },
+    {
+      "id": "R4",
+      "title": "Gestione giornata e UX completa del planner",
+      "dependencies": [
+        "R3"
+      ],
+      "status": "BLOCCATO",
+      "implementationStatus": "IMPLEMENTATO",
+      "gateBlockers": [
+        "Browser/IndexedDB/multi-tab/offline reali non verificati"
+      ],
+      "report": "reports/revision_v2/R4/REPORT.md",
+      "buildSha256": "157fa90504477a7b8de42c886d190d897df3087a6df40f38c8b98855e523735b"
+    },
+    {
+      "id": "R5",
+      "title": "Catalogo italiano e mediterraneo curato",
+      "dependencies": [
+        "R1",
+        "R3"
+      ],
+      "status": "BLOCCATO",
+      "implementationStatus": "STAGING IMPLEMENTATO, CATALOGO BLOCCATO",
+      "gateBlockers": [
+        "Pilot 40/60 senza review complete",
+        "Scala 200/300 e 120 ricette non materializzate"
+      ],
+      "report": "reports/revision_v2/R5/REPORT.md",
+      "buildSha256": "157fa90504477a7b8de42c886d190d897df3087a6df40f38c8b98855e523735b"
+    },
+    {
+      "id": "R6",
+      "title": "Spesa, backup, privacy e continuità offline",
+      "dependencies": [
+        "R3",
+        "R4",
+        "R5"
+      ],
+      "status": "BLOCCATO",
+      "implementationStatus": "IMPLEMENTATO; ACCETTAZIONE INCOMPLETA",
+      "gateBlockers": [
+        "Browser reale/offline/two-tab non verificati",
+        "R5 pilot e scala non approvati"
+      ],
+      "report": "reports/revision_v2/R6/REPORT.md",
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203"
+    },
+    {
+      "id": "R7",
+      "title": "Accettazione del core della nuova revisione",
+      "dependencies": [
+        "R0",
+        "R1",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6"
+      ],
+      "status": "BLOCCATO",
+      "implementationStatus": "DOSSIER E GATE IMPLEMENTATI; CORE NON ACCETTATO",
+      "gateBlockers": [
+        "Browser reale/offline/two-tab non verificati",
+        "R5 pilot e scala non approvati",
+        "Scenari core incompleti",
+        "T64 UI/alternative/cancellazione e corpus reale non misurati"
+      ],
+      "report": "reports/revision_v2/R7/REPORT.md",
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203"
+    },
+    {
+      "id": "R8",
+      "title": "Estensioni con stato e contratti distinti",
+      "dependencies": [
+        "R7"
+      ],
+      "status": "BLOCCATO",
+      "implementationStatus": "TUTTE LE CINQUE ATTIVITÀ IMPLEMENTATE; ACCETTAZIONE APERTA",
+      "gateBlockers": [
+        "Browser reale IT/EN, tastiera/touch/focus e responsive",
+        "Persistenza IndexedDB dopo reload; upgrade DB8→9 e offline; quota/concorrenza reale",
+        "Accettazione editoriale catalogo R5 e gate core R7 ancora aperti"
+      ],
+      "report": "reports/revision_v2/R8/REPORT.md",
+      "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "R0.1",
+      "phase": "R0",
+      "title": "Baseline e registro della revisione",
+      "status": "VERIFICATO",
+      "remainingScopes": [],
+      "requirementIds": [
+        "INV-10",
+        "DOC-01",
+        "DOC-02",
+        "DOC-03",
+        "DOC-04"
+      ],
+      "changedFiles": [
+        "scripts/validate-revision-v2-traceability.mjs",
+        "specs/revision_v2/TRACEABILITY.json",
+        "specs/revision_v2/TEST_REGISTRY.json",
+        "reports/revision_v2/STATE.json"
+      ],
+      "evidenceIds": [
+        "EV-R8-REGRESSION"
+      ],
+      "historicalEvidenceIds": [
+        "EV-R0-001"
+      ]
+    },
+    {
+      "id": "R0.2",
+      "phase": "R0",
+      "title": "Esclusione dei dati critici",
+      "status": "VERIFICATO",
+      "remainingScopes": [],
+      "requirementIds": [
+        "SAFE-05",
+        "SAFE-06",
+        "SAFE-09",
+        "SAFE-10",
+        "CAT-12",
+        "CAT-13"
+      ],
+      "changedFiles": [
+        "src/domain/catalogQuarantine.js",
+        "src/domain/safetyCompatibility.js",
+        "src/planner/hardFilter.js",
+        "src/corpus/v1PhaseBRecipeGenerator.js"
+      ],
+      "evidenceIds": [
+        "EV-R8-REGRESSION"
+      ],
+      "historicalEvidenceIds": [
+        "EV-R0-002",
+        "EV-R1-002"
+      ]
+    },
+    {
+      "id": "R0.3",
+      "phase": "R0",
+      "title": "Anteprime e conferme sul contratto attuale",
+      "status": "VERIFICATO",
+      "remainingScopes": [],
+      "requirementIds": [
+        "SAFE-11",
+        "SAFE-12",
+        "HARD-01",
+        "HARD-02",
+        "HARD-03",
+        "HARD-05",
+        "HARD-06"
+      ],
+      "changedFiles": [
+        "src/services/planPreviewGuard.js",
+        "src/services/planGenerationService.js",
+        "src/services/effectivePlanService.js",
+        "src/services/operationHistoryService.js"
+      ],
+      "evidenceIds": [
+        "EV-R8-REGRESSION"
+      ],
+      "historicalEvidenceIds": [
+        "EV-R0-002"
+      ]
+    },
+    {
+      "id": "R0.4",
+      "phase": "R0",
+      "title": "Riscontro immediato della sostituzione",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Verifica visuale del comportamento e dei focus"
+      ],
+      "requirementIds": [
+        "SWAP-01",
+        "SWAP-02",
+        "SWAP-03",
+        "SWAP-08",
+        "UX-07",
+        "UX-14"
+      ],
+      "changedFiles": [
+        "src/ui/planPages.js",
+        "public/data/locales/it.json",
+        "public/data/locales/en.json"
+      ],
+      "evidenceIds": [
+        "EV-R0-003",
+        "EV-R0-004",
+        "EV-R0-005"
+      ]
+    },
+    {
+      "id": "R1.1",
+      "phase": "R1",
+      "title": "Concetti forme e gruppi",
+      "status": "VERIFICATO",
+      "remainingScopes": [],
+      "requirementIds": [
+        "ING-01",
+        "ING-02",
+        "ING-03",
+        "ING-04",
+        "ING-05",
+        "ING-06",
+        "SAFE-02"
+      ],
+      "changedFiles": [
+        "src/domain/ingredientIdentity.js",
+        "src/services/revisionV2Service.js",
+        "schemas/food-group.schema.json",
+        "schemas/ingredient-mapping.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R8-REGRESSION"
+      ],
+      "historicalEvidenceIds": [
+        "EV-R1-001",
+        "EV-R1-002"
+      ]
+    },
+    {
+      "id": "R1.2",
+      "phase": "R1",
+      "title": "Base nutrizionale e conversioni",
+      "status": "VERIFICATO",
+      "remainingScopes": [],
+      "requirementIds": [
+        "NUT-01",
+        "NUT-02",
+        "NUT-03"
+      ],
+      "changedFiles": [
+        "src/domain/ingredientConversion.js",
+        "src/domain/nutritionCore.js",
+        "schemas/ingredient-conversion.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R8-REGRESSION"
+      ],
+      "historicalEvidenceIds": [
+        "EV-R1-001"
+      ]
+    },
+    {
+      "id": "R1.3",
+      "phase": "R1",
+      "title": "Lettori e scrittori dei nuovi contratti",
+      "status": "VERIFICATO",
+      "remainingScopes": [],
+      "requirementIds": [
+        "INV-03",
+        "PREF-06",
+        "PREF-20",
+        "SAFE-05",
+        "SAFE-06",
+        "SAFE-10",
+        "REC-06",
+        "REC-07",
+        "HARD-01"
+      ],
+      "changedFiles": [
+        "src/domain/revisionV2Contracts.js",
+        "src/lib/schemaValidator.js",
+        "src/services/revisionV2Service.js",
+        "src/services/personalCatalogService.js",
+        "src/services/configurationService.js",
+        "schemas/ingredient-revision-v2.schema.json",
+        "schemas/recipe-version-v2.schema.json",
+        "schemas/food-preferences-v2.schema.json",
+        "schemas/allergy-intolerance-profile-v2.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R8-REGRESSION"
+      ],
+      "historicalEvidenceIds": [
+        "EV-R1-001",
+        "EV-R1-003"
+      ]
+    },
+    {
+      "id": "R1.4",
+      "phase": "R1",
+      "title": "Migrazione additiva e riferimenti locali",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Migrazione in IndexedDB reale, reload, upgrade offline"
+      ],
+      "requirementIds": [
+        "PREF-20",
+        "SAFE-13",
+        "MIG-01",
+        "MIG-02",
+        "MIG-03",
+        "MIG-04"
+      ],
+      "changedFiles": [
+        "src/services/ingredientModelMigration.js",
+        "src/services/migrationRunner.js",
+        "src/services/preV1DataEpoch.js",
+        "src/repositories/repositoryHub.js",
+        "src/db/constants.js",
+        "src/services/catalogImporter.js",
+        "src/services/backupEngine.js",
+        "src/main.js",
+        "public/service-worker.js",
+        "src/services/offlineCatalog.js"
+      ],
+      "evidenceIds": [
+        "EV-R1-001",
+        "EV-R1-002",
+        "EV-R0-005"
+      ]
+    },
+    {
+      "id": "R2.1",
+      "phase": "R2",
+      "title": "Ricerca e selettore comune",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Gate browser/IndexedDB/offline e scenari di accettazione completi; eventuali dipendenze editoriali R5 e superfici R4/R6 indicate nel contratto."
+      ],
+      "requirementIds": [
+        "ING-07",
+        "ING-08",
+        "ING-09",
+        "ING-11",
+        "PERF-03"
+      ],
+      "changedFiles": [
+        "src/services/ingredientConceptQuery.js",
+        "src/domain/ingredientPresentation.js",
+        "src/ui/guidedControls.js",
+        "src/services/catalogQuery.js",
+        "src/repositories/repositoryHub.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ]
+    },
+    {
+      "id": "R2.2",
+      "phase": "R2",
+      "title": "Titoli e presentazione",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Gate browser/IndexedDB/offline e scenari di accettazione completi; eventuali dipendenze editoriali R5 e superfici R4/R6 indicate nel contratto."
+      ],
+      "requirementIds": [
+        "ING-12",
+        "ING-13",
+        "REC-01",
+        "REC-02",
+        "REC-03"
+      ],
+      "changedFiles": [
+        "src/domain/recipePresentation.js",
+        "src/services/recipePresentationMigration.js",
+        "src/services/foodPresentationMigration.js",
+        "src/domain/foodPresentationCorrections.js",
+        "src/services/catalogAvailability.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ]
+    },
+    {
+      "id": "R2.3",
+      "phase": "R2",
+      "title": "Procedimento rimosso e metadata corretti",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Gate browser/IndexedDB/offline e scenari di accettazione completi; eventuali dipendenze editoriali R5 e superfici R4/R6 indicate nel contratto."
+      ],
+      "requirementIds": [
+        "NUT-06",
+        "REC-04",
+        "REC-05",
+        "REC-06",
+        "REC-07"
+      ],
+      "changedFiles": [
+        "src/services/personalCatalogService.js",
+        "src/services/customCatalogTransfer.js",
+        "src/corpus/recipePipeline.js",
+        "src/corpus/corpusScanner.js",
+        "src/corpus/deterministicRecipeGenerator.js",
+        "src/corpus/v1PhaseBRecipeGenerator.js",
+        "src/corpus/v1ReleaseRecipeGenerator.js",
+        "src/services/shoppingService.js",
+        "src/ui/catalogPages.js",
+        "schemas/recipe-version-v2.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ]
+    },
+    {
+      "id": "R2.4",
+      "phase": "R2",
+      "title": "Integrazione degli editor",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Gate browser/IndexedDB/offline e scenari di accettazione completi; eventuali dipendenze editoriali R5 e superfici R4/R6 indicate nel contratto."
+      ],
+      "requirementIds": [
+        "INV-08",
+        "INV-09",
+        "ING-10"
+      ],
+      "changedFiles": [
+        "src/ui/catalogPages.js",
+        "src/ui/guidedControls.js",
+        "src/ui/configurationPages.js",
+        "src/main.js",
+        "src/styles.css",
+        "public/data/locales/it.json",
+        "public/data/locales/en.json"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ]
+    },
+    {
+      "id": "R3.1",
+      "phase": "R3",
+      "title": "Contatore delle frequenze",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Gate browser/IndexedDB/offline e scenari di accettazione completi; eventuali dipendenze editoriali R5 e superfici R4/R6 indicate nel contratto."
+      ],
+      "requirementIds": [
+        "PREF-07",
+        "PREF-08",
+        "PREF-09",
+        "PREF-10",
+        "PREF-11",
+        "PREF-12",
+        "PREF-13",
+        "PREF-14"
+      ],
+      "changedFiles": [
+        "src/domain/frequencyCounter.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planGenerationService.js",
+        "src/services/effectivePlanService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ]
+    },
+    {
+      "id": "R3.2",
+      "phase": "R3",
+      "title": "Solver e recupero candidati",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Gate browser/IndexedDB/offline e scenari di accettazione completi; eventuali dipendenze editoriali R5 e superfici R4/R6 indicate nel contratto."
+      ],
+      "requirementIds": [
+        "PREF-15",
+        "PREF-16",
+        "PREF-17",
+        "PREF-18",
+        "PERF-01",
+        "PERF-02",
+        "PERF-05"
+      ],
+      "changedFiles": [
+        "src/planner/frequencyPlanGenerator.js",
+        "src/planner/planGenerator.js",
+        "src/planner/beamSolver.js",
+        "src/planner/constraintPolicy.js",
+        "src/services/planCandidateService.js",
+        "src/services/plannerExecution.js",
+        "src/services/plannerWorker.js",
+        "public/service-worker.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ]
+    },
+    {
+      "id": "R3.3",
+      "phase": "R3",
+      "title": "Configuratori numerici e riepiloghi",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Gate browser/IndexedDB/offline e scenari di accettazione completi; eventuali dipendenze editoriali R5 e superfici R4/R6 indicate nel contratto."
+      ],
+      "requirementIds": [
+        "ING-07",
+        "ING-08",
+        "ING-09",
+        "ING-10",
+        "ING-11",
+        "PREF-01",
+        "PREF-02",
+        "PREF-03",
+        "PREF-04",
+        "PREF-05",
+        "PREF-06",
+        "PREF-19",
+        "SAFE-01",
+        "SAFE-02"
+      ],
+      "changedFiles": [
+        "src/ui/configurationRulesV2Ui.js",
+        "src/ui/foodGroupEditor.js",
+        "src/ui/frequencySummary.js",
+        "src/ui/configurationPages.js",
+        "src/ui/planPages.js",
+        "src/domain/revisionV2Contracts.js",
+        "src/services/configurationService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ]
+    },
+    {
+      "id": "R3.4",
+      "phase": "R3",
+      "title": "Conversione delle regole precedenti",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Gate browser/IndexedDB/offline e scenari di accettazione completi; eventuali dipendenze editoriali R5 e superfici R4/R6 indicate nel contratto."
+      ],
+      "requirementIds": [
+        "PREF-20",
+        "SAFE-03"
+      ],
+      "changedFiles": [
+        "src/domain/legacyRuleAdapter.js",
+        "src/planner/softScoring.js",
+        "src/ui/configurationRulesV2Ui.js",
+        "schemas/food-preferences-v2.schema.json",
+        "schemas/allergy-intolerance-profile-v2.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ]
+    },
+    {
+      "id": "R3.5",
+      "phase": "R3",
+      "title": "Compatibilità e validazione dei commit",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Gate browser/IndexedDB/offline e scenari di accettazione completi; eventuali dipendenze editoriali R5 e superfici R4/R6 indicate nel contratto."
+      ],
+      "requirementIds": [
+        "INV-03",
+        "INV-04",
+        "INV-05",
+        "INV-06",
+        "NUT-01",
+        "SAFE-04",
+        "SAFE-05",
+        "SAFE-06",
+        "SAFE-07",
+        "SAFE-08",
+        "SAFE-09",
+        "SAFE-10",
+        "SAFE-11",
+        "SAFE-12",
+        "SAFE-13",
+        "SAFE-14",
+        "HARD-01",
+        "HARD-02",
+        "HARD-03",
+        "MIG-04"
+      ],
+      "changedFiles": [
+        "src/domain/safetyPolicy.js",
+        "src/planner/hardFilter.js",
+        "src/planner/recipeFeatures.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/effectivePlanService.js",
+        "src/services/backupEngine.js",
+        "src/services/referenceDataService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ]
+    },
+    {
+      "id": "R4.1",
+      "phase": "R4",
+      "title": "Pannello e stato della sostituzione",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "requirementIds": [
+        "ING-07",
+        "ING-08",
+        "ING-09",
+        "ING-10",
+        "ING-11",
+        "PREF-19",
+        "SAFE-14",
+        "SWAP-01",
+        "SWAP-02",
+        "SWAP-03",
+        "SWAP-04",
+        "SWAP-05",
+        "SWAP-08",
+        "UX-07"
+      ],
+      "changedFiles": [
+        "src/ui/planPages.js",
+        "src/services/effectivePlanService.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ]
+    },
+    {
+      "id": "R4.2",
+      "phase": "R4",
+      "title": "Componente o intero pasto",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "requirementIds": [
+        "PREF-07",
+        "PREF-08",
+        "PREF-09",
+        "PREF-10",
+        "PREF-11",
+        "PREF-12",
+        "SWAP-06",
+        "SWAP-07",
+        "HARD-03"
+      ],
+      "changedFiles": [
+        "src/services/effectivePlanService.js",
+        "src/services/planPolicyValidation.js",
+        "src/planner/planGenerator.js",
+        "schemas/meal-class.schema.json",
+        "src/ui/configurationPages.js"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ]
+    },
+    {
+      "id": "R4.3",
+      "phase": "R4",
+      "title": "Comandi concorrenti e history",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "requirementIds": [
+        "SAFE-11",
+        "SAFE-12",
+        "SAFE-13",
+        "SWAP-09",
+        "SHOP-05",
+        "HARD-01",
+        "HARD-02",
+        "HARD-03",
+        "HARD-04",
+        "HARD-05",
+        "HARD-06",
+        "HARD-07"
+      ],
+      "changedFiles": [
+        "src/repositories/repositoryHub.js",
+        "src/services/operationHistoryService.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/planGenerationService.js"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ]
+    },
+    {
+      "id": "R4.4",
+      "phase": "R4",
+      "title": "Navigazione e gerarchia",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "requirementIds": [
+        "UX-01",
+        "UX-02",
+        "UX-03",
+        "UX-06",
+        "UX-08",
+        "UX-09",
+        "UX-10"
+      ],
+      "changedFiles": [
+        "src/ui/app.js",
+        "src/ui/catalogPages.js",
+        "src/ui/configurationPages.js",
+        "src/ui/planPages.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ]
+    },
+    {
+      "id": "R4.5",
+      "phase": "R4",
+      "title": "Onboarding riprendibile",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "requirementIds": [
+        "UX-04",
+        "UX-05"
+      ],
+      "changedFiles": [
+        "src/ui/configurationPages.js",
+        "src/ui/profileStatus.js",
+        "src/services/configurationService.js",
+        "src/ui/uiState.js"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ]
+    },
+    {
+      "id": "R4.6",
+      "phase": "R4",
+      "title": "Accessibilità errori e continuità delle bozze",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "requirementIds": [
+        "INV-09",
+        "ING-13",
+        "UX-11",
+        "UX-12",
+        "UX-13",
+        "UX-14"
+      ],
+      "changedFiles": [
+        "src/ui/planPages.js",
+        "src/ui/uiState.js",
+        "src/ui/catalogPages.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ]
+    },
+    {
+      "id": "R5.1",
+      "phase": "R5",
+      "title": "Manifest e pilot",
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "requirementIds": [
+        "CAT-01",
+        "CAT-02",
+        "CAT-03"
+      ],
+      "changedFiles": [
+        "data/revision-v2/mediterranean/manifest.json",
+        "data/revision-v2/mediterranean/dish-briefs.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ]
+    },
+    {
+      "id": "R5.2",
+      "phase": "R5",
+      "title": "Adapter e normalizzazione delle fonti",
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "requirementIds": [
+        "INV-02",
+        "NUT-04",
+        "NUT-05",
+        "CAT-05",
+        "CAT-06",
+        "CAT-07",
+        "CAT-08"
+      ],
+      "changedFiles": [
+        "src/corpus/mediterranean/sourceAdapters.js",
+        "data/revision-v2/mediterranean/source-register.json",
+        "data/revision-v2/mediterranean/sources/crea-004000.json",
+        "data/revision-v2/mediterranean/sources/crea-004005.json",
+        "data/revision-v2/mediterranean/sources/crea-004010.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ]
+    },
+    {
+      "id": "R5.3",
+      "phase": "R5",
+      "title": "Revisione e pubblicabilità dei record",
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "requirementIds": [
+        "CAT-09",
+        "CAT-10",
+        "CAT-11",
+        "CAT-13"
+      ],
+      "changedFiles": [
+        "src/corpus/mediterranean/sourceAdapters.js",
+        "scripts/revision-v2/import-mediterranean-reviews.mjs",
+        "scripts/revision-v2/stage-mediterranean.mjs",
+        "reports/revision_v2/R5/quarantine-dispositions.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ]
+    },
+    {
+      "id": "R5.4",
+      "phase": "R5",
+      "title": "Scala piatti e copertura del planner",
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "requirementIds": [
+        "ING-02",
+        "ING-03",
+        "ING-04",
+        "ING-05",
+        "NUT-06",
+        "REC-01",
+        "REC-02",
+        "REC-03",
+        "REC-05",
+        "CAT-04",
+        "CAT-12",
+        "CAT-14",
+        "PERF-06"
+      ],
+      "changedFiles": [
+        "src/corpus/mediterranean/coverage.js",
+        "data/revision-v2/mediterranean/dish-briefs.json",
+        "reports/revision_v2/R5/coverage.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ]
+    },
+    {
+      "id": "R6.1",
+      "phase": "R6",
+      "title": "Gruppi e forme di acquisto",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "requirementIds": [
+        "INV-04",
+        "ING-07",
+        "ING-08",
+        "ING-09",
+        "ING-10",
+        "ING-11",
+        "ING-12",
+        "NUT-01",
+        "NUT-02",
+        "NUT-03",
+        "SHOP-01",
+        "SHOP-02",
+        "SHOP-03"
+      ],
+      "changedFiles": [
+        "src/services/shoppingService.js",
+        "src/ui/shoppingPages.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ]
+    },
+    {
+      "id": "R6.2",
+      "phase": "R6",
+      "title": "Checklist digest ed esportazione",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "requirementIds": [
+        "INV-07",
+        "SWAP-09",
+        "SHOP-04",
+        "SHOP-05",
+        "SHOP-06",
+        "HARD-05",
+        "HARD-07"
+      ],
+      "changedFiles": [
+        "src/services/shoppingService.js",
+        "schemas/shopping-checklist.schema.json",
+        "src/ui/shoppingPages.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ]
+    },
+    {
+      "id": "R6.3",
+      "phase": "R6",
+      "title": "Backup autosufficiente e import atomico",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "requirementIds": [
+        "INV-03",
+        "PREF-20",
+        "REC-06",
+        "MIG-01",
+        "MIG-02",
+        "MIG-03",
+        "MIG-04",
+        "MIG-05",
+        "MIG-06",
+        "MIG-07",
+        "MIG-08"
+      ],
+      "changedFiles": [
+        "src/services/backupEngine.js",
+        "src/services/portableBackup.js",
+        "src/repositories/repositoryHub.js",
+        "schemas/backup-v3.schema.json",
+        "src/ui/app.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ]
+    },
+    {
+      "id": "R6.4",
+      "phase": "R6",
+      "title": "Upgrade offline e client precedenti",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "requirementIds": [
+        "INV-01",
+        "HARD-04",
+        "OPS-01",
+        "OPS-02"
+      ],
+      "changedFiles": [
+        "src/db/database.js",
+        "src/db/constants.js",
+        "src/main.js",
+        "public/service-worker.js",
+        "src/services/offlineCatalog.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ]
+    },
+    {
+      "id": "R6.5",
+      "phase": "R6",
+      "title": "Privacy e diagnostica",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "requirementIds": [
+        "OPS-03",
+        "OPS-04",
+        "OPS-05"
+      ],
+      "changedFiles": [
+        "src/services/localDiagnostics.js",
+        "src/ui/app.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ]
+    },
+    {
+      "id": "R7.1",
+      "phase": "R7",
+      "title": "Accettazione integrata",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "74 scenari core completi, browser, catalogo R5, T64 reale completo e zero P0/P1"
+      ],
+      "requirementIds": [
+        "EXT-01",
+        "EXT-02",
+        "EXT-03",
+        "EXT-04",
+        "EXT-05",
+        "EXT-06"
+      ],
+      "changedFiles": [
+        "scripts/revision-v2/core-gate.mjs",
+        "tests/revision-v2-r6-r7.test.mjs"
+      ],
+      "evidenceIds": [
+        "EV-R7-REGRESSION"
+      ]
+    },
+    {
+      "id": "R7.2",
+      "phase": "R7",
+      "title": "Prestazioni e qualità misurate",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "74 scenari core completi, browser, catalogo R5, T64 reale completo e zero P0/P1"
+      ],
+      "requirementIds": [
+        "PERF-04"
+      ],
+      "changedFiles": [
+        "scripts/revision-v2/benchmark-r7.mjs",
+        "reports/revision_v2/R7/performance.json"
+      ],
+      "evidenceIds": [
+        "EV-R7-REGRESSION"
+      ]
+    },
+    {
+      "id": "R7.3",
+      "phase": "R7",
+      "title": "Coerenza documentale e dossier",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "74 scenari core completi, browser, catalogo R5, T64 reale completo e zero P0/P1"
+      ],
+      "requirementIds": [
+        "INV-10",
+        "DOC-01",
+        "DOC-02",
+        "DOC-03",
+        "DOC-04"
+      ],
+      "changedFiles": [
+        "specs/revision_v2/CONTRATTO_R6_R7.md",
+        "scripts/revision-v2/update-r6-r7-dossier.mjs",
+        "skills/yourdietmanager-builder/SKILL.md"
+      ],
+      "evidenceIds": [
+        "EV-R7-REGRESSION"
+      ]
+    },
+    {
+      "id": "R8.1",
+      "phase": "R8",
+      "title": "Favoriti e pasti bloccati",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale IT/EN, tastiera/touch/focus e responsive",
+        "Persistenza IndexedDB dopo reload; upgrade DB8→9 e offline; quota/concorrenza reale",
+        "Accettazione editoriale catalogo R5 e gate core R7 ancora aperti"
+      ],
+      "requirementIds": [
+        "EXT-01"
+      ],
+      "changedFiles": [
+        "src/domain/productExtensions.js",
+        "src/services/productExtensionService.js",
+        "src/ui/productExtensionPages.js",
+        "src/services/portableBackup.js",
+        "tests/revision-v2-r8.test.mjs",
+        "schemas/recipe-favorite.schema.json",
+        "schemas/calendar-day.schema.json",
+        "src/ui/catalogPages.js",
+        "src/ui/planPages.js",
+        "src/services/catalogQuery.js",
+        "src/services/effectivePlanService.js",
+        "src/planner/planGenerator.js",
+        "src/planner/softScoring.js"
+      ],
+      "evidenceIds": [
+        "EV-R8-SERVICES",
+        "EV-R8-REGRESSION"
+      ]
+    },
+    {
+      "id": "R8.2",
+      "phase": "R8",
+      "title": "Menu riutilizzabili",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale IT/EN, tastiera/touch/focus e responsive",
+        "Persistenza IndexedDB dopo reload; upgrade DB8→9 e offline; quota/concorrenza reale",
+        "Accettazione editoriale catalogo R5 e gate core R7 ancora aperti"
+      ],
+      "requirementIds": [
+        "EXT-02"
+      ],
+      "changedFiles": [
+        "src/domain/productExtensions.js",
+        "src/services/productExtensionService.js",
+        "src/ui/productExtensionPages.js",
+        "src/services/portableBackup.js",
+        "tests/revision-v2-r8.test.mjs",
+        "schemas/saved-menu.schema.json",
+        "src/services/planPreviewGuard.js",
+        "src/services/planPolicyValidation.js"
+      ],
+      "evidenceIds": [
+        "EV-R8-SERVICES",
+        "EV-R8-REGRESSION"
+      ]
+    },
+    {
+      "id": "R8.3",
+      "phase": "R8",
+      "title": "Dispensa semplice",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale IT/EN, tastiera/touch/focus e responsive",
+        "Persistenza IndexedDB dopo reload; upgrade DB8→9 e offline; quota/concorrenza reale",
+        "Accettazione editoriale catalogo R5 e gate core R7 ancora aperti"
+      ],
+      "requirementIds": [
+        "EXT-03"
+      ],
+      "changedFiles": [
+        "src/domain/productExtensions.js",
+        "src/services/productExtensionService.js",
+        "src/ui/productExtensionPages.js",
+        "src/services/portableBackup.js",
+        "tests/revision-v2-r8.test.mjs",
+        "schemas/pantry-entry.schema.json",
+        "src/services/shoppingService.js",
+        "src/ui/shoppingPages.js"
+      ],
+      "evidenceIds": [
+        "EV-R8-SERVICES",
+        "EV-R8-REGRESSION"
+      ]
+    },
+    {
+      "id": "R8.4",
+      "phase": "R8",
+      "title": "Avanzi e preparazione anticipata",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale IT/EN, tastiera/touch/focus e responsive",
+        "Persistenza IndexedDB dopo reload; upgrade DB8→9 e offline; quota/concorrenza reale",
+        "Accettazione editoriale catalogo R5 e gate core R7 ancora aperti"
+      ],
+      "requirementIds": [
+        "EXT-04"
+      ],
+      "changedFiles": [
+        "src/domain/productExtensions.js",
+        "src/services/productExtensionService.js",
+        "src/ui/productExtensionPages.js",
+        "src/services/portableBackup.js",
+        "tests/revision-v2-r8.test.mjs",
+        "schemas/production-batch.schema.json",
+        "schemas/calendar-day.schema.json",
+        "src/services/shoppingService.js",
+        "src/services/effectivePlanService.js",
+        "src/planner/frequencyPlanGenerator.js"
+      ],
+      "evidenceIds": [
+        "EV-R8-SERVICES",
+        "EV-R8-REGRESSION"
+      ]
+    },
+    {
+      "id": "R8.5",
+      "phase": "R8",
+      "title": "Stagionalità e costo",
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale IT/EN, tastiera/touch/focus e responsive",
+        "Persistenza IndexedDB dopo reload; upgrade DB8→9 e offline; quota/concorrenza reale",
+        "Accettazione editoriale catalogo R5 e gate core R7 ancora aperti"
+      ],
+      "requirementIds": [
+        "EXT-05",
+        "EXT-06"
+      ],
+      "changedFiles": [
+        "src/domain/productExtensions.js",
+        "src/services/productExtensionService.js",
+        "src/ui/productExtensionPages.js",
+        "src/services/portableBackup.js",
+        "tests/revision-v2-r8.test.mjs",
+        "schemas/seasonality-profile.schema.json",
+        "schemas/ingredient-price.schema.json",
+        "src/planner/softScoring.js",
+        "src/ui/shoppingPages.js"
+      ],
+      "evidenceIds": [
+        "EV-R8-SERVICES",
+        "EV-R8-REGRESSION"
+      ]
+    }
+  ],
+  "openCoreIssues": [
+    {
+      "id": "R01",
+      "severity": "P0",
+      "closurePhase": "R3",
+      "implementationStatus": "IMPLEMENTATO",
+      "acceptanceStatus": "IN ATTESA DI VERIFICA COMPLETA"
+    },
+    {
+      "id": "R03",
+      "severity": "P1",
+      "closurePhase": "R3",
+      "implementationStatus": "IMPLEMENTATO",
+      "acceptanceStatus": "IN ATTESA DI VERIFICA COMPLETA"
+    },
+    {
+      "id": "R04",
+      "severity": "P0",
+      "closurePhase": "R3",
+      "implementationStatus": "IMPLEMENTATO",
+      "acceptanceStatus": "IN ATTESA DI VERIFICA COMPLETA"
+    },
+    {
+      "id": "R05",
+      "severity": "P1",
+      "closurePhase": "R4",
+      "implementationStatus": "IMPLEMENTATO",
+      "acceptanceStatus": "IN ATTESA DI VERIFICA COMPLETA"
+    },
+    {
+      "id": "R06",
+      "severity": "P1",
+      "closurePhase": "R3",
+      "implementationStatus": "IMPLEMENTATO",
+      "acceptanceStatus": "IN ATTESA DI VERIFICA COMPLETA"
+    },
+    {
+      "id": "R07",
+      "severity": "P1",
+      "closurePhase": "R4",
+      "implementationStatus": "IMPLEMENTATO",
+      "acceptanceStatus": "IN ATTESA DI VERIFICA COMPLETA"
+    },
+    {
+      "id": "R08",
+      "severity": "P1",
+      "closurePhase": "R2",
+      "implementationStatus": "IMPLEMENTATO",
+      "acceptanceStatus": "IN ATTESA DI VERIFICA COMPLETA"
+    },
+    {
+      "id": "R09",
+      "severity": "P1",
+      "closurePhase": "R5",
+      "implementationStatus": "BLOCCATO",
+      "acceptanceStatus": "PILOT E REVISIONI NON COMPLETI"
+    },
+    {
+      "id": "R10",
+      "severity": "P1",
+      "closurePhase": "R5",
+      "implementationStatus": "BLOCCATO",
+      "acceptanceStatus": "PILOT E REVISIONI NON COMPLETI"
+    },
+    {
+      "id": "R11",
+      "severity": "P1",
+      "closurePhase": "R3",
+      "implementationStatus": "IMPLEMENTATO",
+      "acceptanceStatus": "IN ATTESA DI VERIFICA COMPLETA"
+    },
+    {
+      "id": "R12",
+      "severity": "P1",
+      "closurePhase": "R3",
+      "implementationStatus": "IMPLEMENTATO",
+      "acceptanceStatus": "IN ATTESA DI VERIFICA COMPLETA"
+    },
+    {
+      "id": "R13",
+      "severity": "P1",
+      "closurePhase": "R3",
+      "implementationStatus": "IMPLEMENTATO",
+      "acceptanceStatus": "IN ATTESA DI VERIFICA COMPLETA"
+    },
+    {
+      "id": "R14",
+      "severity": "P1",
+      "closurePhase": "R4",
+      "implementationStatus": "IMPLEMENTATO",
+      "acceptanceStatus": "IN ATTESA DI VERIFICA COMPLETA"
+    },
+    {
+      "id": "R15",
+      "severity": "P1",
+      "closurePhase": "R4",
+      "implementationStatus": "IMPLEMENTATO",
+      "acceptanceStatus": "IN ATTESA DI VERIFICA COMPLETA"
+    },
+    {
+      "id": "R16",
+      "severity": "P1",
+      "closurePhase": "R4",
+      "implementationStatus": "IMPLEMENTATO",
+      "acceptanceStatus": "IN ATTESA DI VERIFICA COMPLETA"
+    },
+    {
+      "id": "R17",
+      "severity": "P1",
+      "closurePhase": "R4",
+      "implementationStatus": "IMPLEMENTATO",
+      "acceptanceStatus": "IN ATTESA DI VERIFICA COMPLETA"
+    },
+    {
+      "id": "R18",
+      "severity": "P1",
+      "closurePhase": "R4",
+      "implementationStatus": "IMPLEMENTATO",
+      "acceptanceStatus": "IN ATTESA DI VERIFICA COMPLETA"
+    },
+    {
+      "id": "R19",
+      "severity": "P2",
+      "closurePhase": "R6"
+    },
+    {
+      "id": "R20",
+      "severity": "P1",
+      "closurePhase": "R4",
+      "implementationStatus": "IMPLEMENTATO",
+      "acceptanceStatus": "IN ATTESA DI VERIFICA COMPLETA"
+    },
+    {
+      "id": "R21",
+      "severity": "P1",
+      "closurePhase": "R7"
+    },
+    {
+      "id": "R22",
+      "severity": "P1",
+      "closurePhase": "R2",
+      "implementationStatus": "IMPLEMENTATO",
+      "acceptanceStatus": "IN ATTESA DI VERIFICA COMPLETA"
+    },
+    {
+      "id": "R23",
+      "severity": "P1",
+      "closurePhase": "R6"
+    },
+    {
+      "id": "R24",
+      "severity": "P1",
+      "closurePhase": "R5",
+      "implementationStatus": "BLOCCATO",
+      "acceptanceStatus": "PILOT E REVISIONI NON COMPLETI"
+    },
+    {
+      "id": "R25",
+      "severity": "P2",
+      "closurePhase": "R6"
+    },
+    {
+      "id": "R26",
+      "severity": "P1",
+      "closurePhase": "R5",
+      "implementationStatus": "BLOCCATO",
+      "acceptanceStatus": "PILOT E REVISIONI NON COMPLETI"
+    },
+    {
+      "id": "R27",
+      "severity": "P1",
+      "closurePhase": "R6"
+    }
+  ],
+  "enabledExtensions": [],
+  "nextRequiredVerification": "Checklist browser R8 T66–T70, scope browser core mancanti e pilot/scala R5 con revisioni autentiche",
+  "nextDevelopmentTask": "Eseguire accettazione browser/IndexedDB/offline R8 e completare review catalogo R5; mantenere gate R7 aperto",
+  "lastVerifiedTask": "333 test automatici PASS R0–R8; accettazione R5/R7/R8 aperta",
+  "releaseStatus": "DEVELOPMENT_ONLY_NOT_STABLE",
+  "developmentExtensions": [
+    {
+      "task": "R8.1",
+      "requirementIds": [
+        "EXT-01"
+      ],
+      "available": true,
+      "testId": "T66",
+      "acceptance": "OPEN"
+    },
+    {
+      "task": "R8.2",
+      "requirementIds": [
+        "EXT-02"
+      ],
+      "available": true,
+      "testId": "T67",
+      "acceptance": "OPEN"
+    },
+    {
+      "task": "R8.3",
+      "requirementIds": [
+        "EXT-03"
+      ],
+      "available": true,
+      "testId": "T68",
+      "acceptance": "OPEN"
+    },
+    {
+      "task": "R8.4",
+      "requirementIds": [
+        "EXT-04"
+      ],
+      "available": true,
+      "testId": "T69",
+      "acceptance": "OPEN"
+    },
+    {
+      "task": "R8.5",
+      "requirementIds": [
+        "EXT-05",
+        "EXT-06"
+      ],
+      "available": true,
+      "testId": "T70",
+      "acceptance": "OPEN",
+      "seasonalityAvailable": true,
+      "costAvailable": true
+    }
+  ],
+  "r8EntryAuthorization": {
+    "source": "User request in this conversation",
+    "text": "facciamo fase R8 con accettazione revisione catalogo ancora aperta",
+    "scope": "Implement all five R8 tasks before R7 acceptance; R5 catalog approval remains open",
+    "stablePromotionAuthorized": false
+  }
+}

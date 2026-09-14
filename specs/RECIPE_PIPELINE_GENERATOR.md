@@ -1,3 +1,5 @@
+> Contratto corrente R0/R1 — 11 settembre 2026: mini-fish-grain ammette soltanto forma ittica pronta/cotta documentata. Pipeline culinaria e titoli definitivi R2/R5. Vedere [CONTRATTO_R0_R1](revision_v2/CONTRATTO_R0_R1.md), che prevale sulle parti V1 sotto riportate per il perimetro modificato.
+
 # yourDietManager Recipe Pipeline Generator V1
 
 ## 1. Scopo

@@ -30,9 +30,9 @@ async function selectedRecipes(repo, preview) {
   return repo.getMany('recipeVersions', ids);
 }
 
-test('Phase D2 - all 600 ingredient revisions have a valid three-level product taxonomy', async () => {
+test('Phase D2/R1 - all 600 current ingredient revisions have a valid three-level product taxonomy', async () => {
   const { repo } = await fixture();
-  const revisions = await repo.getAll('ingredientRevisions');
+  const revisions = await repo.getMany('ingredientRevisions', (await repo.getAll('ingredients')).map(item => item.currentRevisionId));
   assert.equal(revisions.length, 600);
   assert.ok(revisions.every(item => item.productTaxonomy?.categoryId && item.productTaxonomy?.subcategoryId && item.productTaxonomy?.conceptId));
   const index = await loadReferenceDataIndex(repo);

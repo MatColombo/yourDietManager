@@ -107,20 +107,7 @@ function titleFor(stratumId, entries, locale) {
   }[stratumId];
   return `${prefix}: ${names.join(locale === 'it' ? ' e ' : ' and ')}`;
 }
-function instructionsFor(stratumId, entries, locale) {
-  const names = entries.map(entry => labels(entry)[locale]);
-  const joiner = locale === 'it' ? ', ' : ', ';
-  const list = names.join(joiner);
-  const noCook = ['breakfast_quick','snack_portable','cold_portable'].includes(stratumId);
-  if (locale === 'it') {
-    if (noCook) return [`Pesare gli ingredienti: ${list}.`, 'Preparare gli ingredienti secondo lo stato indicato nel catalogo.', 'Combinare, porzionare e conservare in frigorifero se non consumato subito.'];
-    if (stratumId === 'soups_stews') return [`Pesare gli ingredienti: ${list}.`, 'Cuocere gli ingredienti che lo richiedono, quindi unire in pentola.', 'Aggiungere acqua quanto basta per la consistenza e sobbollire fino a cottura completa.', 'Porzionare e raffreddare rapidamente gli avanzi.'];
-    return [`Pesare gli ingredienti: ${list}.`, 'Cuocere completamente gli ingredienti crudi che lo richiedono.', 'Unire gli ingredienti con la tecnica indicata e servire nella porzione prevista.'];
-  }
-  if (noCook) return [`Weigh the ingredients: ${list}.`, 'Prepare each ingredient according to its catalog state.', 'Combine, portion, and refrigerate if not eaten immediately.'];
-  if (stratumId === 'soups_stews') return [`Weigh the ingredients: ${list}.`, 'Cook ingredients that require cooking, then combine them in a pot.', 'Add enough water for the intended consistency and simmer until fully cooked.', 'Portion and cool leftovers promptly.'];
-  return [`Weigh the ingredients: ${list}.`, 'Cook raw ingredients fully when required.', 'Combine using the stated preparation technique and serve as one standard portion.'];
-}
+
 function practicalTags(practical) {
   const out = [];
   if ((practical.prepMinutes || 0) + (practical.cookMinutes || 0) <= 20) out.push('practical_quick');
@@ -165,8 +152,8 @@ export function generatePilotCandidates({ intake, corpus }) {
     const candidate = {
       candidateId: record.candidateId,
       i18n: {
-        it: { title: titleFor(record.stratumId, chosen, 'it'), description: `Ricetta pilota deterministica per lo strato ${record.stratumId}.`, instructions: instructionsFor(record.stratumId, chosen, 'it') },
-        en: { title: titleFor(record.stratumId, chosen, 'en'), description: `Deterministic pilot recipe for stratum ${record.stratumId}.`, instructions: instructionsFor(record.stratumId, chosen, 'en') }
+        it: { title: titleFor(record.stratumId, chosen, 'it'), description: `Ricetta pilota deterministica per lo strato ${record.stratumId}.` },
+        en: { title: titleFor(record.stratumId, chosen, 'en'), description: `Deterministic pilot recipe for stratum ${record.stratumId}.` }
       },
       mealArchetypes,
       ingredientLines: chosen.map((entry, index) => ({ ingredientId: entry.family.ingredientId, amount: template.amounts[index], unit: 'g', optional: false })),
@@ -310,8 +297,8 @@ export function generatePortableScaleCandidates({ job, intake, corpus }) {
     const candidate={
       candidateId:record.candidateId,
       i18n:{
-        it:{title:`Mini pasto: ${itNames[0]} e ${itNames[1]} con ${itNames[2]}`,description:'Mini pasto portatile generato deterministicamente da ingredienti production-ready.',instructions:[`Pesare gli ingredienti: ${itNames.join(', ')}.`,'Preparare ogni ingrediente secondo lo stato canonico del catalogo.','Combinare nella porzione prevista e conservare in frigorifero se non consumato subito.']},
-        en:{title:`Mini meal: ${enNames[0]} and ${enNames[1]} with ${enNames[2]}`,description:'Portable mini meal generated deterministically from production-ready ingredients.',instructions:[`Weigh the ingredients: ${enNames.join(', ')}.`,'Prepare each ingredient according to its canonical catalog state.','Combine as one standard portion and refrigerate if not eaten immediately.']}
+        it:{title:`Mini pasto: ${itNames[0]} e ${itNames[1]} con ${itNames[2]}`,description:'Mini pasto portatile generato deterministicamente da ingredienti production-ready.'},
+        en:{title:`Mini meal: ${enNames[0]} and ${enNames[1]} with ${enNames[2]}`,description:'Portable mini meal generated deterministically from production-ready ingredients.'}
       },
       mealArchetypes:requiredMeals,
       ingredientLines:entries.map((entry,i)=>({ingredientId:entry.family.ingredientId,amount:amounts[i],unit:'g',optional:false})),
@@ -390,19 +377,7 @@ function controlledTitle(meal, entries, locale) {
   const joiner=locale==='it'?' e ':' and '; const connector=locale==='it'?' con ':' with ';
   return `${prefixes[meal]||(locale==='it'?'Piatto':'Dish')}: ${names.slice(0,2).join(joiner)}${connector}${names[2]}`;
 }
-function controlledInstructions(entries, locale) {
-  const names=entries.map(entry=>labels(entry)[locale]).join(', ');
-  if(locale==='it') return [
-    `Pesare gli ingredienti nella quantità indicata: ${names}.`,
-    'Usare ogni ingrediente nello stato canonico indicato nel catalogo; cuocere completamente gli alimenti che non sono già cotti o pronti al consumo.',
-    'Combinare gli ingredienti nella porzione prevista e refrigerare gli avanzi o la porzione preparata se non consumata subito.'
-  ];
-  return [
-    `Weigh the ingredients in the stated amounts: ${names}.`,
-    'Use each ingredient in its canonical catalog state; fully cook any food that is not already cooked or ready to eat.',
-    'Combine the ingredients as one portion and refrigerate leftovers or the prepared portion if it is not eaten immediately.'
-  ];
-}
+
 function validateControlledScaleJob(job) {
   if(job.proteinG!=null || job.fiberG!=null) throw new Error('Controlled scale 500 generator requires unconstrained proteinG and fiberG');
   if((job.mealArchetypes||[]).length!==1) throw new Error('Controlled scale 500 generator requires exactly one mealArchetype per job');
@@ -443,8 +418,8 @@ export function generateControlledScaleCandidates({ job, intake, corpus }) {
     candidates.push({
       candidateId:record.candidateId,
       i18n:{
-        it:{title:controlledTitle(meal,chosen,'it'),description:`Ricetta ${meal} generata deterministicamente per la copertura controllata verso Scale Gate 500.`,instructions:controlledInstructions(chosen,'it')},
-        en:{title:controlledTitle(meal,chosen,'en'),description:`Deterministic ${meal} recipe generated for controlled coverage toward Scale Gate 500.`,instructions:controlledInstructions(chosen,'en')}
+        it:{title:controlledTitle(meal,chosen,'it'),description:`Ricetta ${meal} generata deterministicamente per la copertura controllata verso Scale Gate 500.`},
+        en:{title:controlledTitle(meal,chosen,'en'),description:`Deterministic ${meal} recipe generated for controlled coverage toward Scale Gate 500.`}
       },
       mealArchetypes:[meal],
       ingredientLines:chosen.map((entry,i)=>({ingredientId:entry.family.ingredientId,amount:amounts[i],unit:'g',optional:false})),

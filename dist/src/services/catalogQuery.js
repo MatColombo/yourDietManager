@@ -1,3 +1,7 @@
+import { effectiveProductTaxonomy } from '../domain/foodPresentationCorrections.js';
+import { availableCurrentRecipeIds } from './catalogAvailability.js';
+import { ingredientProjection, searchIngredientConcepts } from './ingredientConceptQuery.js';
+import { ingredientSearchFields, normalizeFoodSearch } from '../domain/ingredientPresentation.js';
 import { repositories } from '../repositories/repositoryHub.js';
 
 function normalize(value) {
@@ -17,7 +21,7 @@ function hasIndexedPositiveFilter(filters) {
 }
 function matchesProductFood(revision, termId) {
   if (!termId) return true;
-  const product = revision?.productTaxonomy;
+  const product = effectiveProductTaxonomy(revision);
   return Boolean(product && [product.categoryId, product.subcategoryId, product.conceptId].includes(termId));
 }
 
@@ -37,7 +41,7 @@ export class CatalogQueryService {
   }
 
   async installedRecipeVersionIds() {
-    return new Set((await this.installedPackState()).ids);
+    return new Set([...(await this.installedPackState()).ids, ...await this.browsableVersionIds()]);
   }
 
   async currentUserVersionIds() {
@@ -45,20 +49,25 @@ export class CatalogQueryService {
     return families.map(family => family.currentVersionId);
   }
 
-  async browsableVersionIds(packId = '') {
-    const base = await this.installedPackState(packId);
-    if (packId) return [...new Set(base.ids)];
-    const userFamilies = await this.repo.getAllByIndex('recipes', 'originAndStatus', { kind: 'only', value: ['user', 'active'] });
-    const baseIds = new Set(base.ids);
-    // When a bundled recipe is edited, its stable family ID is promoted to local
-    // management. Remove historical installed base versions of that same family
-    // so browse/search expose only the current local version.
-    for (const family of userFamilies) {
-      const history = await this.repo.getAllByIndex('recipeVersions', 'recipeId', { kind: 'only', value: family.recipeId });
-      for (const version of history) if (version.origin === 'base') baseIds.delete(version.recipeVersionId);
-    }
-    return [...new Set([...baseIds, ...userFamilies.map(family => family.currentVersionId)])];
+  async browsableVersionIds(packId = '') { return availableCurrentRecipeIds(this.repo, packId); }
+
+  async recipeSearchProjection() {
+    const token = this.repo.getChangeToken?.();
+    if (token !== undefined && this.recipeProjection?.token === token) return this.recipeProjection.rows;
+    const projection = await ingredientProjection(this.repo);
+    const versions = await this.repo.getMany('recipeVersions', await this.browsableVersionIds());
+    const revisions = new Map((await this.repo.getMany('ingredientRevisions', [...new Set(versions.flatMap(version => version.ingredientLines.map(line => line.ingredientRevisionId)))])).map(row => [row.ingredientRevisionId, row]));
+    const current = new Map(projection.items.map(item => [item.family.ingredientId, item.revision]));
+    const rows = versions.map(version => ({ version, haystack: normalizeFoodSearch([
+      ...Object.values(version.i18n).flatMap(text => [text.title, text.description]),
+      ...version.ingredientLines.flatMap(line => [...ingredientSearchFields(revisions.get(line.ingredientRevisionId), projection.index), ...ingredientSearchFields(current.get(line.ingredientId), projection.index)]),
+      ...Object.values(version.tags || {}).flat().flatMap(id => { const term = projection.index.term(id); return [term?.i18n?.it?.label, term?.i18n?.en?.label, ...(term?.aliases?.it || []), ...(term?.aliases?.en || [])]; })
+    ].join(' ')) }));
+    if (token !== undefined && token === this.repo.getChangeToken?.()) this.recipeProjection = { token, rows };
+    return rows;
   }
+
+  async searchIngredientConcepts(filters = {}) { return searchIngredientConcepts(await ingredientProjection(this.repo), filters); }
 
   async seed(filters) {
     const candidates = [];
@@ -102,7 +111,7 @@ export class CatalogQueryService {
 
   async searchRecipes(filters = {}) {
     const clean = {
-      text: filters.text || '', mealArchetype: filters.mealArchetype || '', origin: filters.origin || '', packId: filters.packId || '',
+      favoritesOnly:Boolean(filters.favoritesOnly), text: filters.text || '', mealArchetype: filters.mealArchetype || '', origin: filters.origin || '', packId: filters.packId || '',
       energyMin: filters.energyMin == null || filters.energyMin === '' ? null : Number(filters.energyMin),
       energyMax: filters.energyMax == null || filters.energyMax === '' ? null : Number(filters.energyMax),
       proteinMin: filters.proteinMin == null || filters.proteinMin === '' ? null : Number(filters.proteinMin),
@@ -113,12 +122,13 @@ export class CatalogQueryService {
     };
     const offset = Math.max(0, Number(filters.offset || 0));
     const limit = Math.min(100, Math.max(1, Number(filters.limit || 50)));
-    const onlyPackOrNoFilters = !hasIndexedPositiveFilter(clean) && clean.excludeAllergens.size === 0 && !clean.productFoodId && !clean.dietTag && !clean.practicalTag;
+    const onlyPackOrNoFilters = !clean.favoritesOnly && !hasIndexedPositiveFilter(clean) && clean.excludeAllergens.size === 0 && !clean.productFoodId && !clean.dietTag && !clean.practicalTag;
     if (onlyPackOrNoFilters) return this.fastBrowse(clean, offset, limit);
 
+    const favorites=clean.favoritesOnly?new Set((await this.repo.getAll('recipeFavorites')).map(r=>r.recipeId)):null;
     const installed = await this.installedRecipeVersionIds();
-    const packIds = clean.packId ? new Set((await this.installedPackState(clean.packId)).ids) : null;
-    let seeded = hasIndexedPositiveFilter(clean) ? await this.seed(clean) : await this.fallbackBrowsableScan(clean);
+    const packIds = clean.packId ? new Set(await this.browsableVersionIds(clean.packId)) : null;
+    let seeded = clean.favoritesOnly&&!hasIndexedPositiveFilter(clean) ? await this.repo.getMany('recipeVersions',(await this.repo.getMany('recipes',[...favorites])).map(f=>f.currentVersionId)) : clean.text ? (await this.recipeSearchProjection()).filter(row => tokens(clean.text).every(token => row.haystack.includes(token))).map(row => row.version) : hasIndexedPositiveFilter(clean) ? await this.seed(clean) : await this.fallbackBrowsableScan(clean);
     if (hasIndexedPositiveFilter(clean)) this.lastQueryDiagnostics = { strategy: 'indexed-intersection', loadedRecipeVersions: seeded.length };
     let versions = uniqueById(seeded, 'recipeVersionId');
     const families = new Map((await this.repo.getMany('recipes', [...new Set(versions.map(version => version.recipeId))])).map(record => [record.recipeId, record]));
@@ -130,6 +140,7 @@ export class CatalogQueryService {
     }
     versions = versions.filter(version => {
       const family = families.get(version.recipeId);
+      if (favorites&&!favorites.has(version.recipeId))return false;
       if (!family || family.status !== 'active' || family.currentVersionId !== version.recipeVersionId) return false;
       if (version.origin === 'base' && !installed.has(version.recipeVersionId)) return false;
       if (packIds && !packIds.has(version.recipeVersionId)) return false;
@@ -179,20 +190,12 @@ export class CatalogQueryService {
   }
 
   async listCurrentIngredients({ text = '', origin = '', foodGroup = '', productFoodId = '', state = '' } = {}) {
-    let families = origin ? await this.repo.getAllByIndex('ingredients', 'origin', { kind: 'only', value: origin }) : await this.repo.getAll('ingredients');
-    families = families.filter(record => record.status === 'active');
-    const revisions = new Map((await this.repo.getMany('ingredientRevisions', families.map(record => record.currentRevisionId))).map(record => [record.ingredientRevisionId, record]));
-    const terms = tokens(text);
-    return families.map(family => ({ family, revision: revisions.get(family.currentRevisionId) })).filter(item => {
-      if (!item.revision) return false;
-      if (foodGroup && item.revision.taxonomy.foodGroup !== foodGroup) return false;
-      if (productFoodId && !matchesProductFood(item.revision, productFoodId)) return false;
-      if (state && item.revision.basis?.state !== state) return false;
-      if (!terms.length) return true;
-      const product = item.revision.productTaxonomy || {};
-      const haystack = normalize(`${Object.values(item.revision.i18n).flatMap(value => [value.name, ...(value.aliases || [])]).join(' ')} ${product.categoryId || ''} ${product.subcategoryId || ''} ${product.conceptId || ''}`);
-      return terms.every(term => haystack.includes(term));
-    }).sort((a, b) => (a.revision.i18n.it?.name || '').localeCompare(b.revision.i18n.it?.name || ''));
+    const projection = await ingredientProjection(this.repo);
+    const terms = normalizeFoodSearch(text).split(' ').filter(Boolean);
+    return projection.items.filter(item => (!origin || item.family.origin === origin) && (!foodGroup || item.revision.taxonomy.foodGroup === foodGroup)
+      && matchesProductFood(item.revision, productFoodId) && (!state || item.revision.basis.state === state)
+      && terms.every(token => normalizeFoodSearch(ingredientSearchFields(item.revision, projection.index).join(' ')).includes(token)))
+      .sort((a, b) => (a.revision.i18n.it?.name || '').localeCompare(b.revision.i18n.it?.name || '') || a.family.ingredientId.localeCompare(b.family.ingredientId));
   }
 
   async productFoodFacetsForRecipes(recipeVersions = []) {

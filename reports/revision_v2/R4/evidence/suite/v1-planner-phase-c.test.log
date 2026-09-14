@@ -1,0 +1,20 @@
+✔ Phase C — runtime retrieval exposes the full Phase B archetype instead of truncating at 250 (7266.842534ms)
+✔ Phase C — validation profiles are non-destructive configuration overlays (2.288428ms)
+✔ Phase C — successful manual case exposes slot pipeline diagnostics, fixed servings and no persisted plan (1271.151196ms)
+✔ Phase C — hard allergen remains visible in hard-filter rejection diagnostics (1044.441831ms)
+✔ Phase C — intolerance and fiber stress presets exercise safety-hard and nutrient-soft paths (1.141733ms)
+✔ Phase C — soft MealClass avoid and frequency presets remain non-excluding scoring rules (0.537534ms)
+✔ Phase C — soft MealClass avoid changes scores without changing hard eligibility counts (2696.571716ms)
+✔ Phase C — deliberately impossible and external-unknown profiles fail with classified hard reasons (2480.152967ms)
+✔ Phase C — soft profile changes scoring without becoming a hard constraint (1427.319151ms)
+✔ Phase C — same seed and configuration produce the same plan signature (2590.728238ms)
+✔ Phase C — UI exposes the manual validation route and diagnostic actions (2.975167ms)
+✔ Phase C — browser vertical flow uses retry-safe click after asynchronous today-page rerender (1.171082ms)
+ℹ tests 12
+ℹ suites 0
+ℹ pass 12
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 18959.593271

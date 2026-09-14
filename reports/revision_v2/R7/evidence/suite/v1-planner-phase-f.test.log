@@ -1,0 +1,12 @@
+✔ Phase F — slot option keeps nutrition as a tie-break while applying preference and variety at full strength (14.789004ms)
+✔ Phase F — short-window exact recipe repetition is strongly penalized but remains soft (3.045809ms)
+✔ Phase F — quality metrics expose uniqueness and rolling repetition windows (56.35193ms)
+✔ Phase F — Planner Lab surfaces quality metrics and raw export contains them (15.535936ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 199.776617

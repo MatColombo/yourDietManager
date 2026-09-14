@@ -1,0 +1,13 @@
+{
+  "result": "PASS",
+  "ingredientFamilies": 600,
+  "totalIngredientRevisions": 1200,
+  "oldRevisionsPreserved": 600,
+  "oldRecipesPreserved": 1800,
+  "quarantinedRecipes": 28,
+  "glutenCompatibility": {
+    "compatible": 0,
+    "incompatible": 106,
+    "unknown": 1694
+  }
+}

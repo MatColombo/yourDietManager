@@ -1,0 +1,11 @@
+{
+  "phase": "R4",
+  "status": "BLOCKED",
+  "reason": "The authorized browser previously rejected the local application URL with ERR_BLOCKED_BY_CLIENT. No alternate browser/CDP or URL-policy workaround was used.",
+  "executedInThisPhase": false,
+  "viewports": [320, 375, 768, 1280, 1440],
+  "locales": ["it", "en"],
+  "requiredScenarios": ["T11", "T12", "T40", "T41", "T42", "T43", "T44", "T45", "T46", "T47", "T48", "T63", "T77", "T78", "T79"],
+  "notVerified": ["drawer within 100ms", "native modal focus and return", "touch and keyboard", "zoom/contrast/overflow", "two independent IndexedDB connections", "native transaction interruption", "reload/offline upgrade", "real Worker cancellation"],
+  "unitEvidenceIsNotBrowserAcceptance": true
+}

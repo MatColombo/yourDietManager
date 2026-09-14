@@ -1,3 +1,5 @@
+import { assertFoodPreferencesV2, assertSafetyProfileV2 } from '../domain/revisionV2Contracts.js';
+import { currentFoodGroups } from './revisionV2Service.js';
 import { repositories } from '../repositories/repositoryHub.js';
 import { DAY_ARCHETYPES, MEAL_RULE_TARGET_REGISTRY, NUTRIENT_KEYS } from '../domain/configurationRules.js';
 import { loadReferenceDataIndex, assertSemanticReferences } from './referenceDataService.js';
@@ -132,6 +134,20 @@ export function configurationDiagnostics(bundle, registry) {
     }
   }
 
+  for (const profile of bundle.foodPreferences || []) if (profile.schemaVersion === 2) {
+    const signatures = new Set();
+    for (const rule of profile.rules) {
+      const path = `foodPreferences.${profile.id}.${rule.id}`;
+      const signature = JSON.stringify([rule.target, [...(rule.scope?.mealClassIds || [])].sort(), rule.countUnit, rule.window?.days]);
+      if (signatures.has(signature)) push(path, 'Duplicate target/scope/window'); signatures.add(signature);
+      for (const id of rule.scope?.mealClassIds || []) if (!activeMealIds.has(id)) push(path, 'Meal scope must use active classes');
+      if (rule.mode !== 'frequency') continue;
+      const values = [rule.minOccurrences, rule.targetOccurrences, rule.maxOccurrences].filter(value => value !== null);
+      if (!values.length) push(path, 'Imposta almeno minimo, ideale o massimo / Set at least one value');
+      if (values.some((value, i) => i && values[i - 1] > value)) push(path, 'Minimo ≤ ideale ≤ massimo / Minimum ≤ ideal ≤ maximum');
+      if (rule.targetOccurrences !== null && !Number.isInteger(rule.targetOccurrences * 2)) push(path, 'Ideale: incrementi di 0,5 / Ideal: steps of 0.5');
+    }
+  }
   const activeCycle = (bundle.cycles || []).find(cycle => cycle.id === config.cycleId);
   if (activeCycle && activeCycle.length > 21) warnings.push({ path: `cycles.${activeCycle.id}`, message: 'Long cycles are valid but may be slower to edit manually.' });
   return { valid: errors.length === 0, errors, warnings };
@@ -143,12 +159,16 @@ export function assertConfigurationBundle(bundle, registry) {
   return result;
 }
 
-export async function saveConfigurationBundle(bundle, { repo = repositories, registry } = {}) {
+export async function saveConfigurationBundle(bundle, { repo = repositories, registry, meta = {} } = {}) {
   if (!registry) throw new Error('Schema registry is required');
   const clean = clone(bundle);
   assertConfigurationBundle(clean, registry);
   const referenceIndex = await loadReferenceDataIndex(repo);
-  assertSemanticReferences({ index: referenceIndex, configuration: clean, ingredientIds: (await repo.getAll('ingredients')).map(item => item.ingredientId) });
+  const ingredients = await repo.getAll('ingredients'); const foodGroups = await currentFoodGroups({ repo });
+  assertSemanticReferences({ index: referenceIndex, configuration: clean, ingredientIds: ingredients.map(item => item.ingredientId), foodGroups });
+  const context = { index: referenceIndex, registry, ingredients, foodGroups, mealClasses: clean.mealClasses.filter(meal => clean.appConfig.mealClassIds.includes(meal.id)) };
+  for (const profile of clean.foodPreferences) if (profile.schemaVersion === 2) assertFoodPreferencesV2(profile, context);
+  for (const profile of clean.allergyIntoleranceProfiles) if (profile.schemaVersion === 2) assertSafetyProfileV2(profile, context);
   await repo.atomicReplace({
     appConfigs: [clean.appConfig],
     nutritionProfiles: clean.nutritionProfiles || [],
@@ -158,8 +178,7 @@ export async function saveConfigurationBundle(bundle, { repo = repositories, reg
     mealClasses: clean.mealClasses || [],
     dayClasses: clean.dayClasses || [],
     cycles: clean.cycles || []
-  });
-  await repo.setMeta('configurationUpdatedAt', new Date().toISOString());
+  }, { ...meta, configurationUpdatedAt: new Date().toISOString() });
   return clean;
 }
 
@@ -190,12 +209,12 @@ export async function saveOnboardingDraft(bundle, step, { repo = repositories } 
   return draft;
 }
 
-export async function completeOnboarding(bundle, { repo = repositories, registry } = {}) {
-  const saved = await saveConfigurationBundle(bundle, { repo, registry });
-  await repo.setMeta('phase2OnboardingDraft', null);
-  await repo.setMeta('configurationOnboardingComplete', true);
-  await repo.setMeta('configurationOnboardingCompletedAt', new Date().toISOString());
-  return saved;
+export async function completeOnboarding(bundle, { repo = repositories, registry, declaration = null } = {}) {
+  return saveConfigurationBundle(bundle, { repo, registry, meta: {
+    phase2OnboardingDraft: null, configurationOnboardingComplete: true,
+    configurationOnboardingCompletedAt: new Date().toISOString(),
+    ...(declaration ? { 'profileDeclaration:R4': declaration } : {})
+  } });
 }
 
 export async function onboardingIsComplete({ repo = repositories } = {}) {

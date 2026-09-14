@@ -42,7 +42,7 @@ function reviewRecipe(recipe) {
     if(Number(recipe.practical?.cookMinutes||0)===0 && animalGroups.has(revision?.taxonomy?.foodGroup) && revision?.basis?.state==='raw') issues.push(`raw_animal_in_no_cook:${line.ingredientId}`);
   }
   const rawAnimal = (recipe.ingredientLines||[]).some(line => { const revision=revisions.get(line.ingredientRevisionId); return animalGroups.has(revision?.taxonomy?.foodGroup) && revision?.basis?.state==='raw'; });
-  if(rawAnimal && !recipe.i18n?.en?.instructions?.join(' ').toLowerCase().includes('cook')) issues.push('raw_animal_without_cook_instruction');
+  if(rawAnimal && (!recipe.practical?.cookMinutes || recipe.practicalEvidence?.status === 'unverified')) issues.push('raw_animal_preparation_unverified');
   if(!recipe.practical?.portable || Number(recipe.practical?.prepMinutes||0)>10) issues.push('not_portable_or_prep_over_10');
   return issues;
 }

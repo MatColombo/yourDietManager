@@ -1,0 +1,11 @@
+✔ R1 epoch adoption preserves existing RC data and owned browser state for additive migration (32.01951ms)
+✔ current pre-V1 epoch is idempotent and does not erase current candidate data (1.003793ms)
+✔ Planner Phase B publication is coherent: 600 ingredients, 1800 recipes and core contains the validation corpus (157.105102ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 328.912413

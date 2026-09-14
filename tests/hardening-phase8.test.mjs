@@ -35,14 +35,14 @@ function fakeStructuralDb() {
   return { db, transaction, stores };
 }
 
-test('Pass A structural schema is DB v5 and applies the new compound catalog indexes without deleting stores', () => {
-  assert.equal(DB_VERSION, 6);
-  assert.equal(CONTENT_SCHEMA_VERSION, 3);
+test('R8 structural schema is DB v9 and applies the new compound catalog indexes without deleting stores', () => {
+  assert.equal(DB_VERSION, 9);
+  assert.equal(CONTENT_SCHEMA_VERSION, 5);
   const { db, transaction, stores } = fakeStructuralDb();
   applyStructuralUpgrade(db, transaction);
   assert.ok(stores.get('recipeVersions').indexes.has('originAndCatalogVersion'));
   assert.ok(stores.get('ingredientRevisions').indexes.has('originAndCatalogVersion'));
-  assert.equal(stores.size, 22);
+  assert.equal(stores.size, 31);
   assert.ok(stores.get('taxonomyTerms').indexes.has('taxonomyAndStatus'));
 });
 
@@ -55,7 +55,7 @@ test('content migration resumes after interruption and is idempotent', async () 
   assert.equal((await repo.getMeta('contentMigration:2')).status, 'running');
   await runMigrations(repo, { referenceDataLoader });
   await runMigrations(repo, { referenceDataLoader });
-  assert.equal(await repo.getMeta('contentSchemaVersion'), 3);
+  assert.equal(await repo.getMeta('contentSchemaVersion'), 5);
   assert.equal((await repo.getMeta('contentMigration:2')).status, 'complete');
   assert.equal((await repo.getMeta('contentMigration:3')).status, 'complete');
   assert.ok((await repo.getMeta('contentMigration:2')).attempts >= 2);

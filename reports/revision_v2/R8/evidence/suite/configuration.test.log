@@ -1,0 +1,19 @@
+✔ bootstrap configuration passes Phase 2 semantic validation (70.801763ms)
+✔ nutrition semantic validation rejects inverted bounds and ambiguous enabled state (41.392079ms)
+✔ DayClass overlapping slots require parallel=true on every overlapping slot (42.737124ms)
+✔ configuration validation rejects missing cross-record references (37.910061ms)
+✔ cycle normalization creates a contiguous 1..N sequence (46.982499ms)
+✔ saveConfigurationBundle validates before atomic activation (60.060181ms)
+✔ onboarding draft persists separately and completion activates atomically (73.685052ms)
+✔ unknown quantitative MealClass target is rejected by the V1 registry (31.08266ms)
+✔ structure configuration export excludes sensitive profiles and imports over local safety settings (40.153023ms)
+✔ configuration export checksum detects tampering (43.437985ms)
+✔ cycle editor domain supports the V1 maximum of 31 contiguous days (30.345245ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 631.496565

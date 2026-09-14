@@ -1,0 +1,19 @@
+✔ R4 T45 component replacement preserves nonselected components byte for byte (1.963649ms)
+✔ R4 T11/T12 a write after final preview recheck is rejected by transaction expectations (79.601117ms)
+✔ R4 T12/T47 persistent command receipt rejects replay after undo (41.031426ms)
+✔ R4 T40/T45 replacement pagination and component selection are sealed (61.788249ms)
+✔ R4 T40 search with no matches explains bounded search, never proven infeasibility (53.314218ms)
+✔ R4 T11 stale before cannot overwrite an intervening adherence change (33.711482ms)
+✔ R5 T20 traces, absent values and numeric zeros remain different; no implicit unit conversions (0.811268ms)
+✔ R5 T54 real CREA chickpea states retain reported values and source energy definition (6.738804ms)
+✔ R5 T55 approvals are not inferred; changed source or mapping invalidates external review evidence (2.744946ms)
+✔ R5 T53 nominal quotas and pilot are explicit; planning entries do not count as published (3.903486ms)
+✔ R5 T54 USDA selects energy by semantic nutrient ID; Ciqual supports explicit extracts only (1.787844ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 473.961349

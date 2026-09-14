@@ -1,0 +1,15 @@
+✔ Pass D edits bundled recipes in-place at family level while preserving historical versions (125.029121ms)
+✔ Pass D edits bundled ingredients with a new user revision and preserves the base revision (79.828455ms)
+✔ Pass D personal catalog transfer can carry local overrides of bundled family IDs (131.691192ms)
+✔ Pass D catalog pack reinstall does not overwrite a locally edited bundled recipe family (111.639581ms)
+✔ Pass D routing normalizes trailing slashes and marks dynamic edit routes dirty-trackable (0.705608ms)
+✔ Pass D source audit keeps details independent of plan state and removes origin edit gates (3.088914ms)
+✔ Pass D deployment requires browser regression and origin labels describe provenance, not editability (2.553415ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 603.128965

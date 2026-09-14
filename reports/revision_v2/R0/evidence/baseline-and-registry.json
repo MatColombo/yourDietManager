@@ -1,0 +1,13 @@
+{
+  "result": "PASS",
+  "counts": {
+    "findings": 27,
+    "requirements": 149,
+    "phases": 9,
+    "tasks": 40,
+    "tests": 79
+  },
+  "baselineHashesVerified": true,
+  "buildSha256": "caac4ac89441b02fd07cb166d2f1683102e47e1540855986fc6161d31122a087",
+  "method": "Materialized from authoritative matrices, baseline byte hashes verified by validate-revision-v2-traceability.mjs"
+}

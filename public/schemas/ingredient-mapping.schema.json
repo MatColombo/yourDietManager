@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/ingredient-mapping.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "mappingId",
+    "version",
+    "sourceIngredientId",
+    "sourceRevisionId",
+    "targetIngredientId",
+    "targetRevisionId",
+    "productTaxonomy",
+    "status",
+    "kind",
+    "reason",
+    "sourceRef",
+    "approvedBy",
+    "approvedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "mappingId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "version": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "sourceIngredientId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceRevisionId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "targetIngredientId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "targetRevisionId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "productTaxonomy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "categoryId",
+        "subcategoryId",
+        "conceptId"
+      ],
+      "properties": {
+        "categoryId": {
+          "type": "string",
+          "pattern": "^product_category_[a-z0-9_]+$"
+        },
+        "subcategoryId": {
+          "type": "string",
+          "pattern": "^product_subcategory_[a-z0-9_]+$"
+        },
+        "conceptId": {
+          "type": "string",
+          "pattern": "^product_concept_[a-z0-9_]+$"
+        }
+      }
+    },
+    "status": {
+      "enum": [
+        "approved",
+        "unresolved"
+      ]
+    },
+    "kind": {
+      "enum": [
+        "identity",
+        "redirect"
+      ]
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sourceRef": {
+      "type": "string",
+      "minLength": 1
+    },
+    "approvedBy": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "approvedAt": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    }
+  }
+}

@@ -1,86 +1,13 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://yourdietmanager.local/schemas/allergy-intolerance-profile.schema.json",
-  "title": "AllergyIntoleranceProfile",
-  "type": "object",
-  "additionalProperties": false,
-  "required": [
-    "schemaVersion",
-    "id",
-    "rules"
-  ],
-  "properties": {
-    "schemaVersion": {
-      "const": 1
+  "title": "AllergyIntoleranceProfile (versioned reader)",
+  "oneOf": [
+    {
+      "$ref": "allergy-intolerance-profile-v1.schema.json"
     },
-    "id": {
-      "type": "string"
-    },
-    "rules": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "additionalProperties": false,
-        "required": [
-          "id",
-          "kind",
-          "targetType",
-          "targetId",
-          "enabled"
-        ],
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "kind": {
-            "enum": [
-              "allergy",
-              "intolerance"
-            ]
-          },
-          "targetType": {
-            "enum": [
-              "productFood",
-              "allergen",
-              "ingredient",
-              "foodCategory"
-            ]
-          },
-          "targetId": {
-            "type": "string"
-          },
-          "label": {
-            "type": "string"
-          },
-          "enabled": {
-            "type": "boolean"
-          },
-          "notes": {
-            "type": "string"
-          }
-        },
-        "allOf": [
-          {
-            "if": {
-              "properties": {
-                "targetType": {
-                  "const": "allergen"
-                }
-              },
-              "required": [
-                "targetType"
-              ]
-            },
-            "then": {
-              "properties": {
-                "targetId": {
-                  "$ref": "domain-enums.schema.json#/$defs/allergenId"
-                }
-              }
-            }
-          }
-        ]
-      }
+    {
+      "$ref": "allergy-intolerance-profile-v2.schema.json"
     }
-  }
+  ]
 }

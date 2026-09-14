@@ -36,11 +36,12 @@ function energyQuantiles(values, count, getter) {
   return out;
 }
 
-export function selectCandidateFrontier(scoredCandidates, { targetEnergy, limit = 20 } = {}) {
+export function selectCandidateFrontier(scoredCandidates, { targetEnergy, limit = 20, requiredMatches = [] } = {}) {
   if (scoredCandidates.length <= limit) return [...scoredCandidates];
   const bySoft = [...scoredCandidates].sort((a, b) => a.score.total - b.score.total || a.tie - b.tie || a.recipe.recipeVersionId.localeCompare(b.recipe.recipeVersionId));
   const byTarget = [...scoredCandidates].sort((a, b) => Math.abs(Number(a.recipe.calculatedNutrition?.energyKcal || 0) - targetEnergy) - Math.abs(Number(b.recipe.calculatedNutrition?.energyKcal || 0) - targetEnergy) || a.score.total - b.score.total);
   const selected = []; const seen = new Set(); const key = item => item.recipe.recipeVersionId;
+  for (const match of requiredMatches) { pushUnique(selected, seen, bySoft.filter(item => match(item.recipe)).slice(0, 1), limit, key); pushUnique(selected, seen, bySoft.filter(item => !match(item.recipe)).slice(0, 1), limit, key); }
   const softQuota = Math.max(1, Math.floor(limit * 0.4));
   const targetQuota = Math.max(1, Math.floor(limit * 0.2));
   const energyQuota = Math.max(2, limit - softQuota - targetQuota);
@@ -51,10 +52,11 @@ export function selectCandidateFrontier(scoredCandidates, { targetEnergy, limit 
   return selected;
 }
 
-function selectOptionFrontier(options, { targetEnergy, limit }) {
+function selectOptionFrontier(options, { targetEnergy, limit, signatureFor = null }) {
   const sorted = [...options].sort((a, b) => a.score - b.score || a.tie - b.tie || keyOf(a.recipes).localeCompare(keyOf(b.recipes)));
   if (sorted.length <= limit) return sorted;
   const selected = []; const seen = new Set(); const key = option => keyOf(option.recipes);
+  if (signatureFor) { const signatures = new Set(); for (const option of sorted) { const signature = signatureFor(option.recipes); if (!signatures.has(signature)) { signatures.add(signature); pushUnique(selected, seen, [option], limit, key); } } }
   const softQuota = Math.max(1, Math.floor(limit * 0.35));
   const targetQuota = Math.max(1, Math.floor(limit * 0.25));
   const energyQuota = Math.max(2, limit - softQuota - targetQuota);
@@ -66,7 +68,7 @@ function selectOptionFrontier(options, { targetEnergy, limit }) {
   return selected.sort((a, b) => a.score - b.score || a.tie - b.tie || keyOf(a.recipes).localeCompare(keyOf(b.recipes)));
 }
 
-export function buildSlotOptions(scoredCandidates, { targetEnergy, dayEnergyTarget, nutritionProfile, maxComponents = 3, optionLimit = 40, seed = 'seed' }) {
+export function buildSlotOptions(scoredCandidates, { targetEnergy, dayEnergyTarget, nutritionProfile, maxComponents = 3, optionLimit = 40, seed = 'seed', signatureFor = null }) {
   const candidates = scoredCandidates;
   let states = [{ recipes: [], score: 0 }];
   const options = [];
@@ -103,7 +105,7 @@ export function buildSlotOptions(scoredCandidates, { targetEnergy, dayEnergyTarg
     const key = keyOf(option.recipes); const current = dedup.get(key);
     if (!current || option.score < current.score) dedup.set(key, option);
   }
-  return selectOptionFrontier([...dedup.values()], { targetEnergy, limit: optionLimit });
+  return selectOptionFrontier([...dedup.values()], { targetEnergy, limit: optionLimit, signatureFor });
 }
 
 function remainingEnergyBounds(slotPlans) {
@@ -130,7 +132,7 @@ function nearestBoundedEnergy(bounds, window) {
   return { energyKcal: null, distanceKcal: null };
 }
 
-export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, nutritionProfile, beamWidth = 100, seed = 'seed' }) {
+export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, nutritionProfile, beamWidth = 100, seed = 'seed', evaluateState = null }) {
   const window = energyToleranceWindow(dayEnergyTarget, nutritionProfile.energyTolerancePct, externalEnergy);
   const bounds = remainingEnergyBounds(slotPlans);
   let beam = [{ slots: [], recipes: [], partialScore: 0, tie: 0, energyKcal: 0 }];
@@ -146,12 +148,15 @@ export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, n
       const reachableMin = energyKcal + remaining.min;
       const reachableMax = energyKcal + remaining.max;
       if (reachableMax < window.plannedMinKcal - 1e-9 || reachableMin > window.plannedMaxKcal + 1e-9) { hardPrunedStates += 1; continue; }
+      const frequency = evaluateState?.(slots, slotIndex + 1);
+      if (frequency && !frequency.valid) { hardPrunedStates += 1; continue; }
+      const frequencyPenalty = frequency?.idealPenalty || 0;
       const partialScore = state.partialScore + option.score + intraDayRepetitionPenalty(state.recipes, option.recipes);
       const key = slots.map(item => `${item.slot.id}:${item.option.recipes.map(r => r.recipeVersionId).join('+')}`).join('|');
       const optimisticTargetDistance = intervalDistance(window.plannedTargetKcal, reachableMin, reachableMax);
-      expanded.push({ slots, recipes, partialScore, tie: seededTie(seed, key), energyKcal, optimisticTargetDistance });
+      expanded.push({ slots, recipes, partialScore, frequencyPenalty, tie: seededTie(seed, key), energyKcal, optimisticTargetDistance });
     }
-    expanded.sort((a, b) => a.optimisticTargetDistance - b.optimisticTargetDistance || a.partialScore - b.partialScore || a.tie - b.tie);
+    expanded.sort((a, b) => a.optimisticTargetDistance - b.optimisticTargetDistance || (a.partialScore + (a.frequencyPenalty || 0)) - (b.partialScore + (b.frequencyPenalty || 0)) || a.tie - b.tie);
     beam = expanded.slice(0, beamWidth);
     if (!beam.length) {
       const nearest = nearestBoundedEnergy(bounds[0], window);
@@ -164,14 +169,14 @@ export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, n
     const nutrition = sumNutrition(state.recipes);
     const daily = nutritionPenalty(nutrition, nutritionProfile, { energyTarget: window.plannedTargetKcal, energyWeight: 4, nutrientTargetFactor: nutrientTargetFactor });
     const distance = energyDistanceFromWindow(nutrition.energyKcal, window);
-    return { ...state, nutrition, dailyScore: daily, score: state.partialScore + daily, energyDistanceKcal: distance };
+    return { ...state, nutrition, dailyScore: daily, score: state.partialScore + daily + (state.frequencyPenalty || 0), energyDistanceKcal: distance };
   });
   finalists.sort((a, b) => a.energyDistanceKcal - b.energyDistanceKcal || a.score - b.score || a.tie - b.tie);
   const feasible = finalists.filter(item => item.energyDistanceKcal === 0);
   feasible.sort((a, b) => a.score - b.score || a.tie - b.tie);
   const nearest = finalists[0] || null;
   return {
-    solution: feasible[0] || null,
+    solution: feasible[0] || null, solutions: feasible,
     diagnostics: {
       code: feasible.length ? 'feasible' : 'energy_window_unreachable_in_bounded_search',
       proof: feasible.length ? 'feasible_solution' : 'bounded_search',

@@ -1,0 +1,56 @@
+{
+  "phase": "R8",
+  "status": "BLOCKED",
+  "reason": "Authorized browser previously rejected the local app with ERR_BLOCKED_BY_CLIENT. No alternate browser, CDP or URL-policy workaround used.",
+  "executedInThisPhase": false,
+  "viewports": [
+    320,
+    375,
+    768,
+    1280,
+    1440
+  ],
+  "locales": [
+    "it",
+    "en"
+  ],
+  "requiredScenarios": [
+    {
+      "id": "T66",
+      "actions": "Preferito da dettaglio e filtro; reload; blocco; riequilibrio; nuova allergia e incompatibilità; sblocco",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "T67",
+      "actions": "Salva menu; scegli nuove date; anteprima senza scrittura; annulla/conferma; controllo note/aderenza; undo/redo",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "T68",
+      "actions": "Dispensa generica e forma; quantità sconosciuta; selezione esplicita; deduzione una volta; scadenza; export checklist",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "T69",
+      "actions": "Lotto di quattro porzioni assegnate a quattro pasti; acquisto una volta; frequenza quattro; residuo e conservazione non verificata; undo/redo",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "T70 stagionalità",
+      "actions": "Area scelta, mesi e fonte; verifica dichiarata; preferenza soft; cambio area e reload",
+      "status": "NOT_EXECUTED"
+    },
+    {
+      "id": "T70 costo",
+      "actions": "Prezzo documentato e datato; unità e valuta; prezzo mancante/zero/storico; totale parziale e budget",
+      "status": "NOT_EXECUTED"
+    }
+  ],
+  "additionalScopes": [
+    "T62 DB8→DB9 with two real tabs, native IndexedDB interruption/quota, reload and offline upgrade",
+    "T63 keyboard, focus/return, touch, zoom, contrast, overflow and protected form drafts",
+    "T74 offline network log with synthetic private profile",
+    "Backup v4 on another installation and undo/redo after reload"
+  ],
+  "unitEvidenceIsNotBrowserAcceptance": true
+}

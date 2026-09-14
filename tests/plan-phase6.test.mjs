@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import path from 'node:path';
 import theme from '../examples/theme-profile.example.json' with { type: 'json' };
 import { SchemaRegistry } from '../src/lib/schemaValidator.js';
-import { MemoryRepository, fileLoader } from './helpers.mjs';
+import { MemoryRepository, fileLoader, syntheticSafetyEvidence } from './helpers.mjs';
 import { createPlanPreview } from '../src/services/planGenerationService.js';
 import {
   commitGeneratedPreview, createReplacementPreview, commitReplacement, updateAdherence, createRebalancePreview, commitRebalancePreview,
@@ -12,7 +12,7 @@ import {
 
 const root = process.cwd();
 
-function revision(id, ingredientId, foodGroup, allergens = []) { return { ingredientRevisionId: id, ingredientId, taxonomy: { foodGroup, foodSubgroup: foodGroup }, allergenIds: allergens }; }
+function revision(id, ingredientId, foodGroup, allergens = []) { return { ingredientRevisionId: id, ingredientId, taxonomy: { foodGroup, foodSubgroup: foodGroup }, allergenIds: allergens, safetyEvidence: syntheticSafetyEvidence(allergens), basis: { state: 'cooked' }, source: { reference: 'synthetic-fixture' } }; }
 function recipe(id, archetype, energy, protein, { ingredient, revisionId, allergens = [], family = 'simple' } = {}) {
   return { recipeVersionId: `rv_${id}`, recipeId: `r_${id}`, mealArchetypes: [archetype], calculatedNutrition: { energyKcal: energy, proteinG: protein, carbsG: energy / 10, fatG: energy / 40, fiberG: 5 }, practical: { prepMinutes: 5, cookMinutes: 0, reheatingRequired: false, coldSuitable: true, portable: true, fridgeRequired: false, mealPrepSuitable: true }, tags: { families: [family], cuisines: ['test'], diet: [], flavor: ['savory'], practical: ['portable'] }, allergenIds: allergens, ingredientLines: [{ ingredientId: ingredient, ingredientRevisionId: revisionId, amount: 100, unit: 'g', normalizedAmount: 100, normalizedUnit: 'g', optional: false, notesKey: null }], quality: { status: 'validated' }, origin: 'base', i18n: { it: { title: id }, en: { title: id } } };
 }
@@ -45,6 +45,8 @@ async function fixture() {
   await repo.put('appConfigs', appConfig); await repo.putMany('nutritionProfiles', [nutrition]); await repo.putMany('allergyIntoleranceProfiles', [allergy]); await repo.putMany('foodPreferences', [prefs]); await repo.putMany('themeProfiles', [theme]); await repo.putMany('mealClasses', mealClasses); await repo.putMany('dayClasses', dayClasses); await repo.putMany('cycles', [cycle]);
   const revisions = [revision('rev_oats', 'ing_oats', 'grains'), revision('rev_chicken', 'ing_chicken', 'meat'), revision('rev_fish', 'ing_fish', 'fish_seafood', ['fish']), revision('rev_night', 'ing_night', 'grains')];
   const recipes = [recipe('oats', 'breakfast', 400, 20, { ingredient: 'ing_oats', revisionId: 'rev_oats', family: 'porridge' }), recipe('oats2', 'breakfast', 390, 21, { ingredient: 'ing_oats', revisionId: 'rev_oats', family: 'toast' }), recipe('chicken', 'dinner', 700, 60, { ingredient: 'ing_chicken', revisionId: 'rev_chicken', family: 'plate' }), recipe('chicken2', 'dinner', 680, 58, { ingredient: 'ing_chicken', revisionId: 'rev_chicken', family: 'bowl' }), recipe('fish', 'dinner', 700, 55, { ingredient: 'ing_fish', revisionId: 'rev_fish', allergens: ['fish'], family: 'plate' }), recipe('night', 'night_meal', 500, 30, { ingredient: 'ing_night', revisionId: 'rev_night', family: 'bowl' }), recipe('night2', 'night_meal', 480, 28, { ingredient: 'ing_night', revisionId: 'rev_night', family: 'plate' })];
+  // R3 commit recomputes frozen arithmetic; each synthetic recipe has its own consistent revision.
+  for (const rec of recipes) { const line = rec.ingredientLines[0]; const original = revisions.find(r => r.ingredientRevisionId === line.ingredientRevisionId); const rev = { ...structuredClone(original), ingredientRevisionId: `${original.ingredientRevisionId}_${rec.recipeId}`, basis: { ...original.basis, amount: 100, unit: 'g' }, nutrition: { ...rec.calculatedNutrition } }; revisions.push(rev); line.ingredientRevisionId = rev.ingredientRevisionId; }
   await repo.putMany('ingredientRevisions', revisions); for (const rec of recipes) { await repo.put('recipes', { recipeId: rec.recipeId, currentVersionId: rec.recipeVersionId, origin: 'base', status: 'active' }); await repo.put('recipeVersions', rec); }
   await repo.setMeta('activeCatalogVersion', 'test-1'); await repo.put('catalogPacks', { catalogVersion: 'test-1', packId: 'core', status: 'installed', recipeVersionIds: recipes.map(item => item.recipeVersionId) });
   return { repo, registry };
@@ -86,7 +88,7 @@ test('replacement preview excludes current recipe and hard-allergen candidates; 
   const current = breakfast.recipeComponents[0].recipeVersionId;
   const replacement = await createReplacementPreview({ planInstanceId: day.planInstanceId, calendarDayId: day.calendarDayId, mealOccurrenceId: breakfast.mealOccurrenceId, seed: 'replace-test' }, { repo, registry });
   assert.ok(replacement.candidates.length); assert.ok(replacement.candidates.every(item => item.recipe.recipeVersionId !== current)); assert.ok(replacement.candidates.every(item => !item.recipe.allergenIds.includes('fish')));
-  const selected = replacement.candidates[0].recipe.recipeVersionId; await commitReplacement({ planInstanceId: day.planInstanceId, calendarDayId: day.calendarDayId, mealOccurrenceId: breakfast.mealOccurrenceId, recipeVersionId: selected, createdAt: '2026-09-03T14:05:00Z' }, { repo, registry });
+  const selected = replacement.candidates[0].recipe.recipeVersionId; await commitReplacement({ previewId: replacement.previewId, planInstanceId: day.planInstanceId, calendarDayId: day.calendarDayId, mealOccurrenceId: breakfast.mealOccurrenceId, recipeVersionId: selected, createdAt: '2026-09-03T14:05:00Z' }, { repo, registry });
   assert.equal((await repo.get('calendarDays', day.calendarDayId)).mealSlots.find(item => item.mealOccurrenceId === breakfast.mealOccurrenceId).recipeComponents[0].recipeVersionId, selected);
   await undoPlanOperation(day.planInstanceId, { repo, registry, at: '2026-09-03T14:06:00Z' });
   assert.equal((await repo.get('calendarDays', day.calendarDayId)).mealSlots.find(item => item.mealOccurrenceId === breakfast.mealOccurrenceId).recipeComponents[0].recipeVersionId, current);

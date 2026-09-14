@@ -1,0 +1,13 @@
+✔ pre-freeze network corpus writer stays retired while the active workflow rebuilds Phase B source and Phase D validation data (9.473824ms)
+✔ first scale runner binds the specialized portable generator to focus_only planning and persists failure evidence (2.171524ms)
+✔ production execution spec keeps deterministic review bounded and non-fuzzy (2.655289ms)
+✔ pilot-strict readiness fails closed on the immutable development fixture even when public catalog is production-review (234.434328ms)
+✔ development-baseline production tests are isolated from canonical workflow mutations (6.435813ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 438.059013

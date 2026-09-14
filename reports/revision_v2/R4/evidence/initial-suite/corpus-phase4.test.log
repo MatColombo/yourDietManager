@@ -1,0 +1,38 @@
+✔ Phase 4 orchestrator schemas are addressable by runtime aliases and canonical artifacts validate (54.237909ms)
+✔ corpus scanner reproduces the smoke release snapshot quality and release gates (48.63557ms)
+✔ corpus scanner treats inputDigest drift as a nutrition/provenance quality error (35.244542ms)
+✔ orchestrator produces deterministic jobs for the same policy, snapshot, seed and goal (39.037729ms)
+✔ focused expansion turns user focus into a constraint while retaining automatic batch planning (33.740617ms)
+✔ focus_only planning freezes the first portable scale batch to generator-supported dimensions (31.138191ms)
+✔ smoke pipeline rejects an exact duplicate and a candidate outside the planned nutrition range before reaching target (27.142435ms)
+✔ published Phase 4 smoke release can be imported by the Phase 3 runtime catalog engine (113.98442ms)
+✔ catalog loader accepts immutable records introduced by an older catalog but rejects records from a future catalog (22.153712ms)
+✔ production release gate refuses development ingredient fixtures when curated high-confidence provenance is required (39.318538ms)
+✔ default V1 corpus policy remains a 3,000–5,000 production target and validates (11.299421ms)
+✔ compound coverage criteria count intersections rather than independent marginal distributions (20.377824ms)
+✔ production planner keeps compound target criteria mutually compatible and caps simultaneous targets (52.274998ms)
+✔ recipe pipeline enforces ingredient-category coverage criteria carried by the job (29.566472ms)
+✖ USDA Foundation intake stays review-only until explicit approval, then materializes schema-valid curated ingredients (11.715657ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 14
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 688.560533
+
+✖ failing tests:
+
+test at tests/corpus-phase4.test.mjs:318:1
+✖ USDA Foundation intake stays review-only until explicit approval, then materializes schema-valid curated ingredients (11.715657ms)
+  Error: ENOENT: no such file or directory, mkdtemp '/tmp/ydm-usda-S0JDpH'
+      at async mkdtemp (node:internal/fs/promises:1254:10)
+      at async TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R4_R5/tests/corpus-phase4.test.mjs:320:16)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'mkdtemp',
+    path: '/tmp/ydm-usda-S0JDpH'
+  }

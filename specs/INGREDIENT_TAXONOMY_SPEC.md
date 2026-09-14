@@ -1,3 +1,5 @@
+> Contratto corrente R0/R1 — 11 settembre 2026: Usare product_food esistente. Le forme condividono il concetto senza condividere automaticamente nutrienti/allergeni. Vedere [CONTRATTO_R0_R1](revision_v2/CONTRATTO_R0_R1.md), che prevale sulle parti V1 sotto riportate per il perimetro modificato.
+
 # Ingredient Taxonomy Spec V1
 
 ## 1. Obiettivo

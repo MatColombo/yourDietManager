@@ -82,7 +82,7 @@ test('persistent checklist tracks staleness and preserves derived user state plu
   checklist = await updateShoppingChecklistItem('shop_1', derived.itemId, { checked: true, notes: 'gia in dispensa' }, { repo, registry, updatedAt: '2026-09-03T12:01:00Z' });
   checklist = await addManualShoppingItem('shop_1', { label: 'Sacchetti freezer', quantity: 1, unit: 'box', notes: 'piccoli', itemId: 'manual_bags' }, { repo, registry, updatedAt: '2026-09-03T12:02:00Z' });
   await repo.setMeta('planUpdatedAt', '2026-09-03T13:00:00Z');
-  assert.equal((await shoppingChecklistStaleness(checklist, { repo })).stale, true);
+  assert.equal((await shoppingChecklistStaleness(checklist, { repo })).stale, false); // R6: timestamp-only changes are not material
   const recipe = await repo.get('recipeVersions', 'rv_new'); recipe.ingredientLines[0].normalizedAmount = 200; await repo.put('recipeVersions', recipe);
   const refreshed = await refreshShoppingChecklist('shop_1', { repo, registry, updatedAt: '2026-09-03T13:01:00Z' });
   const kept = refreshed.items.find(item => item.itemId === derived.itemId); assert.equal(kept.checked, true); assert.equal(kept.notes, 'gia in dispensa');

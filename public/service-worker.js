@@ -1,8 +1,8 @@
 const BASE_URL = new URL('./', self.location.href);
 const BASE_PATH = BASE_URL.pathname.endsWith('/') ? BASE_URL.pathname : `${BASE_URL.pathname}/`;
 const CACHE_SCOPE_KEY = BASE_PATH.replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '') || 'root';
-const SHELL_CACHE = `ydm-shell-v37-${CACHE_SCOPE_KEY}`;
-const DATA_CACHE = `ydm-data-v17-${CACHE_SCOPE_KEY}`;
+const SHELL_CACHE = `ydm-shell-v42-${CACHE_SCOPE_KEY}`;
+const DATA_CACHE = `ydm-data-v22-${CACHE_SCOPE_KEY}`;
 const scoped = path => new URL(String(path || '').replace(/^\/+/, ''), BASE_URL).pathname;
 const DATA_PREFIX = scoped('data/');
 const SCHEMA_PREFIX = scoped('schemas/');
@@ -10,6 +10,13 @@ const MANIFEST_PATH = scoped('data/catalog-manifest.json');
 const INDEX_PATH = scoped('index.html');
 
 const SHELL = [
+  'src/domain/productExtensions.js', 'src/services/productExtensionService.js', 'src/ui/productExtensionPages.js', 'schemas/backup-v4.schema.json', 'schemas/recipe-favorite.schema.json', 'schemas/saved-menu.schema.json', 'schemas/pantry-entry.schema.json', 'schemas/production-batch.schema.json', 'schemas/seasonality-profile.schema.json', 'schemas/ingredient-price.schema.json',
+  'src/services/portableBackup.js', 'src/services/localDiagnostics.js', 'schemas/backup-v3.schema.json',
+  'src/ui/profileStatus.js',
+  'src/domain/foodPresentationCorrections.js', 'src/services/foodPresentationMigration.js',
+  'src/planner/constraintPolicy.js', 'src/corpus/deterministicRecipeGenerator.js', 'src/corpus/v1ReleaseRecipeGenerator.js', 'src/corpus/controlledScale.js', 'src/corpus/productionCorpus.js', 'src/corpus/fdcAutoCuration.js', 'src/corpus/v1PhaseBRecipeGenerator.js', 'src/corpus/corpusOrchestrator.js', 'src/corpus/v1PhaseBRoleClassifier.js', 'src/corpus/ingredientCuration.js', 'src/corpus/corpusScanner.js', 'src/corpus/recipePipeline.js', 'src/corpus/productionRecipePipeline.js', 'src/corpus/corpusMath.js', 'src/services/localDataService.js',
+  'src/domain/frequencyCounter.js', 'src/domain/recipePresentation.js', 'src/domain/legacyRuleAdapter.js', 'src/domain/ingredientPresentation.js', 'src/domain/safetyPolicy.js', 'src/services/ingredientConceptQuery.js', 'src/services/recipePresentationMigration.js', 'src/services/plannerWorker.js', 'src/services/plannerExecution.js', 'src/services/catalogAvailability.js', 'src/services/planPolicyValidation.js', 'src/planner/frequencyPlanGenerator.js', 'src/ui/frequencySummary.js', 'src/ui/configurationRulesV2Ui.js', 'src/ui/foodGroupEditor.js',
+  'src/domain/catalogQuarantine.js', 'src/domain/safetyCompatibility.js', 'src/domain/ingredientIdentity.js', 'src/domain/ingredientConversion.js', 'src/domain/revisionV2Contracts.js', 'src/domain/productFoodTaxonomy.js', 'src/services/planPreviewGuard.js', 'src/services/ingredientModelMigration.js', 'src/services/revisionV2Service.js', 'schemas/safety-evidence.schema.json', 'schemas/food-preferences-v2.schema.json', 'schemas/production-corpus-intake.schema.json', 'schemas/ingredient-revision-v2.schema.json', 'schemas/recipe-version-v1.schema.json', 'schemas/ingredient-curation-batch.schema.json', 'schemas/allergy-intolerance-profile-v1.schema.json', 'schemas/ingredient-retirement-map.schema.json', 'schemas/production-corpus-contract.schema.json', 'schemas/ingredient-curation-policy.schema.json', 'schemas/backup-v2.schema.json', 'schemas/ingredient-conversion.schema.json', 'schemas/ingredient-curation-report.schema.json', 'schemas/ingredient-revision-v1.schema.json', 'schemas/food-group.schema.json', 'schemas/allergy-intolerance-profile-v2.schema.json', 'schemas/production-corpus-readiness-report.schema.json', 'schemas/ingredient-mapping.schema.json', 'schemas/recipe-version-v2.schema.json', 'schemas/backup-v1.schema.json', 'schemas/food-preferences-v1.schema.json', 'schemas/pilot-wave-report.schema.json',
   '', 'index.html', 'manifest.webmanifest', 'icons/icon.svg',
   'src/bootstrapVisual.js', 'src/recoveryBootstrap.js', 'src/db/constants.js', 'src/db/database.js', 'src/domain/configurationRules.js', 'src/domain/catalogEnums.js', 'src/domain/nutritionCore.js',
   'src/i18n/i18n.js', 'src/lib/appBase.js', 'src/lib/crypto.js', 'src/lib/schemaValidator.js', 'src/lib/semver.js', 'src/main.js',
@@ -25,7 +32,7 @@ const SHELL = [
 ].map(scoped);
 
 self.addEventListener('install', event => {
-  event.waitUntil(caches.open(SHELL_CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
+  event.waitUntil(caches.open(SHELL_CACHE).then(cache => cache.addAll(SHELL)));
 });
 
 self.addEventListener('activate', event => {
@@ -67,6 +74,9 @@ self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET' || url.origin !== self.location.origin) return;
   if (!url.pathname.startsWith(BASE_PATH)) return;
 
+  if (url.pathname.startsWith(SCHEMA_PREFIX) || url.pathname.startsWith(scoped('data/locales/'))) {
+    event.respondWith(caches.open(SHELL_CACHE).then(cache => cache.match(event.request)).then(response => response || Response.error())); return;
+  }
   if (url.pathname === MANIFEST_PATH) {
     event.respondWith(caches.open(DATA_CACHE).then(async cache => {
       try {
@@ -92,11 +102,11 @@ self.addEventListener('fetch', event => {
   }
 
   if (event.request.mode === 'navigate') {
-    event.respondWith(fetch(event.request).catch(() => caches.match(INDEX_PATH)));
+    event.respondWith(caches.open(SHELL_CACHE).then(cache => cache.match(INDEX_PATH)).then(response => response || Response.error()));
     return;
   }
 
-  event.respondWith(caches.match(event.request).then(async cached => {
+  event.respondWith(caches.open(SHELL_CACHE).then(cache => cache.match(event.request)).then(async cached => {
     if (cached) return cached;
     const response = await fetch(event.request);
     if (response.ok && /\.(?:js|css|svg|webmanifest)$/.test(url.pathname)) {

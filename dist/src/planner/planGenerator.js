@@ -1,3 +1,6 @@
+import { generateFrequencyPlan } from './frequencyPlanGenerator.js';
+import { frequencyRules } from '../domain/frequencyCounter.js';
+import { recipeMatchesTarget } from './recipeFeatures.js';
 import { addCivilDays, dateRange, dayEnergyTarget, sumNutrition, energyConstraintStatus, energyToleranceWindow } from './planMath.js';
 import { filterCandidates } from './hardFilter.js';
 import { scoreRecipe } from './softScoring.js';
@@ -87,7 +90,7 @@ function selectedDiagnostics(slotPlan, option) {
   });
 }
 
-export function generatePlanCore(input) {
+export function generatePlanLegacyCore(input) {
   const {
     nutritionProfile, allergyProfile, foodPreferences, mealClasses, dayClasses, cycle, recipes, ingredientRevisions,
     horizon, seed, catalogVersion, configSnapshotHash = 'pending', configSnapshot = {}, createdAt = new Date().toISOString(),
@@ -100,7 +103,7 @@ export function generatePlanCore(input) {
   const recipesByVersion = new Map((recipes || []).map(recipe => [recipe.recipeVersionId, recipe]));
   const history = historyEntries(previousCalendarDays, recipesByVersion);
   const allDates = dateRange(horizon.startDate, horizon.endDate);
-  const generatedDays = []; const dayDiagnostics = []; const failures = [];
+  const generatedDays = []; const dayDiagnostics = []; const failures = []; const alternativeDays = [];
 
   for (let dateIndex = 0; dateIndex < allDates.length; dateIndex += 1) {
     const date = allDates[dateIndex];
@@ -134,7 +137,15 @@ export function generatePlanCore(input) {
       const mealClass = meals.get(slot.mealClassId);
       if (!mealClass) { failedSlot = { slotId: slot.id, code: 'meal_class_over_constrained', detail: 'missing MealClass' }; break; }
       const targetEnergy = slotEnergyTarget(slot, mealClass, energyTarget);
-      const context = { mealClass, dayClass, allergyProfile, foodPreferences, revisionById: revisions, history, date, nutritionProfile, slotEnergyTarget: targetEnergy, dayEnergyTarget: energyTarget };
+      const context = { mealClass, dayClass, allergyProfile, foodPreferences, revisionById: revisions, safetyRevisionById: input.safetyRevisionById, foodGroups: input.foodGroups || [], extensions: input.extensions, history, date: addCivilDays(date, slot.dayOffset), nutritionProfile, slotEnergyTarget: targetEnergy, dayEnergyTarget: energyTarget };
+      const fixed = input.fixedSlots?.find(entry=>entry.date===date && entry.slot.mealOccurrenceId===stableHashId('meal',date,slot.id));
+      if(fixed) {
+        const frozen = fixed.slot.recipeComponents.map(c=>recipesByVersion.get(c.recipeVersionId));
+        const check=filterCandidates(frozen.filter(Boolean),context);rejectionMerge(rejectionCounts,check.rejectionCounts);
+        if(frozen.some(r=>!r)||check.accepted.length!==frozen.length){failedSlot={slotId:slot.id,code:'locked_meal_incompatible',rejections:check.rejectionCounts};break;}
+        const nutrition=sumNutrition(frozen);const option={recipes:frozen,nutrition,score:0,tie:0};
+        slotPlans.push({...slot,mealClass,targetEnergy,options:[option],fixedSlot:structuredClone(fixed.slot),allScored:[],scoredCandidates:[]});continue;
+      }
       const sourceCandidates = candidateSets?.[mealClass.mealArchetype] || recipes || [];
       const filtered = filterCandidates(sourceCandidates, context); rejectionMerge(rejectionCounts, filtered.rejectionCounts);
       const occurrenceId = stableHashId('meal', date, slot.id);
@@ -163,8 +174,10 @@ export function generatePlanCore(input) {
         }
         return { recipe, score, tie: seededTie(seed, `${date}|${slot.id}|${recipe.recipeVersionId}`) };
       }).sort((a, b) => a.score.total - b.score.total || a.tie - b.tie || a.recipe.recipeVersionId.localeCompare(b.recipe.recipeVersionId));
-      const scored = selectCandidateFrontier(allScored, { targetEnergy, limit: candidateLimit });
-      const options = buildSlotOptions(scored, { targetEnergy, dayEnergyTarget: energyTarget, nutritionProfile, optionLimit: slotOptionLimit, seed: `${seed}|${date}|${slot.id}` });
+      const requiredMatches = frequencyRules(foodPreferences).map(rule => recipe => recipeMatchesTarget(recipe, rule.target.type, rule.target.id, revisions, input.foodGroups));
+      const signatureFor = requiredMatches.length ? recipes => requiredMatches.map(match => recipes.some(match) ? '1' : '0').join('') : null;
+      const scored = selectCandidateFrontier(allScored, { targetEnergy, limit: candidateLimit, requiredMatches });
+      const options = buildSlotOptions(scored, { targetEnergy, dayEnergyTarget: energyTarget, nutritionProfile, maxComponents: mealClass.maxComponents ?? 3, optionLimit: slotOptionLimit, signatureFor, seed: `${seed}|${date}|${slot.id}` });
       const diagnostic = {
         slotId: slot.id, mealClassId: mealClass.id, mealArchetype: mealClass.mealArchetype, targetEnergyKcal: rounded(targetEnergy),
         sourceCandidateCount: sourceCandidates.length, acceptedCandidateCount: filtered.accepted.length, selectableCandidateCount: acceptedForSelection.length, candidateFrontierCount: scored.length, optionCount: options.length,
@@ -180,7 +193,7 @@ export function generatePlanCore(input) {
     }
     if (failedSlot) { failures.push({ date, ...failedSlot, rejectionCounts, slotDiagnostics }); break; }
 
-    const solvedResult = solveDayBeam(slotPlans, { dayEnergyTarget: energyTarget, externalEnergy, nutritionProfile, beamWidth, seed: `${seed}|${date}` });
+    const solvedResult = solveDayBeam(slotPlans, { dayEnergyTarget: energyTarget, externalEnergy, nutritionProfile, beamWidth, seed: `${seed}|${date}`, evaluateState: input.evaluateDayState ? (slots, count) => input.evaluateDayState({ date, slots, count, slotPlans }) : null });
     const solved = solvedResult.solution;
     if (!solved) {
       failures.push({
@@ -195,7 +208,7 @@ export function generatePlanCore(input) {
     const plannedOccurrences = [];
     const selectedMeals = [];
     for (const selected of solved.slots || []) {
-      plannedOccurrences.push(buildPlannedSlot(selected.slot, date, selected.option));
+      plannedOccurrences.push(selected.slot.fixedSlot ? structuredClone(selected.slot.fixedSlot) : buildPlannedSlot(selected.slot, date, selected.option));
       selectedMeals.push(...selectedDiagnostics(selected.slot, selected.option));
       const diagnostic = slotDiagnostics.find(item => item.slotId === selected.slot.id);
       if (diagnostic) { diagnostic.selectedRecipeVersionIds = selected.option.recipes.map(recipe => recipe.recipeVersionId); diagnostic.selectedEnergyKcal = rounded(selected.option.nutrition.energyKcal); }
@@ -221,6 +234,18 @@ export function generatePlanCore(input) {
       schemaVersion: 1, calendarDayId: stableHashId('calday', planId, date), planInstanceId: planId, date, cycleDay: cycleDayNumber,
       dayClassId: dayClass.id, dayArchetype: dayClass.dayArchetype, mealSlots: occurrences, status: 'planned', nutritionSummary, createdAt, updatedAt: createdAt
     };
+    if (input.daySolutionLimit) {
+      const seen = new Set();
+      for (const alternative of solvedResult.solutions || [solved]) {
+        const mealSlots = [...alternative.slots.map(item => buildPlannedSlot(item.slot, date, item.option)), ...externalSlots.map(slot => buildExternalSlot(slot, date))]
+          .sort((a, b) => a.dayOffset - b.dayOffset || a.time.localeCompare(b.time) || a.mealOccurrenceId.localeCompare(b.mealOccurrenceId));
+        const key = input.dayAlternativeKey?.(mealSlots) || mealSlots.flatMap(slot => slot.recipeComponents.map(component => component.recipeVersionId)).join('|');
+        if (seen.has(key)) continue; seen.add(key);
+        alternativeDays.push({ calendarDay: { ...structuredClone(calendarDay), mealSlots, nutritionSummary: { ...structuredClone(nutritionSummary), knownPlanned: alternative.nutrition, score: alternative.score } },
+          baseScore: alternative.score - (alternative.frequencyPenalty || 0), selectedMeals: alternative.slots.flatMap(item => selectedDiagnostics(item.slot, item.option)) });
+        if (alternativeDays.length >= input.daySolutionLimit) break;
+      }
+    }
     generatedDays.push(calendarDay);
     dayDiagnostics.push({ date, cycleDay: cycleDayNumber, dayClassId: dayClass.id, energyTarget, plannedEnergyTarget, externalEnergy, energyConstraint, selectedMeals, slotDiagnostics, rejectionCounts, score: nutritionSummary.score });
   }
@@ -239,5 +264,20 @@ export function generatePlanCore(input) {
     schemaVersion: 1, planInstanceId, generationRunId, startDate: horizon.startDate, endDate: horizon.endDate, status: 'active', createdAt, updatedAt: createdAt,
     continuationPolicy: structuredClone(continuationPolicy), previousPlanInstanceId
   };
-  return { status: 'success', generationRun, planInstance, calendarDays: generatedDays, diagnostics: generationRun.diagnostics };
+  return { status: 'success', generationRun, planInstance, calendarDays: generatedDays, diagnostics: generationRun.diagnostics, ...(input.daySolutionLimit ? { alternativeDays } : {}) };
+}
+
+export function generatePlanCore(input) {
+  try {
+    const horizon = input?.horizon;
+    if (!horizon || !/^\d{4}-\d{2}-\d{2}$/.test(horizon.startDate) || !/^\d{4}-\d{2}-\d{2}$/.test(horizon.endDate) || addCivilDays(horizon.startDate, 0) !== horizon.startDate || addCivilDays(horizon.endDate, 0) !== horizon.endDate) throw new Error('Invalid civil horizon');
+    const span = (new Date(horizon.endDate) - new Date(horizon.startDate)) / 86400000 + 1;
+    if (span < 1 || span > 90) throw new Error('Horizon must contain 1–90 days');
+    const dates = dateRange(horizon.startDate, horizon.endDate);
+    if (!dates.length || dates.length > 90) return { status: 'invalid_input', failure: { code: 'horizon_1_90' }, diagnostics: { status: 'invalid_input' } };
+    if (frequencyRules(input.foodPreferences).length) return generateFrequencyPlan(input, generatePlanLegacyCore);
+    const result = generatePlanLegacyCore(input);
+    if (result.status === 'failed') { result.status = result.failure?.code === 'external_energy_unknown' ? 'invalid_input' : 'search_exhausted'; result.diagnostics.status = result.status; }
+    return result;
+  } catch (error) { return { status: 'invalid_input', failure: { code: 'invalid_input', detail: error.message }, diagnostics: { status: 'invalid_input' } }; }
 }

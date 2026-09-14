@@ -1,0 +1,17 @@
+✔ Phase 3 bootstrap installs required packs only and keeps optional packs available (90.27752ms)
+✔ indexed recipe query combines text, numeric filters, current-version and installed-pack membership (98.790822ms)
+✔ pack uninstall hides recipes without deleting immutable versions (69.173728ms)
+✔ personal ingredient edits create immutable revisions and advance the family pointer (68.574869ms)
+✔ personal recipe nutrition and allergens are derived from frozen ingredient revisions and edits create versions (83.188275ms)
+✔ personal catalog export/import preserves user family+version records with checksum (108.970415ms)
+✔ failed catalog update leaves the previous active version untouched (47.01481ms)
+✔ all distributed Phase 3 catalog records validate, including optional packs (36.694629ms)
+✔ real Phase 2 catalog fixture upgrades to Phase 3 without mutating historical immutable records (38.520869ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 765.606468

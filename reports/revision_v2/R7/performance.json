@@ -1,0 +1,223 @@
+{
+  "schemaVersion": 1,
+  "environment": {
+    "platform": "linux",
+    "release": "6.18.35",
+    "node": "v24.19.0",
+    "logicalCpus": 0,
+    "totalMemory": 16793288704
+  },
+  "dataset": {
+    "recipes": 10000,
+    "kind": "Deterministic synthetic copies of seven planner regression recipes; NOT Mediterranean catalog acceptance",
+    "seed": "r7-benchmark-2026-09-11"
+  },
+  "importMs": 360.302783,
+  "coldSearchMs": 290.112445,
+  "warmSearch": {
+    "samples": [
+      {
+        "query": "chicken",
+        "milliseconds": 31.470172000000048,
+        "total": 2858
+      },
+      {
+        "query": "oats",
+        "milliseconds": 27.790952999999945,
+        "total": 2858
+      },
+      {
+        "query": "night",
+        "milliseconds": 30.67819899999995,
+        "total": 2856
+      },
+      {
+        "query": "SYNTHETIC_NOT_FOUND",
+        "milliseconds": 27.398736999999983,
+        "total": 0
+      },
+      {
+        "query": "chicken",
+        "milliseconds": 31.797780999999986,
+        "total": 2858
+      },
+      {
+        "query": "oats",
+        "milliseconds": 26.782916999999998,
+        "total": 2858
+      },
+      {
+        "query": "night",
+        "milliseconds": 32.75814100000002,
+        "total": 2856
+      },
+      {
+        "query": "SYNTHETIC_NOT_FOUND",
+        "milliseconds": 28.773341999999957,
+        "total": 0
+      },
+      {
+        "query": "chicken",
+        "milliseconds": 32.091233999999986,
+        "total": 2858
+      },
+      {
+        "query": "oats",
+        "milliseconds": 28.97314499999993,
+        "total": 2858
+      },
+      {
+        "query": "night",
+        "milliseconds": 27.43499900000006,
+        "total": 2856
+      },
+      {
+        "query": "SYNTHETIC_NOT_FOUND",
+        "milliseconds": 20.629228000000012,
+        "total": 0
+      },
+      {
+        "query": "chicken",
+        "milliseconds": 26.485737999999856,
+        "total": 2858
+      },
+      {
+        "query": "oats",
+        "milliseconds": 31.616672000000108,
+        "total": 2858
+      },
+      {
+        "query": "night",
+        "milliseconds": 37.130886000000146,
+        "total": 2856
+      },
+      {
+        "query": "SYNTHETIC_NOT_FOUND",
+        "milliseconds": 25.858407999999827,
+        "total": 0
+      },
+      {
+        "query": "chicken",
+        "milliseconds": 27.958988999999974,
+        "total": 2858
+      },
+      {
+        "query": "oats",
+        "milliseconds": 37.066946000000144,
+        "total": 2858
+      },
+      {
+        "query": "night",
+        "milliseconds": 26.647526000000198,
+        "total": 2856
+      },
+      {
+        "query": "SYNTHETIC_NOT_FOUND",
+        "milliseconds": 23.783116999999947,
+        "total": 0
+      }
+    ],
+    "p95": 37.066946000000144,
+    "budgetMs": 250,
+    "observed": "PASS"
+  },
+  "plans": [
+    {
+      "days": 7,
+      "budgetMs": 5000,
+      "milliseconds": 1970.8380419999999,
+      "status": "success",
+      "dayCount": 7
+    },
+    {
+      "days": 31,
+      "budgetMs": 15000,
+      "milliseconds": 3750.917188,
+      "status": "success",
+      "dayCount": 31
+    },
+    {
+      "days": 90,
+      "budgetMs": 60000,
+      "milliseconds": 14581.579853,
+      "status": "success",
+      "dayCount": 90
+    }
+  ],
+  "uiPanel": {
+    "status": "BLOCKED",
+    "budgetMs": 100
+  },
+  "alternatives": {
+    "samples": [
+      {
+        "seed": "r7-alternatives-0",
+        "milliseconds": 1143.8961510000008,
+        "status": "success",
+        "choices": 8
+      },
+      {
+        "seed": "r7-alternatives-1",
+        "milliseconds": 1159.3403550000003,
+        "status": "success",
+        "choices": 8
+      },
+      {
+        "seed": "r7-alternatives-2",
+        "milliseconds": 1149.3655929999986,
+        "status": "success",
+        "choices": 8
+      },
+      {
+        "seed": "r7-alternatives-3",
+        "milliseconds": 1145.2094919999981,
+        "status": "success",
+        "choices": 8
+      },
+      {
+        "seed": "r7-alternatives-4",
+        "milliseconds": 1123.4265209999976,
+        "status": "success",
+        "choices": 8
+      },
+      {
+        "seed": "r7-alternatives-5",
+        "milliseconds": 1225.759328,
+        "status": "success",
+        "choices": 8
+      },
+      {
+        "seed": "r7-alternatives-6",
+        "milliseconds": 1133.486668999998,
+        "status": "success",
+        "choices": 8
+      },
+      {
+        "seed": "r7-alternatives-7",
+        "milliseconds": 1129.5894689999986,
+        "status": "success",
+        "choices": 8
+      },
+      {
+        "seed": "r7-alternatives-8",
+        "milliseconds": 1133.1027949999989,
+        "status": "success",
+        "choices": 8
+      },
+      {
+        "seed": "r7-alternatives-9",
+        "milliseconds": 1117.958602000006,
+        "status": "success",
+        "choices": 8
+      }
+    ],
+    "p95": 1225.759328,
+    "budgetMs": 2000,
+    "observed": "PASS",
+    "scope": "Service only; no browser panel rendering"
+  },
+  "browserCancellation": {
+    "status": "BLOCKED"
+  },
+  "T64": "INCOMPLETE: memory repository, synthetic corpus; browser and editorial prerequisites missing"
+}

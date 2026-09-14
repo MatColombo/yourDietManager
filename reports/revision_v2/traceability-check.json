@@ -1,0 +1,12 @@
+{
+  "valid": true,
+  "errors": [],
+  "counts": {
+    "findings": 27,
+    "requirements": 149,
+    "phases": 9,
+    "tasks": 40,
+    "tests": 79
+  },
+  "buildSha256": "caac4ac89441b02fd07cb166d2f1683102e47e1540855986fc6161d31122a087"
+}

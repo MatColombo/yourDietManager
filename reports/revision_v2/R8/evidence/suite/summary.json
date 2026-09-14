@@ -1,0 +1,10 @@
+{
+  "files": 44,
+  "tests": 333,
+  "pass": 333,
+  "fail": 0,
+  "skipped": 0,
+  "cancelled": 0,
+  "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+  "scope": "Node regression, memory repositories and source contracts; not real browser/IndexedDB acceptance."
+}

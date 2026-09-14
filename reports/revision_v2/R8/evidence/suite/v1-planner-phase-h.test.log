@@ -1,0 +1,12 @@
+✔ Historical Phase H — handoff closes development while preserving the Phase G frozen content (159.729397ms)
+✔ Historical Phase H — stable promotion requires exact ACCEPT V1 and a fully passing manual report (139.689301ms)
+✔ Historical Phase H — a synthetic accepted projection passes the stable gate without changing frozen catalog content (193.749808ms)
+✔ Historical Phase H — promotion CLI is dry-run by default and does not embed an acceptance decision (1.34801ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 615.93871

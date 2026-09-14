@@ -1,3 +1,4 @@
+import { migrateIngredientModel } from './ingredientModelMigration.js';
 import { CONTENT_SCHEMA_VERSION, DB_VERSION } from '../db/constants.js';
 import { repositories } from '../repositories/repositoryHub.js';
 import { sha256Json } from '../lib/crypto.js';
@@ -201,6 +202,7 @@ async function runMigration3(repo, options = {}) {
 
 export async function runMigrations(repo = repositories, options = {}) {
   let current = (await repo.getMeta('contentSchemaVersion')) || 0;
+  if (current > CONTENT_SCHEMA_VERSION) throw new Error('Database contents require a newer app; downgrade refused');
   if (current < 1) {
     await runMigration1(repo);
     await repo.setMeta('contentSchemaVersion', 1);
@@ -216,6 +218,9 @@ export async function runMigrations(repo = repositories, options = {}) {
     await repo.setMeta('contentSchemaVersion', 3);
     current = 3;
   }
+  if (options.registry) await migrateIngredientModel({ repo, registry: options.registry, onStep: options.onIngredientStep });
+  else if (current < 4 && (await repo.count('ingredients')) > 0) throw new Error('Schema registry required to migrate ingredient data');
+  if(current < 5) await repo.atomicPut({}, {'contentMigration:5':{status:'complete',policy:'R8 additive stores; default soft weights zero; no catalog acceptance changed'},contentSchemaVersion:5});
   await repo.setMeta('dbVersion', DB_VERSION);
   await repo.setMeta('contentSchemaVersion', CONTENT_SCHEMA_VERSION);
   return { dbVersion: DB_VERSION, contentSchemaVersion: CONTENT_SCHEMA_VERSION };

@@ -1,3 +1,5 @@
+> Revisione corrente R0/R1: per i contratti modificati prevale `specs/revision_v2/CONTRATTO_R0_R1.md` (DB 7, contenuti 4, backup 2; identità e migrazione additive; sicurezza non verificata esclusa; profili V2 in staging). Le versioni e i freeze citati sotto restano riferimenti storici. Non dichiarare superati gate browser non eseguiti.
+
 # Reference data and taxonomy rules
 
 Use this reference whenever forms, filters, rules, recipe generation, ingredient generation, catalog metadata or corpus coverage depend on semantic categories.

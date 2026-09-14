@@ -1,10 +1,16 @@
-# yourDietManager — V1 Release Candidate
+# yourDietManager — sviluppo R0–R8
 
-## Current authoritative baseline — Phase H
+Versione corrente `1.1.0-dev.r8`, DB 9/31 store, contenuti 5, backup writer 4/reader 1–4. Catalogo distribuito invariato `1.2.0-planner-phase-d`.
 
-The current candidate is **`1.0.0-rc.34`** on catalog **`1.2.0-planner-phase-d`**. Phase G remains the immutable product/data freeze: **600 ingredients / 1,800 fixed-serving recipes**, DB v6, content schema v3, backup format v1, product-food taxonomy on all ingredients, Phase F planner quality policy and PWA shell/data caches **v37/v17**. Phase H closes the development tranche with a fail-closed final release handoff over that exact freeze.
+Leggere [LEGGIMI_R8.md](LEGGIMI_R8.md), [contratto attivo](specs/revision_v2/CONTRATTO_R8.md), [matrice revisione → sviluppo](specs/revision_v2/MATRICE_R8.md), [stato](reports/revision_v2/STATE.json) e [rapporto R8](reports/revision_v2/R8/REPORT.md).
 
-Use `V1_PLANNER_VALIDATION_PLAN.md`, `V1_PLANNER_PHASE_H_REPORT.md`, `V1_PLANNER_PHASE_G_REPORT.md` and `V1_FREEZE_CONTRACT.md` as the current release authority. Earlier rc.24/500-recipe/production-corpus sections below are implementation history only. Stable `v1.0.0` remains blocked until an eligible manual acceptance report is paired with the exact explicit decision `ACCEPT V1`; Phase H never converts development completion into acceptance.
+R8 è implementata su autorizzazione dell'utente a procedere con accettazione catalogo ancora aperta. Favoriti/blocchi, menu, dispensa, lotti, stagionalità e costi sono disponibili nella build di sviluppo. R5/R7 e accettazione browser restano aperti; nessuna promozione stable.
+
+Avvio con Node 24: `npm run dev`. Build: `npm run build`. Le sezioni successive documentano la baseline storica e non prevalgono sul contratto R8.
+
+## Baseline storica H
+
+`1.0.0-rc.34`, 600 ingredienti e 1.800 ricette, DB 6/contenuti 3/backup 1. Gli originali della review e le impronte sono in `specs/revision_v2/baseline/`. Le precedenti sezioni e i report A–H documentano quella linea: non costituiscono accettazione di R0/R1.
 
 ## rc.24 browser schema mirror hardening
 

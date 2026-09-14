@@ -1,0 +1,123 @@
+✔ Pass C standard bootstrap is neutral, complete and schema-valid (62.998358ms)
+✔ Pass C bootstrap upgrades only untouched legacy defaults and preserves explicit user configuration (63.036835ms)
+✔ Pass C editable-route registry and dirty confirmation use one global navigation rule (0.828571ms)
+✖ Pass C source audit centralizes disclosure state, guarded navigation, feedback and DayClass capabilities (7.478778ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 3
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 250.12622
+
+✖ failing tests:
+
+test at tests/data-ux-pass-c.test.mjs:78:1
+✖ Pass C source audit centralizes disclosure state, guarded navigation, feedback and DayClass capabilities (7.478778ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /ydm-shell-v41/. Input:
+  
+  "const BASE_URL = new URL('./', self.location.href);\n" +
+    "const BASE_PATH = BASE_URL.pathname.endsWith('/') ? BASE_URL.pathname : `${BASE_URL.pathname}/`;\n" +
+    "const CACHE_SCOPE_KEY = BASE_PATH.replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '') || 'root';\n" +
+    'const SHELL_CACHE = `ydm-shell-v42-${CACHE_SCOPE_KEY}`;\n' +
+    'const DATA_CACHE = `ydm-data-v22-${CACHE_SCOPE_KEY}`;\n' +
+    "const scoped = path => new URL(String(path || '').replace(/^\\/+/, ''), BASE_URL).pathname;\n" +
+    "const DATA_PREFIX = scoped('data/');\n" +
+    "const SCHEMA_PREFIX = scoped('schemas/');\n" +
+    "const MANIFEST_PATH = scoped('data/catalog-manifest.json');\n" +
+    "const INDEX_PATH = scoped('index.html');\n" +
+    '\n' +
+    'const SHELL = [\n' +
+    "  'src/domain/productExtensions.js', 'src/services/productExtensionService.js', 'src/ui/productExtensionPages.js', 'schemas/backup-v4.schema.json', 'schemas/recipe-favorite.schema.json', 'schemas/saved-menu.schema.json', 'schemas/pantry-entry.schema.json', 'schemas/production-batch.schema.json', 'schemas/seasonality-profile.schema.json', 'schemas/ingredient-price.schema.json',\n" +
+    "  'src/services/portableBackup.js', 'src/services/localDiagnostics.js', 'schemas/backup-v3.schema.json',\n" +
+    "  'src/ui/profileStatus.js',\n" +
+    "  'src/domain/foodPresentationCorrections.js', 'src/services/foodPresentationMigration.js',\n" +
+    "  'src/planner/constraintPolicy.js', 'src/corpus/deterministicRecipeGenerator.js', 'src/corpus/v1ReleaseRecipeGenerator.js', 'src/corpus/controlledScale.js', 'src/corpus/productionCorpus.js', 'src/corpus/fdcAutoCuration.js', 'src/corpus/v1PhaseBRecipeGenerator.js', 'src/corpus/corpusOrchestrator.js', 'src/corpus/v1PhaseBRoleClassifier.js', 'src/corpus/ingredientCuration.js', 'src/corpus/corpusScanner.js', 'src/corpus/recipePipeline.js', 'src/corpus/productionRecipePipeline.js', 'src/corpus/corpusMath.js', 'src/services/localDataService.js',\n" +
+    "  'src/domain/frequencyCounter.js', 'src/domain/recipePresentation.js', 'src/domain/legacyRuleAdapter.js', 'src/domain/ingredientPresentation.js', 'src/domain/safetyPolicy.js', 'src/services/ingredientConceptQuery.js', 'src/services/recipePresentationMigration.js', 'src/services/plannerWorker.js', 'src/services/plannerExecution.js', 'src/services/catalogAvailability.js', 'src/services/planPolicyValidation.js', 'src/planner/frequencyPlanGenerator.js', 'src/ui/frequencySummary.js', 'src/ui/configurationRulesV2Ui.js', 'src/ui/foodGroupEditor.js',\n" +
+    "  'src/domain/catalogQuarantine.js', 'src/domain/safetyCompatibility.js', 'src/domain/ingredientIdentity.js', 'src/domain/ingredientConversion.js', 'src/domain/revisionV2Contracts.js', 'src/domain/productFoodTaxonomy.js', 'src/services/planPreviewGuard.js', 'src/services/ingredientModelMigration.js', 'src/services/revisionV2Service.js', 'schemas/safety-evidence.schema.json', 'schemas/food-preferences-v2.schema.json', 'schemas/production-corpus-intake.schema.json', 'schemas/ingredient-revision-v2.schema.json', 'schemas/recipe-version-v1.schema.json', 'schemas/ingredient-curation-batch.schema.json', 'schemas/allergy-intolerance-profile-v1.schema.json', 'schemas/ingredient-retirement-map.schema.json', 'schemas/production-corpus-contract.schema.json', 'schemas/ingredient-curation-policy.schema.json', 'schemas/backup-v2.schema.json', 'schemas/ingredient-conversion.schema.json', 'schemas/ingredient-curation-report.schema.json', 'schemas/ingredient-revision-v1.schema.json', 'schemas/food-group.schema.json', 'schemas/allergy-intolerance-profile-v2.schema.json', 'schemas/production-corpus-readiness-report.schema.json', 'schemas/ingredient-mapping.schema.json', 'schemas/recipe-version-v2.schema.json', 'schemas/backup-v1.schema.json', 'schemas/food-preferences-v1.schema.json', 'schemas/pilot-wave-report.schema.json',\n" +
+    "  '', 'index.html', 'manifest.webmanifest', 'icons/icon.svg',\n" +
+    "  'src/bootstrapVisual.js', 'src/recoveryBootstrap.js', 'src/db/constants.js', 'src/db/database.js', 'src/domain/configurationRules.js', 'src/domain/catalogEnums.js', 'src/domain/nutritionCore.js',\n" +
+    "  'src/i18n/i18n.js', 'src/lib/appBase.js', 'src/lib/crypto.js', 'src/lib/schemaValidator.js', 'src/lib/semver.js', 'src/main.js',\n" +
+    "  'src/repositories/domainRepositories.js', 'src/repositories/repositoryHub.js',\n" +
+    "  'src/services/backupEngine.js', 'src/services/preV1DataEpoch.js', 'src/services/catalogDataSource.js', 'src/services/catalogImporter.js', 'src/services/catalogUpdater.js', 'src/services/catalogQuery.js',\n" +
+    "  'src/services/configurationBootstrap.js', 'src/services/configurationService.js', 'src/services/configurationTransfer.js', 'src/services/customCatalogTransfer.js', 'src/services/migrationRunner.js', 'src/services/personalCatalogService.js',\n" +
+    "  'src/services/manualAcceptanceService.js', 'src/services/planCandidateService.js', 'src/services/planGenerationService.js', 'src/services/plannerValidationService.js', 'src/services/effectivePlanService.js', 'src/services/operationHistoryService.js', 'src/services/shoppingService.js',\n" +
+    "  'src/services/offlineCatalog.js', 'src/services/recipeHumanReviewService.js', 'src/services/storageMetrics.js', 'src/services/referenceDataService.js', 'src/services/referenceDataProposalService.js', 'src/services/referenceDataEditorService.js',\n" +
+    "  'src/planner/seededRandom.js', 'src/planner/planMath.js', 'src/planner/recipeFeatures.js', 'src/planner/hardFilter.js', 'src/planner/qualityPolicy.js', 'src/planner/qualityMetrics.js', 'src/planner/softScoring.js', 'src/planner/beamSolver.js', 'src/planner/planGenerator.js', 'src/planner/validationProfiles.js',\n" +
+    "  'src/styles.css', 'src/theme/themeEngine.js', 'src/ui/app.js', 'src/ui/manualAcceptancePage.js', 'src/ui/catalogPages.js', 'src/ui/configurationPages.js', 'src/ui/referenceDataPages.js', 'src/ui/guidedControls.js', 'src/ui/planPages.js', 'src/ui/plannerValidationPage.js', 'src/ui/shoppingPages.js', 'src/ui/dom.js', 'src/ui/router.js', 'src/ui/uiState.js',\n" +
+    "  'schemas/allergy-intolerance-profile.schema.json', 'schemas/app-config.schema.json', 'schemas/catalog-publication.schema.json', 'schemas/production-review-publication.schema.json', 'schemas/recipe-human-review.schema.json', 'schemas/recipe-human-review-bundle.schema.json', 'schemas/backup.schema.json', 'schemas/calendar-day.schema.json', 'schemas/catalog-manifest.schema.json', 'schemas/catalog-pack.schema.json', 'schemas/cycle.schema.json', 'schemas/day-class.schema.json', 'schemas/domain-enums.schema.json', 'schemas/food-preferences.schema.json', 'schemas/generation-run.schema.json', 'schemas/ingredient-revision.schema.json', 'schemas/ingredient.schema.json', 'schemas/meal-class.schema.json', 'schemas/nutrition-profile.schema.json', 'schemas/operation.schema.json', 'schemas/plan-instance.schema.json', 'schemas/recipe-corpus-orchestration-run.schema.json', 'schemas/recipe-corpus-policy.schema.json', 'schemas/recipe-corpus-snapshot.schema.json', 'schemas/recipe-generation-job.schema.json', 'schemas/recipe-version.schema.json', 'schemas/recipe.schema.json', 'schemas/shopping-checklist.schema.json', 'schemas/taxonomy.schema.json', 'schemas/taxonomy-term.schema.json', 'schemas/reference-data-proposal.schema.json', 'schemas/production-recipe-pipeline-policy.schema.json', 'schemas/production-recipe-batch-report.schema.json', 'schemas/production-recipe-review-decisions.schema.json', 'schemas/production-scale-gate-report.schema.json', 'schemas/controlled-scale-plan.schema.json', 'schemas/theme-profile.schema.json',\n" +
+    "  'data/locales/it.json', 'data/locales/en.json', 'data/catalog-manifest.json', 'data/reference-data/taxonomies-0001.json', 'data/reference-data/taxonomy-terms-0001.json'\n" +
+    '].map(scoped);\n' +
+    '\n' +
+    "self.addEventListener('install', event => {\n" +
+    '  event.waitUntil(caches.open(SHELL_CACHE).then(cache => cache.addAll(SHELL)));\n' +
+    '});\n' +
+    '\n' +
+    "self.addEventListener('activate', event => {\n" +
+    '  event.waitUntil(Promise.all([\n' +
+    '    self.clients.claim(),\n' +
+    '    caches.keys().then(keys => {\n' +
+    "      const legacy = new Set(['ydm-shell-v9', 'ydm-data-v5']);\n" +
+    '      return Promise.all(keys.filter(key => (legacy.has(key) || key.endsWith(`-${CACHE_SCOPE_KEY}`)) && ![SHELL_CACHE, DATA_CACHE].includes(key)).map(key => caches.delete(key)));\n' +
+    '    })\n' +
+    '  ]));\n' +
+    '});\n' +
+    '\n' +
+    "self.addEventListener('message', event => {\n" +
+    "  if (event.data?.type !== 'YDM_CACHE_URLS') return;\n" +
+    "  const urls = [...new Set((event.data.urls || []).filter(value => typeof value === 'string'))];\n" +
+    '  event.waitUntil((async () => {\n' +
+    '    const cache = await caches.open(DATA_CACHE);\n' +
+    '    let count = 0;\n' +
+    '    const failed = [];\n' +
+    '    for (const raw of urls) {\n' +
+    '      const url = new URL(raw, self.location.origin);\n' +
+    '      const allowed = url.pathname.startsWith(DATA_PREFIX) || url.pathname.startsWith(SCHEMA_PREFIX);\n' +
+    '      if (url.origin !== self.location.origin || !allowed) { failed.push(raw); continue; }\n' +
+    '      try {\n' +
+    '        const existing = await cache.match(url.href);\n' +
+    '        if (existing) { count += 1; continue; }\n' +
+    "        const response = await fetch(url.href, { cache: 'no-cache' });\n" +
+    '        if (!response.ok) { failed.push(raw); continue; }\n' +
+    '        await cache.put(url.href, response.clone());\n' +
+    '        count += 1;\n' +
+    '      } catch { failed.push(raw); }\n' +
+    '    }\n' +
+    '    event.ports?.[0]?.postMessage({ cached: failed.length === 0, count, failed });\n' +
+    '  })());\n' +
+    '});\n' +
+    '\n' +
+    "self.addEventListener('fetch', event => {\n" +
+    '  const url = new URL(event.request.url);\n' +
+    "  if (event.request.method !== 'GET' || url.origin !== self.location.origin) return;\n" +
+    '  if (!url.pathname.startsWith(BASE_PATH)) return;\n' +
+    '\n' +
+    "  if (url.pathname.startsWith(SCHEMA_PREFIX) || url.pathname.startsWith(scoped('data/locales/'))) {\n" +
+    '    event.respondWith(caches.open(SHELL_CACHE).then(cache => cache.match(event.request)).then(response => response || Response.error())); return;\n' +
+    '  }\n' +
+    '  if (url.pathname === MANIFEST_PATH) {\n' +
+    '    event.respondWith(caches.open(DATA_CACHE).then(async cache => {\n' +
+    '      try {\n' +
+    '        const response = await fetch(event.request);\n' +
+    '        if (response.ok) await cache.put(event.request, response.clone());\n' +
+    '        return response;\n' +
+    '      } catch {\n' +
+    '        return (await cache.match(event.request)) || Response.error();\n' +
+    '      }\n' +
+    '    }));\n' +
+    '    return;\n' +
+    '  }\n' +
+    '\n' +
+    '  if (url.pathname.startsWith'... 996 more characters
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/tests/data-ux-pass-c.test.mjs:102:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: "const BASE_URL = new URL('./', self.location.href);\nconst BASE_PATH = BASE_URL.pathname.endsWith('/') ? BASE_URL.pathname : `${BASE_URL.pathname}/`;\nconst CACHE_SCOPE_KEY = BASE_PATH.replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '') || 'root';\nconst SHELL_CACHE = `ydm-shell-v42-${CACHE_SCOPE_KEY}`;\nconst DATA_CACHE = `ydm-data-v22-${CACHE_SCOPE_KEY}`;\nconst scoped = path => new URL(String(path || '').replace(/^\\/+/, ''), BASE_URL).pathname;\nconst DATA_PREFIX = scoped('data/');\nconst SCHEMA_PREFIX = scoped('schemas/');\nconst MANIFEST_PATH = scoped('data/catalog-manifest.json');\nconst INDEX_PATH = scoped('index.html');\n\nconst SHELL = [\n  'src/domain/productExtensions.js', 'src/services/productExtensionService.js', 'src/ui/productExtensionPages.js', 'schemas/backup-v4.schema.json', 'schemas/recipe-favorite.schema.json', 'schemas/saved-menu.schema.json', 'schemas/pantry-entry.schema.json', 'schemas/production-batch.schema.json', 'schemas/seasonality-profile.schema.json', 'schemas/ingredient-price.schema.json',\n  'src/services/portableBackup.js', 'src/services/localDiagnostics.js', 'schemas/backup-v3.schema.json',\n  'src/ui/profileStatus.js',\n  'src/domain/foodPresentationCorrections.js', 'src/services/foodPresentationMigration.js',\n  'src/planner/constraintPolicy.js', 'src/corpus/deterministicRecipeGenerator.js', 'src/corpus/v1ReleaseRecipeGenerator.js', 'src/corpus/controlledScale.js', 'src/corpus/productionCorpus.js', 'src/corpus/fdcAutoCuration.js', 'src/corpus/v1PhaseBRecipeGenerator.js', 'src/corpus/corpusOrchestrator.js', 'src/corpus/v1PhaseBRoleClassifier.js', 'src/corpus/ingredientCuration.js', 'src/corpus/corpusScanner.js', 'src/corpus/recipePipeline.js', 'src/corpus/productionRecipePipeline.js', 'src/corpus/corpusMath.js', 'src/services/localDataService.js',\n  'src/domain/frequencyCounter.js', 'src/domain/recipePresentation.js', 'src/domain/legacyRuleAdapter.js', 'src/domain/ingredientPresentation.js', 'src/domain/safetyPolicy.js', 'src/services/ingredientConceptQuery.js', 'src/services/recipePresentationMigration.js', 'src/services/plannerWorker.js', 'src/services/plannerExecution.js', 'src/services/catalogAvailability.js', 'src/services/planPolicyValidation.js', 'src/planner/frequencyPlanGenerator.js', 'src/ui/frequencySummary.js', 'src/ui/configurationRulesV2Ui.js', 'src/ui/foodGroupEditor.js',\n  'src/domain/catalogQuarantine.js', 'src/domain/safetyCompatibility.js', 'src/domain/ingredientIdentity.js', 'src/domain/ingredientConversion.js', 'src/domain/revisionV2Contracts.js', 'src/domain/productFoodTaxonomy.js', 'src/services/planPreviewGuard.js', 'src/services/ingredientModelMigration.js', 'src/services/revisionV2Service.js', 'schemas/safety-evidence.schema.json', 'schemas/food-preferences-v2.schema.json', 'schemas/production-corpus-intake.schema.json', 'schemas/ingredient-revision-v2.schema.json', 'schemas/recipe-version-v1.schema.json', 'schemas/ingredient-curation-batch.schema.json', 'schemas/allergy-intolerance-profile-v1.schema.json', 'schemas/ingredient-retirement-map.schema.json', 'schemas/production-corpus-contract.schema.json', 'schemas/ingredient-curation-policy.schema.json', 'schemas/backup-v2.schema.json', 'schemas/ingredient-conversion.schema.json', 'schemas/ingredient-curation-report.schema.json', 'schemas/ingredient-revision-v1.schema.json', 'schemas/food-group.schema.json', 'schemas/allergy-intolerance-profile-v2.schema.json', 'schemas/production-corpus-readiness-report.schema.json', 'schemas/ingredient-mapping.schema.json', 'schemas/recipe-version-v2.schema.json', 'schemas/backup-v1.schema.json', 'schemas/food-preferences-v1.schema.json', 'schemas/pilot-wave-report.schema.json',\n  '', 'index.html', 'manifest.webmanifest', 'icons/icon.svg',\n  'src/bootstrapVisual.js', 'src/recoveryBootstrap.js', 'src/db/constants.js', 'src/db/database.js', 'src/domain/configurationRules.js', 'src/domain/catalogEnums.js', 'src/domain/nutritionCore.js',\n  'src/i18n/i18n.js', 'src/lib/appBase.js', 'src/lib/crypto.js', 'src/lib/schemaValidator.js', 'src/lib/semver.js', 'src/main.js',\n  'src/repositories/domainRepositories.js', 'src/repositories/repositoryHub.js',\n  'src/services/backupEngine.js', 'src/services/preV1DataEpoch.js', 'src/services/catalogDataSource.js', 'src/services/catalogImporter.js', 'src/services/catalogUpdater.js', 'src/services/catalogQuery.js',\n  'src/services/configurationBootstrap.js', 'src/services/configurationService.js', 'src/services/configurationTransfer.js', 'src/services/customCatalogTransfer.js', 'src/services/migrationRunner.js', 'src/services/personalCatalogService.js',\n  'src/services/manualAcceptanceService.js', 'src/services/planCandidateService.js', 'src/services/planGenerationService.js', 'src/services/plannerValidationService.js', 'src/services/effectivePlanService.js', 'src/services/operationHistoryService.js', 'src/services/shoppingService.js',\n  'src/services/offlineCatalog.js', 'src/services/recipeHumanReviewService.js', 'src/services/storageMetrics.js', 'src/services/referenceDataService.js', 'src/services/referenceDataProposalService.js', 'src/services/referenceDataEditorService.js',\n  'src/planner/seededRandom.js', 'src/planner/planMath.js', 'src/planner/recipeFeatures.js', 'src/planner/hardFilter.js', 'src/planner/qualityPolicy.js', 'src/planner/qualityMetrics.js', 'src/planner/softScoring.js', 'src/planner/beamSolver.js', 'src/planner/planGenerator.js', 'src/planner/validationProfiles.js',\n  'src/styles.css', 'src/theme/themeEngine.js', 'src/ui/app.js', 'src/ui/manualAcceptancePage.js', 'src/ui/catalogPages.js', 'src/ui/configurationPages.js', 'src/ui/referenceDataPages.js', 'src/ui/guidedControls.js', 'src/ui/planPages.js', 'src/ui/plannerValidationPage.js', 'src/ui/shoppingPages.js', 'src/ui/dom.js', 'src/ui/router.js', 'src/ui/uiState.js',\n  'schemas/allergy-intolerance-profile.schema.json', 'schemas/app-config.schema.json', 'schemas/catalog-publication.schema.json', 'schemas/production-review-publication.schema.json', 'schemas/recipe-human-review.schema.json', 'schemas/recipe-human-review-bundle.schema.json', 'schemas/backup.schema.json', 'schemas/calendar-day.schema.json', 'schemas/catalog-manifest.schema.json', 'schemas/catalog-pack.schema.json', 'schemas/cycle.schema.json', 'schemas/day-class.schema.json', 'schemas/domain-enums.schema.json', 'schemas/food-preferences.schema.json', 'schemas/generation-run.schema.json', 'schemas/ingredient-revision.schema.json', 'schemas/ingredient.schema.json', 'schemas/meal-class.schema.json', 'schemas/nutrition-profile.schema.json', 'schemas/operation.schema.json', 'schemas/plan-instance.schema.json', 'schemas/recipe-corpus-orchestration-run.schema.json', 'schemas/recipe-corpus-policy.schema.json', 'schemas/recipe-corpus-snapshot.schema.json', 'schemas/recipe-generation-job.schema.json', 'schemas/recipe-version.schema.json', 'schemas/recipe.schema.json', 'schemas/shopping-checklist.schema.json', 'schemas/taxonomy.schema.json', 'schemas/taxonomy-term.schema.json', 'schemas/reference-data-proposal.schema.json', 'schemas/production-recipe-pipeline-policy.schema.json', 'schemas/production-recipe-batch-report.schema.json', 'schemas/production-recipe-review-decisions.schema.json', 'schemas/production-scale-gate-report.schema.json', 'schemas/controlled-scale-plan.schema.json', 'schemas/theme-profile.schema.json',\n  'data/locales/it.json', 'data/locales/en.json', 'data/catalog-manifest.json', 'data/reference-data/taxonomies-0001.json', 'data/reference-data/taxonomy-terms-0001.json'\n].map(scoped);\n\nself.addEventListener('install', event => {\n  event.waitUntil(caches.open(SHELL_CACHE).then(cache => cache.addAll(SHELL)));\n});\n\nself.addEventListener('activate', event => {\n  event.waitUntil(Promise.all([\n    self.clients.claim(),\n    caches.keys().then(keys => {\n      const legacy = new Set(['ydm-shell-v9', 'ydm-data-v5']);\n      return Promise.all(keys.filter(key => (legacy.has(key) || key.endsWith(`-${CACHE_SCOPE_KEY}`)) && ![SHELL_CACHE, DATA_CACHE].includes(key)).map(key => caches.delete(key)));\n    })\n  ]));\n});\n\nself.addEventListener('message', event => {\n  if (event.data?.type !== 'YDM_CACHE_URLS') return;\n  const urls = [...new Set((event.data.urls || []).filter(value => typeof value === 'string'))];\n  event.waitUntil((async () => {\n    const cache = await caches.open(DATA_CACHE);\n    let count = 0;\n    const failed = [];\n    for (const raw of urls) {\n      const url = new URL(raw, self.location.origin);\n      const allowed = url.pathname.startsWith(DATA_PREFIX) || url.pathname.startsWith(SCHEMA_PREFIX);\n      if (url.origin !== self.location.origin || !allowed) { failed.push(raw); continue; }\n      try {\n        const existing = await cache.match(url.href);\n        if (existing) { count += 1; continue; }\n        const response = await fetch(url.href, { cache: 'no-cache' });\n        if (!response.ok) { failed.push(raw); continue; }\n        await cache.put(url.href, response.clone());\n        count += 1;\n      } catch { failed.push(raw); }\n    }\n    event.ports?.[0]?.postMessage({ cached: failed.length === 0, count, failed });\n  })());\n});\n\nself.addEventListener('fetch', event => {\n  const url = new URL(event.request.url);\n  if (event.request.method !== 'GET' || url.origin !== self.location.origin) return;\n  if (!url.pathname.startsWith(BASE_PATH)) return;\n\n  if (url.pathname.startsWith(SCHEMA_PREFIX) || url.pathname.startsWith(scoped('data/locales/'))) {\n    event.respondWith(caches.open(SHELL_CACHE).then(cache => cache.match(event.request)).then(response => response || Response.error())); return;\n  }\n  if (url.pathname === MANIFEST_PATH) {\n    event.respondWith(caches.open(DATA_CACHE).then(async cache => {\n      try {\n        const response = await fetch(event.request);\n        if (response.ok) await cache.put(event.request, response.clone());\n        return response;\n      } catch {\n        return (await cache.match(event.request)) || Response.error();\n      }\n    }));\n    return;\n  }\n\n  if (url.pathname.startsWith"... 996 more characters,
+    expected: /ydm-shell-v41/,
+    operator: 'match',
+    diff: 'simple'
+  }

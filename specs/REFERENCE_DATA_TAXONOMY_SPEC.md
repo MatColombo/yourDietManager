@@ -1,3 +1,5 @@
+> Contratto corrente R0/R1 — 11 settembre 2026: Percorso categoria/sottocategoria/concept valido; alias nel registry; gruppi separati senza annidamenti. Vedere [CONTRATTO_R0_R1](revision_v2/CONTRATTO_R0_R1.md), che prevale sulle parti V1 sotto riportate per il perimetro modificato.
+
 # Reference Data & Taxonomy Registry Spec V1 Hardening
 
 ## 1. Scopo

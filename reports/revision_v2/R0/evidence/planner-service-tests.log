@@ -1,0 +1,32 @@
+✔ IndexedDB metadata contains the 22 legacy stores plus 3 versioned R1 stores and critical indexes (9.050916ms)
+✔ migration runner is idempotent (4.3222ms)
+✔ semver compatibility comparison is deterministic (0.385949ms)
+✔ i18n has English fallback (2.327706ms)
+✔ theme engine enforces WCAG guardrails (1.694177ms)
+✔ day adherence summary is derived from meal occurrence states (1.461924ms)
+✔ plan creation is one undoable and redoable atomic operation (131.347696ms)
+✔ adherence update persists per meal, derives day status, and undo restores previous day (68.775558ms)
+✔ replacement preview excludes current recipe and hard-allergen candidates; commit is undoable (71.606506ms)
+✔ rebalance creates a dedicated GenerationRun, commits selected dates, and rolls back atomically (80.50099ms)
+✔ new edit after undo invalidates the redo branch without deleting audit history (57.369433ms)
+✔ today view uses civil consumption date and includes carry-over meals from prior diet date (39.151098ms)
+✔ external adherence can persist a retrospective user estimate only when policy allows it (24.22491ms)
+✔ same seed and frozen inputs produce identical plan assignments (48.25525ms)
+✔ allergy is a hard filter and never reaches scoring/selection (3.310895ms)
+✔ external slots have no recipes, servings stay at 1, and carry-over civil date is preserved (1.122792ms)
+✔ soft MealClass avoid rule penalizes but does not hard-exclude a matching recipe (0.575777ms)
+✔ planner returns classified failure instead of violating hard constraints (0.40276ms)
+✔ startCycleDay supports rolling-horizon continuation without reset (2.963873ms)
+✔ candidate retrieval remains bounded with a 10k-recipe archetype (601.128862ms)
+✔ preview validates schemas, commit is atomic, and extension continues the cycle (65.36785ms)
+✔ continuation state exposes prompt/auto/fixed temporal guardrails (0.69758ms)
+✔ 365-day horizon materializes the cycle independently of month boundaries (1536.676889ms)
+✔ horizon extension resolves historical RecipeVersion after family currentVersion changes (41.727078ms)
+ℹ tests 24
+ℹ suites 0
+ℹ pass 24
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2505.642157

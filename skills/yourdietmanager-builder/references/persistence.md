@@ -1,3 +1,7 @@
+> Contratto corrente R6/R7: `specs/revision_v2/CONTRATTO_R6_R7.md` prevale sui riferimenti storici sotto. DB 8, contenuti 4, backup writer 3 autosufficiente / reader 1–3; epoch invariato.
+
+> Revisione corrente R0/R1: per i contratti modificati prevale `specs/revision_v2/CONTRATTO_R0_R1.md` (DB 7, contenuti 4, backup 2; identità e migrazione additive; sicurezza non verificata esclusa; profili V2 in staging). Le versioni e i freeze citati sotto restano riferimenti storici. Non dichiarare superati gate browser non eseguiti.
+
 # Persistence and versioning
 
 ## Layers

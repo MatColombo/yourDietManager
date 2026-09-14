@@ -1,0 +1,51 @@
+✖ IndexedDB metadata contains the 22 legacy stores plus 3 versioned R1 stores and critical indexes (2.038558ms)
+✖ migration runner is idempotent (2.526325ms)
+✔ semver compatibility comparison is deterministic (0.429754ms)
+✔ i18n has English fallback (1.110914ms)
+✔ theme engine enforces WCAG guardrails (0.888774ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 3
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 163.361501
+
+✖ failing tests:
+
+test at tests/core.test.mjs:11:1
+✖ IndexedDB metadata contains the 22 legacy stores plus 3 versioned R1 stores and critical indexes (2.038558ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  31 !== 25
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/tests/core.test.mjs:12:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.start (node:internal/test_runner/test:1242:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 31,
+    expected: 25,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/core.test.mjs:18:1
+✖ migration runner is idempotent (2.526325ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  5 !== 4
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/tests/core.test.mjs:20:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 5,
+    expected: 4,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

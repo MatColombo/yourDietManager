@@ -1,0 +1,71 @@
+✔ T66 favorite persistence and query use recipe family identity; optional weight zero leaves score unchanged (101.164324ms)
+✔ T66 locked meal survives rebalance unchanged in legacy and frequency engine (207.519448ms)
+✖ T66 a lock never authorizes a newly excluded food; failed rebalance leaves plan intact and explicit unlock is possible (46.9053ms)
+✔ T67 menu snapshots omit notes, adherence, locks and batch links; apply recalculates nutrition on new dates and supports undo (74.119912ms)
+✔ T67 menu preview rejects locked destinations and later settings edits invalidate confirmation (52.827382ms)
+✔ T67 concurrent source edit rejects menu saving rather than capturing stale assignments (37.750318ms)
+✔ T68 unknown, absent, expired, generic and unselected pantry entries never reduce quantities (0.601995ms)
+✔ T68 finite pantry pool is deducted once, never across incompatible historical states (0.313009ms)
+✖ T68 form-aware pantry quantity persists and only explicit selection changes shopping; checklist export declares deduction (53.631028ms)
+✔ T69 four allocated portions produce one shopping production and four frequency occurrences; undo and redo restore links (67.475364ms)
+✔ T69 batch refuses over-allocation, duplicate meals, consumption before production and undocumented shelf life (38.651108ms)
+✔ T69 batch-assigned meals survive rebalance, explicit detach is undoable (84.097666ms)
+✖ T70 seasonality requires selected area and documented months; no universal calendar or hard override (43.979766ms)
+✔ T70 costs distinguish missing, explicit zero, incompatible unit/currency, future and stale prices; budget stays unknown when incomplete (0.731194ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 11
+ℹ fail 3
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 996.577364
+
+✖ failing tests:
+
+test at tests/revision-v2-r8.test.mjs:34:1
+✖ T66 a lock never authorizes a newly excluded food; failed rebalance leaves plan intact and explicit unlock is possible (46.9053ms)
+  Error: Unknown or inactive ingredient ing_oats
+      at assertTarget (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/src/domain/revisionV2Contracts.js:22:103)
+      at assertSafetyProfileV2 (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/src/domain/revisionV2Contracts.js:58:5)
+      at createPlanPreview (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/src/services/planGenerationService.js:75:50)
+      at async createRebalancePreview (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/src/services/effectivePlanService.js:350:21)
+      at async TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/tests/revision-v2-r8.test.mjs:34:580)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/revision-v2-r8.test.mjs:40:1
+✖ T68 form-aware pantry quantity persists and only explicit selection changes shopping; checklist export declares deduction (53.631028ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(concept)
+  
+      at addForms (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/tests/revision-v2-r8.test.mjs:31:190)
+      at async TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/tests/revision-v2-r8.test.mjs:40:176)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/revision-v2-r8.test.mjs:44:1
+✖ T70 seasonality requires selected area and documented months; no universal calendar or hard override (43.979766ms)
+  AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
+  
+    assert.ok(concept)
+  
+      at addForms (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/tests/revision-v2-r8.test.mjs:31:190)
+      at async TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/tests/revision-v2-r8.test.mjs:44:155)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: undefined,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

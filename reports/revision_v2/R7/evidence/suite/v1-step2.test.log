@@ -1,0 +1,14 @@
+✔ Step2 A — default 7-day plan is deterministic, complete, within energy tolerance and reloadable (13977.39358ms)
+✔ Step2 B — vegetarian auto-exclusions hold during generation and replacement (13080.555253ms)
+✔ Step2 C/R0 — unreviewed milk compatibility excludes generation, replacement and rebalance (15454.344256ms)
+✔ Step2 D — configurable external meal, capability filtering and carry-over civil date work together (11131.682586ms)
+✔ Step2 E — replacement, adherence, rebalance, undo/redo and reload preserve an effective plan (19163.251863ms)
+✔ Step2 F — shopping is derived from frozen effective plan, scales, persists checklist state and stays stale after undo/redo (16810.642461ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 89819.910919

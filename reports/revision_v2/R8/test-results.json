@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "phase": "R8",
+  "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+  "phaseGate": "BLOCKED",
+  "overallFunctionalStatus": "ALL_FIVE_TASKS_IMPLEMENTED_AUTOMATED_SCOPES_PASS_ACCEPTANCE_OPEN",
+  "evidence": [
+    {
+      "id": "EV-R8-REGRESSION",
+      "path": "reports/revision_v2/R8/evidence/suite/summary.json",
+      "sha256": "66b62ecfe4fed1dadf66a09a859a61e8fc323fcb802a4def4efd4ff52f87be18",
+      "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "result": "PASS",
+      "scope": "333 automated tests; acceptance scenarios remain separately assessed",
+      "environment": "Node 24/Linux; browser not executed"
+    },
+    {
+      "id": "EV-R8-SERVICES",
+      "path": "reports/revision_v2/R8/evidence/suite/revision-v2-r8.test.log",
+      "sha256": "a38cc1472bd64cafff75ece5c4dab45a45874bba2b0d8fb81d758db01580bdff",
+      "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "result": "PASS",
+      "scope": "Favorites/locks/menu/pantry/batch/frequencies/seasonality/cost/portable backup v4/migration; synthetic test data",
+      "environment": "Node 24/Linux; browser not executed"
+    },
+    {
+      "id": "EV-R8-BUILD",
+      "path": "reports/revision_v2/R8/evidence/build.log",
+      "sha256": "14472e843a2867bc8ee19dbd8cc85103e5600f8b174c9c80b604b34477cdf7d2",
+      "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "result": "PASS",
+      "scope": "Static build and schema mirror parity",
+      "environment": "Node 24/Linux; browser not executed"
+    },
+    {
+      "id": "EV-R8-LINT",
+      "path": "reports/revision_v2/R8/evidence/lint.log",
+      "sha256": "3e5382184a8ca59391669083302bf6a405f8e1a1b0117e414286ef2524d7b282",
+      "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "result": "PASS",
+      "scope": "Syntax of all JS modules, scripts and tests",
+      "environment": "Node 24/Linux; browser not executed"
+    },
+    {
+      "id": "EV-R8-FORMS",
+      "path": "reports/revision_v2/R8/evidence/forms.log",
+      "sha256": "0d048d5004e57a0bbb4113b87dafc5cbc36ed47ca2a88d5755ec2a6d347afcf5",
+      "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "result": "PASS",
+      "scope": "Source form contract audit, no browser claim",
+      "environment": "Node 24/Linux; browser not executed"
+    },
+    {
+      "id": "EV-R8-A11Y",
+      "path": "reports/revision_v2/R8/evidence/a11y.log",
+      "sha256": "c3d7bf4768d26b1d0c04a295292729d96e305af17e936c06430c243e274441f7",
+      "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "result": "PASS",
+      "scope": "Source accessibility audit, no visual claim",
+      "environment": "Node 24/Linux; browser not executed"
+    },
+    {
+      "id": "EV-R8-PAGES",
+      "path": "reports/revision_v2/R8/evidence/pages.log",
+      "sha256": "8cf18a7a1217d8e28d2ac7089e84f7dcfa660064ea3e5a36c90856a5ece64a3d",
+      "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "result": "PASS",
+      "scope": "Pages static deployment audit",
+      "environment": "Node 24/Linux; browser not executed"
+    },
+    {
+      "id": "EV-R8-BROWSER",
+      "path": "reports/revision_v2/R8/browser-matrix.json",
+      "sha256": "ae7c9b5711fa3185af934d3b2141ac20bfb2de0536d0ffcb3b984198af4200a1",
+      "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "result": "BLOCKED",
+      "scope": "Authorized browser access remains blocked; manual scenarios unexecuted",
+      "environment": "Node 24/Linux; browser not executed"
+    },
+    {
+      "id": "EV-R8-CATALOG-OPEN",
+      "path": "reports/revision_v2/R8/catalog-review-status.json",
+      "sha256": "031d632e55446904eef6f46c4c994b1677d93485f2bc6b0557d367894730cd0f",
+      "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "result": "PASS",
+      "scope": "R5 catalog data and acceptance records unchanged from parent; no new approvals",
+      "environment": "Node 24/Linux; browser not executed"
+    }
+  ]
+}

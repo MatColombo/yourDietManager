@@ -30,7 +30,7 @@ async function registryFixture() {
   return registry;
 }
 
-test('pre-V1 epoch reset destroys RC data, reseeds canonical reference data and clears owned browser state', async () => {
+test('R1 epoch adoption preserves existing RC data and owned browser state for additive migration', async () => {
   const repo = new MemoryRepository();
   const registry = await registryFixture();
   await repo.setMeta('preV1DataEpoch', 'legacy-rc-epoch');
@@ -48,20 +48,17 @@ test('pre-V1 epoch reset destroys RC data, reseeds canonical reference data and 
     now:'2026-09-07T12:00:00.000Z'
   });
 
-  assert.equal(result.reset, true);
+  assert.equal(result.reset, false);
   assert.equal(await repo.getMeta('preV1DataEpoch'), PRE_V1_DATA_EPOCH);
-  assert.equal(await repo.getMeta('activeCatalogVersion'), undefined);
-  assert.equal(await repo.get('ingredientRevisions', 'ingrev_salmon_raw_v2'), undefined);
-  assert.equal(await repo.count('recipes'), 0);
-  assert.equal(await repo.get('appConfigs', 'active'), undefined);
-  assert.ok((await repo.count('taxonomies')) > 0);
-  assert.ok((await repo.count('taxonomyTerms')) > 0);
-  assert.equal(storage.getItem('ydm:legacy'), null);
+  assert.equal(await repo.getMeta('activeCatalogVersion'), '0.3.0-dev');
+  assert.equal((await repo.get('ingredientRevisions', 'ingrev_salmon_raw_v2')).contentHash, 'legacy');
+  assert.equal(await repo.count('recipes'), 1);
+  assert.deepEqual(await repo.get('appConfigs', 'active'), { id: 'legacy-config' });
+  assert.equal(await repo.count('taxonomies'), 0); // Seeded later by runMigrations, never by a reset.
+  assert.equal(storage.getItem('ydm:legacy'), '1');
   assert.equal(storage.getItem('unrelated'), 'keep');
-  assert.deepEqual(caches.deleted.sort(), ['ydm-data-v12-root','ydm-shell-v26-root']);
-  assert.deepEqual(await repo.getMeta('preV1Reset'), {
-    previousEpoch:'legacy-rc-epoch', previousCatalogVersion:'0.3.0-dev', resetAt:'2026-09-07T12:00:00.000Z', appVersion:APP_VERSION, policy:'destructive-pre-v1'
-  });
+  assert.deepEqual(caches.deleted, []);
+  assert.equal((await repo.getMeta('preV1EpochAdoption')).policy, 'additive-migration-required');
 });
 
 test('current pre-V1 epoch is idempotent and does not erase current candidate data', async () => {

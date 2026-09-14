@@ -1,0 +1,11 @@
+✔ Phase E protocol has the required manual product coverage (0.981405ms)
+✔ Phase E acceptance stays blocked until every required case passes (0.454798ms)
+✔ Phase E normalizer requires fail severity and strips severity from passing cases (1.314298ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 113.308982

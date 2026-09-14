@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "priceId": "SYNTHETIC_PRICE",
+  "ingredientId": "SYNTHETIC_FORM",
+  "price": 2.3,
+  "quantity": 1000,
+  "unit": "g",
+  "currency": "EUR",
+  "observedOn": "2026-09-11",
+  "sourceRef": "SYNTHETIC TEST ONLY — NOT A MARKET PRICE",
+  "updatedAt": "2026-09-11T00:00:00.000Z"
+}

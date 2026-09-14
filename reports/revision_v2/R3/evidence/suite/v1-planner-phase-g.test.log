@@ -1,0 +1,12 @@
+✔ Historical Phase G — release-candidate freeze binds rc.34 to the 600/1800 planner baseline without mutating recipe content (8.331228ms)
+✔ Historical Phase G — product taxonomy and Phase F quality evidence are part of the freeze contract (2.407044ms)
+✔ Historical Phase G — freeze records the fail-closed boundary even after a later metadata-only stable promotion (4.6647ms)
+✔ Historical Phase G — PWA shell/data cache and pre-V1 epoch stay frozen through stable metadata promotion (3.893084ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 134.174613

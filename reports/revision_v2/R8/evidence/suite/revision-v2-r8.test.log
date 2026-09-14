@@ -1,0 +1,26 @@
+✔ T66 favorite persistence and query use recipe family identity; optional weight zero leaves score unchanged (101.7114ms)
+✔ T66 locked meal survives rebalance unchanged in legacy and frequency engine (168.726714ms)
+✔ T66 a lock never authorizes a newly excluded food; failed rebalance leaves plan intact and explicit unlock is possible (68.327442ms)
+✔ T67 menu snapshots omit notes, adherence, locks and batch links; apply recalculates nutrition on new dates and supports undo (66.589738ms)
+✔ T67 menu preview rejects locked destinations and later settings edits invalidate confirmation (54.026134ms)
+✔ T67 concurrent source edit rejects menu saving rather than capturing stale assignments (33.225532ms)
+✔ T68 unknown, absent, expired, generic and unselected pantry entries never reduce quantities (0.698417ms)
+✔ T68 finite pantry pool is deducted once, never across incompatible historical states (0.462072ms)
+✔ T68 form-aware pantry quantity persists and only explicit selection changes shopping; checklist export declares deduction (68.190001ms)
+✔ T69 four allocated portions produce one shopping production and four frequency occurrences; undo and redo restore links (60.999663ms)
+✔ T69 batch refuses over-allocation, duplicate meals, consumption before production and undocumented shelf life (37.576329ms)
+✔ T69 batch-assigned meals survive rebalance, explicit detach is undoable (85.775032ms)
+✔ T70 seasonality requires selected area and documented months; no universal calendar or hard override (41.228619ms)
+✔ T70 costs distinguish missing, explicit zero, incompatible unit/currency, future and stale prices; budget stays unknown when incomplete (0.581051ms)
+✔ T68 explicit reviewed directional conversion is required to deduct a different pantry form (0.398924ms)
+✔ T66/T70 maximum soft weights never admit an allergy-excluded favorite recipe (58.074511ms)
+✔ T67 menu refuses outdated recipe version without mutating its source model (35.602089ms)
+✔ T66–T70 backup v4 roundtrips six extension stores, settings and batch undo; v3 migrates to empty defaults; malformed extension history rejects atomically (30681.261738ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31813.449793

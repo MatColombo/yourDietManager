@@ -1,3 +1,4 @@
+import { isDocumentedReadySeafood } from '../domain/safetyCompatibility.js';
 import { createHash } from 'node:crypto';
 
 const FAMILY = Object.freeze({
@@ -33,7 +34,7 @@ const PROFILES = Object.freeze({
     T('mini-fruit-yogurt-nuts', FAMILY.snack, ['fruitReady','dairyYogurt','nutsSeeds'], [[70,60,4],[100,80,6],[130,110,8],[160,140,10],[190,180,16]], noCook(4)),
     T('mini-legume-grain-salad', FAMILY.salad, ['legumeCooked','carbCooked','vegetableRaw','oilCooking'], [[50,50,60,2],[70,70,80,3],[90,90,100,4],[120,120,120,5],[150,160,150,6]], noCook(7)),
     T('mini-egg-vegetable', FAMILY.egg, ['eggWhole','vegetableCook','cheese','oilCooking'], [[45,70,10,2],[60,90,15,2],[80,110,20,3],[100,130,25,4],[130,160,35,5]], cooked(6,8)),
-    T('mini-fish-grain', FAMILY.proteinPlate, ['fishSeafood','carbCooked','vegetableRaw','oilCooking'], [[50,50,60,2],[70,70,80,3],[90,90,100,4],[110,120,120,5],[140,160,150,6]], noCook(8)),
+    T('mini-fish-grain', FAMILY.proteinPlate, ['fishSeafoodReady','carbCooked','vegetableRaw','oilCooking'], [[50,50,60,2],[70,70,80,3],[90,90,100,4],[110,120,120,5],[140,160,150,6]], noCook(8)),
     T('mini-cheese-grain-vegetable', FAMILY.snack, ['cheese','carbCooked','vegetableRaw','condiment'], [[10,50,60,5],[15,70,80,6],[20,90,100,8],[30,120,120,10],[45,160,150,12]], noCook(6))
   ]
 });
@@ -67,14 +68,14 @@ function candidateEnergy(selected) { return Math.round(selected.reduce((sum,item
 function lineWeight(selected) { return Math.round(selected.reduce((sum,item)=>sum+item.amount,0)*10)/10; }
 
 function pickIngredient({ roleId, role, entries, key, used }) {
-  const pool = role.ingredientIds || [];
+  const pool = role?.ingredientIds || [];
   if (!pool.length) throw new Error(`Phase B role ${roleId} has no ingredients`);
   const start = digestInt(key) % pool.length;
   for (let offset=0; offset<pool.length; offset += 1) {
     const ingredientId = pool[(start + offset) % pool.length];
     if (used.has(ingredientId)) continue;
     const entry = entries.get(ingredientId);
-    if (entry?.revision) return entry;
+    if (entry?.revision && (roleId !== 'fishSeafoodReady' || isDocumentedReadySeafood(entry.revision))) return entry;
   }
   return null;
 }
@@ -120,15 +121,7 @@ function dietTags(selected) {
   if(!hasMeat && hasFish) tags.push('diet_pescatarian');
   return tags.sort();
 }
-function instructions(profile, selected, locale) {
-  const names=selected.map(item=>shortLabel(item.entry,locale));
-  if(locale==='it') {
-    if(!profile.practical.cookMinutes) return [`Pesare ${names.slice(0,-1).join(', ')}${names.length>1?` e ${names.at(-1)}`:''} nelle quantità indicate.`, 'Preparare gli ingredienti già pronti al consumo e combinarli senza modificarne le quantità.', 'Servire come singola porzione standard.'];
-    return ['Pesare tutti gli ingredienti nelle quantità indicate prima della cottura o dell’assemblaggio.', 'Cuocere completamente gli ingredienti che lo richiedono e preparare gli altri secondo lo stato indicato nel catalogo.', 'Assemblare la singola porzione senza ridimensionare o moltiplicare la ricetta.'];
-  }
-  if(!profile.practical.cookMinutes) return [`Weigh ${names.join(', ')} in the stated amounts.`, 'Prepare the ready-to-eat ingredients and combine them without changing the quantities.', 'Serve as one standard portion.'];
-  return ['Weigh every ingredient in the stated amount before cooking or assembly.', 'Cook ingredients that require cooking thoroughly and prepare the others according to their catalog state.', 'Assemble one standard portion without resizing or multiplying the recipe.'];
-}
+
 
 export function phaseBRecipeProfiles() { return structuredClone(PROFILES); }
 
@@ -141,7 +134,7 @@ export function generatePhaseBCandidates({ meal, band, count, eligibility, corpu
     const variant=profile.variants[Math.floor(attempt/profiles.length) % profile.variants.length];
     const used=new Set(); const selected=[]; let invalid=false;
     for(let slotIndex=0; slotIndex<profile.slots.length; slotIndex += 1) {
-      const roleId=profile.slots[slotIndex]; const role=eligibility.roles?.[roleId];
+      const roleId=profile.slots[slotIndex]; const role=eligibility.roles?.[roleId === 'fishSeafoodReady' ? 'fishSeafood' : roleId];
       if(!role?.ingredientIds?.length){ invalid=true; break; }
       const entry=pickIngredient({ roleId,role,entries,key:`${meal}|${band.id}|${profile.id}|${attempt}|${slotIndex}`,used });
       if(!entry){ invalid=true; break; } used.add(entry.family.ingredientId);
@@ -160,8 +153,8 @@ export function generatePhaseBCandidates({ meal, band, count, eligibility, corpu
     candidates.push({
       candidateId:`phase-b-${meal}-${band.id}-${String(candidates.length+1).padStart(5,'0')}-${profile.id}`,
       i18n:{
-        it:{title:familyPhrase(profile,selected,'it'),description:`Ricetta ${meal.replace('_',' ')} a porzione fissa per validazione del planner nella fascia ${band.min}-${band.max} kcal.`,instructions:instructions(profile,selected,'it')},
-        en:{title:familyPhrase(profile,selected,'en'),description:`Fixed-portion ${meal.replace('_',' ')} recipe for planner validation in the ${band.min}-${band.max} kcal band.`,instructions:instructions(profile,selected,'en')}
+        it:{title:familyPhrase(profile,selected,'it'),description:`Ricetta ${meal.replace('_',' ')} a porzione fissa per validazione del planner nella fascia ${band.min}-${band.max} kcal.`},
+        en:{title:familyPhrase(profile,selected,'en'),description:`Fixed-portion ${meal.replace('_',' ')} recipe for planner validation in the ${band.min}-${band.max} kcal band.`}
       },
       mealArchetypes:[meal], ingredientLines:selected.map(item=>({ingredientId:item.entry.family.ingredientId,amount:item.amount,unit:item.entry.revision.basis.unit,optional:false})),
       practical, tags:{families:[profile.family],cuisines:[CUISINE],...(diet.length?{diet}:{}),practical:practicalTags(practical)},

@@ -1,0 +1,37 @@
+✔ Pass A reference-data seed validates with schemas, hierarchy, aliases and deterministic digest (73.993812ms)
+✔ Pass A semantic gate rejects typo references instead of silently accepting them (11.830331ms)
+✖ Pass A migration maps legacy strings to canonical IDs without mutating historical ingredient/recipe records (85.845472ms)
+✔ Pass A migration explicitly retypes legacy soft preference ingredient text when it resolves to a canonical food category (72.023816ms)
+✔ Pass A migration does not broaden legacy auto-exclude ingredient text into a food category (33.01876ms)
+✔ Pass A migration blocks unresolved legacy semantic text and leaves immutable pointer changes unapplied (29.642604ms)
+✔ ingredient and recipe schemas use the same MealArchetype rule: at least one is required (42.411975ms)
+✔ pipeline reference-data proposal requires an extensible taxonomy, resolves collisions, and materializes before use (80.403667ms)
+✔ RecipeGenerationJob freezes reference-data version and digest (28.098576ms)
+✔ Pass A corpus policies use canonical taxonomy term IDs for every semantic coverage criterion (8.309597ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 9
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 579.406013
+
+✖ failing tests:
+
+test at tests/reference-data-pass-a.test.mjs:72:1
+✖ Pass A migration maps legacy strings to canonical IDs without mutating historical ingredient/recipe records (85.845472ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  5 !== 4
+  
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/tests/reference-data-pass-a.test.mjs:107:10)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 5,
+    expected: 4,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

@@ -1,0 +1,18 @@
+✔ Pass A reference-data seed validates with schemas, hierarchy, aliases and deterministic digest (154.370497ms)
+✔ Pass A semantic gate rejects typo references instead of silently accepting them (17.929528ms)
+✔ Pass A migration maps legacy strings to canonical IDs without mutating historical ingredient/recipe records (99.449702ms)
+✔ Pass A migration explicitly retypes legacy soft preference ingredient text when it resolves to a canonical food category (62.26853ms)
+✔ Pass A migration does not broaden legacy auto-exclude ingredient text into a food category (33.373078ms)
+✔ Pass A migration blocks unresolved legacy semantic text and leaves immutable pointer changes unapplied (38.822035ms)
+✔ ingredient and recipe schemas use the same MealArchetype rule: at least one is required (41.097384ms)
+✔ pipeline reference-data proposal requires an extensible taxonomy, resolves collisions, and materializes before use (75.401534ms)
+✔ RecipeGenerationJob freezes reference-data version and digest (34.00336ms)
+✔ Pass A corpus policies use canonical taxonomy term IDs for every semantic coverage criterion (7.112543ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 720.958933

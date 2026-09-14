@@ -1,0 +1,14 @@
+{
+  "files": 41,
+  "failedFiles": [],
+  "totals": {
+    "tests": 288,
+    "pass": 288,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0
+  },
+  "method": "All test files run independently; corrected groups rerun; initial failure logs retained.",
+  "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+  "scope": "Automated regression; browser acceptance remains blocked"
+}

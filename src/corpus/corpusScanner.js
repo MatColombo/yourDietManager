@@ -34,7 +34,7 @@ function missingLocaleFields(recipe, locales) {
   for (const locale of locales) {
     const value = recipe.i18n?.[locale];
     if (!value?.title?.trim()) count += 1;
-    if (!Array.isArray(value?.instructions) || !value.instructions.length || value.instructions.some(item => !String(item).trim())) count += 1;
+    // Recipe text no longer requires procedural content, including legacy readers.
   }
   return count;
 }

@@ -1,0 +1,19 @@
+✔ 4P-C production recipe pipeline policy is schema-valid and bound to 4P-A/4P-B policies (53.991615ms)
+✔ 4P-C scale job intake is deterministic and never starts candidates as ready (42.43527ms)
+✔ industrialized production batch accepts only a full-score clean candidate and freezes report digest (42.692866ms)
+✔ non-approved culinary candidate becomes needs_recipe_review and can be explicitly requeued (34.338653ms)
+✔ numeric plausibility failures are quarantined as nutrition_outlier rather than silently rejected (34.627185ms)
+✔ semantic taxonomy exceptions are routed to needs_reference_review (35.509352ms)
+✔ exact duplicates are classified explicitly as duplicate and are terminal rejected in intake (52.541804ms)
+✔ fresh snapshot guard detects corpus mutation after job planning (32.758447ms)
+✔ current scale-500 gate is hard-blocked by unfinished 4P-B data/pilot, not by missing 3000 production recipes (31.827242ms)
+✔ scale-500 gate becomes pass only after pilot completion, corpus quality and pro-rata hard coverage all pass (29.777845ms)
+✔ scale-500 gate cannot become ready while the current corpus snapshot has quality errors (34.790259ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 547.811924

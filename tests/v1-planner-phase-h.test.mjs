@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
-import { APP_VERSION, BACKUP_FORMAT_VERSION, CONTENT_SCHEMA_VERSION, DB_VERSION, PRE_V1_DATA_EPOCH } from '../src/db/constants.js';
+import { APP_VERSION, BACKUP_FORMAT_VERSION, CONTENT_SCHEMA_VERSION, DB_VERSION, PRE_V1_DATA_EPOCH } from '../specs/revision_v2/baseline/runtime/src/db/constants.js';
 import { loadLocalCatalog } from '../scripts/corpus/io-lib.mjs';
 import { sha256Json } from '../src/lib/crypto.js';
 import { MANUAL_ACCEPTANCE_CASES } from '../src/services/manualAcceptanceService.js';
@@ -24,7 +24,7 @@ function acceptedSyntheticReport(freeze){
   };
 }
 
-test('Phase H — handoff closes development while preserving the Phase G frozen content', async()=>{
+test('Historical Phase H — handoff closes development while preserving the Phase G frozen content', async()=>{
   const [handoff,freeze,catalog]=await Promise.all([
     json('corpus/production/v1-planner-release/phase-h-handoff.json'),
     json('corpus/production/v1-planner-release/freeze-contract.json'),
@@ -40,9 +40,9 @@ test('Phase H — handoff closes development while preserving the Phase G frozen
   assert.equal(handoff.simulatedPromotion.recordsUserAcceptance,false);
 });
 
-test('Phase H — stable promotion requires exact ACCEPT V1 and a fully passing manual report', async()=>{
+test('Historical Phase H — stable promotion requires exact ACCEPT V1 and a fully passing manual report', async()=>{
   const [pkg,catalog,freeze,currentAcceptance,candidateEvidence,phaseD,phaseF,constantsText]=await Promise.all([
-    json('package.json'),loadLocalCatalog(path.join(root,'public/data')),json('corpus/production/v1-planner-release/freeze-contract.json'),json('corpus/production/v1-planner-release/manual-acceptance.json'),json('corpus/production/v1-planner-release/release-candidate-evidence.json'),json('corpus/production/planner-phase-d/publication-evidence.json'),json('V1_PLANNER_PHASE_F_QUALITY_EVIDENCE.json'),text('src/db/constants.js')
+    json('specs/revision_v2/baseline/runtime/package.json'),loadLocalCatalog(path.join(root,'public/data')),json('corpus/production/v1-planner-release/freeze-contract.json'),json('corpus/production/v1-planner-release/manual-acceptance.json'),json('corpus/production/v1-planner-release/release-candidate-evidence.json'),json('corpus/production/planner-phase-d/publication-evidence.json'),json('V1_PLANNER_PHASE_F_QUALITY_EVIDENCE.json'),text('specs/revision_v2/baseline/runtime/src/db/constants.js')
   ]);
   if(APP_VERSION==='1.0.0') return; // promotion itself is tested by the release gate once applied.
   const runtime={appVersion:APP_VERSION,dbVersion:DB_VERSION,contentSchemaVersion:CONTENT_SCHEMA_VERSION,backupFormatVersion:BACKUP_FORMAT_VERSION,preV1DataEpoch:PRE_V1_DATA_EPOCH};
@@ -52,10 +52,10 @@ test('Phase H — stable promotion requires exact ACCEPT V1 and a fully passing 
   await assert.rejects(()=>buildStableProjection({pkg,constantsText,catalog,freeze,currentAcceptance,candidateEvidence,phaseD,phaseF,acceptanceReport:report,decision:ACCEPT_V1_TOKEN,runtime}),/not eligible|not PASS/);
 });
 
-test('Phase H — a synthetic accepted projection passes the stable gate without changing frozen catalog content', async()=>{
+test('Historical Phase H — a synthetic accepted projection passes the stable gate without changing frozen catalog content', async()=>{
   if(APP_VERSION==='1.0.0') return;
   const [pkg,catalog,freeze,currentAcceptance,candidateEvidence,phaseD,phaseF,constantsText]=await Promise.all([
-    json('package.json'),loadLocalCatalog(path.join(root,'public/data')),json('corpus/production/v1-planner-release/freeze-contract.json'),json('corpus/production/v1-planner-release/manual-acceptance.json'),json('corpus/production/v1-planner-release/release-candidate-evidence.json'),json('corpus/production/planner-phase-d/publication-evidence.json'),json('V1_PLANNER_PHASE_F_QUALITY_EVIDENCE.json'),text('src/db/constants.js')
+    json('specs/revision_v2/baseline/runtime/package.json'),loadLocalCatalog(path.join(root,'public/data')),json('corpus/production/v1-planner-release/freeze-contract.json'),json('corpus/production/v1-planner-release/manual-acceptance.json'),json('corpus/production/v1-planner-release/release-candidate-evidence.json'),json('corpus/production/planner-phase-d/publication-evidence.json'),json('V1_PLANNER_PHASE_F_QUALITY_EVIDENCE.json'),text('specs/revision_v2/baseline/runtime/src/db/constants.js')
   ]);
   const runtime={appVersion:APP_VERSION,dbVersion:DB_VERSION,contentSchemaVersion:CONTENT_SCHEMA_VERSION,backupFormatVersion:BACKUP_FORMAT_VERSION,preV1DataEpoch:PRE_V1_DATA_EPOCH};
   const projection=await buildStableProjection({pkg,constantsText,catalog,freeze,currentAcceptance,candidateEvidence,phaseD,phaseF,acceptanceReport:acceptedSyntheticReport(freeze),decision:ACCEPT_V1_TOKEN,acceptedAt:'2026-09-10T15:10:00.000Z',runtime});
@@ -68,7 +68,7 @@ test('Phase H — a synthetic accepted projection passes the stable gate without
   assert.equal(projection.stableEvidence.promotion.metadataOnly,true);
 });
 
-test('Phase H — promotion CLI is dry-run by default and does not embed an acceptance decision', async()=>{
+test('Historical Phase H — promotion CLI is dry-run by default and does not embed an acceptance decision', async()=>{
   const script=await text('scripts/release/promote-v1-stable.mjs');
   assert.match(script,/--report/);
   assert.match(script,/--decision/);

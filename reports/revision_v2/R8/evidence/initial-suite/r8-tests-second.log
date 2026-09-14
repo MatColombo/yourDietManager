@@ -1,0 +1,44 @@
+✔ T66 favorite persistence and query use recipe family identity; optional weight zero leaves score unchanged (85.928387ms)
+✔ T66 locked meal survives rebalance unchanged in legacy and frequency engine (201.959442ms)
+✔ T66 a lock never authorizes a newly excluded food; failed rebalance leaves plan intact and explicit unlock is possible (67.737084ms)
+✔ T67 menu snapshots omit notes, adherence, locks and batch links; apply recalculates nutrition on new dates and supports undo (49.982596ms)
+✔ T67 menu preview rejects locked destinations and later settings edits invalidate confirmation (49.747769ms)
+✔ T67 concurrent source edit rejects menu saving rather than capturing stale assignments (31.452983ms)
+✔ T68 unknown, absent, expired, generic and unselected pantry entries never reduce quantities (0.610881ms)
+✔ T68 finite pantry pool is deducted once, never across incompatible historical states (0.677832ms)
+✖ T68 form-aware pantry quantity persists and only explicit selection changes shopping; checklist export declares deduction (68.015168ms)
+✔ T69 four allocated portions produce one shopping production and four frequency occurrences; undo and redo restore links (58.465757ms)
+✔ T69 batch refuses over-allocation, duplicate meals, consumption before production and undocumented shelf life (44.395992ms)
+✔ T69 batch-assigned meals survive rebalance, explicit detach is undoable (87.107476ms)
+✔ T70 seasonality requires selected area and documented months; no universal calendar or hard override (50.145147ms)
+✔ T70 costs distinguish missing, explicit zero, incompatible unit/currency, future and stale prices; budget stays unknown when incomplete (0.435758ms)
+✔ T68 explicit reviewed directional conversion is required to deduct a different pantry form (0.478747ms)
+✔ T66/T70 maximum soft weights never admit an allergy-excluded favorite recipe (60.715407ms)
+✔ T67 menu refuses outdated recipe version without mutating its source model (34.769186ms)
+✖ T66–T70 backup v4 roundtrips six extension stores, settings and batch undo; v3 migrates to empty defaults; malformed extension history rejects atomically (27902.578683ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 16
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 29120.387906
+
+✖ failing tests:
+
+test at tests/revision-v2-r8.test.mjs:41:1
+✖ T68 form-aware pantry quantity persists and only explicit selection changes shopping; checklist export declares deduction (68.015168ms)
+  Error: shoppingChecklist schema validation failed: $.items[0].label: minLength 1
+      at SchemaRegistry.assert (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/src/lib/schemaValidator.js:102:30)
+      at createShoppingChecklist (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/src/services/shoppingService.js:186:12)
+      at async TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/tests/revision-v2-r8.test.mjs:41:807)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+
+test at tests/revision-v2-r8.test.mjs:50:1
+✖ T66–T70 backup v4 roundtrips six extension stores, settings and batch undo; v3 migrates to empty defaults; malformed extension history rejects atomically (27902.578683ms)
+  TypeError: runContentMigrations is not a function
+      at TestContext.<anonymous> (file:///workspace/scratch/621114de952a/yourDietManager_v2_R8/tests/revision-v2-r8.test.mjs:59:134)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7)

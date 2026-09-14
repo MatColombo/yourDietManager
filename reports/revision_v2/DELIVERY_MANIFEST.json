@@ -1,0 +1,979 @@
+{
+  "sourceArchiveSha256": "9210fba9cbbe5fc3311790b2fc6554e115a63856a97d555b8a173ee8b2306800",
+  "buildSha256": "caac4ac89441b02fd07cb166d2f1683102e47e1540855986fc6161d31122a087",
+  "version": "1.1.0-dev.r1",
+  "stable": false,
+  "scope": [
+    "R0",
+    "R1"
+  ],
+  "phaseGates": "BLOCCATO_BROWSER",
+  "changedBaselineFiles": [
+    {
+      "path": "README.md",
+      "beforeSha256": "7607f5191aba41bbcf03d6bb2c8025293ae68b6e2db7b1c284e4d1615e807080",
+      "afterSha256": "a4fd1956a09648a6052d69249253d08830fa80cc2a71b7249e651562b3325dc7"
+    },
+    {
+      "path": "dist/data/locales/en.json",
+      "beforeSha256": "2a6d4e75d12c7f6a192b85ebcda5e332ed3a4a2026296b2b947a113c8bdecfd3",
+      "afterSha256": "f6906c3000a764c19f3abfbb7531202692223ba0f22f65b22daa5aab2632f090"
+    },
+    {
+      "path": "dist/data/locales/it.json",
+      "beforeSha256": "c57b1ea92b4084660d16e604d702ff2103f9b85c3923d9dd149e7a325b2652c3",
+      "afterSha256": "0f798b9f07a8b7ad31267a4889fb6b14a84f4ddaa747ea4fe70152c020492fd2"
+    },
+    {
+      "path": "dist/schemas/allergy-intolerance-profile.schema.json",
+      "beforeSha256": "0a0df701f4b20257f185d3710e48a7dfa43f1d148842fb535c0744c63e170f2c",
+      "afterSha256": "e2930a231e4c2bdee90da859f88065fead635f37fda40f742a48d4bb51ea9053"
+    },
+    {
+      "path": "dist/schemas/backup.schema.json",
+      "beforeSha256": "6b605da411b01b85cc85071e0bf1827d6ae407965478078f30eb76172ce75450",
+      "afterSha256": "c45240a679471f362f701f6c57eed82f2afe71e532c20efa604b6a0a353f9b7b"
+    },
+    {
+      "path": "dist/schemas/food-preferences.schema.json",
+      "beforeSha256": "3ae89dbc5328557c111a58c2ca61afac356a041f700894e5d57a99d37c29ed19",
+      "afterSha256": "cc8fb2692b4ff55fda2e8e6374ace8c54aa0c03d9dc1ac2a8294d1ecb03d2c03"
+    },
+    {
+      "path": "dist/schemas/ingredient-revision.schema.json",
+      "beforeSha256": "edbff0d49e73632ee2b854b96bb1ba3283585bc6838f3292075a0125843f4fea",
+      "afterSha256": "1b9a5bb1db0e09dbc6121954abbb87d45e8bad4349ae097d7a1ed4430877b32d"
+    },
+    {
+      "path": "dist/schemas/recipe-version.schema.json",
+      "beforeSha256": "8bb69e74986249fb1e4867325a703a86178a094a1b3afcf1c1419b9ceec673b2",
+      "afterSha256": "6ce42a7361a8f6ba0c3c08df48add4200b5709565c7ac0f564daed803cbbd943"
+    },
+    {
+      "path": "dist/service-worker.js",
+      "beforeSha256": "5fd00f6d595ffed36009d9ef9a0acd6450daafa63f28dfb4a64a2c67542dea7f",
+      "afterSha256": "f970010b41179ea01b11874f628845555f6aa7b821d2607d209c218042aeb017"
+    },
+    {
+      "path": "dist/src/corpus/v1PhaseBRecipeGenerator.js",
+      "beforeSha256": "138132a18cec8ac21b1a8f7e0bebe26a721be0732feca6f36078bb3a15e59145",
+      "afterSha256": "068c5a93520473064089f135301061e737f3d736b956b2095504208621c2355c"
+    },
+    {
+      "path": "dist/src/db/constants.js",
+      "beforeSha256": "34f4efd38274c4a0d2f326874e37a39cc315780137a279f3a903cf76074e66fd",
+      "afterSha256": "218e9b1e9fe28619b2a7bef44c84ba1c7d194a6b697e7a304fd6c815124e549a"
+    },
+    {
+      "path": "dist/src/domain/nutritionCore.js",
+      "beforeSha256": "92288bf4513a1ab0a77bf1aa48f0f9c4a7efee861b6c625114f62286cad50053",
+      "afterSha256": "a607d85efddaaa5fd1d90fa98d52482d10c1a5faa0d1759e42cca4deb3a3aa71"
+    },
+    {
+      "path": "dist/src/lib/schemaValidator.js",
+      "beforeSha256": "d0024c3542da398a81480f47611c8cc4516778592777fad1045eef1ec9768d29",
+      "afterSha256": "96572d31393a84139d1291b076cf23bc6c64cbaaf55770af5b720f6c69ee3784"
+    },
+    {
+      "path": "dist/src/main.js",
+      "beforeSha256": "b227497aafddb5e594b8e8e010271b101aa230f49f4a018c20a49e176a47999e",
+      "afterSha256": "6e3acdd264c0c96a258766b1a77e495e98403a48d2f0ef0fed1c9c870e2454c6"
+    },
+    {
+      "path": "dist/src/planner/hardFilter.js",
+      "beforeSha256": "cee7e32be40c4f38b2a1002a2a4e3c42517d9cec2a56f4ad8b634f05a242b3ec",
+      "afterSha256": "9b411d38f04879fc4f65542a64e9aa4e4fc5ea9032755dea0a23443fe00d435a"
+    },
+    {
+      "path": "dist/src/repositories/repositoryHub.js",
+      "beforeSha256": "5e1faf4ca8557da5b402fcc7d6c4036d5589d56916e51afec369c1570419811a",
+      "afterSha256": "63ff2e6987574f38855a61a477c11d433005566b28f3165085521690b8e9c62f"
+    },
+    {
+      "path": "dist/src/services/backupEngine.js",
+      "beforeSha256": "47c78a179c4d7e08299837438ec19c433a54242b8ee4ae53fe21838a4010fde3",
+      "afterSha256": "4bb058c7252454dfe7737b4555ec3ff0db449a907c5736962b27938ff55f0fe8"
+    },
+    {
+      "path": "dist/src/services/catalogImporter.js",
+      "beforeSha256": "922c09982ca2f89da9bbac3a0e7be6debff0de1d5b19527054f38aa19961718b",
+      "afterSha256": "7f72f35a55a17d43124fbc1210700c5bad506cff6f6b94c58c73876cbf637be5"
+    },
+    {
+      "path": "dist/src/services/configurationService.js",
+      "beforeSha256": "fccbab9a1de48d76d8e3c7d559cbb144509d96834407d54bcd48c4b9b47498bb",
+      "afterSha256": "06cd6f533c60fd6c848d75276c018f6ba98b33227d5cb8a4d9063a581c43ce5c"
+    },
+    {
+      "path": "dist/src/services/effectivePlanService.js",
+      "beforeSha256": "bb66be846303b13ac2ffdded49fa9c389bcf8baa590ff946c2dd3b69d373d5e3",
+      "afterSha256": "246fac0c95aeb57ef7904cab78b82e9e014837b9cc28efc6755e4827c0084594"
+    },
+    {
+      "path": "dist/src/services/migrationRunner.js",
+      "beforeSha256": "685f28fdfffea81bea190f50c224fb7985aa1aa6e1c295dea4a922f2a15f7dc8",
+      "afterSha256": "2a9843749b9913c4f5e91288d453728640326ae7aef4d43118176df3e79b9245"
+    },
+    {
+      "path": "dist/src/services/offlineCatalog.js",
+      "beforeSha256": "90875df04cf7e9fcfbf4fc70527c31bad859d4b0b74f88641d76b60b89627b88",
+      "afterSha256": "84b91baa54891ff5599b4926bfe6706a9e593a95f575c220442b6f0bcebb9221"
+    },
+    {
+      "path": "dist/src/services/operationHistoryService.js",
+      "beforeSha256": "1e5f5ca4213464ff9c149e7e225c3b1c4afa1891dc4bfe8a852ea8151f92617c",
+      "afterSha256": "1d2851030724e2c54b5a52d7e93e7d4d393f49af20088708423529fe196952ab"
+    },
+    {
+      "path": "dist/src/services/personalCatalogService.js",
+      "beforeSha256": "ab1e061c226f51da27a513d8659b24d9b2cae169680881b2dbcb9070b72a10c8",
+      "afterSha256": "05af5b1b53944c1bc6f7b4337d373e721f3f95029e2934cfd28cd7fc7d0b2c68"
+    },
+    {
+      "path": "dist/src/services/planCandidateService.js",
+      "beforeSha256": "c04c73f1505cda5aa5e0d32b5affab03cd3d4d9c96d07f4ae0364be22b277a27",
+      "afterSha256": "0cf543e990b0ed4f5a028682415125f9121aab3d6638831b264927dcf8c74985"
+    },
+    {
+      "path": "dist/src/services/planGenerationService.js",
+      "beforeSha256": "fddbf1e48f0cb34dafe447fbe4d67260acac3b28957578e31ecd7255019dc800",
+      "afterSha256": "aad759ff8d72fbfd1325ac116403c99bbf733c2944a5ffa6694453267dcc3128"
+    },
+    {
+      "path": "dist/src/services/preV1DataEpoch.js",
+      "beforeSha256": "b265dd966ee5e2ee9889035a020f2d1fa875b5158193e3f455591b6594e12a0e",
+      "afterSha256": "48de1160c9b1c2a029eb3f45f5ca05bd87470fddbcd481688a8b455ea6b91c1e"
+    },
+    {
+      "path": "dist/src/ui/catalogPages.js",
+      "beforeSha256": "f51eaed6d17347843f305703cfc28a0af6a222881c569a236e6320fbdd734b34",
+      "afterSha256": "873336881ce76bafa36e6150ae910138768fa742f3bdd1860e5652dd383922bb"
+    },
+    {
+      "path": "dist/src/ui/planPages.js",
+      "beforeSha256": "638d5dd11b5ed8d3965ec9da3ee34d638f070a9375f34fd06b05da4ec69d444a",
+      "afterSha256": "e459451b33908abc2f68bf9d6c4188868f37b5f33823b4dc29ae5d018b22bf4b"
+    },
+    {
+      "path": "package.json",
+      "beforeSha256": "756d9f10601aa76f92a017243b29efeab6bbe02b29cf6402146267b017dbdabb",
+      "afterSha256": "abafbdb93b96a001b4657f24ea2d4434748c6960fed6c3b1936abddb0c2fd636"
+    },
+    {
+      "path": "public/data/locales/en.json",
+      "beforeSha256": "2a6d4e75d12c7f6a192b85ebcda5e332ed3a4a2026296b2b947a113c8bdecfd3",
+      "afterSha256": "f6906c3000a764c19f3abfbb7531202692223ba0f22f65b22daa5aab2632f090"
+    },
+    {
+      "path": "public/data/locales/it.json",
+      "beforeSha256": "c57b1ea92b4084660d16e604d702ff2103f9b85c3923d9dd149e7a325b2652c3",
+      "afterSha256": "0f798b9f07a8b7ad31267a4889fb6b14a84f4ddaa747ea4fe70152c020492fd2"
+    },
+    {
+      "path": "public/schemas/allergy-intolerance-profile.schema.json",
+      "beforeSha256": "0a0df701f4b20257f185d3710e48a7dfa43f1d148842fb535c0744c63e170f2c",
+      "afterSha256": "e2930a231e4c2bdee90da859f88065fead635f37fda40f742a48d4bb51ea9053"
+    },
+    {
+      "path": "public/schemas/backup.schema.json",
+      "beforeSha256": "6b605da411b01b85cc85071e0bf1827d6ae407965478078f30eb76172ce75450",
+      "afterSha256": "c45240a679471f362f701f6c57eed82f2afe71e532c20efa604b6a0a353f9b7b"
+    },
+    {
+      "path": "public/schemas/food-preferences.schema.json",
+      "beforeSha256": "3ae89dbc5328557c111a58c2ca61afac356a041f700894e5d57a99d37c29ed19",
+      "afterSha256": "cc8fb2692b4ff55fda2e8e6374ace8c54aa0c03d9dc1ac2a8294d1ecb03d2c03"
+    },
+    {
+      "path": "public/schemas/ingredient-revision.schema.json",
+      "beforeSha256": "edbff0d49e73632ee2b854b96bb1ba3283585bc6838f3292075a0125843f4fea",
+      "afterSha256": "1b9a5bb1db0e09dbc6121954abbb87d45e8bad4349ae097d7a1ed4430877b32d"
+    },
+    {
+      "path": "public/schemas/recipe-version.schema.json",
+      "beforeSha256": "8bb69e74986249fb1e4867325a703a86178a094a1b3afcf1c1419b9ceec673b2",
+      "afterSha256": "6ce42a7361a8f6ba0c3c08df48add4200b5709565c7ac0f564daed803cbbd943"
+    },
+    {
+      "path": "public/service-worker.js",
+      "beforeSha256": "5fd00f6d595ffed36009d9ef9a0acd6450daafa63f28dfb4a64a2c67542dea7f",
+      "afterSha256": "f970010b41179ea01b11874f628845555f6aa7b821d2607d209c218042aeb017"
+    },
+    {
+      "path": "schemas/allergy-intolerance-profile.schema.json",
+      "beforeSha256": "0a0df701f4b20257f185d3710e48a7dfa43f1d148842fb535c0744c63e170f2c",
+      "afterSha256": "e2930a231e4c2bdee90da859f88065fead635f37fda40f742a48d4bb51ea9053"
+    },
+    {
+      "path": "schemas/backup.schema.json",
+      "beforeSha256": "6b605da411b01b85cc85071e0bf1827d6ae407965478078f30eb76172ce75450",
+      "afterSha256": "c45240a679471f362f701f6c57eed82f2afe71e532c20efa604b6a0a353f9b7b"
+    },
+    {
+      "path": "schemas/food-preferences.schema.json",
+      "beforeSha256": "3ae89dbc5328557c111a58c2ca61afac356a041f700894e5d57a99d37c29ed19",
+      "afterSha256": "cc8fb2692b4ff55fda2e8e6374ace8c54aa0c03d9dc1ac2a8294d1ecb03d2c03"
+    },
+    {
+      "path": "schemas/ingredient-revision.schema.json",
+      "beforeSha256": "edbff0d49e73632ee2b854b96bb1ba3283585bc6838f3292075a0125843f4fea",
+      "afterSha256": "1b9a5bb1db0e09dbc6121954abbb87d45e8bad4349ae097d7a1ed4430877b32d"
+    },
+    {
+      "path": "schemas/recipe-version.schema.json",
+      "beforeSha256": "8bb69e74986249fb1e4867325a703a86178a094a1b3afcf1c1419b9ceec673b2",
+      "afterSha256": "6ce42a7361a8f6ba0c3c08df48add4200b5709565c7ac0f564daed803cbbd943"
+    },
+    {
+      "path": "skills/yourdietmanager-builder/SKILL.md",
+      "beforeSha256": "a853a405e8e2fea17087e944c65aa136426968881cf531a6d20c4de89ead59cf",
+      "afterSha256": "0a40836770bc25ac00cfc8ccf036c5e4c71bfdaba633e56eb64ff11cdac76f67"
+    },
+    {
+      "path": "skills/yourdietmanager-builder/references/domain-model.md",
+      "beforeSha256": "288b606d8a24ffad11db5702c8a9c9c73b6ad2b21af105e8582d5173cc085288",
+      "afterSha256": "98d9dc13ec75181478ab39ba89837db4a0b1c9582d5b076d3bbefa5528c4e892"
+    },
+    {
+      "path": "skills/yourdietmanager-builder/references/invariants.md",
+      "beforeSha256": "1b73a7f7b7d8abc4b52dccfd541dbaa9a0452bc44f9ca7fb7c2bcffee2668eda",
+      "afterSha256": "d931a5d5dd6d3e4652ebb7b6d71e09e9b33c39db9510190f6da0b099f01a7c8d"
+    },
+    {
+      "path": "skills/yourdietmanager-builder/references/persistence.md",
+      "beforeSha256": "f6082772cc2dcb94d0463c45a55f5d31943d791e9c07c76d8b1b0e8c38aa5200",
+      "afterSha256": "f0761273055c569becb3375e7da633aaabb672e7b515dbffffeb9d829d2925c1"
+    },
+    {
+      "path": "skills/yourdietmanager-builder/references/quality-gates.md",
+      "beforeSha256": "52e014db4beeb41ab3e61cfb13819941e5a2de0dbb5e26f8d79fab185f0ea58c",
+      "afterSha256": "daa8c5b5a6c16d6fba1c4c7971a385fa6403707cba725ed4db8c1c03856d88fb"
+    },
+    {
+      "path": "skills/yourdietmanager-builder/references/reference-data-taxonomy.md",
+      "beforeSha256": "76842a464615ddb2e62f3d623f2057ed95eba72895965409ad0fbc8798ce1143",
+      "afterSha256": "bafc82c92bc2f89e387188e5ebe6849ab00a81432a82611b882d5e18acb02abf"
+    },
+    {
+      "path": "specs/ALLERGY_INTOLERANCE_SPEC.md",
+      "beforeSha256": "ddfa1c9b75fa2e110c3fc2e0a1f046158113d7a8ca0869b1fb627b87d7689b9e",
+      "afterSha256": "4605bb949988f46cd752f66f29bbdcf0e7593b63331b6a24645b76e7b96b5c4f"
+    },
+    {
+      "path": "specs/DATA_MODEL_SPEC.md",
+      "beforeSha256": "b46d7cec8b1f0d3e1c2738034b6a3e6dcb511dd4a752b6538cde980473935f9e",
+      "afterSha256": "31bf220fe2cccd131955ea1edf8af01ed7734f9e3509f7e37627ea4fbadff365"
+    },
+    {
+      "path": "specs/DATA_PROVENANCE_QUALITY_SPEC.md",
+      "beforeSha256": "660955b93461ba30b1f5d512711e055864534f968e482e812e43d1474506e0b3",
+      "afterSha256": "67993d86642e7ca59d0b992cb59237ad205fa9c6d4cef31701f60c54247fae0e"
+    },
+    {
+      "path": "specs/FOOD_PREFERENCES_SPEC.md",
+      "beforeSha256": "3dd35048ef6364eb30bc4c29904dffd393eb274915a71af919d0b32e76938dc6",
+      "afterSha256": "f87fa1d7e173aacebe6270e59d21a1a2127893b62b31c05fdabfeb81fc941b78"
+    },
+    {
+      "path": "specs/IDENTITY_VERSIONING_SPEC.md",
+      "beforeSha256": "ff44d429bf2fd98aa5c22cbf0d46b18e6e7245a6c5a0bcbbd32ccb0a77d9df74",
+      "afterSha256": "b8ec25223c2f1e69f9e78faf915252802913bf049ee8facdceaa33d06541b083"
+    },
+    {
+      "path": "specs/INGREDIENT_TAXONOMY_SPEC.md",
+      "beforeSha256": "79f11833e9bc67e16399ca9deb37092e4161d31db336b714435fab840f70311a",
+      "afterSha256": "0bf459cde9c78eebd0730c928a4aeb21245ef02aa6b8157c1c078b7703d42ef5"
+    },
+    {
+      "path": "specs/JSON_STORAGE_SPEC.md",
+      "beforeSha256": "4b4228df7bbebe9c5219c6019b3a4653a156105f4c41b0ce127ab35345661c3c",
+      "afterSha256": "01c61908c55d172e8e4f97f37cbf700057fd21a83445b89c2d2a13b579609d9a"
+    },
+    {
+      "path": "specs/NUTRITION_ENGINE_SPEC.md",
+      "beforeSha256": "7b137ee639423981631d740e1085326fd2020f7ea81745f1a146871b261e1b7f",
+      "afterSha256": "79b6b062a8ba8e871fd82e976c2116cd2a7148a5d63574ee69bc630096b1bf50"
+    },
+    {
+      "path": "specs/PLAN_GENERATOR_SPEC.md",
+      "beforeSha256": "69de8754ce3427bda37eb88d8fb438b63e47a039321440f7b73dcd51d7c7cb4d",
+      "afterSha256": "f28b32ce1af16404cf15a06d10b19bd6025ff6ca8434582dab9d6d691b1618ac"
+    },
+    {
+      "path": "specs/PRODUCT_SPEC.md",
+      "beforeSha256": "b50b06c355a9039ba5820ff55ec242799932f2212739d07749e13531ab036db9",
+      "afterSha256": "2aa4bd0036308e86ff0362ce66c9533a358bc97e914f7fa926a8956b61815ccc"
+    },
+    {
+      "path": "specs/RECIPE_CATALOG_SPEC.md",
+      "beforeSha256": "035d00071497f096db7634f4e26660caa97bc7325e765af66c46fe4785e29d7b",
+      "afterSha256": "25b19ecfa953841f4de3204d70c9bbf5c910034d2d857f572b893d725150d0fd"
+    },
+    {
+      "path": "specs/RECIPE_PIPELINE_GENERATOR.md",
+      "beforeSha256": "56d0a889350f2fd6c1afc89bfaee3f41dd69ce2a6f24400e3c26daf8c5850ac1",
+      "afterSha256": "9a01a04cdec35f4ee44e5a922b92a4cf4fb66e055c63d9a4d5a6254ac4c9ea12"
+    },
+    {
+      "path": "specs/REFERENCE_DATA_TAXONOMY_SPEC.md",
+      "beforeSha256": "1af2d5038c86b15712c1f8d68ad5337519a157c77ca546bc6ff3c186a07fd246",
+      "afterSha256": "3a1ab3a5ef3b17fda8447191d22935a147401e94d0b73fe759b600899c5815fc"
+    },
+    {
+      "path": "specs/ROADMAP_V1.md",
+      "beforeSha256": "99edb861658f89232d1e4fff8914307d0e6330f35091c725c38fa5f12fe5559b",
+      "afterSha256": "c851244421ba12009ad5d47ae31e3d0dfb621ca08e10d25b49d31a6095ba6a1b"
+    },
+    {
+      "path": "specs/SHOPPING_SPEC.md",
+      "beforeSha256": "8717f48b99f5ff31f89332e5f1fbfe67455fb7af204b36d2790eb11e03e5e6d6",
+      "afterSha256": "805f8aa7266d1e7a84c27b742db2dce80306a4c4fb162eed2bd195e417a764bd"
+    },
+    {
+      "path": "specs/TEST_STRATEGY.md",
+      "beforeSha256": "7cd6a7d020336fd482977fb1e225bd8bf5f0f6853b9e0ff3b04c7f013e791a20",
+      "afterSha256": "9b9b8c8308c0dce4d0f901b287677117b2b94569e1762d0e1e280153f7d43886"
+    },
+    {
+      "path": "specs/UNITS_YIELD_SPEC.md",
+      "beforeSha256": "c9c6f5fef119ae2a4c9c6d76bdc4d7a6b0771e9c5440c3e396fe2f5c3203c970",
+      "afterSha256": "18a0bc4ae72f868a9e094517181c2c09dc3de7e08428b19eae275b17d10752c5"
+    },
+    {
+      "path": "specs/UX_SPEC.md",
+      "beforeSha256": "1df7adc7baa85a8262be25de748c34715c8940c6928fe59821c8711c70171057",
+      "afterSha256": "1ce88ac8b822e0c4364dfbba01f69097fb31dcd01262319ac1d94a71b2b15567"
+    },
+    {
+      "path": "src/corpus/v1PhaseBRecipeGenerator.js",
+      "beforeSha256": "138132a18cec8ac21b1a8f7e0bebe26a721be0732feca6f36078bb3a15e59145",
+      "afterSha256": "068c5a93520473064089f135301061e737f3d736b956b2095504208621c2355c"
+    },
+    {
+      "path": "src/db/constants.js",
+      "beforeSha256": "34f4efd38274c4a0d2f326874e37a39cc315780137a279f3a903cf76074e66fd",
+      "afterSha256": "218e9b1e9fe28619b2a7bef44c84ba1c7d194a6b697e7a304fd6c815124e549a"
+    },
+    {
+      "path": "src/domain/nutritionCore.js",
+      "beforeSha256": "92288bf4513a1ab0a77bf1aa48f0f9c4a7efee861b6c625114f62286cad50053",
+      "afterSha256": "a607d85efddaaa5fd1d90fa98d52482d10c1a5faa0d1759e42cca4deb3a3aa71"
+    },
+    {
+      "path": "src/lib/schemaValidator.js",
+      "beforeSha256": "d0024c3542da398a81480f47611c8cc4516778592777fad1045eef1ec9768d29",
+      "afterSha256": "96572d31393a84139d1291b076cf23bc6c64cbaaf55770af5b720f6c69ee3784"
+    },
+    {
+      "path": "src/main.js",
+      "beforeSha256": "b227497aafddb5e594b8e8e010271b101aa230f49f4a018c20a49e176a47999e",
+      "afterSha256": "6e3acdd264c0c96a258766b1a77e495e98403a48d2f0ef0fed1c9c870e2454c6"
+    },
+    {
+      "path": "src/planner/hardFilter.js",
+      "beforeSha256": "cee7e32be40c4f38b2a1002a2a4e3c42517d9cec2a56f4ad8b634f05a242b3ec",
+      "afterSha256": "9b411d38f04879fc4f65542a64e9aa4e4fc5ea9032755dea0a23443fe00d435a"
+    },
+    {
+      "path": "src/repositories/repositoryHub.js",
+      "beforeSha256": "5e1faf4ca8557da5b402fcc7d6c4036d5589d56916e51afec369c1570419811a",
+      "afterSha256": "63ff2e6987574f38855a61a477c11d433005566b28f3165085521690b8e9c62f"
+    },
+    {
+      "path": "src/services/backupEngine.js",
+      "beforeSha256": "47c78a179c4d7e08299837438ec19c433a54242b8ee4ae53fe21838a4010fde3",
+      "afterSha256": "4bb058c7252454dfe7737b4555ec3ff0db449a907c5736962b27938ff55f0fe8"
+    },
+    {
+      "path": "src/services/catalogImporter.js",
+      "beforeSha256": "922c09982ca2f89da9bbac3a0e7be6debff0de1d5b19527054f38aa19961718b",
+      "afterSha256": "7f72f35a55a17d43124fbc1210700c5bad506cff6f6b94c58c73876cbf637be5"
+    },
+    {
+      "path": "src/services/configurationService.js",
+      "beforeSha256": "fccbab9a1de48d76d8e3c7d559cbb144509d96834407d54bcd48c4b9b47498bb",
+      "afterSha256": "06cd6f533c60fd6c848d75276c018f6ba98b33227d5cb8a4d9063a581c43ce5c"
+    },
+    {
+      "path": "src/services/effectivePlanService.js",
+      "beforeSha256": "bb66be846303b13ac2ffdded49fa9c389bcf8baa590ff946c2dd3b69d373d5e3",
+      "afterSha256": "246fac0c95aeb57ef7904cab78b82e9e014837b9cc28efc6755e4827c0084594"
+    },
+    {
+      "path": "src/services/migrationRunner.js",
+      "beforeSha256": "685f28fdfffea81bea190f50c224fb7985aa1aa6e1c295dea4a922f2a15f7dc8",
+      "afterSha256": "2a9843749b9913c4f5e91288d453728640326ae7aef4d43118176df3e79b9245"
+    },
+    {
+      "path": "src/services/offlineCatalog.js",
+      "beforeSha256": "90875df04cf7e9fcfbf4fc70527c31bad859d4b0b74f88641d76b60b89627b88",
+      "afterSha256": "84b91baa54891ff5599b4926bfe6706a9e593a95f575c220442b6f0bcebb9221"
+    },
+    {
+      "path": "src/services/operationHistoryService.js",
+      "beforeSha256": "1e5f5ca4213464ff9c149e7e225c3b1c4afa1891dc4bfe8a852ea8151f92617c",
+      "afterSha256": "1d2851030724e2c54b5a52d7e93e7d4d393f49af20088708423529fe196952ab"
+    },
+    {
+      "path": "src/services/personalCatalogService.js",
+      "beforeSha256": "ab1e061c226f51da27a513d8659b24d9b2cae169680881b2dbcb9070b72a10c8",
+      "afterSha256": "05af5b1b53944c1bc6f7b4337d373e721f3f95029e2934cfd28cd7fc7d0b2c68"
+    },
+    {
+      "path": "src/services/planCandidateService.js",
+      "beforeSha256": "c04c73f1505cda5aa5e0d32b5affab03cd3d4d9c96d07f4ae0364be22b277a27",
+      "afterSha256": "0cf543e990b0ed4f5a028682415125f9121aab3d6638831b264927dcf8c74985"
+    },
+    {
+      "path": "src/services/planGenerationService.js",
+      "beforeSha256": "fddbf1e48f0cb34dafe447fbe4d67260acac3b28957578e31ecd7255019dc800",
+      "afterSha256": "aad759ff8d72fbfd1325ac116403c99bbf733c2944a5ffa6694453267dcc3128"
+    },
+    {
+      "path": "src/services/preV1DataEpoch.js",
+      "beforeSha256": "b265dd966ee5e2ee9889035a020f2d1fa875b5158193e3f455591b6594e12a0e",
+      "afterSha256": "48de1160c9b1c2a029eb3f45f5ca05bd87470fddbcd481688a8b455ea6b91c1e"
+    },
+    {
+      "path": "src/ui/catalogPages.js",
+      "beforeSha256": "f51eaed6d17347843f305703cfc28a0af6a222881c569a236e6320fbdd734b34",
+      "afterSha256": "873336881ce76bafa36e6150ae910138768fa742f3bdd1860e5652dd383922bb"
+    },
+    {
+      "path": "src/ui/planPages.js",
+      "beforeSha256": "638d5dd11b5ed8d3965ec9da3ee34d638f070a9375f34fd06b05da4ec69d444a",
+      "afterSha256": "e459451b33908abc2f68bf9d6c4188868f37b5f33823b4dc29ae5d018b22bf4b"
+    },
+    {
+      "path": "tests/core.test.mjs",
+      "beforeSha256": "5f704215430e7cc4f7259e0e782b839e7211a06dff0d4865fa7e91273dd26d5b",
+      "afterSha256": "bcee8118a0215f130a74ffb95ad09aa856b1e10faa3e6576455b12aa4c9355b5"
+    },
+    {
+      "path": "tests/data-ux-pass-c.test.mjs",
+      "beforeSha256": "71f49ecd48331543935f2776e7e96f9e098daf148ce8737c6b0fa85d1b0216b4",
+      "afterSha256": "c46935db142ecb8cce20a1825eabe6607ef3cc410e9a79895865f1391e3deb67"
+    },
+    {
+      "path": "tests/hardening-phase8.test.mjs",
+      "beforeSha256": "f27380729119b71ce7693b1d60f255331cd5eea63dfffd5da40bfd20db517304",
+      "afterSha256": "5726c59fafc8598bad051bd504571ac3fd63b6e5836b847a5eb5e8b33ff7a162"
+    },
+    {
+      "path": "tests/helpers.mjs",
+      "beforeSha256": "df069de5daf568933652c84b697834151fb1a767c371973105e4d934b0b16ae6",
+      "afterSha256": "30aabdcb9641f152b3250c396c7f9980c8b2d2f2cef09968d70ecd2f0c113fbb"
+    },
+    {
+      "path": "tests/plan-phase6.test.mjs",
+      "beforeSha256": "d8f906a14892ae980cf590b10fe1a5a00fa33c399c54ede51d446b69d7f3a0b6",
+      "afterSha256": "708df1d3aad4c44300ff7c2127ca9f13db1b69cf964185585363fc0c1d4740bb"
+    },
+    {
+      "path": "tests/planner-phase5.test.mjs",
+      "beforeSha256": "afea8ba772d5cc02ea58ba56cad9d70c05cd814c72de1b0e225fbd7b89d91185",
+      "afterSha256": "1a9e6a26b64a0c1158ec4096271f6e63e409a17752c7f7cc876ff4203ef3e3f3"
+    },
+    {
+      "path": "tests/reference-data-pass-a.test.mjs",
+      "beforeSha256": "a9f5991fdee20839514e551e756adad1e0d928b5df8dfeb972d950be401899e3",
+      "afterSha256": "59dc745817186fa65c939691315dba4f3a18d94441794326e3d677e98f20a2ee"
+    },
+    {
+      "path": "tests/v1-engine-phase-a.test.mjs",
+      "beforeSha256": "e6c1d4fe39c73be9d52a4f7473da5a0ec70ba6e1331b9671a5aa5e8bcaf7f68b",
+      "afterSha256": "63330dcf6eabcf5e843580ead27b46ba2d7a8ce98724af03f619eace8e4f6e40"
+    },
+    {
+      "path": "tests/v1-planner-phase-c.test.mjs",
+      "beforeSha256": "aab43729c89a5f29ac4c1c816c934cd6c0c948011cf947b751f883b9a4056d8a",
+      "afterSha256": "0c97ae7879fc6ac8b40e0c3658db073e6b9a0713ac9bcdc6127db4003f0b2f2f"
+    },
+    {
+      "path": "tests/v1-planner-phase-d.test.mjs",
+      "beforeSha256": "3d610d937bbc9a66cade50d0e5057f7073cd8bd2bbed702bc7a8c2552441c205",
+      "afterSha256": "867fe814da8d87663ae38932300e34b64c85a217f72cc3296babb4eae5365c8f"
+    },
+    {
+      "path": "tests/v1-planner-phase-g.test.mjs",
+      "beforeSha256": "32c4d4936c229586383ce2fd24efd3dc238efe6925475e07efc672a0f4ead43c",
+      "afterSha256": "d81aaf3fa27125c52f369c8d087df263738477b11bfd9bbfb1ff5a693bcc98b6"
+    },
+    {
+      "path": "tests/v1-planner-phase-h.test.mjs",
+      "beforeSha256": "d02c8b952575b98fe199ea0008a4e39d92a5aa375632ea07d52277f543f10dc1",
+      "afterSha256": "ab34dc889ad7c6afcd40004b3988c7e82dc84aa0e7a1cd1e1bdcdb047c5ef862"
+    },
+    {
+      "path": "tests/v1-step1.test.mjs",
+      "beforeSha256": "93a30f413ebdab19e14fa9048a7a6873a3223ec000d3160ea021031caf4ec920",
+      "afterSha256": "7acad62660ce6c2922084d4ffa60865f8985f1b76149665228a7277f769d8552"
+    },
+    {
+      "path": "tests/v1-step2.test.mjs",
+      "beforeSha256": "0c2f59f6d0af182ae2ec7cc9c9bce7131c9a06d169f025de47f8eae5d771f0d8",
+      "afterSha256": "1a53e7da8fbda4e6aaaf35cf4e8ee123727cf51553485031e11ac79130ea7ccb"
+    },
+    {
+      "path": "tests/v1-step3.test.mjs",
+      "beforeSha256": "b2e942525c0327b6c2a7ad547a81eecfb414094db0810764d97c64d57a94fbf3",
+      "afterSha256": "dc8483f65447b037b38efaf8aebda4b176d53d0d8d03b4de3b07cca258acd87c"
+    }
+  ],
+  "newFilesAtIntegrityCheck": [
+    {
+      "path": "LEGGIMI_R0_R1.md",
+      "sha256": "f44529a267acff0847282ebe981c841bb1481b9ed5c1ff4969aefb0b5cfc0fad"
+    },
+    {
+      "path": "dist/schemas/allergy-intolerance-profile-v1.schema.json",
+      "sha256": "533d27f00708834a3f001602fbadecc1de44cdaba976c1302812fb1a50b58c2c"
+    },
+    {
+      "path": "dist/schemas/allergy-intolerance-profile-v2.schema.json",
+      "sha256": "9d5a45423a9824f26b6525f613502c2e7b976608fbb87184eb3e582d8530ad51"
+    },
+    {
+      "path": "dist/schemas/backup-v1.schema.json",
+      "sha256": "5d0b70b6fbd18f713307be17c217c67d1d92b380f3300efb203b1b87c03341de"
+    },
+    {
+      "path": "dist/schemas/backup-v2.schema.json",
+      "sha256": "fc5498609f5f35427b3b86769c41baaa6e6370dd2fa3a681275f27008d0703f7"
+    },
+    {
+      "path": "dist/schemas/food-group.schema.json",
+      "sha256": "3c8a81a0d174d90b5870695cbca40c5c10b177b13e7633c6e171ba38adb6ea07"
+    },
+    {
+      "path": "dist/schemas/food-preferences-v1.schema.json",
+      "sha256": "e94b39ff98be9ba109583de8dfd6acc9c0264b3987a343da9238f1fcbf58f011"
+    },
+    {
+      "path": "dist/schemas/food-preferences-v2.schema.json",
+      "sha256": "455411761c5de2589c4189390ec53ed171e2b818198eb1b6db57a2765c7c42b4"
+    },
+    {
+      "path": "dist/schemas/ingredient-conversion.schema.json",
+      "sha256": "0abf25eadda4807abef81667039a5090c891a5e24fbed794a0a4206bcc17832f"
+    },
+    {
+      "path": "dist/schemas/ingredient-mapping.schema.json",
+      "sha256": "72232a8123ea5410714034835621b8abee7d380c247a90830ff5c37c81fcb3c9"
+    },
+    {
+      "path": "dist/schemas/ingredient-revision-v1.schema.json",
+      "sha256": "693e30afcdce8d5d2ff076aaa11cdc22f0d58330ff7cf5fd933bd74fdfb50aed"
+    },
+    {
+      "path": "dist/schemas/ingredient-revision-v2.schema.json",
+      "sha256": "111602534e333fdeecd692ff2207006b94b2daae1f64af6deb255ff8ddda482b"
+    },
+    {
+      "path": "dist/schemas/recipe-version-v1.schema.json",
+      "sha256": "b1b84792c142226b44a12098ec350f4798c3ecde40767a9ddcf55b3a9a73e28e"
+    },
+    {
+      "path": "dist/schemas/recipe-version-v2.schema.json",
+      "sha256": "d1115ccddd6c60a15384ab802c5530665d2ce11e32d71b61ffb5fb5bd91c834a"
+    },
+    {
+      "path": "dist/schemas/safety-evidence.schema.json",
+      "sha256": "f08c700c74dcf7b8495b68bba15aa6a8d52defba9d7b10b90247cd074f983da5"
+    },
+    {
+      "path": "dist/src/domain/catalogQuarantine.js",
+      "sha256": "88ff19c40bf8b37888fc4084c57e06142762a32265fcefd25d722a91977157ed"
+    },
+    {
+      "path": "dist/src/domain/ingredientConversion.js",
+      "sha256": "4975b9a9dea321a15eac10301af80f4ad77a19e495dc53c4f36466bf191c7f62"
+    },
+    {
+      "path": "dist/src/domain/ingredientIdentity.js",
+      "sha256": "1fc4e598c70839eeafb8ffabf6a8acded272d14792597a154f4b6b2867f08e1a"
+    },
+    {
+      "path": "dist/src/domain/revisionV2Contracts.js",
+      "sha256": "0b73f7edf16ca239d5d4bfcf846aab54978870817fe914004aa55eddc81a1d21"
+    },
+    {
+      "path": "dist/src/domain/safetyCompatibility.js",
+      "sha256": "2045ad5673e936af33571d3cbced0cea37b5ee285573303307ff45d3aac06868"
+    },
+    {
+      "path": "dist/src/services/ingredientModelMigration.js",
+      "sha256": "f197d0c9f1e1930a5536cf540bda5152feebf5cabe73ac1de9830ef3f53baa26"
+    },
+    {
+      "path": "dist/src/services/planPreviewGuard.js",
+      "sha256": "aeb90e9f8a4667cc027eaf862cfcdcd32b6943df5fe0fc4bc4a7279599369567"
+    },
+    {
+      "path": "dist/src/services/revisionV2Service.js",
+      "sha256": "41b3e8e63204fd3633f316a8c5036c33bb489055c96e4e7e0568ed59f2e7fc78"
+    },
+    {
+      "path": "public/schemas/allergy-intolerance-profile-v1.schema.json",
+      "sha256": "533d27f00708834a3f001602fbadecc1de44cdaba976c1302812fb1a50b58c2c"
+    },
+    {
+      "path": "public/schemas/allergy-intolerance-profile-v2.schema.json",
+      "sha256": "9d5a45423a9824f26b6525f613502c2e7b976608fbb87184eb3e582d8530ad51"
+    },
+    {
+      "path": "public/schemas/backup-v1.schema.json",
+      "sha256": "5d0b70b6fbd18f713307be17c217c67d1d92b380f3300efb203b1b87c03341de"
+    },
+    {
+      "path": "public/schemas/backup-v2.schema.json",
+      "sha256": "fc5498609f5f35427b3b86769c41baaa6e6370dd2fa3a681275f27008d0703f7"
+    },
+    {
+      "path": "public/schemas/food-group.schema.json",
+      "sha256": "3c8a81a0d174d90b5870695cbca40c5c10b177b13e7633c6e171ba38adb6ea07"
+    },
+    {
+      "path": "public/schemas/food-preferences-v1.schema.json",
+      "sha256": "e94b39ff98be9ba109583de8dfd6acc9c0264b3987a343da9238f1fcbf58f011"
+    },
+    {
+      "path": "public/schemas/food-preferences-v2.schema.json",
+      "sha256": "455411761c5de2589c4189390ec53ed171e2b818198eb1b6db57a2765c7c42b4"
+    },
+    {
+      "path": "public/schemas/ingredient-conversion.schema.json",
+      "sha256": "0abf25eadda4807abef81667039a5090c891a5e24fbed794a0a4206bcc17832f"
+    },
+    {
+      "path": "public/schemas/ingredient-mapping.schema.json",
+      "sha256": "72232a8123ea5410714034835621b8abee7d380c247a90830ff5c37c81fcb3c9"
+    },
+    {
+      "path": "public/schemas/ingredient-revision-v1.schema.json",
+      "sha256": "693e30afcdce8d5d2ff076aaa11cdc22f0d58330ff7cf5fd933bd74fdfb50aed"
+    },
+    {
+      "path": "public/schemas/ingredient-revision-v2.schema.json",
+      "sha256": "111602534e333fdeecd692ff2207006b94b2daae1f64af6deb255ff8ddda482b"
+    },
+    {
+      "path": "public/schemas/recipe-version-v1.schema.json",
+      "sha256": "b1b84792c142226b44a12098ec350f4798c3ecde40767a9ddcf55b3a9a73e28e"
+    },
+    {
+      "path": "public/schemas/recipe-version-v2.schema.json",
+      "sha256": "d1115ccddd6c60a15384ab802c5530665d2ce11e32d71b61ffb5fb5bd91c834a"
+    },
+    {
+      "path": "public/schemas/safety-evidence.schema.json",
+      "sha256": "f08c700c74dcf7b8495b68bba15aa6a8d52defba9d7b10b90247cd074f983da5"
+    },
+    {
+      "path": "reports/revision_v2/BUILD_MANIFEST.json",
+      "sha256": "49fce70a6faceedad3ccea0f73f83d1186d6eb69bc64d348dfc419b2d8092fd7"
+    },
+    {
+      "path": "reports/revision_v2/R0/REPORT.md",
+      "sha256": "2087f26e3d3f06d44158e6a96fcb1b748395656b414e3c8d7f8a9cc401c79c8d"
+    },
+    {
+      "path": "reports/revision_v2/R0/evidence/a11y-final.log",
+      "sha256": "b762e94665bdd38443948e1787d794cbe5c772250bfab8411e21b71366f66ff7"
+    },
+    {
+      "path": "reports/revision_v2/R0/evidence/baseline-and-registry.json",
+      "sha256": "cb3d268fb76575c33ca5d2dfcb731249e39aa0087419881c10e572498da561c5"
+    },
+    {
+      "path": "reports/revision_v2/R0/evidence/browser-block.json",
+      "sha256": "c370735c424d08d00eac95f60c6d16843c8b90d805272b9af852d1217697c512"
+    },
+    {
+      "path": "reports/revision_v2/R0/evidence/first-tests.log",
+      "sha256": "26567930d8f1bc1905dd07f83cf4b47d1631e6349e94ddd8f2962e8315f843ae"
+    },
+    {
+      "path": "reports/revision_v2/R0/evidence/forms.log",
+      "sha256": "c5cd5d21e6cb1c09f80af1665478e15e157783074749860073139572086a3f06"
+    },
+    {
+      "path": "reports/revision_v2/R0/evidence/planner-service-tests.log",
+      "sha256": "755a74dba9b1b70915a8aaa8d22c1607ca74cfe2f66d943280b837fb042efed6"
+    },
+    {
+      "path": "reports/revision_v2/R0/evidence/quarantine-manifest.json",
+      "sha256": "ea9cf02b34a3a6c18b72d4b67bea2170054ab209fcfc24fb48397a517ebf5e10"
+    },
+    {
+      "path": "reports/revision_v2/R0/evidence/r0-tests.log",
+      "sha256": "704318dbad5c1604148711ffb6c616782ff431148c058b239ea872ba6e37c336"
+    },
+    {
+      "path": "reports/revision_v2/R0/test-results.json",
+      "sha256": "a6a807b32ab2a2edb227c4ab636c76bbc3db504ee555cad96769ed29f28b4c29"
+    },
+    {
+      "path": "reports/revision_v2/R1/REPORT.md",
+      "sha256": "cd6af54c3a7555df32bdd576434c5924beb012e266908ddcad66ff379e0316c0"
+    },
+    {
+      "path": "reports/revision_v2/R1/evidence/build-final.log",
+      "sha256": "19985e242ad6032e1f89cbd2fefac84ecb9698f4a8ed026250404b0d087b7734"
+    },
+    {
+      "path": "reports/revision_v2/R1/evidence/catalog-migration.json",
+      "sha256": "a8b15903a0d757345c07a547fc2bac1ce676a29e6ff5eb4a00c92d44c2af9008"
+    },
+    {
+      "path": "reports/revision_v2/R1/evidence/catalog-migration.log",
+      "sha256": "76a68d99b983d5d812ee136eb8d236af8ee20146592ea8ca683f70a2fe243044"
+    },
+    {
+      "path": "reports/revision_v2/R1/evidence/current-phase8-accessibility.json",
+      "sha256": "15b41709fa539622bc03c7fecee097af3659e71defae4acf6689e12f8b62f38d"
+    },
+    {
+      "path": "reports/revision_v2/R1/evidence/current-v1-release-gate.json",
+      "sha256": "eca50f7cc03da176b155166e9f1d1df8d2ca3c1f8d192636317b5696f6c02614"
+    },
+    {
+      "path": "reports/revision_v2/R1/evidence/lint-final.log",
+      "sha256": "1e5bcaad7fcb6cd5fdfcc501d0f27e1ceb280dc27bf5c73f8901c7b8076e3dd8"
+    },
+    {
+      "path": "reports/revision_v2/R1/evidence/lint-first.log",
+      "sha256": "6afac0c45ec7df144a9fa1ebc75d06cc90b68c04f10d66499c17c0d5bb76e58a"
+    },
+    {
+      "path": "reports/revision_v2/R1/evidence/pages-final.log",
+      "sha256": "475bffeeeff711c3cb9318ee38765ed2a95fd428c61fa0dc9826cc9bc2e4826d"
+    },
+    {
+      "path": "reports/revision_v2/R1/evidence/r1-tests.log",
+      "sha256": "f98b7b80cbd5ff0c8cc5abaaa4729ab5305871458057013c7dac43801a64a7b6"
+    },
+    {
+      "path": "reports/revision_v2/R1/evidence/regression-final.log",
+      "sha256": "ce52c69d52ca4bbab5b7480ebe6222d0c10eb2191532a236654a385377fd31fc"
+    },
+    {
+      "path": "reports/revision_v2/R1/evidence/regression-first.log",
+      "sha256": "f186001998bd75712bc6ce5f895b8d429905a75f9abca4cce69068552af7bf5b"
+    },
+    {
+      "path": "reports/revision_v2/R1/evidence/regression-second.log",
+      "sha256": "df6460a2d53c3a9c3937434391a1a52f2806816a0a789241ff51ad66bf106a44"
+    },
+    {
+      "path": "reports/revision_v2/R1/evidence/regression-verified.log",
+      "sha256": "6c8f5112cbf39e904462e22c54c8b9e90bfa12c1aca3d5059fe3fc76361902f1"
+    },
+    {
+      "path": "reports/revision_v2/R1/evidence/revision-tests.log",
+      "sha256": "11edcc29098018a1cc69e98285698dcd872ca7e724462d19b21d4f37a64b8c85"
+    },
+    {
+      "path": "reports/revision_v2/R1/evidence/targeted-regressions.log",
+      "sha256": "975a1d4d37741840dfc62d87744b5803dac740b785dcea1334223b694a329749"
+    },
+    {
+      "path": "reports/revision_v2/R1/evidence/tempdir-regression.log",
+      "sha256": "c5a723c5bdf8507264ea540798d05c832cb487cdd42904416dab645055494d80"
+    },
+    {
+      "path": "reports/revision_v2/R1/test-results.json",
+      "sha256": "493ff81d6211543ba3112ea55cdfd6c27c6feaec5f1b122d528aa1441a370f63"
+    },
+    {
+      "path": "reports/revision_v2/STATE.json",
+      "sha256": "f31e83acb2aad5e97597fcdc234bdb9e32a3b1afd107f9c9808564d21b45634c"
+    },
+    {
+      "path": "reports/revision_v2/traceability-check.json",
+      "sha256": "877768a45317460b1da64e664c8ee7aaa9fffba8d1874f32cbd1c71597904b86"
+    },
+    {
+      "path": "schemas/allergy-intolerance-profile-v1.schema.json",
+      "sha256": "533d27f00708834a3f001602fbadecc1de44cdaba976c1302812fb1a50b58c2c"
+    },
+    {
+      "path": "schemas/allergy-intolerance-profile-v2.schema.json",
+      "sha256": "9d5a45423a9824f26b6525f613502c2e7b976608fbb87184eb3e582d8530ad51"
+    },
+    {
+      "path": "schemas/backup-v1.schema.json",
+      "sha256": "5d0b70b6fbd18f713307be17c217c67d1d92b380f3300efb203b1b87c03341de"
+    },
+    {
+      "path": "schemas/backup-v2.schema.json",
+      "sha256": "fc5498609f5f35427b3b86769c41baaa6e6370dd2fa3a681275f27008d0703f7"
+    },
+    {
+      "path": "schemas/food-group.schema.json",
+      "sha256": "3c8a81a0d174d90b5870695cbca40c5c10b177b13e7633c6e171ba38adb6ea07"
+    },
+    {
+      "path": "schemas/food-preferences-v1.schema.json",
+      "sha256": "e94b39ff98be9ba109583de8dfd6acc9c0264b3987a343da9238f1fcbf58f011"
+    },
+    {
+      "path": "schemas/food-preferences-v2.schema.json",
+      "sha256": "455411761c5de2589c4189390ec53ed171e2b818198eb1b6db57a2765c7c42b4"
+    },
+    {
+      "path": "schemas/ingredient-conversion.schema.json",
+      "sha256": "0abf25eadda4807abef81667039a5090c891a5e24fbed794a0a4206bcc17832f"
+    },
+    {
+      "path": "schemas/ingredient-mapping.schema.json",
+      "sha256": "72232a8123ea5410714034835621b8abee7d380c247a90830ff5c37c81fcb3c9"
+    },
+    {
+      "path": "schemas/ingredient-revision-v1.schema.json",
+      "sha256": "693e30afcdce8d5d2ff076aaa11cdc22f0d58330ff7cf5fd933bd74fdfb50aed"
+    },
+    {
+      "path": "schemas/ingredient-revision-v2.schema.json",
+      "sha256": "111602534e333fdeecd692ff2207006b94b2daae1f64af6deb255ff8ddda482b"
+    },
+    {
+      "path": "schemas/recipe-version-v1.schema.json",
+      "sha256": "b1b84792c142226b44a12098ec350f4798c3ecde40767a9ddcf55b3a9a73e28e"
+    },
+    {
+      "path": "schemas/recipe-version-v2.schema.json",
+      "sha256": "d1115ccddd6c60a15384ab802c5530665d2ce11e32d71b61ffb5fb5bd91c834a"
+    },
+    {
+      "path": "schemas/safety-evidence.schema.json",
+      "sha256": "f08c700c74dcf7b8495b68bba15aa6a8d52defba9d7b10b90247cd074f983da5"
+    },
+    {
+      "path": "scripts/revision-v2/audit-catalog-migration.mjs",
+      "sha256": "6b08118e2d1b3b84afef3baf019e053008dbb76548012177949dda270c871391"
+    },
+    {
+      "path": "scripts/revision-v2/build-identity.mjs",
+      "sha256": "cc28793d7132de56ec7a5902623af932775e9edfd22ea4cd87946b6320ccf943"
+    },
+    {
+      "path": "scripts/validate-revision-v2-traceability.mjs",
+      "sha256": "a7a675e72dc1608e0e74ce0cef6645a9b8114e242a406485c2b0d58bf9a8d3c0"
+    },
+    {
+      "path": "specs/revision_v2/CONTRATTO_R0_R1.md",
+      "sha256": "ff873cedadd73756e2d3c902be414eddd87311ca2e7637467046a1a23e6a3146"
+    },
+    {
+      "path": "specs/revision_v2/DECISIONI.md",
+      "sha256": "6636ebe163c84db3fda796bac24e34bba23d2d27f8433bb9745e9d0f6415c4fd"
+    },
+    {
+      "path": "specs/revision_v2/FASI_SVILUPPO.md",
+      "sha256": "c15762496dadbc426669599ed463351ba4ca5fdedd300754e4d3562035615830"
+    },
+    {
+      "path": "specs/revision_v2/TEST_REGISTRY.json",
+      "sha256": "c79d958af7e6727fb677df8d935693514f0e96bc8219e90ce46ad0e0d1ea89a1"
+    },
+    {
+      "path": "specs/revision_v2/TRACEABILITY.json",
+      "sha256": "5e38626021a076de96aa6c8ec390ed11ed9d3e0bdb5d661776e6fd83529c2aff"
+    },
+    {
+      "path": "specs/revision_v2/VERIFICA_BROWSER.md",
+      "sha256": "71536ffcec9a341859d09f7cb9f342716065aff7b95eb4eeb1025f15e9747fbe"
+    },
+    {
+      "path": "specs/revision_v2/baseline/MANIFEST.json",
+      "sha256": "a5d314069978f1dc1bda9d8840922fdb6f23571d0a1a7586707bc5aa22119a07"
+    },
+    {
+      "path": "specs/revision_v2/baseline/audit_evidence.json",
+      "sha256": "4d16b860f0cb9751df114192ff04674efb15e2f8f1432287adef449cf12189a8"
+    },
+    {
+      "path": "specs/revision_v2/baseline/runtime/package.json",
+      "sha256": "756d9f10601aa76f92a017243b29efeab6bbe02b29cf6402146267b017dbdabb"
+    },
+    {
+      "path": "specs/revision_v2/baseline/runtime/public/service-worker.js",
+      "sha256": "5fd00f6d595ffed36009d9ef9a0acd6450daafa63f28dfb4a64a2c67542dea7f"
+    },
+    {
+      "path": "specs/revision_v2/baseline/runtime/src/db/constants.js",
+      "sha256": "34f4efd38274c4a0d2f326874e37a39cc315780137a279f3a903cf76074e66fd"
+    },
+    {
+      "path": "specs/revision_v2/baseline/runtime/src/services/offlineCatalog.js",
+      "sha256": "90875df04cf7e9fcfbf4fc70527c31bad859d4b0b74f88641d76b60b89627b88"
+    },
+    {
+      "path": "specs/revision_v2/baseline/runtime/src/services/preV1DataEpoch.js",
+      "sha256": "b265dd966ee5e2ee9889035a020f2d1fa875b5158193e3f455591b6594e12a0e"
+    },
+    {
+      "path": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac"
+    },
+    {
+      "path": "specs/revision_v2/baseline/yourDietManager_CR_V2_TEST_ACCETTAZIONE.md",
+      "sha256": "7fbaf3f8fc1275aa2fce431d3512c6ecf1bf35217a24936a1c010d9a4e09654a"
+    },
+    {
+      "path": "specs/revision_v2/baseline/yourDietManager_REVIEW_FASE_H.md",
+      "sha256": "0f47c9b404e816ff540037f9279f2393c33e864e4ee0e30288b31229fb1acc36"
+    },
+    {
+      "path": "src/domain/catalogQuarantine.js",
+      "sha256": "88ff19c40bf8b37888fc4084c57e06142762a32265fcefd25d722a91977157ed"
+    },
+    {
+      "path": "src/domain/ingredientConversion.js",
+      "sha256": "4975b9a9dea321a15eac10301af80f4ad77a19e495dc53c4f36466bf191c7f62"
+    },
+    {
+      "path": "src/domain/ingredientIdentity.js",
+      "sha256": "1fc4e598c70839eeafb8ffabf6a8acded272d14792597a154f4b6b2867f08e1a"
+    },
+    {
+      "path": "src/domain/revisionV2Contracts.js",
+      "sha256": "0b73f7edf16ca239d5d4bfcf846aab54978870817fe914004aa55eddc81a1d21"
+    },
+    {
+      "path": "src/domain/safetyCompatibility.js",
+      "sha256": "2045ad5673e936af33571d3cbced0cea37b5ee285573303307ff45d3aac06868"
+    },
+    {
+      "path": "src/services/ingredientModelMigration.js",
+      "sha256": "f197d0c9f1e1930a5536cf540bda5152feebf5cabe73ac1de9830ef3f53baa26"
+    },
+    {
+      "path": "src/services/planPreviewGuard.js",
+      "sha256": "aeb90e9f8a4667cc027eaf862cfcdcd32b6943df5fe0fc4bc4a7279599369567"
+    },
+    {
+      "path": "src/services/revisionV2Service.js",
+      "sha256": "41b3e8e63204fd3633f316a8c5036c33bb489055c96e4e7e0568ed59f2e7fc78"
+    },
+    {
+      "path": "tests/revision-v2-fixture.mjs",
+      "sha256": "2922ec79771b2f2cf563b37ae0fab7e04dd475f6ac2e29ee6517c30b2856e9e8"
+    },
+    {
+      "path": "tests/revision-v2-r0.test.mjs",
+      "sha256": "24a0361cd6ef352ac5358381e6a3daaaa32b0432d3e7a3b02e2b0769144c8474"
+    },
+    {
+      "path": "tests/revision-v2-r1.test.mjs",
+      "sha256": "79edfdc03e7cefd302c2029e6c1e68c03041d8148135b43b35037f2a09ccd143"
+    }
+  ],
+  "missingBaselineFiles": [],
+  "unchangedBaselineFileCount": 747,
+  "protectedBaselineFileCount": 264,
+  "protectedBaselineUnchanged": true,
+  "builtRuntimeMatchesSource": true,
+  "note": "Il manifest esclude se stesso e i successivi metadati del checkpoint Git e del pacchetto. L’identità della build è definita da BUILD_MANIFEST.json."
+}

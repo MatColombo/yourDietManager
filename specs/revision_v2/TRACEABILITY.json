@@ -1,0 +1,5993 @@
+{
+  "schemaVersion": 1,
+  "planVersion": "1.0",
+  "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+  "findings": [
+    {
+      "id": "R01",
+      "title": "Allergeni mancanti con falso esito compatibile",
+      "severity": "P0",
+      "startPhase": "R0",
+      "closurePhase": "R3",
+      "closureContract": "R3 e R5",
+      "expectedResult": "Classificazione e compatibilità complete sul catalogo nuovo",
+      "requirementIds": [
+        "INV-02",
+        "INV-06",
+        "ING-05",
+        "SAFE-01",
+        "SAFE-03",
+        "SAFE-04",
+        "SAFE-05",
+        "SAFE-06",
+        "SAFE-07",
+        "SAFE-08",
+        "SAFE-09",
+        "SAFE-10",
+        "SAFE-11",
+        "SAFE-14",
+        "CAT-11",
+        "CAT-13",
+        "MIG-04",
+        "DOC-02"
+      ],
+      "status": "APERTO",
+      "remaining": "R3 e R5"
+    },
+    {
+      "id": "R02",
+      "title": "Pesce crudo in ricette senza cottura",
+      "severity": "P0",
+      "startPhase": "R0",
+      "closurePhase": "R0",
+      "closureContract": "R0 con riverifica R5",
+      "expectedResult": "Quarantena completa dei venti casi e template corretto",
+      "requirementIds": [
+        "REC-05",
+        "CAT-12"
+      ],
+      "status": "VERIFICATO",
+      "remaining": "Riverifica editoriale R5"
+    },
+    {
+      "id": "R03",
+      "title": "Falsi positivi e classificazioni improprie",
+      "severity": "P1",
+      "startPhase": "R0",
+      "closurePhase": "R3",
+      "closureContract": "R3 e R5",
+      "expectedResult": "Regole positive e classificazioni distinte per prodotto",
+      "requirementIds": [
+        "ING-05",
+        "SAFE-09",
+        "CAT-13"
+      ],
+      "status": "APERTO",
+      "remaining": "R3 e R5"
+    },
+    {
+      "id": "R04",
+      "title": "Anteprima confermata dopo modifica delle allergie",
+      "severity": "P0",
+      "startPhase": "R0",
+      "closurePhase": "R3",
+      "closureContract": "R3 e R4",
+      "expectedResult": "Tutti i commit rifiutano stato obsoleto anche fra tab",
+      "requirementIds": [
+        "INV-06",
+        "SAFE-11",
+        "SAFE-12",
+        "SAFE-13",
+        "SWAP-09",
+        "HARD-01",
+        "HARD-02",
+        "HARD-03"
+      ],
+      "status": "APERTO",
+      "remaining": "R3 e R4"
+    },
+    {
+      "id": "R05",
+      "title": "Riequilibrio con snapshot storico della preview",
+      "severity": "P1",
+      "startPhase": "R0",
+      "closurePhase": "R4",
+      "closureContract": "R4",
+      "expectedResult": "Before autorevole e finestre dei giorni conservati",
+      "requirementIds": [
+        "INV-07",
+        "SAFE-13",
+        "HARD-02",
+        "HARD-03",
+        "HARD-04",
+        "HARD-06"
+      ],
+      "status": "APERTO",
+      "remaining": "R4"
+    },
+    {
+      "id": "R06",
+      "title": "Limite prima del filtro sulle versioni correnti",
+      "severity": "P1",
+      "startPhase": "R3",
+      "closurePhase": "R3",
+      "closureContract": "R3",
+      "expectedResult": "Candidato corrente recuperato oltre le versioni storiche",
+      "requirementIds": [
+        "PERF-01",
+        "PERF-02"
+      ],
+      "status": "APERTO",
+      "remaining": "R3"
+    },
+    {
+      "id": "R07",
+      "title": "Confine concorrente e idempotenza da completare",
+      "severity": "P1",
+      "startPhase": "R0",
+      "closurePhase": "R4",
+      "closureContract": "R4",
+      "expectedResult": "Idempotenza e atomicità con due tab reali",
+      "requirementIds": [
+        "INV-07",
+        "SWAP-09",
+        "HARD-04",
+        "HARD-05",
+        "HARD-07"
+      ],
+      "status": "APERTO",
+      "remaining": "R4"
+    },
+    {
+      "id": "R08",
+      "title": "Identità tecnica dominante nell'esperienza",
+      "severity": "P1",
+      "startPhase": "R1",
+      "closurePhase": "R2",
+      "closureContract": "R2 con integrazione R3 R4 R6",
+      "expectedResult": "Concetto e forma coerenti in tutte le superfici",
+      "requirementIds": [
+        "ING-01",
+        "ING-02",
+        "ING-03",
+        "ING-04",
+        "ING-06",
+        "ING-07",
+        "ING-08",
+        "ING-09",
+        "ING-10",
+        "ING-11",
+        "ING-12",
+        "ING-13",
+        "NUT-01",
+        "SAFE-01",
+        "SAFE-02",
+        "SAFE-04",
+        "UX-09",
+        "PERF-03",
+        "MIG-03"
+      ],
+      "status": "APERTO",
+      "remaining": "R2 con integrazione R3 R4 R6"
+    },
+    {
+      "id": "R09",
+      "title": "Titoli generati come elenco sorgente",
+      "severity": "P1",
+      "startPhase": "R2",
+      "closurePhase": "R5",
+      "closureContract": "R5",
+      "expectedResult": "Titoli corretti anche sul catalogo distribuito finale",
+      "requirementIds": [
+        "ING-11",
+        "REC-01",
+        "REC-02"
+      ],
+      "status": "APERTO",
+      "remaining": "R5"
+    },
+    {
+      "id": "R10",
+      "title": "Distinzioni locali da preservare",
+      "severity": "P1",
+      "startPhase": "R1",
+      "closurePhase": "R5",
+      "closureContract": "R5",
+      "expectedResult": "Nessuna denominazione o equivalenza alimentare falsa",
+      "requirementIds": [
+        "ING-04",
+        "ING-06",
+        "REC-03"
+      ],
+      "status": "APERTO",
+      "remaining": "R5"
+    },
+    {
+      "id": "R11",
+      "title": "Il contratto attuale non esprime la richiesta",
+      "severity": "P1",
+      "startPhase": "R1",
+      "closurePhase": "R3",
+      "closureContract": "R3",
+      "expectedResult": "Frequenze esplicite con conteggio e solver concordi",
+      "requirementIds": [
+        "PREF-01",
+        "PREF-02",
+        "PREF-03",
+        "PREF-04",
+        "PREF-05",
+        "PREF-06",
+        "PREF-13",
+        "PREF-14",
+        "PREF-15",
+        "PREF-16",
+        "PREF-17",
+        "PREF-18",
+        "PREF-19",
+        "DOC-03"
+      ],
+      "status": "APERTO",
+      "remaining": "R3"
+    },
+    {
+      "id": "R12",
+      "title": "Conteggio delle finestre incoerente",
+      "severity": "P1",
+      "startPhase": "R3",
+      "closurePhase": "R3",
+      "closureContract": "R3",
+      "expectedResult": "Finestre esatte su storico giorno e futuro",
+      "requirementIds": [
+        "PREF-07",
+        "PREF-08",
+        "PREF-09",
+        "PREF-10",
+        "PREF-11",
+        "PREF-12",
+        "PREF-13",
+        "PREF-17",
+        "PREF-19"
+      ],
+      "status": "APERTO",
+      "remaining": "R3"
+    },
+    {
+      "id": "R13",
+      "title": "Migrazione comportamentale",
+      "severity": "P1",
+      "startPhase": "R1",
+      "closurePhase": "R3",
+      "closureContract": "R3 con riverifica R6",
+      "expectedResult": "Nessuna frequenza hard inventata nella migrazione",
+      "requirementIds": [
+        "PREF-20",
+        "MIG-02"
+      ],
+      "status": "APERTO",
+      "remaining": "R3 con riverifica R6"
+    },
+    {
+      "id": "R14",
+      "title": "Bug segnalato con causa UI da confermare",
+      "severity": "P1",
+      "startPhase": "R0",
+      "closurePhase": "R4",
+      "closureContract": "R4",
+      "expectedResult": "Percorso realmente visibile e azionabile nel browser",
+      "requirementIds": [
+        "SWAP-01",
+        "SWAP-02",
+        "SWAP-03",
+        "SWAP-04",
+        "SWAP-05"
+      ],
+      "status": "APERTO",
+      "remaining": "R4"
+    },
+    {
+      "id": "R15",
+      "title": "Mancanza di stato senza alternative",
+      "severity": "P1",
+      "startPhase": "R0",
+      "closurePhase": "R4",
+      "closureContract": "R4",
+      "expectedResult": "Stati risultati vuoti errori e retry verificati",
+      "requirementIds": [
+        "SWAP-02",
+        "SWAP-08",
+        "UX-13"
+      ],
+      "status": "APERTO",
+      "remaining": "R4"
+    },
+    {
+      "id": "R16",
+      "title": "Sostituzione intero pasto limitata a una ricetta",
+      "severity": "P1",
+      "startPhase": "R3",
+      "closurePhase": "R4",
+      "closureContract": "R4",
+      "expectedResult": "Scelta componente o insieme di componenti ammissibili",
+      "requirementIds": [
+        "SWAP-04",
+        "SWAP-06",
+        "SWAP-07"
+      ],
+      "status": "APERTO",
+      "remaining": "R4"
+    },
+    {
+      "id": "R17",
+      "title": "Note non salvate nella giornata",
+      "severity": "P1",
+      "startPhase": "R0",
+      "closurePhase": "R4",
+      "closureContract": "R4",
+      "expectedResult": "Bozze della giornata preservate durante altre azioni",
+      "requirementIds": [
+        "SWAP-03",
+        "UX-07",
+        "UX-14"
+      ],
+      "status": "APERTO",
+      "remaining": "R4"
+    },
+    {
+      "id": "R18",
+      "title": "Onboarding sospeso e configurazione poco orientata alle decisioni",
+      "severity": "P1",
+      "startPhase": "R3",
+      "closurePhase": "R4",
+      "closureContract": "R4",
+      "expectedResult": "Onboarding riprendibile e scelte distinguibili dai default",
+      "requirementIds": [
+        "UX-03",
+        "UX-04",
+        "UX-05"
+      ],
+      "status": "APERTO",
+      "remaining": "R4"
+    },
+    {
+      "id": "R19",
+      "title": "Navigazione eccessivamente tecnica",
+      "severity": "P2",
+      "startPhase": "R4",
+      "closurePhase": "R6",
+      "closureContract": "R6",
+      "expectedResult": "Navigazione ordinaria pulita e diagnostica utile",
+      "requirementIds": [
+        "UX-01",
+        "UX-02",
+        "OPS-04"
+      ],
+      "status": "APERTO",
+      "remaining": "R6"
+    },
+    {
+      "id": "R20",
+      "title": "Densità informativa senza gerarchia sufficiente",
+      "severity": "P1",
+      "startPhase": "R2",
+      "closurePhase": "R4",
+      "closureContract": "R4",
+      "expectedResult": "Gerarchia delle informazioni verificata su mobile e desktop",
+      "requirementIds": [
+        "ING-13",
+        "SWAP-05",
+        "UX-03",
+        "UX-06",
+        "UX-08",
+        "UX-09",
+        "UX-10"
+      ],
+      "status": "APERTO",
+      "remaining": "R4"
+    },
+    {
+      "id": "R21",
+      "title": "Errori e accessibilità da verificare oltre il sorgente",
+      "severity": "P1",
+      "startPhase": "R4",
+      "closurePhase": "R7",
+      "closureContract": "R7",
+      "expectedResult": "Accessibilità reale su tutti i flussi finali",
+      "requirementIds": [
+        "UX-11",
+        "UX-12",
+        "UX-13",
+        "UX-14"
+      ],
+      "status": "APERTO",
+      "remaining": "R7"
+    },
+    {
+      "id": "R22",
+      "title": "Procedimento poco utile e integrato nel contratto",
+      "severity": "P1",
+      "startPhase": "R1",
+      "closurePhase": "R2",
+      "closureContract": "R2 con riverifica R5 R6",
+      "expectedResult": "Procedimento assente nei nuovi flussi e storico preservato",
+      "requirementIds": [
+        "REC-04",
+        "REC-05",
+        "REC-06",
+        "REC-07",
+        "DOC-03"
+      ],
+      "status": "APERTO",
+      "remaining": "R2 con riverifica R5 R6"
+    },
+    {
+      "id": "R23",
+      "title": "Quantità di consumo senza conversione d'acquisto",
+      "severity": "P1",
+      "startPhase": "R1",
+      "closurePhase": "R6",
+      "closureContract": "R6",
+      "expectedResult": "Forme acquisto e consumi distinti con conversioni valide",
+      "requirementIds": [
+        "INV-02",
+        "ING-12",
+        "NUT-01",
+        "NUT-02",
+        "NUT-03",
+        "SHOP-01",
+        "SHOP-02",
+        "SHOP-03",
+        "SHOP-06"
+      ],
+      "status": "APERTO",
+      "remaining": "R6"
+    },
+    {
+      "id": "R24",
+      "title": "Peso finale non dimostrato",
+      "severity": "P1",
+      "startPhase": "R2",
+      "closurePhase": "R5",
+      "closureContract": "R5",
+      "expectedResult": "Peso finale e praticità veri sui contenuti distribuiti",
+      "requirementIds": [
+        "INV-02",
+        "NUT-06",
+        "REC-05"
+      ],
+      "status": "APERTO",
+      "remaining": "R5"
+    },
+    {
+      "id": "R25",
+      "title": "Obsolescenza spesa troppo ampia",
+      "severity": "P2",
+      "startPhase": "R4",
+      "closurePhase": "R6",
+      "closureContract": "R6",
+      "expectedResult": "Solo gli input materiali rendono obsoleta la spesa",
+      "requirementIds": [
+        "INV-07",
+        "SWAP-09",
+        "SHOP-04",
+        "SHOP-05"
+      ],
+      "status": "APERTO",
+      "remaining": "R6"
+    },
+    {
+      "id": "R26",
+      "title": "Ampiezza numerica con copertura sbilanciata",
+      "severity": "P1",
+      "startPhase": "R1",
+      "closurePhase": "R5",
+      "closureContract": "R5",
+      "expectedResult": "Copertura curata e fattibilità reale con fonti tracciate",
+      "requirementIds": [
+        "INV-02",
+        "ING-02",
+        "NUT-04",
+        "NUT-05",
+        "CAT-01",
+        "CAT-02",
+        "CAT-03",
+        "CAT-04",
+        "CAT-05",
+        "CAT-06",
+        "CAT-07",
+        "CAT-08",
+        "CAT-09",
+        "CAT-10",
+        "CAT-11",
+        "CAT-14",
+        "PERF-06",
+        "DOC-02",
+        "DOC-03"
+      ],
+      "status": "APERTO",
+      "remaining": "R5"
+    },
+    {
+      "id": "R27",
+      "title": "Backup dipendente dal catalogo identico",
+      "severity": "P1",
+      "startPhase": "R1",
+      "closurePhase": "R6",
+      "closureContract": "R6",
+      "expectedResult": "Backup autosufficiente e migrazione senza perdita",
+      "requirementIds": [
+        "INV-03",
+        "REC-06",
+        "CAT-14",
+        "MIG-01",
+        "MIG-02",
+        "MIG-03",
+        "MIG-04",
+        "MIG-05",
+        "MIG-06",
+        "MIG-07",
+        "MIG-08",
+        "OPS-01",
+        "OPS-02"
+      ],
+      "status": "APERTO",
+      "remaining": "R6"
+    }
+  ],
+  "requirements": [
+    {
+      "id": "INV-01",
+      "requirementId": "INV-01",
+      "title": "PWA locale offline senza account obbligatorio",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "CR §1.2",
+      "reviewIds": [],
+      "changeRequestSection": "1.2",
+      "ownerPhase": "R6",
+      "ownerTask": "R6.4",
+      "supportingTasks": [
+        "R6.4"
+      ],
+      "testIds": [
+        "T62",
+        "T74"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "changedFiles": [
+        "src/db/database.js",
+        "src/db/constants.js",
+        "src/main.js",
+        "public/service-worker.js",
+        "src/services/offlineCatalog.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "INV-02",
+      "requirementId": "INV-02",
+      "title": "Calcolo deterministico e valori tracciabili",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R01, R23, R24, R26",
+      "reviewIds": [
+        "R01",
+        "R23",
+        "R24",
+        "R26"
+      ],
+      "changeRequestSection": "1.2",
+      "ownerPhase": "R5",
+      "ownerTask": "R5.2",
+      "supportingTasks": [],
+      "testIds": [
+        "T17",
+        "T19",
+        "T20",
+        "T54"
+      ],
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "changedFiles": [
+        "src/corpus/mediterranean/sourceAdapters.js",
+        "data/revision-v2/mediterranean/source-register.json",
+        "data/revision-v2/mediterranean/sources/crea-004000.json",
+        "data/revision-v2/mediterranean/sources/crea-004005.json",
+        "data/revision-v2/mediterranean/sources/crea-004010.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "INV-03",
+      "requirementId": "INV-03",
+      "title": "Revisioni storiche immutabili e risolvibili",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R27",
+      "reviewIds": [
+        "R27"
+      ],
+      "changeRequestSection": "1.2",
+      "ownerPhase": "R6",
+      "ownerTask": "R6.3",
+      "supportingTasks": [
+        "R1.3",
+        "R3.5",
+        "R6.3"
+      ],
+      "testIds": [
+        "T59",
+        "T60",
+        "T72"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "changedFiles": [
+        "src/services/backupEngine.js",
+        "src/services/portableBackup.js",
+        "src/repositories/repositoryHub.js",
+        "schemas/backup-v3.schema.json",
+        "src/ui/app.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "INV-04",
+      "requirementId": "INV-04",
+      "title": "Porzioni fisse e persone limitate alla spesa",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "CR §1.2",
+      "reviewIds": [],
+      "changeRequestSection": "1.2",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.5",
+      "supportingTasks": [
+        "R6.1"
+      ],
+      "testIds": [
+        "T37",
+        "T46",
+        "T57",
+        "T71"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/safetyPolicy.js",
+        "src/planner/hardFilter.js",
+        "src/planner/recipeFeatures.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/effectivePlanService.js",
+        "src/services/backupEngine.js",
+        "src/services/referenceDataService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "INV-05",
+      "requirementId": "INV-05",
+      "title": "Energia giornaliera hard ed esterni distinti",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "CR §1.2",
+      "reviewIds": [],
+      "changeRequestSection": "1.2",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.5",
+      "supportingTasks": [],
+      "testIds": [
+        "T34",
+        "T38",
+        "T71"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/safetyPolicy.js",
+        "src/planner/hardFilter.js",
+        "src/planner/recipeFeatures.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/effectivePlanService.js",
+        "src/services/backupEngine.js",
+        "src/services/referenceDataService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "INV-06",
+      "requirementId": "INV-06",
+      "title": "Sicurezza prima del ranking e al commit",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R01, R04",
+      "reviewIds": [
+        "R01",
+        "R04"
+      ],
+      "changeRequestSection": "1.2",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.5",
+      "supportingTasks": [],
+      "testIds": [
+        "T02",
+        "T03",
+        "T07"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/safetyPolicy.js",
+        "src/planner/hardFilter.js",
+        "src/planner/recipeFeatures.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/effectivePlanService.js",
+        "src/services/backupEngine.js",
+        "src/services/referenceDataService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "INV-07",
+      "requirementId": "INV-07",
+      "title": "Modifiche esplicite e undo coerente",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R05, R07, R25",
+      "reviewIds": [
+        "R05",
+        "R07",
+        "R25"
+      ],
+      "changeRequestSection": "1.2",
+      "ownerPhase": "R6",
+      "ownerTask": "R6.2",
+      "supportingTasks": [
+        "R6.2"
+      ],
+      "testIds": [
+        "T09",
+        "T12",
+        "T47",
+        "T58"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "changedFiles": [
+        "src/services/shoppingService.js",
+        "schemas/shopping-checklist.schema.json",
+        "src/ui/shoppingPages.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "INV-08",
+      "requirementId": "INV-08",
+      "title": "Archetipi iniziali tutti selezionati",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "CR §1.2",
+      "reviewIds": [],
+      "changeRequestSection": "1.2",
+      "ownerPhase": "R2",
+      "ownerTask": "R2.4",
+      "supportingTasks": [],
+      "testIds": [
+        "T51"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/ui/catalogPages.js",
+        "src/ui/guidedControls.js",
+        "src/ui/configurationPages.js",
+        "src/main.js",
+        "src/styles.css",
+        "public/data/locales/it.json",
+        "public/data/locales/en.json"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "INV-09",
+      "requirementId": "INV-09",
+      "title": "IT ed EN senza doppia compilazione locale",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "CR §1.2",
+      "reviewIds": [],
+      "changeRequestSection": "1.2",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.6",
+      "supportingTasks": [
+        "R2.4",
+        "R4.6"
+      ],
+      "testIds": [
+        "T63",
+        "T73"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/planPages.js",
+        "src/ui/uiState.js",
+        "src/ui/catalogPages.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "INV-10",
+      "requirementId": "INV-10",
+      "title": "Refactoring mirato e architettura preservata",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "CR §1.2",
+      "reviewIds": [],
+      "changeRequestSection": "1.2",
+      "ownerPhase": "R7",
+      "ownerTask": "R7.3",
+      "supportingTasks": [
+        "R0.1",
+        "R7.3"
+      ],
+      "testIds": [
+        "T65",
+        "T74"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "74 scenari core completi, browser, catalogo R5, T64 reale completo e zero P0/P1"
+      ],
+      "changedFiles": [
+        "specs/revision_v2/CONTRATTO_R6_R7.md",
+        "scripts/revision-v2/update-r6-r7-dossier.mjs",
+        "skills/yourdietmanager-builder/SKILL.md"
+      ],
+      "evidenceIds": [
+        "EV-R7-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "ING-01",
+      "requirementId": "ING-01",
+      "title": "Concetto unico nella tassonomia product_food",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R08",
+      "reviewIds": [
+        "R08"
+      ],
+      "changeRequestSection": "3.1",
+      "ownerPhase": "R1",
+      "ownerTask": "R1.1",
+      "supportingTasks": [],
+      "testIds": [
+        "T13",
+        "T72"
+      ],
+      "status": "VERIFICATO",
+      "remainingScopes": [],
+      "changedFiles": [
+        "src/domain/ingredientIdentity.js",
+        "src/services/revisionV2Service.js",
+        "schemas/food-group.schema.json",
+        "schemas/ingredient-mapping.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R8-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "historicalEvidenceIds": [
+        "EV-R1-001",
+        "EV-R1-002"
+      ]
+    },
+    {
+      "id": "ING-02",
+      "requirementId": "ING-02",
+      "title": "Percorso gerarchico valido e univoco",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R08, R26",
+      "reviewIds": [
+        "R08",
+        "R26"
+      ],
+      "changeRequestSection": "3.1",
+      "ownerPhase": "R1",
+      "ownerTask": "R1.1",
+      "supportingTasks": [
+        "R5.4"
+      ],
+      "testIds": [
+        "T53",
+        "T72"
+      ],
+      "status": "VERIFICATO",
+      "remainingScopes": [],
+      "changedFiles": [
+        "src/domain/ingredientIdentity.js",
+        "src/services/revisionV2Service.js",
+        "schemas/food-group.schema.json",
+        "schemas/ingredient-mapping.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R8-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "historicalEvidenceIds": [
+        "EV-R1-001",
+        "EV-R1-002"
+      ]
+    },
+    {
+      "id": "ING-03",
+      "requirementId": "ING-03",
+      "title": "Etichetta forma e base di peso esplicite",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R08",
+      "reviewIds": [
+        "R08"
+      ],
+      "changeRequestSection": "3.1",
+      "ownerPhase": "R1",
+      "ownerTask": "R1.1",
+      "supportingTasks": [
+        "R5.4"
+      ],
+      "testIds": [
+        "T16",
+        "T72"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Verifica editoriale delle etichette di variante e integrazione R2"
+      ],
+      "changedFiles": [
+        "src/domain/ingredientIdentity.js",
+        "src/services/revisionV2Service.js",
+        "schemas/food-group.schema.json",
+        "schemas/ingredient-mapping.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R1-001",
+        "EV-R1-002"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "ING-04",
+      "requirementId": "ING-04",
+      "title": "Forme nutrizionali distinte con pochi campi",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R08, R10",
+      "reviewIds": [
+        "R08",
+        "R10"
+      ],
+      "changeRequestSection": "3.2",
+      "ownerPhase": "R1",
+      "ownerTask": "R1.1",
+      "supportingTasks": [
+        "R5.4"
+      ],
+      "testIds": [
+        "T17",
+        "T72"
+      ],
+      "status": "VERIFICATO",
+      "remainingScopes": [],
+      "changedFiles": [
+        "src/domain/ingredientIdentity.js",
+        "src/services/revisionV2Service.js",
+        "schemas/food-group.schema.json",
+        "schemas/ingredient-mapping.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R8-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "historicalEvidenceIds": [
+        "EV-R1-001",
+        "EV-R1-002"
+      ]
+    },
+    {
+      "id": "ING-05",
+      "requirementId": "ING-05",
+      "title": "Equivalenza di ricerca separata dagli allergeni",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R01, R03",
+      "reviewIds": [
+        "R01",
+        "R03"
+      ],
+      "changeRequestSection": "3.2",
+      "ownerPhase": "R1",
+      "ownerTask": "R1.1",
+      "supportingTasks": [
+        "R5.4"
+      ],
+      "testIds": [
+        "T01",
+        "T72"
+      ],
+      "status": "VERIFICATO",
+      "remainingScopes": [],
+      "changedFiles": [
+        "src/domain/ingredientIdentity.js",
+        "src/services/revisionV2Service.js",
+        "schemas/food-group.schema.json",
+        "schemas/ingredient-mapping.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R8-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "historicalEvidenceIds": [
+        "EV-R1-001",
+        "EV-R1-002"
+      ]
+    },
+    {
+      "id": "ING-06",
+      "requirementId": "ING-06",
+      "title": "Fusione solo con mapping e storico conservato",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R08, R10",
+      "reviewIds": [
+        "R08",
+        "R10"
+      ],
+      "changeRequestSection": "3.2",
+      "ownerPhase": "R1",
+      "ownerTask": "R1.1",
+      "supportingTasks": [],
+      "testIds": [
+        "T20",
+        "T72"
+      ],
+      "status": "VERIFICATO",
+      "remainingScopes": [],
+      "changedFiles": [
+        "src/domain/ingredientIdentity.js",
+        "src/services/revisionV2Service.js",
+        "schemas/food-group.schema.json",
+        "schemas/ingredient-mapping.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R8-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "historicalEvidenceIds": [
+        "EV-R1-001",
+        "EV-R1-002"
+      ]
+    },
+    {
+      "id": "ING-07",
+      "requirementId": "ING-07",
+      "title": "Selettore condiviso in modalità concetto o forma",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R08",
+      "reviewIds": [
+        "R08"
+      ],
+      "changeRequestSection": "3.3",
+      "ownerPhase": "R2",
+      "ownerTask": "R2.1",
+      "supportingTasks": [
+        "R3.3",
+        "R4.1",
+        "R6.1"
+      ],
+      "testIds": [
+        "T13",
+        "T14",
+        "T16"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/services/ingredientConceptQuery.js",
+        "src/domain/ingredientPresentation.js",
+        "src/ui/guidedControls.js",
+        "src/services/catalogQuery.js",
+        "src/repositories/repositoryHub.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "ING-08",
+      "requirementId": "ING-08",
+      "title": "Ricerca normalizzata in tutti i campi",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R08",
+      "reviewIds": [
+        "R08"
+      ],
+      "changeRequestSection": "3.3",
+      "ownerPhase": "R2",
+      "ownerTask": "R2.1",
+      "supportingTasks": [
+        "R3.3",
+        "R4.1",
+        "R6.1"
+      ],
+      "testIds": [
+        "T14",
+        "T15"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/services/ingredientConceptQuery.js",
+        "src/domain/ingredientPresentation.js",
+        "src/ui/guidedControls.js",
+        "src/services/catalogQuery.js",
+        "src/repositories/repositoryHub.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "ING-09",
+      "requirementId": "ING-09",
+      "title": "Risultato generico con forme e sinonimi",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R08",
+      "reviewIds": [
+        "R08"
+      ],
+      "changeRequestSection": "3.3",
+      "ownerPhase": "R2",
+      "ownerTask": "R2.1",
+      "supportingTasks": [
+        "R3.3",
+        "R4.1",
+        "R6.1"
+      ],
+      "testIds": [
+        "T13",
+        "T15"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/services/ingredientConceptQuery.js",
+        "src/domain/ingredientPresentation.js",
+        "src/ui/guidedControls.js",
+        "src/services/catalogQuery.js",
+        "src/repositories/repositoryHub.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "ING-10",
+      "requirementId": "ING-10",
+      "title": "Selettore uniforme in tutte le superfici",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R08",
+      "reviewIds": [
+        "R08"
+      ],
+      "changeRequestSection": "3.3",
+      "ownerPhase": "R2",
+      "ownerTask": "R2.4",
+      "supportingTasks": [
+        "R3.3",
+        "R4.1",
+        "R6.1"
+      ],
+      "testIds": [
+        "T14"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline.",
+        "Nuove superfici R4/R6 e invalidazione cross-tab end-to-end."
+      ],
+      "changedFiles": [
+        "src/ui/catalogPages.js",
+        "src/ui/guidedControls.js",
+        "src/ui/configurationPages.js",
+        "src/main.js",
+        "src/styles.css",
+        "public/data/locales/it.json",
+        "public/data/locales/en.json"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "ING-11",
+      "requirementId": "ING-11",
+      "title": "Ricette indicizzate per ingredienti e stato vista",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R08, R09",
+      "reviewIds": [
+        "R08",
+        "R09"
+      ],
+      "changeRequestSection": "3.3",
+      "ownerPhase": "R2",
+      "ownerTask": "R2.1",
+      "supportingTasks": [
+        "R3.3",
+        "R4.1",
+        "R6.1"
+      ],
+      "testIds": [
+        "T14",
+        "T22",
+        "T63"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline.",
+        "Nuove superfici R4/R6 e invalidazione cross-tab end-to-end."
+      ],
+      "changedFiles": [
+        "src/services/ingredientConceptQuery.js",
+        "src/domain/ingredientPresentation.js",
+        "src/ui/guidedControls.js",
+        "src/services/catalogQuery.js",
+        "src/repositories/repositoryHub.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "ING-12",
+      "requirementId": "ING-12",
+      "title": "Stato di pesatura accanto alla quantità",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R08, R23",
+      "reviewIds": [
+        "R08",
+        "R23"
+      ],
+      "changeRequestSection": "3.4",
+      "ownerPhase": "R2",
+      "ownerTask": "R2.2",
+      "supportingTasks": [
+        "R6.1"
+      ],
+      "testIds": [
+        "T16",
+        "T17"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline.",
+        "R5: revisione editoriale definitiva di titoli e praticità; corpus legacy non certificato dalla migrazione."
+      ],
+      "changedFiles": [
+        "src/domain/recipePresentation.js",
+        "src/services/recipePresentationMigration.js",
+        "src/services/foodPresentationMigration.js",
+        "src/domain/foodPresentationCorrections.js",
+        "src/services/catalogAvailability.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "ING-13",
+      "requirementId": "ING-13",
+      "title": "Dettaglio semplice con dati tecnici espandibili",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R08, R20",
+      "reviewIds": [
+        "R08",
+        "R20"
+      ],
+      "changeRequestSection": "3.4",
+      "ownerPhase": "R2",
+      "ownerTask": "R2.2",
+      "supportingTasks": [
+        "R4.6"
+      ],
+      "testIds": [
+        "T63",
+        "T77"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline.",
+        "R5: revisione editoriale definitiva di titoli e praticità; corpus legacy non certificato dalla migrazione."
+      ],
+      "changedFiles": [
+        "src/domain/recipePresentation.js",
+        "src/services/recipePresentationMigration.js",
+        "src/services/foodPresentationMigration.js",
+        "src/domain/foodPresentationCorrections.js",
+        "src/services/catalogAvailability.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "NUT-01",
+      "requirementId": "NUT-01",
+      "title": "Revisione e unità autorevoli per il calcolo",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R08, R23",
+      "reviewIds": [
+        "R08",
+        "R23"
+      ],
+      "changeRequestSection": "4",
+      "ownerPhase": "R1",
+      "ownerTask": "R1.2",
+      "supportingTasks": [
+        "R3.5",
+        "R6.1"
+      ],
+      "testIds": [
+        "T16",
+        "T17",
+        "T18"
+      ],
+      "status": "VERIFICATO",
+      "remainingScopes": [],
+      "changedFiles": [
+        "src/domain/ingredientConversion.js",
+        "src/domain/nutritionCore.js",
+        "schemas/ingredient-conversion.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R8-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "historicalEvidenceIds": [
+        "EV-R1-001"
+      ]
+    },
+    {
+      "id": "NUT-02",
+      "requirementId": "NUT-02",
+      "title": "Conversioni versionate direzionali per scopo",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R23",
+      "reviewIds": [
+        "R23"
+      ],
+      "changeRequestSection": "4",
+      "ownerPhase": "R1",
+      "ownerTask": "R1.2",
+      "supportingTasks": [
+        "R6.1"
+      ],
+      "testIds": [
+        "T17",
+        "T18",
+        "T19"
+      ],
+      "status": "VERIFICATO",
+      "remainingScopes": [],
+      "changedFiles": [
+        "src/domain/ingredientConversion.js",
+        "src/domain/nutritionCore.js",
+        "schemas/ingredient-conversion.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R8-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "historicalEvidenceIds": [
+        "EV-R1-001"
+      ]
+    },
+    {
+      "id": "NUT-03",
+      "requirementId": "NUT-03",
+      "title": "Conversione assente esplicitata senza stime",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R23",
+      "reviewIds": [
+        "R23"
+      ],
+      "changeRequestSection": "4",
+      "ownerPhase": "R1",
+      "ownerTask": "R1.2",
+      "supportingTasks": [
+        "R6.1"
+      ],
+      "testIds": [
+        "T18",
+        "T19"
+      ],
+      "status": "VERIFICATO",
+      "remainingScopes": [],
+      "changedFiles": [
+        "src/domain/ingredientConversion.js",
+        "src/domain/nutritionCore.js",
+        "schemas/ingredient-conversion.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R8-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "historicalEvidenceIds": [
+        "EV-R1-001"
+      ]
+    },
+    {
+      "id": "NUT-04",
+      "requirementId": "NUT-04",
+      "title": "Definizioni nutrizionali armonizzate per fonte",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R26",
+      "reviewIds": [
+        "R26"
+      ],
+      "changeRequestSection": "4",
+      "ownerPhase": "R5",
+      "ownerTask": "R5.2",
+      "supportingTasks": [],
+      "testIds": [
+        "T20",
+        "T54"
+      ],
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "changedFiles": [
+        "src/corpus/mediterranean/sourceAdapters.js",
+        "data/revision-v2/mediterranean/source-register.json",
+        "data/revision-v2/mediterranean/sources/crea-004000.json",
+        "data/revision-v2/mediterranean/sources/crea-004005.json",
+        "data/revision-v2/mediterranean/sources/crea-004010.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "NUT-05",
+      "requirementId": "NUT-05",
+      "title": "Distinguere mancanti tracce e zero",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R26",
+      "reviewIds": [
+        "R26"
+      ],
+      "changeRequestSection": "4",
+      "ownerPhase": "R5",
+      "ownerTask": "R5.2",
+      "supportingTasks": [],
+      "testIds": [
+        "T20"
+      ],
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "changedFiles": [
+        "src/corpus/mediterranean/sourceAdapters.js",
+        "data/revision-v2/mediterranean/source-register.json",
+        "data/revision-v2/mediterranean/sources/crea-004000.json",
+        "data/revision-v2/mediterranean/sources/crea-004005.json",
+        "data/revision-v2/mediterranean/sources/crea-004010.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "NUT-06",
+      "requirementId": "NUT-06",
+      "title": "Peso finale e tempi documentati",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R24",
+      "reviewIds": [
+        "R24"
+      ],
+      "changeRequestSection": "4",
+      "ownerPhase": "R2",
+      "ownerTask": "R2.3",
+      "supportingTasks": [
+        "R5.4"
+      ],
+      "testIds": [
+        "T52"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline.",
+        "R5: revisione editoriale definitiva di titoli e praticità; corpus legacy non certificato dalla migrazione."
+      ],
+      "changedFiles": [
+        "src/services/personalCatalogService.js",
+        "src/services/customCatalogTransfer.js",
+        "src/corpus/recipePipeline.js",
+        "src/corpus/corpusScanner.js",
+        "src/corpus/deterministicRecipeGenerator.js",
+        "src/corpus/v1PhaseBRecipeGenerator.js",
+        "src/corpus/v1ReleaseRecipeGenerator.js",
+        "src/services/shoppingService.js",
+        "src/ui/catalogPages.js",
+        "schemas/recipe-version-v2.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PREF-01",
+      "requirementId": "PREF-01",
+      "title": "Form leggibile minimo ideale massimo",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R11",
+      "reviewIds": [
+        "R11"
+      ],
+      "changeRequestSection": "5.1",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.3",
+      "supportingTasks": [],
+      "testIds": [
+        "T23"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/ui/configurationRulesV2Ui.js",
+        "src/ui/foodGroupEditor.js",
+        "src/ui/frequencySummary.js",
+        "src/ui/configurationPages.js",
+        "src/ui/planPages.js",
+        "src/domain/revisionV2Contracts.js",
+        "src/services/configurationService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PREF-02",
+      "requirementId": "PREF-02",
+      "title": "Nessuna regola Frequenza Mai e disattivazione",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R11",
+      "reviewIds": [
+        "R11"
+      ],
+      "changeRequestSection": "5.1",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.3",
+      "supportingTasks": [],
+      "testIds": [
+        "T23",
+        "T25"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/ui/configurationRulesV2Ui.js",
+        "src/ui/foodGroupEditor.js",
+        "src/ui/frequencySummary.js",
+        "src/ui/configurationPages.js",
+        "src/ui/planPages.js",
+        "src/domain/revisionV2Contracts.js",
+        "src/services/configurationService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PREF-03",
+      "requirementId": "PREF-03",
+      "title": "Intervalli vuoti zero e decimali validati",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R11",
+      "reviewIds": [
+        "R11"
+      ],
+      "changeRequestSection": "5.1",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.3",
+      "supportingTasks": [],
+      "testIds": [
+        "T23"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/ui/configurationRulesV2Ui.js",
+        "src/ui/foodGroupEditor.js",
+        "src/ui/frequencySummary.js",
+        "src/ui/configurationPages.js",
+        "src/ui/planPages.js",
+        "src/domain/revisionV2Contracts.js",
+        "src/services/configurationService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PREF-04",
+      "requirementId": "PREF-04",
+      "title": "Mai esclude assegnazioni automatiche e manuali",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R11",
+      "reviewIds": [
+        "R11"
+      ],
+      "changeRequestSection": "5.1",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.3",
+      "supportingTasks": [],
+      "testIds": [
+        "T25"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/ui/configurationRulesV2Ui.js",
+        "src/ui/foodGroupEditor.js",
+        "src/ui/frequencySummary.js",
+        "src/ui/configurationPages.js",
+        "src/ui/planPages.js",
+        "src/domain/revisionV2Contracts.js",
+        "src/services/configurationService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PREF-05",
+      "requirementId": "PREF-05",
+      "title": "Minimo massimo hard e ideale soft",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R11",
+      "reviewIds": [
+        "R11"
+      ],
+      "changeRequestSection": "5.1",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.3",
+      "supportingTasks": [],
+      "testIds": [
+        "T24",
+        "T37"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/ui/configurationRulesV2Ui.js",
+        "src/ui/foodGroupEditor.js",
+        "src/ui/frequencySummary.js",
+        "src/ui/configurationPages.js",
+        "src/ui/planPages.js",
+        "src/domain/revisionV2Contracts.js",
+        "src/services/configurationService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PREF-06",
+      "requirementId": "PREF-06",
+      "title": "Contratto versionato target scope e priorità",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R11",
+      "reviewIds": [
+        "R11"
+      ],
+      "changeRequestSection": "5.2",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.3",
+      "supportingTasks": [
+        "R1.3"
+      ],
+      "testIds": [
+        "T23",
+        "T36"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/ui/configurationRulesV2Ui.js",
+        "src/ui/foodGroupEditor.js",
+        "src/ui/frequencySummary.js",
+        "src/ui/configurationPages.js",
+        "src/ui/planPages.js",
+        "src/domain/revisionV2Contracts.js",
+        "src/services/configurationService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PREF-07",
+      "requirementId": "PREF-07",
+      "title": "Un solo contatore autorevole di dominio",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R12",
+      "reviewIds": [
+        "R12"
+      ],
+      "changeRequestSection": "5.3",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.1",
+      "supportingTasks": [
+        "R4.2"
+      ],
+      "testIds": [
+        "T24",
+        "T26",
+        "T27",
+        "T28",
+        "T31"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/frequencyCounter.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planGenerationService.js",
+        "src/services/effectivePlanService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PREF-08",
+      "requirementId": "PREF-08",
+      "title": "Finestre di date esatte incluso il giorno",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R12",
+      "reviewIds": [
+        "R12"
+      ],
+      "changeRequestSection": "5.3",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.1",
+      "supportingTasks": [
+        "R4.2"
+      ],
+      "testIds": [
+        "T26",
+        "T27",
+        "T32"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/frequencyCounter.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planGenerationService.js",
+        "src/services/effectivePlanService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PREF-09",
+      "requirementId": "PREF-09",
+      "title": "Una occorrenza per pasto e target",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R12",
+      "reviewIds": [
+        "R12"
+      ],
+      "changeRequestSection": "5.3",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.1",
+      "supportingTasks": [
+        "R4.2"
+      ],
+      "testIds": [
+        "T27",
+        "T28"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/frequencyCounter.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planGenerationService.js",
+        "src/services/effectivePlanService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PREF-10",
+      "requirementId": "PREF-10",
+      "title": "Conteggio alternativo per giorni",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R12",
+      "reviewIds": [
+        "R12"
+      ],
+      "changeRequestSection": "5.3",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.1",
+      "supportingTasks": [
+        "R4.2"
+      ],
+      "testIds": [
+        "T28",
+        "T29"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/frequencyCounter.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planGenerationService.js",
+        "src/services/effectivePlanService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PREF-11",
+      "requirementId": "PREF-11",
+      "title": "Pasti esterni ignoti esplicitati",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R12",
+      "reviewIds": [
+        "R12"
+      ],
+      "changeRequestSection": "5.3",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.1",
+      "supportingTasks": [
+        "R4.2"
+      ],
+      "testIds": [
+        "T34"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/frequencyCounter.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planGenerationService.js",
+        "src/services/effectivePlanService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PREF-12",
+      "requirementId": "PREF-12",
+      "title": "Storico necessario e finestre future",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R12",
+      "reviewIds": [
+        "R12"
+      ],
+      "changeRequestSection": "5.3",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.1",
+      "supportingTasks": [
+        "R4.2"
+      ],
+      "testIds": [
+        "T30",
+        "T31",
+        "T32"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/frequencyCounter.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planGenerationService.js",
+        "src/services/effectivePlanService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PREF-13",
+      "requirementId": "PREF-13",
+      "title": "Decorrenza e finestre incomplete",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R11, R12",
+      "reviewIds": [
+        "R11",
+        "R12"
+      ],
+      "changeRequestSection": "5.3",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.1",
+      "supportingTasks": [],
+      "testIds": [
+        "T33"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/frequencyCounter.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planGenerationService.js",
+        "src/services/effectivePlanService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PREF-14",
+      "requirementId": "PREF-14",
+      "title": "Ciclo separato da orizzonte fino a novanta giorni",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R11",
+      "reviewIds": [
+        "R11"
+      ],
+      "changeRequestSection": "5.3",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.1",
+      "supportingTasks": [],
+      "testIds": [
+        "T30",
+        "T33"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/frequencyCounter.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planGenerationService.js",
+        "src/services/effectivePlanService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PREF-15",
+      "requirementId": "PREF-15",
+      "title": "Intersezione delle regole sovrapposte",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R11",
+      "reviewIds": [
+        "R11"
+      ],
+      "changeRequestSection": "5.4",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.2",
+      "supportingTasks": [],
+      "testIds": [
+        "T35",
+        "T36"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/planner/frequencyPlanGenerator.js",
+        "src/planner/planGenerator.js",
+        "src/planner/beamSolver.js",
+        "src/planner/constraintPolicy.js",
+        "src/services/planCandidateService.js",
+        "src/services/plannerExecution.js",
+        "src/services/plannerWorker.js",
+        "public/service-worker.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PREF-16",
+      "requirementId": "PREF-16",
+      "title": "Conflitti dimostrabili senza rilassamento",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R11",
+      "reviewIds": [
+        "R11"
+      ],
+      "changeRequestSection": "5.4",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.2",
+      "supportingTasks": [],
+      "testIds": [
+        "T35",
+        "T38"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/planner/frequencyPlanGenerator.js",
+        "src/planner/planGenerator.js",
+        "src/planner/beamSolver.js",
+        "src/planner/constraintPolicy.js",
+        "src/services/planCandidateService.js",
+        "src/services/plannerExecution.js",
+        "src/services/plannerWorker.js",
+        "public/service-worker.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PREF-17",
+      "requirementId": "PREF-17",
+      "title": "Solver consapevole dei vincoli di finestra",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R11, R12",
+      "reviewIds": [
+        "R11",
+        "R12"
+      ],
+      "changeRequestSection": "5.4",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.2",
+      "supportingTasks": [],
+      "testIds": [
+        "T24",
+        "T27",
+        "T31",
+        "T38"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/planner/frequencyPlanGenerator.js",
+        "src/planner/planGenerator.js",
+        "src/planner/beamSolver.js",
+        "src/planner/constraintPolicy.js",
+        "src/services/planCandidateService.js",
+        "src/services/plannerExecution.js",
+        "src/services/plannerWorker.js",
+        "public/service-worker.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PREF-18",
+      "requirementId": "PREF-18",
+      "title": "Distinguere impossibilità e ricerca esaurita",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R11",
+      "reviewIds": [
+        "R11"
+      ],
+      "changeRequestSection": "5.4",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.2",
+      "supportingTasks": [],
+      "testIds": [
+        "T38"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/planner/frequencyPlanGenerator.js",
+        "src/planner/planGenerator.js",
+        "src/planner/beamSolver.js",
+        "src/planner/constraintPolicy.js",
+        "src/services/planCandidateService.js",
+        "src/services/plannerExecution.js",
+        "src/services/plannerWorker.js",
+        "public/service-worker.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PREF-19",
+      "requirementId": "PREF-19",
+      "title": "Riepilogo con conteggi pasti e scostamenti",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R11, R12",
+      "reviewIds": [
+        "R11",
+        "R12"
+      ],
+      "changeRequestSection": "5.4",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.3",
+      "supportingTasks": [
+        "R4.1"
+      ],
+      "testIds": [
+        "T24",
+        "T34",
+        "T37",
+        "T38"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/ui/configurationRulesV2Ui.js",
+        "src/ui/foodGroupEditor.js",
+        "src/ui/frequencySummary.js",
+        "src/ui/configurationPages.js",
+        "src/ui/planPages.js",
+        "src/domain/revisionV2Contracts.js",
+        "src/services/configurationService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PREF-20",
+      "requirementId": "PREF-20",
+      "title": "Compatibilità delle preferenze precedenti",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R13",
+      "reviewIds": [
+        "R13"
+      ],
+      "changeRequestSection": "5.5",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.4",
+      "supportingTasks": [
+        "R1.3",
+        "R1.4",
+        "R6.3"
+      ],
+      "testIds": [
+        "T39"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/legacyRuleAdapter.js",
+        "src/planner/softScoring.js",
+        "src/ui/configurationRulesV2Ui.js",
+        "schemas/food-preferences-v2.schema.json",
+        "schemas/allergy-intolerance-profile-v2.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SAFE-01",
+      "requirementId": "SAFE-01",
+      "title": "Scelta guidata di allergeni concetti gruppi e forme",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R01, R08",
+      "reviewIds": [
+        "R01",
+        "R08"
+      ],
+      "changeRequestSection": "6.1",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.3",
+      "supportingTasks": [],
+      "testIds": [
+        "T05",
+        "T06"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/ui/configurationRulesV2Ui.js",
+        "src/ui/foodGroupEditor.js",
+        "src/ui/frequencySummary.js",
+        "src/ui/configurationPages.js",
+        "src/ui/planPages.js",
+        "src/domain/revisionV2Contracts.js",
+        "src/services/configurationService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SAFE-02",
+      "requirementId": "SAFE-02",
+      "title": "FoodGroup versionato senza gruppi annidati",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R08",
+      "reviewIds": [
+        "R08"
+      ],
+      "changeRequestSection": "6.1",
+      "ownerPhase": "R1",
+      "ownerTask": "R1.1",
+      "supportingTasks": [
+        "R3.3"
+      ],
+      "testIds": [
+        "T06"
+      ],
+      "status": "VERIFICATO",
+      "remainingScopes": [],
+      "changedFiles": [
+        "src/domain/ingredientIdentity.js",
+        "src/services/revisionV2Service.js",
+        "schemas/food-group.schema.json",
+        "schemas/ingredient-mapping.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R8-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "historicalEvidenceIds": [
+        "EV-R1-001",
+        "EV-R1-002"
+      ]
+    },
+    {
+      "id": "SAFE-03",
+      "requirementId": "SAFE-03",
+      "title": "Profilo versionato senza diagnosi dedotte",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R01",
+      "reviewIds": [
+        "R01"
+      ],
+      "changeRequestSection": "6.1",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.4",
+      "supportingTasks": [],
+      "testIds": [
+        "T05",
+        "T79"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/legacyRuleAdapter.js",
+        "src/planner/softScoring.js",
+        "src/ui/configurationRulesV2Ui.js",
+        "schemas/food-preferences-v2.schema.json",
+        "schemas/allergy-intolerance-profile-v2.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SAFE-04",
+      "requirementId": "SAFE-04",
+      "title": "Discendenti e membership applicati esplicitamente",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R01, R08",
+      "reviewIds": [
+        "R01",
+        "R08"
+      ],
+      "changeRequestSection": "6.1",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.5",
+      "supportingTasks": [],
+      "testIds": [
+        "T05",
+        "T06"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/safetyPolicy.js",
+        "src/planner/hardFilter.js",
+        "src/planner/recipeFeatures.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/effectivePlanService.js",
+        "src/services/backupEngine.js",
+        "src/services/referenceDataService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SAFE-05",
+      "requirementId": "SAFE-05",
+      "title": "Evidenza distinta da array allergeni vuoto",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R01",
+      "reviewIds": [
+        "R01"
+      ],
+      "changeRequestSection": "6.2",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.5",
+      "supportingTasks": [
+        "R0.2",
+        "R1.3"
+      ],
+      "testIds": [
+        "T01",
+        "T03"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/safetyPolicy.js",
+        "src/planner/hardFilter.js",
+        "src/planner/recipeFeatures.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/effectivePlanService.js",
+        "src/services/backupEngine.js",
+        "src/services/referenceDataService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SAFE-06",
+      "requirementId": "SAFE-06",
+      "title": "Escludere compatibilità pertinente non verificata",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R01",
+      "reviewIds": [
+        "R01"
+      ],
+      "changeRequestSection": "6.2",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.5",
+      "supportingTasks": [
+        "R0.2",
+        "R1.3"
+      ],
+      "testIds": [
+        "T02",
+        "T03"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/safetyPolicy.js",
+        "src/planner/hardFilter.js",
+        "src/planner/recipeFeatures.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/effectivePlanService.js",
+        "src/services/backupEngine.js",
+        "src/services/referenceDataService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SAFE-07",
+      "requirementId": "SAFE-07",
+      "title": "Tracce e linguaggio di compatibilità corretto",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R01",
+      "reviewIds": [
+        "R01"
+      ],
+      "changeRequestSection": "6.2",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.5",
+      "supportingTasks": [],
+      "testIds": [
+        "T04",
+        "T79"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/safetyPolicy.js",
+        "src/planner/hardFilter.js",
+        "src/planner/recipeFeatures.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/effectivePlanService.js",
+        "src/services/backupEngine.js",
+        "src/services/referenceDataService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SAFE-08",
+      "requirementId": "SAFE-08",
+      "title": "Distinguere latte lattosio e celiachia",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R01",
+      "reviewIds": [
+        "R01"
+      ],
+      "changeRequestSection": "6.2",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.5",
+      "supportingTasks": [],
+      "testIds": [
+        "T79"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/safetyPolicy.js",
+        "src/planner/hardFilter.js",
+        "src/planner/recipeFeatures.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/effectivePlanService.js",
+        "src/services/backupEngine.js",
+        "src/services/referenceDataService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SAFE-09",
+      "requirementId": "SAFE-09",
+      "title": "Allergeni canonici e classificazione semantica",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R01, R03",
+      "reviewIds": [
+        "R01",
+        "R03"
+      ],
+      "changeRequestSection": "6.2",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.5",
+      "supportingTasks": [
+        "R0.2"
+      ],
+      "testIds": [
+        "T01",
+        "T79"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/safetyPolicy.js",
+        "src/planner/hardFilter.js",
+        "src/planner/recipeFeatures.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/effectivePlanService.js",
+        "src/services/backupEngine.js",
+        "src/services/referenceDataService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SAFE-10",
+      "requirementId": "SAFE-10",
+      "title": "Derivazione autorevole dagli ingredienti inclusi",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R01",
+      "reviewIds": [
+        "R01"
+      ],
+      "changeRequestSection": "6.3",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.5",
+      "supportingTasks": [
+        "R0.2",
+        "R1.3"
+      ],
+      "testIds": [
+        "T01",
+        "T02",
+        "T04"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/safetyPolicy.js",
+        "src/planner/hardFilter.js",
+        "src/planner/recipeFeatures.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/effectivePlanService.js",
+        "src/services/backupEngine.js",
+        "src/services/referenceDataService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SAFE-11",
+      "requirementId": "SAFE-11",
+      "title": "Sicurezza verificata in ogni percorso di scrittura",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R01, R04",
+      "reviewIds": [
+        "R01",
+        "R04"
+      ],
+      "changeRequestSection": "6.3",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.5",
+      "supportingTasks": [
+        "R0.3",
+        "R4.3"
+      ],
+      "testIds": [
+        "T02",
+        "T07"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/safetyPolicy.js",
+        "src/planner/hardFilter.js",
+        "src/planner/recipeFeatures.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/effectivePlanService.js",
+        "src/services/backupEngine.js",
+        "src/services/referenceDataService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SAFE-12",
+      "requirementId": "SAFE-12",
+      "title": "Invalidare anteprime e segnalare incompatibilità",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R04",
+      "reviewIds": [
+        "R04"
+      ],
+      "changeRequestSection": "6.3",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.5",
+      "supportingTasks": [
+        "R0.3",
+        "R4.3"
+      ],
+      "testIds": [
+        "T07",
+        "T08"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/safetyPolicy.js",
+        "src/planner/hardFilter.js",
+        "src/planner/recipeFeatures.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/effectivePlanService.js",
+        "src/services/backupEngine.js",
+        "src/services/referenceDataService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SAFE-13",
+      "requirementId": "SAFE-13",
+      "title": "Overlay attuale su storico undo e redo",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R04, R05",
+      "reviewIds": [
+        "R04",
+        "R05"
+      ],
+      "changeRequestSection": "6.3",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.5",
+      "supportingTasks": [
+        "R1.4",
+        "R4.3"
+      ],
+      "testIds": [
+        "T08",
+        "T09"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/safetyPolicy.js",
+        "src/planner/hardFilter.js",
+        "src/planner/recipeFeatures.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/effectivePlanService.js",
+        "src/services/backupEngine.js",
+        "src/services/referenceDataService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SAFE-14",
+      "requirementId": "SAFE-14",
+      "title": "Nessun bypass monouso della sicurezza",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R01",
+      "reviewIds": [
+        "R01"
+      ],
+      "changeRequestSection": "6.3",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.5",
+      "supportingTasks": [
+        "R4.1"
+      ],
+      "testIds": [
+        "T02",
+        "T79"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/safetyPolicy.js",
+        "src/planner/hardFilter.js",
+        "src/planner/recipeFeatures.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/effectivePlanService.js",
+        "src/services/backupEngine.js",
+        "src/services/referenceDataService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SWAP-01",
+      "requirementId": "SWAP-01",
+      "title": "Pannello contestuale immediatamente visibile",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R14",
+      "reviewIds": [
+        "R14"
+      ],
+      "changeRequestSection": "7.1",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.1",
+      "supportingTasks": [
+        "R0.4"
+      ],
+      "testIds": [
+        "T40"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/planPages.js",
+        "src/services/effectivePlanService.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SWAP-02",
+      "requirementId": "SWAP-02",
+      "title": "Stati asincroni completi e risposte ordinate",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R14, R15",
+      "reviewIds": [
+        "R14",
+        "R15"
+      ],
+      "changeRequestSection": "7.1",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.1",
+      "supportingTasks": [
+        "R0.4"
+      ],
+      "testIds": [
+        "T40",
+        "T42",
+        "T43"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/planPages.js",
+        "src/services/effectivePlanService.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SWAP-03",
+      "requirementId": "SWAP-03",
+      "title": "Focus annullamento e bozze preservate",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R14, R17",
+      "reviewIds": [
+        "R14",
+        "R17"
+      ],
+      "changeRequestSection": "7.1",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.1",
+      "supportingTasks": [
+        "R0.4"
+      ],
+      "testIds": [
+        "T43",
+        "T44",
+        "T48"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/planPages.js",
+        "src/services/effectivePlanService.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SWAP-04",
+      "requirementId": "SWAP-04",
+      "title": "Alternative ricercabili e paginabili",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R14, R16",
+      "reviewIds": [
+        "R14",
+        "R16"
+      ],
+      "changeRequestSection": "7.1",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.1",
+      "supportingTasks": [],
+      "testIds": [
+        "T14",
+        "T40"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/planPages.js",
+        "src/services/effectivePlanService.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SWAP-05",
+      "requirementId": "SWAP-05",
+      "title": "Alternative con impatto sul piano",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R14, R20",
+      "reviewIds": [
+        "R14",
+        "R20"
+      ],
+      "changeRequestSection": "7.1",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.1",
+      "supportingTasks": [],
+      "testIds": [
+        "T40",
+        "T45"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/planPages.js",
+        "src/services/effectivePlanService.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SWAP-06",
+      "requirementId": "SWAP-06",
+      "title": "Scelta fra componente e intero pasto",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R16",
+      "reviewIds": [
+        "R16"
+      ],
+      "changeRequestSection": "7.2",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.2",
+      "supportingTasks": [],
+      "testIds": [
+        "T45"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/services/effectivePlanService.js",
+        "src/services/planPolicyValidation.js",
+        "src/planner/planGenerator.js",
+        "schemas/meal-class.schema.json",
+        "src/ui/configurationPages.js"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SWAP-07",
+      "requirementId": "SWAP-07",
+      "title": "Alternative composte ammissibili",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R16",
+      "reviewIds": [
+        "R16"
+      ],
+      "changeRequestSection": "7.2",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.2",
+      "supportingTasks": [],
+      "testIds": [
+        "T46",
+        "T71"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/services/effectivePlanService.js",
+        "src/services/planPolicyValidation.js",
+        "src/planner/planGenerator.js",
+        "schemas/meal-class.schema.json",
+        "src/ui/configurationPages.js"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SWAP-08",
+      "requirementId": "SWAP-08",
+      "title": "Caso senza alternative spiegato",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R15",
+      "reviewIds": [
+        "R15"
+      ],
+      "changeRequestSection": "7.2",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.1",
+      "supportingTasks": [
+        "R0.4"
+      ],
+      "testIds": [
+        "T41"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/planPages.js",
+        "src/services/effectivePlanService.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SWAP-09",
+      "requirementId": "SWAP-09",
+      "title": "Conferma unica rivalidata e undo con spesa",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R04, R07, R25",
+      "reviewIds": [
+        "R04",
+        "R07",
+        "R25"
+      ],
+      "changeRequestSection": "7.2",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.3",
+      "supportingTasks": [
+        "R6.2"
+      ],
+      "testIds": [
+        "T45",
+        "T47",
+        "T58"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/repositories/repositoryHub.js",
+        "src/services/operationHistoryService.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/planGenerationService.js"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "REC-01",
+      "requirementId": "REC-01",
+      "title": "Titoli culinari brevi per il catalogo distribuito",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R09",
+      "reviewIds": [
+        "R09"
+      ],
+      "changeRequestSection": "8",
+      "ownerPhase": "R2",
+      "ownerTask": "R2.2",
+      "supportingTasks": [
+        "R5.4"
+      ],
+      "testIds": [
+        "T49"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline.",
+        "R5: revisione editoriale definitiva di titoli e praticità; corpus legacy non certificato dalla migrazione."
+      ],
+      "changedFiles": [
+        "src/domain/recipePresentation.js",
+        "src/services/recipePresentationMigration.js",
+        "src/services/foodPresentationMigration.js",
+        "src/domain/foodPresentationCorrections.js",
+        "src/services/catalogAvailability.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "REC-02",
+      "requirementId": "REC-02",
+      "title": "Titoli autorevoli senza concatenazioni tecniche",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R09",
+      "reviewIds": [
+        "R09"
+      ],
+      "changeRequestSection": "8",
+      "ownerPhase": "R2",
+      "ownerTask": "R2.2",
+      "supportingTasks": [
+        "R5.4"
+      ],
+      "testIds": [
+        "T49"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline.",
+        "R5: revisione editoriale definitiva di titoli e praticità; corpus legacy non certificato dalla migrazione."
+      ],
+      "changedFiles": [
+        "src/domain/recipePresentation.js",
+        "src/services/recipePresentationMigration.js",
+        "src/services/foodPresentationMigration.js",
+        "src/domain/foodPresentationCorrections.js",
+        "src/services/catalogAvailability.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "REC-03",
+      "requirementId": "REC-03",
+      "title": "Nomi brevi senza false equivalenze alimentari",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R10",
+      "reviewIds": [
+        "R10"
+      ],
+      "changeRequestSection": "8",
+      "ownerPhase": "R2",
+      "ownerTask": "R2.2",
+      "supportingTasks": [
+        "R5.4"
+      ],
+      "testIds": [
+        "T15",
+        "T49"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline.",
+        "R5: revisione editoriale definitiva di titoli e praticità; corpus legacy non certificato dalla migrazione."
+      ],
+      "changedFiles": [
+        "src/domain/recipePresentation.js",
+        "src/services/recipePresentationMigration.js",
+        "src/services/foodPresentationMigration.js",
+        "src/domain/foodPresentationCorrections.js",
+        "src/services/catalogAvailability.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "REC-04",
+      "requirementId": "REC-04",
+      "title": "Procedimento rimosso in tutti i flussi correnti",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R22",
+      "reviewIds": [
+        "R22"
+      ],
+      "changeRequestSection": "8",
+      "ownerPhase": "R2",
+      "ownerTask": "R2.3",
+      "supportingTasks": [],
+      "testIds": [
+        "T50"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline.",
+        "R5: revisione editoriale definitiva di titoli e praticità; corpus legacy non certificato dalla migrazione."
+      ],
+      "changedFiles": [
+        "src/services/personalCatalogService.js",
+        "src/services/customCatalogTransfer.js",
+        "src/corpus/recipePipeline.js",
+        "src/corpus/corpusScanner.js",
+        "src/corpus/deterministicRecipeGenerator.js",
+        "src/corpus/v1PhaseBRecipeGenerator.js",
+        "src/corpus/v1ReleaseRecipeGenerator.js",
+        "src/services/shoppingService.js",
+        "src/ui/catalogPages.js",
+        "schemas/recipe-version-v2.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "REC-05",
+      "requirementId": "REC-05",
+      "title": "Conservare solo metadata pratici attendibili",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R02, R22, R24",
+      "reviewIds": [
+        "R02",
+        "R22",
+        "R24"
+      ],
+      "changeRequestSection": "8",
+      "ownerPhase": "R2",
+      "ownerTask": "R2.3",
+      "supportingTasks": [
+        "R5.4"
+      ],
+      "testIds": [
+        "T10",
+        "T52"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline.",
+        "R5: revisione editoriale definitiva di titoli e praticità; corpus legacy non certificato dalla migrazione."
+      ],
+      "changedFiles": [
+        "src/services/personalCatalogService.js",
+        "src/services/customCatalogTransfer.js",
+        "src/corpus/recipePipeline.js",
+        "src/corpus/corpusScanner.js",
+        "src/corpus/deterministicRecipeGenerator.js",
+        "src/corpus/v1PhaseBRecipeGenerator.js",
+        "src/corpus/v1ReleaseRecipeGenerator.js",
+        "src/services/shoppingService.js",
+        "src/ui/catalogPages.js",
+        "schemas/recipe-version-v2.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "REC-06",
+      "requirementId": "REC-06",
+      "title": "Schema ricetta nuovo senza istruzioni e storico integro",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R22, R27",
+      "reviewIds": [
+        "R22",
+        "R27"
+      ],
+      "changeRequestSection": "8",
+      "ownerPhase": "R2",
+      "ownerTask": "R2.3",
+      "supportingTasks": [
+        "R1.3",
+        "R6.3"
+      ],
+      "testIds": [
+        "T50",
+        "T60"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline.",
+        "R5: revisione editoriale definitiva di titoli e praticità; corpus legacy non certificato dalla migrazione."
+      ],
+      "changedFiles": [
+        "src/services/personalCatalogService.js",
+        "src/services/customCatalogTransfer.js",
+        "src/corpus/recipePipeline.js",
+        "src/corpus/corpusScanner.js",
+        "src/corpus/deterministicRecipeGenerator.js",
+        "src/corpus/v1PhaseBRecipeGenerator.js",
+        "src/corpus/v1ReleaseRecipeGenerator.js",
+        "src/services/shoppingService.js",
+        "src/ui/catalogPages.js",
+        "schemas/recipe-version-v2.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "REC-07",
+      "requirementId": "REC-07",
+      "title": "Checksum indici e schemi coerenti con i formati",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R22",
+      "reviewIds": [
+        "R22"
+      ],
+      "changeRequestSection": "8",
+      "ownerPhase": "R2",
+      "ownerTask": "R2.3",
+      "supportingTasks": [
+        "R1.3"
+      ],
+      "testIds": [
+        "T50",
+        "T65"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline.",
+        "R5: revisione editoriale definitiva di titoli e praticità; corpus legacy non certificato dalla migrazione."
+      ],
+      "changedFiles": [
+        "src/services/personalCatalogService.js",
+        "src/services/customCatalogTransfer.js",
+        "src/corpus/recipePipeline.js",
+        "src/corpus/corpusScanner.js",
+        "src/corpus/deterministicRecipeGenerator.js",
+        "src/corpus/v1PhaseBRecipeGenerator.js",
+        "src/corpus/v1ReleaseRecipeGenerator.js",
+        "src/services/shoppingService.js",
+        "src/ui/catalogPages.js",
+        "schemas/recipe-version-v2.schema.json"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "CAT-01",
+      "requirementId": "CAT-01",
+      "title": "Copertura di duecento concetti e trecento forme",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R26",
+      "reviewIds": [
+        "R26"
+      ],
+      "changeRequestSection": "9.1",
+      "ownerPhase": "R5",
+      "ownerTask": "R5.1",
+      "supportingTasks": [],
+      "testIds": [
+        "T53"
+      ],
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "changedFiles": [
+        "data/revision-v2/mediterranean/manifest.json",
+        "data/revision-v2/mediterranean/dish-briefs.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "CAT-02",
+      "requirementId": "CAT-02",
+      "title": "Manifest nominale e quote senza duplicati",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R26",
+      "reviewIds": [
+        "R26"
+      ],
+      "changeRequestSection": "9.1",
+      "ownerPhase": "R5",
+      "ownerTask": "R5.1",
+      "supportingTasks": [],
+      "testIds": [
+        "T53"
+      ],
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "changedFiles": [
+        "data/revision-v2/mediterranean/manifest.json",
+        "data/revision-v2/mediterranean/dish-briefs.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "CAT-03",
+      "requirementId": "CAT-03",
+      "title": "Pilot di quaranta concetti e sessanta forme",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R26",
+      "reviewIds": [
+        "R26"
+      ],
+      "changeRequestSection": "9.1",
+      "ownerPhase": "R5",
+      "ownerTask": "R5.1",
+      "supportingTasks": [],
+      "testIds": [
+        "T53"
+      ],
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "changedFiles": [
+        "data/revision-v2/mediterranean/manifest.json",
+        "data/revision-v2/mediterranean/dish-briefs.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "CAT-04",
+      "requirementId": "CAT-04",
+      "title": "Centoventi piatti distinti e copertura pratica",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R26",
+      "reviewIds": [
+        "R26"
+      ],
+      "changeRequestSection": "9.1",
+      "ownerPhase": "R5",
+      "ownerTask": "R5.4",
+      "supportingTasks": [],
+      "testIds": [
+        "T49",
+        "T53",
+        "T56"
+      ],
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "changedFiles": [
+        "src/corpus/mediterranean/coverage.js",
+        "data/revision-v2/mediterranean/dish-briefs.json",
+        "reports/revision_v2/R5/coverage.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "CAT-05",
+      "requirementId": "CAT-05",
+      "title": "Adapter distinti e corrispondenze pertinenti",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R26",
+      "reviewIds": [
+        "R26"
+      ],
+      "changeRequestSection": "9.2",
+      "ownerPhase": "R5",
+      "ownerTask": "R5.2",
+      "supportingTasks": [],
+      "testIds": [
+        "T54"
+      ],
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "changedFiles": [
+        "src/corpus/mediterranean/sourceAdapters.js",
+        "data/revision-v2/mediterranean/source-register.json",
+        "data/revision-v2/mediterranean/sources/crea-004000.json",
+        "data/revision-v2/mediterranean/sources/crea-004005.json",
+        "data/revision-v2/mediterranean/sources/crea-004010.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "CAT-06",
+      "requirementId": "CAT-06",
+      "title": "Provenance completa e trasformazioni riproducibili",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R26",
+      "reviewIds": [
+        "R26"
+      ],
+      "changeRequestSection": "9.2",
+      "ownerPhase": "R5",
+      "ownerTask": "R5.2",
+      "supportingTasks": [],
+      "testIds": [
+        "T20",
+        "T54"
+      ],
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "changedFiles": [
+        "src/corpus/mediterranean/sourceAdapters.js",
+        "data/revision-v2/mediterranean/source-register.json",
+        "data/revision-v2/mediterranean/sources/crea-004000.json",
+        "data/revision-v2/mediterranean/sources/crea-004005.json",
+        "data/revision-v2/mediterranean/sources/crea-004010.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "CAT-07",
+      "requirementId": "CAT-07",
+      "title": "Acquisizione CREA con condizioni verificate",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R26",
+      "reviewIds": [
+        "R26"
+      ],
+      "changeRequestSection": "9.2",
+      "ownerPhase": "R5",
+      "ownerTask": "R5.2",
+      "supportingTasks": [],
+      "testIds": [
+        "T54"
+      ],
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "changedFiles": [
+        "src/corpus/mediterranean/sourceAdapters.js",
+        "data/revision-v2/mediterranean/source-register.json",
+        "data/revision-v2/mediterranean/sources/crea-004000.json",
+        "data/revision-v2/mediterranean/sources/crea-004005.json",
+        "data/revision-v2/mediterranean/sources/crea-004010.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "CAT-08",
+      "requirementId": "CAT-08",
+      "title": "Versioni e condizioni specifiche di Ciqual e USDA",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R26",
+      "reviewIds": [
+        "R26"
+      ],
+      "changeRequestSection": "9.2",
+      "ownerPhase": "R5",
+      "ownerTask": "R5.2",
+      "supportingTasks": [],
+      "testIds": [
+        "T54"
+      ],
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "changedFiles": [
+        "src/corpus/mediterranean/sourceAdapters.js",
+        "data/revision-v2/mediterranean/source-register.json",
+        "data/revision-v2/mediterranean/sources/crea-004000.json",
+        "data/revision-v2/mediterranean/sources/crea-004005.json",
+        "data/revision-v2/mediterranean/sources/crea-004010.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "CAT-09",
+      "requirementId": "CAT-09",
+      "title": "Selezione curata e proposte AI non autoapprovate",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R26",
+      "reviewIds": [
+        "R26"
+      ],
+      "changeRequestSection": "9.2",
+      "ownerPhase": "R5",
+      "ownerTask": "R5.3",
+      "supportingTasks": [],
+      "testIds": [
+        "T54",
+        "T55"
+      ],
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "changedFiles": [
+        "src/corpus/mediterranean/sourceAdapters.js",
+        "scripts/revision-v2/import-mediterranean-reviews.mjs",
+        "scripts/revision-v2/stage-mediterranean.mjs",
+        "reports/revision_v2/R5/quarantine-dispositions.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "CAT-10",
+      "requirementId": "CAT-10",
+      "title": "Pipeline ordinata con output versionati",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R26",
+      "reviewIds": [
+        "R26"
+      ],
+      "changeRequestSection": "9.3",
+      "ownerPhase": "R5",
+      "ownerTask": "R5.3",
+      "supportingTasks": [],
+      "testIds": [
+        "T54",
+        "T55",
+        "T56"
+      ],
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "changedFiles": [
+        "src/corpus/mediterranean/sourceAdapters.js",
+        "scripts/revision-v2/import-mediterranean-reviews.mjs",
+        "scripts/revision-v2/stage-mediterranean.mjs",
+        "reports/revision_v2/R5/quarantine-dispositions.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "CAT-11",
+      "requirementId": "CAT-11",
+      "title": "Distinguere verifiche automatiche e revisioni",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R01, R26",
+      "reviewIds": [
+        "R01",
+        "R26"
+      ],
+      "changeRequestSection": "9.3",
+      "ownerPhase": "R5",
+      "ownerTask": "R5.3",
+      "supportingTasks": [],
+      "testIds": [
+        "T55"
+      ],
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "changedFiles": [
+        "src/corpus/mediterranean/sourceAdapters.js",
+        "scripts/revision-v2/import-mediterranean-reviews.mjs",
+        "scripts/revision-v2/stage-mediterranean.mjs",
+        "reports/revision_v2/R5/quarantine-dispositions.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "CAT-12",
+      "requirementId": "CAT-12",
+      "title": "Escludere pesce crudo non qualificato dai piatti senza cottura",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R02",
+      "reviewIds": [
+        "R02"
+      ],
+      "changeRequestSection": "9.3",
+      "ownerPhase": "R0",
+      "ownerTask": "R0.2",
+      "supportingTasks": [
+        "R5.4"
+      ],
+      "testIds": [
+        "T10"
+      ],
+      "status": "VERIFICATO",
+      "remainingScopes": [],
+      "changedFiles": [
+        "src/domain/catalogQuarantine.js",
+        "src/domain/safetyCompatibility.js",
+        "src/planner/hardFilter.js",
+        "src/corpus/v1PhaseBRecipeGenerator.js"
+      ],
+      "evidenceIds": [
+        "EV-R8-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+      "historicalEvidenceIds": [
+        "EV-R0-002",
+        "EV-R1-002"
+      ]
+    },
+    {
+      "id": "CAT-13",
+      "requirementId": "CAT-13",
+      "title": "Regole positive e casi di negazione alimentare",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R01, R03",
+      "reviewIds": [
+        "R01",
+        "R03"
+      ],
+      "changeRequestSection": "9.3",
+      "ownerPhase": "R5",
+      "ownerTask": "R5.3",
+      "supportingTasks": [
+        "R0.2"
+      ],
+      "testIds": [
+        "T01",
+        "T54"
+      ],
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "changedFiles": [
+        "src/corpus/mediterranean/sourceAdapters.js",
+        "scripts/revision-v2/import-mediterranean-reviews.mjs",
+        "scripts/revision-v2/stage-mediterranean.mjs",
+        "reports/revision_v2/R5/quarantine-dispositions.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "CAT-14",
+      "requirementId": "CAT-14",
+      "title": "Esclusioni di catalogo con storico e contenuti locali preservati",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R26, R27",
+      "reviewIds": [
+        "R26",
+        "R27"
+      ],
+      "changeRequestSection": "9.3",
+      "ownerPhase": "R5",
+      "ownerTask": "R5.4",
+      "supportingTasks": [],
+      "testIds": [
+        "T56",
+        "T59",
+        "T60"
+      ],
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "changedFiles": [
+        "src/corpus/mediterranean/coverage.js",
+        "data/revision-v2/mediterranean/dish-briefs.json",
+        "reports/revision_v2/R5/coverage.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "UX-01",
+      "requirementId": "UX-01",
+      "title": "Navigazione primaria e configurazione ordinate",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R19",
+      "reviewIds": [
+        "R19"
+      ],
+      "changeRequestSection": "10.1",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.4",
+      "supportingTasks": [],
+      "testIds": [
+        "T63"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/app.js",
+        "src/ui/catalogPages.js",
+        "src/ui/configurationPages.js",
+        "src/ui/planPages.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "UX-02",
+      "requirementId": "UX-02",
+      "title": "Diagnostica fuori dai flussi ordinari",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R19",
+      "reviewIds": [
+        "R19"
+      ],
+      "changeRequestSection": "10.1",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.4",
+      "supportingTasks": [],
+      "testIds": [
+        "T63",
+        "T75"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/app.js",
+        "src/ui/catalogPages.js",
+        "src/ui/configurationPages.js",
+        "src/ui/planPages.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "UX-03",
+      "requirementId": "UX-03",
+      "title": "Editor Base e Avanzate con preset espliciti",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R18, R20",
+      "reviewIds": [
+        "R18",
+        "R20"
+      ],
+      "changeRequestSection": "10.1",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.4",
+      "supportingTasks": [],
+      "testIds": [
+        "T63",
+        "T77"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/app.js",
+        "src/ui/catalogPages.js",
+        "src/ui/configurationPages.js",
+        "src/ui/planPages.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "UX-04",
+      "requirementId": "UX-04",
+      "title": "Onboarding breve e riprendibile",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R18",
+      "reviewIds": [
+        "R18"
+      ],
+      "changeRequestSection": "10.2",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.5",
+      "supportingTasks": [],
+      "testIds": [
+        "T63",
+        "T79"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/configurationPages.js",
+        "src/ui/profileStatus.js",
+        "src/services/configurationService.js",
+        "src/ui/uiState.js"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "UX-05",
+      "requirementId": "UX-05",
+      "title": "Profilo non verificato distinto da nessuna allergia",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R18",
+      "reviewIds": [
+        "R18"
+      ],
+      "changeRequestSection": "10.2",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.5",
+      "supportingTasks": [],
+      "testIds": [
+        "T79"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/configurationPages.js",
+        "src/ui/profileStatus.js",
+        "src/services/configurationService.js",
+        "src/ui/uiState.js"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "UX-06",
+      "requirementId": "UX-06",
+      "title": "Oggi compatto con titolo unico per componente",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R20",
+      "reviewIds": [
+        "R20"
+      ],
+      "changeRequestSection": "10.3",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.4",
+      "supportingTasks": [],
+      "testIds": [
+        "T63"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/app.js",
+        "src/ui/catalogPages.js",
+        "src/ui/configurationPages.js",
+        "src/ui/planPages.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "UX-07",
+      "requirementId": "UX-07",
+      "title": "Aderenza rapida e bozze persistenti per slot",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R17",
+      "reviewIds": [
+        "R17"
+      ],
+      "changeRequestSection": "10.3",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.1",
+      "supportingTasks": [
+        "R0.4"
+      ],
+      "testIds": [
+        "T48"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/planPages.js",
+        "src/services/effectivePlanService.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "UX-08",
+      "requirementId": "UX-08",
+      "title": "Calendario e agenda con ritorno contestuale",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R20",
+      "reviewIds": [
+        "R20"
+      ],
+      "changeRequestSection": "10.3",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.4",
+      "supportingTasks": [],
+      "testIds": [
+        "T63"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/app.js",
+        "src/ui/catalogPages.js",
+        "src/ui/configurationPages.js",
+        "src/ui/planPages.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "UX-09",
+      "requirementId": "UX-09",
+      "title": "Ricerca ricette e compatibilità spiegata",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R08, R20",
+      "reviewIds": [
+        "R08",
+        "R20"
+      ],
+      "changeRequestSection": "10.3",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.4",
+      "supportingTasks": [],
+      "testIds": [
+        "T14",
+        "T63"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/app.js",
+        "src/ui/catalogPages.js",
+        "src/ui/configurationPages.js",
+        "src/ui/planPages.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "UX-10",
+      "requirementId": "UX-10",
+      "title": "Card con dati essenziali e titoli veritieri",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R20",
+      "reviewIds": [
+        "R20"
+      ],
+      "changeRequestSection": "10.3",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.4",
+      "supportingTasks": [],
+      "testIds": [
+        "T49",
+        "T63"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/app.js",
+        "src/ui/catalogPages.js",
+        "src/ui/configurationPages.js",
+        "src/ui/planPages.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "UX-11",
+      "requirementId": "UX-11",
+      "title": "Accessibilità reale di input e interazioni",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R21",
+      "reviewIds": [
+        "R21"
+      ],
+      "changeRequestSection": "10.4",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.6",
+      "supportingTasks": [],
+      "testIds": [
+        "T44",
+        "T63"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/planPages.js",
+        "src/ui/uiState.js",
+        "src/ui/catalogPages.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "UX-12",
+      "requirementId": "UX-12",
+      "title": "Target touch e assenza di overflow",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R21",
+      "reviewIds": [
+        "R21"
+      ],
+      "changeRequestSection": "10.4",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.6",
+      "supportingTasks": [],
+      "testIds": [
+        "T40",
+        "T63"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/planPages.js",
+        "src/ui/uiState.js",
+        "src/ui/catalogPages.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "UX-13",
+      "requirementId": "UX-13",
+      "title": "Errori locali utili e diagnostica facoltativa",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R15, R21",
+      "reviewIds": [
+        "R15",
+        "R21"
+      ],
+      "changeRequestSection": "10.4",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.6",
+      "supportingTasks": [],
+      "testIds": [
+        "T42",
+        "T63",
+        "T75"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/planPages.js",
+        "src/ui/uiState.js",
+        "src/ui/catalogPages.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "UX-14",
+      "requirementId": "UX-14",
+      "title": "Operazioni asincrone senza perdita delle bozze",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R17, R21",
+      "reviewIds": [
+        "R17",
+        "R21"
+      ],
+      "changeRequestSection": "10.4",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.6",
+      "supportingTasks": [
+        "R0.4"
+      ],
+      "testIds": [
+        "T42",
+        "T48",
+        "T78"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/ui/planPages.js",
+        "src/ui/uiState.js",
+        "src/ui/catalogPages.js",
+        "src/styles.css"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SHOP-01",
+      "requirementId": "SHOP-01",
+      "title": "Gruppi generici e ordine dei reparti",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R23",
+      "reviewIds": [
+        "R23"
+      ],
+      "changeRequestSection": "11",
+      "ownerPhase": "R6",
+      "ownerTask": "R6.1",
+      "supportingTasks": [],
+      "testIds": [
+        "T57",
+        "T76"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "changedFiles": [
+        "src/services/shoppingService.js",
+        "src/ui/shoppingPages.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SHOP-02",
+      "requirementId": "SHOP-02",
+      "title": "Aggregazione solo fra quantità compatibili",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R23",
+      "reviewIds": [
+        "R23"
+      ],
+      "changeRequestSection": "11",
+      "ownerPhase": "R6",
+      "ownerTask": "R6.1",
+      "supportingTasks": [],
+      "testIds": [
+        "T19",
+        "T57"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "changedFiles": [
+        "src/services/shoppingService.js",
+        "src/ui/shoppingPages.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SHOP-03",
+      "requirementId": "SHOP-03",
+      "title": "Forma di acquisto preferita facoltativa",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R23",
+      "reviewIds": [
+        "R23"
+      ],
+      "changeRequestSection": "11",
+      "ownerPhase": "R6",
+      "ownerTask": "R6.1",
+      "supportingTasks": [],
+      "testIds": [
+        "T19",
+        "T57"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "changedFiles": [
+        "src/services/shoppingService.js",
+        "src/ui/shoppingPages.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SHOP-04",
+      "requirementId": "SHOP-04",
+      "title": "Checklist note e righe manuali conservate",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R25",
+      "reviewIds": [
+        "R25"
+      ],
+      "changeRequestSection": "11",
+      "ownerPhase": "R6",
+      "ownerTask": "R6.2",
+      "supportingTasks": [],
+      "testIds": [
+        "T58"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "changedFiles": [
+        "src/services/shoppingService.js",
+        "schemas/shopping-checklist.schema.json",
+        "src/ui/shoppingPages.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SHOP-05",
+      "requirementId": "SHOP-05",
+      "title": "Obsolescenza solo per input di acquisto cambiati",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R25",
+      "reviewIds": [
+        "R25"
+      ],
+      "changeRequestSection": "11",
+      "ownerPhase": "R6",
+      "ownerTask": "R6.2",
+      "supportingTasks": [
+        "R4.3"
+      ],
+      "testIds": [
+        "T47",
+        "T58"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "changedFiles": [
+        "src/services/shoppingService.js",
+        "schemas/shopping-checklist.schema.json",
+        "src/ui/shoppingPages.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "SHOP-06",
+      "requirementId": "SHOP-06",
+      "title": "Esportazione stampa e periodo con limiti espliciti",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R23",
+      "reviewIds": [
+        "R23"
+      ],
+      "changeRequestSection": "11",
+      "ownerPhase": "R6",
+      "ownerTask": "R6.2",
+      "supportingTasks": [],
+      "testIds": [
+        "T76"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "changedFiles": [
+        "src/services/shoppingService.js",
+        "schemas/shopping-checklist.schema.json",
+        "src/ui/shoppingPages.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "HARD-01",
+      "requirementId": "HARD-01",
+      "title": "Identità anteprima e precondizioni complete",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R04",
+      "reviewIds": [
+        "R04"
+      ],
+      "changeRequestSection": "12",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.5",
+      "supportingTasks": [
+        "R0.3",
+        "R1.3",
+        "R4.3"
+      ],
+      "testIds": [
+        "T07"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/safetyPolicy.js",
+        "src/planner/hardFilter.js",
+        "src/planner/recipeFeatures.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/effectivePlanService.js",
+        "src/services/backupEngine.js",
+        "src/services/referenceDataService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "HARD-02",
+      "requirementId": "HARD-02",
+      "title": "Confronto con stato autorevole prima della scrittura",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R04, R05",
+      "reviewIds": [
+        "R04",
+        "R05"
+      ],
+      "changeRequestSection": "12",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.5",
+      "supportingTasks": [
+        "R0.3",
+        "R4.3"
+      ],
+      "testIds": [
+        "T07",
+        "T11"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/safetyPolicy.js",
+        "src/planner/hardFilter.js",
+        "src/planner/recipeFeatures.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/effectivePlanService.js",
+        "src/services/backupEngine.js",
+        "src/services/referenceDataService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "HARD-03",
+      "requirementId": "HARD-03",
+      "title": "Validazione completa del risultato del commit",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R04, R05",
+      "reviewIds": [
+        "R04",
+        "R05"
+      ],
+      "changeRequestSection": "12",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.5",
+      "supportingTasks": [
+        "R0.3",
+        "R4.2",
+        "R4.3"
+      ],
+      "testIds": [
+        "T02",
+        "T07",
+        "T31",
+        "T71"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/domain/safetyPolicy.js",
+        "src/planner/hardFilter.js",
+        "src/planner/recipeFeatures.js",
+        "src/services/planPolicyValidation.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/effectivePlanService.js",
+        "src/services/backupEngine.js",
+        "src/services/referenceDataService.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "HARD-04",
+      "requirementId": "HARD-04",
+      "title": "Concorrenza e protezione transazionale fra tab",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R05, R07",
+      "reviewIds": [
+        "R05",
+        "R07"
+      ],
+      "changeRequestSection": "12",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.3",
+      "supportingTasks": [
+        "R6.4"
+      ],
+      "testIds": [
+        "T11",
+        "T12"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/repositories/repositoryHub.js",
+        "src/services/operationHistoryService.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/planGenerationService.js"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "HARD-05",
+      "requirementId": "HARD-05",
+      "title": "Idempotenza dei comandi e annullamento",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R07",
+      "reviewIds": [
+        "R07"
+      ],
+      "changeRequestSection": "12",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.3",
+      "supportingTasks": [
+        "R0.3",
+        "R6.2"
+      ],
+      "testIds": [
+        "T12",
+        "T43",
+        "T47"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/repositories/repositoryHub.js",
+        "src/services/operationHistoryService.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/planGenerationService.js"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "HARD-06",
+      "requirementId": "HARD-06",
+      "title": "Riequilibrio con giorni conservati e before attuale",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R05",
+      "reviewIds": [
+        "R05"
+      ],
+      "changeRequestSection": "12",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.3",
+      "supportingTasks": [
+        "R0.3"
+      ],
+      "testIds": [
+        "T11",
+        "T31"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/repositories/repositoryHub.js",
+        "src/services/operationHistoryService.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/planGenerationService.js"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "HARD-07",
+      "requirementId": "HARD-07",
+      "title": "History atomica anche in caso di fallimento",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R07",
+      "reviewIds": [
+        "R07"
+      ],
+      "changeRequestSection": "12",
+      "ownerPhase": "R4",
+      "ownerTask": "R4.3",
+      "supportingTasks": [
+        "R6.2"
+      ],
+      "testIds": [
+        "T12"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione browser reale, focus/touch/IT-EN/multi-tab/IndexedDB/offline; parti di integrazione spesa R6"
+      ],
+      "changedFiles": [
+        "src/repositories/repositoryHub.js",
+        "src/services/operationHistoryService.js",
+        "src/services/planPreviewGuard.js",
+        "src/services/planGenerationService.js"
+      ],
+      "evidenceIds": [
+        "EV-R4-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PERF-01",
+      "requirementId": "PERF-01",
+      "title": "Filtro delle versioni correnti prima del limite",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R06",
+      "reviewIds": [
+        "R06"
+      ],
+      "changeRequestSection": "13",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.2",
+      "supportingTasks": [],
+      "testIds": [
+        "T21",
+        "T64"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/planner/frequencyPlanGenerator.js",
+        "src/planner/planGenerator.js",
+        "src/planner/beamSolver.js",
+        "src/planner/constraintPolicy.js",
+        "src/services/planCandidateService.js",
+        "src/services/plannerExecution.js",
+        "src/services/plannerWorker.js",
+        "public/service-worker.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PERF-02",
+      "requirementId": "PERF-02",
+      "title": "Troncamento di ricerca distinto da assenza",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R06",
+      "reviewIds": [
+        "R06"
+      ],
+      "changeRequestSection": "13",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.2",
+      "supportingTasks": [],
+      "testIds": [
+        "T21",
+        "T38",
+        "T64"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/planner/frequencyPlanGenerator.js",
+        "src/planner/planGenerator.js",
+        "src/planner/beamSolver.js",
+        "src/planner/constraintPolicy.js",
+        "src/services/planCandidateService.js",
+        "src/services/plannerExecution.js",
+        "src/services/plannerWorker.js",
+        "public/service-worker.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PERF-03",
+      "requirementId": "PERF-03",
+      "title": "Indici aggiornati per concetti alias e date",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R08",
+      "reviewIds": [
+        "R08"
+      ],
+      "changeRequestSection": "13",
+      "ownerPhase": "R2",
+      "ownerTask": "R2.1",
+      "supportingTasks": [],
+      "testIds": [
+        "T22",
+        "T64"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/services/ingredientConceptQuery.js",
+        "src/domain/ingredientPresentation.js",
+        "src/ui/guidedControls.js",
+        "src/services/catalogQuery.js",
+        "src/repositories/repositoryHub.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS",
+        "EV-R2-CATALOG"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PERF-04",
+      "requirementId": "PERF-04",
+      "title": "Budget misurati su build e macchina dichiarate",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "CR §13",
+      "reviewIds": [],
+      "changeRequestSection": "13",
+      "ownerPhase": "R7",
+      "ownerTask": "R7.2",
+      "supportingTasks": [],
+      "testIds": [
+        "T64"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "74 scenari core completi, browser, catalogo R5, T64 reale completo e zero P0/P1"
+      ],
+      "changedFiles": [
+        "scripts/revision-v2/benchmark-r7.mjs",
+        "reports/revision_v2/R7/performance.json"
+      ],
+      "evidenceIds": [
+        "EV-R7-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PERF-05",
+      "requirementId": "PERF-05",
+      "title": "Planner annullabile senza bloccare interazioni",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "CR §13",
+      "reviewIds": [],
+      "changeRequestSection": "13",
+      "ownerPhase": "R3",
+      "ownerTask": "R3.2",
+      "supportingTasks": [],
+      "testIds": [
+        "T64",
+        "T78"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Accettazione completa degli scenari associati: le sotto-prove automatiche non chiudono la prova UI/browser/IndexedDB/offline."
+      ],
+      "changedFiles": [
+        "src/planner/frequencyPlanGenerator.js",
+        "src/planner/planGenerator.js",
+        "src/planner/beamSolver.js",
+        "src/planner/constraintPolicy.js",
+        "src/services/planCandidateService.js",
+        "src/services/plannerExecution.js",
+        "src/services/plannerWorker.js",
+        "public/service-worker.js"
+      ],
+      "evidenceIds": [
+        "EV-R3-REGRESSION",
+        "EV-R3-FORMS"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "PERF-06",
+      "requirementId": "PERF-06",
+      "title": "Varietà misurata per concetti e piatti",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R26",
+      "reviewIds": [
+        "R26"
+      ],
+      "changeRequestSection": "13",
+      "ownerPhase": "R5",
+      "ownerTask": "R5.4",
+      "supportingTasks": [],
+      "testIds": [
+        "T53",
+        "T56"
+      ],
+      "status": "BLOCCATO",
+      "remainingScopes": [
+        "Fonti complete, mapping e revisioni reali del pilot; scala e pubblicazione subordinate al pilot accettato"
+      ],
+      "changedFiles": [
+        "src/corpus/mediterranean/coverage.js",
+        "data/revision-v2/mediterranean/dish-briefs.json",
+        "reports/revision_v2/R5/coverage.json"
+      ],
+      "evidenceIds": [
+        "EV-R5-STAGING",
+        "EV-R5-QUARANTINE"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "MIG-01",
+      "requirementId": "MIG-01",
+      "title": "Versioni DB contenuti e backup assegnate senza downgrade",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R27",
+      "reviewIds": [
+        "R27"
+      ],
+      "changeRequestSection": "14.1",
+      "ownerPhase": "R1",
+      "ownerTask": "R1.4",
+      "supportingTasks": [
+        "R6.3"
+      ],
+      "testIds": [
+        "T59"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Verifica browser/IndexedDB reale"
+      ],
+      "changedFiles": [
+        "src/services/ingredientModelMigration.js",
+        "src/services/migrationRunner.js",
+        "src/services/preV1DataEpoch.js",
+        "src/repositories/repositoryHub.js",
+        "src/db/constants.js",
+        "src/services/catalogImporter.js",
+        "src/services/backupEngine.js",
+        "src/main.js",
+        "public/service-worker.js",
+        "src/services/offlineCatalog.js"
+      ],
+      "evidenceIds": [
+        "EV-R1-001",
+        "EV-R1-002",
+        "EV-R0-005"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "MIG-02",
+      "requirementId": "MIG-02",
+      "title": "Migrazione additiva senza reset dei dati",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R13, R27",
+      "reviewIds": [
+        "R13",
+        "R27"
+      ],
+      "changeRequestSection": "14.1",
+      "ownerPhase": "R1",
+      "ownerTask": "R1.4",
+      "supportingTasks": [
+        "R6.3"
+      ],
+      "testIds": [
+        "T39",
+        "T59"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Verifica browser/IndexedDB reale"
+      ],
+      "changedFiles": [
+        "src/services/ingredientModelMigration.js",
+        "src/services/migrationRunner.js",
+        "src/services/preV1DataEpoch.js",
+        "src/repositories/repositoryHub.js",
+        "src/db/constants.js",
+        "src/services/catalogImporter.js",
+        "src/services/backupEngine.js",
+        "src/main.js",
+        "public/service-worker.js",
+        "src/services/offlineCatalog.js"
+      ],
+      "evidenceIds": [
+        "EV-R1-001",
+        "EV-R1-002",
+        "EV-R0-005"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "MIG-03",
+      "requirementId": "MIG-03",
+      "title": "Mapping esplicito degli ID e gestione irrisolti",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R08, R27",
+      "reviewIds": [
+        "R08",
+        "R27"
+      ],
+      "changeRequestSection": "14.1",
+      "ownerPhase": "R1",
+      "ownerTask": "R1.4",
+      "supportingTasks": [
+        "R6.3"
+      ],
+      "testIds": [
+        "T59",
+        "T72"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Verifica browser/IndexedDB reale"
+      ],
+      "changedFiles": [
+        "src/services/ingredientModelMigration.js",
+        "src/services/migrationRunner.js",
+        "src/services/preV1DataEpoch.js",
+        "src/repositories/repositoryHub.js",
+        "src/db/constants.js",
+        "src/services/catalogImporter.js",
+        "src/services/backupEngine.js",
+        "src/main.js",
+        "public/service-worker.js",
+        "src/services/offlineCatalog.js"
+      ],
+      "evidenceIds": [
+        "EV-R1-001",
+        "EV-R1-002",
+        "EV-R0-005"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "MIG-04",
+      "requirementId": "MIG-04",
+      "title": "Nuove revisioni senza sovrascrivere lo storico locale",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R01, R27",
+      "reviewIds": [
+        "R01",
+        "R27"
+      ],
+      "changeRequestSection": "14.1",
+      "ownerPhase": "R1",
+      "ownerTask": "R1.4",
+      "supportingTasks": [
+        "R3.5",
+        "R6.3"
+      ],
+      "testIds": [
+        "T22",
+        "T59",
+        "T60",
+        "T72"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Verifica browser/IndexedDB reale"
+      ],
+      "changedFiles": [
+        "src/services/ingredientModelMigration.js",
+        "src/services/migrationRunner.js",
+        "src/services/preV1DataEpoch.js",
+        "src/repositories/repositoryHub.js",
+        "src/db/constants.js",
+        "src/services/catalogImporter.js",
+        "src/services/backupEngine.js",
+        "src/main.js",
+        "public/service-worker.js",
+        "src/services/offlineCatalog.js"
+      ],
+      "evidenceIds": [
+        "EV-R1-001",
+        "EV-R1-002",
+        "EV-R0-005"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "MIG-05",
+      "requirementId": "MIG-05",
+      "title": "Backup con chiusura transitiva dei riferimenti",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R27",
+      "reviewIds": [
+        "R27"
+      ],
+      "changeRequestSection": "14.2",
+      "ownerPhase": "R6",
+      "ownerTask": "R6.3",
+      "supportingTasks": [],
+      "testIds": [
+        "T60"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "changedFiles": [
+        "src/services/backupEngine.js",
+        "src/services/portableBackup.js",
+        "src/repositories/repositoryHub.js",
+        "schemas/backup-v3.schema.json",
+        "src/ui/app.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "MIG-06",
+      "requirementId": "MIG-06",
+      "title": "Backup di famiglie regole evidenze e mapping",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R27",
+      "reviewIds": [
+        "R27"
+      ],
+      "changeRequestSection": "14.2",
+      "ownerPhase": "R6",
+      "ownerTask": "R6.3",
+      "supportingTasks": [],
+      "testIds": [
+        "T60"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "changedFiles": [
+        "src/services/backupEngine.js",
+        "src/services/portableBackup.js",
+        "src/repositories/repositoryHub.js",
+        "schemas/backup-v3.schema.json",
+        "src/ui/app.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "MIG-07",
+      "requirementId": "MIG-07",
+      "title": "Import controllato e applicazione atomica",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R27",
+      "reviewIds": [
+        "R27"
+      ],
+      "changeRequestSection": "14.2",
+      "ownerPhase": "R6",
+      "ownerTask": "R6.3",
+      "supportingTasks": [],
+      "testIds": [
+        "T60",
+        "T61"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "changedFiles": [
+        "src/services/backupEngine.js",
+        "src/services/portableBackup.js",
+        "src/repositories/repositoryHub.js",
+        "schemas/backup-v3.schema.json",
+        "src/ui/app.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "MIG-08",
+      "requirementId": "MIG-08",
+      "title": "Round trip e ripresa idempotente delle migrazioni",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R27",
+      "reviewIds": [
+        "R27"
+      ],
+      "changeRequestSection": "14.2",
+      "ownerPhase": "R6",
+      "ownerTask": "R6.3",
+      "supportingTasks": [],
+      "testIds": [
+        "T59",
+        "T60"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "changedFiles": [
+        "src/services/backupEngine.js",
+        "src/services/portableBackup.js",
+        "src/repositories/repositoryHub.js",
+        "schemas/backup-v3.schema.json",
+        "src/ui/app.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "OPS-01",
+      "requirementId": "OPS-01",
+      "title": "Upgrade coerente di shell schemi e catalogo",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R27",
+      "reviewIds": [
+        "R27"
+      ],
+      "changeRequestSection": "15",
+      "ownerPhase": "R6",
+      "ownerTask": "R6.4",
+      "supportingTasks": [],
+      "testIds": [
+        "T62"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "changedFiles": [
+        "src/db/database.js",
+        "src/db/constants.js",
+        "src/main.js",
+        "public/service-worker.js",
+        "src/services/offlineCatalog.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "OPS-02",
+      "requirementId": "OPS-02",
+      "title": "Client vecchio bloccato prima delle scritture",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R27",
+      "reviewIds": [
+        "R27"
+      ],
+      "changeRequestSection": "15",
+      "ownerPhase": "R6",
+      "ownerTask": "R6.4",
+      "supportingTasks": [],
+      "testIds": [
+        "T62"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "changedFiles": [
+        "src/db/database.js",
+        "src/db/constants.js",
+        "src/main.js",
+        "public/service-worker.js",
+        "src/services/offlineCatalog.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "OPS-03",
+      "requirementId": "OPS-03",
+      "title": "Nessun invio del profilo privato per generare il piano",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "CR §15",
+      "reviewIds": [],
+      "changeRequestSection": "15",
+      "ownerPhase": "R6",
+      "ownerTask": "R6.5",
+      "supportingTasks": [],
+      "testIds": [
+        "T74"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "changedFiles": [
+        "src/services/localDiagnostics.js",
+        "src/ui/app.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "OPS-04",
+      "requirementId": "OPS-04",
+      "title": "Diagnostica esportabile con dati sensibili esclusi",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R19",
+      "reviewIds": [
+        "R19"
+      ],
+      "changeRequestSection": "15",
+      "ownerPhase": "R6",
+      "ownerTask": "R6.5",
+      "supportingTasks": [],
+      "testIds": [
+        "T75"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "changedFiles": [
+        "src/services/localDiagnostics.js",
+        "src/ui/app.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "OPS-05",
+      "requirementId": "OPS-05",
+      "title": "Contenuti importati inerti e nessuna chiave nel bundle",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "CR §15",
+      "reviewIds": [],
+      "changeRequestSection": "15",
+      "ownerPhase": "R6",
+      "ownerTask": "R6.5",
+      "supportingTasks": [],
+      "testIds": [
+        "T61",
+        "T74"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale, two-tab, quota/interruzione IDB, offline e log rete T74; catalogo di accettazione R5 incompleto"
+      ],
+      "changedFiles": [
+        "src/services/localDiagnostics.js",
+        "src/ui/app.js"
+      ],
+      "evidenceIds": [
+        "EV-R6-SERVICES"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "EXT-01",
+      "requirementId": "EXT-01",
+      "title": "Favoriti e blocco dei pasti scelti",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "CR §16",
+      "reviewIds": [],
+      "changeRequestSection": "16",
+      "ownerPhase": "R8",
+      "ownerTask": "R8.1",
+      "supportingTasks": [
+        "R7.1"
+      ],
+      "testIds": [
+        "T66"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale IT/EN, tastiera/touch/focus e responsive",
+        "Persistenza IndexedDB dopo reload; upgrade DB8→9 e offline; quota/concorrenza reale",
+        "Accettazione editoriale catalogo R5 e gate core R7 ancora aperti"
+      ],
+      "changedFiles": [
+        "src/domain/productExtensions.js",
+        "src/services/productExtensionService.js",
+        "src/ui/productExtensionPages.js",
+        "src/services/portableBackup.js",
+        "tests/revision-v2-r8.test.mjs",
+        "schemas/recipe-favorite.schema.json",
+        "schemas/calendar-day.schema.json",
+        "src/ui/catalogPages.js",
+        "src/ui/planPages.js",
+        "src/services/catalogQuery.js",
+        "src/services/effectivePlanService.js",
+        "src/planner/planGenerator.js",
+        "src/planner/softScoring.js"
+      ],
+      "evidenceIds": [
+        "EV-R8-SERVICES",
+        "EV-R8-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "EXT-02",
+      "requirementId": "EXT-02",
+      "title": "Menu riutilizzabili con rivalidazione",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "CR §16",
+      "reviewIds": [],
+      "changeRequestSection": "16",
+      "ownerPhase": "R8",
+      "ownerTask": "R8.2",
+      "supportingTasks": [
+        "R7.1"
+      ],
+      "testIds": [
+        "T67"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale IT/EN, tastiera/touch/focus e responsive",
+        "Persistenza IndexedDB dopo reload; upgrade DB8→9 e offline; quota/concorrenza reale",
+        "Accettazione editoriale catalogo R5 e gate core R7 ancora aperti"
+      ],
+      "changedFiles": [
+        "src/domain/productExtensions.js",
+        "src/services/productExtensionService.js",
+        "src/ui/productExtensionPages.js",
+        "src/services/portableBackup.js",
+        "tests/revision-v2-r8.test.mjs",
+        "schemas/saved-menu.schema.json",
+        "src/services/planPreviewGuard.js",
+        "src/services/planPolicyValidation.js"
+      ],
+      "evidenceIds": [
+        "EV-R8-SERVICES",
+        "EV-R8-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "EXT-03",
+      "requirementId": "EXT-03",
+      "title": "Dispensa semplice con quantità facoltative",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "CR §16",
+      "reviewIds": [],
+      "changeRequestSection": "16",
+      "ownerPhase": "R8",
+      "ownerTask": "R8.3",
+      "supportingTasks": [
+        "R7.1"
+      ],
+      "testIds": [
+        "T68"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale IT/EN, tastiera/touch/focus e responsive",
+        "Persistenza IndexedDB dopo reload; upgrade DB8→9 e offline; quota/concorrenza reale",
+        "Accettazione editoriale catalogo R5 e gate core R7 ancora aperti"
+      ],
+      "changedFiles": [
+        "src/domain/productExtensions.js",
+        "src/services/productExtensionService.js",
+        "src/ui/productExtensionPages.js",
+        "src/services/portableBackup.js",
+        "tests/revision-v2-r8.test.mjs",
+        "schemas/pantry-entry.schema.json",
+        "src/services/shoppingService.js",
+        "src/ui/shoppingPages.js"
+      ],
+      "evidenceIds": [
+        "EV-R8-SERVICES",
+        "EV-R8-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "EXT-04",
+      "requirementId": "EXT-04",
+      "title": "Avanzi con acquisto contato una volta",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "CR §16",
+      "reviewIds": [],
+      "changeRequestSection": "16",
+      "ownerPhase": "R8",
+      "ownerTask": "R8.4",
+      "supportingTasks": [
+        "R7.1"
+      ],
+      "testIds": [
+        "T69"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale IT/EN, tastiera/touch/focus e responsive",
+        "Persistenza IndexedDB dopo reload; upgrade DB8→9 e offline; quota/concorrenza reale",
+        "Accettazione editoriale catalogo R5 e gate core R7 ancora aperti"
+      ],
+      "changedFiles": [
+        "src/domain/productExtensions.js",
+        "src/services/productExtensionService.js",
+        "src/ui/productExtensionPages.js",
+        "src/services/portableBackup.js",
+        "tests/revision-v2-r8.test.mjs",
+        "schemas/production-batch.schema.json",
+        "schemas/calendar-day.schema.json",
+        "src/services/shoppingService.js",
+        "src/services/effectivePlanService.js",
+        "src/planner/frequencyPlanGenerator.js"
+      ],
+      "evidenceIds": [
+        "EV-R8-SERVICES",
+        "EV-R8-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "EXT-05",
+      "requirementId": "EXT-05",
+      "title": "Stagionalità per area come preferenza soft",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "CR §16",
+      "reviewIds": [],
+      "changeRequestSection": "16",
+      "ownerPhase": "R8",
+      "ownerTask": "R8.5",
+      "supportingTasks": [
+        "R7.1"
+      ],
+      "testIds": [
+        "T70"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale IT/EN, tastiera/touch/focus e responsive",
+        "Persistenza IndexedDB dopo reload; upgrade DB8→9 e offline; quota/concorrenza reale",
+        "Accettazione editoriale catalogo R5 e gate core R7 ancora aperti"
+      ],
+      "changedFiles": [
+        "src/domain/productExtensions.js",
+        "src/services/productExtensionService.js",
+        "src/ui/productExtensionPages.js",
+        "src/services/portableBackup.js",
+        "tests/revision-v2-r8.test.mjs",
+        "schemas/seasonality-profile.schema.json",
+        "schemas/ingredient-price.schema.json",
+        "src/planner/softScoring.js",
+        "src/ui/shoppingPages.js"
+      ],
+      "evidenceIds": [
+        "EV-R8-SERVICES",
+        "EV-R8-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "EXT-06",
+      "requirementId": "EXT-06",
+      "title": "Costo facoltativo con prezzi locali documentati",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "CR §16",
+      "reviewIds": [],
+      "changeRequestSection": "16",
+      "ownerPhase": "R8",
+      "ownerTask": "R8.5",
+      "supportingTasks": [
+        "R7.1"
+      ],
+      "testIds": [
+        "T70"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "Browser reale IT/EN, tastiera/touch/focus e responsive",
+        "Persistenza IndexedDB dopo reload; upgrade DB8→9 e offline; quota/concorrenza reale",
+        "Accettazione editoriale catalogo R5 e gate core R7 ancora aperti"
+      ],
+      "changedFiles": [
+        "src/domain/productExtensions.js",
+        "src/services/productExtensionService.js",
+        "src/ui/productExtensionPages.js",
+        "src/services/portableBackup.js",
+        "tests/revision-v2-r8.test.mjs",
+        "schemas/seasonality-profile.schema.json",
+        "schemas/ingredient-price.schema.json",
+        "src/planner/softScoring.js",
+        "src/ui/shoppingPages.js"
+      ],
+      "evidenceIds": [
+        "EV-R8-SERVICES",
+        "EV-R8-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "DOC-01",
+      "requirementId": "DOC-01",
+      "title": "Specifiche di prodotto e dominio aggiornate",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "CR §19",
+      "reviewIds": [],
+      "changeRequestSection": "19",
+      "ownerPhase": "R7",
+      "ownerTask": "R7.3",
+      "supportingTasks": [
+        "R0.1",
+        "R7.3"
+      ],
+      "testIds": [
+        "T65"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "74 scenari core completi, browser, catalogo R5, T64 reale completo e zero P0/P1"
+      ],
+      "changedFiles": [
+        "specs/revision_v2/CONTRATTO_R6_R7.md",
+        "scripts/revision-v2/update-r6-r7-dossier.mjs",
+        "skills/yourdietmanager-builder/SKILL.md"
+      ],
+      "evidenceIds": [
+        "EV-R7-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "DOC-02",
+      "requirementId": "DOC-02",
+      "title": "Pipeline e skill coerenti con i nuovi contratti",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R01, R26",
+      "reviewIds": [
+        "R01",
+        "R26"
+      ],
+      "changeRequestSection": "19",
+      "ownerPhase": "R7",
+      "ownerTask": "R7.3",
+      "supportingTasks": [
+        "R0.1",
+        "R7.3"
+      ],
+      "testIds": [
+        "T65"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "74 scenari core completi, browser, catalogo R5, T64 reale completo e zero P0/P1"
+      ],
+      "changedFiles": [
+        "specs/revision_v2/CONTRATTO_R6_R7.md",
+        "scripts/revision-v2/update-r6-r7-dossier.mjs",
+        "skills/yourdietmanager-builder/SKILL.md"
+      ],
+      "evidenceIds": [
+        "EV-R7-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "DOC-03",
+      "requirementId": "DOC-03",
+      "title": "Contratti attivi distinti da compatibilità e storico",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "R11, R22, R26",
+      "reviewIds": [
+        "R11",
+        "R22",
+        "R26"
+      ],
+      "changeRequestSection": "19",
+      "ownerPhase": "R7",
+      "ownerTask": "R7.3",
+      "supportingTasks": [
+        "R0.1",
+        "R7.3"
+      ],
+      "testIds": [
+        "T50",
+        "T65"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "74 scenari core completi, browser, catalogo R5, T64 reale completo e zero P0/P1"
+      ],
+      "changedFiles": [
+        "specs/revision_v2/CONTRATTO_R6_R7.md",
+        "scripts/revision-v2/update-r6-r7-dossier.mjs",
+        "skills/yourdietmanager-builder/SKILL.md"
+      ],
+      "evidenceIds": [
+        "EV-R7-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    },
+    {
+      "id": "DOC-04",
+      "requirementId": "DOC-04",
+      "title": "Rapporto di ogni fase con prove effettive",
+      "sourceFile": "specs/revision_v2/baseline/yourDietManager_CR_V2_SPECIFICA.md",
+      "sourceSha256": "f5cbd0bfb460b4d8791f0746955ecbc40b93d5dca19359eb583eef35172a10ac",
+      "origin": "CR §19",
+      "reviewIds": [],
+      "changeRequestSection": "19",
+      "ownerPhase": "R7",
+      "ownerTask": "R7.3",
+      "supportingTasks": [
+        "R0.1",
+        "R7.3"
+      ],
+      "testIds": [
+        "T65"
+      ],
+      "status": "IMPLEMENTATO",
+      "remainingScopes": [
+        "74 scenari core completi, browser, catalogo R5, T64 reale completo e zero P0/P1"
+      ],
+      "changedFiles": [
+        "specs/revision_v2/CONTRATTO_R6_R7.md",
+        "scripts/revision-v2/update-r6-r7-dossier.mjs",
+        "skills/yourdietmanager-builder/SKILL.md"
+      ],
+      "evidenceIds": [
+        "EV-R7-REGRESSION"
+      ],
+      "lastVerifiedArtifactSha256": null
+    }
+  ]
+}

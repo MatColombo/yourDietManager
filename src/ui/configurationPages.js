@@ -1,3 +1,8 @@
+import { sha256Json } from '../lib/crypto.js';
+import { profileStatus } from './profileStatus.js';
+import { foodGroupEditor } from './foodGroupEditor.js';
+import { preferenceEditingDraft, safetyEditingDraft } from '../domain/legacyRuleAdapter.js';
+import { rulesV2Editor } from './configurationRulesV2Ui.js';
 import { element } from './dom.js';
 import {
   ALLERGEN_IDS, ALLERGY_KINDS, ALLERGY_TARGET_TYPES, DAY_ARCHETYPES, FOOD_PREFERENCE_LEVELS,
@@ -11,7 +16,7 @@ import {
 import { applyTheme } from '../theme/themeEngine.js';
 import { createConfigurationExport, importConfigurationExport } from '../services/configurationTransfer.js';
 import { TAXONOMY_IDS, semanticReferenceDiagnostics } from '../services/referenceDataService.js';
-import { createAutocomplete, createProductFoodPicker, genericRecipeTagChoices, ingredientChoices, taxonomyChoices } from './guidedControls.js';
+import { createAutocomplete, createIngredientPicker, createProductFoodPicker, genericRecipeTagChoices, ingredientChoices, taxonomyChoices } from './guidedControls.js';
 import { controlledDetails, signalDraftChange } from './uiState.js';
 
 function clone(value) { return structuredClone(value); }
@@ -76,6 +81,7 @@ function semanticTargetControl(state, kind, value, onChange) {
   if (kind === 'productFood') return createProductFoodPicker(state, state.referenceDataIndex, {
     value: value || null, required: true, onChange: id => onChange(id || '')
   });
+  if (kind === 'ingredient') return createIngredientPicker(state, state.referenceDataIndex, { mode: 'variant', value: value || null, required: true, onChange: id => onChange(id || '') });
   let choices = [];
   if (kind === 'ingredient') choices = ingredientChoices(state.guidedIngredients || [], state.i18n.locale, {
     base: state.i18n.t('catalog.origin.base'), user: state.i18n.t('catalog.origin.user')
@@ -107,6 +113,7 @@ function configurationUiDiagnostics(state, draft, filter = null) {
     const semantic = semanticReferenceDiagnostics({
       index: state.referenceDataIndex,
       configuration: draft,
+      foodGroups: state.foodGroups || [],
       ingredientIds: (state.guidedIngredients || []).map(item => item.family?.ingredientId).filter(Boolean)
     });
     for (const raw of semantic.errors) {
@@ -215,10 +222,10 @@ export function configurationIndexPage(state) {
       element('strong', { text: state.i18n.t(title) }), element('span', { text: state.i18n.t(body) })
     ]));
   }
-  section.append(subheading(state, 'config.sections'), cards);
+  section.append(profileStatus(state), subheading(state, 'config.sections'), cards);
   section.append(summary.valid ? element('div', { className: 'validation-box', text: state.i18n.t('config.validation.ok') }) : diagnosticList(state, state.configuration));
 
-  section.append(element('div', { className: 'validation-box', text: state.i18n.t('onboarding.disabled.configNotice') }));
+  section.append(element('a', { href: '/onboarding', 'data-route': '', className: 'button button--secondary', text: state.i18n.locale === 'it' ? 'Configura o riprendi il profilo guidato' : 'Set up or resume your profile' }));
 
   const transferStatus = element('div', { 'aria-live': 'polite' });
   const importInput = element('input', { type: 'file', accept: 'application/json,.json', className: 'visually-hidden' });
@@ -273,11 +280,11 @@ function nutritionForm(state, profile, { compact = false } = {}) {
       profile.preset = 'custom';
     };
     enabled.addEventListener('change', event => sync(event.target.checked));
-    sync(nutrient.enabled);
+    for (const control of [min, target, max, weight]) control.disabled = !nutrient.enabled;
     row.append(element('strong', { text: state.i18n.t(`nutrition.${key}`) }), enabled, min, target, max, weight);
     nutrientTable.append(row);
   }
-  body.append(nutrientTable);
+  const advanced = controlledDetails(state, `nutrition-advanced:${profile.id}`, { children: [element('summary', { text: state.i18n.locale === 'it' ? 'Avanzate · nutrienti e modificatori' : 'Advanced · nutrients and modifiers' }), nutrientTable] }); body.append(advanced);
 
   body.append(subheading(state, 'nutrition.modifiers', 'nutrition.modifiers.body'));
   const modifiers = element('div', { className: 'modifier-grid' });
@@ -300,7 +307,7 @@ function nutritionForm(state, profile, { compact = false } = {}) {
     card.append(element('div', { className: 'compact-card__title' }, [enabled, element('strong', { text: optionText(state, 'dayArchetype', archetype) })]), mode, value);
     modifiers.append(card);
   }
-  body.append(modifiers);
+  advanced.append(modifiers);
   return body;
 }
 
@@ -344,12 +351,12 @@ function allergyRulesEditor(state, profile, rerender, { compact = false } = {}) 
 }
 
 export function safetyPage(state) {
-  const draft = clone(state.configuration); const profile = activeRecords(draft).allergyProfile;
+  const draft = clone(state.configuration); const profile = activeRecords(draft).allergyProfile; Object.assign(profile, safetyEditingDraft(profile));
   const section = page(state, 'HARD CONSTRAINTS', 'allergy.page.title', 'allergy.page.body', { wide: true });
   const status = statusBox(state); const editor = element('div');
-  const render = () => { editor.replaceChildren(allergyRulesEditor(state, profile, render)); };
+  const render = () => { editor.replaceChildren(rulesV2Editor(state, profile, render, { safety: true })); };
   render();
-  section.append(element('div', { className: 'safety-banner', text: state.i18n.t('allergy.safetyNotice') }), editor);
+  section.append(element('div', { className: 'safety-banner', text: state.i18n.t('allergy.safetyNotice') }), editor, foodGroupEditor(state, render));
   mountEditorActions(section, state, draft, status, path => path.startsWith('allergyIntoleranceProfile') || path.startsWith('allergyIntoleranceProfiles'));
   return section;
 }
@@ -389,11 +396,11 @@ function preferenceRulesEditor(state, preferences, rerender, { compact = false }
 }
 
 export function preferencesPage(state) {
-  const draft = clone(state.configuration); const preferences = activeRecords(draft).foodPreferences;
+  const draft = clone(state.configuration); const preferences = activeRecords(draft).foodPreferences; Object.assign(preferences, preferenceEditingDraft(preferences));
   const section = page(state, 'SOFT CONSTRAINTS', 'preference.page.title', 'preference.page.body', { wide: true });
   const status = statusBox(state); const editor = element('div');
-  const render = () => editor.replaceChildren(preferenceRulesEditor(state, preferences, render)); render();
-  section.append(editor);
+  const render = () => editor.replaceChildren(rulesV2Editor(state, preferences, render)); render();
+  section.append(editor, foodGroupEditor(state, render));
   mountEditorActions(section, state, draft, status, path => path.startsWith('foodPreferences'));
   return section;
 }
@@ -454,6 +461,8 @@ export function mealClassesPage(state) {
         field(state, 'common.abbreviation', textInput(meal.abbreviation, value => { meal.abbreviation = value.slice(0, 2); }, { maxlength: 2 })),
         field(state, 'meal.archetype', selectInput(state, MEAL_ARCHETYPES, meal.mealArchetype, 'mealArchetype', value => { meal.mealArchetype = value; }))
       );
+      basic.append(element('label', { className: 'field' }, [element('span', { text: state.i18n.locale === 'it' ? 'Massimo componenti nel pasto' : 'Maximum meal components' }), numberInput(meal.maxComponents ?? 3, value => { meal.maxComponents = requiredNumber(value); }, { min: 1, max: 3 })]));
+      body.append(element('div', { className: 'page-actions' }, [1,3].map(count => element('button', { type: 'button', className: 'button button--secondary', text: state.i18n.locale === 'it' ? (count === 1 ? 'Applica preset: un componente' : 'Applica preset: fino a tre componenti') : (count === 1 ? 'Apply preset: one component' : 'Apply preset: up to three components'), onClick: () => { meal.maxComponents = count; signalDraftChange(editor); render(); } }))));
       body.append(basic, subheading(state, 'meal.energyShare'), energyShareEditor(state, meal), subheading(state, 'meal.rules'), mealRuleEditor(state, meal, render));
       const remove = actionButton(state, 'common.delete', () => {
         draft.mealClasses = draft.mealClasses.filter(item => item.id !== meal.id);
@@ -470,7 +479,7 @@ export function mealClassesPage(state) {
     }, 'button button--secondary'));
   };
   render();
-  section.append(editor);
+  section.append(editor, foodGroupEditor(state, render));
   mountEditorActions(section, state, draft, status, path => path.startsWith('mealClass') || path.includes('mealClassIds'));
   return section;
 }
@@ -566,6 +575,8 @@ export function dayClassesPage(state) {
         field(state, 'day.archetype', selectInput(state, DAY_ARCHETYPES, day.dayArchetype, 'dayArchetype', value => { day.dayArchetype = value; if (value !== 'free' && day.mealSlots.length === 0) day.mealSlots.push({ id: makeId('slot'), mealClassId: draft.mealClasses[0]?.id || '', time: '12:00', dayOffset: 0, mode: 'planned', energyBudgetKcal: null, energyShare: null, guidanceKeys: [], parallel: false, proteinMinG: null }); signalDraftChange(editor); render(); })),
         field(state, 'common.color', element('input', { type: 'color', value: day.color, onInput: event => { day.color = event.target.value; } }))
       );
+      basic.append(element('label', { className: 'field' }, [element('span', { text: state.i18n.locale === 'it' ? 'Massimo componenti nel pasto' : 'Maximum meal components' }), numberInput(meal.maxComponents ?? 3, value => { meal.maxComponents = requiredNumber(value); }, { min: 1, max: 3 })]));
+      body.append(element('div', { className: 'page-actions' }, [1,3].map(count => element('button', { type: 'button', className: 'button button--secondary', text: state.i18n.locale === 'it' ? (count === 1 ? 'Applica preset: un componente' : 'Applica preset: fino a tre componenti') : (count === 1 ? 'Apply preset: one component' : 'Apply preset: up to three components'), onClick: () => { meal.maxComponents = count; signalDraftChange(editor); render(); } }))));
       body.append(basic, subheading(state, 'day.workWindows'), workWindowsEditor(state, day, render), subheading(state, 'day.capabilities'), capabilitiesEditor(state, day.capabilities), subheading(state, 'day.mealSlots'), mealSlotsEditor(state, draft, day, render));
       const remove = actionButton(state, 'common.delete', () => {
         draft.dayClasses = draft.dayClasses.filter(item => item.id !== day.id); draft.appConfig.dayClassIds = draft.appConfig.dayClassIds.filter(id => id !== day.id); signalDraftChange(editor); render();
@@ -712,4 +723,59 @@ export function onboardingPage(state) {
 export async function refreshOnboardingState(state) {
   state.onboardingComplete = await onboardingIsComplete({ repo: state.repo });
   state.onboardingDraft = await getOnboardingDraft({ repo: state.repo });
+}
+
+// R4 explicit, resumable six-step profile. Draft saves never activate configuration.
+export function profileSetupPage(state) {
+  const model = state.onboardingDraft?.version === 2 ? clone(state.onboardingDraft) : { version: 2, step: 1, bundle: clone(state.configuration), safety: 'unverified', goals: 'demonstration', reviewedSteps: [] };
+  const section = page(state, 'CONFIG', 'onboarding.title', 'onboarding.body', { wide: true });
+  const host = element('div'); section.append(host);
+  const it = state.i18n.locale === 'it';
+  const save = async step => {
+    model.step = step; model.savedAt = new Date().toISOString();
+    await state.repo.setMeta('phase2OnboardingDraft', clone(model)); state.onboardingDraft = clone(model);
+    state.markSaved?.(); state.notify?.('success', it ? 'Bozza del profilo salvata' : 'Profile draft saved'); render();
+  };
+  function render() {
+    host.replaceChildren(); const active = activeRecords(model.bundle);
+    const titles = it ? ['Lingua e fuso', 'Sicurezza', 'Struttura delle giornate', 'Preferenze', 'Obiettivi', 'Anteprima'] : ['Language and time zone', 'Safety', 'Day structure', 'Preferences', 'Goals', 'Preview'];
+    host.append(element('h2', { text: `${model.step}/6 · ${titles[model.step - 1]}` }));
+    const choose = (label, values, selected, change) => {
+      const select = element('select', { onChange: event => change(event.target.value) });
+      for (const [value, text] of values) select.append(element('option', { value, text })); select.value = selected;
+      return element('label', { className: 'field' }, [element('span', { text: label }), select]);
+    };
+    if (model.step === 1) host.append(choose(it ? 'Lingua' : 'Language', [['it','Italiano'],['en','English']], model.bundle.appConfig.locale, value => { model.bundle.appConfig.locale = value; }), field(state, 'config.timeZone', textInput(model.bundle.appConfig.timeZone, value => { model.bundle.appConfig.timeZone = value.trim(); })));
+    if (model.step === 2) {
+      host.append(choose(it ? 'Dichiarazione personale' : 'Personal declaration', [['unverified',it ? 'Non ancora verificata' : 'Not reviewed yet'],['none_declared',it ? 'Dichiaro nessuna allergia o intolleranza' : 'I declare no allergy or intolerance'],['rules_declared',it ? 'Ho esclusioni da configurare' : 'I have exclusions to configure']], model.safety, value => { model.safety = value; }));
+      host.append(allergyRulesEditor(state, active.allergyProfile, render));
+    }
+    if (model.step === 3) host.append(onboardingQuickMeals(state, model.bundle), onboardingQuickDays(state, model.bundle), cycleForm(state, model.bundle, active.cycle));
+    if (model.step === 4) host.append(preferenceRulesEditor(state, active.foodPreferences, render));
+    if (model.step === 5) host.append(choose(it ? 'Origine degli obiettivi' : 'Goal source', [['demonstration',it ? 'Valori dimostrativi, da personalizzare' : 'Demonstration values, customize later'],['user_defined',it ? 'Valori definiti da me' : 'Values defined by me']], model.goals, value => { model.goals = value; }), nutritionForm(state, active.nutritionProfile, { compact: true }));
+    if (model.step === 6) {
+      host.append(element('p', { text: `${it ? 'Sicurezza' : 'Safety'}: ${model.safety === 'unverified' ? (it ? 'non verificata' : 'unverified') : model.safety === 'none_declared' ? (it ? 'nessuna esclusione dichiarata' : 'no exclusions declared') : (it ? 'esclusioni dichiarate' : 'exclusions declared')}` }), element('p', { text: model.goals === 'demonstration' ? (it ? 'Obiettivi dimostrativi: non sono una prescrizione personale.' : 'Demonstration goals: not a personal prescription.') : (it ? 'Obiettivi definiti da te' : 'Goals defined by you') }), diagnosticList(state, model.bundle));
+      const defaults = titles.slice(0,5).filter((_,index) => !model.reviewedSteps.includes(index+1));
+      host.append(element('p', { text: `${it ? 'Scelte ancora predefinite' : 'Choices still at defaults'}: ${defaults.join(', ') || (it ? 'nessuna sezione saltata' : 'no skipped section')}` }));
+    }
+    const actions = element('div', { className: 'page-actions' });
+    actions.append(element('button', { className: 'button button--secondary', text: it ? 'Salva e riprendi dopo' : 'Save and resume later', onClick: () => save(model.step).catch(error => state.notify?.('error', error.message)) }));
+    if (model.step > 1) actions.append(element('button', { className: 'button button--secondary', text: state.i18n.t('common.previous'), onClick: () => save(model.step - 1).catch(error => state.notify?.('error', error.message)) }));
+    actions.append(element('button', { className: 'button', text: model.step === 6 ? state.i18n.t('common.save') : state.i18n.t('common.continue'), onClick: async event => {
+      const button = event.currentTarget; button.disabled = true;
+      try {
+        if (model.step === 1) new Intl.DateTimeFormat('en', { timeZone: model.bundle.appConfig.timeZone });
+        const rules = [...(active.allergyProfile.rules || []), ...(active.allergyProfile.legacyRules || [])].filter(rule => rule.enabled !== false);
+        if (model.safety === 'none_declared' && rules.length) throw new Error(it ? 'Sono presenti esclusioni: scegli esclusioni dichiarate o rivedi le regole.' : 'Exclusions exist: choose declared exclusions or review your rules.');
+        if (model.safety === 'rules_declared' && !rules.length) throw new Error(it ? 'Aggiungi almeno una esclusione oppure lascia il profilo non verificato.' : 'Add an exclusion or leave the profile unverified.');
+        if (!model.reviewedSteps.includes(model.step)) model.reviewedSteps.push(model.step);
+        if (model.step < 6) { await save(model.step + 1); return; }
+        const saved = await completeOnboarding(model.bundle, { repo: state.repo, registry: state.registry, declaration: { safety: model.safety, safetyProfileDigest: await sha256Json(active.allergyProfile), goals: model.goals, declaredAt: new Date().toISOString() } });
+        state.configuration = saved; state.config = saved.appConfig; state.onboardingDraft = null; state.onboardingComplete = true;
+        state.i18n.setLocale(saved.appConfig.locale); state.markSaved?.(); state.notify?.('success', it ? 'Profilo salvato' : 'Profile saved'); state.navigate('/configure', { force: true });
+      } catch (error) { state.notify?.('error', error.message, { timeoutMs: 0 }); button.disabled = false; }
+    } }));
+    host.append(actions, element('a', { href: '/recipes', 'data-route': '', text: it ? 'Esplora le ricette' : 'Explore recipes' }));
+  }
+  render(); return section;
 }

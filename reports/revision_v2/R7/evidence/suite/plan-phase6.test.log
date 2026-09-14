@@ -1,0 +1,16 @@
+✔ day adherence summary is derived from meal occurrence states (1.035803ms)
+✔ plan creation is one undoable and redoable atomic operation (94.155648ms)
+✔ adherence update persists per meal, derives day status, and undo restores previous day (36.451379ms)
+✔ replacement preview excludes current recipe and hard-allergen candidates; commit is undoable (76.706547ms)
+✔ rebalance creates a dedicated GenerationRun, commits selected dates, and rolls back atomically (98.435011ms)
+✔ new edit after undo invalidates the redo branch without deleting audit history (72.094021ms)
+✔ today view uses civil consumption date and includes carry-over meals from prior diet date (90.498328ms)
+✔ external adherence can persist a retrospective user estimate only when policy allows it (31.488668ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 755.121408

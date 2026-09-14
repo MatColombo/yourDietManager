@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/ingredient-price.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "priceId",
+    "ingredientId",
+    "price",
+    "quantity",
+    "unit",
+    "currency",
+    "observedOn",
+    "sourceRef",
+    "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "priceId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "ingredientId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0
+    },
+    "quantity": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "unit": {
+      "enum": [
+        "g",
+        "ml"
+      ]
+    },
+    "currency": {
+      "enum": [
+        "EUR",
+        "USD",
+        "GBP"
+      ]
+    },
+    "observedOn": {
+      "type": "string",
+      "format": "date"
+    },
+    "sourceRef": {
+      "type": "string",
+      "minLength": 1
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

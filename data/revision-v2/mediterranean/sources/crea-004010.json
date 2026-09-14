@@ -1,0 +1,66 @@
+{
+  "source": "CREA",
+  "raw": {
+    "id": "004010",
+    "label": "Ceci, in scatola, scolati",
+    "basisAmount": 100,
+    "basisUnit": "g",
+    "edibleBasis": true,
+    "nutrients": {
+      "energyKcal": {
+        "value": 111,
+        "unit": "kcal",
+        "definition": "CREA Southgate energy"
+      },
+      "proteinG": {
+        "value": 6.7,
+        "unit": "g",
+        "definition": "Protein N x 6.25"
+      },
+      "carbsG": {
+        "value": 13.9,
+        "unit": "g",
+        "definition": "Available carbohydrate calculated from sugar and starch"
+      },
+      "fatG": {
+        "value": 2.3,
+        "unit": "g",
+        "definition": "Total lipid"
+      },
+      "fiberG": {
+        "value": 5.7,
+        "unit": "g",
+        "definition": "Total dietary fibre enzymatic-gravimetric"
+      },
+      "sodiumMg": {
+        "value": 311,
+        "unit": "mg",
+        "definition": "Sodium"
+      }
+    }
+  },
+  "context": {
+    "version": "December 2019 (displayed on source website)",
+    "url": "https://www.alimentinutrizione.it/tabelle-nutrizionali/004010",
+    "acquiredAt": "2026-09-11",
+    "acquisitionMode": "manual_extract_from_official_web_table",
+    "originalPageArchiveAvailable": false,
+    "licenseEvidence": {
+      "url": "https://www.alimentinutrizione.it/tabelle-nutrizionali",
+      "checkedAt": "2026-09-11",
+      "reuseAllowed": true,
+      "condition": "Attribute CREA Centro di ricerca Alimenti e Nutrizione and source page; attribution preserved in this extract."
+    },
+    "attribution": "CREA Centro di ricerca Alimenti e Nutrizione; https://www.crea.gov.it/alimenti-e-nutrizione; https://www.alimentinutrizione.it",
+    "limitations": [
+      "Faithful six-nutrient manual extract, not a complete original-page archive",
+      "Source describes canned chickpeas as raw in English: state review remains mandatory",
+      "Source nutrients do not establish allergy or trace absence"
+    ]
+  },
+  "proposedMapping": {
+    "conceptId": "med_ceci",
+    "formId": "med_ceci_3",
+    "status": "proposed"
+  }
+}

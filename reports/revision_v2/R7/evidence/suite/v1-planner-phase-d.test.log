@@ -1,0 +1,12 @@
+✔ Phase D2/R1 - all 600 current ingredient revisions have a valid three-level product taxonomy (7280.342449ms)
+✔ Phase D2 - Dairy productFood autoExclude is enforced as a hard planner constraint (10151.676967ms)
+✔ Phase D1 - propose alternative changes every planned slot when strict alternative search is feasible (15970.278566ms)
+✔ Phase D1 - recalculate and alternative are distinct, explicit modes (14385.217224ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 48051.722773

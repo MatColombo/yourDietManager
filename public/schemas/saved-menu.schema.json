@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/saved-menu.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "menuId",
+    "name",
+    "days",
+    "createdAt",
+    "updatedAt"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "menuId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "days": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "offset",
+          "slots"
+        ],
+        "properties": {
+          "offset": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 30
+          },
+          "slots": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "mealClassId",
+                "ordinal",
+                "components"
+              ],
+              "properties": {
+                "mealClassId": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "ordinal": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 20
+                },
+                "components": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "recipeId",
+                      "recipeVersionId",
+                      "servings"
+                    ],
+                    "properties": {
+                      "recipeId": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "recipeVersionId": {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      "servings": {
+                        "const": 1
+                      }
+                    }
+                  },
+                  "minItems": 1,
+                  "maxItems": 3
+                }
+              }
+            },
+            "minItems": 1,
+            "maxItems": 30
+          }
+        }
+      },
+      "minItems": 1,
+      "maxItems": 31
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

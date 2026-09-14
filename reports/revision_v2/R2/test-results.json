@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "phase": "R2",
+  "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+  "overallFunctionalStatus": "PASS",
+  "phaseGate": "BLOCKED",
+  "gateReason": "Browser/IndexedDB/offline reali e scenari end-to-end completi non verificati",
+  "expected": "Implementation scope passes without relabeling partial acceptance tests as complete",
+  "actual": "288 automated tests pass; source audits/build pass; browser acceptance blocked",
+  "evidence": [
+    {
+      "id": "EV-R2-CATALOG",
+      "path": "reports/revision_v2/R2/evidence/catalog-and-search.json",
+      "sha256": "4f2fb05896f9c336e331d581e85939aea2030a2994e2e77d2498e00b757664fa",
+      "command": "node scripts/revision-v2/audit-r2-r3.mjs",
+      "exitCode": 0,
+      "result": "PASS",
+      "scope": "Real catalog identity/title migration, history preservation and synthetic Node search benchmark; not browser or editorial approval",
+      "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+      "catalog": "1.2.0-planner-phase-d",
+      "environment": "Node 24.19.0 / Linux x64; in-memory repositories; no browser execution",
+      "historical": true
+    }
+  ],
+  "historical": true
+}

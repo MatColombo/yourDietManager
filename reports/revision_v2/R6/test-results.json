@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "phase": "R6",
+  "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+  "phaseGate": "BLOCKED",
+  "overallFunctionalStatus": "AUTOMATED_SERVICE_SCOPES_PASS",
+  "evidence": [
+    {
+      "id": "EV-R6-SERVICES",
+      "path": "reports/revision_v2/R7/evidence/suite/revision-v2-r6-r7.test.log",
+      "sha256": "51a4c9ac69c597558e7f5fdb19982a13c4c68adc7d3781e115e1bd3c56af3ffc",
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+      "result": "PASS",
+      "scope": "Shopping conversions/digest; backup roundtrip, corruption, concurrency; diagnostic allowlist. Memory repository.",
+      "environment": "Node 24/Linux; browser not executed",
+      "historical": true
+    }
+  ],
+  "historical": true
+}

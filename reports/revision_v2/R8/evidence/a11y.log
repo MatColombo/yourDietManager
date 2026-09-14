@@ -1,0 +1,6 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> yourdietmanager@1.1.0-dev.r8 hardening:a11y
+> node scripts/hardening/a11y-audit.mjs
+
+Accessibility source audit: 16/16 checks passed

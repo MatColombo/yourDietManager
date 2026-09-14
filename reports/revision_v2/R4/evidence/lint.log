@@ -1,0 +1,8 @@
+/workspace/scratch/621114de952a/yourDietManager_v2_R4_R5/src/ui/planPages.js:161
+  const now = localTime(state); const next = view.civilMeals.find(item => item.slot.time >= now) || null; if (next) { section.append(element('section', { className: 'next-meal-card' }, [element('span', { className: 'eyebrow', text: t(state, 'plan.nextMeal') }), element('strong', { text: next.slot.mode === 'external' ? t(state, 'plan.external') : next.(mc?.name || slot.mealClassId) }), element('span', { className: 'muted', text: `${next.slot.time} · ${mealClass(state, next.slot.mealClassId)?.name || next.slot.mealClassId}` })])); const prepMinutes = next.recipes.reduce((total, recipe) => total + Number(recipe.practical?.prepMinutes || 0), 0); if (prepMinutes > 0) section.append(element('div', { className: 'prep-inline' }, [element('strong', { text: t(state, 'plan.upcomingPrep') }), element('span', { className: 'muted', text: t(state, 'plan.prepMinutes', { minutes: prepMinutes }) })])); }
+                                                                                                                                                                                                                                                                                                                                                                 ^
+
+SyntaxError: Unexpected token '('
+    at checkSyntax (node:internal/main/check_syntax:72:5)
+
+Node.js v24.19.0

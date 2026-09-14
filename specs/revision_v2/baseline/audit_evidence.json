@@ -1,0 +1,998 @@
+{
+  "reviewedAt": "2026-09-11",
+  "source": {
+    "archive": "yourDietManager_v1_planner_phaseH_full(1).zip",
+    "appVersion": "1.0.0-rc.34"
+  },
+  "scope": {
+    "baselineTestCount": 247,
+    "baselineTestsPassed": 247,
+    "browser": "not executed: local URL blocked by the available browser",
+    "mutations": "in-memory fixtures only"
+  },
+  "counts": {
+    "ingredientRevisions": 600,
+    "recipeVersions": 1800,
+    "usedIngredientRevisions": 302,
+    "populatedConcepts": 86,
+    "allProductTerms": 203,
+    "titleOver100": 1301,
+    "maximumTitleLength": 171,
+    "italianAliasesEmpty": 600,
+    "conversionsEmpty": 600,
+    "commonGenericCookingProcedure": 1153,
+    "sourceLabels": {
+      "USDA FoodData Central SR Legacy 2018-04": 468,
+      "USDA FoodData Central Foundation Foods 2026-04": 132
+    },
+    "states": {
+      "as_sold": 197,
+      "raw": 190,
+      "cooked": 146,
+      "dry": 30,
+      "drained": 24,
+      "prepared": 11,
+      "ready_to_eat": 2
+    },
+    "populatedConceptDistribution": {
+      "product_concept_pork": 108,
+      "product_concept_fruit_other": 52,
+      "product_concept_vegetables_other": 30,
+      "product_concept_chicken": 22,
+      "product_concept_fish": 20,
+      "product_concept_grain_flour": 18,
+      "product_concept_berry": 16,
+      "product_concept_rice": 16,
+      "product_concept_cereals_other": 15,
+      "product_concept_pasta": 14,
+      "product_concept_beans": 13,
+      "product_concept_potato": 13,
+      "product_concept_salad_dressing": 12,
+      "product_concept_fruit_juice": 12,
+      "product_concept_noodles": 11,
+      "product_concept_seeds_other": 10,
+      "product_concept_stone_fruit": 9,
+      "product_concept_plant_protein_product": 8,
+      "product_concept_mollusc": 8,
+      "product_concept_nuts_other": 8,
+      "product_concept_crustacean": 8,
+      "product_concept_plum_prune": 7,
+      "product_concept_citrus": 7,
+      "product_concept_legumes_other": 7,
+      "product_concept_egg": 7,
+      "product_concept_tropical_fruit": 6,
+      "product_concept_spice": 6,
+      "product_concept_oil": 5,
+      "product_concept_cheese": 5,
+      "product_concept_onion": 4,
+      "product_concept_banana": 4,
+      "product_concept_cottage_cheese": 4,
+      "product_concept_tomato": 4,
+      "product_concept_turkey": 4,
+      "product_concept_nut_butter": 4,
+      "product_concept_almond": 4,
+      "product_concept_sunflower_seed": 4,
+      "product_concept_cornmeal": 4,
+      "product_concept_cream": 4,
+      "product_concept_peas": 4,
+      "product_concept_cruciferous": 4,
+      "product_concept_sweet_potato": 3,
+      "product_concept_plant_cream": 3,
+      "product_concept_fat_spread": 3,
+      "product_concept_breakfast_cereal": 3,
+      "product_concept_seafood_other": 3,
+      "product_concept_pear": 3,
+      "product_concept_apple": 3,
+      "product_concept_ginger": 3,
+      "product_concept_game_bird": 3,
+      "product_concept_fresh_herb": 3,
+      "product_concept_leafy_green": 3,
+      "product_concept_seaweed": 2,
+      "product_concept_prepared_potato": 2,
+      "product_concept_bacon": 2,
+      "product_concept_millet": 2,
+      "product_concept_mozzarella": 2,
+      "product_concept_mayonnaise": 2,
+      "product_concept_dried_fruit": 2,
+      "product_concept_pickle": 2,
+      "product_concept_coconut": 2,
+      "product_concept_mixed_nuts": 2,
+      "product_concept_breakfast_drink": 2,
+      "product_concept_lentils": 2,
+      "product_concept_garlic": 1,
+      "product_concept_dessert_topping": 1,
+      "product_concept_tofu": 1,
+      "product_concept_buttermilk": 1,
+      "product_concept_parmesan": 1,
+      "product_concept_vegetable_juice": 1,
+      "product_concept_yeast_extract": 1,
+      "product_concept_plant_yogurt": 1,
+      "product_concept_soy": 1,
+      "product_concept_scallop": 1,
+      "product_concept_lemon": 1,
+      "product_concept_meat_other": 1,
+      "product_concept_plant_cheese": 1,
+      "product_concept_wheat_gluten": 1,
+      "product_concept_rice_flour": 1,
+      "product_concept_milk": 1,
+      "product_concept_peanut_butter": 1,
+      "product_concept_yogurt": 1,
+      "product_concept_mushroom": 1,
+      "product_concept_cashew": 1,
+      "product_concept_chickpeas": 1,
+      "product_concept_herb_spice_other": 1
+    },
+    "cuisines": {
+      "cuisine_international": 1800
+    },
+    "families": {
+      "recipe_family_one_pot": 352,
+      "recipe_family_snack_plate": 347,
+      "recipe_family_protein_plate": 289,
+      "recipe_family_egg_dish": 257,
+      "recipe_family_grain_bowl": 231,
+      "recipe_family_yogurt_bowl": 161,
+      "recipe_family_salad": 99,
+      "recipe_family_porridge": 64
+    },
+    "flavorProfiles": {
+      "flavor_neutral": 421,
+      "flavor_sweet": 119,
+      "flavor_fresh": 60
+    }
+  },
+  "catalogFindings": {
+    "rawFishInZeroCookRecipes": [
+      {
+        "recipeVersionId": "recver_2a65937018be84aa58f7b092_v1",
+        "title": "Pesce e frutti di mare (Fish,  mahimahi) con Noodles, cotto (egg,  unenriched) e Verdure (Peppers,  bell)",
+        "practical": {
+          "prepMinutes": 8,
+          "cookMinutes": 0,
+          "reheatingRequired": false,
+          "coldSuitable": true,
+          "portable": true,
+          "fridgeRequired": true,
+          "freezerSuitable": false,
+          "mealPrepSuitable": true,
+          "finalWeightG": 456,
+          "finalVolumeMl": null,
+          "yieldNotes": "One fixed standard serving; Phase B quantities are template-defined and never energy-fitted."
+        },
+        "ingredients": [
+          {
+            "id": "ing_fdc_171959",
+            "name": "Fish, mahimahi, raw",
+            "nameIt": "Pesce e frutti di mare — Fish, mahimahi, raw",
+            "state": "raw",
+            "allergenIds": [
+              "fish"
+            ],
+            "productTaxonomy": {
+              "categoryId": "product_category_fish_seafood",
+              "subcategoryId": "product_subcategory_fish",
+              "conceptId": "product_concept_fish"
+            },
+            "foodGroup": "food_group_fish_seafood"
+          }
+        ]
+      },
+      {
+        "recipeVersionId": "recver_51661d6876729fe6118521f2_v1",
+        "title": "Pesce e frutti di mare (Fish,  cusk) con Pasta, cotto (gluten-free,  corn) e Verdure (Radicchio,  raw)",
+        "practical": {
+          "prepMinutes": 8,
+          "cookMinutes": 0,
+          "reheatingRequired": false,
+          "coldSuitable": true,
+          "portable": true,
+          "fridgeRequired": true,
+          "freezerSuitable": false,
+          "mealPrepSuitable": true,
+          "finalWeightG": 284,
+          "finalVolumeMl": null,
+          "yieldNotes": "One fixed standard serving; Phase B quantities are template-defined and never energy-fitted."
+        },
+        "ingredients": [
+          {
+            "id": "ing_fdc_171958",
+            "name": "Fish, cusk, raw",
+            "nameIt": "Pesce e frutti di mare — Fish, cusk, raw",
+            "state": "raw",
+            "allergenIds": [
+              "fish"
+            ],
+            "productTaxonomy": {
+              "categoryId": "product_category_fish_seafood",
+              "subcategoryId": "product_subcategory_fish",
+              "conceptId": "product_concept_fish"
+            },
+            "foodGroup": "food_group_fish_seafood"
+          }
+        ]
+      },
+      {
+        "recipeVersionId": "recver_6ad064d67b7bb65013296f1a_v1",
+        "title": "Pesce e frutti di mare (Fish,  burbot) con Pasta, cotto (whole-wheat,  (Includes foods for USDA's F) e Broccoli, crudo",
+        "practical": {
+          "prepMinutes": 8,
+          "cookMinutes": 0,
+          "reheatingRequired": false,
+          "coldSuitable": true,
+          "portable": true,
+          "fridgeRequired": true,
+          "freezerSuitable": false,
+          "mealPrepSuitable": true,
+          "finalWeightG": 284,
+          "finalVolumeMl": null,
+          "yieldNotes": "One fixed standard serving; Phase B quantities are template-defined and never energy-fitted."
+        },
+        "ingredients": [
+          {
+            "id": "ing_fdc_171950",
+            "name": "Fish, burbot, raw",
+            "nameIt": "Pesce e frutti di mare — Fish, burbot, raw",
+            "state": "raw",
+            "allergenIds": [
+              "fish"
+            ],
+            "productTaxonomy": {
+              "categoryId": "product_category_fish_seafood",
+              "subcategoryId": "product_subcategory_fish",
+              "conceptId": "product_concept_fish"
+            },
+            "foodGroup": "food_group_fish_seafood"
+          }
+        ]
+      },
+      {
+        "recipeVersionId": "recver_7d1fde8a5561ff24d01fdad1_v1",
+        "title": "Pesce e frutti di mare (Fish,  drum) con Noodles, cotto (egg,  spinach) e Verdure (Peppers,  bell)",
+        "practical": {
+          "prepMinutes": 8,
+          "cookMinutes": 0,
+          "reheatingRequired": false,
+          "coldSuitable": true,
+          "portable": true,
+          "fridgeRequired": true,
+          "freezerSuitable": false,
+          "mealPrepSuitable": true,
+          "finalWeightG": 223,
+          "finalVolumeMl": null,
+          "yieldNotes": "One fixed standard serving; Phase B quantities are template-defined and never energy-fitted."
+        },
+        "ingredients": [
+          {
+            "id": "ing_fdc_171960",
+            "name": "Fish, drum, freshwater, raw",
+            "nameIt": "Pesce e frutti di mare — Fish, drum, freshwater, raw",
+            "state": "raw",
+            "allergenIds": [
+              "fish"
+            ],
+            "productTaxonomy": {
+              "categoryId": "product_category_fish_seafood",
+              "subcategoryId": "product_subcategory_fish",
+              "conceptId": "product_concept_fish"
+            },
+            "foodGroup": "food_group_fish_seafood"
+          }
+        ]
+      },
+      {
+        "recipeVersionId": "recver_7e82a845d701bfe7c655cc7a_v1",
+        "title": "Pesce e frutti di mare (Fish,  grouper) con Noodles, cotto (egg,  spinach) e Verdure (Peppers,  jalapeno)",
+        "practical": {
+          "prepMinutes": 8,
+          "cookMinutes": 0,
+          "reheatingRequired": false,
+          "coldSuitable": true,
+          "portable": true,
+          "fridgeRequired": true,
+          "freezerSuitable": false,
+          "mealPrepSuitable": true,
+          "finalWeightG": 456,
+          "finalVolumeMl": null,
+          "yieldNotes": "One fixed standard serving; Phase B quantities are template-defined and never energy-fitted."
+        },
+        "ingredients": [
+          {
+            "id": "ing_fdc_171962",
+            "name": "Fish, grouper, mixed species, raw",
+            "nameIt": "Pesce e frutti di mare — Fish, grouper, mixed species, raw",
+            "state": "raw",
+            "allergenIds": [
+              "fish"
+            ],
+            "productTaxonomy": {
+              "categoryId": "product_category_fish_seafood",
+              "subcategoryId": "product_subcategory_fish",
+              "conceptId": "product_concept_fish"
+            },
+            "foodGroup": "food_group_fish_seafood"
+          }
+        ]
+      },
+      {
+        "recipeVersionId": "recver_85aa9e7bee6964bc32c79e13_v1",
+        "title": "Pesce e frutti di mare (Crustaceans,  crab) con Patata, preparato (mashed,  home-) e Barbabietola, crudo",
+        "practical": {
+          "prepMinutes": 8,
+          "cookMinutes": 0,
+          "reheatingRequired": false,
+          "coldSuitable": true,
+          "portable": true,
+          "fridgeRequired": true,
+          "freezerSuitable": false,
+          "mealPrepSuitable": true,
+          "finalWeightG": 223,
+          "finalVolumeMl": null,
+          "yieldNotes": "One fixed standard serving; Phase B quantities are template-defined and never energy-fitted."
+        },
+        "ingredients": [
+          {
+            "id": "ing_fdc_171969",
+            "name": "Crustaceans, crab, queen, raw",
+            "nameIt": "Pesce e frutti di mare — Crustaceans, crab, queen, raw",
+            "state": "raw",
+            "allergenIds": [
+              "crustaceans"
+            ],
+            "productTaxonomy": {
+              "categoryId": "product_category_fish_seafood",
+              "subcategoryId": "product_subcategory_crustaceans",
+              "conceptId": "product_concept_crustacean"
+            },
+            "foodGroup": "food_group_fish_seafood"
+          }
+        ]
+      },
+      {
+        "recipeVersionId": "recver_cbb793617efd8013de096abc_v1",
+        "title": "Pesce e frutti di mare (Fish,  carp) con Miglio, cotto e Zucca, crudo (winter,  acorn)",
+        "practical": {
+          "prepMinutes": 8,
+          "cookMinutes": 0,
+          "reheatingRequired": false,
+          "coldSuitable": true,
+          "portable": true,
+          "fridgeRequired": true,
+          "freezerSuitable": false,
+          "mealPrepSuitable": true,
+          "finalWeightG": 456,
+          "finalVolumeMl": null,
+          "yieldNotes": "One fixed standard serving; Phase B quantities are template-defined and never energy-fitted."
+        },
+        "ingredients": [
+          {
+            "id": "ing_fdc_171952",
+            "name": "Fish, carp, raw",
+            "nameIt": "Pesce e frutti di mare — Fish, carp, raw",
+            "state": "raw",
+            "allergenIds": [
+              "fish"
+            ],
+            "productTaxonomy": {
+              "categoryId": "product_category_fish_seafood",
+              "subcategoryId": "product_subcategory_fish",
+              "conceptId": "product_concept_fish"
+            },
+            "foodGroup": "food_group_fish_seafood"
+          }
+        ]
+      },
+      {
+        "recipeVersionId": "recver_dd47ef5237ca6b92a720e7d2_v1",
+        "title": "Pesce e frutti di mare (Fish,  bluefish) con Riso, cotto (white,  medium-grain) e Verdure (Peppers,  banana or Hungarian wax)",
+        "practical": {
+          "prepMinutes": 8,
+          "cookMinutes": 0,
+          "reheatingRequired": false,
+          "coldSuitable": true,
+          "portable": true,
+          "fridgeRequired": true,
+          "freezerSuitable": false,
+          "mealPrepSuitable": true,
+          "finalWeightG": 355,
+          "finalVolumeMl": null,
+          "yieldNotes": "One fixed standard serving; Phase B quantities are template-defined and never energy-fitted."
+        },
+        "ingredients": [
+          {
+            "id": "ing_fdc_171949",
+            "name": "Fish, bluefish, raw",
+            "nameIt": "Pesce e frutti di mare — Fish, bluefish, raw",
+            "state": "raw",
+            "allergenIds": [
+              "fish"
+            ],
+            "productTaxonomy": {
+              "categoryId": "product_category_fish_seafood",
+              "subcategoryId": "product_subcategory_fish",
+              "conceptId": "product_concept_fish"
+            },
+            "foodGroup": "food_group_fish_seafood"
+          }
+        ]
+      },
+      {
+        "recipeVersionId": "recver_e26e2b42e3efe5fbde3d8710_v1",
+        "title": "Pesce e frutti di mare (Fish,  carp) con Noodles, cotto (egg,  enriched) e Cipolla, crudo (red)",
+        "practical": {
+          "prepMinutes": 8,
+          "cookMinutes": 0,
+          "reheatingRequired": false,
+          "coldSuitable": true,
+          "portable": true,
+          "fridgeRequired": true,
+          "freezerSuitable": false,
+          "mealPrepSuitable": true,
+          "finalWeightG": 284,
+          "finalVolumeMl": null,
+          "yieldNotes": "One fixed standard serving; Phase B quantities are template-defined and never energy-fitted."
+        },
+        "ingredients": [
+          {
+            "id": "ing_fdc_171952",
+            "name": "Fish, carp, raw",
+            "nameIt": "Pesce e frutti di mare — Fish, carp, raw",
+            "state": "raw",
+            "allergenIds": [
+              "fish"
+            ],
+            "productTaxonomy": {
+              "categoryId": "product_category_fish_seafood",
+              "subcategoryId": "product_subcategory_fish",
+              "conceptId": "product_concept_fish"
+            },
+            "foodGroup": "food_group_fish_seafood"
+          }
+        ]
+      },
+      {
+        "recipeVersionId": "recver_e8c048b9ad939072bd5200b3_v1",
+        "title": "Pesce e frutti di mare (Fish,  haddock) con Pasta, cotto (gluten-free,  corn) e Verdure (Peppers,  bell)",
+        "practical": {
+          "prepMinutes": 8,
+          "cookMinutes": 0,
+          "reheatingRequired": false,
+          "coldSuitable": true,
+          "portable": true,
+          "fridgeRequired": true,
+          "freezerSuitable": false,
+          "mealPrepSuitable": true,
+          "finalWeightG": 223,
+          "finalVolumeMl": null,
+          "yieldNotes": "One fixed standard serving; Phase B quantities are template-defined and never energy-fitted."
+        },
+        "ingredients": [
+          {
+            "id": "ing_fdc_171964",
+            "name": "Fish, haddock, raw",
+            "nameIt": "Pesce e frutti di mare — Fish, haddock, raw",
+            "state": "raw",
+            "allergenIds": [
+              "fish"
+            ],
+            "productTaxonomy": {
+              "categoryId": "product_category_fish_seafood",
+              "subcategoryId": "product_subcategory_fish",
+              "conceptId": "product_concept_fish"
+            },
+            "foodGroup": "food_group_fish_seafood"
+          }
+        ]
+      },
+      {
+        "recipeVersionId": "recver_e9aa1127abf29051b7c404a9_v1",
+        "title": "Pesce e frutti di mare (Fish,  bass) con Riso, cotto (noodles) e Broccoli, crudo",
+        "practical": {
+          "prepMinutes": 8,
+          "cookMinutes": 0,
+          "reheatingRequired": false,
+          "coldSuitable": true,
+          "portable": true,
+          "fridgeRequired": true,
+          "freezerSuitable": false,
+          "mealPrepSuitable": true,
+          "finalWeightG": 223,
+          "finalVolumeMl": null,
+          "yieldNotes": "One fixed standard serving; Phase B quantities are template-defined and never energy-fitted."
+        },
+        "ingredients": [
+          {
+            "id": "ing_fdc_171948",
+            "name": "Fish, bass, striped, raw",
+            "nameIt": "Pesce e frutti di mare — Fish, bass, striped, raw",
+            "state": "raw",
+            "allergenIds": [
+              "fish"
+            ],
+            "productTaxonomy": {
+              "categoryId": "product_category_fish_seafood",
+              "subcategoryId": "product_subcategory_fish",
+              "conceptId": "product_concept_fish"
+            },
+            "foodGroup": "food_group_fish_seafood"
+          }
+        ]
+      },
+      {
+        "recipeVersionId": "recver_ebc8da97e3be543088b6a2f6_v1",
+        "title": "Pesce e frutti di mare (Fish,  bass) con Miglio, cotto e Zucca, crudo (winter,  acorn)",
+        "practical": {
+          "prepMinutes": 8,
+          "cookMinutes": 0,
+          "reheatingRequired": false,
+          "coldSuitable": true,
+          "portable": true,
+          "fridgeRequired": true,
+          "freezerSuitable": false,
+          "mealPrepSuitable": true,
+          "finalWeightG": 456,
+          "finalVolumeMl": null,
+          "yieldNotes": "One fixed standard serving; Phase B quantities are template-defined and never energy-fitted."
+        },
+        "ingredients": [
+          {
+            "id": "ing_fdc_171948",
+            "name": "Fish, bass, striped, raw",
+            "nameIt": "Pesce e frutti di mare — Fish, bass, striped, raw",
+            "state": "raw",
+            "allergenIds": [
+              "fish"
+            ],
+            "productTaxonomy": {
+              "categoryId": "product_category_fish_seafood",
+              "subcategoryId": "product_subcategory_fish",
+              "conceptId": "product_concept_fish"
+            },
+            "foodGroup": "food_group_fish_seafood"
+          }
+        ]
+      },
+      {
+        "recipeVersionId": "recver_ebcc9056222932bbd3107ca4_v1",
+        "title": "Pesce e frutti di mare (Fish,  mahimahi) con Cous cous, cotto e Zucca, crudo (summer,  green)",
+        "practical": {
+          "prepMinutes": 8,
+          "cookMinutes": 0,
+          "reheatingRequired": false,
+          "coldSuitable": true,
+          "portable": true,
+          "fridgeRequired": true,
+          "freezerSuitable": false,
+          "mealPrepSuitable": true,
+          "finalWeightG": 456,
+          "finalVolumeMl": null,
+          "yieldNotes": "One fixed standard serving; Phase B quantities are template-defined and never energy-fitted."
+        },
+        "ingredients": [
+          {
+            "id": "ing_fdc_171959",
+            "name": "Fish, mahimahi, raw",
+            "nameIt": "Pesce e frutti di mare — Fish, mahimahi, raw",
+            "state": "raw",
+            "allergenIds": [
+              "fish"
+            ],
+            "productTaxonomy": {
+              "categoryId": "product_category_fish_seafood",
+              "subcategoryId": "product_subcategory_fish",
+              "conceptId": "product_concept_fish"
+            },
+            "foodGroup": "food_group_fish_seafood"
+          }
+        ]
+      },
+      {
+        "recipeVersionId": "recver_eedd957e0495ae0f5244c6b6_v1",
+        "title": "Pesce e frutti di mare (Fish,  grouper) con Pasta, cotto (whole grain,  51% whole wheat) e Verdure (Collards,  raw)",
+        "practical": {
+          "prepMinutes": 8,
+          "cookMinutes": 0,
+          "reheatingRequired": false,
+          "coldSuitable": true,
+          "portable": true,
+          "fridgeRequired": true,
+          "freezerSuitable": false,
+          "mealPrepSuitable": true,
+          "finalWeightG": 355,
+          "finalVolumeMl": null,
+          "yieldNotes": "One fixed standard serving; Phase B quantities are template-defined and never energy-fitted."
+        },
+        "ingredients": [
+          {
+            "id": "ing_fdc_171962",
+            "name": "Fish, grouper, mixed species, raw",
+            "nameIt": "Pesce e frutti di mare — Fish, grouper, mixed species, raw",
+            "state": "raw",
+            "allergenIds": [
+              "fish"
+            ],
+            "productTaxonomy": {
+              "categoryId": "product_category_fish_seafood",
+              "subcategoryId": "product_subcategory_fish",
+              "conceptId": "product_concept_fish"
+            },
+            "foodGroup": "food_group_fish_seafood"
+          }
+        ]
+      },
+      {
+        "recipeVersionId": "recver_ef5937e31a0d48f8aa8b9502_v1",
+        "title": "Pesce e frutti di mare (Fish,  cod) con Noodles, cotto (egg,  spinach) e Verdure (Peppers,  bell)",
+        "practical": {
+          "prepMinutes": 8,
+          "cookMinutes": 0,
+          "reheatingRequired": false,
+          "coldSuitable": true,
+          "portable": true,
+          "fridgeRequired": true,
+          "freezerSuitable": false,
+          "mealPrepSuitable": true,
+          "finalWeightG": 456,
+          "finalVolumeMl": null,
+          "yieldNotes": "One fixed standard serving; Phase B quantities are template-defined and never energy-fitted."
+        },
+        "ingredients": [
+          {
+            "id": "ing_fdc_171955",
+            "name": "Fish, cod, Atlantic, raw",
+            "nameIt": "Pesce e frutti di mare — Fish, cod, Atlantic, raw",
+            "state": "raw",
+            "allergenIds": [
+              "fish"
+            ],
+            "productTaxonomy": {
+              "categoryId": "product_category_fish_seafood",
+              "subcategoryId": "product_subcategory_fish",
+              "conceptId": "product_concept_fish"
+            },
+            "foodGroup": "food_group_fish_seafood"
+          }
+        ]
+      },
+      {
+        "recipeVersionId": "recver_f194474a7959982e13cfc194_v1",
+        "title": "Pesce e frutti di mare (Crustaceans,  crab) con Cous cous, cotto e Pomodoro, crudo (grape)",
+        "practical": {
+          "prepMinutes": 8,
+          "cookMinutes": 0,
+          "reheatingRequired": false,
+          "coldSuitable": true,
+          "portable": true,
+          "fridgeRequired": true,
+          "freezerSuitable": false,
+          "mealPrepSuitable": true,
+          "finalWeightG": 284,
+          "finalVolumeMl": null,
+          "yieldNotes": "One fixed standard serving; Phase B quantities are template-defined and never energy-fitted."
+        },
+        "ingredients": [
+          {
+            "id": "ing_fdc_171968",
+            "name": "Crustaceans, crab, dungeness, raw",
+            "nameIt": "Pesce e frutti di mare — Crustaceans, crab, dungeness, raw",
+            "state": "raw",
+            "allergenIds": [
+              "crustaceans"
+            ],
+            "productTaxonomy": {
+              "categoryId": "product_category_fish_seafood",
+              "subcategoryId": "product_subcategory_crustaceans",
+              "conceptId": "product_concept_crustacean"
+            },
+            "foodGroup": "food_group_fish_seafood"
+          }
+        ]
+      },
+      {
+        "recipeVersionId": "recver_f3db6988d4200681b6c02db6_v1",
+        "title": "Pesce e frutti di mare (Fish,  burbot) con Riso, cotto (white,  long-grain) e Verdure (Radicchio,  raw)",
+        "practical": {
+          "prepMinutes": 8,
+          "cookMinutes": 0,
+          "reheatingRequired": false,
+          "coldSuitable": true,
+          "portable": true,
+          "fridgeRequired": true,
+          "freezerSuitable": false,
+          "mealPrepSuitable": true,
+          "finalWeightG": 223,
+          "finalVolumeMl": null,
+          "yieldNotes": "One fixed standard serving; Phase B quantities are template-defined and never energy-fitted."
+        },
+        "ingredients": [
+          {
+            "id": "ing_fdc_171950",
+            "name": "Fish, burbot, raw",
+            "nameIt": "Pesce e frutti di mare — Fish, burbot, raw",
+            "state": "raw",
+            "allergenIds": [
+              "fish"
+            ],
+            "productTaxonomy": {
+              "categoryId": "product_category_fish_seafood",
+              "subcategoryId": "product_subcategory_fish",
+              "conceptId": "product_concept_fish"
+            },
+            "foodGroup": "food_group_fish_seafood"
+          }
+        ]
+      },
+      {
+        "recipeVersionId": "recver_f48906be0de3d2272c4af0c6_v1",
+        "title": "Pesce e frutti di mare (Fish,  cusk) con Noodles, cotto (egg,  unenriched) e Verdure (Peppers,  bell)",
+        "practical": {
+          "prepMinutes": 8,
+          "cookMinutes": 0,
+          "reheatingRequired": false,
+          "coldSuitable": true,
+          "portable": true,
+          "fridgeRequired": true,
+          "freezerSuitable": false,
+          "mealPrepSuitable": true,
+          "finalWeightG": 355,
+          "finalVolumeMl": null,
+          "yieldNotes": "One fixed standard serving; Phase B quantities are template-defined and never energy-fitted."
+        },
+        "ingredients": [
+          {
+            "id": "ing_fdc_171958",
+            "name": "Fish, cusk, raw",
+            "nameIt": "Pesce e frutti di mare — Fish, cusk, raw",
+            "state": "raw",
+            "allergenIds": [
+              "fish"
+            ],
+            "productTaxonomy": {
+              "categoryId": "product_category_fish_seafood",
+              "subcategoryId": "product_subcategory_fish",
+              "conceptId": "product_concept_fish"
+            },
+            "foodGroup": "food_group_fish_seafood"
+          }
+        ]
+      },
+      {
+        "recipeVersionId": "recver_f52a220a3f61258adb2a0e1c_v1",
+        "title": "Pesce e frutti di mare (Mollusks,  oyster) con Noodles, cotto (egg,  enriched) e Verdure (Radicchio,  raw)",
+        "practical": {
+          "prepMinutes": 8,
+          "cookMinutes": 0,
+          "reheatingRequired": false,
+          "coldSuitable": true,
+          "portable": true,
+          "fridgeRequired": true,
+          "freezerSuitable": false,
+          "mealPrepSuitable": true,
+          "finalWeightG": 355,
+          "finalVolumeMl": null,
+          "yieldNotes": "One fixed standard serving; Phase B quantities are template-defined and never energy-fitted."
+        },
+        "ingredients": [
+          {
+            "id": "ing_fdc_171978",
+            "name": "Mollusks, oyster, eastern, wild, raw",
+            "nameIt": "Pesce e frutti di mare — Mollusks, oyster, eastern, wild, raw",
+            "state": "raw",
+            "allergenIds": [
+              "molluscs"
+            ],
+            "productTaxonomy": {
+              "categoryId": "product_category_fish_seafood",
+              "subcategoryId": "product_subcategory_molluscs",
+              "conceptId": "product_concept_mollusc"
+            },
+            "foodGroup": "food_group_fish_seafood"
+          }
+        ]
+      },
+      {
+        "recipeVersionId": "recver_fa4448133f658a99e26d6e71_v1",
+        "title": "Pesce e frutti di mare (Fish,  grouper) con Noodles, cotto (egg,  enriched) e Verdure (Peppers,  bell)",
+        "practical": {
+          "prepMinutes": 8,
+          "cookMinutes": 0,
+          "reheatingRequired": false,
+          "coldSuitable": true,
+          "portable": true,
+          "fridgeRequired": true,
+          "freezerSuitable": false,
+          "mealPrepSuitable": true,
+          "finalWeightG": 284,
+          "finalVolumeMl": null,
+          "yieldNotes": "One fixed standard serving; Phase B quantities are template-defined and never energy-fitted."
+        },
+        "ingredients": [
+          {
+            "id": "ing_fdc_171962",
+            "name": "Fish, grouper, mixed species, raw",
+            "nameIt": "Pesce e frutti di mare — Fish, grouper, mixed species, raw",
+            "state": "raw",
+            "allergenIds": [
+              "fish"
+            ],
+            "productTaxonomy": {
+              "categoryId": "product_category_fish_seafood",
+              "subcategoryId": "product_subcategory_fish",
+              "conceptId": "product_concept_fish"
+            },
+            "foodGroup": "food_group_fish_seafood"
+          }
+        ]
+      }
+    ],
+    "namedCerealRecordsWithoutGlutenMetadata": [
+      {
+        "id": "ing_fdc_168927",
+        "name": "Pasta, dry, unenriched",
+        "nameIt": "Pasta, secco — unenriched",
+        "state": "dry",
+        "allergenIds": [],
+        "productTaxonomy": {
+          "categoryId": "product_category_cereals",
+          "subcategoryId": "product_subcategory_pasta_noodles",
+          "conceptId": "product_concept_pasta"
+        },
+        "foodGroup": "food_group_pasta_rice_cereals"
+      },
+      {
+        "id": "ing_fdc_168928",
+        "name": "Pasta, cooked, unenriched, without added salt",
+        "nameIt": "Pasta, cotto — unenriched, without added salt",
+        "state": "cooked",
+        "allergenIds": [],
+        "productTaxonomy": {
+          "categoryId": "product_category_cereals",
+          "subcategoryId": "product_subcategory_pasta_noodles",
+          "conceptId": "product_concept_pasta"
+        },
+        "foodGroup": "food_group_pasta_rice_cereals"
+      },
+      {
+        "id": "ing_fdc_169699",
+        "name": "Couscous, dry",
+        "nameIt": "Cous cous, secco",
+        "state": "dry",
+        "allergenIds": [],
+        "productTaxonomy": {
+          "categoryId": "product_category_cereals",
+          "subcategoryId": "product_subcategory_cereals_other",
+          "conceptId": "product_concept_cereals_other"
+        },
+        "foodGroup": "food_group_pasta_rice_cereals"
+      },
+      {
+        "id": "ing_fdc_169700",
+        "name": "Couscous, cooked",
+        "nameIt": "Cous cous, cotto",
+        "state": "cooked",
+        "allergenIds": [],
+        "productTaxonomy": {
+          "categoryId": "product_category_cereals",
+          "subcategoryId": "product_subcategory_cereals_other",
+          "conceptId": "product_concept_cereals_other"
+        },
+        "foodGroup": "food_group_pasta_rice_cereals"
+      },
+      {
+        "id": "ing_fdc_2710820",
+        "name": "Bulgur, dry, raw",
+        "nameIt": "Bulgur, crudo",
+        "state": "raw",
+        "allergenIds": [],
+        "productTaxonomy": {
+          "categoryId": "product_category_cereals",
+          "subcategoryId": "product_subcategory_cereals_other",
+          "conceptId": "product_concept_cereals_other"
+        },
+        "foodGroup": "food_group_pasta_rice_cereals"
+      },
+      {
+        "id": "ing_fdc_2710828",
+        "name": "Farro, pearled, dry, raw",
+        "nameIt": "Cereali in chicco — Farro, pearled, dry, raw",
+        "state": "raw",
+        "allergenIds": [],
+        "productTaxonomy": {
+          "categoryId": "product_category_cereals",
+          "subcategoryId": "product_subcategory_cereals_other",
+          "conceptId": "product_concept_cereals_other"
+        },
+        "foodGroup": "food_group_grains"
+      }
+    ]
+  },
+  "probes": {
+    "allergenHeuristics": [
+      {
+        "description": "Pasta, dry, unenriched",
+        "assigned": []
+      },
+      {
+        "description": "Farro, pearled, dry, raw",
+        "assigned": []
+      },
+      {
+        "description": "Noodles, egg, unenriched, cooked, without added salt",
+        "assigned": [
+          "eggs"
+        ]
+      },
+      {
+        "description": "Peanut butter, smooth style, without salt",
+        "assigned": [
+          "milk",
+          "peanuts"
+        ]
+      }
+    ],
+    "safetyMissingMetadata": {
+      "recipeVersionId": "recver_010b59396aeed81589064c94_v1",
+      "title": "Maiale, crudo (fresh,  shoulder) con Pasta, secco (unenriched) e Verdure (Tomato,  sauce)",
+      "allergenIds": [],
+      "result": {
+        "allowed": true,
+        "reasons": []
+      }
+    },
+    "frequencyWindows": {
+      "sameDayAlreadyOne": [],
+      "sevenDaysBefore": [
+        "frequency:recipe_family_one_pot:2/1"
+      ],
+      "sixDaysBefore": [
+        "frequency:recipe_family_one_pot:2/1"
+      ],
+      "meaning": "With W=7, code ignores same-day occurrences and includes D-7 in addition to the current candidate."
+    },
+    "defaultGeneration": {
+      "status": "success",
+      "days": 7
+    },
+    "replacements": [
+      {
+        "mealClassId": "mc-breakfast",
+        "originalComponents": 1,
+        "candidateCount": 8,
+        "rejectedByEnergy": 103
+      },
+      {
+        "mealClassId": "mc-lunch",
+        "originalComponents": 1,
+        "candidateCount": 8,
+        "rejectedByEnergy": 257
+      },
+      {
+        "mealClassId": "mc-snack",
+        "originalComponents": 1,
+        "candidateCount": 8,
+        "rejectedByEnergy": 0
+      },
+      {
+        "mealClassId": "mc-dinner",
+        "originalComponents": 1,
+        "candidateCount": 8,
+        "rejectedByEnergy": 250
+      }
+    ],
+    "replacementCommitAndUndo": {
+      "changed": true,
+      "restored": true
+    },
+    "stalePreviewAfterSafetyChange": {
+      "committed": true,
+      "error": null,
+      "excludedIngredientId": "ing_fdc_168874",
+      "explanation": "A preview created before a new safety rule is committed after that rule is saved."
+    },
+    "limitBeforeCurrentFilter": {
+      "storedVersions": 501,
+      "currentValidVersions": 1,
+      "retrieved": 0,
+      "explanation": "The 500-record limit is applied before historical/current-version filtering."
+    }
+  }
+}

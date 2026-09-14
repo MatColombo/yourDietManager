@@ -1,3 +1,5 @@
+> Contratto corrente R0/R1 — 11 settembre 2026: Nuova sequenza R0–R8 tracciata in revision_v2/FASI_SVILUPPO.md. G/H sono baseline storica. Vedere [CONTRATTO_R0_R1](revision_v2/CONTRATTO_R0_R1.md), che prevale sulle parti V1 sotto riportate per il perimetro modificato.
+
 # Roadmap yourDietManager V1
 
 ## Phase 0 — Contracts

@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "phase": "R7",
+  "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+  "phaseGate": "BLOCKED",
+  "overallFunctionalStatus": "REGRESSION_PASS_CORE_NOT_ACCEPTED",
+  "evidence": [
+    {
+      "id": "EV-R7-REGRESSION",
+      "path": "reports/revision_v2/R7/evidence/suite/summary.json",
+      "sha256": "49fb0fe1840ddeae3d777a263d96b2ae6f0be63d61fd75bf71ff4f1b1277c605",
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+      "result": "PASS",
+      "scope": "315 passing automated tests; full scope declared per test, not 74 completed acceptance scenarios",
+      "environment": "Node 24/Linux; browser not executed",
+      "historical": true
+    },
+    {
+      "id": "EV-R7-PERFORMANCE",
+      "path": "reports/revision_v2/R7/performance.json",
+      "sha256": "4b828e3c636e4c3cd8fed592e6a39303b67f301dd68454ba150c576720a0ec2b",
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+      "result": "PASS",
+      "scope": "Measured 10,000 synthetic recipe workload; partial T64, memory repository",
+      "environment": "Node 24/Linux; browser not executed",
+      "historical": true
+    },
+    {
+      "id": "EV-R7-BUILD",
+      "path": "reports/revision_v2/R7/evidence/build.log",
+      "sha256": "19985e242ad6032e1f89cbd2fefac84ecb9698f4a8ed026250404b0d087b7734",
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+      "result": "PASS",
+      "scope": "Static build and mirrored schemas",
+      "environment": "Node 24/Linux; browser not executed",
+      "historical": true
+    },
+    {
+      "id": "EV-R7-BROWSER",
+      "path": "reports/revision_v2/R7/browser-matrix.json",
+      "sha256": "fe3a57faab41a5987bc015da04ca457d3cf87df811bd23cadf41121ef1f615bb",
+      "buildSha256": "a38785e86e98be0eb95d586820b99d07631afa1d4086144857b1c2917266a203",
+      "result": "BLOCKED",
+      "scope": "Inherited authorized browser block; no workaround",
+      "environment": "Node 24/Linux; browser not executed",
+      "historical": true
+    }
+  ],
+  "historical": true
+}

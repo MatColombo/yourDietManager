@@ -1,3 +1,5 @@
+> Contratto corrente R0/R1 — 11 settembre 2026: Lettori ricetta 1/2; nuove versioni 2 senza instructions. Rimozione ordinaria V1 e titoli nuovi R2. Vedere [CONTRATTO_R0_R1](revision_v2/CONTRATTO_R0_R1.md), che prevale sulle parti V1 sotto riportate per il perimetro modificato.
+
 # Recipe Catalog Spec V1
 
 ## 1. Principio

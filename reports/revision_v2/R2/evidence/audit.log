@@ -1,0 +1,288 @@
+{
+  "result": "PASS",
+  "scope": "Real bundled catalog, in-memory repository; search timing is Node synthetic 10k forms, not browser acceptance",
+  "buildSha256": "dbd6638711965a52717c881b4b95b4334a54689ec572432a6cd1ce7431ec7400",
+  "catalogVersion": "1.2.0-planner-phase-d",
+  "historicalRecipesPreserved": 1800,
+  "historicalIngredientRevisionsPreserved": 600,
+  "currentRecipesV2": 1800,
+  "currentIngredientForms": 600,
+  "totalRecipeVersions": 3600,
+  "repeatedMigrationAddsRecords": false,
+  "milletForms": [
+    {
+      "id": "ing_fdc_167724",
+      "name": "Miglio",
+      "variant": "Soffiato",
+      "weighing": "",
+      "path": [
+        {
+          "schemaVersion": 1,
+          "termId": "product_category_cereals",
+          "taxonomyId": "product_food",
+          "origin": "base",
+          "parentTermId": null,
+          "i18n": {
+            "it": {
+              "label": "Cereali, granaglie e amidacei",
+              "description": ""
+            },
+            "en": {
+              "label": "Cereals, grains and starches",
+              "description": ""
+            }
+          },
+          "aliases": {
+            "it": [],
+            "en": []
+          },
+          "legacyKeys": [],
+          "status": "active",
+          "supersedesTermId": null,
+          "provenance": {
+            "sourceType": "curated",
+            "sourceLabel": "V1 D2 product taxonomy",
+            "reference": null,
+            "rationale": "Product-facing hierarchy intentionally separated from nutrient-source grouping and allergen taxonomy."
+          },
+          "searchTokens": [
+            "cereals",
+            "grains",
+            "and",
+            "starches",
+            "cereali",
+            "granaglie",
+            "e",
+            "amidacei"
+          ],
+          "createdAt": "2026-09-08T14:00:00.000Z",
+          "updatedAt": "2026-09-08T14:00:00.000Z"
+        },
+        {
+          "schemaVersion": 1,
+          "termId": "product_subcategory_whole_grains",
+          "taxonomyId": "product_food",
+          "origin": "base",
+          "parentTermId": "product_category_cereals",
+          "i18n": {
+            "it": {
+              "label": "Cereali integrali e cereali cotti",
+              "description": ""
+            },
+            "en": {
+              "label": "Whole grains and cooked grains",
+              "description": ""
+            }
+          },
+          "aliases": {
+            "it": [],
+            "en": []
+          },
+          "legacyKeys": [],
+          "status": "active",
+          "supersedesTermId": null,
+          "provenance": {
+            "sourceType": "curated",
+            "sourceLabel": "V1 D2 product taxonomy",
+            "reference": null,
+            "rationale": "Product-facing hierarchy intentionally separated from nutrient-source grouping and allergen taxonomy."
+          },
+          "searchTokens": [
+            "whole",
+            "grains",
+            "and",
+            "cooked",
+            "cereali",
+            "integrali",
+            "e",
+            "cotti"
+          ],
+          "createdAt": "2026-09-08T14:00:00.000Z",
+          "updatedAt": "2026-09-08T14:00:00.000Z"
+        },
+        {
+          "schemaVersion": 1,
+          "termId": "product_concept_millet",
+          "taxonomyId": "product_food",
+          "origin": "base",
+          "parentTermId": "product_subcategory_whole_grains",
+          "i18n": {
+            "it": {
+              "label": "Miglio",
+              "description": ""
+            },
+            "en": {
+              "label": "Millet",
+              "description": ""
+            }
+          },
+          "aliases": {
+            "it": [],
+            "en": []
+          },
+          "legacyKeys": [],
+          "status": "active",
+          "supersedesTermId": null,
+          "provenance": {
+            "sourceType": "curated",
+            "sourceLabel": "V1 D2 product taxonomy",
+            "reference": null,
+            "rationale": "Product-facing hierarchy intentionally separated from nutrient-source grouping and allergen taxonomy."
+          },
+          "searchTokens": [
+            "millet",
+            "miglio"
+          ],
+          "createdAt": "2026-09-08T14:00:00.000Z",
+          "updatedAt": "2026-09-08T14:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "id": "ing_fdc_168871",
+      "name": "Miglio",
+      "variant": "Cotto",
+      "weighing": "",
+      "path": [
+        {
+          "schemaVersion": 1,
+          "termId": "product_category_cereals",
+          "taxonomyId": "product_food",
+          "origin": "base",
+          "parentTermId": null,
+          "i18n": {
+            "it": {
+              "label": "Cereali, granaglie e amidacei",
+              "description": ""
+            },
+            "en": {
+              "label": "Cereals, grains and starches",
+              "description": ""
+            }
+          },
+          "aliases": {
+            "it": [],
+            "en": []
+          },
+          "legacyKeys": [],
+          "status": "active",
+          "supersedesTermId": null,
+          "provenance": {
+            "sourceType": "curated",
+            "sourceLabel": "V1 D2 product taxonomy",
+            "reference": null,
+            "rationale": "Product-facing hierarchy intentionally separated from nutrient-source grouping and allergen taxonomy."
+          },
+          "searchTokens": [
+            "cereals",
+            "grains",
+            "and",
+            "starches",
+            "cereali",
+            "granaglie",
+            "e",
+            "amidacei"
+          ],
+          "createdAt": "2026-09-08T14:00:00.000Z",
+          "updatedAt": "2026-09-08T14:00:00.000Z"
+        },
+        {
+          "schemaVersion": 1,
+          "termId": "product_subcategory_whole_grains",
+          "taxonomyId": "product_food",
+          "origin": "base",
+          "parentTermId": "product_category_cereals",
+          "i18n": {
+            "it": {
+              "label": "Cereali integrali e cereali cotti",
+              "description": ""
+            },
+            "en": {
+              "label": "Whole grains and cooked grains",
+              "description": ""
+            }
+          },
+          "aliases": {
+            "it": [],
+            "en": []
+          },
+          "legacyKeys": [],
+          "status": "active",
+          "supersedesTermId": null,
+          "provenance": {
+            "sourceType": "curated",
+            "sourceLabel": "V1 D2 product taxonomy",
+            "reference": null,
+            "rationale": "Product-facing hierarchy intentionally separated from nutrient-source grouping and allergen taxonomy."
+          },
+          "searchTokens": [
+            "whole",
+            "grains",
+            "and",
+            "cooked",
+            "cereali",
+            "integrali",
+            "e",
+            "cotti"
+          ],
+          "createdAt": "2026-09-08T14:00:00.000Z",
+          "updatedAt": "2026-09-08T14:00:00.000Z"
+        },
+        {
+          "schemaVersion": 1,
+          "termId": "product_concept_millet",
+          "taxonomyId": "product_food",
+          "origin": "base",
+          "parentTermId": "product_subcategory_whole_grains",
+          "i18n": {
+            "it": {
+              "label": "Miglio",
+              "description": ""
+            },
+            "en": {
+              "label": "Millet",
+              "description": ""
+            }
+          },
+          "aliases": {
+            "it": [],
+            "en": []
+          },
+          "legacyKeys": [],
+          "status": "active",
+          "supersedesTermId": null,
+          "provenance": {
+            "sourceType": "curated",
+            "sourceLabel": "V1 D2 product taxonomy",
+            "reference": null,
+            "rationale": "Product-facing hierarchy intentionally separated from nutrient-source grouping and allergen taxonomy."
+          },
+          "searchTokens": [
+            "millet",
+            "miglio"
+          ],
+          "createdAt": "2026-09-08T14:00:00.000Z",
+          "updatedAt": "2026-09-08T14:00:00.000Z"
+        }
+      ]
+    }
+  ],
+  "zucchiniRecipeCount": 27,
+  "titleLength": {
+    "max": 68,
+    "over55": 58
+  },
+  "titlesPendingEditorialR5": 1800,
+  "benchmark": {
+    "kind": "synthetic",
+    "forms": 10000,
+    "trials": 30,
+    "p50Ms": 75.04245099999935,
+    "p95Ms": 96.31972200000018,
+    "maxMs": 99.57106599999861,
+    "node": "v24.19.0",
+    "platform": "linux",
+    "architecture": "x64"
+  },
+  "elapsedMs": 10458.12011
+}

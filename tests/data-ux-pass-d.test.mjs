@@ -1,3 +1,4 @@
+import { productFoodReferenceTaxonomy, productFoodReferenceTerms } from '../src/domain/productFoodTaxonomy.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import path from 'node:path';
@@ -18,6 +19,7 @@ async function fixture() {
   const repo = new MemoryRepository();
   const registry = new SchemaRegistry(fileLoader(path.join(root, 'schemas'))); await registry.loadAll();
   await new CatalogImporter({ repo, registry, fetcher: fileFetch(devRoot), storage: null }).bootstrap();
+  await repo.put('taxonomies', productFoodReferenceTaxonomy()); await repo.putMany('taxonomyTerms', productFoodReferenceTerms());
   return { repo, registry, query: new CatalogQueryService({ repo }) };
 }
 
@@ -116,7 +118,7 @@ test('Pass D source audit keeps details independent of plan state and removes or
   const app = await readFile(path.join(root, 'src/ui/app.js'), 'utf8');
   assert.match(catalogUi, /data-testid': 'recipe-detail'/);
   assert.match(catalogUi, /data-testid': 'ingredient-detail'/);
-  assert.match(catalogUi, /href: `\/recipes\/\$\{encodeURIComponent\(recipe\.recipeId\)\}`/);
+  assert.match(catalogUi, /routeWithParams\(`\/recipes\//);
   assert.match(catalogUi, /href: `\/recipes\/\$\{encodeURIComponent\(recipeId\)\}\/edit`/);
   assert.doesNotMatch(catalogUi, /family\.origin !== 'user'.*notEditable/);
   assert.doesNotMatch(service, /Base recipes cannot be edited|Base ingredients cannot be edited/);

@@ -126,29 +126,21 @@ test('Step2 B — vegetarian auto-exclusions hold during generation and replacem
   for (const item of replacement.candidates) for (const target of excluded) assert.equal(replacementCategories.get(item.recipe.recipeVersionId).has(target), false);
 });
 
-test('Step2 C — hard milk allergy survives generation, replacement and rebalance', async () => {
+test('Step2 C/R0 — unreviewed milk compatibility excludes generation, replacement and rebalance', async () => {
   const { repo, registry } = await fixture();
+  const previous = await defaultPreview(repo, registry, 'v1-step2-c-before');
+  assert.equal(previous.status, 'success'); await commitGeneratedPreview(previous, { repo, registry });
   const bundle = await loadConfigurationBundle(repo);
   const allergy = bundle.allergyIntoleranceProfiles.find(item => item.id === bundle.appConfig.allergyIntoleranceProfileId);
   allergy.rules = [{ id: 'hard-milk', kind: 'allergy', targetType: 'allergen', targetId: 'milk', label: 'Milk', enabled: true, notes: '' }];
   await saveConfigurationBundle(bundle, { repo, registry });
-
-  const preview = await defaultPreview(repo, registry, 'v1-step2-c');
-  assert.equal(preview.status, 'success');
-  assert.equal((await selectedRecipes(repo, preview)).filter(recipe => recipeHasAllergen(recipe, 'milk')).length, 0);
-  await commitGeneratedPreview(preview, { repo, registry, createdAt: '2026-09-07T08:20:01.000Z' });
-
-  const { day, slot } = plannedSlots(preview)[0];
-  const replacement = await createReplacementPreview({ planInstanceId: day.planInstanceId, calendarDayId: day.calendarDayId, mealOccurrenceId: slot.mealOccurrenceId, seed: 'v1-step2-c-replace', limit: 8 }, { repo, registry });
-  assert.ok(replacement.candidates.length > 0);
-  assert.equal(replacement.candidates.filter(item => recipeHasAllergen(item.recipe, 'milk')).length, 0);
-  await commitReplacement({ planInstanceId: day.planInstanceId, calendarDayId: day.calendarDayId, mealOccurrenceId: slot.mealOccurrenceId, recipeVersionId: replacement.candidates[0].recipe.recipeVersionId, createdAt: '2026-09-07T08:21:00.000Z' }, { repo, registry });
-
-  const rebalance = await createRebalancePreview({ planInstanceId: day.planInstanceId, startDate: START, endDate: '2026-09-08', seed: 'v1-step2-c-rebalance', createdAt: '2026-09-07T08:22:00.000Z' }, { repo, registry });
-  assert.equal(rebalance.status, 'success');
-  assert.equal((await selectedRecipes(repo, rebalance)).filter(recipe => recipeHasAllergen(recipe, 'milk')).length, 0);
-  await commitRebalancePreview(rebalance, { repo, registry, createdAt: '2026-09-07T08:23:00.000Z' });
-  await assertNoAllergenInStoredPlan(repo, 'milk');
+  const before = await repo.getAll('calendarDays');
+  const preview = await defaultPreview(repo, registry, 'v1-step2-c'); assert.equal(preview.status, 'search_exhausted');
+  const { day, slot } = plannedSlots(previous)[0];
+  const replacement = await createReplacementPreview({ planInstanceId: day.planInstanceId, calendarDayId: day.calendarDayId, mealOccurrenceId: slot.mealOccurrenceId }, { repo, registry });
+  assert.equal(replacement.candidates.length, 0); assert.ok(Object.keys(replacement.rejectionCounts).some(key => key.startsWith('safety_unverified:')));
+  const rebalance = await createRebalancePreview({ planInstanceId: day.planInstanceId, startDate: START, endDate: START, mode: 'recalculate' }, { repo, registry });
+  assert.equal(rebalance.status, 'search_exhausted'); assert.deepEqual(await repo.getAll('calendarDays'), before);
 });
 
 async function configureOfficeCarryover(repo, registry) {
@@ -232,7 +224,7 @@ test('Step2 E — replacement, adherence, rebalance, undo/redo and reload preser
   assert.ok(replacement.candidates.length > 0);
   const replacementId = replacement.candidates[0].recipe.recipeVersionId;
   assert.notEqual(replacementId, originalRecipeId);
-  await commitReplacement({ planInstanceId: planId, calendarDayId: day.calendarDayId, mealOccurrenceId: slot.mealOccurrenceId, recipeVersionId: replacementId, createdAt: '2026-09-07T08:41:00.000Z' }, { repo, registry });
+  await commitReplacement({ previewId: replacement.previewId, planInstanceId: planId, calendarDayId: day.calendarDayId, mealOccurrenceId: slot.mealOccurrenceId, recipeVersionId: replacementId, createdAt: '2026-09-07T08:41:00.000Z' }, { repo, registry });
   let stored = await repo.get('calendarDays', day.calendarDayId);
   assert.equal(stored.mealSlots.find(item => item.mealOccurrenceId === slot.mealOccurrenceId).recipeComponents[0].recipeVersionId, replacementId);
 
@@ -291,7 +283,7 @@ test('Step2 F — shopping is derived from frozen effective plan, scales, persis
   const { day, slot } = plannedSlots(preview)[0];
   const replacement = await createReplacementPreview({ planInstanceId: day.planInstanceId, calendarDayId: day.calendarDayId, mealOccurrenceId: slot.mealOccurrenceId, seed: 'v1-step2-f-replace', limit: 8 }, { repo, registry });
   assert.ok(replacement.candidates.length > 0);
-  await commitReplacement({ planInstanceId: day.planInstanceId, calendarDayId: day.calendarDayId, mealOccurrenceId: slot.mealOccurrenceId, recipeVersionId: replacement.candidates[0].recipe.recipeVersionId, createdAt: '2026-09-07T08:53:00.000Z' }, { repo, registry });
+  await commitReplacement({ previewId: replacement.previewId, planInstanceId: day.planInstanceId, calendarDayId: day.calendarDayId, mealOccurrenceId: slot.mealOccurrenceId, recipeVersionId: replacement.candidates[0].recipe.recipeVersionId, createdAt: '2026-09-07T08:53:00.000Z' }, { repo, registry });
   assert.equal((await shoppingChecklistStaleness(checklist, { repo })).stale, true);
 
   checklist = await refreshShoppingChecklist(checklist.checklistId, { repo, registry, updatedAt: '2026-09-07T08:54:00.000Z' });

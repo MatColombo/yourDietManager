@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "phase": "R0",
+  "buildSha256": "caac4ac89441b02fd07cb166d2f1683102e47e1540855986fc6161d31122a087",
+  "overallFunctionalStatus": "PASS",
+  "phaseGate": "BLOCKED",
+  "gateReason": "Browser/IndexedDB reale non verificati",
+  "expected": "Pass scope R0/R1 plus preserved baseline behavior; no false browser PASS",
+  "actual": "273 automatic tests pass, including 26 new tests; browser blocked",
+  "evidence": [
+    {
+      "id": "EV-R0-001",
+      "path": "reports/revision_v2/R0/evidence/baseline-and-registry.json",
+      "sha256": "cb3d268fb76575c33ca5d2dfcb731249e39aa0087419881c10e572498da561c5",
+      "command": "node scripts/validate-revision-v2-traceability.mjs",
+      "exitCode": 0,
+      "result": "PASS",
+      "scope": "Structural tracing; not a functional/browser test",
+      "buildSha256": "caac4ac89441b02fd07cb166d2f1683102e47e1540855986fc6161d31122a087",
+      "catalog": "1.2.0-planner-phase-d",
+      "environment": "Node.js 24.19.0, Linux, workspace; in-memory repository for service and migration tests",
+      "historical": true
+    },
+    {
+      "id": "EV-R0-002",
+      "path": "reports/revision_v2/R1/evidence/regression-verified.log",
+      "sha256": "6c8f5112cbf39e904462e22c54c8b9e90bfa12c1aca3d5059fe3fc76361902f1",
+      "command": "TMPDIR=<workspace temporary directory> node --test tests/*.test.mjs",
+      "exitCode": 0,
+      "result": "PASS",
+      "scope": "R0 service and quarantine tests; full log also includes historical regressions",
+      "buildSha256": "caac4ac89441b02fd07cb166d2f1683102e47e1540855986fc6161d31122a087",
+      "catalog": "1.2.0-planner-phase-d",
+      "environment": "Node.js 24.19.0, Linux, workspace; in-memory repository for service and migration tests",
+      "historical": true
+    },
+    {
+      "id": "EV-R0-003",
+      "path": "reports/revision_v2/R0/evidence/forms.log",
+      "sha256": "c5cd5d21e6cb1c09f80af1665478e15e157783074749860073139572086a3f06",
+      "command": "node scripts/hardening/form-contract-audit.mjs",
+      "exitCode": 0,
+      "result": "PASS",
+      "scope": "Source contract audit",
+      "buildSha256": "caac4ac89441b02fd07cb166d2f1683102e47e1540855986fc6161d31122a087",
+      "catalog": "1.2.0-planner-phase-d",
+      "environment": "Node.js 24.19.0, Linux, workspace; in-memory repository for service and migration tests",
+      "historical": true
+    },
+    {
+      "id": "EV-R0-004",
+      "path": "reports/revision_v2/R0/evidence/a11y-final.log",
+      "sha256": "b762e94665bdd38443948e1787d794cbe5c772250bfab8411e21b71366f66ff7",
+      "command": "node scripts/hardening/a11y-audit.mjs",
+      "exitCode": 0,
+      "result": "PASS",
+      "scope": "16 source checks; not interactive accessibility",
+      "buildSha256": "caac4ac89441b02fd07cb166d2f1683102e47e1540855986fc6161d31122a087",
+      "catalog": "1.2.0-planner-phase-d",
+      "environment": "Node.js 24.19.0, Linux, workspace; in-memory repository for service and migration tests",
+      "historical": true
+    },
+    {
+      "id": "EV-R0-005",
+      "path": "reports/revision_v2/R0/evidence/browser-block.json",
+      "sha256": "c370735c424d08d00eac95f60c6d16843c8b90d805272b9af852d1217697c512",
+      "command": "Managed browser: goto local app",
+      "exitCode": null,
+      "result": "BLOCKED",
+      "scope": "No app interaction verified",
+      "buildSha256": "caac4ac89441b02fd07cb166d2f1683102e47e1540855986fc6161d31122a087",
+      "catalog": "1.2.0-planner-phase-d",
+      "environment": "Node.js 24.19.0, Linux, workspace; in-memory repository for service and migration tests",
+      "historical": true
+    }
+  ],
+  "testIds": [
+    "T01",
+    "T02",
+    "T03",
+    "T07",
+    "T10",
+    "T12",
+    "T45"
+  ],
+  "fullAcceptanceTestsPassed": [
+    "T10"
+  ],
+  "remaining": "R3/R4/R6 integration and browser checks remain open",
+  "historical": true
+}

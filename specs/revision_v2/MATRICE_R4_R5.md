@@ -1,0 +1,16 @@
+# Collegamento revisione → sviluppo R4/R5
+
+| Attività | Requisiti della revisione | File | Evidenze | Stato |
+| --- | --- | --- | --- | --- |
+| R4.1 Pannello e stato della sostituzione | ING-07, ING-08, ING-09, ING-10, ING-11, PREF-19, SAFE-14, SWAP-01, SWAP-02, SWAP-03, SWAP-04, SWAP-05, SWAP-08, UX-07 | `src/ui/planPages.js`<br>`src/services/effectivePlanService.js`<br>`src/styles.css` | EV-R4-REGRESSION | IMPLEMENTATO |
+| R4.2 Componente o intero pasto | PREF-07, PREF-08, PREF-09, PREF-10, PREF-11, PREF-12, SWAP-06, SWAP-07, HARD-03 | `src/services/effectivePlanService.js`<br>`src/services/planPolicyValidation.js`<br>`src/planner/planGenerator.js`<br>`schemas/meal-class.schema.json`<br>`src/ui/configurationPages.js` | EV-R4-REGRESSION | IMPLEMENTATO |
+| R4.3 Comandi concorrenti e history | SAFE-11, SAFE-12, SAFE-13, SWAP-09, SHOP-05, HARD-01, HARD-02, HARD-03, HARD-04, HARD-05, HARD-06, HARD-07 | `src/repositories/repositoryHub.js`<br>`src/services/operationHistoryService.js`<br>`src/services/planPreviewGuard.js`<br>`src/services/planGenerationService.js` | EV-R4-REGRESSION | IMPLEMENTATO |
+| R4.4 Navigazione e gerarchia | UX-01, UX-02, UX-03, UX-06, UX-08, UX-09, UX-10 | `src/ui/app.js`<br>`src/ui/catalogPages.js`<br>`src/ui/configurationPages.js`<br>`src/ui/planPages.js`<br>`src/styles.css` | EV-R4-REGRESSION | IMPLEMENTATO |
+| R4.5 Onboarding riprendibile | UX-04, UX-05 | `src/ui/configurationPages.js`<br>`src/ui/profileStatus.js`<br>`src/services/configurationService.js`<br>`src/ui/uiState.js` | EV-R4-REGRESSION | IMPLEMENTATO |
+| R4.6 Accessibilità errori e continuità delle bozze | INV-09, ING-13, UX-11, UX-12, UX-13, UX-14 | `src/ui/planPages.js`<br>`src/ui/uiState.js`<br>`src/ui/catalogPages.js`<br>`src/styles.css` | EV-R4-REGRESSION | IMPLEMENTATO |
+| R5.1 Manifest e pilot | CAT-01, CAT-02, CAT-03 | `data/revision-v2/mediterranean/manifest.json`<br>`data/revision-v2/mediterranean/dish-briefs.json` | EV-R5-STAGING, EV-R5-QUARANTINE | BLOCCATO |
+| R5.2 Adapter e normalizzazione delle fonti | INV-02, NUT-04, NUT-05, CAT-05, CAT-06, CAT-07, CAT-08 | `src/corpus/mediterranean/sourceAdapters.js`<br>`data/revision-v2/mediterranean/source-register.json`<br>`data/revision-v2/mediterranean/sources/crea-004000.json`<br>`data/revision-v2/mediterranean/sources/crea-004005.json`<br>`data/revision-v2/mediterranean/sources/crea-004010.json` | EV-R5-STAGING, EV-R5-QUARANTINE | BLOCCATO |
+| R5.3 Revisione e pubblicabilità dei record | CAT-09, CAT-10, CAT-11, CAT-13 | `src/corpus/mediterranean/sourceAdapters.js`<br>`scripts/revision-v2/import-mediterranean-reviews.mjs`<br>`scripts/revision-v2/stage-mediterranean.mjs`<br>`reports/revision_v2/R5/quarantine-dispositions.json` | EV-R5-STAGING, EV-R5-QUARANTINE | BLOCCATO |
+| R5.4 Scala piatti e copertura del planner | ING-02, ING-03, ING-04, ING-05, NUT-06, REC-01, REC-02, REC-03, REC-05, CAT-04, CAT-12, CAT-14, PERF-06 | `src/corpus/mediterranean/coverage.js`<br>`data/revision-v2/mediterranean/dish-briefs.json`<br>`reports/revision_v2/R5/coverage.json` | EV-R5-STAGING, EV-R5-QUARANTINE | BLOCCATO |
+
+Le prove di accettazione complete rimangono nel TEST_REGISTRY; un test unitario non chiude automaticamente lo scenario browser o il gate editoriale.

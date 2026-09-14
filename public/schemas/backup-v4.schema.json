@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://yourdietmanager.local/schemas/backup-v4.schema.json",
+  "title": "Backup",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "format",
+    "formatVersion",
+    "appVersion",
+    "dbSchemaVersion",
+    "contentSchemaVersion",
+    "catalog",
+    "createdAt",
+    "payload",
+    "sha256"
+  ],
+  "properties": {
+    "format": {
+      "const": "yourDietManager-backup"
+    },
+    "formatVersion": {
+      "const": 4
+    },
+    "appVersion": {
+      "type": "string"
+    },
+    "dbSchemaVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "contentSchemaVersion": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "catalog": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "catalogVersion"
+      ],
+      "properties": {
+        "catalogVersion": {
+          "type": "string"
+        }
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "configuration",
+        "customIngredients",
+        "customIngredientRevisions",
+        "customRecipes",
+        "customRecipeVersions",
+        "plans",
+        "calendarDays",
+        "generationRuns",
+        "operations",
+        "shoppingChecklists",
+        "foodGroups",
+        "ingredientMappings",
+        "ingredientConversions",
+        "migratedIngredientRevisions",
+        "revisionV2State",
+        "portableSnapshot"
+      ],
+      "properties": {
+        "configuration": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "customIngredients": {
+          "type": "array"
+        },
+        "customIngredientRevisions": {
+          "type": "array"
+        },
+        "customRecipes": {
+          "type": "array"
+        },
+        "customRecipeVersions": {
+          "type": "array"
+        },
+        "plans": {
+          "type": "array"
+        },
+        "calendarDays": {
+          "type": "array"
+        },
+        "generationRuns": {
+          "type": "array"
+        },
+        "operations": {
+          "type": "array"
+        },
+        "shoppingChecklists": {
+          "type": "array",
+          "items": {
+            "$ref": "shopping-checklist.schema.json"
+          }
+        },
+        "customTaxonomies": {
+          "type": "array",
+          "items": {
+            "$ref": "taxonomy.schema.json"
+          }
+        },
+        "customTaxonomyTerms": {
+          "type": "array",
+          "items": {
+            "$ref": "taxonomy-term.schema.json"
+          }
+        },
+        "recipeHumanReviews": {
+          "type": "array",
+          "items": {
+            "$ref": "recipe-human-review.schema.json"
+          }
+        },
+        "foodGroups": {
+          "type": "array",
+          "items": {
+            "$ref": "food-group.schema.json"
+          },
+          "uniqueItems": true
+        },
+        "ingredientMappings": {
+          "type": "array",
+          "items": {
+            "$ref": "ingredient-mapping.schema.json"
+          },
+          "uniqueItems": true
+        },
+        "ingredientConversions": {
+          "type": "array",
+          "items": {
+            "$ref": "ingredient-conversion.schema.json"
+          },
+          "uniqueItems": true
+        },
+        "migratedIngredientRevisions": {
+          "type": "array",
+          "items": {
+            "$ref": "ingredient-revision-v2.schema.json"
+          },
+          "uniqueItems": true
+        },
+        "revisionV2State": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "portableSnapshot": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "array"
+          }
+        }
+      }
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}

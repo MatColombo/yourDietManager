@@ -1,26 +1,41 @@
+import { recipeTextV2, recipeTitleFromIngredients } from '../domain/recipePresentation.js';
+import { loadReferenceDataIndex } from './referenceDataService.js';
 import { repositories } from '../repositories/repositoryHub.js';
 import { sha256Json } from '../lib/crypto.js';
 
 const FORMAT = 'yourDietManager-custom-catalog';
-const FORMAT_VERSION = 1;
+const FORMAT_VERSION = 2;
 function userOnly(records) { return records.filter(record => record.origin === 'user'); }
 
 export async function createCustomCatalogExport({ repo = repositories } = {}) {
+  const families = userOnly(await repo.getAll('recipes'));
+  const revisions = await repo.getAll('ingredientRevisions'); const byId = new Map(revisions.map(r => [r.ingredientRevisionId, r]));
+  const index = await loadReferenceDataIndex(repo); const versions = [];
+  for (const family of families) {
+    const source = await repo.get('recipeVersions', family.currentVersionId);
+    if (!source) throw new Error('Missing current personal recipe');
+    if (source.schemaVersion === 2) { versions.push(source); continue; }
+    const version = structuredClone(source); const used = version.ingredientLines.map(line => byId.get(line.ingredientRevisionId));
+    if (used.some(r => !r)) throw new Error('Missing frozen ingredient');
+    version.schemaVersion = 2; version.recipeVersionId += '_export_r2'; version.versionNumber++; version.supersedesVersionId = source.recipeVersionId;
+    version.i18n = recipeTextV2({}, { titleIt: recipeTitleFromIngredients(used, index, 'it'), titleEn: recipeTitleFromIngredients(used, index, 'en') });
+    version.practical = { ...version.practical, finalWeightG: null, finalVolumeMl: null, yieldNotes: null };
+    version.practicalEvidence = { status: 'unverified', sourceRef: `legacy:${source.recipeVersionId}` };
+    version.searchTokens = Object.values(version.i18n).flatMap(t => t.title.toLowerCase().split(/\s+/));
+    version.contentHash = ''; version.contentHash = await sha256Json(version); versions.push(version); family.currentVersionId = version.recipeVersionId;
+  }
+  const ingredients = userOnly(await repo.getAll('ingredients'));
+  const wanted = new Set([...ingredients.map(i => i.currentRevisionId), ...versions.flatMap(v => v.ingredientLines.map(l => l.ingredientRevisionId))]);
   const document = {
     format: FORMAT, formatVersion: FORMAT_VERSION, createdAt: new Date().toISOString(),
-    payload: {
-      ingredients: userOnly(await repo.getAll('ingredients')),
-      ingredientRevisions: userOnly(await repo.getAll('ingredientRevisions')),
-      recipes: userOnly(await repo.getAll('recipes')),
-      recipeVersions: userOnly(await repo.getAll('recipeVersions'))
-    }, sha256: null
+    payload: { ingredients, ingredientRevisions: userOnly(revisions).filter(r => wanted.has(r.ingredientRevisionId)), recipes: families, recipeVersions: versions }, sha256: null
   };
   document.sha256 = await sha256Json({ ...document, sha256: null }); return document;
 }
 
 export async function validateCustomCatalogExport(document, { repo = repositories, registry } = {}) {
   if (!registry) throw new Error('Schema registry is required');
-  if (!document || document.format !== FORMAT || document.formatVersion !== FORMAT_VERSION) throw new Error('Unsupported personal catalog document');
+  if (!document || document.format !== FORMAT || ![1, FORMAT_VERSION].includes(document.formatVersion)) throw new Error('Unsupported personal catalog document');
   const expected = await sha256Json({ ...document, sha256: null }); if (document.sha256 !== expected) throw new Error('Personal catalog checksum mismatch');
   const payload = document.payload || {};
   for (const record of payload.ingredients || []) { registry.assert('ingredient', record); if (record.origin !== 'user') throw new Error('Personal catalog contains a base ingredient'); }

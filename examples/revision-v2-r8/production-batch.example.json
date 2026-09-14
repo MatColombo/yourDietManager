@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "batchId": "SYNTHETIC_BATCH",
+  "planInstanceId": "SYNTHETIC_PLAN",
+  "recipeVersionId": "SYNTHETIC_VERSION",
+  "portionsProduced": 4,
+  "productionDate": "2026-09-11",
+  "storage": {
+    "status": "unverified",
+    "useByDate": null,
+    "sourceRef": null
+  },
+  "assignments": [
+    {
+      "calendarDayId": "SYNTHETIC_DAY",
+      "mealOccurrenceId": "SYNTHETIC_OCCURRENCE",
+      "componentIndex": 0,
+      "civilDate": "2026-09-11"
+    }
+  ],
+  "createdAt": "2026-09-11T00:00:00.000Z",
+  "updatedAt": "2026-09-11T00:00:00.000Z"
+}

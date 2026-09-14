@@ -1,3 +1,5 @@
+> Contratto corrente R0/R1 — 11 settembre 2026: Sostituzione contestuale con stati visibili e bozze per occorrenza. Prova visuale e drawer completo ancora aperti. Vedere [CONTRATTO_R0_R1](revision_v2/CONTRATTO_R0_R1.md), che prevale sulle parti V1 sotto riportate per il perimetro modificato.
+
 # UX Spec V1
 
 ## 1. Principio

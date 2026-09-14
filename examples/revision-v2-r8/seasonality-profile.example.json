@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "profileId": "SYNTHETIC_AREA",
+  "name": "Fixture sintetica, non calendario stagionale",
+  "entries": [
+    {
+      "conceptId": "product_concept_chicken",
+      "months": [
+        9
+      ],
+      "sourceRef": "SYNTHETIC TEST ONLY — NOT A SEASONAL SOURCE",
+      "reviewedAt": "2026-09-11"
+    }
+  ],
+  "updatedAt": "2026-09-11T00:00:00.000Z"
+}

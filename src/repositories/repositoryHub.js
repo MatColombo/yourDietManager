@@ -1,3 +1,4 @@
+import { canonicalJson } from '../lib/crypto.js';
 import { openDatabase } from '../db/database.js';
 
 function requestPromise(request) {
@@ -33,7 +34,24 @@ function putValue(storeName, objectStore, value) {
 }
 
 export class RepositoryHub {
-  constructor(dbProvider = openDatabase) { this.dbProvider = dbProvider; }
+  constructor(dbProvider = openDatabase) {
+    this.dbProvider = dbProvider; this.changeToken = 0;
+    if (typeof window !== 'undefined' && typeof BroadcastChannel !== 'undefined') {
+      this.changeChannel = new BroadcastChannel('yourDietManager-repository-invalidation');
+      this.changeChannel.onmessage = () => { this.changeToken += 1; };
+    }
+  }
+  getChangeToken() { return this.changeToken; }
+  invalidate() { this.changeToken += 1; this.changeChannel?.postMessage({ changed: true }); }
+
+  async snapshot(stores) {
+    const db = await this.dbProvider();
+    const tx = db.transaction(stores, 'readonly'); const done = transactionDone(tx);
+    try {
+      const rows = await Promise.all(stores.map(async store => [store, await requestPromise(tx.objectStore(store).getAll())]));
+      await done; return Object.fromEntries(rows);
+    } catch (error) { await done.catch(() => {}); throw error; }
+  }
 
   async get(store, key) {
     const db = await this.dbProvider();
@@ -93,6 +111,7 @@ export class RepositoryHub {
     const tx = db.transaction(store, 'readwrite');
     putValue(store, tx.objectStore(store), value);
     await transactionDone(tx);
+    this.invalidate();
   }
 
   async putMany(store, values, chunkSize = 250, onChunk = null) {
@@ -103,6 +122,7 @@ export class RepositoryHub {
       const chunk = values.slice(index, index + chunkSize);
       for (const value of chunk) putValue(store, objectStore, value);
       await transactionDone(tx);
+    this.invalidate();
       onChunk?.({ completed: Math.min(values.length, index + chunk.length), total: values.length });
     }
   }
@@ -112,6 +132,7 @@ export class RepositoryHub {
     const tx = db.transaction(store, 'readwrite');
     tx.objectStore(store).delete(key);
     await transactionDone(tx);
+    this.invalidate();
   }
 
   async clear(store) {
@@ -119,6 +140,7 @@ export class RepositoryHub {
     const tx = db.transaction(store, 'readwrite');
     tx.objectStore(store).clear();
     await transactionDone(tx);
+    this.invalidate();
   }
 
   async getMeta(key) {
@@ -131,31 +153,31 @@ export class RepositoryHub {
   }
 
   async atomicPut(data, meta = {}) {
-    const stores = [...new Set([...Object.keys(data), ...(Object.keys(meta).length ? ['meta'] : [])])];
-    if (!stores.length) return;
-    const db = await this.dbProvider();
-    const tx = db.transaction(stores, 'readwrite');
-    for (const [store, values] of Object.entries(data)) {
-      const objectStore = tx.objectStore(store);
-      for (const value of values || []) putValue(store, objectStore, value);
-    }
-    if (Object.keys(meta).length) {
-      const objectStore = tx.objectStore('meta');
-      const updatedAt = new Date().toISOString();
-      for (const [key, value] of Object.entries(meta)) objectStore.put({ key, value, updatedAt });
-    }
-    await transactionDone(tx);
+    return this.atomicMutate({ puts: data, metaSet: meta });
   }
 
-  async atomicMutate({ puts = {}, deletes = {}, metaSet = {}, metaDelete = [] } = {}) {
+  async atomicMutate({ puts = {}, deletes = {}, metaSet = {}, metaDelete = [], expected = [], expectedStores = [] } = {}) {
     const stores = [...new Set([
       ...Object.keys(puts),
       ...Object.keys(deletes),
+      ...expected.map(item => item.store),
+      ...expectedStores.map(item => item.store),
       ...(Object.keys(metaSet).length || metaDelete.length ? ['meta'] : [])
     ])];
     if (!stores.length) return;
     const db = await this.dbProvider();
     const tx = db.transaction(stores, 'readwrite');
+    const done = transactionDone(tx);
+    try {
+    if (expected.length || expectedStores.length) {
+      const actual = await Promise.all(expected.map(item => requestPromise(tx.objectStore(item.store).get(item.key))));
+      const scans = await Promise.all(expectedStores.map(item => requestPromise(tx.objectStore(item.store).getAll())));
+      const normalize = rows => rows.map(row => canonicalJson(row)).sort();
+      if (expected.some((item, i) => canonicalJson(actual[i] ?? null) !== canonicalJson(item.value ?? null)) || expectedStores.some((item, i) => canonicalJson(normalize(scans[i])) !== canonicalJson(normalize(item.values)))) {
+        tx.abort(); await done.catch(() => {});
+        const error = new Error('Dati modificati durante il salvataggio. Ripeti la richiesta.'); error.code = 'concurrent_change'; throw error;
+      }
+    }
     for (const [store, values] of Object.entries(puts)) {
       const objectStore = tx.objectStore(store);
       for (const value of values || []) putValue(store, objectStore, value);
@@ -170,20 +192,33 @@ export class RepositoryHub {
       for (const [key, value] of Object.entries(metaSet)) objectStore.put({ key, value, updatedAt });
       for (const key of metaDelete || []) objectStore.delete(key);
     }
-    await transactionDone(tx);
+    await done;
+    } catch (error) {
+      try { tx.abort(); } catch {}
+      await done.catch(() => {}); throw error;
+    }
+    this.invalidate();
   }
 
-  async atomicReplace(data) {
-    const stores = Object.keys(data);
+  async atomicReplace(data, meta = {}) {
+    const stores = [...new Set([...Object.keys(data), ...(Object.keys(meta).length ? ['meta'] : [])])];
     if (!stores.length) return;
     const db = await this.dbProvider();
     const tx = db.transaction(stores, 'readwrite');
-    for (const store of stores) {
+    const done = transactionDone(tx);
+    try {
+    for (const store of Object.keys(data)) {
       const objectStore = tx.objectStore(store);
       objectStore.clear();
       for (const value of data[store] || []) putValue(store, objectStore, value);
     }
-    await transactionDone(tx);
+    for (const [key, value] of Object.entries(meta)) tx.objectStore('meta').put({ key, value, updatedAt: new Date().toISOString() });
+    await done;
+    } catch (error) {
+      try { tx.abort(); } catch {}
+      await done.catch(() => {}); throw error;
+    }
+    this.invalidate();
   }
 
   async resetAll({ data = {}, meta = {} } = {}) {
@@ -203,6 +238,7 @@ export class RepositoryHub {
       for (const [key, value] of Object.entries(meta)) objectStore.put({ key, value, updatedAt });
     }
     await transactionDone(tx);
+    this.invalidate();
   }
 }
 

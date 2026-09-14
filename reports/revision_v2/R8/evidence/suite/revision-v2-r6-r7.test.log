@@ -1,0 +1,21 @@
+✔ R6 T19/T57 explicit directional purchase yield groups 100 dry + 150 cooked into 160 dry, plan unchanged (48.935972ms)
+✔ R6 T58 notes/adherence do not stale; increased checked quantity requires verification and preserves manual notes (44.526775ms)
+✔ R6 T76 departments persist independently from taxonomy and export declares external/manual scope (32.610242ms)
+✔ R6 conversion selection rejects unreviewed and duplicate edges, civil date rejects impossible day (33.65063ms)
+✔ R6 T60 self-contained backup restores offline into empty/different catalog including immutable older versions (140.099156ms)
+✔ R6 T61 corrupt, missing checksum, orphan and duplicate record reject without mutation (114.433586ms)
+✔ R6 T61 immutable ID collision refuses replacement even with valid outer checksum (74.872128ms)
+✔ R6 T60 import guards concurrent writes and does not partially restore (74.757876ms)
+✔ R6 T75 diagnostics excludes synthetic profile, notes, stack and arbitrary error text by construction (13.276709ms)
+✔ R6 T60 installed bundled catalog exports and validates full frozen reference closure (15933.375467ms)
+✔ R6 legacy backup readers 1 and 2 use matching catalog and restore via atomic boundary (140.154274ms)
+✔ R6 T62 connection model rejects obsolete client after versionchange and retries a failed open (not a real two-tab test) (1.257791ms)
+✔ R6 T61 malicious undo snapshots cannot import arbitrary metadata writes (52.144247ms)
+ℹ tests 13
+ℹ suites 0
+ℹ pass 13
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 16860.833782

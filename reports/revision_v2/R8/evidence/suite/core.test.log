@@ -1,0 +1,13 @@
+✔ IndexedDB metadata contains the 22 legacy stores plus 3 R1 and 6 R8 stores and critical indexes (0.895205ms)
+✔ migration runner is idempotent (2.442586ms)
+✔ semver compatibility comparison is deterministic (0.469454ms)
+✔ i18n has English fallback (0.941397ms)
+✔ theme engine enforces WCAG guardrails (0.647416ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 136.431623

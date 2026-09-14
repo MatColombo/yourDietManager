@@ -1,0 +1,10 @@
+✔ every browser-loaded JSON schema is an exact mirror of the canonical schema (46.596616ms)
+✔ public ingredientRevision schema accepts production energy provenance but remains closed (29.646316ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 187.415894

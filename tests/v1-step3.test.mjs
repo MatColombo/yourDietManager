@@ -46,7 +46,9 @@ test('Step3 A - V1 catalog backup validates and round-trips user configuration w
   await validateBackup(backup, { repo, registry });
   assert.equal(backup.catalog.catalogVersion, '1.2.0-planner-phase-d');
   assert.equal(backup.appVersion, APP_VERSION);
-  assert.ok(['1.0.0-rc.34','1.0.0'].includes(backup.appVersion));
+  assert.equal(backup.formatVersion, 4);
+  assert.equal(backup.dbSchemaVersion, 9);
+  assert.equal(backup.contentSchemaVersion, 5);
 
   const original = await repo.get('themeProfiles', configuration.themeProfileId);
   const changed = structuredClone(original);
@@ -93,7 +95,7 @@ test('Step3 C - destructive delete can clear owned public caches when explicitly
 
 test('Step3 D - stable release gate is fail-closed on the candidate and green after metadata-only promotion', () => {
   const run = spawnSync(process.execPath, ['scripts/hardening/release-gate.mjs'], { cwd: root, encoding: 'utf8' });
-  if (APP_VERSION === '1.0.0-rc.34') {
+  if (APP_VERSION !== '1.0.0') {
     assert.equal(run.status, 2, run.stderr || run.stdout);
     assert.match(run.stdout, /stable-app-version/);
     assert.match(run.stdout, /manual-acceptance/);

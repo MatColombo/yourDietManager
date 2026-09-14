@@ -1,0 +1,6 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> yourdietmanager@1.1.0-dev.r8 pages:audit
+> node scripts/hardening/pages-audit.mjs dist
+
+GitHub Pages artifact audit passed for / (/workspace/scratch/621114de952a/yourDietManager_v2_R8/dist).

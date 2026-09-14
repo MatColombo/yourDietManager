@@ -1,0 +1,14 @@
+✔ shopping uses civil consumption date, includes carry-over, excludes external slots, and resolves historical versions (60.06042ms)
+✔ shopping multiplier scales quantities linearly without mutating the plan (29.428337ms)
+✔ aggregation keeps incompatible ingredient states separate even for the same ingredient family (21.462552ms)
+✔ persistent checklist tracks staleness and preserves derived user state plus manual items across refresh (27.389344ms)
+✔ derived quantities are read-only while manual items can be removed (27.392504ms)
+✔ preparation horizon follows civil dates, excludes external meals, and exposes frozen recipe practical metadata (35.76502ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 329.267091

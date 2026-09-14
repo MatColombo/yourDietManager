@@ -1,11 +1,20 @@
 export const DB_NAME = 'yourDietManager';
-export const DB_VERSION = 6;
-export const CONTENT_SCHEMA_VERSION = 3;
-export const BACKUP_FORMAT_VERSION = 1;
-export const APP_VERSION = '1.0.0-rc.34';
+export const DB_VERSION = 9;
+export const CONTENT_SCHEMA_VERSION = 5;
+export const BACKUP_FORMAT_VERSION = 4;
+export const APP_VERSION = '1.1.0-dev.r8';
 export const PRE_V1_DATA_EPOCH = 'v1-planner-phase-d-epoch-1';
 
 export const STORE_DEFINITIONS = {
+  recipeFavorites: { keyPath: 'recipeId', indexes: [] },
+  savedMenus: { keyPath: 'menuId', indexes: [] },
+  pantryEntries: { keyPath: 'entryId', indexes: [] },
+  productionBatches: { keyPath: 'batchId', indexes: [] },
+  seasonalityProfiles: { keyPath: 'profileId', indexes: [] },
+  ingredientPrices: { keyPath: 'priceId', indexes: [] },
+  foodGroups: { keyPath: ['id', 'version'], indexes: [{ name: 'id', keyPath: 'id' }, { name: 'status', keyPath: 'status' }] },
+  ingredientMappings: { keyPath: ['mappingId', 'version'], indexes: [{ name: 'sourceIngredientId', keyPath: 'sourceIngredientId' }] },
+  ingredientConversions: { keyPath: ['conversionId', 'version'], indexes: [{ name: 'fromIngredientId', keyPath: 'fromIngredientId' }] },
   meta: { keyPath: 'key', indexes: [] },
   appConfigs: { indexes: [] },
   nutritionProfiles: { keyPath: 'id', indexes: [] },

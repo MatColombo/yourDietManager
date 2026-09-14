@@ -104,7 +104,7 @@ test('Pass A migration maps legacy strings to canonical IDs without mutating his
   assert.equal(marker.status, 'complete');
   assert.equal(marker.unresolved.length, 0);
   assert.ok(marker.mappingSummary.resolved_alias > 0);
-  assert.equal(await repo.getMeta('contentSchemaVersion'), 3);
+  assert.equal(await repo.getMeta('contentSchemaVersion'), 5);
 });
 
 test('Pass A migration explicitly retypes legacy soft preference ingredient text when it resolves to a canonical food category', async () => {
@@ -161,7 +161,7 @@ test('Pass A migration blocks unresolved legacy semantic text and leaves immutab
   assert.equal(marker.status, 'blocked');
   assert.equal(marker.reason, 'unresolved_legacy_values');
   assert.ok(marker.unresolved.some(item => item.value === 'fihs_typo'));
-  assert.notEqual(await repo.getMeta('contentSchemaVersion'), 3);
+  assert.notEqual(await repo.getMeta('contentSchemaVersion'), 5);
 });
 
 test('ingredient and recipe schemas use the same MealArchetype rule: at least one is required', async () => {

@@ -1,3 +1,6 @@
+import { ingredientProjection } from './services/ingredientConceptQuery.js';
+import { runMigrations } from './services/migrationRunner.js';
+import { migrateIngredientModel } from './services/ingredientModelMigration.js';
 import { SchemaRegistry } from './lib/schemaValidator.js';
 import { repositories } from './repositories/repositoryHub.js';
 import { ensurePreV1DataEpoch } from './services/preV1DataEpoch.js';
@@ -32,13 +35,14 @@ async function refreshCatalogStats(state) {
     offlineCache: state.catalogVersion ? await repositories.getMeta(`offlinePack:${state.catalogVersion}:${pack.packId}`) : null
   })));
   state.catalogPacks.sort((a, b) => Number(b.required) - Number(a.required) || a.packId.localeCompare(b.packId));
-  if (state.catalogQuery) state.guidedIngredients = await state.catalogQuery.listCurrentIngredients();
+  if (state.catalogQuery) { state.ingredientProjection = await ingredientProjection(state.repo); state.guidedIngredients = state.ingredientProjection.items; state.foodGroups = state.ingredientProjection.groups; state.ingredientConversions = await state.repo.getAll('ingredientConversions'); }
   state.humanReviewSummary = state.humanReview && isProductionReviewManifest(state.catalogManifest) ? await state.humanReview.summary(state.catalogManifest) : null;
 }
 
 async function start() {
   await registry.loadAll();
   await ensurePreV1DataEpoch({ repo: repositories, registry, referenceDataLoader: () => fetchBundledReferenceData({ registry }) });
+  await runMigrations(repositories, { registry, referenceDataLoader: () => fetchBundledReferenceData({ registry }) });
   await ensureBootstrapConfiguration({ repo: repositories, registry });
   const configuration = await loadConfigurationBundle(repositories);
   const config = configuration.appConfig;
@@ -70,7 +74,7 @@ async function start() {
   };
   installDraftTracking(root, state);
 
-  state.refreshCatalog = async () => { await refreshCatalogStats(state); };
+  state.refreshCatalog = async () => { await migrateIngredientModel({ repo: repositories, registry }); await refreshCatalogStats(state); };
   state.refreshHumanReview = async () => { await refreshCatalogStats(state); state.render(); };
   state.refreshReferenceData = async () => {
     const next = await loadReferenceDataBundle(repositories, registry);
@@ -86,12 +90,12 @@ async function start() {
   state.updateCatalog = async () => {
     try {
       const result = await catalogUpdater.update(progress => { state.catalogProgress = progress; state.render(); });
-      if (result.updated) { state.catalogUpdateAvailable = false; state.catalogUpdateVersion = null; }
+      if (result.updated) { await migrateIngredientModel({ repo: repositories, registry }); state.catalogUpdateAvailable = false; state.catalogUpdateVersion = null; }
     } catch (error) {
       state.catalogProgress = { phase: 'error', completed: 0, total: 1, messageKey: 'catalog.status.error', error: error.message || String(error) };
     } finally { await refreshCatalogStats(state); state.render(); }
   };
-  state.installPack = async packId => { await catalogUpdater.installPack(packId, progress => { state.catalogProgress = progress; state.render(); }); await refreshCatalogStats(state); state.render(); };
+  state.installPack = async packId => { await catalogUpdater.installPack(packId, progress => { state.catalogProgress = progress; state.render(); }); await migrateIngredientModel({ repo: repositories, registry }); await refreshCatalogStats(state); state.render(); };
   state.uninstallPack = async packId => { await catalogUpdater.uninstallPack(packId); await refreshCatalogStats(state); state.render(); };
 
   installRouter(state, () => state.render({ force: true })); await refreshCatalogStats(state);
@@ -107,4 +111,10 @@ start().catch(error => {
   root.replaceChildren(); const main = document.createElement('main'); main.className = 'fatal-error';
   const title = document.createElement('h1'); title.textContent = 'yourDietManager'; const message = document.createElement('p'); message.textContent = 'Application bootstrap failed.'; const detail = document.createElement('pre'); detail.textContent = error instanceof Error ? error.message : String(error);
   main.append(title, message, detail); root.append(main);
+});
+
+for (const type of ['ydm-upgrade-blocked','ydm-upgrade-required']) globalThis.addEventListener?.(type, () => {
+  const message = document.createElement('p'); message.setAttribute('role','alert'); message.className='validation-box validation-box--warning';
+  message.textContent = document.documentElement.lang === 'en' ? 'Application update: copy unsaved changes, close other tabs and reload.' : 'Aggiornamento applicazione: copia le modifiche non salvate, chiudi le altre schede e ricarica.';
+  document.body.prepend(message);
 });

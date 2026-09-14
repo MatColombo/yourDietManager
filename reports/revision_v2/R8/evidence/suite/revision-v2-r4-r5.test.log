@@ -1,0 +1,22 @@
+✔ R4 T45 component replacement preserves nonselected components byte for byte (2.242777ms)
+✔ R4 T11/T12 a write after final preview recheck is rejected by transaction expectations (98.515987ms)
+✔ R4 T12/T47 persistent command receipt rejects replay after undo (45.771919ms)
+✔ R4 T40/T45 replacement pagination and component selection are sealed (58.291978ms)
+✔ R4 T40 search with no matches explains bounded search, never proven infeasibility (40.142759ms)
+✔ R4 T11 stale before cannot overwrite an intervening adherence change (33.845295ms)
+✔ R5 T20 traces, absent values and numeric zeros remain different; no implicit unit conversions (0.829156ms)
+✔ R5 T54 real CREA chickpea states retain reported values and source energy definition (6.650794ms)
+✔ R5 T55 approvals are not inferred; changed source or mapping invalidates external review evidence (7.667806ms)
+✔ R5 T53 nominal quotas and pilot are explicit; planning entries do not count as published (7.911142ms)
+✔ R5 T54 USDA selects energy by semantic nutrient ID; Ciqual supports explicit extracts only (1.784142ms)
+✔ R4 T46 approved two-component replacement works when its singles violate daily energy (51.581247ms)
+✔ R4 T12 synchronous clone failure aborts the repository transaction before any partial commit (1.175873ms)
+✔ R5 T55 a published label and arbitrary digest strings do not certify a dish (2.143621ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 511.344785

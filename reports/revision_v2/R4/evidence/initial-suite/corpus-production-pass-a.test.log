@@ -1,0 +1,16 @@
+✔ 4P-A production contract is schema-valid, policy-aligned and defines a 120-candidate pilot (42.655197ms)
+✔ 4P-A readiness audit exposes the real current blocker: all four active ingredient fixtures are non-production (35.916634ms)
+✔ production planner excludes non-curated ingredients instead of emitting a production RecipeGenerationJob (60.645025ms)
+✔ taxonomy intake reuses a canonical term instead of creating a duplicate proposal (17.918938ms)
+✔ new extensible taxonomy concepts are proposed, reviewed and materialized before recipe use (47.595006ms)
+✔ pilot intake distinguishes taxonomy resolution from ingredient production readiness (39.998554ms)
+✔ an unresolved intake record cannot enter the production recipe processor (46.177851ms)
+✔ ready production intake stamps accepted RecipeVersion with candidate, intake and contract provenance (41.979886ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 454.438617

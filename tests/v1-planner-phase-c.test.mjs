@@ -56,8 +56,8 @@ test('Phase C — successful manual case exposes slot pipeline diagnostics, fixe
 test('Phase C — hard allergen remains visible in hard-filter rejection diagnostics', async () => {
   const { repo, registry } = await fixturePromise;
   const result = await runPlannerValidationCase({ targetKcal: 1800, tolerancePct: 5, days: 1, startDate: '2026-09-08', seed: 'phase-c-allergen', profileId: 'current', hardAllergenId: 'gluten_cereals' }, { repo, registry });
-  assert.equal(result.actualOutcome, 'success', JSON.stringify(result.failure));
-  assert.ok(Object.entries(result.rejectionCounts).some(([key, value]) => key.startsWith('safety:validation-allergen-gluten_cereals') && value > 0), JSON.stringify(result.rejectionCounts));
+  assert.equal(result.actualOutcome, 'search_exhausted', 'Unreviewed source data cannot establish compatibility');
+  assert.ok(Object.entries(result.rejectionCounts).some(([key, value]) => key.startsWith('safety_unverified:validation-allergen-gluten_cereals') && value > 0), JSON.stringify(result.rejectionCounts));
 });
 
 
@@ -103,11 +103,11 @@ test('Phase C — soft MealClass avoid changes scores without changing hard elig
 test('Phase C — deliberately impossible and external-unknown profiles fail with classified hard reasons', async () => {
   const { repo, registry } = await fixturePromise;
   const impossible = await runPlannerValidationCase({ targetKcal: 1800, tolerancePct: 5, days: 1, startDate: '2026-09-08', seed: 'phase-c-impossible', profileId: 'impossible_all_forbidden' }, { repo, registry });
-  assert.equal(impossible.actualOutcome, 'failed'); assert.equal(impossible.expectationMet, true);
+  assert.equal(impossible.actualOutcome, 'search_exhausted'); assert.equal(impossible.expectationMet, true);
   assert.equal(impossible.failure.code, 'no_candidates_after_hard_constraints');
   assert.ok((impossible.rejectionCounts['meal_rule:nutrition:energyKcal'] || 0) > 0);
   const external = await runPlannerValidationCase({ targetKcal: 1800, tolerancePct: 5, days: 1, startDate: '2026-09-08', seed: 'phase-c-external', profileId: 'external_unknown' }, { repo, registry });
-  assert.equal(external.actualOutcome, 'failed'); assert.equal(external.failure.code, 'external_energy_unknown'); assert.equal(external.expectationMet, true);
+  assert.equal(external.actualOutcome, 'invalid_input'); assert.equal(external.failure.code, 'external_energy_unknown'); assert.equal(external.expectationMet, true);
 });
 
 test('Phase C — soft profile changes scoring without becoming a hard constraint', async () => {

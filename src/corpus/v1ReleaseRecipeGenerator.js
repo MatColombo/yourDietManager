@@ -184,77 +184,7 @@ function profileTitle(profile, entries, locale) {
   return `${names[0]} with ${names[1]} and ${names[2]}`;
 }
 
-function preparationInstructions(profile, selected, locale) {
-  const byRole = new Map(selected.map(item => [item.role, item]));
-  const name = role => labels(byRole.get(role)?.entry, locale);
-  const proteinRole = profile.proteinRole;
-  if (locale === 'it') {
-    if (profile.id.includes('yogurt-cereal') || profile.id.includes('warm-grain')) return [
-      'Pesare gli ingredienti nelle quantità indicate.',
-      'Tagliare la frutta se necessario e unire cereale, yogurt o bevanda lattiero-casearia e frutta.',
-      'Aggiungere la frutta secca o i semi e consumare subito oppure conservare in frigorifero.'
-    ];
-    if (profile.id.includes('egg-grain')) return [
-      `Pesare gli ingredienti. Cuocere completamente ${name('eggWhole')} con ${name('vegetableCook')} usando l'olio indicato.`,
-      `Scaldare ${name('carbCooked')}, già cotto, e unirlo alle uova e alle verdure.`,
-      'Condire con la spezia prevista e servire nella porzione indicata.'
-    ];
-    if (profile.id.includes('fruit-nuts') || profile.id.includes('yogurt-fruit')) return [
-      'Pesare gli ingredienti nelle quantità indicate e preparare la frutta.',
-      'Unire gli ingredienti in un contenitore monoporzione.',
-      'Consumare subito oppure conservare in frigorifero fino al consumo.'
-    ];
-    if (profile.id.includes('bean-vegetable') || profile.id.includes('bean-grain')) return [
-      'Scolare se necessario i legumi già cotti e pesare tutti gli ingredienti.',
-      'Tagliare le verdure crude, unire gli ingredienti e mescolare con l’olio previsto.',
-      'Conservare in frigorifero e trasportare in un contenitore chiuso.'
-    ];
-    if (proteinRole === 'legumeCooked') return [
-      'Pesare gli ingredienti; usare legumi e cereale già cotti.',
-      `Cuocere ${name('vegetableCook')} finché tenera, quindi unire legumi e ${name('carbCooked')}.`,
-      'Aggiungere l’olio e la spezia indicati, mescolare e porzionare.'
-    ];
-    const protein = byRole.get(proteinRole);
-    const raw = protein?.entry?.revision?.basis?.state === 'raw';
-    return [
-      'Pesare gli ingredienti nelle quantità indicate.',
-      raw ? `Cuocere completamente ${name(proteinRole)} fino a raggiungere una cottura sicura; cuocere anche le verdure finché tenere.` : `Scaldare ${name(proteinRole)} già cotto e cuocere le verdure finché tenere.`,
-      `Unire con ${name('carbCooked')} già cotto, aggiungere l’olio e la spezia indicati e servire.`
-    ];
-  }
-  if (profile.id.includes('yogurt-cereal') || profile.id.includes('warm-grain')) return [
-    'Weigh the ingredients in the stated amounts.',
-    'Cut the fruit if needed, then combine the cereal or cooked grain with the yogurt or milk ingredient and fruit.',
-    'Add the nuts or seeds and eat immediately or keep refrigerated.'
-  ];
-  if (profile.id.includes('egg-grain')) return [
-    `Weigh the ingredients. Fully cook ${name('eggWhole')} with ${name('vegetableCook')} using the stated oil.`,
-    `Warm ${name('carbCooked')}, which is already cooked, and combine it with the eggs and vegetables.`,
-    'Season with the stated spice and serve as one portion.'
-  ];
-  if (profile.id.includes('fruit-nuts') || profile.id.includes('yogurt-fruit')) return [
-    'Weigh the ingredients in the stated amounts and prepare the fruit.',
-    'Combine the ingredients in a single-serving container.',
-    'Eat immediately or keep refrigerated until serving.'
-  ];
-  if (profile.id.includes('bean-vegetable') || profile.id.includes('bean-grain')) return [
-    'Drain the already-cooked legumes if needed and weigh all ingredients.',
-    'Cut the raw vegetables, combine the ingredients, and toss with the stated oil.',
-    'Keep refrigerated and transport in a closed container.'
-  ];
-  if (proteinRole === 'legumeCooked') return [
-    'Weigh the ingredients; use already-cooked legumes and grain.',
-    `Cook ${name('vegetableCook')} until tender, then combine with the legumes and ${name('carbCooked')}.`,
-    'Add the stated oil and seasoning, mix, and portion.'
-  ];
-  const protein = byRole.get(proteinRole);
-  const raw = protein?.entry?.revision?.basis?.state === 'raw';
-  return [
-    'Weigh the ingredients in the stated amounts.',
-    raw ? `Cook ${name(proteinRole)} thoroughly to a safe doneness and cook the vegetables until tender.` : `Warm the already-cooked ${name(proteinRole)} and cook the vegetables until tender.`,
-    `Combine with the already-cooked ${name('carbCooked')}, add the stated oil and seasoning, and serve.`
-  ];
-}
+
 
 function practicalTags(practical) {
   const tags = [];
@@ -316,8 +246,8 @@ export function generateV1ReleaseCandidates({ meal, count, eligibility, corpus, 
     candidates.push({
       candidateId: `v1-${meal}-${String(candidates.length + 1).padStart(4, '0')}-${profile.id}`,
       i18n: {
-        it: { title: profileTitle(profile, solved.lines, 'it'), description: description(meal, profile, 'it'), instructions: preparationInstructions(profile, solved.lines, 'it') },
-        en: { title: profileTitle(profile, solved.lines, 'en'), description: description(meal, profile, 'en'), instructions: preparationInstructions(profile, solved.lines, 'en') }
+        it: { title: profileTitle(profile, solved.lines, 'it'), description: description(meal, profile, 'it') },
+        en: { title: profileTitle(profile, solved.lines, 'en'), description: description(meal, profile, 'en') }
       },
       mealArchetypes: [meal],
       ingredientLines: solved.lines.map(item => ({ ingredientId: item.entry.family.ingredientId, amount: item.amount, unit: item.entry.revision.basis.unit, optional: false })),

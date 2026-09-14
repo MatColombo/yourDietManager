@@ -1,0 +1,14 @@
+✔ Pass B guided taxonomy choices expose canonical IDs and preserve food hierarchy (7285.862434ms)
+✔ Pass B uses the same MealArchetype default/min-one semantics for ingredient and recipe editors (3.61793ms)
+✔ Pass B recipe-line unit choices are restricted to the selected ingredient basis and explicit conversions (0.592481ms)
+✔ Pass B reference-data configurator creates canonical user terms and blocks label/alias collisions (6320.564452ms)
+✔ Pass B authoring boundary rejects legacy semantic strings and blank authoritative nutrition (6768.947547ms)
+✔ Pass B UI source removes semantic CSV/free-text controls from operational forms and precaches guided modules (5.692444ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 20557.948436

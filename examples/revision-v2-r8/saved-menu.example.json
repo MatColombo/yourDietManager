@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "menuId": "SYNTHETIC_MENU",
+  "name": "Esempio sintetico, non un menu nutrizionale",
+  "days": [
+    {
+      "offset": 0,
+      "slots": [
+        {
+          "mealClassId": "SYNTHETIC_MEAL",
+          "ordinal": 0,
+          "components": [
+            {
+              "recipeId": "SYNTHETIC_RECIPE",
+              "recipeVersionId": "SYNTHETIC_VERSION",
+              "servings": 1
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "createdAt": "2026-09-11T00:00:00.000Z",
+  "updatedAt": "2026-09-11T00:00:00.000Z"
+}

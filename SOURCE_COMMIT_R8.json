@@ -1,0 +1,11 @@
+{
+  "appVersion": "1.1.0-dev.r8",
+  "commit": "87c6d9a3f8ec2a2829e8c0886dfea2a3d5def3f2",
+  "parentCommit": "3f6a361b10730896afecedc2c312600e5d695f43",
+  "branch": "revision/r8",
+  "buildSha256": "af239b2aadfe0f2eb1fb3008731c8ca55755da676cb31e577c5c4222e7c3135d",
+  "bundle": "source-history-r8.bundle",
+  "catalogAcceptance": "OPEN",
+  "releaseStatus": "DEVELOPMENT_ONLY_NOT_STABLE",
+  "restoreCommand": "git clone source-history-r8.bundle recovered-source; git -C recovered-source checkout revision/r8"
+}

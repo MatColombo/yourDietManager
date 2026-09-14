@@ -35,7 +35,7 @@ async function summarizeQuality(preview, repo) {
 }
 
 function aggregateRejections(preview) {
-  const out = {};
+  const out = { ...(preview.diagnostics?.retrievalHardRejectionCounts || {}) };
   const diagnostics = preview.diagnostics || {};
   const days = diagnostics.days || [];
   for (const day of days) for (const [key, value] of Object.entries(day.rejectionCounts || {})) out[key] = (out[key] || 0) + Number(value || 0);
@@ -104,7 +104,7 @@ export async function runPlannerValidationCase(options, { repo = repositories, r
     options: { ...validationContext, seed: options.seed || 'phase-c-manual', startDate },
     expectedOutcome: profile?.expected || 'any',
     actualOutcome: preview.status,
-    expectationMet: profile?.expected === 'failed' ? preview.status === 'failed' : true,
+    expectationMet: profile?.expected === 'failed' ? ['infeasible_proven', 'search_exhausted', 'invalid_input'].includes(preview.status) : true,
     durationMs,
     signature,
     energy: energySummary(preview),
