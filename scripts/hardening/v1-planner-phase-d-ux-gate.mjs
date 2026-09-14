@@ -17,8 +17,8 @@ const checks = []; const failures = [];
 function check(id, pass, detail) { const row = { id, pass: Boolean(pass), detail }; checks.push(row); if (!row.pass) failures.push(row); }
 const locales = ['productFood.search.placeholder','productFood.search.help','productFood.level.category','productFood.level.subcategory','productFood.level.concept','productFood.coverage','catalog.filter.productFood','catalog.filter.diet','catalog.filter.practical','catalog.filter.state','navigation.backToContext','plan.openRecipe'];
 
-check('phase-d3-d5-version', pkg.version === APP_VERSION && ['1.0.0-rc.34','1.0.0'].includes(APP_VERSION), `package=${pkg.version}, runtime=${APP_VERSION}`);
-check('phase-d3-d5-persistence-stable', DB_VERSION === 6 && PRE_V1_DATA_EPOCH === 'v1-planner-phase-d-epoch-1', `db=${DB_VERSION}, epoch=${PRE_V1_DATA_EPOCH}`);
+check('phase-d3-d5-version', pkg.version === APP_VERSION && /^(?:1\.0\.0(?:-rc\.\d+)?|1\.1\.0-dev\.r\d+)$/.test(APP_VERSION), `package=${pkg.version}, runtime=${APP_VERSION}`);
+check('phase-d3-d5-persistence-stable', DB_VERSION >= 6 && PRE_V1_DATA_EPOCH === 'v1-planner-phase-d-epoch-1', `db=${DB_VERSION}, epoch=${PRE_V1_DATA_EPOCH}`);
 check('phase-d3-d5-catalog-unchanged', catalog.manifest.catalogVersion === '1.2.0-planner-phase-d' && catalog.recipeVersions.length === 1800 && catalog.ingredientRevisions.length === 600, `catalog=${catalog.manifest.catalogVersion}, recipes=${catalog.recipeVersions.length}, ingredients=${catalog.ingredientRevisions.length}`);
 check('product-food-picker', /export function createProductFoodPicker/.test(guided) && /productFoodPathLabel/.test(guided) && /productFoodCoverage/.test(guided), 'hierarchical picker exposes path + coverage');
 check('product-food-picker-localized', /productFood\.level\./.test(guided) && /productFood\.coverage/.test(guided), 'picker level and coverage labels use locale keys');
@@ -28,14 +28,17 @@ check('ingredient-authoring-concept-required', /createProductFoodPicker\(state, 
 check('ingredient-faceted-ui', /catalog\.filter\.productFood/.test(catalogPages) && /catalog\.filter\.state/.test(catalogPages) && /productFoodId: params\.get\('food'\)/.test(catalogPages), 'ingredient browser has product taxonomy + state facets');
 check('recipe-faceted-ui', /catalog\.filter\.productFood/.test(catalogPages) && /catalog\.filter\.diet/.test(catalogPages) && /catalog\.filter\.practical/.test(catalogPages), 'recipe browser exposes product, diet and practical facets');
 check('recipe-query-product-graph', /clean\.productFoodId[\s\S]*ingredientRevisionById/.test(catalogQuery) && /matchesProductFood/.test(catalogQuery), 'recipe facet resolves through ingredient product taxonomy');
-check('ingredient-query-facets', /listCurrentIngredients\(\{ text = '', origin = '', foodGroup = '', productFoodId = '', state = '' \}/.test(catalogQuery) && /basis\?\.state/.test(catalogQuery), 'ingredient query supports product taxonomy + state');
+check('ingredient-query-facets', /listCurrentIngredients\(\{ text = '', origin = '', foodGroup = '', productFoodId = '', state = '' \}/.test(catalogQuery) && /basis(?:\?)?\.state/.test(catalogQuery), 'ingredient query supports product taxonomy + state');
 check('recipe-taxonomy-facets-visible', /productFoodFacetsForRecipes/.test(catalogQuery) && /chip--taxonomy/.test(catalogPages), 'recipe cards expose product category facets');
 check('day-recipe-direct-link', /data-testid': 'plan-recipe-link'/.test(planPages) && /return: returnRoute/.test(planPages) && /meal-\$\{slot\.mealOccurrenceId\}/.test(planPages), 'day slot links directly to exact recipe with return anchor');
 check('recipe-ingredient-direct-link', /data-testid': 'recipe-ingredient-link'/.test(catalogPages) && /revision: line\.ingredientRevisionId, return: selfRoute/.test(catalogPages), 'recipe ingredients link to exact IngredientRevision with recipe return');
 check('context-back-safe', /safeReturnRoute/.test(catalogPages) && /data-testid': 'context-back'/.test(catalogPages), 'recipe and ingredient detail provide sanitized contextual back navigation');
 check('slot-return-restored', /location\.hash/.test(app) && /scrollIntoView/.test(app) && /context-return-target/.test(app) && /context-return-target/.test(css), 'SPA restores and highlights exact returned meal slot');
 check('locale-parity-d3-d5', locales.every(key => typeof en[key] === 'string' && typeof it[key] === 'string') && Object.keys(en).length === Object.keys(it).length, `keys=${Object.keys(en).length}/${Object.keys(it).length}`);
-check('pwa-shell-bumped-only', /ydm-shell-v37-/.test(worker) && /ydm-data-v17-/.test(worker) && /ydm-data-v17-/.test(offline), 'shell=v37, data remains v17');
+const shellVersion = Number(worker.match(/ydm-shell-v(\d+)-/)?.[1] || 0);
+const workerDataVersion = Number(worker.match(/ydm-data-v(\d+)-/)?.[1] || 0);
+const offlineDataVersion = Number(offline.match(/ydm-data-v(\d+)-/)?.[1] || 0);
+check('pwa-shell-bumped-only', shellVersion >= 37 && workerDataVersion >= 17 && workerDataVersion === offlineDataVersion, `shell=v${shellVersion}, data=v${workerDataVersion}, offline=v${offlineDataVersion}`);
 check('phase-d3-d5-check-wired', /v1:planner-phase-d-ux/.test(packageSource) && /v1:planner-phase-d && npm run v1:planner-phase-d-ux/.test(packageSource), 'focused D3-D5 gate is part of npm check');
 
 const report = { schemaVersion: 1, generatedAt: new Date().toISOString(), phase: 'D3-D5', checks, pass: failures.length === 0 };

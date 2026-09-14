@@ -35,7 +35,7 @@ export function searchIngredientConcepts(projection, { text = '', locale = 'it',
     return { ...row, forms, rank, label: localizedFoodText(row.concept.i18n, locale) };
   }).filter(row => row.forms.length && Number.isFinite(row.rank)).sort((a, b) => a.rank - b.rank || a.label.localeCompare(b.label, locale) || a.concept.termId.localeCompare(b.concept.termId));
 }
-export function ingredientPickerChoices(projection, { locale = 'it', mode = 'concept', levels = ['category', 'subcategory', 'concept'], includeGroups = false, includeAllergens = false, allergenLabels = {} } = {}) {
+export function ingredientPickerChoices(projection, { locale = 'it', mode = 'concept', levels = ['category', 'subcategory', 'concept'], includeGroups = false, includeAllergens = false, allergenLabels = {}, levelLabels = {}, coverageLabel = null } = {}) {
   const rows = [];
   const terms = projection.index.byTaxonomy.get('product_food') || [];
   for (const term of terms.filter(term => term.status === 'active')) {
@@ -46,7 +46,9 @@ export function ingredientPickerChoices(projection, { locale = 'it', mode = 'con
     const label = localizedFoodText(term.i18n, locale);
     const aliases = [...(term.aliases?.it || []), ...(term.aliases?.en || [])];
     const fields = forms.flatMap(item => ingredientSearchFields(item.revision, projection.index));
-    rows.push({ id: term.termId, label, secondary: `${forms.length} ${locale === 'it' ? 'forme disponibili' : 'available forms'}`,
+    const levelLabel = levelLabels[level] || level;
+    const coverage = typeof coverageLabel === 'function' ? coverageLabel(forms.length) : `${forms.length}`;
+    rows.push({ id: term.termId, label, secondary: `${levelLabel} · ${coverage}`,
       searchNames: ['it', 'en'].map(lang => localizedFoodText(term.i18n, lang)), searchAliases: aliases, searchText: [...fields, ...aliases].join(' '), data: { target: { type: 'productFood', id: term.termId }, level, forms } });
   }
   if (includeGroups) for (const group of projection.groups.filter(group => group.status === 'active')) rows.push({ id: `foodGroup:${group.id}`, label: group.name,
