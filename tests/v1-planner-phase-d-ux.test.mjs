@@ -106,7 +106,10 @@ test('Phase D3-D5 — real Chromium gate exercises taxonomy facets and contextua
   const browser = await source('scripts/hardening/browser-regression.mjs');
   assert.match(browser, /Phase D3-D4 acceptance/);
   assert.match(browser, /product_category_dairy/);
-  assert.match(browser, /document\.querySelectorAll\('\.ingredient-catalog-list \.ingredient-card'\)\.length/);
+  assert.match(browser, /const list = document\.querySelector\('\.ingredient-catalog-list'\)/);
+  assert.match(browser, /resultCount: match \? Number\(match\[0\]\) : 0/);
+  assert.match(browser, /renderedCards: list\?\.querySelectorAll\('\.ingredient-card'\)\.length \|\| 0/);
+  assert.match(browser, /dairyFacetState\.resultCount !== 19 \|\| dairyFacetState\.renderedCards < 1/);
   assert.match(browser, /product_concept_noodles/);
   assert.ok(browser.includes('text.match(/\\\\d+/)'), 'Chromium expression must preserve the regex backslash through the template string');
   assert.doesNotMatch(browser, /Number\.parseInt\(document\.querySelector\('\.ingredient-catalog-list \.results-heading strong'\)/);
