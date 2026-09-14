@@ -339,13 +339,18 @@ try {
 
   // Phase D3-D4 acceptance: taxonomy facets must operate on the real catalog.
   await cdp.send('Page.navigate', { url: `${origin}/configure/ingredients?food=product_category_dairy` });
-  const dairyFacetState = await waitStableExpression(cdp, `(() => {
-    if (!document.querySelector('[data-testid=\"product-food-picker\"]')) return null;
-    const heading = document.querySelector('.ingredient-catalog-list .results-heading strong')?.textContent || '';
-    const count = document.querySelectorAll('.ingredient-catalog-list .ingredient-card').length;
-    const loadingText = document.querySelector('.ingredient-catalog-list > .muted')?.textContent || '';
-    return heading && !/caricamento|loading/i.test(loadingText) ? { heading, count } : null;
-  })()`, { maxMs: 60000, stableMs: 1200 });
+  await waitExpression(cdp, `(() => {
+    if (!document.querySelector('[data-testid=\"product-food-picker\"]')) return false;
+    const list = document.querySelector('.ingredient-catalog-list');
+    if (!list) return false;
+    const loadingText = list.querySelector(':scope > .muted')?.textContent || '';
+    const count = list.querySelectorAll('.ingredient-card').length;
+    return !/caricamento|loading/i.test(loadingText) && count === 19;
+  })()`, 60000);
+  const dairyFacetState = await evaluate(cdp, `(() => ({
+    heading: document.querySelector('.ingredient-catalog-list .results-heading strong')?.textContent || '',
+    count: document.querySelectorAll('.ingredient-catalog-list .ingredient-card').length
+  }))()`);
   if (dairyFacetState.count !== 19) throw new Error(`Phase D4 Dairy ingredient facet regression: expected 19, got ${JSON.stringify(dairyFacetState)}`);
   await cdp.send('Page.navigate', { url: `${origin}/recipes?food=product_concept_noodles` });
   await waitExpression(cdp, `!!document.querySelector('[data-testid=\"product-food-picker\"]') && document.querySelectorAll('.recipe-card').length > 0`, 30000);
