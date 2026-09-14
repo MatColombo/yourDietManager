@@ -344,14 +344,25 @@ try {
     const list = document.querySelector('.ingredient-catalog-list');
     if (!list) return false;
     const loadingText = list.querySelector(':scope > .muted')?.textContent || '';
-    const count = list.querySelectorAll('.ingredient-card').length;
-    return !/caricamento|loading/i.test(loadingText) && count === 19;
+    const heading = list.querySelector('.results-heading strong')?.textContent || '';
+    const match = heading.match(/\d+/);
+    const resultCount = match ? Number(match[0]) : 0;
+    const renderedCards = list.querySelectorAll('.ingredient-card').length;
+    return !/caricamento|loading/i.test(loadingText) && resultCount === 19 && renderedCards > 0;
   })()`, 60000);
-  const dairyFacetState = await evaluate(cdp, `(() => ({
-    heading: document.querySelector('.ingredient-catalog-list .results-heading strong')?.textContent || '',
-    count: document.querySelectorAll('.ingredient-catalog-list .ingredient-card').length
-  }))()`);
-  if (dairyFacetState.count !== 19) throw new Error(`Phase D4 Dairy ingredient facet regression: expected 19, got ${JSON.stringify(dairyFacetState)}`);
+  const dairyFacetState = await evaluate(cdp, `(() => {
+    const list = document.querySelector('.ingredient-catalog-list');
+    const heading = list?.querySelector('.results-heading strong')?.textContent || '';
+    const match = heading.match(/\d+/);
+    return {
+      heading,
+      resultCount: match ? Number(match[0]) : 0,
+      renderedCards: list?.querySelectorAll('.ingredient-card').length || 0
+    };
+  })()`);
+  if (dairyFacetState.resultCount !== 19 || dairyFacetState.renderedCards < 1) {
+    throw new Error(`Phase D4 Dairy ingredient facet regression: expected authoritative result count 19 with rendered cards, got ${JSON.stringify(dairyFacetState)}`);
+  }
   await cdp.send('Page.navigate', { url: `${origin}/recipes?food=product_concept_noodles` });
   await waitExpression(cdp, `!!document.querySelector('[data-testid=\"product-food-picker\"]') && document.querySelectorAll('.recipe-card').length > 0`, 30000);
   const noodleFacetCount = await waitExpression(cdp, `(() => {
