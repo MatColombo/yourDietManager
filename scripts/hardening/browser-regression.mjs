@@ -345,7 +345,7 @@ try {
     if (!list) return false;
     const loadingText = list.querySelector(':scope > .muted')?.textContent || '';
     const heading = list.querySelector('.results-heading strong')?.textContent || '';
-    const match = heading.match(/\d+/);
+    const match = heading.match(/\\d+/);
     const resultCount = match ? Number(match[0]) : 0;
     const renderedCards = list.querySelectorAll('.ingredient-card').length;
     return !/caricamento|loading/i.test(loadingText) && resultCount === 19 && renderedCards > 0;
@@ -353,7 +353,7 @@ try {
   const dairyFacetState = await evaluate(cdp, `(() => {
     const list = document.querySelector('.ingredient-catalog-list');
     const heading = list?.querySelector('.results-heading strong')?.textContent || '';
-    const match = heading.match(/\d+/);
+    const match = heading.match(/\\d+/);
     return {
       heading,
       resultCount: match ? Number(match[0]) : 0,
