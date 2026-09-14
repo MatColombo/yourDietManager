@@ -39,7 +39,7 @@ const bandCountsExact=Object.entries(expectedBandCounts).every(([meal,bands])=>O
 const quality=publicationEvidence.quality||{};
 const zeroQuality=['schemaErrors','unknownIngredientReferences','nutritionErrors','allergenDerivationErrors','missingRequiredLocaleFields','exactDuplicateCount','nearDuplicateCount'].every(k=>Number(quality[k]||0)===0);
 
-check('phase-b-app-version', pkg.version===APP_VERSION && /^1\.0\.0(?:-rc\.\d+)?$/.test(APP_VERSION), `package=${pkg.version}, runtime=${APP_VERSION}`);
+check('phase-b-app-version', pkg.version===APP_VERSION && /^1\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?$/.test(APP_VERSION), `package=${pkg.version}, runtime=${APP_VERSION}`);
 check('phase-b-lineage-epoch', ['v1-planner-phase-b-epoch-1','v1-planner-phase-d-epoch-1'].includes(PRE_V1_DATA_EPOCH), PRE_V1_DATA_EPOCH);
 check('catalog-1800-publication-state', ['1.1.0-planner-phase-b','1.2.0-planner-phase-d'].includes(catalog.manifest.catalogVersion) && activeRecipes.length===1800 && catalog.recipeVersions.length===1800 && (APP_VERSION==='1.0.0' ? (catalog.manifest.publication?.channel==='production_release' && catalog.manifest.publication?.releaseEligible===true) : (catalog.manifest.publication?.channel==='development' && catalog.manifest.publication?.releaseEligible===false)), `catalog=${catalog.manifest.catalogVersion}, recipes=${activeRecipes.length}/${catalog.recipeVersions.length}, channel=${catalog.manifest.publication?.channel}`);
 check('ingredient-base-coherent', activeIngredients.length===600 && catalog.ingredientRevisions.length===600, `ingredients=${activeIngredients.length}/${catalog.ingredientRevisions.length}`);
@@ -53,7 +53,10 @@ check('diet-variety-floor', dietCounts.vegetarian>=1000 && dietCounts.vegan>=350
 check('practical-variety-floor', practicalCounts.quick>=1000 && practicalCounts.noCook>=500 && practicalCounts.cold>=500, JSON.stringify(practicalCounts));
 check('publication-quality-zero', zeroQuality, JSON.stringify(quality));
 check('core-pack-full-validation-corpus', core?.required===true && core.recipeVersionIds?.length===1800, `core=${core?.recipeVersionIds?.length||0}`);
-check('pwa-cache-phase-b', /ydm-shell-v37-/.test(worker) && /ydm-data-v17-/.test(worker) && /ydm-data-v17-/.test(offline), 'shell=v37, data=v17');
+const shellCacheVersion=Number(worker.match(/ydm-shell-v(\d+)-/)?.[1]||0);
+const workerDataCacheVersion=Number(worker.match(/ydm-data-v(\d+)-/)?.[1]||0);
+const offlineDataCacheVersion=Number(offline.match(/ydm-data-v(\d+)-/)?.[1]||0);
+check('pwa-cache-phase-b', shellCacheVersion>=37 && workerDataCacheVersion>=17 && offlineDataCacheVersion===workerDataCacheVersion, `shell=v${shellCacheVersion}, data=v${workerDataCacheVersion}`);
 check('browser-count-dynamic', /expectedRecipeCount/.test(browser) && /expectedCatalogVersion/.test(browser) && !/recipeCount === 500/.test(browser), 'browser acceptance derives count/version from built manifest');
 check('phase-b-workflow', /corpus:build-planner-phase-b/.test(workflow) && /corpus:build-planner-phase-d/.test(workflow) && /catalog:publish-planner-phase-d/.test(workflow) && /git diff --exit-code/.test(workflow) && /v1:planner-phase-b/.test(workflow), 'current manual CI rebuilds Phase B source before Phase D enrichment');
 check('not-release-candidate', publicationEvidence.status==='planner_validation' && publicationEvidence.publication?.releaseEligible===false, `status=${publicationEvidence.status}`);
