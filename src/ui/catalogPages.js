@@ -90,10 +90,10 @@ export function recipesPage(state) {
   void state.catalogQuery.searchRecipes(queryFromLocation()).then(async result => {
     const reviewMap = isProductionReviewManifest(state.catalogManifest) ? await state.humanReview.reviewsForVersions(state.catalogManifest, result.items.map(item => item.recipeVersionId)) : new Map();
     const productFacets = await state.catalogQuery.productFoodFacetsForRecipes(result.items);
-    results.replaceChildren(element('div', { className: 'results-heading' }, [element('strong', { text: t(state, 'catalog.results.count', { count: String(result.total) }) }), element('span', { className: 'muted', text: t(state, 'catalog.results.indexed') })]));
+    results.replaceChildren(element('div', { className: 'results-heading' }, [element('strong', { 'data-testid': 'recipe-result-count', 'data-count': String(result.total), text: t(state, 'catalog.results.count', { count: String(result.total) }) }), element('span', { className: 'muted', text: t(state, 'catalog.results.indexed') })]));
     const grid = element('div', { className: 'recipe-grid' });
     for (const recipe of result.items) {
-      const n = recipe.calculatedNutrition; grid.append(element('a', { href: routeWithParams(`/recipes/${encodeURIComponent(recipe.recipeId)}`, { return: `/recipes${location.search}` }), 'data-route': '', className: 'recipe-card' }, [
+      const n = recipe.calculatedNutrition; grid.append(element('a', { href: routeWithParams(`/recipes/${encodeURIComponent(recipe.recipeId)}`, { return: `/recipes${location.search}` }), 'data-route': '', 'data-testid': 'recipe-card', className: 'recipe-card' }, [
         element('div', { className: 'recipe-card__top' }, [element('strong', { text: localeText(state, recipe.i18n) }), element('div', { className: 'recipe-card__badges' }, [element('span', { className: `origin-pill origin-pill--${recipe.origin}`, text: t(state, `catalog.origin.${recipe.origin}`) }), isProductionReviewManifest(state.catalogManifest) ? element('span', { className: `status-chip status-chip--review-${reviewMap.get(recipe.recipeVersionId)?.decision || 'unreviewed'}`, text: t(state, `review.status.${reviewMap.get(recipe.recipeVersionId)?.decision || 'unreviewed'}`) }) : null])]),
         element('p', { className: 'muted', text: recipe.mealArchetypes.map(id => t(state, `mealArchetype.${id}`)).join(' · ') }),
         element('div', { className: 'chip-list chip-list--compact' }, (productFacets.get(recipe.recipeVersionId)?.categoryIds || []).slice(0, 4).map(id => element('span', { className: 'chip chip--taxonomy', text: termLabel(state, id) }))),
@@ -563,10 +563,10 @@ export function ingredientsPage(state) {
     element('button', { className: 'button button--secondary', text: t(state, 'catalog.custom.export'), onClick: async () => downloadJson(await createCustomCatalogExport({ repo: state.repo }), `yourDietManager-personal-catalog-${new Date().toISOString().slice(0,10)}.json`) }),
     element('button', { className: 'button button--secondary', text: t(state, 'catalog.custom.import'), onClick: () => file.click() })
   ]), file, transferStatus.node, form);
-  const list = element('div', { className: 'ingredient-catalog-list' }, [element('p', { className: 'muted', text: t(state, 'common.loading') })]); section.append(list);
+  const list = element('div', { className: 'ingredient-catalog-list', 'data-testid': 'ingredient-catalog-results' }, [element('p', { className: 'muted', text: t(state, 'common.loading') })]); section.append(list);
   void state.catalogQuery.searchIngredientConcepts({ locale: state.i18n.locale, text: params.get('q') || '', origin: params.get('origin') || '', productFoodId: params.get('food') || '', state: params.get('state') || '' }).then(concepts => {
     const items = concepts.flatMap(concept => concept.forms);
-    list.replaceChildren(element('div', { className: 'results-heading' }, [element('strong', { text: t(state, 'catalog.results.count', { count: String(items.length) }) }), element('span', { className: 'muted', text: t(state, 'catalog.ingredients.filtered') })]));
+    list.replaceChildren(element('div', { className: 'results-heading' }, [element('strong', { 'data-testid': 'ingredient-result-count', 'data-count': String(items.length), text: t(state, 'catalog.results.count', { count: String(items.length) }) }), element('span', { className: 'muted', text: t(state, 'catalog.ingredients.filtered') })]));
     for (const concept of concepts) {
       const group = controlledDetails(state, `ingredient-concept-${concept.concept.termId}`, { defaultOpen: Boolean(params.get('q') || params.get('food')), children: [element('summary', { text: `${concept.label} · ${concept.forms.length} ${t(state, 'r2.formsAvailable')}` })] });
       list.append(group);
@@ -577,7 +577,7 @@ export function ingredientsPage(state) {
         element('a', { href: `/configure/ingredients/${encodeURIComponent(item.family.ingredientId)}/edit`, 'data-route': '', className: 'button button--secondary button--small', text: t(state, 'common.edit') })
       ]);
       if (item.family.origin === 'user') actions.append(element('button', { className: 'button button--danger button--small', text: t(state, 'common.archive'), onClick: async () => { try { await archiveUserIngredient(item.family.ingredientId, { repo: state.repo }); state.notify?.('success', t(state, 'catalog.ingredient.archived')); state.render(); } catch (error) { state.notify?.('error', error.message || String(error)); } } }));
-      group.append(element('article', { className: 'ingredient-card' }, [
+      group.append(element('article', { className: 'ingredient-card', 'data-testid': 'ingredient-card' }, [
         element('div', {}, [
           element('a', { href: routeWithParams(`/configure/ingredients/${encodeURIComponent(item.family.ingredientId)}`, { return: `/configure/ingredients${location.search}` }), 'data-route': '', className: 'text-link ingredient-card__title', text: ingredientPresentation(item.revision, state.referenceDataIndex, state.i18n.locale).variant }),
           element('p', { className: 'muted', text: `${productPath || termLabel(state, item.revision.taxonomy.foodGroup)} · ${t(state, `ingredientState.${item.revision.basis.state}`)} · ${t(state, `catalog.origin.${item.family.origin}`)}` })

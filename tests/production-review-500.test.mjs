@@ -155,7 +155,8 @@ test('browser regression gives production-scale catalog bootstrap a bounded wind
   assert.match(source, /waitStableExpression\(cdp/);
   assert.match(source, /status-dot--complete/);
   assert.match(source, /stableMs: 1200/);
-  assert.ok(source.includes('Number.parseInt(heading.trim(), 10)'));
+  assert.ok(source.includes('[data-testid=\"recipe-result-count\"]'));
+  assert.ok(source.includes('dataset.count'));
   assert.ok(source.includes('recipeCount === ${expectedRecipeCount}'));
   assert.ok(source.includes('expectedCatalogVersion'));
   assert.ok(!source.includes('recipeCount === 500'));

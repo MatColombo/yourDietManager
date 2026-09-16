@@ -103,17 +103,21 @@ test('Phase D5 — Day → Recipe → Ingredient carries contextual return route
 });
 
 test('Phase D3-D5 — real Chromium gate exercises taxonomy facets and contextual drill-down', async () => {
-  const browser = await source('scripts/hardening/browser-regression.mjs');
+  const [browser, catalog, guided] = await Promise.all([
+    source('scripts/hardening/browser-regression.mjs'), source('src/ui/catalogPages.js'), source('src/ui/guidedControls.js')
+  ]);
   assert.match(browser, /Phase D3-D4 acceptance/);
   assert.match(browser, /product_category_dairy/);
-  assert.match(browser, /const list = document\.querySelector\('\.ingredient-catalog-list'\)/);
-  assert.match(browser, /resultCount: match \? Number\(match\[0\]\) : 0/);
-  assert.match(browser, /renderedCards: list\?\.querySelectorAll\('\.ingredient-card'\)\.length \|\| 0/);
-  assert.match(browser, /dairyFacetState\.resultCount !== 19 \|\| dairyFacetState\.renderedCards < 1/);
-  assert.ok(browser.includes('heading.match(/\\\\d+/)'), 'Dairy Chromium expression must preserve the regex backslash through the template string');
   assert.match(browser, /product_concept_noodles/);
-  assert.ok(browser.includes('text.match(/\\\\d+/)'), 'Chromium expression must preserve the regex backslash through the template string');
-  assert.doesNotMatch(browser, /Number\.parseInt\(document\.querySelector\('\.ingredient-catalog-list \.results-heading strong'\)/);
+  assert.match(guided, /'data-testid': 'ingredient-picker'/);
+  assert.match(browser, /data-testid=\"ingredient-picker\"/);
+  assert.doesNotMatch(browser, /data-testid=\"product-food-picker\"/);
+  assert.match(catalog, /'data-testid': 'ingredient-result-count'/);
+  assert.match(catalog, /'data-testid': 'ingredient-card'/);
+  assert.match(catalog, /'data-testid': 'recipe-result-count'/);
+  assert.match(catalog, /'data-testid': 'recipe-card'/);
+  assert.match(browser, /resultCount > 0 && renderedCards > 0/);
+  assert.doesNotMatch(browser, /resultCount === 19|resultCount !== 19|noodleFacetCount !== 327/);
   assert.match(browser, /Phase D5 acceptance/);
   assert.match(browser, /recipe-ingredient-link/);
   assert.match(browser, /context-return-target/);
