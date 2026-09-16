@@ -57,7 +57,7 @@ export async function validateReleaseData({ policy, catalogVersion, taxonomies =
   return { valid:issues.length===0 && gates.passed, issues, snapshot, releaseGates:gates };
 }
 
-export async function publishCatalogRelease({ outputDir, catalogVersion, taxonomies = [], taxonomyTerms = [], referenceDataVersion = '1.0.0', ingredientFamilies, ingredientRevisions, recipeFamilies, recipeVersions, builtAt = new Date().toISOString(), appMinVersion = '0.4.0', locales = ['it','en'], pipelineVersion = 'recipe-pipeline-1', productionContract = null, publication = null, shardSize = 250, packs = null, registry = null }) {
+export async function publishCatalogRelease({ outputDir, catalogVersion, taxonomies = [], taxonomyTerms = [], referenceDataVersion = '1.0.0', ingredientFamilies, ingredientRevisions, recipeFamilies, recipeVersions, builtAt = new Date().toISOString(), appMinVersion = '0.4.0', locales = ['it','en'], pipelineVersion = 'recipe-pipeline-1', productionContract = null, publication = null, shardSize = 250, packs = null, registry = null, shardPathPrefix = '' }) {
   await rm(outputDir,{recursive:true,force:true}); const dataDir=path.join(outputDir,'data'); await mkdir(dataDir,{recursive:true});
   const referenceIndex = assertReferenceData(taxonomies, taxonomyTerms, registry);
   assertSemanticReferences({ index: referenceIndex, ingredientRevisions, recipeVersions, ingredientIds: ingredientFamilies.map(item => item.ingredientId) });
@@ -65,7 +65,7 @@ export async function publishCatalogRelease({ outputDir, catalogVersion, taxonom
   const parts={ taxonomies, taxonomyTerms, ingredientFamilies, ingredientRevisions, recipeFamilies, recipeVersions }; const manifestParts={};
   for(const [part,records] of Object.entries(parts)) {
     const dir=path.join(dataDir,partDir(part)); await mkdir(dir,{recursive:true}); const shards=[]; const effectiveShardSize=(part==='taxonomies'||part==='taxonomyTerms')?Math.max(shardSize,1000):shardSize; const groups=chunk(records,effectiveShardSize);
-    for(let index=0;index<groups.length;index+=1) { const recordsChunk=groups[index]; const name=`${partStem(part)}-${String(index+1).padStart(4,'0')}.json`; const rel=`${partDir(part)}/${name}`; const text=jsonText(recordsChunk); await writeFile(path.join(dataDir,rel),text); shards.push({path:rel,count:recordsChunk.length,sha256:await sha256Text(text),recordIds:recordsChunk.map(record=>record[idKey(part)])}); }
+    for(let index=0;index<groups.length;index+=1) { const recordsChunk=groups[index]; const name=`${partStem(part)}-${String(index+1).padStart(4,'0')}.json`; const rel=[String(shardPathPrefix||'').replace(/^\/+|\/+$/g,''),partDir(part),name].filter(Boolean).join('/'); const text=jsonText(recordsChunk); await mkdir(path.dirname(path.join(dataDir,rel)),{recursive:true}); await writeFile(path.join(dataDir,rel),text); shards.push({path:rel,count:recordsChunk.length,sha256:await sha256Text(text),recordIds:recordsChunk.map(record=>record[idKey(part)])}); }
     manifestParts[part]={count:records.length,shards};
   }
   const allVersionIds=recipeVersions.map(record=>record.recipeVersionId); const derivedPacks=packs || [

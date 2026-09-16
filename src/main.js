@@ -101,7 +101,12 @@ async function start() {
   installRouter(state, () => state.render({ force: true })); await refreshCatalogStats(state);
   state.render({ force: true }); await bootstrapCatalog();
 
-  if (state.catalogVersion) void catalogUpdater.check().then(result => {
+  if (state.catalogVersion) void catalogUpdater.check().then(async result => {
+    if (result.updateAvailable && result.manifest.publication?.channel === 'development') {
+      state.catalogUpdateAvailable = true; state.catalogUpdateVersion = result.manifest.catalogVersion; state.render();
+      await state.updateCatalog();
+      return;
+    }
     state.catalogUpdateAvailable = result.updateAvailable; state.catalogUpdateVersion = result.updateAvailable ? result.manifest.catalogVersion : null; state.render();
   }).catch(() => { /* Offline is a valid Phase 3 state. */ });
 

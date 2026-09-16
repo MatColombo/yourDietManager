@@ -89,6 +89,10 @@
     "revision:v2:regression": "node scripts/revision-v2/run-regression.mjs",
     "data-proposals:check": "node scripts/data-proposals/reconcile.mjs --check",
     "data-proposals:materialize": "node scripts/data-proposals/reconcile.mjs --materialize",
-    "data-proposals:t4e-feasibility": "node scripts/data-proposals/t4e-planner-feasibility.mjs"
+    "data-proposals:t4e-feasibility": "node scripts/data-proposals/t4e-planner-feasibility.mjs",
+    "recipes:check": "node scripts/recipes/publish-proposal.mjs --check",
+    "recipes:publish": "node scripts/recipes/publish-proposal.mjs --publish",
+    "recipes:deploy-build": "npm run recipes:publish && npm run build",
+    "recipes:e2e": "node scripts/recipes/e2e-smoke.mjs"
   }
 }

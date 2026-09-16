@@ -1,0 +1,3 @@
+interface:
+  display_name: "Recipe Catalog Author"
+  short_description: "Generate deployable, semantically valid yourDietManager recipes and ingredients."

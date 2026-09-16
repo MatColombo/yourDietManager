@@ -1,0 +1,194 @@
+{
+  "schemaVersion": 1,
+  "proposalId": "e2e-new-ingredient-fixture",
+  "generatedAt": "2026-09-16T14:00:00.000Z",
+  "taxonomyTerms": [],
+  "culinaryRoles": [
+    {
+      "roleId": "fixture_vegetable_cook",
+      "purpose": "Temporary E2E vegetable role.",
+      "portionG": {
+        "min": 80,
+        "default": 120,
+        "max": 220
+      },
+      "ingredientRevisionIds": []
+    }
+  ],
+  "culinaryArchetypes": [
+    {
+      "archetypeId": "fixture_frittata",
+      "label": "Temporary E2E frittata",
+      "mealArchetypes": [
+        "dinner"
+      ],
+      "method": {
+        "type": "heated"
+      },
+      "slots": [
+        {
+          "roleId": "egg_whole",
+          "minG": 70,
+          "maxG": 160
+        },
+        {
+          "roleId": "fixture_vegetable_cook",
+          "minG": 80,
+          "maxG": 220
+        },
+        {
+          "roleId": "oil_cooking_heat",
+          "minG": 2,
+          "maxG": 8
+        }
+      ]
+    }
+  ],
+  "ingredients": [
+    {
+      "proposalIngredientId": "fixture_grilled_zucchini",
+      "i18n": {
+        "it": {
+          "name": "Zucchina grigliata E2E",
+          "aliases": []
+        },
+        "en": {
+          "name": "E2E grilled zucchini",
+          "aliases": []
+        }
+      },
+      "basis": {
+        "amount": 100,
+        "unit": "g",
+        "state": "prepared"
+      },
+      "nutrition": {
+        "energyKcal": 20,
+        "proteinG": 1.5,
+        "carbsG": 3,
+        "fatG": 0.5,
+        "fiberG": 1.2,
+        "sugarsG": null,
+        "saturatedFatG": null,
+        "saltG": null,
+        "sodiumMg": null
+      },
+      "taxonomy": {
+        "foodGroup": "food_group_vegetables",
+        "foodSubgroup": "food_subgroup_summer_vegetables",
+        "flavorProfile": "flavor_fresh",
+        "mealArchetypes": [
+          "lunch",
+          "dinner",
+          "mini_meal"
+        ]
+      },
+      "productTaxonomy": {
+        "categoryId": "product_category_vegetables",
+        "subcategoryId": "product_subcategory_vegetables_other",
+        "conceptId": "product_concept_zucchini"
+      },
+      "allergenIds": [],
+      "conversions": [],
+      "source": {
+        "type": "curated",
+        "label": "E2E non-production fixture",
+        "reference": "fixture:e2e-zucchini",
+        "sourceRecordId": "fixture-zucchini-grilled",
+        "checkedAt": "2026-09-16T14:00:00.000Z",
+        "licenseNote": "Test fixture only",
+        "energyBasis": "unknown",
+        "energyNutrientId": null,
+        "energySourceUnit": "unknown",
+        "energyOriginalValue": null,
+        "energyConversion": "none"
+      },
+      "quality": {
+        "status": "validated",
+        "confidence": "medium",
+        "notes": "Temporary E2E fixture."
+      },
+      "display": {
+        "it": {
+          "variantLabel": "grigliata"
+        },
+        "en": {
+          "variantLabel": "grilled"
+        }
+      },
+      "safetyEvidence": {
+        "assessmentStatus": "reviewed",
+        "containsAllergenIds": [],
+        "mayContainAllergenIds": [],
+        "compositionCompleteness": "complete",
+        "sourceRefs": [
+          "fixture:e2e-zucchini"
+        ],
+        "reviewedBy": "E2E fixture",
+        "reviewedAt": "2026-09-16T14:00:00.000Z",
+        "policyVersion": "ingredient-safety-evidence-v1"
+      },
+      "culinaryRoleIds": [
+        "fixture_vegetable_cook"
+      ]
+    }
+  ],
+  "recipes": [
+    {
+      "proposalRecipeId": "fixture_frittata_zucchini",
+      "culinaryArchetypeId": "fixture_frittata",
+      "mealArchetypes": [
+        "dinner"
+      ],
+      "i18n": {
+        "it": {
+          "title": "Frittata E2E con zucchine grigliate",
+          "description": "Fixture per test E2E.",
+          "instructions": [
+            "Scalda la padella.",
+            "Unisci uova e zucchine e cuoci fino a completa cottura."
+          ]
+        },
+        "en": {
+          "title": "E2E grilled zucchini frittata",
+          "description": "E2E test fixture.",
+          "instructions": [
+            "Heat the pan.",
+            "Combine eggs and zucchini and cook through."
+          ]
+        }
+      },
+      "ingredientLines": [
+        {
+          "roleId": "egg_whole",
+          "ingredientRevisionId": "ing_fdc_169904_r1",
+          "amountG": 100
+        },
+        {
+          "roleId": "fixture_vegetable_cook",
+          "proposalIngredientId": "fixture_grilled_zucchini",
+          "amountG": 120
+        },
+        {
+          "roleId": "oil_cooking_heat",
+          "ingredientRevisionId": "ing_fdc_167737_r1",
+          "amountG": 5
+        }
+      ],
+      "practical": {
+        "prepMinutes": 5,
+        "cookMinutes": 12,
+        "reheatingRequired": false,
+        "coldSuitable": true,
+        "portable": true,
+        "fridgeRequired": true,
+        "freezerSuitable": false,
+        "mealPrepSuitable": true
+      },
+      "tags": {},
+      "culinaryReview": {
+        "notes": "Temporary E2E test only."
+      }
+    }
+  ]
+}
