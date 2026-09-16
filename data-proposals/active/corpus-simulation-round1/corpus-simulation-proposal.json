@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "proposalId": "corpus-simulation-round1",
+  "proposalType": "corpus_simulation",
+  "proposalDate": "2026-09-16",
+  "source": "chat_semantic_consolidation",
+  "baseline": {
+    "catalogVersion": "1.2.0-planner-phase-d",
+    "ingredientCount": 600,
+    "recipeVersionCount": 1800,
+    "catalogManifestSha256": "e72e3b038ee49086b7eb4336403354e00406b7ebbd398f27569b31db7529acdf",
+    "taxonomyTermsSha256": "a2b434b48f53777d4e078b7f3f23df89c3cee8acd69f12720b742286ce12e708",
+    "ingredientCorpusDigest": "2703f92d568201e86ce9123ba283653306f79c4da82fca28a0bea1c4ed71a8e5",
+    "recipeCorpusDigest": "e050f07cd522b3fb6d223a96dad673c8241ecb85f40d1ded0efc083537a2bf77",
+    "ingredientSemanticProposalSha256": "c0b7f65ab9cd39e6ef989cc9de8db5f1744fdc0bc61001aeb94a9ec9a851d1ef",
+    "proposedProductTermsSha256": "04a28a4eced25f4ec3c9a37904e39398a90c807430adfd42d9fbade6abe0ab4c",
+    "recipeSemanticProposalSha256": "694e5daafa50276ab12fc780dcccebd73a90725b8205bc85cc5cb16a8a1b40fe",
+    "recipeSemanticReviewSha256": "f79d12090319483762ceb1211119d3290219455708b24f45b8b67ad761eac0ea",
+    "culinaryGenerationPolicySha256": "033d19856f1ee7491bbd5eec3cbab3f286f0d9920ff0d05a3d6551e818451a76",
+    "rolePoolsSha256": "a91393e4094a16220bc2e6c8ef220419abf917b7a05d311cb7d01ea0e57c4d66",
+    "archetypesSha256": "4b1b70176036bde7d8e24f2610a21257a6224c36227e291fc07201aa61465d2d",
+    "recipeReworkPlanSha256": "acdf03211fb11d38ca36f231b8a521bdb19b8b763533a72527c0e55a21686c7e",
+    "gapMatrixSha256": "88cea5ee5994d0f93eec5da205b103b71caf93c622005cd407c7eb85c3d3b9d7",
+    "recipeGenerationProposalSha256": "65145e235ccf8ac7a38786e59c9ebb0f8be38c146715ec0ac17e6a7a895985f5",
+    "recipeProposalsSha256": "c47fa34cc3b188bc1ede1fd495342672d762d982d005875c00763c33ee0a543c"
+  },
+  "expected": {
+    "finalRecipeCount": 1800,
+    "sourceCounts": {
+      "KEEP_RENAME": 1036,
+      "REWORK_LOCAL_REPAIR": 506,
+      "REWORK_ARCHETYPE_CONVERSION": 46,
+      "T4C_REPLACEMENT": 212
+    },
+    "phaseBEnergyBandJobs": 30,
+    "tightestPlannerTolerancePct": 2,
+    "plannerEnergyTargetsKcal": [800, 1000, 1200, 1400, 1600, 1800, 2000, 2200, 2400, 2600]
+  },
+  "promotionPolicy": {
+    "requireExactPhaseBQuotas": true,
+    "requireZeroExactRecipeSignatureDuplicates": true,
+    "requireZeroNearDuplicatesSameMeal": true,
+    "requireZeroSemanticConceptDuplicates": true,
+    "requireZeroDuplicateTitles": true,
+    "requireZeroExactIngredientSetDuplicates": true,
+    "requirePresentationReviewAfterRework": true,
+    "plannerFeasibilityRequired": true,
+    "canonicalCatalogMutationAllowed": false
+  }
+}

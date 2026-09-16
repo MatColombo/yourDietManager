@@ -1,0 +1,254 @@
+{
+  "schemaVersion": 1,
+  "proposalId": "recipe-semantic-consolidation-round1",
+  "scope": "generator job / meal-energy band",
+  "jobCount": 30,
+  "keepOnly": {
+    "emptyBands": [],
+    "minimumRecipesInAnyBand": 7,
+    "maximumRecipesInAnyBand": 60,
+    "note": "Structural count only; not a replacement for full planner feasibility under user-specific constraints."
+  },
+  "bands": [
+    {
+      "jobId": "phase-b-breakfast-kcal-050-149",
+      "total": 50,
+      "KEEP_RENAME": 13,
+      "REWORK": 21,
+      "RETIRE": 14,
+      "CONSOLIDATE_DUPLICATE": 2
+    },
+    {
+      "jobId": "phase-b-breakfast-kcal-150-249",
+      "total": 75,
+      "KEEP_RENAME": 35,
+      "REWORK": 27,
+      "RETIRE": 12,
+      "CONSOLIDATE_DUPLICATE": 1
+    },
+    {
+      "jobId": "phase-b-breakfast-kcal-250-349",
+      "total": 80,
+      "KEEP_RENAME": 38,
+      "REWORK": 31,
+      "RETIRE": 7,
+      "CONSOLIDATE_DUPLICATE": 4
+    },
+    {
+      "jobId": "phase-b-breakfast-kcal-350-449",
+      "total": 75,
+      "KEEP_RENAME": 31,
+      "REWORK": 30,
+      "RETIRE": 11,
+      "CONSOLIDATE_DUPLICATE": 3
+    },
+    {
+      "jobId": "phase-b-breakfast-kcal-450-599",
+      "total": 50,
+      "KEEP_RENAME": 26,
+      "REWORK": 18,
+      "RETIRE": 4,
+      "CONSOLIDATE_DUPLICATE": 2
+    },
+    {
+      "jobId": "phase-b-breakfast-kcal-600-699",
+      "total": 20,
+      "KEEP_RENAME": 9,
+      "REWORK": 4,
+      "RETIRE": 2,
+      "CONSOLIDATE_DUPLICATE": 5
+    },
+    {
+      "jobId": "phase-b-dinner-kcal-180-299",
+      "total": 70,
+      "KEEP_RENAME": 43,
+      "REWORK": 26,
+      "RETIRE": 0,
+      "CONSOLIDATE_DUPLICATE": 1
+    },
+    {
+      "jobId": "phase-b-dinner-kcal-300-399",
+      "total": 80,
+      "KEEP_RENAME": 50,
+      "REWORK": 30,
+      "RETIRE": 0,
+      "CONSOLIDATE_DUPLICATE": 0
+    },
+    {
+      "jobId": "phase-b-dinner-kcal-400-499",
+      "total": 100,
+      "KEEP_RENAME": 58,
+      "REWORK": 41,
+      "RETIRE": 0,
+      "CONSOLIDATE_DUPLICATE": 1
+    },
+    {
+      "jobId": "phase-b-dinner-kcal-500-599",
+      "total": 90,
+      "KEEP_RENAME": 45,
+      "REWORK": 39,
+      "RETIRE": 0,
+      "CONSOLIDATE_DUPLICATE": 6
+    },
+    {
+      "jobId": "phase-b-dinner-kcal-600-699",
+      "total": 60,
+      "KEEP_RENAME": 35,
+      "REWORK": 25,
+      "RETIRE": 0,
+      "CONSOLIDATE_DUPLICATE": 0
+    },
+    {
+      "jobId": "phase-b-dinner-kcal-700-849",
+      "total": 40,
+      "KEEP_RENAME": 25,
+      "REWORK": 14,
+      "RETIRE": 0,
+      "CONSOLIDATE_DUPLICATE": 1
+    },
+    {
+      "jobId": "phase-b-dinner-kcal-850-949",
+      "total": 10,
+      "KEEP_RENAME": 7,
+      "REWORK": 2,
+      "RETIRE": 0,
+      "CONSOLIDATE_DUPLICATE": 1
+    },
+    {
+      "jobId": "phase-b-lunch-kcal-180-299",
+      "total": 70,
+      "KEEP_RENAME": 43,
+      "REWORK": 26,
+      "RETIRE": 0,
+      "CONSOLIDATE_DUPLICATE": 1
+    },
+    {
+      "jobId": "phase-b-lunch-kcal-300-399",
+      "total": 80,
+      "KEEP_RENAME": 47,
+      "REWORK": 31,
+      "RETIRE": 0,
+      "CONSOLIDATE_DUPLICATE": 2
+    },
+    {
+      "jobId": "phase-b-lunch-kcal-400-499",
+      "total": 100,
+      "KEEP_RENAME": 60,
+      "REWORK": 40,
+      "RETIRE": 0,
+      "CONSOLIDATE_DUPLICATE": 0
+    },
+    {
+      "jobId": "phase-b-lunch-kcal-500-599",
+      "total": 90,
+      "KEEP_RENAME": 56,
+      "REWORK": 33,
+      "RETIRE": 0,
+      "CONSOLIDATE_DUPLICATE": 1
+    },
+    {
+      "jobId": "phase-b-lunch-kcal-600-699",
+      "total": 60,
+      "KEEP_RENAME": 35,
+      "REWORK": 25,
+      "RETIRE": 0,
+      "CONSOLIDATE_DUPLICATE": 0
+    },
+    {
+      "jobId": "phase-b-lunch-kcal-700-849",
+      "total": 40,
+      "KEEP_RENAME": 22,
+      "REWORK": 18,
+      "RETIRE": 0,
+      "CONSOLIDATE_DUPLICATE": 0
+    },
+    {
+      "jobId": "phase-b-lunch-kcal-850-949",
+      "total": 10,
+      "KEEP_RENAME": 7,
+      "REWORK": 3,
+      "RETIRE": 0,
+      "CONSOLIDATE_DUPLICATE": 0
+    },
+    {
+      "jobId": "phase-b-mini_meal-kcal-080-149",
+      "total": 40,
+      "KEEP_RENAME": 21,
+      "REWORK": 12,
+      "RETIRE": 3,
+      "CONSOLIDATE_DUPLICATE": 4
+    },
+    {
+      "jobId": "phase-b-mini_meal-kcal-150-219",
+      "total": 55,
+      "KEEP_RENAME": 33,
+      "REWORK": 16,
+      "RETIRE": 4,
+      "CONSOLIDATE_DUPLICATE": 2
+    },
+    {
+      "jobId": "phase-b-mini_meal-kcal-220-299",
+      "total": 60,
+      "KEEP_RENAME": 37,
+      "REWORK": 17,
+      "RETIRE": 2,
+      "CONSOLIDATE_DUPLICATE": 4
+    },
+    {
+      "jobId": "phase-b-mini_meal-kcal-300-399",
+      "total": 55,
+      "KEEP_RENAME": 43,
+      "REWORK": 7,
+      "RETIRE": 4,
+      "CONSOLIDATE_DUPLICATE": 1
+    },
+    {
+      "jobId": "phase-b-mini_meal-kcal-400-499",
+      "total": 40,
+      "KEEP_RENAME": 32,
+      "REWORK": 5,
+      "RETIRE": 1,
+      "CONSOLIDATE_DUPLICATE": 2
+    },
+    {
+      "jobId": "phase-b-snack-kcal-060-119",
+      "total": 50,
+      "KEEP_RENAME": 33,
+      "REWORK": 4,
+      "RETIRE": 3,
+      "CONSOLIDATE_DUPLICATE": 10
+    },
+    {
+      "jobId": "phase-b-snack-kcal-120-179",
+      "total": 70,
+      "KEEP_RENAME": 43,
+      "REWORK": 10,
+      "RETIRE": 8,
+      "CONSOLIDATE_DUPLICATE": 9
+    },
+    {
+      "jobId": "phase-b-snack-kcal-180-239",
+      "total": 70,
+      "KEEP_RENAME": 43,
+      "REWORK": 6,
+      "RETIRE": 9,
+      "CONSOLIDATE_DUPLICATE": 12
+    },
+    {
+      "jobId": "phase-b-snack-kcal-240-299",
+      "total": 60,
+      "KEEP_RENAME": 36,
+      "REWORK": 2,
+      "RETIRE": 11,
+      "CONSOLIDATE_DUPLICATE": 11
+    },
+    {
+      "jobId": "phase-b-snack-kcal-300-399",
+      "total": 50,
+      "KEEP_RENAME": 30,
+      "REWORK": 0,
+      "RETIRE": 10,
+      "CONSOLIDATE_DUPLICATE": 10
+    }
+  ]
+}

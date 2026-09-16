@@ -1,0 +1,703 @@
+{
+  "schemaVersion": 1,
+  "policyId": "culinary-generation-policy-v2",
+  "archetypes": [
+    {
+      "archetypeId": "yogurt_fruit_bowl",
+      "label": "Yogurt + whole fruit bowl",
+      "mealArchetypes": [
+        "breakfast",
+        "mini_meal"
+      ],
+      "method": {
+        "type": "no_cook"
+      },
+      "slots": [
+        {
+          "roleId": "fruit_ready_whole",
+          "minG": 80,
+          "maxG": 200
+        },
+        {
+          "roleId": "yogurt_cultured",
+          "minG": 80,
+          "maxG": 220
+        },
+        {
+          "roleId": "nuts_seeds_neutral",
+          "minG": 4,
+          "maxG": 25,
+          "optional": true
+        }
+      ]
+    },
+    {
+      "archetypeId": "cereal_dairy_fruit_bowl",
+      "label": "Ready cereal + dairy + fruit bowl",
+      "mealArchetypes": [
+        "breakfast"
+      ],
+      "method": {
+        "type": "no_cook"
+      },
+      "slots": [
+        {
+          "roleId": "breakfast_cereal_ready",
+          "minG": 20,
+          "maxG": 70
+        },
+        {
+          "oneOfRoles": [
+            "yogurt_cultured",
+            "milk_liquid"
+          ],
+          "minG": 80,
+          "maxG": 240
+        },
+        {
+          "roleId": "fruit_ready_whole",
+          "minG": 80,
+          "maxG": 180
+        },
+        {
+          "roleId": "nuts_seeds_neutral",
+          "minG": 4,
+          "maxG": 20,
+          "optional": true
+        }
+      ]
+    },
+    {
+      "archetypeId": "quinoa_porridge",
+      "label": "Long-cook breakfast grain porridge",
+      "mealArchetypes": [
+        "breakfast"
+      ],
+      "method": {
+        "type": "heated",
+        "minimumCookMinutes": 15
+      },
+      "slots": [
+        {
+          "roleId": "breakfast_grain_long_cook",
+          "minG": 25,
+          "maxG": 80
+        },
+        {
+          "roleId": "milk_liquid",
+          "minG": 100,
+          "maxG": 280
+        },
+        {
+          "roleId": "fruit_ready_whole",
+          "minG": 60,
+          "maxG": 180
+        },
+        {
+          "roleId": "nuts_seeds_neutral",
+          "minG": 4,
+          "maxG": 20,
+          "optional": true
+        }
+      ]
+    },
+    {
+      "archetypeId": "fruit_dairy_smoothie",
+      "label": "Fruit + liquid dairy smoothie",
+      "mealArchetypes": [
+        "breakfast",
+        "snack",
+        "mini_meal"
+      ],
+      "method": {
+        "type": "blended_no_cook"
+      },
+      "slots": [
+        {
+          "roleId": "fruit_ready_whole",
+          "minG": 80,
+          "maxG": 220
+        },
+        {
+          "oneOfRoles": [
+            "milk_liquid",
+            "cultured_milk_liquid"
+          ],
+          "minG": 80,
+          "maxG": 240
+        },
+        {
+          "roleId": "nuts_seeds_neutral",
+          "minG": 0,
+          "maxG": 25,
+          "optional": true
+        }
+      ],
+      "conversionTargetForLegacyProfiles": [
+        "fruit-yogurt-nuts",
+        "fruit-yogurt",
+        "mini-fruit-yogurt-nuts"
+      ]
+    },
+    {
+      "archetypeId": "egg_grain_vegetable",
+      "label": "Egg, cooked grain and vegetable plate",
+      "mealArchetypes": [
+        "breakfast",
+        "lunch",
+        "dinner"
+      ],
+      "method": {
+        "type": "heated"
+      },
+      "slots": [
+        {
+          "roleId": "egg_whole",
+          "minG": 45,
+          "maxG": 160
+        },
+        {
+          "roleId": "grain_cooked",
+          "minG": 60,
+          "maxG": 250
+        },
+        {
+          "roleId": "vegetable_main_cook",
+          "minG": 70,
+          "maxG": 220
+        },
+        {
+          "roleId": "oil_cooking_heat",
+          "minG": 2,
+          "maxG": 10
+        },
+        {
+          "roleId": "seasoning",
+          "minG": 0.5,
+          "maxG": 4,
+          "optional": true
+        }
+      ]
+    },
+    {
+      "archetypeId": "egg_cheese_grain_vegetable",
+      "label": "Egg + cheese + grain + vegetable plate",
+      "mealArchetypes": [
+        "breakfast",
+        "lunch",
+        "dinner"
+      ],
+      "method": {
+        "type": "heated"
+      },
+      "slots": [
+        {
+          "roleId": "egg_whole",
+          "minG": 45,
+          "maxG": 160
+        },
+        {
+          "roleId": "cheese",
+          "minG": 10,
+          "maxG": 60
+        },
+        {
+          "roleId": "grain_cooked",
+          "minG": 60,
+          "maxG": 250
+        },
+        {
+          "roleId": "vegetable_main_cook",
+          "minG": 70,
+          "maxG": 220
+        },
+        {
+          "roleId": "oil_cooking_heat",
+          "minG": 2,
+          "maxG": 10
+        }
+      ]
+    },
+    {
+      "archetypeId": "fruit_nut_snack",
+      "label": "Whole fruit + nuts snack",
+      "mealArchetypes": [
+        "snack"
+      ],
+      "method": {
+        "type": "no_cook"
+      },
+      "slots": [
+        {
+          "roleId": "fruit_ready_whole",
+          "minG": 60,
+          "maxG": 220
+        },
+        {
+          "roleId": "nuts_seeds_neutral",
+          "minG": 4,
+          "maxG": 30
+        }
+      ]
+    },
+    {
+      "archetypeId": "fruit_yogurt_snack",
+      "label": "Whole fruit + yogurt snack",
+      "mealArchetypes": [
+        "snack",
+        "mini_meal"
+      ],
+      "method": {
+        "type": "no_cook"
+      },
+      "slots": [
+        {
+          "roleId": "fruit_ready_whole",
+          "minG": 60,
+          "maxG": 200
+        },
+        {
+          "roleId": "yogurt_cultured",
+          "minG": 60,
+          "maxG": 220
+        }
+      ]
+    },
+    {
+      "archetypeId": "fruit_cheese_snack",
+      "label": "Whole fruit + cheese snack",
+      "mealArchetypes": [
+        "snack"
+      ],
+      "method": {
+        "type": "no_cook"
+      },
+      "slots": [
+        {
+          "roleId": "fruit_ready_whole",
+          "minG": 60,
+          "maxG": 200
+        },
+        {
+          "roleId": "cheese",
+          "minG": 10,
+          "maxG": 60
+        }
+      ]
+    },
+    {
+      "archetypeId": "fruit_nut_spread_snack",
+      "label": "Whole fruit + nut spread snack",
+      "mealArchetypes": [
+        "snack"
+      ],
+      "method": {
+        "type": "no_cook"
+      },
+      "slots": [
+        {
+          "roleId": "fruit_ready_whole",
+          "minG": 60,
+          "maxG": 200
+        },
+        {
+          "roleId": "nut_spread",
+          "minG": 5,
+          "maxG": 35
+        }
+      ]
+    },
+    {
+      "archetypeId": "vegetable_legume_cup",
+      "label": "Raw vegetable + legume savory cup",
+      "mealArchetypes": [
+        "snack",
+        "mini_meal"
+      ],
+      "method": {
+        "type": "no_cook"
+      },
+      "slots": [
+        {
+          "roleId": "vegetable_main_raw",
+          "minG": 60,
+          "maxG": 180
+        },
+        {
+          "roleId": "legume_cooked",
+          "minG": 50,
+          "maxG": 150
+        },
+        {
+          "roleId": "condiment",
+          "minG": 5,
+          "maxG": 20
+        }
+      ]
+    },
+    {
+      "archetypeId": "vegetable_cheese_cup",
+      "label": "Raw vegetable + cheese savory cup",
+      "mealArchetypes": [
+        "snack",
+        "mini_meal"
+      ],
+      "method": {
+        "type": "no_cook"
+      },
+      "slots": [
+        {
+          "roleId": "vegetable_main_raw",
+          "minG": 60,
+          "maxG": 180
+        },
+        {
+          "roleId": "cheese",
+          "minG": 10,
+          "maxG": 50
+        },
+        {
+          "roleId": "condiment",
+          "minG": 5,
+          "maxG": 20
+        }
+      ]
+    },
+    {
+      "archetypeId": "legume_grain_salad",
+      "label": "Legume + cooked grain + raw vegetable salad",
+      "mealArchetypes": [
+        "lunch",
+        "mini_meal",
+        "dinner"
+      ],
+      "method": {
+        "type": "no_cook"
+      },
+      "slots": [
+        {
+          "roleId": "legume_cooked",
+          "minG": 50,
+          "maxG": 180
+        },
+        {
+          "roleId": "grain_cooked",
+          "minG": 50,
+          "maxG": 180
+        },
+        {
+          "roleId": "vegetable_main_raw",
+          "minG": 60,
+          "maxG": 180
+        },
+        {
+          "roleId": "oil_finishing",
+          "minG": 2,
+          "maxG": 10
+        }
+      ]
+    },
+    {
+      "archetypeId": "cold_fish_grain_plate",
+      "label": "Ready seafood + cooked grain + raw vegetable plate",
+      "mealArchetypes": [
+        "lunch",
+        "mini_meal",
+        "dinner"
+      ],
+      "method": {
+        "type": "no_cook"
+      },
+      "slots": [
+        {
+          "roleId": "fish_seafood_ready",
+          "minG": 50,
+          "maxG": 160
+        },
+        {
+          "roleId": "grain_cooked",
+          "minG": 50,
+          "maxG": 180
+        },
+        {
+          "roleId": "vegetable_main_raw",
+          "minG": 60,
+          "maxG": 180
+        },
+        {
+          "roleId": "oil_finishing",
+          "minG": 2,
+          "maxG": 10
+        }
+      ]
+    },
+    {
+      "archetypeId": "protein_grain_plate",
+      "label": "Cooked protein + grain + vegetable plate",
+      "mealArchetypes": [
+        "lunch",
+        "dinner"
+      ],
+      "method": {
+        "type": "heated"
+      },
+      "slots": [
+        {
+          "oneOfRoles": [
+            "poultry",
+            "meat",
+            "fish_seafood_cook"
+          ],
+          "minG": 55,
+          "maxG": 180
+        },
+        {
+          "roleId": "grain_cooked",
+          "minG": 70,
+          "maxG": 250
+        },
+        {
+          "roleId": "vegetable_main_cook",
+          "minG": 90,
+          "maxG": 220
+        },
+        {
+          "roleId": "oil_cooking_heat",
+          "minG": 2,
+          "maxG": 12
+        },
+        {
+          "roleId": "seasoning",
+          "minG": 0.5,
+          "maxG": 4,
+          "optional": true
+        }
+      ]
+    },
+    {
+      "archetypeId": "protein_one_pot_grain",
+      "label": "Protein + dry grain one-pot",
+      "mealArchetypes": [
+        "lunch",
+        "dinner"
+      ],
+      "method": {
+        "type": "heated",
+        "minimumCookMinutes": 15
+      },
+      "slots": [
+        {
+          "oneOfRoles": [
+            "poultry",
+            "meat",
+            "fish_seafood_cook",
+            "legume_cooked"
+          ],
+          "minG": 60,
+          "maxG": 180
+        },
+        {
+          "roleId": "grain_dry_cook",
+          "minG": 30,
+          "maxG": 105
+        },
+        {
+          "roleId": "vegetable_main_cook",
+          "minG": 90,
+          "maxG": 220
+        },
+        {
+          "roleId": "oil_cooking_heat",
+          "minG": 2,
+          "maxG": 12
+        },
+        {
+          "roleId": "seasoning",
+          "minG": 0.5,
+          "maxG": 4,
+          "optional": true
+        }
+      ]
+    },
+    {
+      "archetypeId": "legume_cheese_grain_bowl",
+      "label": "Legume + cheese + grain + vegetable bowl",
+      "mealArchetypes": [
+        "lunch",
+        "dinner"
+      ],
+      "method": {
+        "type": "heated"
+      },
+      "slots": [
+        {
+          "roleId": "legume_cooked",
+          "minG": 50,
+          "maxG": 180
+        },
+        {
+          "roleId": "cheese",
+          "minG": 10,
+          "maxG": 50
+        },
+        {
+          "roleId": "grain_cooked",
+          "minG": 60,
+          "maxG": 240
+        },
+        {
+          "roleId": "vegetable_main_cook",
+          "minG": 90,
+          "maxG": 220
+        },
+        {
+          "roleId": "oil_cooking_heat",
+          "minG": 2,
+          "maxG": 10
+        }
+      ]
+    },
+    {
+      "archetypeId": "legume_nut_grain_bowl",
+      "label": "Legume + grain + savory nuts + vegetable bowl",
+      "mealArchetypes": [
+        "lunch",
+        "dinner"
+      ],
+      "method": {
+        "type": "heated"
+      },
+      "slots": [
+        {
+          "roleId": "legume_cooked",
+          "minG": 50,
+          "maxG": 180
+        },
+        {
+          "roleId": "grain_cooked",
+          "minG": 60,
+          "maxG": 240
+        },
+        {
+          "roleId": "vegetable_main_cook",
+          "minG": 90,
+          "maxG": 220
+        },
+        {
+          "roleId": "nuts_seeds_neutral",
+          "minG": 4,
+          "maxG": 24
+        },
+        {
+          "roleId": "oil_cooking_heat",
+          "minG": 2,
+          "maxG": 10
+        }
+      ]
+    },
+    {
+      "archetypeId": "tomato_pasta_bowl",
+      "label": "Pasta with explicit tomato sauce base",
+      "mealArchetypes": [
+        "lunch",
+        "dinner"
+      ],
+      "method": {
+        "type": "heated"
+      },
+      "slots": [
+        {
+          "roleId": "grain_dry_cook",
+          "minG": 40,
+          "maxG": 110
+        },
+        {
+          "roleId": "tomato_sauce_base",
+          "minG": 80,
+          "maxG": 220
+        },
+        {
+          "oneOfRoles": [
+            "legume_cooked",
+            "poultry",
+            "meat",
+            "fish_seafood_cook",
+            "cheese"
+          ],
+          "minG": 20,
+          "maxG": 160,
+          "optional": true
+        },
+        {
+          "roleId": "oil_cooking_heat",
+          "minG": 2,
+          "maxG": 10
+        },
+        {
+          "roleId": "aromatic_onion",
+          "minG": 5,
+          "maxG": 50,
+          "optional": true
+        },
+        {
+          "roleId": "seasoning",
+          "minG": 0.5,
+          "maxG": 4,
+          "optional": true
+        }
+      ]
+    },
+    {
+      "archetypeId": "vegetable_frittata",
+      "label": "Egg-based vegetable frittata",
+      "mealArchetypes": [
+        "breakfast",
+        "lunch",
+        "dinner",
+        "mini_meal"
+      ],
+      "method": {
+        "type": "heated"
+      },
+      "slots": [
+        {
+          "roleId": "egg_whole",
+          "minG": 70,
+          "maxG": 160
+        },
+        {
+          "roleId": "vegetable_main_cook",
+          "minG": 80,
+          "maxG": 220
+        },
+        {
+          "roleId": "cheese",
+          "minG": 0,
+          "maxG": 50,
+          "optional": true
+        },
+        {
+          "roleId": "oil_cooking_heat",
+          "minG": 2,
+          "maxG": 8
+        },
+        {
+          "roleId": "aromatic_onion",
+          "minG": 0,
+          "maxG": 50,
+          "optional": true
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "archetypeCount": 20,
+    "mealCoverage": {
+      "breakfast": 7,
+      "lunch": 10,
+      "dinner": 10,
+      "snack": 7,
+      "mini_meal": 8
+    }
+  }
+}

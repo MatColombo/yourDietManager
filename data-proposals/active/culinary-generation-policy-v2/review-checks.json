@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "roleCount": 32,
+  "archetypeCount": 20,
+  "emptyRoles": [],
+  "policySha256": "033d19856f1ee7491bbd5eec3cbab3f286f0d9920ff0d05a3d6551e818451a76",
+  "rolePoolsSha256": "a91393e4094a16220bc2e6c8ef220419abf917b7a05d311cb7d01ea0e57c4d66",
+  "archetypesSha256": "4b1b70176036bde7d8e24f2610a21257a6224c36227e291fc07201aa61465d2d"
+}

@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "proposalId": "culinary-generation-policy-v2",
+  "proposalType": "culinary_generation_policy",
+  "proposalDate": "2026-09-16",
+  "baseline": {
+    "catalogVersion": "1.2.0-planner-phase-d",
+    "catalogManifestSha256": "e72e3b038ee49086b7eb4336403354e00406b7ebbd398f27569b31db7529acdf",
+    "taxonomyTermsSha256": "a2b434b48f53777d4e078b7f3f23df89c3cee8acd69f12720b742286ce12e708",
+    "ingredientCorpusDigest": "2703f92d568201e86ce9123ba283653306f79c4da82fca28a0bea1c4ed71a8e5",
+    "recipeCorpusDigest": "e050f07cd522b3fb6d223a96dad673c8241ecb85f40d1ded0efc083537a2bf77",
+    "ingredientCount": 600,
+    "recipeVersionCount": 1800,
+    "ingredientSemanticProposalId": "ingredient-semantic-consolidation-round1",
+    "ingredientSemanticProposalSha256": "c0b7f65ab9cd39e6ef989cc9de8db5f1744fdc0bc61001aeb94a9ec9a851d1ef",
+    "proposedProductTermsSha256": "04a28a4eced25f4ec3c9a37904e39398a90c807430adfd42d9fbade6abe0ab4c"
+  },
+  "policyVersion": "2.0.0-dev",
+  "rolePoolsFile": "role-pools-v2.json",
+  "archetypesFile": "archetypes-v2.json",
+  "globalRules": {
+    "servingCount": 1,
+    "fixedProposalQuantities": true,
+    "workflowMayEnergyFitAmounts": false,
+    "workflowMayFuzzyMatchIngredients": false,
+    "deriveNutrition": true,
+    "deriveAllergens": true,
+    "requireExistingOrProposedIngredientRevision": true,
+    "requireExplicitCulinaryArchetype": true,
+    "requireExplicitIngredientRole": true,
+    "heatedRecipesRequireRole": "oil_cooking_heat",
+    "finishingOilCannotSatisfyHeatedOilRole": true,
+    "flavoringRolesCannotSatisfyMainVegetable": true,
+    "tomatoConcentrateMaxG": 30,
+    "fruitCulinaryAcidCannotSatisfyWholeFruit": true,
+    "exactDuplicateIngredientSetsAllowed": false,
+    "titleUsesCanonicalSemanticNames": true,
+    "sourceDescriptorMayNotBeDisplayIdentity": true
+  },
+  "hardExclusions": [
+    {
+      "code": "no_flaxseed_oil_heated",
+      "roleId": "oil_cooking_heat",
+      "excludedConceptIds": [
+        "product_concept_flaxseed_oil"
+      ]
+    },
+    {
+      "code": "no_culinary_acid_as_fruit_portion",
+      "roleId": "fruit_ready_whole",
+      "excludedConceptIds": [
+        "product_concept_lemon",
+        "product_concept_lime"
+      ]
+    },
+    {
+      "code": "no_chili_as_main_vegetable",
+      "roleIds": [
+        "vegetable_main_raw",
+        "vegetable_main_cook"
+      ],
+      "excludedConceptIds": [
+        "product_concept_banana_pepper",
+        "product_concept_jalapeno",
+        "product_concept_serrano"
+      ]
+    },
+    {
+      "code": "no_tomato_paste_as_main_vegetable",
+      "roleId": "vegetable_main_cook",
+      "excludedConceptIds": [
+        "product_concept_tomato_paste"
+      ]
+    },
+    {
+      "code": "no_sweet_nut_in_savory_role",
+      "roleId": "nuts_seeds_neutral",
+      "excludedSourcePatterns": [
+        "sweetened",
+        "honey roasted"
+      ]
+    },
+    {
+      "code": "no_puffed_or_self_rising_as_dry_grain",
+      "roleId": "grain_dry_cook",
+      "excludedSourcePatterns": [
+        "millet, puffed",
+        "self-rising"
+      ]
+    }
+  ],
+  "designNotes": [
+    "Policy is a development proposal-validation contract, not a production API or random generator.",
+    "Role pools are explicit current-catalog snapshots. New ingredient proposals must extend them deliberately.",
+    "Chat supplies semantic/culinary intent; GitHub workflow only validates exact IDs, roles, amounts and invariants."
+  ],
+  "files": {
+    "rolePoolsSha256": "a91393e4094a16220bc2e6c8ef220419abf917b7a05d311cb7d01ea0e57c4d66",
+    "archetypesSha256": "4b1b70176036bde7d8e24f2610a21257a6224c36227e291fc07201aa61465d2d"
+  }
+}

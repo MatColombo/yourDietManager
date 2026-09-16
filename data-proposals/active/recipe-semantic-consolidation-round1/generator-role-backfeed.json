@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "recipe-semantic-generator-backfeed-round1",
+  "sourceProposalId": "recipe-semantic-consolidation-round1",
+  "roleFindings": [
+    {
+      "role": "fruitReady",
+      "severity": "P0",
+      "problem": "Pool contains items that are not sensible 60-220 g ready-to-eat fruit portions in bowls/snacks.",
+      "action": "exclude_or_create_specific_role",
+      "examples": [
+        "lemon",
+        "lime",
+        "rhubarb",
+        "quince",
+        "raw plantain",
+        "watermelon rind",
+        "olive"
+      ]
+    },
+    {
+      "role": "dairyYogurt",
+      "severity": "P1",
+      "problem": "Role conflates yogurt, milk and buttermilk; some profiles support milk, others require yogurt-like texture.",
+      "action": "split_yogurt_and_milk_roles_or_profile_specific_eligibility"
+    },
+    {
+      "role": "oilCooking",
+      "severity": "P0",
+      "problem": "Flaxseed oil is selected for heated cooking.",
+      "action": "exclude_flaxseed_oil_from_heated_cooking_and_allow_only_cold_use"
+    },
+    {
+      "role": "carbDryCook",
+      "severity": "P1",
+      "problem": "Puffed millet and self-rising cornmeal are treated as generic dry grains for one-pot cooking.",
+      "action": "tighten_dry_grain_eligibility"
+    },
+    {
+      "role": "vegetableRaw/vegetableCook",
+      "severity": "P1",
+      "problem": "Jalapeno/serrano can become 60-220 g main vegetable portions; tomato paste can become 100-220 g main vegetable.",
+      "action": "separate_flavoring_peppers_and_tomato_concentrates_from_main_vegetable_role"
+    },
+    {
+      "role": "breakfastDryGrain",
+      "severity": "P1",
+      "problem": "Raw quinoa inherits an 8 minute porridge cook time.",
+      "action": "ingredient_or_profile_specific_minimum_cook_time"
+    },
+    {
+      "role": "nutsSeeds",
+      "severity": "P2",
+      "problem": "Sweetened coconut and honey-roasted almonds can enter savory legume-nut bowls.",
+      "action": "savory_variant_filter_for_nuts_seeds"
+    }
+  ],
+  "ingredientReviewBackfeed": [
+    {
+      "ingredientRevisionId": "ing_fdc_2747676_r1",
+      "sourceNameEn": "Watermelon, seedless, rind only, raw",
+      "currentConcept": "product_concept_watermelon",
+      "finding": "Variant is watermelon rind, not watermelon flesh; product-facing identity should be reviewed before promotion.",
+      "severity": "P1"
+    }
+  ]
+}

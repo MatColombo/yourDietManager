@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "proposalId": "corpus-simulation-round1",
+  "checks": [
+    "Final recipe cardinality remains 1800.",
+    "All 30 Phase B meal/energy quotas are restored exactly.",
+    "All 506 local repairs are replayed deterministically from T4-A/T4-B rather than copied from an opaque output.",
+    "All 46 archetype conversions are retained without amount fitting.",
+    "All 212 T4-C replacements are compiled from authored fixed quantities with derived nutrition and allergens.",
+    "Exact recipe signatures and same-meal near duplicates are checked across the complete simulated corpus.",
+    "Semantic product-concept duplicates are checked after applying the ingredient semantic overlay.",
+    "Duplicate user-facing titles and exact ingredient-set collisions are surfaced as promotion blockers.",
+    "Planner feasibility is checked at the tightest 2% energy tolerance for targets 800 through 2600 kcal; success implies 5% and 10% success for the same plans.",
+    "No canonical catalog file is mutated by T4-E."
+  ]
+}

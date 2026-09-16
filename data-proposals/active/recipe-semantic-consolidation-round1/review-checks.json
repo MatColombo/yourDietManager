@@ -1,0 +1,13 @@
+{
+  "schemaVersion": 1,
+  "recipeCount": 1800,
+  "unreviewed": 0,
+  "decisionCount": 1800,
+  "counts": {
+    "KEEP_RENAME": 1036,
+    "RETIRE": 105,
+    "REWORK": 563,
+    "CONSOLIDATE_DUPLICATE": 96
+  },
+  "ingredientSemanticProposalSha256": "c0b7f65ab9cd39e6ef989cc9de8db5f1744fdc0bc61001aeb94a9ec9a851d1ef"
+}

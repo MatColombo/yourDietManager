@@ -1,0 +1,9 @@
+{
+  "reviewCountMatchesCorpus": true,
+  "allReviewsHaveDecision": true,
+  "allChangeHashesPresent": true,
+  "allProposedParentSubcategoriesExist": true,
+  "newTermIdsUnique": true,
+  "newTermIdsDoNotCollide": true,
+  "unresolved": 0
+}

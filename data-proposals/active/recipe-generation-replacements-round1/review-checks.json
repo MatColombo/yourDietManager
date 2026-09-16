@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "candidateCount": 212,
+  "expectedAcceptedCount": 212,
+  "byMeal": {
+    "breakfast": 77,
+    "dinner": 11,
+    "lunch": 4,
+    "mini_meal": 27,
+    "snack": 93
+  },
+  "nonEmptyTitles": 212,
+  "unresolved": 0,
+  "workflowMayAlterAmounts": false,
+  "fuzzyMatchingUsed": false
+}

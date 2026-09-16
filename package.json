@@ -86,6 +86,9 @@
     "revision:v2:mediterranean": "node scripts/revision-v2/stage-mediterranean.mjs",
     "revision:v2:gate": "node scripts/revision-v2/core-gate.mjs",
     "revision:v2:benchmark": "node scripts/revision-v2/benchmark-r7.mjs",
-    "revision:v2:regression": "node scripts/revision-v2/run-regression.mjs"
+    "revision:v2:regression": "node scripts/revision-v2/run-regression.mjs",
+    "data-proposals:check": "node scripts/data-proposals/reconcile.mjs --check",
+    "data-proposals:materialize": "node scripts/data-proposals/reconcile.mjs --materialize",
+    "data-proposals:t4e-feasibility": "node scripts/data-proposals/t4e-planner-feasibility.mjs"
   }
 }

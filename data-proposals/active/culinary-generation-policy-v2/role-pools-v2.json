@@ -1,0 +1,709 @@
+{
+  "schemaVersion": 1,
+  "policyId": "culinary-generation-policy-v2",
+  "sourceIngredientProposalId": "ingredient-semantic-consolidation-round1",
+  "sourceIngredientProposalSha256": "c0b7f65ab9cd39e6ef989cc9de8db5f1744fdc0bc61001aeb94a9ec9a851d1ef",
+  "roles": [
+    {
+      "roleId": "fruit_ready_whole",
+      "purpose": "Ready-to-eat whole fruit portion; excludes culinary acids, cooking fruit, rind and savory fruit condiments.",
+      "portionG": {
+        "min": 60,
+        "default": 120,
+        "max": 220
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_1105073_r1",
+        "ing_fdc_1105314_r1",
+        "ing_fdc_167750_r1",
+        "ing_fdc_167754_r1",
+        "ing_fdc_167755_r1",
+        "ing_fdc_167759_r1",
+        "ing_fdc_167760_r1",
+        "ing_fdc_167761_r1",
+        "ing_fdc_167762_r1",
+        "ing_fdc_167765_r1",
+        "ing_fdc_167769_r1",
+        "ing_fdc_167776_r1",
+        "ing_fdc_167777_r1",
+        "ing_fdc_167778_r1",
+        "ing_fdc_167779_r1",
+        "ing_fdc_167782_r1",
+        "ing_fdc_167783_r1",
+        "ing_fdc_167793_r1",
+        "ing_fdc_168154_r1",
+        "ing_fdc_168175_r1",
+        "ing_fdc_168176_r1",
+        "ing_fdc_168177_r1",
+        "ing_fdc_1750339_r1",
+        "ing_fdc_1750340_r1",
+        "ing_fdc_1750341_r1",
+        "ing_fdc_1750342_r1",
+        "ing_fdc_1750343_r1",
+        "ing_fdc_2346398_r1",
+        "ing_fdc_2710815_r1",
+        "ing_fdc_2710831_r1",
+        "ing_fdc_2710832_r1",
+        "ing_fdc_2710833_r1",
+        "ing_fdc_2710834_r1",
+        "ing_fdc_2710836_r1",
+        "ing_fdc_2710837_r1",
+        "ing_fdc_325430_r1",
+        "ing_fdc_327046_r1",
+        "ing_fdc_746770_r1",
+        "ing_fdc_746771_r1",
+        "ing_fdc_746773_r1"
+      ]
+    },
+    {
+      "roleId": "fruit_dried",
+      "purpose": "Dried fruit used in small portions.",
+      "portionG": {
+        "min": 10,
+        "default": 25,
+        "max": 45
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_167780_r1",
+        "ing_fdc_168152_r1",
+        "ing_fdc_168158_r1",
+        "ing_fdc_168162_r1",
+        "ing_fdc_168164_r1",
+        "ing_fdc_168165_r1",
+        "ing_fdc_168166_r1",
+        "ing_fdc_746768_r1"
+      ]
+    },
+    {
+      "roleId": "fruit_culinary_acid",
+      "purpose": "Citrus used as acid/flavor, never as the main fruit portion.",
+      "portionG": {
+        "min": 2,
+        "default": 15,
+        "max": 40
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_167746_r1",
+        "ing_fdc_168155_r1"
+      ]
+    },
+    {
+      "roleId": "fruit_requires_cooking",
+      "purpose": "Fruit/fruit-like items that require cooking or special preparation before use.",
+      "portionG": {
+        "min": 30,
+        "default": 100,
+        "max": 220
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_167758_r1",
+        "ing_fdc_168163_r1",
+        "ing_fdc_168168_r1",
+        "ing_fdc_2710817_r1",
+        "ing_fdc_2710818_r1",
+        "ing_fdc_2710843_r1",
+        "ing_fdc_2747676_r1"
+      ]
+    },
+    {
+      "roleId": "savory_fruit_condiment",
+      "purpose": "Savory fruit used as garnish/condiment, not a fruit serving.",
+      "portionG": {
+        "min": 5,
+        "default": 20,
+        "max": 45
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_332791_r1"
+      ]
+    },
+    {
+      "roleId": "vegetable_main_raw",
+      "purpose": "Vegetables suitable as a meaningful raw main portion.",
+      "portionG": {
+        "min": 60,
+        "default": 120,
+        "max": 220
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_167714_r1",
+        "ing_fdc_2258586_r1",
+        "ing_fdc_2258587_r1",
+        "ing_fdc_2258588_r1",
+        "ing_fdc_2258589_r1",
+        "ing_fdc_2258590_r1",
+        "ing_fdc_2258591_r1",
+        "ing_fdc_2685568_r1",
+        "ing_fdc_2685569_r1",
+        "ing_fdc_2685572_r1",
+        "ing_fdc_2685573_r1",
+        "ing_fdc_2685575_r1",
+        "ing_fdc_2685576_r1",
+        "ing_fdc_2710822_r1",
+        "ing_fdc_2710823_r1",
+        "ing_fdc_2710826_r1",
+        "ing_fdc_2747653_r1",
+        "ing_fdc_2747655_r1",
+        "ing_fdc_2747662_r1",
+        "ing_fdc_2747664_r1",
+        "ing_fdc_2747665_r1",
+        "ing_fdc_321360_r1",
+        "ing_fdc_323505_r1",
+        "ing_fdc_746769_r1",
+        "ing_fdc_747447_r1"
+      ]
+    },
+    {
+      "roleId": "vegetable_main_cook",
+      "purpose": "Vegetables suitable as a meaningful cooked main portion.",
+      "portionG": {
+        "min": 70,
+        "default": 160,
+        "max": 280
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_167714_r1",
+        "ing_fdc_168119_r1",
+        "ing_fdc_2003603_r1",
+        "ing_fdc_2258586_r1",
+        "ing_fdc_2258587_r1",
+        "ing_fdc_2258588_r1",
+        "ing_fdc_2258589_r1",
+        "ing_fdc_2258590_r1",
+        "ing_fdc_2258591_r1",
+        "ing_fdc_2346400_r1",
+        "ing_fdc_2346404_r1",
+        "ing_fdc_2644291_r1",
+        "ing_fdc_2685568_r1",
+        "ing_fdc_2685569_r1",
+        "ing_fdc_2685570_r1",
+        "ing_fdc_2685571_r1",
+        "ing_fdc_2685572_r1",
+        "ing_fdc_2685573_r1",
+        "ing_fdc_2685574_r1",
+        "ing_fdc_2685575_r1",
+        "ing_fdc_2685576_r1",
+        "ing_fdc_2685577_r1",
+        "ing_fdc_2685578_r1",
+        "ing_fdc_2685581_r1",
+        "ing_fdc_2710822_r1",
+        "ing_fdc_2710823_r1",
+        "ing_fdc_2710826_r1",
+        "ing_fdc_2747653_r1",
+        "ing_fdc_2747655_r1",
+        "ing_fdc_2747659_r1",
+        "ing_fdc_2747662_r1",
+        "ing_fdc_2747664_r1",
+        "ing_fdc_2747665_r1",
+        "ing_fdc_2747674_r1",
+        "ing_fdc_321360_r1",
+        "ing_fdc_323505_r1",
+        "ing_fdc_746764_r1",
+        "ing_fdc_746769_r1",
+        "ing_fdc_747447_r1"
+      ]
+    },
+    {
+      "roleId": "aromatic_onion",
+      "purpose": "Onion/aromatic role; cannot satisfy a main-vegetable slot.",
+      "portionG": {
+        "min": 5,
+        "default": 30,
+        "max": 70
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_1104962_r1",
+        "ing_fdc_790577_r1",
+        "ing_fdc_790646_r1"
+      ]
+    },
+    {
+      "roleId": "chili_flavoring",
+      "purpose": "Hot/strong pepper flavoring role; cannot satisfy a main-vegetable slot.",
+      "portionG": {
+        "min": 2,
+        "default": 10,
+        "max": 30
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_2747660_r1",
+        "ing_fdc_2747661_r1",
+        "ing_fdc_2747663_r1"
+      ]
+    },
+    {
+      "roleId": "tomato_sauce_base",
+      "purpose": "Tomato sauce/puree/crushed/whole base used where a sauce is explicitly expected.",
+      "portionG": {
+        "min": 60,
+        "default": 140,
+        "max": 240
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_2685579_r1",
+        "ing_fdc_2685582_r1"
+      ]
+    },
+    {
+      "roleId": "tomato_concentrate",
+      "purpose": "Concentrated tomato flavoring; never a main vegetable.",
+      "portionG": {
+        "min": 5,
+        "default": 15,
+        "max": 30
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_2685580_r1"
+      ]
+    },
+    {
+      "roleId": "grain_cooked",
+      "purpose": "Cooked grain/pasta/noodle/starchy base.",
+      "portionG": {
+        "min": 60,
+        "default": 140,
+        "max": 280
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_168871_r1",
+        "ing_fdc_168875_r1",
+        "ing_fdc_168878_r1",
+        "ing_fdc_168880_r1",
+        "ing_fdc_168897_r1",
+        "ing_fdc_168900_r1",
+        "ing_fdc_168910_r1",
+        "ing_fdc_168914_r1",
+        "ing_fdc_168916_r1",
+        "ing_fdc_168919_r1",
+        "ing_fdc_168926_r1",
+        "ing_fdc_168928_r1",
+        "ing_fdc_168935_r1",
+        "ing_fdc_169700_r1",
+        "ing_fdc_169732_r1",
+        "ing_fdc_169734_r1",
+        "ing_fdc_169762_r1",
+        "ing_fdc_170493_r1"
+      ]
+    },
+    {
+      "roleId": "grain_dry_cook",
+      "purpose": "Dry grain/pasta/noodle suitable for cooking as the recipe starch.",
+      "portionG": {
+        "min": 25,
+        "default": 60,
+        "max": 120
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_168867_r1",
+        "ing_fdc_168874_r1",
+        "ing_fdc_168876_r1",
+        "ing_fdc_168877_r1",
+        "ing_fdc_168879_r1",
+        "ing_fdc_168881_r1",
+        "ing_fdc_168883_r1",
+        "ing_fdc_168899_r1",
+        "ing_fdc_168908_r1",
+        "ing_fdc_168915_r1",
+        "ing_fdc_168927_r1",
+        "ing_fdc_169699_r1",
+        "ing_fdc_169731_r1",
+        "ing_fdc_169733_r1",
+        "ing_fdc_169755_r1",
+        "ing_fdc_2512380_r1",
+        "ing_fdc_2512381_r1",
+        "ing_fdc_2710820_r1",
+        "ing_fdc_2710821_r1",
+        "ing_fdc_2710825_r1",
+        "ing_fdc_2710838_r1"
+      ]
+    },
+    {
+      "roleId": "breakfast_cereal_ready",
+      "purpose": "Ready-to-eat breakfast cereal; no cooking implied.",
+      "portionG": {
+        "min": 15,
+        "default": 35,
+        "max": 70
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_167715_r1",
+        "ing_fdc_167724_r1",
+        "ing_fdc_167725_r1",
+        "ing_fdc_168138_r1"
+      ]
+    },
+    {
+      "roleId": "breakfast_grain_long_cook",
+      "purpose": "Breakfast grain requiring real cooking time; currently quinoa only.",
+      "portionG": {
+        "min": 20,
+        "default": 45,
+        "max": 80
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_168874_r1"
+      ],
+      "minimumCookMinutes": 15
+    },
+    {
+      "roleId": "legume_cooked",
+      "purpose": "Cooked/drained legume.",
+      "portionG": {
+        "min": 50,
+        "default": 120,
+        "max": 220
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_168128_r1",
+        "ing_fdc_169065_r1",
+        "ing_fdc_172421_r1",
+        "ing_fdc_172422_r1",
+        "ing_fdc_172427_r1",
+        "ing_fdc_172429_r1",
+        "ing_fdc_2644285_r1",
+        "ing_fdc_2644286_r1",
+        "ing_fdc_2644287_r1",
+        "ing_fdc_2644288_r1",
+        "ing_fdc_2644289_r1",
+        "ing_fdc_2644290_r1",
+        "ing_fdc_2644292_r1",
+        "ing_fdc_2644293_r1",
+        "ing_fdc_2644294_r1"
+      ]
+    },
+    {
+      "roleId": "nuts_seeds_neutral",
+      "purpose": "Neutral/savory-compatible nuts and seeds.",
+      "portionG": {
+        "min": 4,
+        "default": 15,
+        "max": 35
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_168593_r1",
+        "ing_fdc_168594_r1",
+        "ing_fdc_168598_r1",
+        "ing_fdc_168601_r1",
+        "ing_fdc_168602_r1",
+        "ing_fdc_2346392_r1",
+        "ing_fdc_2346393_r1",
+        "ing_fdc_2346394_r1",
+        "ing_fdc_2346395_r1",
+        "ing_fdc_2515373_r1",
+        "ing_fdc_2515374_r1",
+        "ing_fdc_2515375_r1",
+        "ing_fdc_2515378_r1",
+        "ing_fdc_2515379_r1",
+        "ing_fdc_2515380_r1",
+        "ing_fdc_2515381_r1",
+        "ing_fdc_323294_r1",
+        "ing_fdc_325524_r1"
+      ]
+    },
+    {
+      "roleId": "nuts_seeds_sweet",
+      "purpose": "Explicitly sweetened nuts/seeds; only allowed in sweet archetypes.",
+      "portionG": {
+        "min": 4,
+        "default": 12,
+        "max": 25
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_168586_r1",
+        "ing_fdc_168592_r1"
+      ]
+    },
+    {
+      "roleId": "nut_spread",
+      "purpose": "Nut/seed spread.",
+      "portionG": {
+        "min": 5,
+        "default": 15,
+        "max": 35
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_168588_r1",
+        "ing_fdc_168595_r1",
+        "ing_fdc_168597_r1",
+        "ing_fdc_168603_r1",
+        "ing_fdc_168604_r1"
+      ]
+    },
+    {
+      "roleId": "yogurt_cultured",
+      "purpose": "Yogurt-like cultured dairy base.",
+      "portionG": {
+        "min": 60,
+        "default": 140,
+        "max": 240
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_169898_r1",
+        "ing_fdc_330415_r1"
+      ]
+    },
+    {
+      "roleId": "milk_liquid",
+      "purpose": "Plain fluid milk for cereal/porridge/smoothie roles.",
+      "portionG": {
+        "min": 80,
+        "default": 160,
+        "max": 300
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_169868_r1"
+      ]
+    },
+    {
+      "roleId": "cultured_milk_liquid",
+      "purpose": "Cultured buttermilk; allowed only in explicitly compatible archetypes.",
+      "portionG": {
+        "min": 60,
+        "default": 140,
+        "max": 240
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_167697_r1"
+      ]
+    },
+    {
+      "roleId": "cheese",
+      "purpose": "Cheese role.",
+      "portionG": {
+        "min": 10,
+        "default": 35,
+        "max": 80
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_167703_r1",
+        "ing_fdc_167705_r1",
+        "ing_fdc_167716_r1",
+        "ing_fdc_167735_r1",
+        "ing_fdc_168098_r1",
+        "ing_fdc_168114_r1",
+        "ing_fdc_168121_r1",
+        "ing_fdc_168124_r1",
+        "ing_fdc_168141_r1",
+        "ing_fdc_169050_r1",
+        "ing_fdc_169051_r1",
+        "ing_fdc_169078_r1"
+      ]
+    },
+    {
+      "roleId": "egg_whole",
+      "purpose": "Whole egg role.",
+      "portionG": {
+        "min": 45,
+        "default": 100,
+        "max": 160
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_169904_r1",
+        "ing_fdc_170893_r1",
+        "ing_fdc_171287_r1",
+        "ing_fdc_748967_r1"
+      ]
+    },
+    {
+      "roleId": "poultry",
+      "purpose": "Poultry protein role.",
+      "portionG": {
+        "min": 50,
+        "default": 120,
+        "max": 200
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_167709_r1",
+        "ing_fdc_167710_r1",
+        "ing_fdc_167713_r1",
+        "ing_fdc_168120_r1",
+        "ing_fdc_171051_r1",
+        "ing_fdc_171052_r1",
+        "ing_fdc_171054_r1",
+        "ing_fdc_171062_r1",
+        "ing_fdc_171065_r1",
+        "ing_fdc_171066_r1",
+        "ing_fdc_171067_r1",
+        "ing_fdc_171069_r1",
+        "ing_fdc_171070_r1",
+        "ing_fdc_171072_r1"
+      ]
+    },
+    {
+      "roleId": "meat",
+      "purpose": "Meat protein role.",
+      "portionG": {
+        "min": 50,
+        "default": 120,
+        "max": 200
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_167816_r1",
+        "ing_fdc_167817_r1",
+        "ing_fdc_167829_r1",
+        "ing_fdc_167833_r1",
+        "ing_fdc_167837_r1",
+        "ing_fdc_167838_r1",
+        "ing_fdc_167845_r1",
+        "ing_fdc_167846_r1",
+        "ing_fdc_167847_r1",
+        "ing_fdc_167848_r1",
+        "ing_fdc_167852_r1",
+        "ing_fdc_167855_r1",
+        "ing_fdc_167874_r1",
+        "ing_fdc_167876_r1",
+        "ing_fdc_167880_r1",
+        "ing_fdc_167885_r1",
+        "ing_fdc_167886_r1",
+        "ing_fdc_167894_r1",
+        "ing_fdc_167901_r1",
+        "ing_fdc_167902_r1",
+        "ing_fdc_167903_r1",
+        "ing_fdc_167907_r1",
+        "ing_fdc_167908_r1",
+        "ing_fdc_167912_r1",
+        "ing_fdc_167915_r1",
+        "ing_fdc_167916_r1",
+        "ing_fdc_167917_r1",
+        "ing_fdc_167918_r1",
+        "ing_fdc_167919_r1",
+        "ing_fdc_167920_r1"
+      ]
+    },
+    {
+      "roleId": "fish_seafood_cook",
+      "purpose": "Fish/seafood suitable for a cooked recipe.",
+      "portionG": {
+        "min": 50,
+        "default": 120,
+        "max": 200
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_167742_r1",
+        "ing_fdc_171948_r1",
+        "ing_fdc_171949_r1",
+        "ing_fdc_171950_r1",
+        "ing_fdc_171951_r1",
+        "ing_fdc_171952_r1",
+        "ing_fdc_171953_r1",
+        "ing_fdc_171954_r1",
+        "ing_fdc_171955_r1",
+        "ing_fdc_171956_r1",
+        "ing_fdc_171958_r1",
+        "ing_fdc_171959_r1",
+        "ing_fdc_171960_r1",
+        "ing_fdc_171962_r1",
+        "ing_fdc_171963_r1",
+        "ing_fdc_171964_r1",
+        "ing_fdc_171965_r1",
+        "ing_fdc_171966_r1",
+        "ing_fdc_171967_r1",
+        "ing_fdc_171968_r1",
+        "ing_fdc_171969_r1",
+        "ing_fdc_171971_r1",
+        "ing_fdc_171972_r1",
+        "ing_fdc_171975_r1",
+        "ing_fdc_171976_r1",
+        "ing_fdc_171978_r1",
+        "ing_fdc_171980_r1",
+        "ing_fdc_171981_r1",
+        "ing_fdc_171985_r1"
+      ]
+    },
+    {
+      "roleId": "fish_seafood_ready",
+      "purpose": "Documented ready-to-eat seafood for cold/no-cook use.",
+      "portionG": {
+        "min": 50,
+        "default": 100,
+        "max": 160
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_167742_r1",
+        "ing_fdc_171956_r1",
+        "ing_fdc_171963_r1",
+        "ing_fdc_171971_r1",
+        "ing_fdc_171975_r1",
+        "ing_fdc_171980_r1"
+      ]
+    },
+    {
+      "roleId": "oil_cooking_heat",
+      "purpose": "Oil allowed in heated cooking.",
+      "portionG": {
+        "min": 2,
+        "default": 6,
+        "max": 15
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_167737_r1",
+        "ing_fdc_171413_r1"
+      ]
+    },
+    {
+      "roleId": "oil_finishing",
+      "purpose": "Oil allowed for cold finishing/dressing.",
+      "portionG": {
+        "min": 2,
+        "default": 6,
+        "max": 15
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_167702_r1",
+        "ing_fdc_167737_r1",
+        "ing_fdc_171413_r1"
+      ]
+    },
+    {
+      "roleId": "seasoning",
+      "purpose": "Herbs/spices used in small amounts.",
+      "portionG": {
+        "min": 0.5,
+        "default": 2,
+        "max": 6
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_169231_r1",
+        "ing_fdc_169765_r1",
+        "ing_fdc_169997_r1",
+        "ing_fdc_170416_r1",
+        "ing_fdc_170486_r1",
+        "ing_fdc_170917_r1",
+        "ing_fdc_170919_r1",
+        "ing_fdc_170921_r1",
+        "ing_fdc_170924_r1",
+        "ing_fdc_170926_r1",
+        "ing_fdc_170927_r1",
+        "ing_fdc_170928_r1",
+        "ing_fdc_326698_r1"
+      ]
+    },
+    {
+      "roleId": "condiment",
+      "purpose": "Condiment/sauce used in small amounts.",
+      "portionG": {
+        "min": 5,
+        "default": 15,
+        "max": 35
+      },
+      "ingredientRevisionIds": [
+        "ing_fdc_167684_r1",
+        "ing_fdc_167693_r1",
+        "ing_fdc_167695_r1",
+        "ing_fdc_167700_r1",
+        "ing_fdc_168094_r1",
+        "ing_fdc_168096_r1",
+        "ing_fdc_168099_r1",
+        "ing_fdc_168100_r1",
+        "ing_fdc_168109_r1",
+        "ing_fdc_168112_r1",
+        "ing_fdc_168115_r1"
+      ]
+    }
+  ],
+  "summary": {
+    "roleCount": 32,
+    "totalAssignments": 343,
+    "emptyRoles": []
+  }
+}

@@ -1,0 +1,42 @@
+name: Reconcile data proposals
+
+on:
+  pull_request:
+    paths:
+      - 'data-proposals/**'
+      - 'scripts/data-proposals/**'
+      - 'tests/data-proposal-reconciliation.test.mjs'
+      - 'public/data/**'
+      - 'package.json'
+      - '.github/workflows/data-proposals.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reconcile:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 22
+      - name: Check deterministic reconciliation
+        run: npm run data-proposals:check
+      - name: Run reconciler tests
+        run: node --test tests/data-proposal-reconciliation.test.mjs
+      - name: Materialize staging result
+        run: npm run data-proposals:materialize
+      - name: Run T4-E planner feasibility
+        run: npm run data-proposals:t4e-feasibility
+      - name: Upload reconciliation artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: data-proposal-reconciliation-${{ github.run_number }}
+          path: corpus/staging/data-proposals
+          if-no-files-found: error
+          retention-days: 14

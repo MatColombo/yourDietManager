@@ -1,0 +1,5690 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "ingredient-semantic-round1",
+  "terms": [
+    {
+      "termId": "product_concept_soy_flour",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_soy_products",
+      "i18n": {
+        "it": {
+          "label": "Farina di soia",
+          "description": ""
+        },
+        "en": {
+          "label": "Soy flour",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "di",
+        "farina",
+        "flour",
+        "soia",
+        "soy"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_sweet_potato_fries",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_prepared_potato",
+      "i18n": {
+        "it": {
+          "label": "Patate dolci fritte",
+          "description": ""
+        },
+        "en": {
+          "label": "Sweet potato fries",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "dolci",
+        "fries",
+        "fritte",
+        "patate",
+        "potato",
+        "sweet"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_tofu_mayonnaise",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_mayonnaise_dressings",
+      "i18n": {
+        "it": {
+          "label": "Maionese al tofu",
+          "description": ""
+        },
+        "en": {
+          "label": "Tofu mayonnaise",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "al",
+        "maionese",
+        "mayonnaise",
+        "tofu"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_flaxseed_oil",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_oils",
+      "i18n": {
+        "it": {
+          "label": "Olio di semi di lino",
+          "description": ""
+        },
+        "en": {
+          "label": "Flaxseed oil",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "di",
+        "flaxseed",
+        "lino",
+        "oil",
+        "olio",
+        "semi"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_bacon_tomato_dressing",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_mayonnaise_dressings",
+      "i18n": {
+        "it": {
+          "label": "Dressing al bacon e pomodoro",
+          "description": ""
+        },
+        "en": {
+          "label": "Bacon and tomato dressing",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "al",
+        "and",
+        "bacon",
+        "dressing",
+        "e",
+        "pomodoro",
+        "tomato"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_hearts_of_palm",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Cuore di palma",
+          "description": ""
+        },
+        "en": {
+          "label": "Hearts of palm",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cuore",
+        "di",
+        "hearts",
+        "of",
+        "palm",
+        "palma"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_non_soy_milk_alternative",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_plant_milk",
+      "i18n": {
+        "it": {
+          "label": "Alternativa al latte senza soia",
+          "description": ""
+        },
+        "en": {
+          "label": "Non-soy milk alternative",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "al",
+        "alternativa",
+        "alternative",
+        "latte",
+        "milk",
+        "non",
+        "senza",
+        "soia",
+        "soy"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_mixed_cooking_oil",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_oils",
+      "i18n": {
+        "it": {
+          "label": "Olio alimentare misto",
+          "description": ""
+        },
+        "en": {
+          "label": "Mixed cooking oil",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "alimentare",
+        "cooking",
+        "misto",
+        "mixed",
+        "oil",
+        "olio"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_snail",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_molluscs",
+      "i18n": {
+        "it": {
+          "label": "Lumaca",
+          "description": ""
+        },
+        "en": {
+          "label": "Snail",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "lumaca",
+        "snail"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_green_turtle",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_seafood_other",
+      "i18n": {
+        "it": {
+          "label": "Tartaruga verde",
+          "description": ""
+        },
+        "en": {
+          "label": "Green turtle",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "green",
+        "tartaruga",
+        "turtle",
+        "verde"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_lemon_juice",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_juice",
+      "i18n": {
+        "it": {
+          "label": "Succo di limone",
+          "description": ""
+        },
+        "en": {
+          "label": "Lemon juice",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "di",
+        "juice",
+        "lemon",
+        "limone",
+        "succo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_prickly_pear",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_other",
+      "i18n": {
+        "it": {
+          "label": "Fico d’India",
+          "description": ""
+        },
+        "en": {
+          "label": "Prickly pear",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "d",
+        "fico",
+        "india",
+        "pear",
+        "prickly"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_fico_dindia"
+      }
+    },
+    {
+      "termId": "product_concept_prune_juice",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_juice",
+      "i18n": {
+        "it": {
+          "label": "Succo di prugna",
+          "description": ""
+        },
+        "en": {
+          "label": "Prune juice",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "di",
+        "juice",
+        "prugna",
+        "prune",
+        "succo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_pomelo",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_citrus",
+      "i18n": {
+        "it": {
+          "label": "Pomelo",
+          "description": ""
+        },
+        "en": {
+          "label": "Pomelo",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "pomelo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_raspberry",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_berries",
+      "i18n": {
+        "it": {
+          "label": "Lampone",
+          "description": ""
+        },
+        "en": {
+          "label": "Raspberry",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "lampone",
+        "raspberry"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_lampone"
+      }
+    },
+    {
+      "termId": "product_concept_rhubarb",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_other",
+      "i18n": {
+        "it": {
+          "label": "Rabarbaro",
+          "description": ""
+        },
+        "en": {
+          "label": "Rhubarb",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "rabarbaro",
+        "rhubarb"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_sapodilla",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_tropical_fruit",
+      "i18n": {
+        "it": {
+          "label": "Sapodilla",
+          "description": ""
+        },
+        "en": {
+          "label": "Sapodilla",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "sapodilla"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_mamey_sapote",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_tropical_fruit",
+      "i18n": {
+        "it": {
+          "label": "Sapote mamey",
+          "description": ""
+        },
+        "en": {
+          "label": "Mamey sapote",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "mamey",
+        "sapote"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_soursop",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_tropical_fruit",
+      "i18n": {
+        "it": {
+          "label": "Graviola",
+          "description": ""
+        },
+        "en": {
+          "label": "Soursop",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "graviola",
+        "soursop"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_strawberry",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_berries",
+      "i18n": {
+        "it": {
+          "label": "Fragola",
+          "description": ""
+        },
+        "en": {
+          "label": "Strawberry",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "fragola",
+        "strawberry"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_fragola"
+      }
+    },
+    {
+      "termId": "product_concept_tamarind",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_tropical_fruit",
+      "i18n": {
+        "it": {
+          "label": "Tamarindo",
+          "description": ""
+        },
+        "en": {
+          "label": "Tamarind",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "tamarind",
+        "tamarindo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_fruit_salad",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_other",
+      "i18n": {
+        "it": {
+          "label": "Macedonia di frutta",
+          "description": ""
+        },
+        "en": {
+          "label": "Fruit salad",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "di",
+        "fruit",
+        "frutta",
+        "macedonia",
+        "salad"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_watermelon",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_other",
+      "i18n": {
+        "it": {
+          "label": "Cocomero",
+          "description": ""
+        },
+        "en": {
+          "label": "Watermelon",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cocomero",
+        "watermelon"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_cocomero"
+      }
+    },
+    {
+      "termId": "product_concept_maraschino_cherry",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_stone_fruit",
+      "i18n": {
+        "it": {
+          "label": "Ciliegia al maraschino",
+          "description": ""
+        },
+        "en": {
+          "label": "Maraschino cherry",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "al",
+        "cherry",
+        "ciliegia",
+        "maraschino"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_apricot",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_stone_fruit",
+      "i18n": {
+        "it": {
+          "label": "Albicocca",
+          "description": ""
+        },
+        "en": {
+          "label": "Apricot",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "albicocca",
+        "apricot"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_albicocca"
+      }
+    },
+    {
+      "termId": "product_concept_cherry",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_stone_fruit",
+      "i18n": {
+        "it": {
+          "label": "Ciliegia",
+          "description": ""
+        },
+        "en": {
+          "label": "Cherry",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cherry",
+        "ciliegia"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_ciliegia"
+      }
+    },
+    {
+      "termId": "product_concept_apple_juice",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_juice",
+      "i18n": {
+        "it": {
+          "label": "Succo di mela",
+          "description": ""
+        },
+        "en": {
+          "label": "Apple juice",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "apple",
+        "di",
+        "juice",
+        "mela",
+        "succo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_applesauce",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_other",
+      "i18n": {
+        "it": {
+          "label": "Purea di mela",
+          "description": ""
+        },
+        "en": {
+          "label": "Applesauce",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "applesauce",
+        "di",
+        "mela",
+        "purea"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_candied_fruit",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_other",
+      "i18n": {
+        "it": {
+          "label": "Frutta candita",
+          "description": ""
+        },
+        "en": {
+          "label": "Candied fruit",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "candied",
+        "candita",
+        "fruit",
+        "frutta"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_abiyuch",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_other",
+      "i18n": {
+        "it": {
+          "label": "Abiyuch",
+          "description": ""
+        },
+        "en": {
+          "label": "Abiyuch",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "abiyuch"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_rowal",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_other",
+      "i18n": {
+        "it": {
+          "label": "Rowal",
+          "description": ""
+        },
+        "en": {
+          "label": "Rowal",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "rowal"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_guava_nectar",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_juice",
+      "i18n": {
+        "it": {
+          "label": "Nettare di guava",
+          "description": ""
+        },
+        "en": {
+          "label": "Guava nectar",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "di",
+        "guava",
+        "nectar",
+        "nettare"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_mango_nectar",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_juice",
+      "i18n": {
+        "it": {
+          "label": "Nettare di mango",
+          "description": ""
+        },
+        "en": {
+          "label": "Mango nectar",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "di",
+        "mango",
+        "nectar",
+        "nettare"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_tamarind_nectar",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_juice",
+      "i18n": {
+        "it": {
+          "label": "Nettare di tamarindo",
+          "description": ""
+        },
+        "en": {
+          "label": "Tamarind nectar",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "di",
+        "nectar",
+        "nettare",
+        "tamarind",
+        "tamarindo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_pomegranate_juice",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_juice",
+      "i18n": {
+        "it": {
+          "label": "Succo di melagrana",
+          "description": ""
+        },
+        "en": {
+          "label": "Pomegranate juice",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "di",
+        "juice",
+        "melagrana",
+        "pomegranate",
+        "succo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_nance",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_tropical_fruit",
+      "i18n": {
+        "it": {
+          "label": "Nance",
+          "description": ""
+        },
+        "en": {
+          "label": "Nance",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "nance"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_naranjilla",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_tropical_fruit",
+      "i18n": {
+        "it": {
+          "label": "Naranjilla",
+          "description": ""
+        },
+        "en": {
+          "label": "Naranjilla",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "naranjilla"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_fruit_juice_blend",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_juice",
+      "i18n": {
+        "it": {
+          "label": "Miscela di succhi di frutta",
+          "description": ""
+        },
+        "en": {
+          "label": "Fruit juice blend",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "blend",
+        "di",
+        "fruit",
+        "frutta",
+        "juice",
+        "miscela",
+        "succhi"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_orange_juice",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_juice",
+      "i18n": {
+        "it": {
+          "label": "Succo d’arancia",
+          "description": ""
+        },
+        "en": {
+          "label": "Orange juice",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "arancia",
+        "d",
+        "juice",
+        "orange",
+        "succo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_fruit_smoothie",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_juice",
+      "i18n": {
+        "it": {
+          "label": "Smoothie di frutta",
+          "description": ""
+        },
+        "en": {
+          "label": "Fruit smoothie",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "di",
+        "fruit",
+        "frutta",
+        "smoothie"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_cranberry_sauce",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_sauces",
+      "i18n": {
+        "it": {
+          "label": "Salsa di cranberry",
+          "description": ""
+        },
+        "en": {
+          "label": "Cranberry sauce",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cranberry",
+        "di",
+        "salsa",
+        "sauce"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_grapefruit_juice",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_juice",
+      "i18n": {
+        "it": {
+          "label": "Succo di pompelmo",
+          "description": ""
+        },
+        "en": {
+          "label": "Grapefruit juice",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "di",
+        "grapefruit",
+        "juice",
+        "pompelmo",
+        "succo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_baobab_powder",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_other",
+      "i18n": {
+        "it": {
+          "label": "Polvere di baobab",
+          "description": ""
+        },
+        "en": {
+          "label": "Baobab powder",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "baobab",
+        "di",
+        "polvere",
+        "powder"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_canadian_bacon",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_cured_meat",
+      "i18n": {
+        "it": {
+          "label": "Bacon canadese",
+          "description": ""
+        },
+        "en": {
+          "label": "Canadian bacon",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "bacon",
+        "canadese",
+        "canadian"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_sweet_potato_puffs",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_prepared_potato",
+      "i18n": {
+        "it": {
+          "label": "Bocconcini di patata dolce",
+          "description": ""
+        },
+        "en": {
+          "label": "Sweet potato puffs",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "bocconcini",
+        "di",
+        "dolce",
+        "patata",
+        "potato",
+        "puffs",
+        "sweet"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_papad",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_prepared_other",
+      "i18n": {
+        "it": {
+          "label": "Papad",
+          "description": ""
+        },
+        "en": {
+          "label": "Papad",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "papad"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_cranberry_juice",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_juice",
+      "i18n": {
+        "it": {
+          "label": "Succo di cranberry",
+          "description": ""
+        },
+        "en": {
+          "label": "Cranberry juice",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cranberry",
+        "di",
+        "juice",
+        "succo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_turnip_greens",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_leafy_greens",
+      "i18n": {
+        "it": {
+          "label": "Cime di rapa",
+          "description": ""
+        },
+        "en": {
+          "label": "Turnip greens",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cime",
+        "di",
+        "greens",
+        "rapa",
+        "turnip"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_cime_di_rapa"
+      }
+    },
+    {
+      "termId": "product_concept_jellyfish",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_seafood_other",
+      "i18n": {
+        "it": {
+          "label": "Medusa",
+          "description": ""
+        },
+        "en": {
+          "label": "Jellyfish",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "jellyfish",
+        "medusa"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_frog_legs",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_meat_other",
+      "i18n": {
+        "it": {
+          "label": "Cosce di rana",
+          "description": ""
+        },
+        "en": {
+          "label": "Frog legs",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cosce",
+        "di",
+        "frog",
+        "legs",
+        "rana"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_mackerel",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fish",
+      "i18n": {
+        "it": {
+          "label": "Sgombro",
+          "description": ""
+        },
+        "en": {
+          "label": "Mackerel",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "mackerel",
+        "sgombro"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_sgombro"
+      }
+    },
+    {
+      "termId": "product_concept_kumquat",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_citrus",
+      "i18n": {
+        "it": {
+          "label": "Kumquat",
+          "description": ""
+        },
+        "en": {
+          "label": "Kumquat",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "kumquat"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_kumquat"
+      }
+    },
+    {
+      "termId": "product_concept_lime",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_citrus",
+      "i18n": {
+        "it": {
+          "label": "Lime",
+          "description": ""
+        },
+        "en": {
+          "label": "Lime",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "lime"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_lime_juice",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_juice",
+      "i18n": {
+        "it": {
+          "label": "Succo di lime",
+          "description": ""
+        },
+        "en": {
+          "label": "Lime juice",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "di",
+        "juice",
+        "lime",
+        "succo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_blueberry",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_berries",
+      "i18n": {
+        "it": {
+          "label": "Mirtillo",
+          "description": ""
+        },
+        "en": {
+          "label": "Blueberry",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "blueberry",
+        "mirtillo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_mirtillo"
+      }
+    },
+    {
+      "termId": "product_concept_quince",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_apples_pears",
+      "i18n": {
+        "it": {
+          "label": "Mela cotogna",
+          "description": ""
+        },
+        "en": {
+          "label": "Quince",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cotogna",
+        "mela",
+        "quince"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_mela_cotogna"
+      }
+    },
+    {
+      "termId": "product_concept_raisin",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_dried_fruit",
+      "i18n": {
+        "it": {
+          "label": "Uvetta",
+          "description": ""
+        },
+        "en": {
+          "label": "Raisin",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "raisin",
+        "uvetta"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_uvetta"
+      }
+    },
+    {
+      "termId": "product_concept_rambutan",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_tropical_fruit",
+      "i18n": {
+        "it": {
+          "label": "Rambutan",
+          "description": ""
+        },
+        "en": {
+          "label": "Rambutan",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "rambutan"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_sugar_apple",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_tropical_fruit",
+      "i18n": {
+        "it": {
+          "label": "Annona",
+          "description": ""
+        },
+        "en": {
+          "label": "Sugar apple",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "annona",
+        "apple",
+        "sugar"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_feijoa",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_tropical_fruit",
+      "i18n": {
+        "it": {
+          "label": "Feijoa",
+          "description": ""
+        },
+        "en": {
+          "label": "Feijoa",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "feijoa"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_fruit_cocktail",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_other",
+      "i18n": {
+        "it": {
+          "label": "Macedonia di frutta sciroppata",
+          "description": ""
+        },
+        "en": {
+          "label": "Fruit cocktail",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cocktail",
+        "di",
+        "fruit",
+        "frutta",
+        "macedonia",
+        "sciroppata"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_peach",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_stone_fruit",
+      "i18n": {
+        "it": {
+          "label": "Pesca",
+          "description": ""
+        },
+        "en": {
+          "label": "Peach",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "peach",
+        "pesca"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_pesca"
+      }
+    },
+    {
+      "termId": "product_concept_mandarin",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_citrus",
+      "i18n": {
+        "it": {
+          "label": "Mandarino",
+          "description": ""
+        },
+        "en": {
+          "label": "Mandarin",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "mandarin",
+        "mandarino"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_mandarino"
+      }
+    },
+    {
+      "termId": "product_concept_peach_nectar",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_juice",
+      "i18n": {
+        "it": {
+          "label": "Nettare di pesca",
+          "description": ""
+        },
+        "en": {
+          "label": "Peach nectar",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "di",
+        "nectar",
+        "nettare",
+        "peach",
+        "pesca"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_pear_nectar",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_juice",
+      "i18n": {
+        "it": {
+          "label": "Nettare di pera",
+          "description": ""
+        },
+        "en": {
+          "label": "Pear nectar",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "di",
+        "nectar",
+        "nettare",
+        "pear",
+        "pera"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_macadamia",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_nuts",
+      "i18n": {
+        "it": {
+          "label": "Noce macadamia",
+          "description": ""
+        },
+        "en": {
+          "label": "Macadamia nut",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "macadamia",
+        "noce",
+        "nut"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_pumpkin_seed",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_seeds",
+      "i18n": {
+        "it": {
+          "label": "Semi di zucca",
+          "description": ""
+        },
+        "en": {
+          "label": "Pumpkin seed",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "di",
+        "pumpkin",
+        "seed",
+        "semi",
+        "zucca"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_tahini",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_nut_butters",
+      "i18n": {
+        "it": {
+          "label": "Tahina",
+          "description": ""
+        },
+        "en": {
+          "label": "Tahini",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "tahina",
+        "tahini"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_oat_bran",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_whole_grains",
+      "i18n": {
+        "it": {
+          "label": "Crusca d’avena",
+          "description": ""
+        },
+        "en": {
+          "label": "Oat bran",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "avena",
+        "bran",
+        "crusca",
+        "d",
+        "oat"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_quinoa",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_whole_grains",
+      "i18n": {
+        "it": {
+          "label": "Quinoa",
+          "description": ""
+        },
+        "en": {
+          "label": "Quinoa",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "quinoa"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_rye",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_whole_grains",
+      "i18n": {
+        "it": {
+          "label": "Segale",
+          "description": ""
+        },
+        "en": {
+          "label": "Rye",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "rye",
+        "segale"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_semolina",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_grain_flours",
+      "i18n": {
+        "it": {
+          "label": "Semola",
+          "description": ""
+        },
+        "en": {
+          "label": "Semolina",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "semola",
+        "semolina"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_semola"
+      }
+    },
+    {
+      "termId": "product_concept_spaghetti_squash",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Zucca spaghetti",
+          "description": ""
+        },
+        "en": {
+          "label": "Spaghetti squash",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "spaghetti",
+        "squash",
+        "zucca"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_couscous",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_whole_grains",
+      "i18n": {
+        "it": {
+          "label": "Cous cous",
+          "description": ""
+        },
+        "en": {
+          "label": "Couscous",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cous",
+        "couscous"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_cous_cous"
+      }
+    },
+    {
+      "termId": "product_concept_cilantro",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fresh_herbs",
+      "i18n": {
+        "it": {
+          "label": "Coriandolo fresco",
+          "description": ""
+        },
+        "en": {
+          "label": "Cilantro",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cilantro",
+        "coriandolo",
+        "fresco"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_coconut_milk",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_plant_milk",
+      "i18n": {
+        "it": {
+          "label": "Latte di cocco",
+          "description": ""
+        },
+        "en": {
+          "label": "Coconut milk",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cocco",
+        "coconut",
+        "di",
+        "latte",
+        "milk"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_parsley",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fresh_herbs",
+      "i18n": {
+        "it": {
+          "label": "Prezzemolo",
+          "description": ""
+        },
+        "en": {
+          "label": "Parsley",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "parsley",
+        "prezzemolo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_prezzemolo"
+      }
+    },
+    {
+      "termId": "product_concept_egg_white",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_eggs_other",
+      "i18n": {
+        "it": {
+          "label": "Albume",
+          "description": ""
+        },
+        "en": {
+          "label": "Egg white",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "albume",
+        "egg",
+        "white"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_bay_leaf",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_spices",
+      "i18n": {
+        "it": {
+          "label": "Alloro",
+          "description": ""
+        },
+        "en": {
+          "label": "Bay leaf",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "alloro",
+        "bay",
+        "leaf"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_caraway_seed",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_spices",
+      "i18n": {
+        "it": {
+          "label": "Semi di carvi",
+          "description": ""
+        },
+        "en": {
+          "label": "Caraway seed",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "caraway",
+        "carvi",
+        "di",
+        "seed",
+        "semi"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_cardamom",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_spices",
+      "i18n": {
+        "it": {
+          "label": "Cardamomo",
+          "description": ""
+        },
+        "en": {
+          "label": "Cardamom",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cardamom",
+        "cardamomo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_celery_seed",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_spices",
+      "i18n": {
+        "it": {
+          "label": "Semi di sedano",
+          "description": ""
+        },
+        "en": {
+          "label": "Celery seed",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "celery",
+        "di",
+        "sedano",
+        "seed",
+        "semi"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_dried_coriander_leaf",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_spices",
+      "i18n": {
+        "it": {
+          "label": "Coriandolo essiccato",
+          "description": ""
+        },
+        "en": {
+          "label": "Dried coriander leaf",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "coriander",
+        "coriandolo",
+        "dried",
+        "essiccato",
+        "leaf"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_coriander_seed",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_spices",
+      "i18n": {
+        "it": {
+          "label": "Semi di coriandolo",
+          "description": ""
+        },
+        "en": {
+          "label": "Coriander seed",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "coriander",
+        "coriandolo",
+        "di",
+        "seed",
+        "semi"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_cumin_seed",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_spices",
+      "i18n": {
+        "it": {
+          "label": "Semi di cumino",
+          "description": ""
+        },
+        "en": {
+          "label": "Cumin seed",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cumin",
+        "cumino",
+        "di",
+        "seed",
+        "semi"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_curry_powder",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_spices",
+      "i18n": {
+        "it": {
+          "label": "Curry in polvere",
+          "description": ""
+        },
+        "en": {
+          "label": "Curry powder",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "curry",
+        "in",
+        "polvere",
+        "powder"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_dill_seed",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_spices",
+      "i18n": {
+        "it": {
+          "label": "Semi di aneto",
+          "description": ""
+        },
+        "en": {
+          "label": "Dill seed",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "aneto",
+        "di",
+        "dill",
+        "seed",
+        "semi"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_mace",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_spices",
+      "i18n": {
+        "it": {
+          "label": "Macis",
+          "description": ""
+        },
+        "en": {
+          "label": "Mace",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "mace",
+        "macis"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_marjoram",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_spices",
+      "i18n": {
+        "it": {
+          "label": "Maggiorana",
+          "description": ""
+        },
+        "en": {
+          "label": "Marjoram",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "maggiorana",
+        "marjoram"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_breaded_fried_chicken",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_chicken",
+      "i18n": {
+        "it": {
+          "label": "Pollo impanato e fritto",
+          "description": ""
+        },
+        "en": {
+          "label": "Breaded fried chicken",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "breaded",
+        "chicken",
+        "e",
+        "fried",
+        "fritto",
+        "impanato",
+        "pollo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_olive_oil",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_oils",
+      "i18n": {
+        "it": {
+          "label": "Olio di oliva",
+          "description": ""
+        },
+        "en": {
+          "label": "Olive oil",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "di",
+        "oil",
+        "olio",
+        "oliva",
+        "olive"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_striped_bass",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fish",
+      "i18n": {
+        "it": {
+          "label": "Spigola striata",
+          "description": ""
+        },
+        "en": {
+          "label": "Striped bass",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "bass",
+        "spigola",
+        "striata",
+        "striped"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_bluefish",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fish",
+      "i18n": {
+        "it": {
+          "label": "Pesce serra",
+          "description": ""
+        },
+        "en": {
+          "label": "Bluefish",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "bluefish",
+        "pesce",
+        "serra"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_burbot",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fish",
+      "i18n": {
+        "it": {
+          "label": "Bottatrice",
+          "description": ""
+        },
+        "en": {
+          "label": "Burbot",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "bottatrice",
+        "burbot"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_butterfish",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fish",
+      "i18n": {
+        "it": {
+          "label": "Pesce burro",
+          "description": ""
+        },
+        "en": {
+          "label": "Butterfish",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "burro",
+        "butterfish",
+        "pesce"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_carp",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fish",
+      "i18n": {
+        "it": {
+          "label": "Carpa",
+          "description": ""
+        },
+        "en": {
+          "label": "Carp",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "carp",
+        "carpa"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_cisco",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fish",
+      "i18n": {
+        "it": {
+          "label": "Cisco",
+          "description": ""
+        },
+        "en": {
+          "label": "Cisco",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cisco"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_cod",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fish",
+      "i18n": {
+        "it": {
+          "label": "Merluzzo",
+          "description": ""
+        },
+        "en": {
+          "label": "Cod",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cod",
+        "merluzzo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_merluzzo"
+      }
+    },
+    {
+      "termId": "product_concept_croaker",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fish",
+      "i18n": {
+        "it": {
+          "label": "Ombrina/croaker",
+          "description": ""
+        },
+        "en": {
+          "label": "Croaker",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "croaker",
+        "ombrina"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_cusk",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fish",
+      "i18n": {
+        "it": {
+          "label": "Brosme",
+          "description": ""
+        },
+        "en": {
+          "label": "Cusk",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "brosme",
+        "cusk"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_mahi_mahi",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fish",
+      "i18n": {
+        "it": {
+          "label": "Lampuga",
+          "description": ""
+        },
+        "en": {
+          "label": "Mahi-mahi",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "lampuga",
+        "mahi"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_freshwater_drum",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fish",
+      "i18n": {
+        "it": {
+          "label": "Pesce tamburo d’acqua dolce",
+          "description": ""
+        },
+        "en": {
+          "label": "Freshwater drum",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "acqua",
+        "d",
+        "dolce",
+        "drum",
+        "freshwater",
+        "pesce",
+        "tamburo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_gefilte_fish",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_prepared_other",
+      "i18n": {
+        "it": {
+          "label": "Gefilte fish",
+          "description": ""
+        },
+        "en": {
+          "label": "Gefilte fish",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "fish",
+        "gefilte"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_grouper",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fish",
+      "i18n": {
+        "it": {
+          "label": "Cernia",
+          "description": ""
+        },
+        "en": {
+          "label": "Grouper",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cernia",
+        "grouper"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_haddock",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fish",
+      "i18n": {
+        "it": {
+          "label": "Eglefino",
+          "description": ""
+        },
+        "en": {
+          "label": "Haddock",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "eglefino",
+        "haddock"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_halibut",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fish",
+      "i18n": {
+        "it": {
+          "label": "Halibut",
+          "description": ""
+        },
+        "en": {
+          "label": "Halibut",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "halibut"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_crab",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_crustaceans",
+      "i18n": {
+        "it": {
+          "label": "Granchio",
+          "description": ""
+        },
+        "en": {
+          "label": "Crab",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "crab",
+        "granchio"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_crab_cake",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_prepared_other",
+      "i18n": {
+        "it": {
+          "label": "Polpetta di granchio",
+          "description": ""
+        },
+        "en": {
+          "label": "Crab cake",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cake",
+        "crab",
+        "di",
+        "granchio",
+        "polpetta"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_shrimp",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_crustaceans",
+      "i18n": {
+        "it": {
+          "label": "Gambero",
+          "description": ""
+        },
+        "en": {
+          "label": "Shrimp",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "gambero",
+        "shrimp"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_surimi",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_seafood_other",
+      "i18n": {
+        "it": {
+          "label": "Surimi",
+          "description": ""
+        },
+        "en": {
+          "label": "Surimi",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "surimi"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_clam",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_molluscs",
+      "i18n": {
+        "it": {
+          "label": "Vongola",
+          "description": ""
+        },
+        "en": {
+          "label": "Clam",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "clam",
+        "vongola"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_vongola"
+      }
+    },
+    {
+      "termId": "product_concept_oyster",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_molluscs",
+      "i18n": {
+        "it": {
+          "label": "Ostrica",
+          "description": ""
+        },
+        "en": {
+          "label": "Oyster",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "ostrica",
+        "oyster"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_squid",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_molluscs",
+      "i18n": {
+        "it": {
+          "label": "Calamaro",
+          "description": ""
+        },
+        "en": {
+          "label": "Squid",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "calamaro",
+        "squid"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_calamaro"
+      }
+    },
+    {
+      "termId": "product_concept_salmon",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fish",
+      "i18n": {
+        "it": {
+          "label": "Salmone",
+          "description": ""
+        },
+        "en": {
+          "label": "Salmon",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "salmon",
+        "salmone"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_salmone"
+      }
+    },
+    {
+      "termId": "product_concept_egg_yolk",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_eggs_other",
+      "i18n": {
+        "it": {
+          "label": "Tuorlo",
+          "description": ""
+        },
+        "en": {
+          "label": "Egg yolk",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "egg",
+        "tuorlo",
+        "yolk"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_lima_bean",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_beans_pulses",
+      "i18n": {
+        "it": {
+          "label": "Fagiolo di Lima",
+          "description": ""
+        },
+        "en": {
+          "label": "Lima bean",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "bean",
+        "di",
+        "fagiolo",
+        "lima"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_lupin",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_beans_pulses",
+      "i18n": {
+        "it": {
+          "label": "Lupino",
+          "description": ""
+        },
+        "en": {
+          "label": "Lupin",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "lupin",
+        "lupino"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_mung_bean",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_beans_pulses",
+      "i18n": {
+        "it": {
+          "label": "Fagiolo mungo",
+          "description": ""
+        },
+        "en": {
+          "label": "Mung bean",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "bean",
+        "fagiolo",
+        "mung",
+        "mungo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_split_pea",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_beans_pulses",
+      "i18n": {
+        "it": {
+          "label": "Pisello spezzato",
+          "description": ""
+        },
+        "en": {
+          "label": "Split pea",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "pea",
+        "pisello",
+        "spezzato",
+        "split"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_peanut",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_beans_pulses",
+      "i18n": {
+        "it": {
+          "label": "Arachide",
+          "description": ""
+        },
+        "en": {
+          "label": "Peanut",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "arachide",
+        "peanut"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_arachide"
+      }
+    },
+    {
+      "termId": "product_concept_peanut_flour",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_beans_pulses",
+      "i18n": {
+        "it": {
+          "label": "Farina di arachidi",
+          "description": ""
+        },
+        "en": {
+          "label": "Peanut flour",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "arachidi",
+        "di",
+        "farina",
+        "flour",
+        "peanut"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_carrot",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Carota",
+          "description": ""
+        },
+        "en": {
+          "label": "Carrot",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "carota",
+        "carrot"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_carota"
+      }
+    },
+    {
+      "termId": "product_concept_bell_pepper",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Peperone",
+          "description": ""
+        },
+        "en": {
+          "label": "Bell pepper",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "bell",
+        "peperone",
+        "pepper"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_peperone"
+      }
+    },
+    {
+      "termId": "product_concept_almond_flour",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_nuts",
+      "i18n": {
+        "it": {
+          "label": "Farina di mandorle",
+          "description": ""
+        },
+        "en": {
+          "label": "Almond flour",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "almond",
+        "di",
+        "farina",
+        "flour",
+        "mandorle"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_potato_flour",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_potatoes_tubers",
+      "i18n": {
+        "it": {
+          "label": "Farina di patate",
+          "description": ""
+        },
+        "en": {
+          "label": "Potato flour",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "di",
+        "farina",
+        "flour",
+        "patate",
+        "potato"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_pine_nut",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_nuts",
+      "i18n": {
+        "it": {
+          "label": "Pinolo",
+          "description": ""
+        },
+        "en": {
+          "label": "Pine nut",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "nut",
+        "pine",
+        "pinolo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_pinolo"
+      }
+    },
+    {
+      "termId": "product_concept_walnut",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_nuts",
+      "i18n": {
+        "it": {
+          "label": "Noce",
+          "description": ""
+        },
+        "en": {
+          "label": "Walnut",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "noce",
+        "walnut"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_noce"
+      }
+    },
+    {
+      "termId": "product_concept_pecan",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_nuts",
+      "i18n": {
+        "it": {
+          "label": "Noce pecan",
+          "description": ""
+        },
+        "en": {
+          "label": "Pecan",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "noce",
+        "pecan"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_green_bean",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Fagiolino",
+          "description": ""
+        },
+        "en": {
+          "label": "Green bean",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "bean",
+        "fagiolino",
+        "green"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_fagiolino"
+      }
+    },
+    {
+      "termId": "product_concept_brazil_nut",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_nuts",
+      "i18n": {
+        "it": {
+          "label": "Noce del Brasile",
+          "description": ""
+        },
+        "en": {
+          "label": "Brazil nut",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "brasile",
+        "brazil",
+        "del",
+        "noce",
+        "nut"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_hazelnut",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_nuts",
+      "i18n": {
+        "it": {
+          "label": "Nocciola",
+          "description": ""
+        },
+        "en": {
+          "label": "Hazelnut",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "hazelnut",
+        "nocciola"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_nocciola"
+      }
+    },
+    {
+      "termId": "product_concept_chestnut_flour",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_nuts",
+      "i18n": {
+        "it": {
+          "label": "Farina di castagne",
+          "description": ""
+        },
+        "en": {
+          "label": "Chestnut flour",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "castagne",
+        "chestnut",
+        "di",
+        "farina",
+        "flour"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_pistachio",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_nuts",
+      "i18n": {
+        "it": {
+          "label": "Pistacchio",
+          "description": ""
+        },
+        "en": {
+          "label": "Pistachio",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "pistacchio",
+        "pistachio"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_pistacchio"
+      }
+    },
+    {
+      "termId": "product_concept_coconut_flour",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_coconut",
+      "i18n": {
+        "it": {
+          "label": "Farina di cocco",
+          "description": ""
+        },
+        "en": {
+          "label": "Coconut flour",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cocco",
+        "coconut",
+        "di",
+        "farina",
+        "flour"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_black_bean",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_beans_pulses",
+      "i18n": {
+        "it": {
+          "label": "Fagiolo nero",
+          "description": ""
+        },
+        "en": {
+          "label": "Black bean",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "bean",
+        "black",
+        "fagiolo",
+        "nero"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_navy_bean",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_beans_pulses",
+      "i18n": {
+        "it": {
+          "label": "Fagiolo navy",
+          "description": ""
+        },
+        "en": {
+          "label": "Navy bean",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "bean",
+        "fagiolo",
+        "navy"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_cannellini_bean",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_beans_pulses",
+      "i18n": {
+        "it": {
+          "label": "Fagiolo cannellino",
+          "description": ""
+        },
+        "en": {
+          "label": "Cannellini bean",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "bean",
+        "cannellini",
+        "cannellino",
+        "fagiolo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_kidney_bean",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_beans_pulses",
+      "i18n": {
+        "it": {
+          "label": "Fagiolo rosso kidney",
+          "description": ""
+        },
+        "en": {
+          "label": "Kidney bean",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "bean",
+        "fagiolo",
+        "kidney",
+        "rosso"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_green_pea",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_beans_pulses",
+      "i18n": {
+        "it": {
+          "label": "Pisello",
+          "description": ""
+        },
+        "en": {
+          "label": "Green pea",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "green",
+        "pea",
+        "pisello"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_pinto_bean",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_beans_pulses",
+      "i18n": {
+        "it": {
+          "label": "Fagiolo pinto",
+          "description": ""
+        },
+        "en": {
+          "label": "Pinto bean",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "bean",
+        "fagiolo",
+        "pinto"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_black_eyed_pea",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_beans_pulses",
+      "i18n": {
+        "it": {
+          "label": "Fagiolo dall’occhio",
+          "description": ""
+        },
+        "en": {
+          "label": "Black-eyed pea",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "black",
+        "dall",
+        "eyed",
+        "fagiolo",
+        "occhio",
+        "pea"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_great_northern_bean",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_beans_pulses",
+      "i18n": {
+        "it": {
+          "label": "Fagiolo Great Northern",
+          "description": ""
+        },
+        "en": {
+          "label": "Great Northern bean",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "bean",
+        "fagiolo",
+        "great",
+        "northern"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_zucchini",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Zucchina",
+          "description": ""
+        },
+        "en": {
+          "label": "Zucchini",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "zucchina",
+        "zucchini"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_zucchina"
+      }
+    },
+    {
+      "termId": "product_concept_yellow_summer_squash",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Zucchina gialla",
+          "description": ""
+        },
+        "en": {
+          "label": "Yellow summer squash",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "gialla",
+        "squash",
+        "summer",
+        "yellow",
+        "zucchina"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_butternut_squash",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Zucca butternut",
+          "description": ""
+        },
+        "en": {
+          "label": "Butternut squash",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "butternut",
+        "squash",
+        "zucca"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_acorn_squash",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Zucca acorn",
+          "description": ""
+        },
+        "en": {
+          "label": "Acorn squash",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "acorn",
+        "squash",
+        "zucca"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_bok_choy",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_cruciferous",
+      "i18n": {
+        "it": {
+          "label": "Pak choi",
+          "description": ""
+        },
+        "en": {
+          "label": "Bok choy",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "bok",
+        "choi",
+        "choy",
+        "pak"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_cauliflower",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_cruciferous",
+      "i18n": {
+        "it": {
+          "label": "Cavolfiore",
+          "description": ""
+        },
+        "en": {
+          "label": "Cauliflower",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cauliflower",
+        "cavolfiore"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_cavolfiore"
+      }
+    },
+    {
+      "termId": "product_concept_collard_greens",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_leafy_greens",
+      "i18n": {
+        "it": {
+          "label": "Cavolo collard",
+          "description": ""
+        },
+        "en": {
+          "label": "Collard greens",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cavolo",
+        "collard",
+        "greens"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_brussels_sprout",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_cruciferous",
+      "i18n": {
+        "it": {
+          "label": "Cavolini di Bruxelles",
+          "description": ""
+        },
+        "en": {
+          "label": "Brussels sprout",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "brussels",
+        "bruxelles",
+        "cavolini",
+        "di",
+        "sprout"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_cavolini_di_bruxelles"
+      }
+    },
+    {
+      "termId": "product_concept_beet",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Barbabietola",
+          "description": ""
+        },
+        "en": {
+          "label": "Beet",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "barbabietola",
+        "beet"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_barbabietola"
+      }
+    },
+    {
+      "termId": "product_concept_eggplant",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Melanzana",
+          "description": ""
+        },
+        "en": {
+          "label": "Eggplant",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "eggplant",
+        "melanzana"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_melanzana"
+      }
+    },
+    {
+      "termId": "product_concept_tomato_sauce",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_tomatoes",
+      "i18n": {
+        "it": {
+          "label": "Salsa di pomodoro",
+          "description": ""
+        },
+        "en": {
+          "label": "Tomato sauce",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "di",
+        "pomodoro",
+        "salsa",
+        "sauce",
+        "tomato"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_tomato_paste",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_tomatoes",
+      "i18n": {
+        "it": {
+          "label": "Concentrato di pomodoro",
+          "description": ""
+        },
+        "en": {
+          "label": "Tomato paste",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "concentrato",
+        "di",
+        "paste",
+        "pomodoro",
+        "tomato"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_tomato_puree",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_tomatoes",
+      "i18n": {
+        "it": {
+          "label": "Passata di pomodoro",
+          "description": ""
+        },
+        "en": {
+          "label": "Tomato puree",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "di",
+        "passata",
+        "pomodoro",
+        "puree",
+        "tomato"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_plantain",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_tropical_fruit",
+      "i18n": {
+        "it": {
+          "label": "Platano",
+          "description": ""
+        },
+        "en": {
+          "label": "Plantain",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "plantain",
+        "platano"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_bulgur",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_whole_grains",
+      "i18n": {
+        "it": {
+          "label": "Bulgur",
+          "description": ""
+        },
+        "en": {
+          "label": "Bulgur",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "bulgur"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_bulgur"
+      }
+    },
+    {
+      "termId": "product_concept_arugula",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_leafy_greens",
+      "i18n": {
+        "it": {
+          "label": "Rucola",
+          "description": ""
+        },
+        "en": {
+          "label": "Arugula",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "arugula",
+        "rucola"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_rucola"
+      }
+    },
+    {
+      "termId": "product_concept_asparagus",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Asparago",
+          "description": ""
+        },
+        "en": {
+          "label": "Asparagus",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "asparago",
+        "asparagus"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_asparago"
+      }
+    },
+    {
+      "termId": "product_concept_sweet_corn",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Mais dolce",
+          "description": ""
+        },
+        "en": {
+          "label": "Sweet corn",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "corn",
+        "dolce",
+        "mais",
+        "sweet"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_einkorn",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_whole_grains",
+      "i18n": {
+        "it": {
+          "label": "Farro monococco",
+          "description": ""
+        },
+        "en": {
+          "label": "Einkorn",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "einkorn",
+        "farro",
+        "monococco"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_farro",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_whole_grains",
+      "i18n": {
+        "it": {
+          "label": "Farro",
+          "description": ""
+        },
+        "en": {
+          "label": "Farro",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "farro"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_farro"
+      }
+    },
+    {
+      "termId": "product_concept_fonio",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_whole_grains",
+      "i18n": {
+        "it": {
+          "label": "Fonio",
+          "description": ""
+        },
+        "en": {
+          "label": "Fonio",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "fonio"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_khorasan",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_whole_grains",
+      "i18n": {
+        "it": {
+          "label": "Grano khorasan",
+          "description": ""
+        },
+        "en": {
+          "label": "Khorasan wheat",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "grano",
+        "khorasan",
+        "wheat"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_kiwi",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_other",
+      "i18n": {
+        "it": {
+          "label": "Kiwi",
+          "description": ""
+        },
+        "en": {
+          "label": "Kiwifruit",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "kiwi",
+        "kiwifruit"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_kiwi"
+      }
+    },
+    {
+      "termId": "product_concept_sorghum_bran",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_whole_grains",
+      "i18n": {
+        "it": {
+          "label": "Crusca di sorgo",
+          "description": ""
+        },
+        "en": {
+          "label": "Sorghum bran",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "bran",
+        "crusca",
+        "di",
+        "sorghum",
+        "sorgo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_sorghum",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_whole_grains",
+      "i18n": {
+        "it": {
+          "label": "Sorgo",
+          "description": ""
+        },
+        "en": {
+          "label": "Sorghum",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "sorghum",
+        "sorgo"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_beet_greens",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_leafy_greens",
+      "i18n": {
+        "it": {
+          "label": "Foglie di barbabietola",
+          "description": ""
+        },
+        "en": {
+          "label": "Beet greens",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "barbabietola",
+        "beet",
+        "di",
+        "foglie",
+        "greens"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_fennel",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Finocchio",
+          "description": ""
+        },
+        "en": {
+          "label": "Fennel",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "fennel",
+        "finocchio"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_finocchio"
+      }
+    },
+    {
+      "termId": "product_concept_parsnip",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Pastinaca",
+          "description": ""
+        },
+        "en": {
+          "label": "Parsnip",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "parsnip",
+        "pastinaca"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_banana_pepper",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Peperone banana",
+          "description": ""
+        },
+        "en": {
+          "label": "Banana pepper",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "banana",
+        "peperone",
+        "pepper"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_jalapeno",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Peperoncino jalapeño",
+          "description": ""
+        },
+        "en": {
+          "label": "Jalapeño pepper",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "jalapeno",
+        "peperoncino",
+        "pepper"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_poblano",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Peperoncino poblano",
+          "description": ""
+        },
+        "en": {
+          "label": "Poblano pepper",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "peperoncino",
+        "pepper",
+        "poblano"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_serrano",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Peperoncino serrano",
+          "description": ""
+        },
+        "en": {
+          "label": "Serrano pepper",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "peperoncino",
+        "pepper",
+        "serrano"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_radicchio",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_leafy_greens",
+      "i18n": {
+        "it": {
+          "label": "Radicchio",
+          "description": ""
+        },
+        "en": {
+          "label": "Radicchio",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "radicchio"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_radicchio"
+      }
+    },
+    {
+      "termId": "product_concept_radish",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Ravanello",
+          "description": ""
+        },
+        "en": {
+          "label": "Radish",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "radish",
+        "ravanello"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_ravanello"
+      }
+    },
+    {
+      "termId": "product_concept_turnip",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_vegetables_other",
+      "i18n": {
+        "it": {
+          "label": "Rapa",
+          "description": ""
+        },
+        "en": {
+          "label": "Turnip",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "rapa",
+        "turnip"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_rapa"
+      }
+    },
+    {
+      "termId": "product_concept_hummus",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_sauces",
+      "i18n": {
+        "it": {
+          "label": "Hummus",
+          "description": ""
+        },
+        "en": {
+          "label": "Hummus",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "hummus"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_kale",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_leafy_greens",
+      "i18n": {
+        "it": {
+          "label": "Cavolo riccio",
+          "description": ""
+        },
+        "en": {
+          "label": "Kale",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cavolo",
+        "kale",
+        "riccio"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_onion_rings",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_prepared_other",
+      "i18n": {
+        "it": {
+          "label": "Anelli di cipolla",
+          "description": ""
+        },
+        "en": {
+          "label": "Onion rings",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "anelli",
+        "cipolla",
+        "di",
+        "onion",
+        "rings"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_mustard",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_condiments_other",
+      "i18n": {
+        "it": {
+          "label": "Senape",
+          "description": ""
+        },
+        "en": {
+          "label": "Mustard",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "mustard",
+        "senape"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_nectarine",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_stone_fruit",
+      "i18n": {
+        "it": {
+          "label": "Nettarina",
+          "description": ""
+        },
+        "en": {
+          "label": "Nectarine",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "nectarine",
+        "nettarina"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_nettarina"
+      }
+    },
+    {
+      "termId": "product_concept_strawberry_greek_yogurt",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_yogurt",
+      "i18n": {
+        "it": {
+          "label": "Yogurt greco alla fragola",
+          "description": ""
+        },
+        "en": {
+          "label": "Strawberry Greek yogurt",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "alla",
+        "fragola",
+        "greco",
+        "greek",
+        "strawberry",
+        "yogurt"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_olive",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_other",
+      "i18n": {
+        "it": {
+          "label": "Oliva",
+          "description": ""
+        },
+        "en": {
+          "label": "Olive",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "oliva",
+        "olive"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_romaine_lettuce",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_leafy_greens",
+      "i18n": {
+        "it": {
+          "label": "Lattuga romana",
+          "description": ""
+        },
+        "en": {
+          "label": "Romaine lettuce",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "lattuga",
+        "lettuce",
+        "romaine",
+        "romana"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_cantaloupe",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_fruit_other",
+      "i18n": {
+        "it": {
+          "label": "Melone cantalupo",
+          "description": ""
+        },
+        "en": {
+          "label": "Cantaloupe",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "cantaloupe",
+        "cantalupo",
+        "melone"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    },
+    {
+      "termId": "product_concept_orange",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_citrus",
+      "i18n": {
+        "it": {
+          "label": "Arancia",
+          "description": ""
+        },
+        "en": {
+          "label": "Orange",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "arancia",
+        "orange"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": "med_arancia"
+      }
+    },
+    {
+      "termId": "product_concept_broccoli",
+      "taxonomyId": "product_food",
+      "parentTermId": "product_subcategory_cruciferous",
+      "i18n": {
+        "it": {
+          "label": "Broccoli",
+          "description": ""
+        },
+        "en": {
+          "label": "Broccoli",
+          "description": ""
+        }
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      },
+      "status": "proposed",
+      "searchTokens": [
+        "broccoli"
+      ],
+      "reviewProvenance": {
+        "sourceType": "chat_one_shot_semantic_review",
+        "reviewRound": "ingredient-semantic-round1",
+        "mediterraneanStagingConceptId": null
+      }
+    }
+  ]
+}
