@@ -53,6 +53,18 @@ function mime(file) {
 }
 
 async function createStaticServer() {
+  // The browser regression exercises application behavior at a local root URL.
+  // A Pages build may contain <base href="/repo/">; serving that unchanged
+  // would make the local harness request /repo/src/* and receive the SPA HTML
+  // fallback instead of JavaScript. Pages base-path correctness is covered by
+  // pages-audit, so normalize only the harness-served index back to root here.
+  const sourceIndex = await readFile(path.join(dist, 'index.html'), 'utf8');
+  const browserIndex = sourceIndex.replace(/<base href="[^"]*" \/>/, '<base href="/" />');
+  if (browserIndex === sourceIndex && !sourceIndex.includes('<base href="/" />')) {
+    throw new Error('Browser regression could not normalize dist/index.html base href');
+  }
+  const indexFile = path.join(dist, 'index.html');
+
   const server = createServer(async (req, res) => {
     try {
       const url = new URL(req.url, `http://${req.headers.host}`);
@@ -64,8 +76,8 @@ async function createStaticServer() {
       }
       let file = path.join(dist, relative || 'index.html');
       try { if (!(await stat(file)).isFile()) throw new Error('not-file'); }
-      catch { file = path.join(dist, 'index.html'); }
-      const body = await readFile(file);
+      catch { file = indexFile; }
+      const body = file === indexFile ? browserIndex : await readFile(file);
       res.writeHead(200, { 'content-type': mime(file), 'cache-control': 'no-store' }); res.end(body);
     } catch (error) { res.writeHead(500, { 'content-type': 'text/plain' }); res.end(String(error)); }
   });
