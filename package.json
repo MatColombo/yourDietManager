@@ -92,7 +92,7 @@
     "data-proposals:t4e-feasibility": "node scripts/data-proposals/t4e-planner-feasibility.mjs",
     "legacy:check": "npm run v1:engine-phase-a && npm run v1:planner-phase-b && npm run v1:planner-phase-c && npm run v1:planner-phase-d && npm run v1:planner-phase-d-ux && npm run v1:planner-phase-e && npm run v1:planner-phase-f && npm run v1:planner-phase-g && npm run v1:planner-phase-h && npm run v1:step2-gate && npm run planner:smoke && npm run lint && npm run test && npm run hardening:a11y && npm run hardening:forms && npm run build && npm run hardening:browser && npm run hardening:revision && npm run pages:audit",
     "catalog:compile": "node scripts/catalog/compile.mjs",
-    "catalog:test": "node --test tests/clean-catalog.test.mjs tests/base-ingredients.test.mjs tests/base-recipes.test.mjs",
+    "catalog:test": "node --test tests/clean-catalog.test.mjs tests/base-ingredients.test.mjs tests/base-recipes.test.mjs tests/expanded-recipes-200.test.mjs",
     "catalog:check": "npm run catalog:compile && npm run catalog:test && npm run lint"
   }
 }
