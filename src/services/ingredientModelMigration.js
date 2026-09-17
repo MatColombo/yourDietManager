@@ -5,20 +5,20 @@ import { loadReferenceDataIndex } from './referenceDataService.js';
 import { assertIngredientPath, isCuratedConcept } from '../domain/ingredientIdentity.js';
 import { assertIngredientRevisionV2 } from '../domain/revisionV2Contracts.js';
 import { legacySafetyEvidence } from '../domain/safetyCompatibility.js';
-
 export const INGREDIENT_MIGRATION_VERSION = 'ingredient-model-r1-1';
 const LABELS = {
   raw: ['Crudo', 'Raw'], cooked: ['Cotto', 'Cooked'], dry: ['Secco', 'Dry'], drained: ['Sgocciolato', 'Drained'],
   prepared: ['Preparato', 'Prepared'], ready_to_eat: ['Pronto al consumo', 'Ready to eat'],
   as_sold: ['Come venduto; consumo da verificare', 'As sold; readiness unverified'], unknown: ['Stato da verificare', 'State unverified']
 };
-
 // Only structural identity is approved by this migration, never food safety or
 // an equivalence inferred from names. New imports are reconciled on every run.
 export async function migrateIngredientModel({ repo = repositories, registry, onStep = null, batchSize = 100 } = {}) {
   if (!registry) throw new Error('Schema registry is required for ingredient migration');
   const index = await loadReferenceDataIndex(repo);
   const marker = await repo.getMeta('contentMigration:4');
+  const activeManifest = await repo.getMeta('catalogManifest');
+  const allowDevelopmentBaseRebase = activeManifest?.publication?.channel === 'development';
   const report = { status: 'running', version: INGREDIENT_MIGRATION_VERSION, attempts: (marker?.attempts || 0) + 1,
     startedAt: marker?.startedAt || new Date().toISOString(), checkpoint: null,
     migrated: [], unresolved: [], reconciliation: [], coverageExcluded: [] };
@@ -52,8 +52,10 @@ export async function migrateIngredientModel({ repo = repositories, registry, on
       // installation timestamp is in the report, separate from source provenance.
       revised.contentHash = await sha256Json(revised);
       assertIngredientRevisionV2(revised, { registry, index });
-      if (existing && canonicalJson(existing) !== canonicalJson(revised)) throw new Error(`Immutable migration collision: ${revisionId}`);
       const local = family.origin === 'user' || source.origin === 'user';
+      const revisionChanged = Boolean(existing && canonicalJson(existing) !== canonicalJson(revised));
+      const canRebaseDerivedRevision = revisionChanged && allowDevelopmentBaseRebase && !local && existing.origin === 'base' && revised.origin === 'base';
+      if (revisionChanged && !canRebaseDerivedRevision) throw new Error(`Immutable migration collision: ${revisionId}`);
       const mapping = { schemaVersion: 1, mappingId: `identity:${source.ingredientRevisionId}`, version: 1,
         sourceIngredientId: family.ingredientId, sourceRevisionId: source.ingredientRevisionId,
         targetIngredientId: family.ingredientId, targetRevisionId: revised.ingredientRevisionId,
@@ -62,12 +64,14 @@ export async function migrateIngredientModel({ repo = repositories, registry, on
         sourceRef: `legacy:${source.ingredientRevisionId}`, approvedBy: INGREDIENT_MIGRATION_VERSION, approvedAt: source.createdAt };
       registry.assert('ingredientMapping', mapping);
       const priorMapping = await repo.get('ingredientMappings', [mapping.mappingId, mapping.version]);
-      if (priorMapping && canonicalJson(priorMapping) !== canonicalJson(mapping)) throw new Error(`Immutable mapping collision: ${mapping.mappingId}`);
+      const mappingChanged = Boolean(priorMapping && canonicalJson(priorMapping) !== canonicalJson(mapping));
+      const canRebaseDerivedMapping = mappingChanged && allowDevelopmentBaseRebase && !local && priorMapping.kind === 'identity' && priorMapping.approvedBy === INGREDIENT_MIGRATION_VERSION;
+      if (mappingChanged && !canRebaseDerivedMapping) throw new Error(`Immutable mapping collision: ${mapping.mappingId}`);
       if (local) report.reconciliation.push({ ingredientId: family.ingredientId, currentRevisionId: source.ingredientRevisionId, proposedRevisionId: revisionId, status: 'awaiting_explicit_local_decision' });
       else report.migrated.push({ ingredientId: family.ingredientId, sourceRevisionId: source.ingredientRevisionId, targetRevisionId: revisionId });
       pending.expected.push({ store: 'ingredients', key: family.ingredientId, value: family }, { store: 'ingredientRevisions', key: revisionId, value: existing ?? null });
-      if (!existing) pending.puts.ingredientRevisions.push(revised);
-      if (!priorMapping) pending.puts.ingredientMappings.push(mapping);
+      if (!existing || canRebaseDerivedRevision) pending.puts.ingredientRevisions.push(revised);
+      if (!priorMapping || canRebaseDerivedMapping) pending.puts.ingredientMappings.push(mapping);
       if (!local) pending.puts.ingredients.push({ ...family, currentRevisionId: revisionId });
       if (pending.expected.length >= batchSize * 2) await flush();
     }
