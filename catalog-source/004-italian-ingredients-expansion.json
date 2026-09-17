@@ -1,0 +1,6821 @@
+{
+  "schemaVersion": 1,
+  "batchId": "italian_ingredient_expansion_round_2",
+  "description": "Italian/Mediterranean ingredient expansion with 120 sourced ingredients",
+  "records": [
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_role_protein_meat",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "culinary_role",
+      "labels": {
+        "it": "Proteina: carne",
+        "en": "Protein: meat"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_role_dairy_cream",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "culinary_role",
+      "labels": {
+        "it": "Panna e crema lattiero-casearia",
+        "en": "Dairy cream"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_role_flour",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "culinary_role",
+      "labels": {
+        "it": "Farina",
+        "en": "Flour"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_role_dried_fruit",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "culinary_role",
+      "labels": {
+        "it": "Frutta essiccata",
+        "en": "Dried fruit"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_role_shellfish",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "culinary_role",
+      "labels": {
+        "it": "Mollusco o crostaceo",
+        "en": "Shellfish"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_millet",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_grains_starches",
+      "labels": {
+        "it": "Miglio",
+        "en": "Millet"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_oat_bran",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_grains_starches",
+      "labels": {
+        "it": "Crusca d’avena",
+        "en": "Oat bran"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_rye_grain",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_grains_starches",
+      "labels": {
+        "it": "Segale in chicchi",
+        "en": "Rye grain"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_rye_flour",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_grains_starches",
+      "labels": {
+        "it": "Farina di segale",
+        "en": "Rye flour"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_spelt_flour",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_grains_starches",
+      "labels": {
+        "it": "Farina integrale di farro",
+        "en": "Whole-grain spelt flour"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_einkorn",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_grains_starches",
+      "labels": {
+        "it": "Farro monococco",
+        "en": "Einkorn"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_khorasan",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_grains_starches",
+      "labels": {
+        "it": "Grano khorasan",
+        "en": "Khorasan wheat"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_brown_rice_flour",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_grains_starches",
+      "labels": {
+        "it": "Farina di riso integrale",
+        "en": "Brown rice flour"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_white_rice_flour",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_grains_starches",
+      "labels": {
+        "it": "Farina di riso",
+        "en": "White rice flour"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_wild_rice",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_grains_starches",
+      "labels": {
+        "it": "Riso selvatico",
+        "en": "Wild rice"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_black_rice",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_grains_starches",
+      "labels": {
+        "it": "Riso nero",
+        "en": "Black rice"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_red_rice",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_grains_starches",
+      "labels": {
+        "it": "Riso rosso",
+        "en": "Red rice"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_semolina_coarse",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_grains_starches",
+      "labels": {
+        "it": "Semola grossa di grano duro",
+        "en": "Coarse semolina"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_vegetable_pasta",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_grains_starches",
+      "labels": {
+        "it": "Pasta alle verdure",
+        "en": "Vegetable pasta"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_egg_pasta",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_grains_starches",
+      "labels": {
+        "it": "Pasta all’uovo",
+        "en": "Egg pasta"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_spinach_egg_pasta",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_grains_starches",
+      "labels": {
+        "it": "Pasta all’uovo agli spinaci",
+        "en": "Spinach egg pasta"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_beech_mushroom",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_vegetables",
+      "labels": {
+        "it": "Fungo shimeji",
+        "en": "Beech mushroom"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_brussels_sprouts",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_vegetables",
+      "labels": {
+        "it": "Cavolini di Bruxelles",
+        "en": "Brussels sprouts"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_beet_greens",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_vegetables",
+      "labels": {
+        "it": "Foglie di barbabietola",
+        "en": "Beet greens"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_parsnip",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_vegetables",
+      "labels": {
+        "it": "Pastinaca",
+        "en": "Parsnip"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_tomato_puree",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_vegetables",
+      "labels": {
+        "it": "Passata/purea di pomodoro",
+        "en": "Tomato puree"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_baby_carrot",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_vegetables",
+      "labels": {
+        "it": "Carota baby",
+        "en": "Baby carrot"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_turnip_greens",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_vegetables",
+      "labels": {
+        "it": "Cime di rapa in conserva",
+        "en": "Canned turnip greens"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_spaghetti_squash",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_vegetables",
+      "labels": {
+        "it": "Zucca spaghetti",
+        "en": "Spaghetti squash"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_banana_pepper",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_vegetables",
+      "labels": {
+        "it": "Peperone friggitello tipo banana",
+        "en": "Banana pepper"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_lemon_peel",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fruit",
+      "labels": {
+        "it": "Scorza di limone",
+        "en": "Lemon peel"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_lime_juice",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fruit",
+      "labels": {
+        "it": "Succo di lime",
+        "en": "Lime juice"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_apple_juice",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fruit",
+      "labels": {
+        "it": "Succo di mela",
+        "en": "Apple juice"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_applesauce",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fruit",
+      "labels": {
+        "it": "Purea di mela",
+        "en": "Applesauce"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_pear_red_anjou",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fruit",
+      "labels": {
+        "it": "Pera Red Anjou",
+        "en": "Red Anjou pear"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_pear_bosc",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fruit",
+      "labels": {
+        "it": "Pera Bosc",
+        "en": "Bosc pear"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_pear_green_anjou",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fruit",
+      "labels": {
+        "it": "Pera Green Anjou",
+        "en": "Green Anjou pear"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_quince",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fruit",
+      "labels": {
+        "it": "Mela cotogna",
+        "en": "Quince"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_golden_raisins",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fruit",
+      "labels": {
+        "it": "Uvetta dorata",
+        "en": "Golden raisins"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_sour_cherries",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fruit",
+      "labels": {
+        "it": "Ciliegie amarene",
+        "en": "Sour cherries"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_sweet_cherries",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fruit",
+      "labels": {
+        "it": "Ciliegie dolci",
+        "en": "Sweet cherries"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_pomegranate_juice",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fruit",
+      "labels": {
+        "it": "Succo di melagrana",
+        "en": "Pomegranate juice"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_kumquat",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fruit",
+      "labels": {
+        "it": "Kumquat",
+        "en": "Kumquat"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_dried_blueberries",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fruit",
+      "labels": {
+        "it": "Mirtilli secchi",
+        "en": "Dried blueberries"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_raspberry_puree",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fruit",
+      "labels": {
+        "it": "Purea di lampone",
+        "en": "Raspberry puree"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_apple_red_delicious",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fruit",
+      "labels": {
+        "it": "Mela Red Delicious",
+        "en": "Red Delicious apple"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_apple_gala",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fruit",
+      "labels": {
+        "it": "Mela Gala",
+        "en": "Gala apple"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_apple_granny_smith",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fruit",
+      "labels": {
+        "it": "Mela Granny Smith",
+        "en": "Granny Smith apple"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_buttermilk",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_dairy",
+      "labels": {
+        "it": "Latticello",
+        "en": "Buttermilk"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_fruit_yogurt",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_dairy",
+      "labels": {
+        "it": "Yogurt alla frutta",
+        "en": "Fruit yogurt"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_strawberry_greek_yogurt",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_dairy",
+      "labels": {
+        "it": "Yogurt greco alla fragola",
+        "en": "Strawberry Greek yogurt"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_light_cream",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_dairy",
+      "labels": {
+        "it": "Panna leggera",
+        "en": "Light cream"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_whipping_cream",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_dairy",
+      "labels": {
+        "it": "Panna da montare",
+        "en": "Whipping cream"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_heavy_cream",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_dairy",
+      "labels": {
+        "it": "Panna fresca",
+        "en": "Heavy cream"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_swiss_cheese",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_dairy",
+      "labels": {
+        "it": "Formaggio svizzero",
+        "en": "Swiss cheese"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_lupins",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_legumes",
+      "labels": {
+        "it": "Lupini",
+        "en": "Lupins"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_soy_flour",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_legumes",
+      "labels": {
+        "it": "Farina di soia",
+        "en": "Soy flour"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_peanut_butter",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_legumes",
+      "labels": {
+        "it": "Burro di arachidi",
+        "en": "Peanut butter"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_almond_butter",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_nuts_seeds",
+      "labels": {
+        "it": "Crema di mandorle",
+        "en": "Almond butter"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_sunflower_seed_butter",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_nuts_seeds",
+      "labels": {
+        "it": "Crema di semi di girasole",
+        "en": "Sunflower seed butter"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_cashew_butter",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_nuts_seeds",
+      "labels": {
+        "it": "Crema di anacardi",
+        "en": "Cashew butter"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_almond_flour",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_nuts_seeds",
+      "labels": {
+        "it": "Farina di mandorle",
+        "en": "Almond flour"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_chestnut_flour",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_nuts_seeds",
+      "labels": {
+        "it": "Farina di castagne",
+        "en": "Chestnut flour"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_pecans",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_nuts_seeds",
+      "labels": {
+        "it": "Noce pecan",
+        "en": "Pecan"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_coconut_flour",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_nuts_seeds",
+      "labels": {
+        "it": "Farina di cocco",
+        "en": "Coconut flour"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_snail",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fish_seafood",
+      "labels": {
+        "it": "Lumaca",
+        "en": "Snail"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_frog_legs",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fish_seafood",
+      "labels": {
+        "it": "Cosce di rana",
+        "en": "Frog legs"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_bluefish",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fish_seafood",
+      "labels": {
+        "it": "Pesce serra",
+        "en": "Bluefish"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_carp",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fish_seafood",
+      "labels": {
+        "it": "Carpa",
+        "en": "Carp"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_mahimahi",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fish_seafood",
+      "labels": {
+        "it": "Lampuga",
+        "en": "Mahi-mahi"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_blue_crab",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fish_seafood",
+      "labels": {
+        "it": "Granchio blu",
+        "en": "Blue crab"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_squid",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fish_seafood",
+      "labels": {
+        "it": "Calamaro",
+        "en": "Squid"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_pork_belly",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_meat_poultry",
+      "labels": {
+        "it": "Pancetta fresca di maiale",
+        "en": "Pork belly"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_pork_leg",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_meat_poultry",
+      "labels": {
+        "it": "Coscia di maiale",
+        "en": "Pork leg"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_pork_loin",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_meat_poultry",
+      "labels": {
+        "it": "Lonza di maiale",
+        "en": "Pork loin"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_pork_chop",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_meat_poultry",
+      "labels": {
+        "it": "Braciola di maiale",
+        "en": "Pork chop"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_pork_shoulder",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_meat_poultry",
+      "labels": {
+        "it": "Spalla di maiale",
+        "en": "Pork shoulder"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_pork_ribs",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_meat_poultry",
+      "labels": {
+        "it": "Costine di maiale",
+        "en": "Pork ribs"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_pork_liver",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_meat_poultry",
+      "labels": {
+        "it": "Fegato di maiale",
+        "en": "Pork liver"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_ground_pork",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_meat_poultry",
+      "labels": {
+        "it": "Maiale macinato",
+        "en": "Ground pork"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_pork_tenderloin",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_meat_poultry",
+      "labels": {
+        "it": "Filetto di maiale",
+        "en": "Pork tenderloin"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_bacon",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_meat_poultry",
+      "labels": {
+        "it": "Bacon",
+        "en": "Bacon"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_cooked_ham",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_meat_poultry",
+      "labels": {
+        "it": "Prosciutto cotto",
+        "en": "Cooked ham"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_cured_ham",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_meat_poultry",
+      "labels": {
+        "it": "Prosciutto stagionato/cotto non riscaldato",
+        "en": "Cured ham"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_quail",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_meat_poultry",
+      "labels": {
+        "it": "Quaglia",
+        "en": "Quail"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_pheasant",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_meat_poultry",
+      "labels": {
+        "it": "Fagiano",
+        "en": "Pheasant"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_chicken_heart",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_meat_poultry",
+      "labels": {
+        "it": "Cuore di pollo",
+        "en": "Chicken heart"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_chicken_liver",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_meat_poultry",
+      "labels": {
+        "it": "Fegato di pollo",
+        "en": "Chicken liver"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_chicken_stewed",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_meat_poultry",
+      "labels": {
+        "it": "Pollo stufato",
+        "en": "Stewed chicken"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_coriander_seed",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_herbs_spices",
+      "labels": {
+        "it": "Semi di coriandolo",
+        "en": "Coriander seed"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_cumin_seed",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_herbs_spices",
+      "labels": {
+        "it": "Semi di cumino",
+        "en": "Cumin seed"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_dill_seed",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_herbs_spices",
+      "labels": {
+        "it": "Semi di aneto",
+        "en": "Dill seed"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_millet_puffed",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_millet",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Miglio soffiato",
+        "en": "Puffed millet"
+      },
+      "culinaryRoles": [
+        "tax_role_main_grain"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 354,
+        "proteinG": 13,
+        "carbohydrateG": 80,
+        "fatG": 3.4,
+        "fiberG": 2.7,
+        "sugarsG": 0.55,
+        "saturatedFatG": 0.67,
+        "sodiumMg": 5
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167724",
+        "description": "Millet, puffed",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_millet_cooked",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_millet",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Miglio cotto",
+        "en": "Cooked millet"
+      },
+      "culinaryRoles": [
+        "tax_role_main_grain"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 119.02485659655831,
+        "proteinG": 3.51,
+        "carbohydrateG": 23.7,
+        "fatG": 1,
+        "fiberG": 1.3,
+        "sugarsG": 0.13,
+        "saturatedFatG": 0.172,
+        "sodiumMg": 2
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168871",
+        "description": "Millet, cooked",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_oat_bran_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_oat_bran",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Crusca d’avena",
+        "en": "Oat bran"
+      },
+      "culinaryRoles": [
+        "tax_role_main_grain"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 246.1759082217973,
+        "proteinG": 17.3,
+        "carbohydrateG": 66.2,
+        "fatG": 7.03,
+        "fiberG": 15.4,
+        "sugarsG": 2.64,
+        "saturatedFatG": 2.38,
+        "sodiumMg": 4
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168872",
+        "description": "Oat bran, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_oat_bran_cooked",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_oat_bran",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Crusca d’avena cotta",
+        "en": "Cooked oat bran"
+      },
+      "culinaryRoles": [
+        "tax_role_main_grain"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 39.913957934990435,
+        "proteinG": 3.21,
+        "carbohydrateG": 11.4,
+        "fatG": 0.86,
+        "fiberG": 2.6,
+        "sugarsG": 0.324,
+        "saturatedFatG": 0.163,
+        "sodiumMg": 1
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168873",
+        "description": "Oat bran, cooked",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_rye_grain_dry",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_rye_grain",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Segale in chicchi secca",
+        "en": "Dry rye grain"
+      },
+      "culinaryRoles": [
+        "tax_role_main_grain"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 336.9980879541109,
+        "proteinG": 10.3,
+        "carbohydrateG": 75.9,
+        "fatG": 1.63,
+        "fiberG": 15.1,
+        "sugarsG": 0.98,
+        "saturatedFatG": 0.197,
+        "sodiumMg": 2
+      },
+      "allergens": [
+        "gluten_cereals"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168884",
+        "description": "Rye grain",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_rye_flour_dark",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_rye_flour",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Farina di segale scura",
+        "en": "Dark rye flour"
+      },
+      "culinaryRoles": [
+        "tax_role_flour"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 325,
+        "proteinG": 15.9,
+        "carbohydrateG": 68.6,
+        "fatG": 2.22,
+        "fiberG": 23.8,
+        "sugarsG": 2.31,
+        "saturatedFatG": 0.284,
+        "sodiumMg": 2
+      },
+      "allergens": [
+        "gluten_cereals"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168885",
+        "description": "Rye flour, dark",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_rye_flour_medium",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_rye_flour",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Farina di segale media",
+        "en": "Medium rye flour"
+      },
+      "culinaryRoles": [
+        "tax_role_flour"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 348.9483747609942,
+        "proteinG": 10.9,
+        "carbohydrateG": 75.4,
+        "fatG": 1.52,
+        "fiberG": 11.8,
+        "sugarsG": 1.1,
+        "saturatedFatG": 0.18,
+        "sodiumMg": 2
+      },
+      "allergens": [
+        "gluten_cereals"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168886",
+        "description": "Rye flour, medium",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_spelt_flour_wholegrain",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_spelt_flour",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Farina integrale di farro",
+        "en": "Whole-grain spelt flour"
+      },
+      "culinaryRoles": [
+        "tax_role_flour"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 364,
+        "proteinG": 14.5,
+        "carbohydrateG": 70.7,
+        "fatG": 2.54,
+        "fiberG": 9.34,
+        "sodiumMg": 0
+      },
+      "allergens": [
+        "gluten_cereals"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2003587",
+        "description": "Flour, spelt, whole grain",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_einkorn_grain_dry",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_einkorn",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Farro monococco in chicchi secco",
+        "en": "Dry einkorn grain"
+      },
+      "culinaryRoles": [
+        "tax_role_main_grain"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 369,
+        "proteinG": 15.1,
+        "carbohydrateG": 68.7,
+        "fatG": 3.81,
+        "fiberG": 8.91,
+        "sodiumMg": 0
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2710827",
+        "description": "Einkorn, grain, dry, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_khorasan_grain_dry",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_khorasan",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Grano khorasan secco",
+        "en": "Dry khorasan wheat"
+      },
+      "culinaryRoles": [
+        "tax_role_main_grain"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 371,
+        "proteinG": 14.8,
+        "carbohydrateG": 71.8,
+        "fatG": 2.8,
+        "fiberG": 10.5,
+        "sodiumMg": 3.94
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2710830",
+        "description": "Khorasan, grain, dry, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_brown_rice_flour",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_brown_rice_flour",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Farina di riso integrale",
+        "en": "Brown rice flour"
+      },
+      "culinaryRoles": [
+        "tax_role_flour"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 363.2887189292543,
+        "proteinG": 7.23,
+        "carbohydrateG": 76.5,
+        "fatG": 2.78,
+        "fiberG": 4.6,
+        "sugarsG": 0.66,
+        "saturatedFatG": 0.557,
+        "sodiumMg": 8
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168898",
+        "description": "Rice flour, brown",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_white_rice_flour",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_white_rice_flour",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Farina di riso bianca",
+        "en": "White rice flour"
+      },
+      "culinaryRoles": [
+        "tax_role_flour"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 358.50860420650093,
+        "proteinG": 6.94,
+        "carbohydrateG": 79.8,
+        "fatG": 1.3,
+        "fiberG": 0.5,
+        "sodiumMg": 5
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "790214",
+        "description": "Flour, rice, white, unenriched",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_wild_rice_dry",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_wild_rice",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Riso selvatico secco",
+        "en": "Dry wild rice"
+      },
+      "culinaryRoles": [
+        "tax_role_main_grain"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 369,
+        "proteinG": 12.8,
+        "carbohydrateG": 75.7,
+        "fatG": 1.7,
+        "fiberG": 4.26,
+        "sodiumMg": 1.01
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2710821",
+        "description": "Wild rice, dry, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_wild_rice_cooked",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_wild_rice",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Riso selvatico cotto",
+        "en": "Cooked wild rice"
+      },
+      "culinaryRoles": [
+        "tax_role_main_grain"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 101.09942638623326,
+        "proteinG": 3.99,
+        "carbohydrateG": 21.3,
+        "fatG": 0.34,
+        "fiberG": 1.8,
+        "sugarsG": 0.73,
+        "saturatedFatG": 0.05,
+        "sodiumMg": 3
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168897",
+        "description": "Wild rice, cooked",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_black_rice_dry",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_black_rice",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Riso nero secco",
+        "en": "Dry black rice"
+      },
+      "culinaryRoles": [
+        "tax_role_main_grain"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 370,
+        "proteinG": 7.57,
+        "carbohydrateG": 77.2,
+        "fatG": 3.44,
+        "fiberG": 4.18,
+        "sodiumMg": 0
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2710825",
+        "description": "Rice, black, unenriched, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_red_rice_dry",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_red_rice",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Riso rosso secco",
+        "en": "Dry red rice"
+      },
+      "culinaryRoles": [
+        "tax_role_main_grain"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 370,
+        "proteinG": 8.56,
+        "carbohydrateG": 76.2,
+        "fatG": 3.44,
+        "fiberG": 4.2,
+        "sodiumMg": 0.438
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2710838",
+        "description": "Rice, red, unenriched, dry, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_semolina_coarse",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_semolina_coarse",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Semola grossa di grano duro",
+        "en": "Coarse durum semolina"
+      },
+      "culinaryRoles": [
+        "tax_role_flour"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 357,
+        "proteinG": 11.7,
+        "carbohydrateG": 73.8,
+        "fatG": 1.6,
+        "fiberG": 3.22,
+        "sodiumMg": 0
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2003588",
+        "description": "Flour, semolina, coarse and semi-coarse",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_vegetable_macaroni_dry",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_vegetable_pasta",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "dry",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Maccheroni alle verdure secchi",
+        "en": "Dry vegetable macaroni"
+      },
+      "culinaryRoles": [
+        "tax_role_main_grain"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 368.06883365200764,
+        "proteinG": 13.1,
+        "carbohydrateG": 74.9,
+        "fatG": 1.04,
+        "fiberG": 4.3,
+        "sugarsG": 0.376,
+        "saturatedFatG": 0.12,
+        "sodiumMg": 43
+      },
+      "allergens": [
+        "gluten_cereals"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168903",
+        "description": "Macaroni, vegetable, enriched, dry",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_vegetable_macaroni_cooked",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_vegetable_pasta",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Maccheroni alle verdure cotti",
+        "en": "Cooked vegetable macaroni"
+      },
+      "culinaryRoles": [
+        "tax_role_main_grain"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 128.10707456978966,
+        "proteinG": 4.53,
+        "carbohydrateG": 26.6,
+        "fatG": 0.11,
+        "fiberG": 4.3,
+        "sugarsG": 0.039,
+        "saturatedFatG": 0.016,
+        "sodiumMg": 6
+      },
+      "allergens": [
+        "gluten_cereals"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168904",
+        "description": "Macaroni, vegetable, enriched, cooked",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_egg_noodles_dry",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_egg_pasta",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "dry",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Pasta all’uovo secca",
+        "en": "Dry egg noodles"
+      },
+      "culinaryRoles": [
+        "tax_role_main_grain"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 384,
+        "proteinG": 14.2,
+        "carbohydrateG": 71.3,
+        "fatG": 4.44,
+        "fiberG": 3.3,
+        "sugarsG": 1.88,
+        "saturatedFatG": 1.25,
+        "sodiumMg": 21
+      },
+      "allergens": [
+        "gluten_cereals",
+        "eggs"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "169731",
+        "description": "Noodles, egg, dry, enriched",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_egg_noodles_cooked",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_egg_pasta",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Pasta all’uovo cotta",
+        "en": "Cooked egg noodles"
+      },
+      "culinaryRoles": [
+        "tax_role_main_grain"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 138.1453154875717,
+        "proteinG": 4.54,
+        "carbohydrateG": 25.2,
+        "fatG": 2.07,
+        "fiberG": 1.2,
+        "sugarsG": 0.522,
+        "saturatedFatG": 0.419,
+        "sodiumMg": 5
+      },
+      "allergens": [
+        "gluten_cereals",
+        "eggs"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "169732",
+        "description": "Noodles, egg, enriched, cooked",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_spinach_egg_noodles_dry",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_spinach_egg_pasta",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "dry",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Pasta all’uovo agli spinaci secca",
+        "en": "Dry spinach egg noodles"
+      },
+      "culinaryRoles": [
+        "tax_role_main_grain"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 382.40917782026764,
+        "proteinG": 14.6,
+        "carbohydrateG": 70.3,
+        "fatG": 4.55,
+        "fiberG": 6.8,
+        "sugarsG": 0.874,
+        "saturatedFatG": 1.05,
+        "sodiumMg": 72
+      },
+      "allergens": [
+        "gluten_cereals",
+        "eggs"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "169733",
+        "description": "Noodles, egg, spinach, enriched, dry",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_spinach_egg_noodles_cooked",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_spinach_egg_pasta",
+      "categoryId": "tax_category_grains_starches",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Pasta all’uovo agli spinaci cotta",
+        "en": "Cooked spinach egg noodles"
+      },
+      "culinaryRoles": [
+        "tax_role_main_grain"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 131.93116634799236,
+        "proteinG": 5.04,
+        "carbohydrateG": 24.2,
+        "fatG": 1.57,
+        "fiberG": 2.3,
+        "sugarsG": 0.71,
+        "saturatedFatG": 0.493,
+        "sodiumMg": 12
+      },
+      "allergens": [
+        "gluten_cereals",
+        "eggs"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "169734",
+        "description": "Noodles, egg, spinach, enriched, cooked",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_beech_mushroom",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_beech_mushroom",
+      "categoryId": "tax_category_vegetables",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Funghi shimeji",
+        "en": "Beech mushrooms"
+      },
+      "culinaryRoles": [
+        "tax_role_main_vegetable"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 39.8,
+        "proteinG": 2.18,
+        "carbohydrateG": 5.38,
+        "fatG": 0.449,
+        "fiberG": 3.14,
+        "sodiumMg": 0.891
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2003603",
+        "description": "Mushroom, beech",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_brussels_sprouts_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_brussels_sprouts",
+      "categoryId": "tax_category_vegetables",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Cavolini di Bruxelles crudi",
+        "en": "Raw Brussels sprouts"
+      },
+      "culinaryRoles": [
+        "tax_role_main_vegetable"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 59.5,
+        "proteinG": 3.98,
+        "carbohydrateG": 9.62,
+        "fatG": 0.565,
+        "fiberG": 4.78,
+        "sodiumMg": 25.7
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2685575",
+        "description": "Brussels sprouts, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_beet_greens_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_beet_greens",
+      "categoryId": "tax_category_vegetables",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Foglie di barbabietola crude",
+        "en": "Raw beet greens"
+      },
+      "culinaryRoles": [
+        "tax_role_main_vegetable"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 26.4,
+        "proteinG": 1.61,
+        "carbohydrateG": 4.66,
+        "fatG": 0.144,
+        "fiberG": 2.58,
+        "sugarsG": 0.89,
+        "sodiumMg": 280
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2747653",
+        "description": "Beet greens, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_parsnip_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_parsnip",
+      "categoryId": "tax_category_vegetables",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Pastinaca cruda",
+        "en": "Raw parsnip"
+      },
+      "culinaryRoles": [
+        "tax_role_main_vegetable"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 87.1,
+        "proteinG": 1.27,
+        "carbohydrateG": 19.3,
+        "fatG": 0.538,
+        "fiberG": 5.35,
+        "sugarsG": 10.5,
+        "sodiumMg": 0.491
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2747659",
+        "description": "Parsnips, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_tomato_puree_canned",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_tomato_puree",
+      "categoryId": "tax_category_vegetables",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "canned",
+        "drained": false
+      },
+      "display": {
+        "it": "Purea di pomodoro in scatola",
+        "en": "Canned tomato puree"
+      },
+      "culinaryRoles": [
+        "tax_role_main_vegetable"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 40.8,
+        "proteinG": 1.58,
+        "carbohydrateG": 8.04,
+        "fatG": 0.265,
+        "fiberG": 1.97,
+        "sugarsG": 4.31,
+        "sodiumMg": 29.4
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2685582",
+        "description": "Tomato, puree, canned",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_baby_carrot_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_baby_carrot",
+      "categoryId": "tax_category_vegetables",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Carote baby crude",
+        "en": "Raw baby carrots"
+      },
+      "culinaryRoles": [
+        "tax_role_main_vegetable"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 40.8,
+        "proteinG": 0.805,
+        "carbohydrateG": 9.08,
+        "fatG": 0.138,
+        "fiberG": 2.69,
+        "sodiumMg": 62.7
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2258587",
+        "description": "Carrots, baby, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_carrot_frozen",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_carrot",
+      "categoryId": "tax_category_vegetables",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "frozen",
+        "drained": false
+      },
+      "display": {
+        "it": "Carote surgelate",
+        "en": "Frozen carrots"
+      },
+      "culinaryRoles": [
+        "tax_role_main_vegetable"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 37,
+        "proteinG": 0.81,
+        "carbohydrateG": 7.92,
+        "fatG": 0.47,
+        "fiberG": 3.2,
+        "sugarsG": 0.163,
+        "saturatedFatG": 0,
+        "sodiumMg": 66
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "746764",
+        "description": "Carrots, frozen, unprepared",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_turnip_greens_canned",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_turnip_greens",
+      "categoryId": "tax_category_vegetables",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "canned",
+        "drained": false
+      },
+      "display": {
+        "it": "Cime di rapa in scatola senza sale aggiunto",
+        "en": "Canned turnip greens, no salt added"
+      },
+      "culinaryRoles": [
+        "tax_role_main_vegetable"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 19,
+        "proteinG": 1.36,
+        "carbohydrateG": 2.81,
+        "fatG": 0.3,
+        "fiberG": 1.3,
+        "sugarsG": 0.42,
+        "saturatedFatG": 0.02,
+        "sodiumMg": 29
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168119",
+        "description": "Turnip greens, canned, no salt added",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_spaghetti_squash_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_spaghetti_squash",
+      "categoryId": "tax_category_vegetables",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Zucca spaghetti cruda",
+        "en": "Raw spaghetti squash"
+      },
+      "culinaryRoles": [
+        "tax_role_main_vegetable"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 31.070745697896747,
+        "proteinG": 0.64,
+        "carbohydrateG": 6.91,
+        "fatG": 0.57,
+        "fiberG": 1.5,
+        "sugarsG": 0.09,
+        "saturatedFatG": 0.117,
+        "sodiumMg": 17
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "169298",
+        "description": "Squash, winter, spaghetti, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_spaghetti_squash_cooked",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_spaghetti_squash",
+      "categoryId": "tax_category_vegetables",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Zucca spaghetti cotta",
+        "en": "Cooked spaghetti squash"
+      },
+      "culinaryRoles": [
+        "tax_role_main_vegetable"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 27,
+        "proteinG": 0.66,
+        "carbohydrateG": 6.46,
+        "fatG": 0.26,
+        "fiberG": 1.4,
+        "sugarsG": 2.53,
+        "saturatedFatG": 0.022,
+        "sodiumMg": 18
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "169299",
+        "description": "Squash, winter, spaghetti, cooked, boiled, drained, or baked, without salt",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_banana_pepper_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_banana_pepper",
+      "categoryId": "tax_category_vegetables",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Peperone tipo banana crudo",
+        "en": "Raw banana pepper"
+      },
+      "culinaryRoles": [
+        "tax_role_main_vegetable"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 23.9,
+        "proteinG": 0.723,
+        "carbohydrateG": 4.97,
+        "fatG": 0.131,
+        "fiberG": 1.79,
+        "sugarsG": 2.71,
+        "sodiumMg": 0
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2747660",
+        "description": "Peppers, banana or Hungarian wax, seeded, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_lemon_peel_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_lemon_peel",
+      "categoryId": "tax_category_fruit",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Scorza di limone cruda",
+        "en": "Raw lemon peel"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 47.08413001912046,
+        "proteinG": 1.5,
+        "carbohydrateG": 16,
+        "fatG": 0.3,
+        "fiberG": 10.6,
+        "sugarsG": 4.17,
+        "saturatedFatG": 0.039,
+        "sodiumMg": 6
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167749",
+        "description": "Lemon peel, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_lime_juice_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_lime_juice",
+      "categoryId": "tax_category_fruit",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Succo di lime fresco",
+        "en": "Fresh lime juice"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 24.8565965583174,
+        "proteinG": 0.42,
+        "carbohydrateG": 8.42,
+        "fatG": 0.07,
+        "fiberG": 0.4,
+        "sugarsG": 1.69,
+        "saturatedFatG": 0.008,
+        "sodiumMg": 2
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168156",
+        "description": "Lime juice, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_apple_juice_unsweetened",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_apple_juice",
+      "categoryId": "tax_category_fruit",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "canned",
+        "drained": false
+      },
+      "display": {
+        "it": "Succo di mela non zuccherato",
+        "en": "Unsweetened apple juice"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 45.650095602294456,
+        "proteinG": 0.1,
+        "carbohydrateG": 11.3,
+        "fatG": 0.13,
+        "fiberG": 0.2,
+        "sugarsG": 9.62,
+        "saturatedFatG": 0.022,
+        "sodiumMg": 4
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167771",
+        "description": "Apple juice, canned or bottled, unsweetened, with added ascorbic acid",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_applesauce_unsweetened",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_applesauce",
+      "categoryId": "tax_category_fruit",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "canned",
+        "drained": false
+      },
+      "display": {
+        "it": "Purea di mela non zuccherata",
+        "en": "Unsweetened applesauce"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 42,
+        "proteinG": 0.17,
+        "carbohydrateG": 11.3,
+        "fatG": 0.1,
+        "fiberG": 1.1,
+        "sugarsG": 9.39,
+        "saturatedFatG": 0.002,
+        "sodiumMg": 2
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167772",
+        "description": "Applesauce, canned, unsweetened, with added ascorbic acid",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pear_red_anjou_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pear_red_anjou",
+      "categoryId": "tax_category_fruit",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Pera Red Anjou cruda",
+        "en": "Raw Red Anjou pear"
+      },
+      "culinaryRoles": [
+        "tax_role_fruit_ready"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 62,
+        "proteinG": 0.33,
+        "carbohydrateG": 14.9,
+        "fatG": 0.14,
+        "fiberG": 3,
+        "sugarsG": 9.54,
+        "sodiumMg": 1
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167777",
+        "description": "Pears, raw, red anjou",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pear_bosc_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pear_bosc",
+      "categoryId": "tax_category_fruit",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Pera Bosc cruda",
+        "en": "Raw Bosc pear"
+      },
+      "culinaryRoles": [
+        "tax_role_fruit_ready"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 66.68260038240918,
+        "proteinG": 0.36,
+        "carbohydrateG": 16.1,
+        "fatG": 0.09,
+        "fiberG": 3.1,
+        "sugarsG": 10.2,
+        "sodiumMg": 1
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167778",
+        "description": "Pears, raw, bosc (Includes foods for USDA's Food Distribution Program)",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pear_green_anjou_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pear_green_anjou",
+      "categoryId": "tax_category_fruit",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Pera Green Anjou cruda",
+        "en": "Raw Green Anjou pear"
+      },
+      "culinaryRoles": [
+        "tax_role_fruit_ready"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 66,
+        "proteinG": 0.44,
+        "carbohydrateG": 15.8,
+        "fatG": 0.1,
+        "fiberG": 3.1,
+        "sugarsG": 9.73,
+        "sodiumMg": 1
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167779",
+        "description": "Pears, raw, green anjou (Includes foods for USDA's Food Distribution Program)",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_quince_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_quince",
+      "categoryId": "tax_category_fruit",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Mela cotogna cruda",
+        "en": "Raw quince"
+      },
+      "culinaryRoles": [
+        "tax_role_fruit_ready"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 56.883365200764814,
+        "proteinG": 0.4,
+        "carbohydrateG": 15.3,
+        "fatG": 0.1,
+        "fiberG": 1.9,
+        "sugarsG": 0.049,
+        "saturatedFatG": 0.01,
+        "sodiumMg": 4
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168163",
+        "description": "Quinces, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_golden_raisins",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_golden_raisins",
+      "categoryId": "tax_category_fruit",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Uvetta dorata",
+        "en": "Golden raisins"
+      },
+      "culinaryRoles": [
+        "tax_role_dried_fruit"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 301,
+        "proteinG": 3.28,
+        "carbohydrateG": 80,
+        "fatG": 0.2,
+        "fiberG": 3.3,
+        "sugarsG": 65.7,
+        "saturatedFatG": 0.014,
+        "sodiumMg": 24
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168164",
+        "description": "Raisins, golden, seedless",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_sour_cherries_canned_drained",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_sour_cherries",
+      "categoryId": "tax_category_fruit",
+      "state": {
+        "physical": "drained",
+        "preservation": "canned",
+        "drained": true
+      },
+      "display": {
+        "it": "Amarene in scatola sgocciolate",
+        "en": "Canned sour cherries, drained"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 42,
+        "proteinG": 0.69,
+        "carbohydrateG": 10.4,
+        "fatG": 0.21,
+        "fiberG": 1.2,
+        "sugarsG": 6.99,
+        "sodiumMg": 4
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167769",
+        "description": "Cherries, sour, canned, water pack, drained",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_sweet_cherries_canned_drained",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_sweet_cherries",
+      "categoryId": "tax_category_fruit",
+      "state": {
+        "physical": "drained",
+        "preservation": "canned",
+        "drained": true
+      },
+      "display": {
+        "it": "Ciliegie dolci in scatola sgocciolate",
+        "en": "Canned sweet cherries, drained"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 83,
+        "proteinG": 0.73,
+        "carbohydrateG": 21.1,
+        "fatG": 0.21,
+        "fiberG": 2.3,
+        "sugarsG": 16.2,
+        "saturatedFatG": 0.049,
+        "sodiumMg": 3
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167770",
+        "description": "Cherries, sweet, canned, pitted, heavy syrup, drained",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pomegranate_juice",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pomegranate_juice",
+      "categoryId": "tax_category_fruit",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Succo di melagrana",
+        "en": "Pomegranate juice"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 54,
+        "proteinG": 0.15,
+        "carbohydrateG": 13.1,
+        "fatG": 0.29,
+        "fiberG": 0.1,
+        "sugarsG": 12.6,
+        "saturatedFatG": 0.059,
+        "sodiumMg": 9
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167787",
+        "description": "Pomegranate juice, bottled",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pineapple_canned_drained",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pineapple",
+      "categoryId": "tax_category_fruit",
+      "state": {
+        "physical": "drained",
+        "preservation": "canned",
+        "drained": true
+      },
+      "display": {
+        "it": "Ananas in scatola al naturale sgocciolato",
+        "en": "Canned pineapple in juice, drained"
+      },
+      "culinaryRoles": [
+        "tax_role_fruit_ready"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 60.22944550669216,
+        "proteinG": 0.51,
+        "carbohydrateG": 15.6,
+        "fatG": 0.11,
+        "fiberG": 1.3,
+        "sugarsG": 14.3,
+        "saturatedFatG": 0.008,
+        "sodiumMg": 1
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167767",
+        "description": "Pineapple, canned, juice pack, drained",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_kumquat_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_kumquat",
+      "categoryId": "tax_category_fruit",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Kumquat crudo",
+        "en": "Raw kumquat"
+      },
+      "culinaryRoles": [
+        "tax_role_fruit_ready"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 71,
+        "proteinG": 1.88,
+        "carbohydrateG": 15.9,
+        "fatG": 0.86,
+        "fiberG": 6.5,
+        "sugarsG": 0.124,
+        "saturatedFatG": 0.103,
+        "sodiumMg": 10
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168154",
+        "description": "Kumquats, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_blueberries_dried_sweetened",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_dried_blueberries",
+      "categoryId": "tax_category_fruit",
+      "state": {
+        "physical": "dry",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Mirtilli secchi zuccherati",
+        "en": "Sweetened dried blueberries"
+      },
+      "culinaryRoles": [
+        "tax_role_dried_fruit"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 317.8776290630975,
+        "proteinG": 2.5,
+        "carbohydrateG": 80,
+        "fatG": 2.5,
+        "fiberG": 7.5,
+        "sugarsG": 1.14,
+        "saturatedFatG": 0.2,
+        "sodiumMg": 3
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168158",
+        "description": "Blueberries, dried, sweetened",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_strawberries_frozen_unsweetened",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_strawberry",
+      "categoryId": "tax_category_fruit",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "frozen",
+        "drained": false
+      },
+      "display": {
+        "it": "Fragole surgelate non zuccherate",
+        "en": "Frozen unsweetened strawberries"
+      },
+      "culinaryRoles": [
+        "tax_role_fruit_ready"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 34.894837476099426,
+        "proteinG": 0.43,
+        "carbohydrateG": 9.13,
+        "fatG": 0.11,
+        "fiberG": 2.1,
+        "sugarsG": 4.56,
+        "saturatedFatG": 0.015,
+        "sodiumMg": 2
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168173",
+        "description": "Strawberries, frozen, unsweetened (Includes foods for USDA's Food Distribution Program)",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_raspberry_puree_seedless",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_raspberry_puree",
+      "categoryId": "tax_category_fruit",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Purea di lampone senza semi",
+        "en": "Seedless raspberry puree"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 40.63097514340344,
+        "proteinG": 1.02,
+        "carbohydrateG": 7.99,
+        "fatG": 0.87,
+        "fiberG": 0.9,
+        "sugarsG": 6.04,
+        "saturatedFatG": 0.064,
+        "sodiumMg": 4
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167808",
+        "description": "Raspberries, puree, seedless",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_apple_red_delicious_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_apple_red_delicious",
+      "categoryId": "tax_category_fruit",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Mela Red Delicious cruda",
+        "en": "Raw Red Delicious apple"
+      },
+      "culinaryRoles": [
+        "tax_role_fruit_ready"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 61.8,
+        "proteinG": 0.188,
+        "carbohydrateG": 14.8,
+        "fatG": 0.212,
+        "fiberG": 2.04,
+        "sugarsG": 12.2,
+        "sodiumMg": 0
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "1750339",
+        "description": "Apples, red delicious, with skin, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_apple_gala_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_apple_gala",
+      "categoryId": "tax_category_fruit",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Mela Gala cruda",
+        "en": "Raw Gala apple"
+      },
+      "culinaryRoles": [
+        "tax_role_fruit_ready"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 61,
+        "proteinG": 0.133,
+        "carbohydrateG": 14.8,
+        "fatG": 0.15,
+        "fiberG": 2.11,
+        "sugarsG": 11.8,
+        "sodiumMg": 0.279
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "1750341",
+        "description": "Apples, gala, with skin, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_apple_granny_smith_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_apple_granny_smith",
+      "categoryId": "tax_category_fruit",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Mela Granny Smith cruda",
+        "en": "Raw Granny Smith apple"
+      },
+      "culinaryRoles": [
+        "tax_role_fruit_ready"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 58.9,
+        "proteinG": 0.266,
+        "carbohydrateG": 14.1,
+        "fatG": 0.138,
+        "fiberG": 2.51,
+        "sugarsG": 10.6,
+        "sodiumMg": 0
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "1750342",
+        "description": "Apples, granny smith, with skin, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_buttermilk_reduced_fat",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_buttermilk",
+      "categoryId": "tax_category_dairy",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "refrigerated",
+        "drained": false
+      },
+      "display": {
+        "it": "Latticello a ridotto contenuto di grassi",
+        "en": "Reduced-fat buttermilk"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 56,
+        "proteinG": 4.1,
+        "carbohydrateG": 5.3,
+        "fatG": 2,
+        "fiberG": 0,
+        "sugarsG": 5.3,
+        "saturatedFatG": 0.576,
+        "sodiumMg": 105
+      },
+      "allergens": [
+        "milk"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167697",
+        "description": "Milk, buttermilk, fluid, cultured, reduced fat",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_yogurt_fruit_nonfat",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_fruit_yogurt",
+      "categoryId": "tax_category_dairy",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "refrigerated",
+        "drained": false
+      },
+      "display": {
+        "it": "Yogurt alla frutta magro",
+        "en": "Nonfat fruit yogurt"
+      },
+      "culinaryRoles": [
+        "tax_role_dairy_yogurt"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 95,
+        "proteinG": 4.4,
+        "carbohydrateG": 19,
+        "fatG": 0.2,
+        "fiberG": 0,
+        "sugarsG": 19,
+        "saturatedFatG": 0.05,
+        "sodiumMg": 58
+      },
+      "allergens": [
+        "milk"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "169898",
+        "description": "Yogurt, fruit variety, nonfat",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_greek_yogurt_strawberry_nonfat",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_strawberry_greek_yogurt",
+      "categoryId": "tax_category_dairy",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "refrigerated",
+        "drained": false
+      },
+      "display": {
+        "it": "Yogurt greco alla fragola magro",
+        "en": "Nonfat strawberry Greek yogurt"
+      },
+      "culinaryRoles": [
+        "tax_role_dairy_yogurt"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 83,
+        "proteinG": 8.06,
+        "carbohydrateG": 12.2,
+        "fatG": 0.15,
+        "fiberG": 0.6,
+        "sugarsG": 11.5,
+        "saturatedFatG": 0.029,
+        "sodiumMg": 32
+      },
+      "allergens": [
+        "milk"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "330415",
+        "description": "Yogurt, Greek, strawberry, nonfat",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_light_cream",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_light_cream",
+      "categoryId": "tax_category_dairy",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "refrigerated",
+        "drained": false
+      },
+      "display": {
+        "it": "Panna leggera",
+        "en": "Light cream"
+      },
+      "culinaryRoles": [
+        "tax_role_dairy_cream"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 195,
+        "proteinG": 2.96,
+        "carbohydrateG": 3.66,
+        "fatG": 19.1,
+        "fiberG": 0,
+        "sugarsG": 3.67,
+        "saturatedFatG": 10.2,
+        "sodiumMg": 72
+      },
+      "allergens": [
+        "milk"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "170857",
+        "description": "Cream, fluid, light (coffee cream or table cream)",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_light_whipping_cream",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_whipping_cream",
+      "categoryId": "tax_category_dairy",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "refrigerated",
+        "drained": false
+      },
+      "display": {
+        "it": "Panna da montare leggera",
+        "en": "Light whipping cream"
+      },
+      "culinaryRoles": [
+        "tax_role_dairy_cream"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 292,
+        "proteinG": 2.17,
+        "carbohydrateG": 2.96,
+        "fatG": 30.9,
+        "fiberG": 0,
+        "sugarsG": 2.96,
+        "saturatedFatG": 19.3,
+        "sodiumMg": 34
+      },
+      "allergens": [
+        "milk"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "170858",
+        "description": "Cream, fluid, light whipping",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_heavy_cream",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_heavy_cream",
+      "categoryId": "tax_category_dairy",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "refrigerated",
+        "drained": false
+      },
+      "display": {
+        "it": "Panna fresca da montare",
+        "en": "Heavy whipping cream"
+      },
+      "culinaryRoles": [
+        "tax_role_dairy_cream"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 340,
+        "proteinG": 2.84,
+        "carbohydrateG": 2.84,
+        "fatG": 36.1,
+        "fiberG": 0,
+        "sugarsG": 2.92,
+        "saturatedFatG": 9.1,
+        "sodiumMg": 27
+      },
+      "allergens": [
+        "milk"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "170859",
+        "description": "Cream, fluid, heavy whipping",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_mozzarella_nonfat",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_mozzarella",
+      "categoryId": "tax_category_dairy",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "refrigerated",
+        "drained": false
+      },
+      "display": {
+        "it": "Mozzarella senza grassi",
+        "en": "Nonfat mozzarella"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 140.77437858508603,
+        "proteinG": 31.7,
+        "carbohydrateG": 3.5,
+        "fatG": 0,
+        "fiberG": 1.8,
+        "sugarsG": 1.48,
+        "saturatedFatG": 0,
+        "sodiumMg": 743
+      },
+      "allergens": [
+        "milk"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "169051",
+        "description": "Cheese, mozzarella, nonfat",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_swiss_cheese_low_sodium",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_swiss_cheese",
+      "categoryId": "tax_category_dairy",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "refrigerated",
+        "drained": false
+      },
+      "display": {
+        "it": "Formaggio svizzero a basso contenuto di sodio",
+        "en": "Low-sodium Swiss cheese"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 374,
+        "proteinG": 28.4,
+        "carbohydrateG": 3.4,
+        "fatG": 27.4,
+        "fiberG": 0,
+        "sugarsG": 1.31,
+        "saturatedFatG": 7.26,
+        "sodiumMg": 14
+      },
+      "allergens": [
+        "milk"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168124",
+        "description": "Cheese, swiss, low sodium",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_swiss_cheese_lowfat",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_swiss_cheese",
+      "categoryId": "tax_category_dairy",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "refrigerated",
+        "drained": false
+      },
+      "display": {
+        "it": "Formaggio svizzero magro",
+        "en": "Low-fat Swiss cheese"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 179.0152963671128,
+        "proteinG": 28.4,
+        "carbohydrateG": 3.4,
+        "fatG": 5.1,
+        "fiberG": 0,
+        "sugarsG": 1.33,
+        "saturatedFatG": 1.35,
+        "sodiumMg": 199
+      },
+      "allergens": [
+        "milk"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168141",
+        "description": "Cheese, swiss, low fat",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_lupins_cooked",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_lupins",
+      "categoryId": "tax_category_legumes",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Lupini cotti",
+        "en": "Cooked lupins"
+      },
+      "culinaryRoles": [
+        "tax_role_main_legume"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 119,
+        "proteinG": 15.6,
+        "carbohydrateG": 9.88,
+        "fatG": 2.92,
+        "fiberG": 2.8,
+        "sugarsG": 0.597,
+        "saturatedFatG": 1.18,
+        "sodiumMg": 4
+      },
+      "allergens": [
+        "lupin"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "172424",
+        "description": "Lupins, mature seeds, cooked, boiled, without salt",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_soy_flour_defatted",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_soy_flour",
+      "categoryId": "tax_category_legumes",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Farina di soia sgrassata",
+        "en": "Defatted soy flour"
+      },
+      "culinaryRoles": [
+        "tax_role_flour"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 366,
+        "proteinG": 51.1,
+        "carbohydrateG": 32.9,
+        "fatG": 3.33,
+        "fiberG": 24.3,
+        "sodiumMg": 2
+      },
+      "allergens": [
+        "soy"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "1104705",
+        "description": "Flour, soy, defatted",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_peanut_butter_reduced_sodium",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_peanut_butter",
+      "categoryId": "tax_category_legumes",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Burro di arachidi a ridotto contenuto di sodio",
+        "en": "Reduced-sodium peanut butter"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 590.3441682600383,
+        "proteinG": 24,
+        "carbohydrateG": 21.8,
+        "fatG": 49.9,
+        "fiberG": 6.6,
+        "sugarsG": 9.29,
+        "saturatedFatG": 23.6,
+        "sodiumMg": 203
+      },
+      "allergens": [
+        "peanuts"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "169869",
+        "description": "Peanut butter, reduced sodium",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_almond_butter_unsalted",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_almond_butter",
+      "categoryId": "tax_category_nuts_seeds",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Crema di mandorle senza sale",
+        "en": "Unsalted almond butter"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 614,
+        "proteinG": 21,
+        "carbohydrateG": 18.8,
+        "fatG": 55.5,
+        "fiberG": 10.3,
+        "sugarsG": 4.43,
+        "saturatedFatG": 32.4,
+        "sodiumMg": 7
+      },
+      "allergens": [
+        "tree_nuts"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168588",
+        "description": "Nuts, almond butter, plain, without salt added",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_almonds_roasted_lightly_salted",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_almonds",
+      "categoryId": "tax_category_nuts_seeds",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Mandorle tostate leggermente salate",
+        "en": "Lightly salted roasted almonds"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 607.0745697896749,
+        "proteinG": 21.2,
+        "carbohydrateG": 17.7,
+        "fatG": 55.2,
+        "fiberG": 10.5,
+        "sugarsG": 13.5,
+        "saturatedFatG": 4.21,
+        "sodiumMg": 143
+      },
+      "allergens": [
+        "tree_nuts"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168602",
+        "description": "Nuts, almonds, oil roasted, lightly salted",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_sunflower_seeds_toasted_salted",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_sunflower_seeds",
+      "categoryId": "tax_category_nuts_seeds",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Semi di girasole tostati salati",
+        "en": "Toasted salted sunflower seeds"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 619.0248565965583,
+        "proteinG": 17.2,
+        "carbohydrateG": 20.6,
+        "fatG": 56.8,
+        "fiberG": 11.5,
+        "sugarsG": 37.4,
+        "saturatedFatG": 10.8,
+        "sodiumMg": 613
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168594",
+        "description": "Seeds, sunflower seed kernels, toasted, with salt added",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_sunflower_seed_butter",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_sunflower_seed_butter",
+      "categoryId": "tax_category_nuts_seeds",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Crema di semi di girasole",
+        "en": "Sunflower seed butter"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 616.6347992351816,
+        "proteinG": 17.3,
+        "carbohydrateG": 23.3,
+        "fatG": 55.2,
+        "fiberG": 5.7,
+        "sugarsG": 10.5,
+        "saturatedFatG": 4.68,
+        "sodiumMg": 331
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168595",
+        "description": "Seeds, sunflower seed butter, with salt added (Includes foods for USDA's Food Distribution Program)",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_cashew_butter",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_cashew_butter",
+      "categoryId": "tax_category_nuts_seeds",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Crema di anacardi",
+        "en": "Cashew butter"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 609.4646271510516,
+        "proteinG": 12.1,
+        "carbohydrateG": 30.3,
+        "fatG": 53,
+        "fiberG": 3,
+        "sugarsG": 13.2,
+        "saturatedFatG": 10.6,
+        "sodiumMg": 295
+      },
+      "allergens": [
+        "tree_nuts"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168597",
+        "description": "Nuts, cashew butter, plain, with salt added",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pumpkin_seeds_roasted_salted",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pumpkin_seeds",
+      "categoryId": "tax_category_nuts_seeds",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Semi di zucca tostati salati",
+        "en": "Roasted salted pumpkin seeds"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 446.94072657743783,
+        "proteinG": 18.6,
+        "carbohydrateG": 53.8,
+        "fatG": 19.4,
+        "fiberG": 18.4,
+        "sugarsG": 8.76,
+        "saturatedFatG": 3.67,
+        "sodiumMg": 2540
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168601",
+        "description": "Seeds, pumpkin and squash seeds, whole, roasted, with salt added",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_almond_flour",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_almond_flour",
+      "categoryId": "tax_category_nuts_seeds",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Farina di mandorle",
+        "en": "Almond flour"
+      },
+      "culinaryRoles": [
+        "tax_role_flour"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 622,
+        "proteinG": 26.2,
+        "carbohydrateG": 16.2,
+        "fatG": 50.2,
+        "fiberG": 9.27,
+        "sodiumMg": 0.894
+      },
+      "allergens": [
+        "tree_nuts"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2261420",
+        "description": "Flour, almond",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_chestnut_flour",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_chestnut_flour",
+      "categoryId": "tax_category_nuts_seeds",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Farina di castagne",
+        "en": "Chestnut flour"
+      },
+      "culinaryRoles": [
+        "tax_role_flour"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 385,
+        "proteinG": 5.29,
+        "carbohydrateG": 80.5,
+        "fatG": 4.64,
+        "fiberG": 8.71,
+        "saturatedFatG": 1.26,
+        "sodiumMg": 0
+      },
+      "allergens": [
+        "tree_nuts"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2515377",
+        "description": "Flour, chestnut",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pecans_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pecans",
+      "categoryId": "tax_category_nuts_seeds",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Noci pecan crude",
+        "en": "Raw pecans"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 750,
+        "proteinG": 9.96,
+        "carbohydrateG": 12.7,
+        "fatG": 73.3,
+        "fiberG": 5.79,
+        "saturatedFatG": 22.9,
+        "sodiumMg": 0
+      },
+      "allergens": [
+        "tree_nuts"
+      ],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2346395",
+        "description": "Nuts, pecans, halves, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_coconut_flour",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_coconut_flour",
+      "categoryId": "tax_category_nuts_seeds",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Farina di cocco",
+        "en": "Coconut flour"
+      },
+      "culinaryRoles": [
+        "tax_role_flour"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 438,
+        "proteinG": 16.1,
+        "carbohydrateG": 58.9,
+        "fatG": 15.3,
+        "fiberG": 34.2,
+        "saturatedFatG": 0.806,
+        "sodiumMg": 46.9
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2515382",
+        "description": "Flour, coconut",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_snail_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_snail",
+      "categoryId": "tax_category_fish_seafood",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Lumache crude",
+        "en": "Raw snails"
+      },
+      "culinaryRoles": [
+        "tax_role_shellfish"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 90.10516252390057,
+        "proteinG": 16.1,
+        "carbohydrateG": 2,
+        "fatG": 1.4,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 0.361,
+        "sodiumMg": 70
+      },
+      "allergens": [
+        "molluscs"
+      ],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167744",
+        "description": "Mollusks, snail, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_frog_legs_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_frog_legs",
+      "categoryId": "tax_category_fish_seafood",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Cosce di rana crude",
+        "en": "Raw frog legs"
+      },
+      "culinaryRoles": [
+        "tax_role_shellfish"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 72.89674952198853,
+        "proteinG": 16.4,
+        "carbohydrateG": 0,
+        "fatG": 0.3,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 0.076,
+        "sodiumMg": 58
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "168148",
+        "description": "Frog legs, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_bluefish_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_bluefish",
+      "categoryId": "tax_category_fish_seafood",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Pesce serra crudo",
+        "en": "Raw bluefish"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_fish"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 124.04397705544933,
+        "proteinG": 20,
+        "carbohydrateG": 0,
+        "fatG": 4.24,
+        "fiberG": 0,
+        "sugarsG": 0.06,
+        "saturatedFatG": 0.915,
+        "sodiumMg": 60
+      },
+      "allergens": [
+        "fish"
+      ],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "171949",
+        "description": "Fish, bluefish, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_carp_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_carp",
+      "categoryId": "tax_category_fish_seafood",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Carpa cruda",
+        "en": "Raw carp"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_fish"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 126.91204588910134,
+        "proteinG": 17.8,
+        "carbohydrateG": 0,
+        "fatG": 5.6,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 2.33,
+        "sodiumMg": 49
+      },
+      "allergens": [
+        "fish"
+      ],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "171952",
+        "description": "Fish, carp, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_mahimahi_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_mahimahi",
+      "categoryId": "tax_category_fish_seafood",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Lampuga cruda",
+        "en": "Raw mahi-mahi"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_fish"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 85.08604206500955,
+        "proteinG": 18.5,
+        "carbohydrateG": 0,
+        "fatG": 0.7,
+        "fiberG": 0,
+        "sugarsG": 0.036,
+        "saturatedFatG": 0.188,
+        "sodiumMg": 88
+      },
+      "allergens": [
+        "fish"
+      ],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "171959",
+        "description": "Fish, mahimahi, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_grouper_cooked",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_grouper",
+      "categoryId": "tax_category_fish_seafood",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Cernia cotta",
+        "en": "Cooked grouper"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_fish"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 118.06883365200764,
+        "proteinG": 24.8,
+        "carbohydrateG": 0,
+        "fatG": 1.3,
+        "fiberG": 0,
+        "sugarsG": 0.018,
+        "saturatedFatG": 0.268,
+        "sodiumMg": 53
+      },
+      "allergens": [
+        "fish"
+      ],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "171963",
+        "description": "Fish, grouper, mixed species, cooked, dry heat",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_blue_crab_canned",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_blue_crab",
+      "categoryId": "tax_category_fish_seafood",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "canned",
+        "drained": false
+      },
+      "display": {
+        "it": "Granchio blu in scatola",
+        "en": "Canned blue crab"
+      },
+      "culinaryRoles": [
+        "tax_role_shellfish"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 83,
+        "proteinG": 17.9,
+        "carbohydrateG": 0,
+        "fatG": 0.74,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 0.129,
+        "sodiumMg": 563
+      },
+      "allergens": [
+        "crustaceans"
+      ],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "171966",
+        "description": "Crustaceans, crab, blue, canned",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_shrimp_canned",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_shrimp",
+      "categoryId": "tax_category_fish_seafood",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "canned",
+        "drained": false
+      },
+      "display": {
+        "it": "Gamberi in scatola",
+        "en": "Canned shrimp"
+      },
+      "culinaryRoles": [
+        "tax_role_shellfish"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 99.4263862332696,
+        "proteinG": 20.4,
+        "carbohydrateG": 0,
+        "fatG": 1.36,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 0.188,
+        "sodiumMg": 870
+      },
+      "allergens": [
+        "crustaceans"
+      ],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "171972",
+        "description": "Crustaceans, shrimp, mixed species, canned",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_clams_canned_drained",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_clams",
+      "categoryId": "tax_category_fish_seafood",
+      "state": {
+        "physical": "drained",
+        "preservation": "canned",
+        "drained": true
+      },
+      "display": {
+        "it": "Vongole in scatola sgocciolate",
+        "en": "Canned clams, drained"
+      },
+      "culinaryRoles": [
+        "tax_role_shellfish"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 142.20841300191205,
+        "proteinG": 24.2,
+        "carbohydrateG": 5.9,
+        "fatG": 1.59,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 0.309,
+        "sodiumMg": 112
+      },
+      "allergens": [
+        "molluscs"
+      ],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "171976",
+        "description": "Mollusks, clam, mixed species, canned, drained solids",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_oysters_cooked",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_oyster",
+      "categoryId": "tax_category_fish_seafood",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Ostriche cotte",
+        "en": "Cooked oysters"
+      },
+      "culinaryRoles": [
+        "tax_role_shellfish"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 102,
+        "proteinG": 11.4,
+        "carbohydrateG": 5.45,
+        "fatG": 3.42,
+        "fiberG": 0,
+        "sugarsG": 0.082,
+        "saturatedFatG": 0.506,
+        "sodiumMg": 166
+      },
+      "allergens": [
+        "molluscs"
+      ],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "171980",
+        "description": "Mollusks, oyster, eastern, wild, cooked, moist heat",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_oysters_canned",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_oyster",
+      "categoryId": "tax_category_fish_seafood",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "canned",
+        "drained": false
+      },
+      "display": {
+        "it": "Ostriche in scatola",
+        "en": "Canned oysters"
+      },
+      "culinaryRoles": [
+        "tax_role_shellfish"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 68.59464627151051,
+        "proteinG": 7.06,
+        "carbohydrateG": 3.91,
+        "fatG": 2.47,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 0.631,
+        "sodiumMg": 112
+      },
+      "allergens": [
+        "molluscs"
+      ],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "171981",
+        "description": "Mollusks, oyster, eastern, canned",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_squid_fried",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_squid",
+      "categoryId": "tax_category_fish_seafood",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Calamari fritti",
+        "en": "Fried squid"
+      },
+      "culinaryRoles": [
+        "tax_role_shellfish"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 174.95219885277245,
+        "proteinG": 17.9,
+        "carbohydrateG": 7.79,
+        "fatG": 7.48,
+        "fiberG": 0,
+        "sugarsG": 1.47,
+        "saturatedFatG": 2.75,
+        "sodiumMg": 306
+      },
+      "allergens": [
+        "molluscs"
+      ],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "171982",
+        "description": "Mollusks, squid, mixed species, cooked, fried",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pork_belly_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pork_belly",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Pancetta fresca di maiale cruda",
+        "en": "Raw pork belly"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 518.642447418738,
+        "proteinG": 9.34,
+        "carbohydrateG": 0,
+        "fatG": 53,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 24.7,
+        "sodiumMg": 32
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167812",
+        "description": "Pork, fresh, belly, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pork_leg_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pork_leg",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Coscia di maiale cruda",
+        "en": "Raw pork leg"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 182,
+        "proteinG": 20.3,
+        "carbohydrateG": 0,
+        "fatG": 10.6,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 4.44,
+        "sodiumMg": 73
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167814",
+        "description": "Pork, fresh, leg (ham), rump half, separable lean and fat, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pork_leg_roasted",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pork_leg",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Coscia di maiale arrosto",
+        "en": "Roasted pork leg"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 209,
+        "proteinG": 27,
+        "carbohydrateG": 0,
+        "fatG": 10.3,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 4.32,
+        "sodiumMg": 77
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167815",
+        "description": "Pork, fresh, leg (ham), rump half, separable lean and fat, cooked, roasted",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pork_loin_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pork_loin",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Lonza di maiale cruda",
+        "en": "Raw pork loin"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 197.8967495219885,
+        "proteinG": 19.7,
+        "carbohydrateG": 0,
+        "fatG": 12.6,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 5.61,
+        "sodiumMg": 50
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167818",
+        "description": "Pork, fresh, loin, whole, separable lean and fat, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pork_loin_braised",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pork_loin",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Lonza di maiale brasata",
+        "en": "Braised pork loin"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 239.0057361376673,
+        "proteinG": 27.2,
+        "carbohydrateG": 0,
+        "fatG": 13.6,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 5.11,
+        "sodiumMg": 48
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167819",
+        "description": "Pork, fresh, loin, whole, separable lean and fat, cooked, braised",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pork_loin_roasted",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pork_loin",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Lonza di maiale arrosto",
+        "en": "Roasted pork loin"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 248.56596558317398,
+        "proteinG": 27.1,
+        "carbohydrateG": 0,
+        "fatG": 14.6,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 5.37,
+        "sodiumMg": 59
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167821",
+        "description": "Pork, fresh, loin, whole, separable lean and fat, cooked, roasted",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pork_chop_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pork_chop",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Braciola di maiale cruda",
+        "en": "Raw pork chop"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 154.63671128107075,
+        "proteinG": 21.6,
+        "carbohydrateG": 0,
+        "fatG": 6.94,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 2.98,
+        "sodiumMg": 48
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167839",
+        "description": "Pork, fresh, loin, top loin (chops), boneless, separable lean and fat, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pork_chop_panfried",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pork_chop",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Braciola di maiale cotta in padella",
+        "en": "Pan-fried pork chop"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 196.22370936902485,
+        "proteinG": 29.4,
+        "carbohydrateG": 0,
+        "fatG": 7.86,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 3.06,
+        "sodiumMg": 86
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167887",
+        "description": "Pork, fresh, loin, top loin (chops), boneless, separable lean and fat, cooked, pan-fried",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pork_shoulder_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pork_shoulder",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Spalla di maiale cruda",
+        "en": "Raw pork shoulder"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 235.8986615678776,
+        "proteinG": 17.2,
+        "carbohydrateG": 0,
+        "fatG": 18,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 8.01,
+        "sodiumMg": 65
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167843",
+        "description": "Pork, fresh, shoulder, whole, separable lean and fat, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pork_shoulder_roasted",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pork_shoulder",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Spalla di maiale arrosto",
+        "en": "Roasted pork shoulder"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 291.5869980879541,
+        "proteinG": 23.3,
+        "carbohydrateG": 0,
+        "fatG": 21.4,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 7.86,
+        "sodiumMg": 68
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167844",
+        "description": "Pork, fresh, shoulder, whole, separable lean and fat, cooked, roasted",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pork_ribs_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pork_ribs",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Costine di maiale crude",
+        "en": "Raw pork ribs"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 277.24665391969404,
+        "proteinG": 15.5,
+        "carbohydrateG": 0,
+        "fatG": 23.4,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 7.53,
+        "sodiumMg": 81
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167853",
+        "description": "Pork, fresh, spareribs, separable lean and fat, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pork_ribs_braised",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pork_ribs",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Costine di maiale brasate",
+        "en": "Braised pork ribs"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 396.7495219885277,
+        "proteinG": 29.1,
+        "carbohydrateG": 0,
+        "fatG": 30.3,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 13.5,
+        "sodiumMg": 93
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167854",
+        "description": "Pork, fresh, spareribs, separable lean and fat, cooked, braised",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pork_liver_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pork_liver",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Fegato di maiale crudo",
+        "en": "Raw pork liver"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 134.08221797323137,
+        "proteinG": 21.4,
+        "carbohydrateG": 2.47,
+        "fatG": 3.65,
+        "fiberG": 0,
+        "sugarsG": 0.35,
+        "saturatedFatG": 1.17,
+        "sodiumMg": 87
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167862",
+        "description": "Pork, fresh, variety meats and by-products, liver, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pork_liver_braised",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pork_liver",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Fegato di maiale brasato",
+        "en": "Braised pork liver"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 164.91395793499044,
+        "proteinG": 26,
+        "carbohydrateG": 3.76,
+        "fatG": 4.4,
+        "fiberG": 0,
+        "sugarsG": 0.42,
+        "saturatedFatG": 0.63,
+        "sodiumMg": 49
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167863",
+        "description": "Pork, fresh, variety meats and by-products, liver, cooked, braised",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_ground_pork_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_ground_pork",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Maiale macinato crudo",
+        "en": "Raw ground pork"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 262.90630975143404,
+        "proteinG": 16.9,
+        "carbohydrateG": 0,
+        "fatG": 21.2,
+        "fiberG": 0,
+        "sugarsG": 1.67,
+        "saturatedFatG": 7.87,
+        "sodiumMg": 56
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167902",
+        "description": "Pork, fresh, ground, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_ground_pork_cooked",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_ground_pork",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Maiale macinato cotto",
+        "en": "Cooked ground pork"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 296.36711281070745,
+        "proteinG": 25.7,
+        "carbohydrateG": 0,
+        "fatG": 20.8,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 9.25,
+        "sodiumMg": 73
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167903",
+        "description": "Pork, fresh, ground, cooked",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pork_tenderloin_roasted",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pork_tenderloin",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Filetto di maiale arrosto",
+        "en": "Roasted pork tenderloin"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 147,
+        "proteinG": 26,
+        "carbohydrateG": 0,
+        "fatG": 3.96,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 1.52,
+        "sodiumMg": 57
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167905",
+        "description": "Pork, fresh, loin, tenderloin, separable lean and fat, cooked, roasted",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_bacon_cooked",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_bacon",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Bacon cotto al forno",
+        "en": "Baked bacon"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 548,
+        "proteinG": 35.7,
+        "carbohydrateG": 1.35,
+        "fatG": 43.3,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 19.1,
+        "sodiumMg": 2190
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167914",
+        "description": "Pork, cured, bacon, cooked, baked",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_ham_extra_lean_roasted",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_cooked_ham",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Prosciutto cotto extra magro",
+        "en": "Extra-lean cooked ham"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 145.07648183556404,
+        "proteinG": 20.9,
+        "carbohydrateG": 1.5,
+        "fatG": 5.53,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 1.81,
+        "sodiumMg": 1200
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167871",
+        "description": "Pork, cured, ham, boneless, extra lean (approximately 5% fat), roasted",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_ham_regular_roasted",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_cooked_ham",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Prosciutto cotto",
+        "en": "Cooked ham"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 178.05927342256214,
+        "proteinG": 22.6,
+        "carbohydrateG": 0,
+        "fatG": 9.02,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 4.44,
+        "sodiumMg": 1500
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167872",
+        "description": "Pork, cured, ham, boneless, regular (approximately 11% fat), roasted",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_ham_whole_unheated",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_cured_ham",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Prosciutto di maiale stagionato non riscaldato",
+        "en": "Cured pork ham, unheated"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 246.1759082217973,
+        "proteinG": 18.5,
+        "carbohydrateG": 0.06,
+        "fatG": 18.5,
+        "fiberG": 0,
+        "sugarsG": 0,
+        "saturatedFatG": 8.7,
+        "sodiumMg": 1280
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "167875",
+        "description": "Pork, cured, ham, whole, separable lean and fat, unheated",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_quail_cooked",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_quail",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Quaglia cotta",
+        "en": "Cooked quail"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 227.29445506692159,
+        "proteinG": 25.1,
+        "carbohydrateG": 0,
+        "fatG": 14.1,
+        "fiberG": 0,
+        "sugarsG": 2.69,
+        "saturatedFatG": 3.96,
+        "sodiumMg": 52
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "169902",
+        "description": "Quail, cooked, total edible",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_pheasant_cooked",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_pheasant",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Fagiano cotto",
+        "en": "Cooked pheasant"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 239,
+        "proteinG": 32.4,
+        "carbohydrateG": 0,
+        "fatG": 12.1,
+        "fiberG": 0,
+        "sugarsG": 1.06,
+        "saturatedFatG": 5.63,
+        "sodiumMg": 43
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "169903",
+        "description": "Pheasant, cooked, total edible",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_chicken_heart_cooked",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_chicken_heart",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Cuori di pollo cotti",
+        "en": "Cooked chicken hearts"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 184.99043977055447,
+        "proteinG": 26.4,
+        "carbohydrateG": 0.1,
+        "fatG": 7.92,
+        "fiberG": 0,
+        "sugarsG": 1.62,
+        "saturatedFatG": 2.01,
+        "sodiumMg": 48
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "171059",
+        "description": "Chicken, heart, all classes, cooked, simmered",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_chicken_liver_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_chicken_liver",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Fegato di pollo crudo",
+        "en": "Raw chicken liver"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 118.54684512428298,
+        "proteinG": 16.9,
+        "carbohydrateG": 0.73,
+        "fatG": 4.83,
+        "fiberG": 0,
+        "sugarsG": 0.475,
+        "saturatedFatG": 1.25,
+        "sodiumMg": 71
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "171060",
+        "description": "Chicken, liver, all classes, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_chicken_liver_cooked",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_chicken_liver",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Fegato di pollo cotto",
+        "en": "Cooked chicken liver"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 166.5869980879541,
+        "proteinG": 24.5,
+        "carbohydrateG": 0.87,
+        "fatG": 6.51,
+        "fiberG": 0,
+        "sugarsG": 0.719,
+        "saturatedFatG": 2.06,
+        "sodiumMg": 76
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "171061",
+        "description": "Chicken, liver, all classes, cooked, simmered",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_chicken_stewed",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_chicken_stewed",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "cooked",
+        "preservation": "cooked",
+        "drained": false
+      },
+      "display": {
+        "it": "Pollo stufato con pelle",
+        "en": "Stewed chicken with skin"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 218.92925430210323,
+        "proteinG": 24.7,
+        "carbohydrateG": 0,
+        "fatG": 12.6,
+        "fiberG": 0,
+        "sugarsG": 2.38,
+        "saturatedFatG": 3.5,
+        "sodiumMg": 67
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "171051",
+        "description": "Chicken, broilers or fryers, meat and skin, cooked, stewed",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_parsley_freeze_dried",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_parsley",
+      "categoryId": "tax_category_herbs_spices",
+      "state": {
+        "physical": "dry",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Prezzemolo liofilizzato",
+        "en": "Freeze-dried parsley"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 271,
+        "proteinG": 31.3,
+        "carbohydrateG": 42.4,
+        "fatG": 5.2,
+        "fiberG": 32.7,
+        "sodiumMg": 391
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "170486",
+        "description": "Parsley, freeze-dried",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_coriander_seed",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_coriander_seed",
+      "categoryId": "tax_category_herbs_spices",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Semi di coriandolo",
+        "en": "Coriander seed"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 298,
+        "proteinG": 12.4,
+        "carbohydrateG": 55,
+        "fatG": 17.8,
+        "fiberG": 41.9,
+        "sugarsG": 1.75,
+        "saturatedFatG": 13.6,
+        "sodiumMg": 35
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "170922",
+        "description": "Spices, coriander seed",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_cumin_seed",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_cumin_seed",
+      "categoryId": "tax_category_herbs_spices",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Semi di cumino",
+        "en": "Cumin seed"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 375,
+        "proteinG": 17.8,
+        "carbohydrateG": 44.2,
+        "fatG": 22.3,
+        "fiberG": 10.5,
+        "sugarsG": 3.1,
+        "saturatedFatG": 1.54,
+        "sodiumMg": 168
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "170923",
+        "description": "Spices, cumin seed",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_dill_seed",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_dill_seed",
+      "categoryId": "tax_category_herbs_spices",
+      "state": {
+        "physical": "as_sold",
+        "preservation": "shelf_stable",
+        "drained": false
+      },
+      "display": {
+        "it": "Semi di aneto",
+        "en": "Dill seed"
+      },
+      "culinaryRoles": [],
+      "nutritionPer100g": {
+        "energyKcal": 305,
+        "proteinG": 16,
+        "carbohydrateG": 55.2,
+        "fatG": 14.5,
+        "fiberG": 21.1,
+        "sugarsG": 0.96,
+        "saturatedFatG": 0.73,
+        "sodiumMg": 20
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "170925",
+        "description": "Spices, dill seed",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    }
+  ]
+}
