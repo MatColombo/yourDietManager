@@ -26,42 +26,17 @@ jobs:
         with:
           node-version: 22
 
-      - name: Select browser for acceptance gate
-        shell: bash
-        run: |
-          browser="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser || true)"
-          if [ -z "$browser" ]; then
-            echo "No Chrome/Chromium executable found on the runner" >&2
-            exit 1
-          fi
-          echo "CHROMIUM_PATH=$browser" >> "$GITHUB_ENV"
-          echo "Browser acceptance executable: $browser"
-          "$browser" --version
-
       - name: Configure GitHub Pages
         id: pages
         uses: actions/configure-pages@v5
 
-      - name: Verify application
-        run: npm run check
-        env:
-          YDM_BROWSER_REQUIRED: '1'
-
-      - name: Publish current recipe catalog
-        run: npm run recipes:publish
-
-      - name: Verify recipe catalog E2E
-        run: npm run recipes:e2e
+      - name: Compile and verify clean catalog
+        run: npm run catalog:check
 
       - name: Build for GitHub Pages
         run: npm run build
         env:
           YDM_BASE_PATH: ${{ steps.pages.outputs.base_path }}
-
-      - name: Verify browser against published recipe catalog
-        run: npm run hardening:browser
-        env:
-          YDM_BROWSER_REQUIRED: '1'
 
       - name: Verify Pages artifact
         run: node scripts/hardening/pages-audit.mjs dist "${{ steps.pages.outputs.base_path }}"

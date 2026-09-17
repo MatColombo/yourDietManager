@@ -11,7 +11,7 @@ async function mustFile(relative) {
   catch { failures.push(`${relative}: missing`); }
 }
 
-for (const file of ['index.html', '404.html', '.nojekyll', 'manifest.webmanifest', 'service-worker.js', 'src/lib/appBase.js', 'src/main.js']) await mustFile(file);
+for (const file of ['index.html', '404.html', '.nojekyll', 'manifest.webmanifest', 'service-worker.js', 'src/lib/appBase.js', 'src/main.js', 'data/catalog.json']) await mustFile(file);
 
 const [index, fallback, manifestRaw, sw, configurationBootstrap] = await Promise.all([
   readFile(path.join(dist, 'index.html'), 'utf8'),
@@ -34,6 +34,9 @@ if (!sw.includes("const BASE_URL = new URL('./', self.location.href);")) failure
 if (/['"]\/data\//.test(sw) || /['"]\/schemas\//.test(sw)) failures.push('service worker still contains root-absolute data/schema paths');
 if (/fetcher\(['"]\/data\/bootstrap\//.test(configurationBootstrap)) failures.push('configuration bootstrap still contains a root-absolute fetch');
 if (!configurationBootstrap.includes("assetPath('/data/bootstrap/default-configuration.json')")) failures.push('configuration bootstrap does not resolve through assetPath');
+const cleanLoader = await readFile(path.join(dist, 'src/services/cleanCatalogLoader.js'), 'utf8');
+if (!cleanLoader.includes("assetPath('/data/catalog.json')")) failures.push('clean catalog loader does not resolve catalog.json through assetPath');
+if (sw.includes('data/catalog-manifest.json')) failures.push('service worker still references legacy catalog-manifest.json');
 
 if (failures.length) {
   console.error('GitHub Pages artifact audit failed:');

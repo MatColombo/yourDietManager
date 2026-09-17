@@ -1,0 +1,24 @@
+import { readdir, readFile, writeFile, mkdir, rm } from 'node:fs/promises';
+import path from 'node:path';
+import { SchemaRegistry } from '../../src/lib/schemaValidator.js';
+import { assertReferenceData, assertSemanticReferences } from '../../src/services/referenceDataService.js';
+import { compileSourceBatches } from '../../src/catalog/cleanCatalogCompiler.js';
+
+const root = process.cwd();
+const sourceDir = path.join(root, 'catalog-source');
+const publicData = path.join(root, 'public', 'data');
+const schemaDir = path.join(root, 'schemas');
+const files = (await readdir(sourceDir)).filter(name => name.endsWith('.json')).sort();
+if (!files.length) throw new Error('catalog-source contains no JSON batch files');
+const batches = [];
+for (const filename of files) batches.push({ filename, batch: JSON.parse(await readFile(path.join(sourceDir, filename), 'utf8')) });
+const registry = new SchemaRegistry(async file => JSON.parse(await readFile(path.join(schemaDir, file), 'utf8')));
+await registry.loadAll();
+const catalog = await compileSourceBatches(batches, { registry });
+const index = assertReferenceData(catalog.taxonomies, catalog.taxonomyTerms, registry);
+assertSemanticReferences({ index, ingredientRevisions:catalog.ingredientRevisions, recipeVersions:catalog.recipeVersions, ingredientIds:catalog.ingredients.map(item=>item.ingredientId), foodGroups:catalog.foodGroups });
+for (const dir of ['ingredients','recipes','reference-data','catalogs']) await rm(path.join(publicData, dir), { recursive:true, force:true });
+await rm(path.join(publicData, 'catalog-manifest.json'), { force:true });
+await mkdir(publicData, { recursive:true });
+await writeFile(path.join(publicData, 'catalog.json'), JSON.stringify(catalog, null, 2) + '\n');
+console.log(`Clean catalog compiled: ${catalog.manifest.catalogVersion}; ingredients=${catalog.ingredients.length}; recipes=${catalog.recipes.length}; sourceFiles=${files.length}`);
