@@ -34,10 +34,30 @@ function planFailure(state, failure) {
   return `${base} ${details}`;
 }
 
+function progressPercent(progress = {}) {
+  if (Number.isFinite(Number(progress.percent))) return Math.max(0, Math.min(100, Math.round(Number(progress.percent))));
+  const completed = Number(progress.completed ?? progress.completedDays ?? progress.generatedDayCount);
+  const total = Number(progress.total);
+  return Number.isFinite(completed) && Number.isFinite(total) && total > 0 ? Math.max(0, Math.min(100, Math.round((completed / total) * 100))) : 0;
+}
+
+function progressLabel(state, progress = {}) {
+  const percent = progressPercent(progress);
+  const completed = Number(progress.completed ?? progress.completedDays ?? progress.generatedDayCount);
+  const total = Number(progress.total);
+  const count = Number.isFinite(completed) && Number.isFinite(total) && total > 0 ? ` · ${completed}/${total}` : '';
+  return `${t(state, 'plan.generation.searching')} ${percent}%${count}`;
+}
+
 function generationOptions(state, host) {
-  state.planUi.generationController?.abort(); const controller = new AbortController(); state.planUi.generationController = controller;
-  const message = element('div', { className: 'validation-box', role: 'status' }, [element('span', { text: t(state, 'common.loading') }), element('button', { type: 'button', className: 'button button--secondary button--small', text: t(state, 'common.cancel'), onClick: () => controller.abort() })]);
-  host?.append(message); return { signal: controller.signal, onProgress: p => { message.firstChild.textContent = `${t(state, 'common.loading')} ${p.completed ?? p.completedDays ?? p.generatedDayCount ?? ''}`; } };
+  state.planUi.generationController?.abort();
+  const controller = new AbortController(); state.planUi.generationController = controller;
+  const label = element('span', { text: progressLabel(state, { percent: 0 }) });
+  const meter = element('progress', { max: 100, value: 0, 'aria-label': t(state, 'plan.generation.progress') });
+  const abort = element('button', { type: 'button', className: 'button button--secondary button--small', 'data-testid': 'plan-generation-abort', text: t(state, 'common.abort'), onClick: () => { abort.disabled = true; controller.abort(); } });
+  const message = element('div', { className: 'validation-box', role: 'status', 'data-testid': 'plan-generation-progress' }, [label, meter, abort]);
+  host?.append(message);
+  return { signal: controller.signal, onProgress: progress => { const percent = progressPercent(progress); label.textContent = progressLabel(state, progress); meter.value = percent; meter.setAttribute('aria-valuenow', String(percent)); } };
 }
 
 function recipePills(state, recipe) {
@@ -79,14 +99,38 @@ function createPlanCard(state, today, target) {
   const mode = element('select'); for (const value of ['prompt', 'auto_extend', 'fixed']) mode.append(element('option', { value, text: t(state, `plan.continuation.${value}`) }));
   const form = element('div', { className: 'form-grid form-grid--4' }, [field(t(state, 'plan.startDate'), start), field(t(state, 'plan.days'), days), field(t(state, 'plan.seed'), seed), field(t(state, 'plan.continuation.label'), mode)]);
   let controller = null;
-  const cancel = element('button', { type: 'button', className: 'button button--secondary', text: t(state, 'common.cancel'), onClick: () => controller?.abort() });
+  const progressLabelNode = element('span', { text: progressLabel(state, { percent: 0 }) });
+  const progressMeter = element('progress', { max: 100, value: 0, 'aria-label': t(state, 'plan.generation.progress') });
+  const abort = element('button', { type: 'button', className: 'button button--secondary', 'data-testid': 'plan-generation-abort', text: t(state, 'common.abort'), disabled: true, onClick: () => { abort.disabled = true; controller?.abort(); } });
+  const progress = element('div', { className: 'validation-box', role: 'status', 'data-testid': 'plan-generation-progress' }, [progressLabelNode, progressMeter, abort]);
+  progress.hidden = true;
   const generate = element('button', { className: 'button', 'data-testid': 'plan-generate', text: t(state, 'plan.generatePreview'), onClick: async () => {
-    try { generate.disabled = true; status.node.className = 'validation-box'; status.node.textContent = t(state, 'common.loading'); const count = Number(days.value); if (!Number.isInteger(count) || count < 1 || count > 90 || !start.value) throw new Error(state.i18n.locale === 'it' ? 'Scegli una data e da 1 a 90 giorni interi.' : 'Choose a date and 1–90 whole days.'); controller = new AbortController(); const preview = await createInitialPreview({ signal: controller.signal, onProgress: progress => { status.node.textContent = `${t(state, 'common.loading')} ${progress.completed ?? progress.completedDays ?? progress.generatedDayCount ?? ''}`; }, horizon: { startDate: start.value, endDate: addCivilDays(start.value, count - 1) }, seed: seed.value.trim() || seedValue('plan', start.value), continuationPolicy: { mode: mode.value, triggerDaysBeforeEnd: 3, extensionDays: count } }, { repo: state.repo, registry: state.registry }); if (preview.status !== 'success') throw new Error(planFailure(state, preview.failure)); state.planUi.planPreview = await addRecipeLabels(state, preview); state.render(); } catch (error) { status.error(error); generate.disabled = false; }
+    generate.disabled = true;
+    try {
+      status.node.className = ''; status.node.textContent = '';
+      const count = Number(days.value);
+      if (!Number.isInteger(count) || count < 1 || count > 90 || !start.value) throw new Error(state.i18n.locale === 'it' ? 'Scegli una data e da 1 a 90 giorni interi.' : 'Choose a date and 1–90 whole days.');
+      controller = new AbortController(); abort.disabled = false; progress.hidden = false; progressMeter.value = 0; progressLabelNode.textContent = progressLabel(state, { percent: 0 });
+      const preview = await createInitialPreview({
+        signal: controller.signal,
+        onProgress: value => { const percent = progressPercent(value); progressMeter.value = percent; progressMeter.setAttribute('aria-valuenow', String(percent)); progressLabelNode.textContent = progressLabel(state, value); },
+        horizon: { startDate: start.value, endDate: addCivilDays(start.value, count - 1) },
+        seed: seed.value.trim() || seedValue('plan', start.value),
+        continuationPolicy: { mode: mode.value, triggerDaysBeforeEnd: 3, extensionDays: count }
+      }, { repo: state.repo, registry: state.registry });
+      if (preview.status !== 'success') throw new Error(planFailure(state, preview.failure));
+      state.planUi.planPreview = await addRecipeLabels(state, preview); state.render();
+    } catch (error) {
+      status.error(error);
+    } finally {
+      controller = null; abort.disabled = true; progress.hidden = true; generate.disabled = false;
+    }
   } });
-  card.append(element('h2', { text: t(state, 'plan.create.title') }), element('p', { className: 'muted', text: t(state, 'plan.create.body') }), form, status.node, generate, cancel);
+  card.append(element('h2', { text: t(state, 'plan.create.title') }), element('p', { className: 'muted', text: t(state, 'plan.create.body') }), form, status.node, progress, element('div', { className: 'button-row' }, [generate]));
   const prefs = state.configuration.foodPreferences.find(p => p.id === state.config.foodPreferencesId); const recommended = Math.max(1, ...(prefs?.schemaVersion === 2 ? prefs.rules.filter(r => r.enabled && r.mode === 'frequency' && r.minOccurrences > 0).map(r => r.window.days) : []));
   if (recommended > 1) card.append(element('button', { type: 'button', className: 'button button--secondary', text: state.i18n.locale === 'it' ? `Usa ${recommended} giorni per valutare i minimi` : `Use ${recommended} days to evaluate minimums`, onClick: () => { days.value = recommended; } })); target.append(card);
 }
+
 function field(label, control) { return element('label', { className: 'field' }, [element('span', { text: label }), control]); }
 
 function adherenceEditor(state, day, slot, rerender) {

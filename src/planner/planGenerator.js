@@ -103,10 +103,13 @@ export function generatePlanLegacyCore(input) {
   const recipesByVersion = new Map((recipes || []).map(recipe => [recipe.recipeVersionId, recipe]));
   const history = historyEntries(previousCalendarDays, recipesByVersion);
   const allDates = dateRange(horizon.startDate, horizon.endDate);
+  input.onProgress?.({ phase: 'search', completed: 0, total: allDates.length, percent: 0 });
   const generatedDays = []; const dayDiagnostics = []; const failures = []; const alternativeDays = [];
 
   for (let dateIndex = 0; dateIndex < allDates.length; dateIndex += 1) {
+    if (input.shouldCancel?.()) return { status: 'cancelled', failure: { code: 'cancelled' }, diagnostics: { status: 'cancelled', generatedDayCount: generatedDays.length } };
     const date = allDates[dateIndex];
+    input.onProgress?.({ phase: 'search', completed: dateIndex, total: allDates.length, percent: Math.floor((dateIndex / allDates.length) * 100), stage: 'candidates' });
     const cycleDayNumber = ((startCycleDay - 1 + dateIndex) % cycle.length) + 1;
     const cycleEntry = cycle.days.find(item => item.cycleDay === cycleDayNumber);
     const dayClass = days.get(cycleEntry?.dayClassId);
@@ -133,7 +136,9 @@ export function generatePlanLegacyCore(input) {
     const plannedEnergyTarget = energyWindow.plannedTargetKcal;
     const slotPlans = []; const rejectionCounts = {}; const slotDiagnostics = [];
     let failedSlot = null;
-    for (const slot of plannedSlots) {
+    for (let plannedSlotIndex = 0; plannedSlotIndex < plannedSlots.length; plannedSlotIndex += 1) {
+      const slot = plannedSlots[plannedSlotIndex];
+      if (input.shouldCancel?.()) return { status: 'cancelled', failure: { code: 'cancelled' }, diagnostics: { status: 'cancelled', generatedDayCount: generatedDays.length } };
       const mealClass = meals.get(slot.mealClassId);
       if (!mealClass) { failedSlot = { slotId: slot.id, code: 'meal_class_over_constrained', detail: 'missing MealClass' }; break; }
       const targetEnergy = slotEnergyTarget(slot, mealClass, energyTarget);
@@ -190,10 +195,12 @@ export function generatePlanLegacyCore(input) {
       slotDiagnostics.push(diagnostic);
       if (!options.length) { failedSlot = { slotId: slot.id, mealClassId: mealClass.id, code: 'energy_range_impossible', slotDiagnostic: diagnostic }; break; }
       slotPlans.push({ ...slot, mealClass, targetEnergy, options, allScored, scoredCandidates: scored, diagnostic });
+      const slotFraction = plannedSlots.length ? ((plannedSlotIndex + 1) / plannedSlots.length) * 0.45 : 0.45;
+      input.onProgress?.({ phase: 'search', completed: dateIndex, total: allDates.length, percent: Math.min(99, Math.floor(((dateIndex + slotFraction) / allDates.length) * 100)), stage: 'candidates' });
     }
     if (failedSlot) { failures.push({ date, ...failedSlot, rejectionCounts, slotDiagnostics }); break; }
 
-    const solvedResult = solveDayBeam(slotPlans, { dayEnergyTarget: energyTarget, externalEnergy, nutritionProfile, beamWidth, seed: `${seed}|${date}`, evaluateState: input.evaluateDayState ? (slots, count) => input.evaluateDayState({ date, slots, count, slotPlans }) : null });
+    const solvedResult = solveDayBeam(slotPlans, { dayEnergyTarget: energyTarget, externalEnergy, nutritionProfile, beamWidth, seed: `${seed}|${date}`, evaluateState: input.evaluateDayState ? (slots, count) => input.evaluateDayState({ date, slots, count, slotPlans }) : null, onProgress: progress => { const solveFraction = 0.45 + ((progress.completed || 0) / Math.max(1, progress.total || 1)) * 0.5; input.onProgress?.({ phase: 'search', completed: dateIndex, total: allDates.length, percent: Math.min(99, Math.floor(((dateIndex + solveFraction) / allDates.length) * 100)), stage: 'solve' }); } });
     const solved = solvedResult.solution;
     if (!solved) {
       failures.push({
@@ -248,6 +255,7 @@ export function generatePlanLegacyCore(input) {
     }
     generatedDays.push(calendarDay);
     dayDiagnostics.push({ date, cycleDay: cycleDayNumber, dayClassId: dayClass.id, energyTarget, plannedEnergyTarget, externalEnergy, energyConstraint, selectedMeals, slotDiagnostics, rejectionCounts, score: nutritionSummary.score });
+    input.onProgress?.({ phase: 'search', completed: dateIndex + 1, total: allDates.length, percent: Math.round(((dateIndex + 1) / allDates.length) * 100), stage: 'complete' });
   }
 
   if (failures.length) return { status: 'failed', failure: failures[0], diagnostics: { status: 'failed', constraintPolicy: plannerConstraintPolicySnapshot(), failures, generatedDayCount: generatedDays.length } };

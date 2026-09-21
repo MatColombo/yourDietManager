@@ -132,7 +132,7 @@ function nearestBoundedEnergy(bounds, window) {
   return { energyKcal: null, distanceKcal: null };
 }
 
-export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, nutritionProfile, beamWidth = 100, seed = 'seed', evaluateState = null }) {
+export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, nutritionProfile, beamWidth = 100, seed = 'seed', evaluateState = null, onProgress = null }) {
   const window = energyToleranceWindow(dayEnergyTarget, nutritionProfile.energyTolerancePct, externalEnergy);
   const bounds = remainingEnergyBounds(slotPlans);
   let beam = [{ slots: [], recipes: [], partialScore: 0, tie: 0, energyKcal: 0 }];
@@ -158,6 +158,7 @@ export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, n
     }
     expanded.sort((a, b) => a.optimisticTargetDistance - b.optimisticTargetDistance || (a.partialScore + (a.frequencyPenalty || 0)) - (b.partialScore + (b.frequencyPenalty || 0)) || a.tie - b.tie);
     beam = expanded.slice(0, beamWidth);
+    onProgress?.({ completed: slotIndex + 1, total: slotPlans.length });
     if (!beam.length) {
       const nearest = nearestBoundedEnergy(bounds[0], window);
       return { solution: null, diagnostics: { code: 'energy_window_unreachable_in_bounded_search', proof: 'bounded_search', window, evaluatedFinalists: 0, feasibleFinalists: 0, nearestPlannedEnergyKcal: nearest.energyKcal, nearestDistanceKcal: nearest.distanceKcal, hardPrunedStates, beamWidth } };

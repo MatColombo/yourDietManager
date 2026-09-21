@@ -847,5 +847,9 @@
   "plan.failure.frequency_conflict": "Regole incompatibili: un alimento escluso ha un minimo obbligatorio.",
   "plan.failure.frequency_capacity": "Presenze richieste superiori alla capacità disponibile. Consulta i vincoli e amplia esplicitamente la finestra.",
   "plan.failure.cancelled": "Ricerca annullata. Nessuna modifica al piano.",
-  "plan.failure.invalid_input": "Configurazione o date non valide."
+  "plan.failure.invalid_input": "Configurazione o date non valide.",
+  "common.abort": "Interrompi",
+  "plan.generation.searching": "Ricerca soluzione…",
+  "plan.generation.progress": "Avanzamento generazione piano",
+  "plan.failure.search_capacity_exhausted": "Ricerca interrotta dal limite esplicito di espansioni configurato; non dimostra che i vincoli siano impossibili."
 }
