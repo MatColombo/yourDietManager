@@ -832,3 +832,15 @@ Additional runtime-supported meal archetypes may be introduced only with a match
 ### Build failure is intentional
 
 Do not work around compiler failures. A deploy must fail when a batch contains conflicting revisions, missing references, invalid taxonomy parentage, unsupported allergens/states, incomplete nutrition provenance, impossible diet labels, or recipes that reference missing ingredients.
+
+## Canonical ProductFood identity: do not split preferences by cosmetic variants
+
+`productId` is the canonical food identity used by preferences. It must not be split merely because the source dataset distinguishes color, cultivar wording, cut, preparation descriptor, brand wording, or other technical variants when users reasonably perceive them as the same food.
+
+Examples:
+
+- red / yellow / green / orange bell pepper -> one canonical ProductFood `Peperone`;
+- raw / cooked / drained -> separate ingredient records when nutrition/use differs, but normally the same ProductFood;
+- source wording such as `banana pepper` must not be relabeled as `friggitello` unless the source actually supports that identity.
+
+A user preference on a canonical ProductFood must cover all of its ingredient forms. Create a separate ProductFood only when it is a genuinely different food concept from a user's culinary point of view.

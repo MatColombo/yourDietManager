@@ -218,6 +218,22 @@
           }
         }
       }
+    },
+    "plannerPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "varietyMode"
+      ],
+      "properties": {
+        "varietyMode": {
+          "enum": [
+            "maximum_variety",
+            "perishable_proximity",
+            "none"
+          ]
+        }
+      }
     }
   }
 }

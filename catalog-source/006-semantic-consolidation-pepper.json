@@ -1,0 +1,440 @@
+{
+  "schemaVersion": 1,
+  "batchId": "semantic_consolidation_pepper_v1",
+  "description": "Consolidates pepper variants under one canonical ProductFood concept and removes the incorrect friggitello/banana hybrid label.",
+  "records": [
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_pepper",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_vegetables",
+      "labels": {
+        "it": "Peperone",
+        "en": "Pepper"
+      },
+      "aliases": {
+        "it": [
+          "Peperoni",
+          "Peperone dolce",
+          "Peperone banana"
+        ],
+        "en": [
+          "Bell pepper",
+          "Sweet pepper",
+          "Banana pepper"
+        ]
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_green_bell_pepper",
+      "revision": 2,
+      "status": "retired",
+      "taxonomyType": "product",
+      "parentId": "tax_category_vegetables",
+      "labels": {
+        "it": "Peperone verde",
+        "en": "Green bell pepper"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_orange_bell_pepper",
+      "revision": 2,
+      "status": "retired",
+      "taxonomyType": "product",
+      "parentId": "tax_category_vegetables",
+      "labels": {
+        "it": "Peperone arancione",
+        "en": "Orange bell pepper"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_red_bell_pepper",
+      "revision": 2,
+      "status": "retired",
+      "taxonomyType": "product",
+      "parentId": "tax_category_vegetables",
+      "labels": {
+        "it": "Peperone rosso",
+        "en": "Red bell pepper"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_yellow_bell_pepper",
+      "revision": 2,
+      "status": "retired",
+      "taxonomyType": "product",
+      "parentId": "tax_category_vegetables",
+      "labels": {
+        "it": "Peperone giallo",
+        "en": "Yellow bell pepper"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_banana_pepper",
+      "revision": 2,
+      "status": "retired",
+      "taxonomyType": "product",
+      "parentId": "tax_category_vegetables",
+      "labels": {
+        "it": "Peperone friggitello tipo banana",
+        "en": "Banana pepper"
+      },
+      "aliases": {
+        "it": [],
+        "en": []
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_green_bell_pepper_raw",
+      "revision": 2,
+      "status": "active",
+      "productId": "tax_product_pepper",
+      "categoryId": "tax_category_vegetables",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Peperone verde crudo",
+        "en": "Raw green bell pepper"
+      },
+      "culinaryRoles": [
+        "tax_role_main_vegetable"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 22.9,
+        "proteinG": 0.715,
+        "carbohydrateG": 4.78,
+        "fatG": 0.106,
+        "fiberG": 0.942
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2258588",
+        "description": "Peppers, bell, green, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_orange_bell_pepper_raw",
+      "revision": 2,
+      "status": "active",
+      "productId": "tax_product_pepper",
+      "categoryId": "tax_category_vegetables",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Peperone arancione crudo",
+        "en": "Raw orange bell pepper"
+      },
+      "culinaryRoles": [
+        "tax_role_main_vegetable"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 31.7,
+        "proteinG": 0.882,
+        "carbohydrateG": 6.7,
+        "fatG": 0.156,
+        "fiberG": 0.967
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2258591",
+        "description": "Peppers, bell, orange, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_red_bell_pepper_raw",
+      "revision": 2,
+      "status": "active",
+      "productId": "tax_product_pepper",
+      "categoryId": "tax_category_vegetables",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Peperone rosso crudo",
+        "en": "Raw red bell pepper"
+      },
+      "culinaryRoles": [
+        "tax_role_main_vegetable"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 31.3,
+        "proteinG": 0.896,
+        "carbohydrateG": 6.65,
+        "fatG": 0.126,
+        "fiberG": 1.16
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2258590",
+        "description": "Peppers, bell, red, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_yellow_bell_pepper_raw",
+      "revision": 2,
+      "status": "active",
+      "productId": "tax_product_pepper",
+      "categoryId": "tax_category_vegetables",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Peperone giallo crudo",
+        "en": "Raw yellow bell pepper"
+      },
+      "culinaryRoles": [
+        "tax_role_main_vegetable"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 30.8,
+        "proteinG": 0.819,
+        "carbohydrateG": 6.6,
+        "fatG": 0.121,
+        "fiberG": 1.07
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2258589",
+        "description": "Peppers, bell, yellow, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "",
+        "en": ""
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_banana_pepper_raw",
+      "revision": 2,
+      "status": "active",
+      "productId": "tax_product_pepper",
+      "categoryId": "tax_category_vegetables",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Peperone banana crudo",
+        "en": "Raw banana pepper"
+      },
+      "culinaryRoles": [
+        "tax_role_main_vegetable"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 23.9,
+        "proteinG": 0.723,
+        "carbohydrateG": 4.97,
+        "fatG": 0.131,
+        "fiberG": 1.79,
+        "sugarsG": 2.71,
+        "sodiumMg": 0
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": true,
+        "vegan": true
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "2747660",
+        "description": "Peppers, banana or Hungarian wax, seeded, raw",
+        "retrievedOrVerifiedDate": "2026-09-17"
+      },
+      "notes": {
+        "it": "Varietà di peperone distinta dai friggitelli italiani; il dato nutrizionale deriva dalla voce USDA banana/Hungarian wax pepper.",
+        "en": "Pepper variety distinct from Italian friggitelli; nutrition comes from the USDA banana/Hungarian wax pepper entry."
+      }
+    },
+    {
+      "kind": "recipe",
+      "id": "recipe_r2_quick_friggitello_ricotta_maiale",
+      "revision": 2,
+      "status": "active",
+      "title": {
+        "it": "Peperone banana ripieno di ricotta e maiale",
+        "en": "Ricotta and pork stuffed banana pepper"
+      },
+      "description": {
+        "it": "Peperone banana ripieno di ricotta e maiale, cotto al forno.",
+        "en": "A distinct Italian or Mediterranean preparation: ricotta and pork stuffed banana pepper."
+      },
+      "cuisineIds": [
+        "tax_cuisine_italian",
+        "tax_cuisine_mediterranean"
+      ],
+      "mealTypeIds": [
+        "tax_meal_lunch",
+        "tax_meal_dinner"
+      ],
+      "archetypeId": "tax_archetype_stuffed_vegetable",
+      "servings": 1,
+      "ingredients": [
+        {
+          "ingredientId": "ing_banana_pepper_raw",
+          "grams": 160
+        },
+        {
+          "ingredientId": "ing_ricotta_whole_milk",
+          "grams": 65
+        },
+        {
+          "ingredientId": "ing_ground_pork_cooked",
+          "grams": 65
+        },
+        {
+          "ingredientId": "ing_tomato_puree_canned",
+          "grams": 60
+        },
+        {
+          "ingredientId": "ing_basil_fresh",
+          "grams": 5
+        }
+      ],
+      "steps": {
+        "it": [
+          "Prepara gli ingredienti e disponili in una piccola pirofila.",
+          "Cuoci in forno finché il centro è cotto e la superficie ben assestata.",
+          "Lascia riposare brevemente prima di servire."
+        ],
+        "en": [
+          "Prepare the ingredients and arrange them in a small baking dish.",
+          "Bake until the center is cooked and the surface is set.",
+          "Rest briefly before serving."
+        ]
+      },
+      "prepMinutes": 10,
+      "cookMinutes": 15,
+      "practicalTagIds": [
+        "tax_practical_quick"
+      ],
+      "dietTagIds": []
+    },
+    {
+      "kind": "recipe",
+      "id": "recipe_r2_snack_friggitello_ricotta",
+      "revision": 2,
+      "status": "active",
+      "title": {
+        "it": "Peperone banana ripieno di ricotta",
+        "en": "Ricotta-stuffed banana pepper"
+      },
+      "description": {
+        "it": "Peperone banana ripieno di ricotta e basilico, cotto al forno.",
+        "en": "A distinct Italian or Mediterranean preparation: ricotta-stuffed banana pepper."
+      },
+      "cuisineIds": [
+        "tax_cuisine_italian",
+        "tax_cuisine_mediterranean"
+      ],
+      "mealTypeIds": [
+        "tax_meal_snack"
+      ],
+      "archetypeId": "tax_archetype_snack_savory_bite",
+      "servings": 1,
+      "ingredients": [
+        {
+          "ingredientId": "ing_banana_pepper_raw",
+          "grams": 100
+        },
+        {
+          "ingredientId": "ing_ricotta_whole_milk",
+          "grams": 55
+        },
+        {
+          "ingredientId": "ing_basil_fresh",
+          "grams": 4
+        }
+      ],
+      "steps": {
+        "it": [
+          "Prepara gli ingredienti e disponili in una piccola pirofila.",
+          "Cuoci in forno finché il centro è cotto e la superficie ben assestata.",
+          "Lascia riposare brevemente prima di servire."
+        ],
+        "en": [
+          "Prepare the ingredients and arrange them in a small baking dish.",
+          "Bake until the center is cooked and the surface is set.",
+          "Rest briefly before serving."
+        ]
+      },
+      "prepMinutes": 7,
+      "cookMinutes": 12,
+      "practicalTagIds": [],
+      "dietTagIds": []
+    }
+  ]
+}

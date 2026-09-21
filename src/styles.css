@@ -453,3 +453,27 @@ button, .button, input, select { min-height: 44px; }
 .r8-preview { max-width:min(48rem,calc(100vw - 2rem)); max-height:85vh; overflow:auto; padding:1.5rem; color:var(--ydm-color-text); background:var(--ydm-color-surface); border:1px solid var(--ydm-color-border); border-radius:1rem; }
 .r8-preview::backdrop { background:rgb(0 0 0 / .55); }
 .r8-page button, .r8-page select, .r8-page input:not([type="checkbox"]), .r8-preview button { min-height:44px; }
+
+/* Clean preferences UX: compact global strategy + collapsed per-target rules. */
+.preference-strategy { display:grid; gap:8px; padding:12px 14px; border:1px solid var(--ydm-color-border); border-radius:calc(10px * var(--ydm-radius-scale)); background:var(--ydm-color-background); }
+.preference-strategy__head { display:grid; grid-template-columns:minmax(0,1fr) minmax(12rem,18rem); gap:14px; align-items:end; }
+.preference-strategy__head > div:first-child { display:grid; gap:3px; }
+.preference-strategy__head small { color:var(--ydm-color-muted-text); }
+.preference-strategy__hint { margin:0; font-size:.82rem; }
+.preference-rules-intro { margin:2px 0 0; font-size:.82rem; }
+.preference-rule { border:1px solid var(--ydm-color-border); border-radius:calc(9px * var(--ydm-radius-scale)); background:var(--ydm-color-background); overflow:clip; }
+.preference-rule__summary { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:46px; padding:9px 12px; cursor:pointer; background:var(--ydm-color-surface); }
+.preference-rule__target { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-weight:700; }
+.preference-rule__mode { flex:none; color:var(--ydm-color-muted-text); font-size:.78rem; font-weight:650; }
+.preference-rule__body { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; padding:12px; border-top:1px solid var(--ydm-color-border); }
+.preference-rule__body > .ingredient-picker, .preference-rule__body > details, .preference-rule__wide { grid-column:1/-1; }
+.preference-rule__body .field { min-width:0; }
+.preference-rule__body input, .preference-rule__body select { width:100%; min-width:0; }
+.preference-meal-scope { display:flex; flex-wrap:wrap; gap:6px 14px; padding:8px 0 0; border:0; }
+.preference-meal-scope legend { width:100%; margin-bottom:2px; font-size:.8rem; font-weight:700; }
+.preference-rule__actions { grid-column:1/-1; display:flex; justify-content:space-between; align-items:center; gap:10px; }
+@media (max-width:720px) {
+  .preference-strategy__head, .preference-rule__body { grid-template-columns:1fr; }
+  .preference-rule__summary { align-items:flex-start; }
+  .preference-rule__target { white-space:normal; }
+}

@@ -1,7 +1,11 @@
+import { DEFAULT_PLANNER_POLICY } from '../planner/varietyPolicy.js';
+
 // These are drafts, never an automatic persistence migration. Old rules keep
 // their exact soft weights until the user explicitly replaces them and saves.
 export function preferenceEditingDraft(profile) {
-  return profile.schemaVersion === 2 ? structuredClone(profile) : { schemaVersion: 2, id: profile.id, rules: [], legacyRules: structuredClone(profile.rules) };
+  const draft = profile.schemaVersion === 2 ? structuredClone(profile) : { schemaVersion: 2, id: profile.id, rules: [], legacyRules: structuredClone(profile.rules) };
+  draft.plannerPolicy = { ...DEFAULT_PLANNER_POLICY, ...(draft.plannerPolicy || {}) };
+  return draft;
 }
 export function safetyEditingDraft(profile) {
   return profile.schemaVersion === 2 ? structuredClone(profile) : { schemaVersion: 2, id: profile.id, rules: [], legacyRules: structuredClone(profile.rules) };

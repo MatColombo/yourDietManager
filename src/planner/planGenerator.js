@@ -7,6 +7,7 @@ import { scoreRecipe } from './softScoring.js';
 import { buildSlotOptions, selectCandidateFrontier, solveDayBeam } from './beamSolver.js';
 import { seededTie, stableHashId } from './seededRandom.js';
 import { plannerConstraintPolicySnapshot } from './constraintPolicy.js';
+import { filterRecipeCandidatesForVariety, plannerPolicy } from './varietyPolicy.js';
 
 export const GENERATOR_VERSION = 'plan-generator-2';
 export const SOLVER_VERSION = 'beam-search-2';
@@ -155,17 +156,20 @@ export function generatePlanLegacyCore(input) {
       const filtered = filterCandidates(sourceCandidates, context); rejectionMerge(rejectionCounts, filtered.rejectionCounts);
       const occurrenceId = stableHashId('meal', date, slot.id);
       const currentRecipeIds = new Set(regenerationPolicy?.currentRecipeVersionIdsByOccurrence?.[occurrenceId] || []);
-      let acceptedForSelection = filtered.accepted;
+      const varietySelection = filterRecipeCandidatesForVariety(filtered.accepted, history, addCivilDays(date, slot.dayOffset), foodPreferences);
+      let acceptedForSelection = varietySelection.candidates;
       let regenerationExcludedCount = 0;
       if (regenerationPolicy?.mode === 'exclude_current' && currentRecipeIds.size) {
-        acceptedForSelection = filtered.accepted.filter(recipe => !currentRecipeIds.has(recipe.recipeVersionId));
-        regenerationExcludedCount = filtered.accepted.length - acceptedForSelection.length;
+        const beforeRegeneration = acceptedForSelection;
+        const withoutCurrent = beforeRegeneration.filter(recipe => !currentRecipeIds.has(recipe.recipeVersionId));
+        if (withoutCurrent.length) acceptedForSelection = withoutCurrent;
+        regenerationExcludedCount = beforeRegeneration.length - acceptedForSelection.length;
       }
       if (!acceptedForSelection.length) {
         const code = filtered.accepted.length && regenerationPolicy?.mode === 'exclude_current'
           ? 'no_alternative_candidates_after_regeneration_exclusion'
           : 'no_candidates_after_hard_constraints';
-        const diagnostic = { slotId: slot.id, mealClassId: mealClass.id, mealArchetype: mealClass.mealArchetype, targetEnergyKcal: rounded(targetEnergy), sourceCandidateCount: sourceCandidates.length, acceptedCandidateCount: filtered.accepted.length, selectableCandidateCount: 0, candidateFrontierCount: 0, optionCount: 0, sourceEnergyRange: energyRange(sourceCandidates), acceptedEnergyRange: energyRange(filtered.accepted), frontierEnergyRange: { minKcal: null, maxKcal: null }, optionEnergyRange: { minKcal: null, maxKcal: null }, hardRejectionCounts: filtered.rejectionCounts, regeneration: { mode: regenerationPolicy?.mode || null, currentRecipeVersionIds: [...currentRecipeIds], excludedCurrentCount: regenerationExcludedCount } };
+        const diagnostic = { slotId: slot.id, mealClassId: mealClass.id, mealArchetype: mealClass.mealArchetype, targetEnergyKcal: rounded(targetEnergy), sourceCandidateCount: sourceCandidates.length, acceptedCandidateCount: filtered.accepted.length, selectableCandidateCount: 0, candidateFrontierCount: 0, optionCount: 0, sourceEnergyRange: energyRange(sourceCandidates), acceptedEnergyRange: energyRange(filtered.accepted), frontierEnergyRange: { minKcal: null, maxKcal: null }, optionEnergyRange: { minKcal: null, maxKcal: null }, hardRejectionCounts: filtered.rejectionCounts, regeneration: { mode: regenerationPolicy?.mode || null, currentRecipeVersionIds: [...currentRecipeIds], excludedCurrentCount: regenerationExcludedCount }, variety: { mode: varietySelection.policy.varietyMode, excludedRecentRecipes: varietySelection.excludedCount, fallbackUsed: varietySelection.fallbackUsed } };
         slotDiagnostics.push(diagnostic);
         failedSlot = { slotId: slot.id, mealClassId: mealClass.id, code, rejections: filtered.rejectionCounts, slotDiagnostic: diagnostic }; break;
       }
@@ -190,6 +194,7 @@ export function generatePlanLegacyCore(input) {
         optionEnergyRange: options.length ? { minKcal: rounded(Math.min(...options.map(item => item.nutrition.energyKcal))), maxKcal: rounded(Math.max(...options.map(item => item.nutrition.energyKcal))) } : { minKcal: null, maxKcal: null },
         hardRejectionCounts: filtered.rejectionCounts,
         regeneration: { mode: regenerationPolicy?.mode || null, currentRecipeVersionIds: [...currentRecipeIds], excludedCurrentCount: regenerationExcludedCount },
+        variety: { mode: varietySelection.policy.varietyMode, excludedRecentRecipes: varietySelection.excludedCount, fallbackUsed: varietySelection.fallbackUsed },
         topSoftCandidates: allScored.slice(0, 5).map((item, index) => ({ recipeVersionId: item.recipe.recipeVersionId, rank: index + 1, energyKcal: rounded(item.recipe.calculatedNutrition?.energyKcal), score: Math.round(item.score.total * 1000) / 1000, scoreComponents: item.score.components, reasons: item.score.reasons.slice(0, 5) }))
       };
       slotDiagnostics.push(diagnostic);
@@ -200,7 +205,7 @@ export function generatePlanLegacyCore(input) {
     }
     if (failedSlot) { failures.push({ date, ...failedSlot, rejectionCounts, slotDiagnostics }); break; }
 
-    const solvedResult = solveDayBeam(slotPlans, { dayEnergyTarget: energyTarget, externalEnergy, nutritionProfile, beamWidth, seed: `${seed}|${date}`, evaluateState: input.evaluateDayState ? (slots, count) => input.evaluateDayState({ date, slots, count, slotPlans }) : null, onProgress: progress => { const solveFraction = 0.45 + ((progress.completed || 0) / Math.max(1, progress.total || 1)) * 0.5; input.onProgress?.({ phase: 'search', completed: dateIndex, total: allDates.length, percent: Math.min(99, Math.floor(((dateIndex + solveFraction) / allDates.length) * 100)), stage: 'solve' }); } });
+    const solvedResult = solveDayBeam(slotPlans, { dayEnergyTarget: energyTarget, externalEnergy, nutritionProfile, beamWidth, seed: `${seed}|${date}`, varietyMode: plannerPolicy(foodPreferences).varietyMode, evaluateState: input.evaluateDayState ? (slots, count) => input.evaluateDayState({ date, slots, count, slotPlans }) : null, onProgress: progress => { const solveFraction = 0.45 + ((progress.completed || 0) / Math.max(1, progress.total || 1)) * 0.5; input.onProgress?.({ phase: 'search', completed: dateIndex, total: allDates.length, percent: Math.min(99, Math.floor(((dateIndex + solveFraction) / allDates.length) * 100)), stage: 'solve' }); } });
     const solved = solvedResult.solution;
     if (!solved) {
       failures.push({
