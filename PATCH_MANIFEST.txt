@@ -1,16 +1,17 @@
-yourDietManager taxonomy alignment patch
-Baseline: yourDietManager-updated.zip
-Target:   taxonomy-aligned revision
+yourDietManager taxonomy alignment bootstrap hotfix
 
-Apply by extracting this archive over the project root, preserving paths and replacing existing files.
+Apply on top of: yourDietManager-taxonomy-alignment-patch.zip
 
-Added files:
-- CATALOG_TAXONOMY_ALIGNMENT_REPORT.md
-- catalog-source/008-complete-taxonomy-alignment.json
-- scripts/catalog/generate-taxonomy-alignment.py
-- tests/catalog-taxonomy-alignment.test.mjs
+Changed files:
+- public/service-worker.js
+- dist/service-worker.js
 
-Modified project files: 23
-Deleted files: none
+Fixes:
+- bump shell cache ydm-shell-v46 -> ydm-shell-v47
+- activate updated worker immediately via self.skipWaiting()
+- load schema files network-first with cached offline fallback
 
-The archive intentionally contains only added/modified files, not the full project.
+Reason:
+The taxonomy patch updated ingredient schemas to allow taxonomy.culinaryRoles,
+but the previous service worker could keep serving the old cached schema while
+loading the new catalog from the network, causing bootstrap validation failure.

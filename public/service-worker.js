@@ -1,7 +1,7 @@
 const BASE_URL = new URL('./', self.location.href);
 const BASE_PATH = BASE_URL.pathname.endsWith('/') ? BASE_URL.pathname : `${BASE_URL.pathname}/`;
 const CACHE_SCOPE_KEY = BASE_PATH.replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '') || 'root';
-const SHELL_CACHE = `ydm-shell-v46-${CACHE_SCOPE_KEY}`;
+const SHELL_CACHE = `ydm-shell-v47-${CACHE_SCOPE_KEY}`;
 const DATA_CACHE = `ydm-data-v23-${CACHE_SCOPE_KEY}`;
 const scoped = path => new URL(String(path || '').replace(/^\/+/, ''), BASE_URL).pathname;
 const DATA_PREFIX = scoped('data/');
@@ -32,7 +32,7 @@ const SHELL = [
 ].map(scoped);
 
 self.addEventListener('install', event => {
-  event.waitUntil(caches.open(SHELL_CACHE).then(cache => cache.addAll(SHELL)));
+  event.waitUntil(caches.open(SHELL_CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', event => {
@@ -74,7 +74,20 @@ self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET' || url.origin !== self.location.origin) return;
   if (!url.pathname.startsWith(BASE_PATH)) return;
 
-  if (url.pathname.startsWith(SCHEMA_PREFIX) || url.pathname.startsWith(scoped('data/locales/'))) {
+  if (url.pathname.startsWith(SCHEMA_PREFIX)) {
+    event.respondWith(caches.open(SHELL_CACHE).then(async cache => {
+      const cached = await cache.match(event.request);
+      try {
+        const response = await fetch(event.request, { cache: 'no-cache' });
+        if (response.ok) await cache.put(event.request, response.clone());
+        return response.ok ? response : (cached || response);
+      } catch {
+        return cached || Response.error();
+      }
+    }));
+    return;
+  }
+  if (url.pathname.startsWith(scoped('data/locales/'))) {
     event.respondWith(caches.open(SHELL_CACHE).then(cache => cache.match(event.request)).then(response => response || Response.error())); return;
   }
   if (url.pathname === CATALOG_PATH) {
