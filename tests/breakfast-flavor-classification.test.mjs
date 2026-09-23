@@ -19,14 +19,14 @@ async function compiledCatalog() {
 test('every active breakfast recipe has an explicit sweet or savory profile', async () => {
   const catalog = await compiledCatalog();
   const breakfasts = catalog.recipeVersions.filter(recipe => recipe.mealArchetypes.includes('breakfast'));
-  assert.equal(breakfasts.length, 124);
+  assert.equal(breakfasts.length, 224);
   const counts = { flavor_sweet: 0, flavor_savory: 0 };
   for (const recipe of breakfasts) {
     assert.equal(recipe.tags.flavor.length, 1, `${recipe.recipeId} should have one explicit breakfast flavor`);
     assert.ok(recipe.tags.flavor[0] in counts, `${recipe.recipeId} has unsupported breakfast flavor ${recipe.tags.flavor[0]}`);
     counts[recipe.tags.flavor[0]] += 1;
   }
-  assert.deepEqual(counts, { flavor_sweet: 86, flavor_savory: 38 });
+  assert.deepEqual(counts, { flavor_sweet: 156, flavor_savory: 68 });
 });
 
 test('quick snack preset has a useful pool and excludes the chicken-heart skewer', async () => {

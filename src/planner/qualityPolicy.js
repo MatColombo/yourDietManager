@@ -1,5 +1,6 @@
 export const PLANNER_SOFT_OBJECTIVE_POLICY = Object.freeze({
-  version: 'phase-f-soft-objective-1',
+  version: 'phase-f-soft-objective-2',
+  seededDiversityMaxPenalty: 2.5,
   slotOption: Object.freeze({
     perRecipeNutritionTieBreakWeight: 0.15,
     preferenceWeight: 1,

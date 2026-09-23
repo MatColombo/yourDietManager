@@ -38,7 +38,7 @@ function assertRefs(terms, owner, field, taxonomyType, { nonEmpty = true } = {})
 test('complete taxonomy alignment covers every active ingredient and recipe', () => {
   const { terms, ingredients, recipes } = loadResolvedCatalog();
   assert.equal(ingredients.size, 282);
-  assert.equal(recipes.size, 530);
+  assert.equal(recipes.size, 1030);
 
   for (const ingredient of ingredients.values()) {
     const product = terms.get(ingredient.productId);

@@ -1,10 +1,19 @@
 import { dateRange, addCivilDays } from './planMath.js';
-import { stableHashId } from './seededRandom.js';
+import { seededTie, stableHashId } from './seededRandom.js';
+import { PLANNER_SOFT_OBJECTIVE_POLICY } from './qualityPolicy.js';
 import { filterCandidates } from './hardFilter.js';
 import { recipeMatchesTarget } from './recipeFeatures.js';
 import { frequencyRules, frequencyConflicts, evaluateFrequencies, occurrenceMatches, countFrequencyWindow, FREQUENCY_PRIORITY } from '../domain/frequencyCounter.js';
 
 function failure(status, code, details = {}) { return { status, failure: { code, ...details }, diagnostics: { status, ...details } }; }
+
+function planSignature(calendarDays) {
+  return calendarDays.flatMap(day => (day.mealSlots || []).flatMap(slot => (slot.recipeComponents || []).map(component => `${day.date}:${slot.mealOccurrenceId}:${component.recipeVersionId}`))).join('|');
+}
+
+function seededDiversityPenalty(seed, calendarDays) {
+  return seededTie(`${seed}|frequency-plan-diversity`, planSignature(calendarDays)) * PLANNER_SOFT_OBJECTIVE_POLICY.seededDiversityMaxPenalty;
+}
 
 
 function maxOccurrencesForRule(rule) {
@@ -144,25 +153,33 @@ export function generateFrequencyPlan(input, generateLegacy) {
         if (!check.valid) continue;
         const baseScore = state.baseScore + alternative.baseScore;
         const maxHeadroomPenalty = maxFrequencyHeadroomPenalty({ rules, calendarDays: [...previous, ...calendarDays], recipesByVersion, revisionById: revisions, foodGroups, progress: (dateIndex + 1) / dates.length });
-        expanded.push({ calendarDays, baseScore, score: baseScore + check.idealPenalty + maxHeadroomPenalty,
+        const score = baseScore + check.idealPenalty + maxHeadroomPenalty;
+        const seedDiversityPenalty = seededDiversityPenalty(input.seed, calendarDays);
+        expanded.push({ calendarDays, baseScore, score, selectionScore: score + seedDiversityPenalty, seedDiversityPenalty,
           dayDiagnostics: [...state.dayDiagnostics, { ...output.diagnostics.days[0], selectedMeals: alternative.selectedMeals, maxFrequencyHeadroomPenalty: Math.round(maxHeadroomPenalty * 1000) / 1000 }] });
       }
     }
-    expanded.sort((a, b) => a.score - b.score || a.calendarDays.flatMap(day => day.mealSlots.flatMap(slot => slot.recipeComponents.map(c => c.recipeVersionId))).join('|').localeCompare(b.calendarDays.flatMap(day => day.mealSlots.flatMap(slot => slot.recipeComponents.map(c => c.recipeVersionId))).join('|')));
+    expanded.sort((a, b) => a.selectionScore - b.selectionScore || a.score - b.score || planSignature(a.calendarDays).localeCompare(planSignature(b.calendarDays)));
     beam = expanded.slice(0, limits.planBeamWidth);
     if (!beam.length) return failure('search_exhausted', exhaustedSearchCode(latestFailure), { lastFailure: latestFailure, limits, expandedPlans, generatedDayCount: dateIndex });
     input.onProgress?.({ phase: 'search', completed: dateIndex + 1, total: dates.length, percent: Math.round(((dateIndex + 1) / dates.length) * 100), expandedPlans });
   }
   const finalists = beam.map(state => ({ ...state, frequencies: evaluateFrequencies({ ...context, calendarDays: [...previous, ...state.calendarDays], coverageDates: null }) })).filter(state => state.frequencies.valid);
   if (!finalists.length) return failure('search_exhausted', 'independent_frequency_validation_failed', { limits, expandedPlans });
-  finalists.sort((a, b) => (a.baseScore + a.frequencies.idealPenalty) - (b.baseScore + b.frequencies.idealPenalty));
+  for (const finalist of finalists) {
+    finalist.finalScore = finalist.baseScore + finalist.frequencies.idealPenalty;
+    finalist.seedDiversityPenalty = seededDiversityPenalty(input.seed, finalist.calendarDays);
+    finalist.selectionScore = finalist.finalScore + finalist.seedDiversityPenalty;
+  }
+  finalists.sort((a, b) => a.selectionScore - b.selectionScore || a.finalScore - b.finalScore || planSignature(a.calendarDays).localeCompare(planSignature(b.calendarDays)));
   const winner = finalists[0]; const createdAt = input.createdAt || new Date().toISOString();
   const planInstanceId = stableHashId('plan', input.seed, input.horizon.startDate, input.horizon.endDate, input.catalogVersion, input.configSnapshotHash || 'pending');
   const generationRunId = stableHashId('genrun', input.seed, input.catalogVersion, input.horizon.startDate, input.horizon.endDate, input.configSnapshotHash || 'pending', input.reason || 'initial', input.previousGenerationRunId || 'none');
   const calendarDays = winner.calendarDays.map(day => ({ ...day, planInstanceId, calendarDayId: stableHashId('calday', planInstanceId, day.date) }));
   const diagnostics = { status: 'success', dayCount: calendarDays.length, days: winner.dayDiagnostics, frequencies: winner.frequencies,
-    search: { limits, expandedPlans, elapsedMs: Math.round(performance.now() - started), bounded: true }, summary: { hardConstraintViolations: 0, meanScore: winner.score / dates.length } };
-  const generationRun = { schemaVersion: 1, generationRunId, generatorVersion: 'plan-generator-r3-1', solverVersion: 'window-beam-r3-1', seed: input.seed,
+    search: { limits, expandedPlans, elapsedMs: Math.round(performance.now() - started), bounded: true, seededDiversityMaxPenalty: PLANNER_SOFT_OBJECTIVE_POLICY.seededDiversityMaxPenalty },
+    summary: { hardConstraintViolations: 0, meanScore: winner.score / dates.length, seedDiversityPenalty: Math.round((winner.seedDiversityPenalty || 0) * 1000) / 1000 } };
+  const generationRun = { schemaVersion: 1, generationRunId, generatorVersion: 'plan-generator-r3-2', solverVersion: 'window-beam-r3-2', seed: input.seed,
     catalogVersion: input.catalogVersion, configSnapshotHash: input.configSnapshotHash || 'pending', configSnapshot: input.configSnapshot || {}, horizon: structuredClone(input.horizon), createdAt,
     diagnostics, reason: input.reason || 'initial', previousGenerationRunId: input.previousGenerationRunId || null };
   const planInstance = { schemaVersion: 1, planInstanceId, generationRunId, startDate: input.horizon.startDate, endDate: input.horizon.endDate,

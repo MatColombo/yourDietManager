@@ -9,8 +9,8 @@ import { seededTie, stableHashId } from './seededRandom.js';
 import { plannerConstraintPolicySnapshot } from './constraintPolicy.js';
 import { filterRecipeCandidatesForVariety, plannerPolicy } from './varietyPolicy.js';
 
-export const GENERATOR_VERSION = 'plan-generator-2';
-export const SOLVER_VERSION = 'beam-search-2';
+export const GENERATOR_VERSION = 'plan-generator-2.1';
+export const SOLVER_VERSION = 'beam-search-2.1';
 
 function mealMap(mealClasses) { return new Map(mealClasses.map(item => [item.id, item])); }
 function dayMap(dayClasses) { return new Map(dayClasses.map(item => [item.id, item])); }

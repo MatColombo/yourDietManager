@@ -6,6 +6,7 @@ import { VARIETY_MODES } from './varietyPolicy.js';
 
 function keyOf(recipes) { return recipes.map(r => r.recipeVersionId).sort().join('+'); }
 function energyOfOption(option) { return Number(option?.nutrition?.energyKcal || 0); }
+function seededRank(score, tie) { return Number(score || 0) + Number(tie || 0) * PLANNER_SOFT_OBJECTIVE_POLICY.seededDiversityMaxPenalty; }
 
 function overlapCount(a, b) { const set = new Set(a); return b.filter(value => set.has(value)).length; }
 function exactRecipeRepeatCount(existing, added) {
@@ -48,8 +49,8 @@ function energyQuantiles(values, count, getter) {
 
 export function selectCandidateFrontier(scoredCandidates, { targetEnergy, limit = 20, requiredMatches = [] } = {}) {
   if (scoredCandidates.length <= limit) return [...scoredCandidates];
-  const bySoft = [...scoredCandidates].sort((a, b) => a.score.total - b.score.total || a.tie - b.tie || a.recipe.recipeVersionId.localeCompare(b.recipe.recipeVersionId));
-  const byTarget = [...scoredCandidates].sort((a, b) => Math.abs(Number(a.recipe.calculatedNutrition?.energyKcal || 0) - targetEnergy) - Math.abs(Number(b.recipe.calculatedNutrition?.energyKcal || 0) - targetEnergy) || a.score.total - b.score.total);
+  const bySoft = [...scoredCandidates].sort((a, b) => seededRank(a.score.total, a.tie) - seededRank(b.score.total, b.tie) || a.score.total - b.score.total || a.recipe.recipeVersionId.localeCompare(b.recipe.recipeVersionId));
+  const byTarget = [...scoredCandidates].sort((a, b) => Math.abs(Number(a.recipe.calculatedNutrition?.energyKcal || 0) - targetEnergy) - Math.abs(Number(b.recipe.calculatedNutrition?.energyKcal || 0) - targetEnergy) || seededRank(a.score.total, a.tie) - seededRank(b.score.total, b.tie));
   const selected = []; const seen = new Set(); const key = item => item.recipe.recipeVersionId;
   for (const match of requiredMatches) { pushUnique(selected, seen, bySoft.filter(item => match(item.recipe)).slice(0, 1), limit, key); pushUnique(selected, seen, bySoft.filter(item => !match(item.recipe)).slice(0, 1), limit, key); }
   const softQuota = Math.max(1, Math.floor(limit * 0.4));
@@ -63,19 +64,19 @@ export function selectCandidateFrontier(scoredCandidates, { targetEnergy, limit 
 }
 
 function selectOptionFrontier(options, { targetEnergy, limit, signatureFor = null }) {
-  const sorted = [...options].sort((a, b) => a.score - b.score || a.tie - b.tie || keyOf(a.recipes).localeCompare(keyOf(b.recipes)));
+  const sorted = [...options].sort((a, b) => seededRank(a.score, a.tie) - seededRank(b.score, b.tie) || a.score - b.score || keyOf(a.recipes).localeCompare(keyOf(b.recipes)));
   if (sorted.length <= limit) return sorted;
   const selected = []; const seen = new Set(); const key = option => keyOf(option.recipes);
   if (signatureFor) { const signatures = new Set(); for (const option of sorted) { const signature = signatureFor(option.recipes); if (!signatures.has(signature)) { signatures.add(signature); pushUnique(selected, seen, [option], limit, key); } } }
   const softQuota = Math.max(1, Math.floor(limit * 0.35));
   const targetQuota = Math.max(1, Math.floor(limit * 0.25));
   const energyQuota = Math.max(2, limit - softQuota - targetQuota);
-  const byTarget = [...sorted].sort((a, b) => Math.abs(energyOfOption(a) - targetEnergy) - Math.abs(energyOfOption(b) - targetEnergy) || a.score - b.score);
+  const byTarget = [...sorted].sort((a, b) => Math.abs(energyOfOption(a) - targetEnergy) - Math.abs(energyOfOption(b) - targetEnergy) || seededRank(a.score, a.tie) - seededRank(b.score, b.tie));
   pushUnique(selected, seen, sorted.slice(0, softQuota), limit, key);
   pushUnique(selected, seen, byTarget.slice(0, targetQuota), limit, key);
   pushUnique(selected, seen, energyQuantiles(sorted, energyQuota, energyOfOption), limit, key);
   pushUnique(selected, seen, sorted, limit, key);
-  return selected.sort((a, b) => a.score - b.score || a.tie - b.tie || keyOf(a.recipes).localeCompare(keyOf(b.recipes)));
+  return selected.sort((a, b) => seededRank(a.score, a.tie) - seededRank(b.score, b.tie) || a.score - b.score || keyOf(a.recipes).localeCompare(keyOf(b.recipes)));
 }
 
 export function buildSlotOptions(scoredCandidates, { targetEnergy, dayEnergyTarget, nutritionProfile, maxComponents = 3, optionLimit = 40, seed = 'seed', signatureFor = null }) {
@@ -106,7 +107,7 @@ export function buildSlotOptions(scoredCandidates, { targetEnergy, dayEnergyTarg
         next.push(entry); options.push(entry);
       }
     }
-    next.sort((a, b) => a.score - b.score || a.tie - b.tie || keyOf(a.recipes).localeCompare(keyOf(b.recipes)));
+    next.sort((a, b) => seededRank(a.score, a.tie) - seededRank(b.score, b.tie) || a.score - b.score || keyOf(a.recipes).localeCompare(keyOf(b.recipes)));
     // Preserve enough construction breadth for 3-component options; the final frontier applies optionLimit.
     states = next.slice(0, Math.max(optionLimit * 3, 120));
   }
@@ -169,7 +170,7 @@ export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, n
       const optimisticTargetDistance = intervalDistance(window.plannedTargetKcal, reachableMin, reachableMax);
       expanded.push({ slots, recipes, partialScore, frequencyPenalty, tie: seededTie(seed, key), energyKcal, optimisticTargetDistance, exactRecipeRepeats });
     }
-    expanded.sort((a, b) => a.optimisticTargetDistance - b.optimisticTargetDistance || ((varietyMode === VARIETY_MODES.none ? 0 : a.exactRecipeRepeats) - (varietyMode === VARIETY_MODES.none ? 0 : b.exactRecipeRepeats)) || (a.partialScore + (a.frequencyPenalty || 0)) - (b.partialScore + (b.frequencyPenalty || 0)) || a.tie - b.tie);
+    expanded.sort((a, b) => a.optimisticTargetDistance - b.optimisticTargetDistance || ((varietyMode === VARIETY_MODES.none ? 0 : a.exactRecipeRepeats) - (varietyMode === VARIETY_MODES.none ? 0 : b.exactRecipeRepeats)) || seededRank(a.partialScore + (a.frequencyPenalty || 0), a.tie) - seededRank(b.partialScore + (b.frequencyPenalty || 0), b.tie) || a.partialScore - b.partialScore);
     beam = expanded.slice(0, beamWidth);
     onProgress?.({ completed: slotIndex + 1, total: slotPlans.length });
     if (!beam.length) {
@@ -188,9 +189,9 @@ export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, n
     const distance = energyDistanceFromWindow(nutrition.energyKcal, window);
     return { ...state, nutrition, dailyScore: daily, score: state.partialScore + daily + (state.frequencyPenalty || 0), energyDistanceKcal: distance };
   });
-  finalists.sort((a, b) => a.energyDistanceKcal - b.energyDistanceKcal || ((varietyMode === VARIETY_MODES.none ? 0 : a.exactRecipeRepeats) - (varietyMode === VARIETY_MODES.none ? 0 : b.exactRecipeRepeats)) || a.score - b.score || a.tie - b.tie);
+  finalists.sort((a, b) => a.energyDistanceKcal - b.energyDistanceKcal || ((varietyMode === VARIETY_MODES.none ? 0 : a.exactRecipeRepeats) - (varietyMode === VARIETY_MODES.none ? 0 : b.exactRecipeRepeats)) || seededRank(a.score, a.tie) - seededRank(b.score, b.tie) || a.score - b.score);
   const feasible = finalists.filter(item => item.energyDistanceKcal === 0);
-  feasible.sort((a, b) => ((varietyMode === VARIETY_MODES.none ? 0 : a.exactRecipeRepeats) - (varietyMode === VARIETY_MODES.none ? 0 : b.exactRecipeRepeats)) || a.score - b.score || a.tie - b.tie);
+  feasible.sort((a, b) => ((varietyMode === VARIETY_MODES.none ? 0 : a.exactRecipeRepeats) - (varietyMode === VARIETY_MODES.none ? 0 : b.exactRecipeRepeats)) || seededRank(a.score, a.tie) - seededRank(b.score, b.tie) || a.score - b.score);
   const nearest = finalists[0] || null;
   return {
     solution: feasible[0] || null, solutions: feasible,

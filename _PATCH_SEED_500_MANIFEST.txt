@@ -1,0 +1,48 @@
+YOURDIETMANAGER - PATCH SEED + 500 RICETTE + ASSESSMENT
+
+BASE RICHIESTA
+Stato del repository dopo l'applicazione della patch taxonomy-alignment e del taxonomy-bootstrap-hotfix.
+Questa e' una patch incrementale: estrarre nella root del repository sovrascrivendo i file esistenti.
+
+CONTENUTO
+- Correzione seed deterministico/diversificante nel planner standard e nel frequency planner.
+- 500 nuove ricette: 100 breakfast, 100 lunch, 100 dinner, 100 snack, 100 mini_meal.
+- Bilanciamento verso ingredienti sottoutilizzati e correzione stato di sei cereali secchi.
+- Nuovi test permanenti per seed, distribuzione, tassonomia e copertura ingredienti.
+- Cache PWA aggiornata: shell v48, data v24; catalogo network-first/no-cache HTTP.
+- NEXT_FEATURE_ASSESSMENT.md con assessment delle 8 feature richieste.
+- UPDATE_SEED_RECIPE_EXPANSION_REPORT.md con report tecnico.
+
+VERIFICA
+- Catalogo compilato: 282 ingredienti, 1030 ricette, 10 source files.
+- 19/19 test catalogo passati.
+- 15/15 test planner/interazione passati.
+- lint, build PWA e GitHub Pages audit passati.
+
+FILE MODIFICATI (16)
+- CATALOG_AI_AUTHORING.md
+- dist/data/catalog.json
+- dist/service-worker.js
+- dist/src/planner/beamSolver.js
+- dist/src/planner/frequencyPlanGenerator.js
+- dist/src/planner/planGenerator.js
+- dist/src/planner/qualityPolicy.js
+- package.json
+- public/data/catalog.json
+- public/service-worker.js
+- src/planner/beamSolver.js
+- src/planner/frequencyPlanGenerator.js
+- src/planner/planGenerator.js
+- src/planner/qualityPolicy.js
+- tests/breakfast-flavor-classification.test.mjs
+- tests/catalog-taxonomy-alignment.test.mjs
+
+FILE NUOVI (5)
+- NEXT_FEATURE_ASSESSMENT.md
+- UPDATE_SEED_RECIPE_EXPANSION_REPORT.md
+- catalog-source/009-balanced-recipes-500.json
+- tests/balanced-recipes-500.test.mjs
+- tests/planner-seed-diversity.test.mjs
+
+FILE ELIMINATI (0)
+- nessuno

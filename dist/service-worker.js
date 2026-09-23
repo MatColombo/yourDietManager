@@ -1,8 +1,8 @@
 const BASE_URL = new URL('./', self.location.href);
 const BASE_PATH = BASE_URL.pathname.endsWith('/') ? BASE_URL.pathname : `${BASE_URL.pathname}/`;
 const CACHE_SCOPE_KEY = BASE_PATH.replace(/[^a-z0-9]+/gi, '_').replace(/^_+|_+$/g, '') || 'root';
-const SHELL_CACHE = `ydm-shell-v47-${CACHE_SCOPE_KEY}`;
-const DATA_CACHE = `ydm-data-v23-${CACHE_SCOPE_KEY}`;
+const SHELL_CACHE = `ydm-shell-v48-${CACHE_SCOPE_KEY}`;
+const DATA_CACHE = `ydm-data-v24-${CACHE_SCOPE_KEY}`;
 const scoped = path => new URL(String(path || '').replace(/^\/+/, ''), BASE_URL).pathname;
 const DATA_PREFIX = scoped('data/');
 const SCHEMA_PREFIX = scoped('schemas/');
@@ -93,7 +93,7 @@ self.addEventListener('fetch', event => {
   if (url.pathname === CATALOG_PATH) {
     event.respondWith(caches.open(DATA_CACHE).then(async cache => {
       try {
-        const response = await fetch(event.request);
+        const response = await fetch(event.request, { cache: 'no-cache' });
         if (response.ok) await cache.put(event.request, response.clone());
         return response;
       } catch {

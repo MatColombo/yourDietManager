@@ -411,12 +411,13 @@ Every recipe must represent one realistic serving because the application scales
 - Do not duplicate an existing recipe merely by changing one trivial ingredient unless the result is a genuinely distinct dish.
 - Avoid recipe families made of hundreds of template permutations.
 - `flavorProfileIds` is mandatory and must contain exactly one canonical `flavor_profile`. Production recipes must be explicitly `tax_flavor_sweet` or `tax_flavor_savory`; do not use `neutral` as a substitute for missing authoring.
-- `practicalTagIds` is mandatory and must describe actual behavior, not desired planner outcomes. `tax_practical_quick` means prep+cook <= 30 minutes, `tax_practical_no_cook` means `cookMinutes == 0`, `tax_practical_no_advance_prep` means the serving does not depend on a generic pre-cooked component or explicit long-lead work, and `tax_practical_quick_eat` means `eatingMinutes <= 10`.
+- `practicalTagIds` is mandatory and must describe actual behavior, not desired planner outcomes. `tax_practical_quick` means prep+cook <= 30 minutes, `tax_practical_standard` means prep+cook is 31-39 minutes, `tax_practical_no_cook` means `cookMinutes == 0`, `tax_practical_no_advance_prep` means the serving does not depend on a generic pre-cooked component or explicit long-lead work, and `tax_practical_quick_eat` means `eatingMinutes <= 10`.
 - `dietTagIds` is mandatory as an explicit array, even when empty for an omnivorous recipe. Tags must agree with ingredient diet flags; do not add a diet label because it is desirable for planner coverage.
 - `preparationTechniqueIds` is mandatory and non-empty. It must describe techniques actually performed by this recipe. Do not infer `roasting`, `braising`, `grilling`, etc. merely because an input ingredient is already roasted, braised, grilled, or cooked.
 - `eatingMinutes` is mandatory and must be a positive integer estimate for consuming one serving, separate from prep/cook time.
 - `cookMinutes > 0` requires an explicit cooking/heating action in the steps. Conversely, `cookMinutes == 0` must not be used when a listed raw meat, raw fish/seafood, or raw egg still requires cooking for the recipe.
 - `tax_preparation_no_cook_assembly` and `tax_practical_no_cook` must be present exactly when `cookMinutes == 0`.
+- A no-cook recipe must not contain a dry cooking staple (dry cereal, dry pasta, dry legume, flour) as a main component. Ingredient physical state must describe the form actually represented by the nutrition record; dry/raw cereal records cannot be labeled `as_sold` merely to make them eligible for no-cook recipes.
 - Hard MealClass `require` rules assume the relevant taxonomy/field is populated comprehensively. Do not make a tag mandatory for a meal class until the eligible recipe corpus has been curated for that tag.
 
 ---
