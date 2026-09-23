@@ -29,10 +29,15 @@
     {"kind":"taxonomy_term","id":"tax_diet_vegan","revision":1,"status":"active","taxonomyType":"diet_tag","parentId":null,"labels":{"it":"Vegana","en":"Vegan"},"aliases":{"it":[],"en":[]}},
     {"kind":"taxonomy_term","id":"tax_diet_pescatarian","revision":1,"status":"active","taxonomyType":"diet_tag","parentId":null,"labels":{"it":"Pescetariana","en":"Pescatarian"},"aliases":{"it":[],"en":[]}},
 
+    {"kind":"taxonomy_term","id":"tax_flavor_sweet","revision":1,"status":"active","taxonomyType":"flavor_profile","parentId":null,"labels":{"it":"Dolce","en":"Sweet"},"aliases":{"it":[],"en":[]}},
+    {"kind":"taxonomy_term","id":"tax_flavor_savory","revision":1,"status":"active","taxonomyType":"flavor_profile","parentId":null,"labels":{"it":"Salato","en":"Savory"},"aliases":{"it":[],"en":[]}},
+
     {"kind":"taxonomy_term","id":"tax_practical_quick","revision":1,"status":"active","taxonomyType":"practical_tag","parentId":null,"labels":{"it":"Veloce","en":"Quick"},"aliases":{"it":[],"en":[]}},
     {"kind":"taxonomy_term","id":"tax_practical_no_cook","revision":1,"status":"active","taxonomyType":"practical_tag","parentId":null,"labels":{"it":"Senza cottura","en":"No cook"},"aliases":{"it":[],"en":[]}},
     {"kind":"taxonomy_term","id":"tax_practical_cold","revision":1,"status":"active","taxonomyType":"practical_tag","parentId":null,"labels":{"it":"Adatta fredda","en":"Cold suitable"},"aliases":{"it":[],"en":[]}},
     {"kind":"taxonomy_term","id":"tax_practical_portable","revision":1,"status":"active","taxonomyType":"practical_tag","parentId":null,"labels":{"it":"Trasportabile","en":"Portable"},"aliases":{"it":[],"en":[]}},
+    {"kind":"taxonomy_term","id":"tax_practical_no_advance_prep","revision":1,"status":"active","taxonomyType":"practical_tag","parentId":null,"labels":{"it":"Senza preparazione anticipata","en":"No advance prep"},"aliases":{"it":[],"en":[]}},
+    {"kind":"taxonomy_term","id":"tax_practical_quick_eat","revision":1,"status":"active","taxonomyType":"practical_tag","parentId":null,"labels":{"it":"Consumo rapido","en":"Quick to eat"},"aliases":{"it":[],"en":[]}},
     {"kind":"taxonomy_term","id":"tax_practical_meal_prep","revision":1,"status":"active","taxonomyType":"practical_tag","parentId":null,"labels":{"it":"Meal prep","en":"Meal prep"},"aliases":{"it":[],"en":[]}},
 
     {"kind":"taxonomy_term","id":"tax_archetype_pasta_dish","revision":1,"status":"active","taxonomyType":"recipe_archetype","parentId":null,"labels":{"it":"Piatto di pasta","en":"Pasta dish"},"aliases":{"it":[],"en":[]}},

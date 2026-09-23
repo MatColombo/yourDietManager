@@ -26,6 +26,10 @@ function requiredNumber(value, label) {
   if (value === '' || value === null || value === undefined) throw new Error(`${label} is required`);
   const n = Number(value); if (!Number.isFinite(n) || n < 0) throw new Error(`${label} must be a non-negative number`); return n;
 }
+function optionalNumber(value, label) {
+  if (value === '' || value === null || value === undefined) return null;
+  const n = Number(value); if (!Number.isFinite(n) || n < 0) throw new Error(`${label} must be a non-negative number`); return n;
+}
 function canonicalTerm(index, taxonomyId, value, label) {
   if (!value) throw new Error(`${label} is required`);
   return index.assertTerm(value, taxonomyId).termId;
@@ -61,6 +65,7 @@ export async function saveIngredient(input, { repo = repositories, registry } = 
       foodGroup: canonicalTerm(referenceIndex, TAXONOMY_IDS.foodCategory, input.foodGroup, 'Food group'),
       foodSubgroup: !input.foodSubgroup ? null : canonicalTerm(referenceIndex, TAXONOMY_IDS.foodCategory, input.foodSubgroup, 'Food subgroup'),
       flavorProfile: canonicalTerm(referenceIndex, TAXONOMY_IDS.flavorProfile, input.flavorProfile, 'Flavor profile'),
+      culinaryRoles: unique((input.culinaryRoles || previous?.taxonomy?.culinaryRoles || []).map(value => canonicalTerm(referenceIndex, TAXONOMY_IDS.culinaryRole, value, 'Culinary role'))),
       mealArchetypes: unique(input.mealArchetypes || [])
     },
     allergenIds: unique(input.allergenIds || []),
@@ -159,7 +164,7 @@ export async function saveRecipe(input, { repo = repositories, registry } = {}) 
     i18n: recipeTextV2({ it: { title: String(input.titleIt || input.titleEn || '').trim(), description: String(input.descriptionIt || '').trim() }, en: { title: String(input.titleEn || input.titleIt || '').trim(), description: String(input.descriptionEn || input.descriptionIt || '').trim() } }),
     servingCount: 1, mealArchetypes: unique(input.mealArchetypes || []), ingredientLines: lines, calculatedNutrition,
     practical: {
-      prepMinutes: requiredNumber(input.prepMinutes, 'Prep minutes'), cookMinutes: requiredNumber(input.cookMinutes, 'Cook minutes'), reheatingRequired: Boolean(input.reheatingRequired),
+      prepMinutes: requiredNumber(input.prepMinutes, 'Prep minutes'), cookMinutes: requiredNumber(input.cookMinutes, 'Cook minutes'), eatingMinutes: optionalNumber(input.eatingMinutes, 'Eating minutes'), reheatingRequired: Boolean(input.reheatingRequired),
       coldSuitable: Boolean(input.coldSuitable), portable: Boolean(input.portable), fridgeRequired: Boolean(input.fridgeRequired),
       freezerSuitable: Boolean(input.freezerSuitable), mealPrepSuitable: Boolean(input.mealPrepSuitable),
       finalWeightG: input.finalWeightG ? Number(input.finalWeightG) : null, finalVolumeMl: input.finalVolumeMl ? Number(input.finalVolumeMl) : null,
@@ -192,7 +197,7 @@ function draftFromVersion(version, { duplicate = false, proposedTitles = null } 
     descriptionIt: version.i18n.it.description || '', descriptionEn: version.i18n.en.description || '',
     schemaVersion: 2, originalNutrition: structuredClone(version.calculatedNutrition), mealArchetypes: [...version.mealArchetypes],
     ingredientLines: version.ingredientLines.map(line => ({ ingredientId: line.ingredientId, ingredientRevisionId: line.ingredientRevisionId, amount: line.amount, unit: line.unit, optional: line.optional })),
-    prepMinutes: version.practical.prepMinutes, cookMinutes: version.practical.cookMinutes, reheatingRequired: version.practical.reheatingRequired,
+    prepMinutes: version.practical.prepMinutes, cookMinutes: version.practical.cookMinutes, eatingMinutes: version.practical.eatingMinutes ?? null, reheatingRequired: version.practical.reheatingRequired,
     coldSuitable: version.practical.coldSuitable, portable: version.practical.portable, fridgeRequired: version.practical.fridgeRequired,
     freezerSuitable: Boolean(version.practical.freezerSuitable), mealPrepSuitable: version.practical.mealPrepSuitable,
     finalWeightG: version.practical.finalWeightG, finalVolumeMl: version.practical.finalVolumeMl, yieldNotes: version.practical.yieldNotes || '',

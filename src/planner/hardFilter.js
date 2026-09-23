@@ -1,7 +1,7 @@
 import { assessRecipeSafety } from '../domain/safetyPolicy.js';
 import { frequencyRules, legacyPreferenceRules, inRuleScope } from '../domain/frequencyCounter.js';
 import { allergenCompatibility, recipeQuarantineReasons } from '../domain/safetyCompatibility.js';
-import { recipeMatchesTarget, numericRuleSatisfied } from './recipeFeatures.js';
+import { recipeMatchesTarget, mealRuleSatisfied } from './recipeFeatures.js';
 
 export const SIMPLE_SNACK_MAX_PREP_MINUTES = 10;
 
@@ -23,12 +23,10 @@ export function hardFilterRecipe(recipe, context) {
     if (recipeMatchesTarget(recipe, rule.target.type, rule.target.id, revisionById, context.foodGroups)) reject(reasons, `never:${rule.id}`);
   }
   for (const rule of mealClass.rules || []) {
-    if (rule.strength !== 'forbid') continue;
-    if (rule.ruleType === 'nutrition' || rule.ruleType === 'practical') {
-      if (numericRuleSatisfied(recipe, rule)) reject(reasons, `meal_rule:${rule.ruleType}:${rule.target}`);
-    } else if (recipeMatchesTarget(recipe, rule.ruleType, rule.target, revisionById)) {
-      reject(reasons, `meal_rule:${rule.ruleType}:${rule.target}`);
-    }
+    if (!['forbid', 'require'].includes(rule.strength)) continue;
+    const matched = mealRuleSatisfied(recipe, rule, revisionById, context.foodGroups || []);
+    if (rule.strength === 'forbid' && matched) reject(reasons, `meal_rule:${rule.ruleType}:${rule.target}`);
+    if (rule.strength === 'require' && !matched) reject(reasons, `meal_rule:require:${rule.ruleType}:${rule.target}`);
   }
 
   const capabilities = dayClass.capabilities || {};

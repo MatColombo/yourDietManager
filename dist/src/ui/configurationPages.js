@@ -414,6 +414,50 @@ function energyShareEditor(state, meal) {
   ]);
 }
 
+function upsertMealRule(meal, nextRule) {
+  const numeric = nextRule.ruleType === 'nutrition' || nextRule.ruleType === 'practical';
+  const index = meal.rules.findIndex(rule => rule.ruleType === nextRule.ruleType && rule.target === nextRule.target);
+  const clean = numeric ? { ...nextRule } : { ruleType: nextRule.ruleType, target: nextRule.target, strength: nextRule.strength };
+  if (index >= 0) meal.rules[index] = clean;
+  else meal.rules.push(clean);
+}
+
+function applyMealPreset(meal, rules, { replaceFlavorRequirement = false } = {}) {
+  if (replaceFlavorRequirement) meal.rules = meal.rules.filter(rule => !(rule.ruleType === 'flavor' && rule.strength === 'require'));
+  for (const rule of rules) upsertMealRule(meal, rule);
+}
+
+function mealPresetButtons(state, meal, rerender, editor) {
+  const buttons = [];
+  const apply = (rules, options = {}) => { applyMealPreset(meal, rules, options); signalDraftChange(editor); rerender(); };
+  if (meal.mealArchetype === 'snack') {
+    buttons.push(element('button', {
+      type: 'button', className: 'button button--secondary', 'data-testid': 'meal-preset-quick-snack',
+      text: state.i18n.locale === 'it' ? 'Applica preset: spuntino leggero e rapido' : 'Apply preset: light, quick snack',
+      onClick: () => apply([
+        { ruleType: 'tag', target: 'practical_quick', strength: 'require' },
+        { ruleType: 'tag', target: 'practical_no_cook', strength: 'require' },
+        { ruleType: 'practical', target: 'prepMinutes', operator: 'lte', value: 6, strength: 'require' },
+        { ruleType: 'practical', target: 'cookMinutes', operator: 'eq', value: 0, strength: 'require' },
+        { ruleType: 'nutrition', target: 'energyKcal', operator: 'lte', value: 350, strength: 'require' }
+      ])
+    }));
+  }
+  if (meal.mealArchetype === 'breakfast') {
+    buttons.push(element('button', {
+      type: 'button', className: 'button button--secondary', 'data-testid': 'meal-preset-sweet-breakfast',
+      text: state.i18n.locale === 'it' ? 'Vincolo gusto: solo dolce' : 'Flavor rule: sweet only',
+      onClick: () => apply([{ ruleType: 'flavor', target: 'flavor_sweet', strength: 'require' }], { replaceFlavorRequirement: true })
+    }));
+    buttons.push(element('button', {
+      type: 'button', className: 'button button--secondary', 'data-testid': 'meal-preset-savory-breakfast',
+      text: state.i18n.locale === 'it' ? 'Vincolo gusto: solo salato' : 'Flavor rule: savory only',
+      onClick: () => apply([{ ruleType: 'flavor', target: 'flavor_savory', strength: 'require' }], { replaceFlavorRequirement: true })
+    }));
+  }
+  return element('div', { className: 'page-actions meal-preset-actions' }, buttons);
+}
+
 function mealRuleEditor(state, meal, rerender) {
   const list = element('div', { className: 'rule-list' });
   for (const rule of meal.rules) {
@@ -463,7 +507,8 @@ export function mealClassesPage(state) {
       );
       basic.append(element('label', { className: 'field' }, [element('span', { text: state.i18n.locale === 'it' ? 'Massimo componenti nel pasto' : 'Maximum meal components' }), numberInput(meal.maxComponents ?? 3, value => { meal.maxComponents = requiredNumber(value); }, { min: 1, max: 3 })]));
       body.append(element('div', { className: 'page-actions' }, [1,3].map(count => element('button', { type: 'button', className: 'button button--secondary', text: state.i18n.locale === 'it' ? (count === 1 ? 'Applica preset: un componente' : 'Applica preset: fino a tre componenti') : (count === 1 ? 'Apply preset: one component' : 'Apply preset: up to three components'), onClick: () => { meal.maxComponents = count; signalDraftChange(editor); render(); } }))));
-      body.append(basic, subheading(state, 'meal.energyShare'), energyShareEditor(state, meal), subheading(state, 'meal.rules'), mealRuleEditor(state, meal, render));
+      const presets = mealPresetButtons(state, meal, render, editor);
+      body.append(basic, presets.childElementCount ? presets : null, subheading(state, 'meal.energyShare'), energyShareEditor(state, meal), subheading(state, 'meal.rules'), mealRuleEditor(state, meal, render));
       const remove = actionButton(state, 'common.delete', () => {
         draft.mealClasses = draft.mealClasses.filter(item => item.id !== meal.id);
         draft.appConfig.mealClassIds = draft.appConfig.mealClassIds.filter(id => id !== meal.id); signalDraftChange(editor); render();
@@ -575,8 +620,6 @@ export function dayClassesPage(state) {
         field(state, 'day.archetype', selectInput(state, DAY_ARCHETYPES, day.dayArchetype, 'dayArchetype', value => { day.dayArchetype = value; if (value !== 'free' && day.mealSlots.length === 0) day.mealSlots.push({ id: makeId('slot'), mealClassId: draft.mealClasses[0]?.id || '', time: '12:00', dayOffset: 0, mode: 'planned', energyBudgetKcal: null, energyShare: null, guidanceKeys: [], parallel: false, proteinMinG: null }); signalDraftChange(editor); render(); })),
         field(state, 'common.color', element('input', { type: 'color', value: day.color, onInput: event => { day.color = event.target.value; } }))
       );
-      basic.append(element('label', { className: 'field' }, [element('span', { text: state.i18n.locale === 'it' ? 'Massimo componenti nel pasto' : 'Maximum meal components' }), numberInput(meal.maxComponents ?? 3, value => { meal.maxComponents = requiredNumber(value); }, { min: 1, max: 3 })]));
-      body.append(element('div', { className: 'page-actions' }, [1,3].map(count => element('button', { type: 'button', className: 'button button--secondary', text: state.i18n.locale === 'it' ? (count === 1 ? 'Applica preset: un componente' : 'Applica preset: fino a tre componenti') : (count === 1 ? 'Apply preset: one component' : 'Apply preset: up to three components'), onClick: () => { meal.maxComponents = count; signalDraftChange(editor); render(); } }))));
       body.append(basic, subheading(state, 'day.workWindows'), workWindowsEditor(state, day, render), subheading(state, 'day.capabilities'), capabilitiesEditor(state, day.capabilities), subheading(state, 'day.mealSlots'), mealSlotsEditor(state, draft, day, render));
       const remove = actionButton(state, 'common.delete', () => {
         draft.dayClasses = draft.dayClasses.filter(item => item.id !== day.id); draft.appConfig.dayClassIds = draft.appConfig.dayClassIds.filter(id => id !== day.id); signalDraftChange(editor); render();

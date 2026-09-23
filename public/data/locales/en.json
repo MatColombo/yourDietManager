@@ -50,6 +50,8 @@
   "catalog.basisUnit": "Basis unit",
   "catalog.carbs100": "Carbohydrates (g / 100)",
   "catalog.cookMinutes": "Cook (min)",
+  "catalog.eatingMinutesHint": "Optional. Estimated time to eat one serving.",
+  "catalog.eatingMinutes": "Eating time (min)",
   "catalog.currentRevision": "Current revision",
   "catalog.currentVersion": "Current version",
   "catalog.custom.export": "Export personal catalog",
@@ -150,6 +152,7 @@
   "catalog.practical.portable": "Portable",
   "catalog.practical.reheat": "Reheating required",
   "catalog.prepMinutes": "Prep (min)",
+  "catalog.practicalData": "Practical details and timing",
   "catalog.productFood": "Product food taxonomy",
   "catalog.productFood.help": "Select the culinary/product concept, separate from the source nutrition group.",
   "catalog.protein100": "Protein (g / 100)",
@@ -344,11 +347,13 @@
   "meal.rules": "Class rules",
   "meal.strength.avoid": "Avoid",
   "meal.strength.forbid": "Forbid",
+  "meal.strength.require": "Require",
   "meal.strength.neutral": "Neutral",
   "meal.strength.prefer": "Prefer",
   "meal.strength.slight_prefer": "Slightly prefer",
   "meal.target.carbsG": "Carbs g",
   "meal.target.cookMinutes": "Cook minutes",
+  "meal.target.eatingMinutes": "Eating minutes",
   "meal.target.energyKcal": "Energy kcal",
   "meal.target.fatG": "Fat g",
   "meal.target.fiberG": "Fiber g",
@@ -853,5 +858,6 @@
   "common.abort": "Abort",
   "plan.generation.searching": "Searching for a solution…",
   "plan.generation.progress": "Plan generation progress",
-  "plan.failure.search_capacity_exhausted": "Search stopped by the explicitly configured expansion limit; this does not prove infeasibility."
+  "plan.failure.search_capacity_exhausted": "Search stopped by the explicitly configured expansion limit; this does not prove infeasibility.",
+  "catalog.culinaryRoles": "Culinary roles"
 }

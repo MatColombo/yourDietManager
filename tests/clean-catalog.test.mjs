@@ -22,9 +22,10 @@ function fixtureBatch({ recipeRevision = 1, title = 'Pasta con zucchine', ingred
       { kind:'taxonomy_term', id:'tax_meal_lunch', revision:1, status:'active', taxonomyType:'meal_type', parentId:null, labels:{it:'Pranzo',en:'Lunch'}, aliases:{it:[],en:[]} },
       { kind:'taxonomy_term', id:'tax_diet_vegan', revision:1, status:'active', taxonomyType:'diet_tag', parentId:null, labels:{it:'Vegana',en:'Vegan'}, aliases:{it:[],en:[]} },
       { kind:'taxonomy_term', id:'tax_practical_quick', revision:1, status:'active', taxonomyType:'practical_tag', parentId:null, labels:{it:'Veloce',en:'Quick'}, aliases:{it:[],en:[]} },
+      { kind:'taxonomy_term', id:'tax_flavor_sweet', revision:1, status:'active', taxonomyType:'flavor_profile', parentId:null, labels:{it:'Dolce',en:'Sweet'}, aliases:{it:[],en:[]} },
       { kind:'ingredient', id:'ing_zucchini_raw', revision:ingredientRevision, status:'active', productId:'tax_product_zucchini', categoryId:'tax_category_vegetables', state:{physical:'raw',preservation:'fresh',drained:false}, display:{it:'Zucchina cruda',en:'Raw zucchini'}, culinaryRoles:[], nutritionPer100g:{energyKcal:17,proteinG:1.2,carbohydrateG:3.1,fatG:0.3,fiberG:1}, allergens:[], dietFlags:{vegetarian:true,vegan:true}, source:{provider:'USDA_FDC',sourceId:'169291',description:'Zucchini, raw',retrievedOrVerifiedDate:'2026-09-17'} },
       { kind:'ingredient', id:'ing_pasta_dry', revision:1, status:'active', productId:'tax_product_pasta', categoryId:'tax_category_grains_starches', state:{physical:'dry',preservation:'dry',drained:false}, display:{it:'Pasta secca',en:'Dry pasta'}, culinaryRoles:[], nutritionPer100g:{energyKcal:371,proteinG:13,carbohydrateG:74.7,fatG:1.5,fiberG:3.2}, allergens:['gluten_cereals'], dietFlags:{vegetarian:true,vegan:true}, source:{provider:'USDA_FDC',sourceId:'168927',description:'Pasta, dry',retrievedOrVerifiedDate:'2026-09-17'} },
-      { kind:'recipe', id:'recipe_pasta_zucchini', revision:recipeRevision, status:'active', title:{it:title,en:'Pasta with zucchini'}, description:{it:'Pasta semplice con zucchine.',en:'Simple pasta with zucchini.'}, cuisineIds:['tax_cuisine_italian'], mealTypeIds:['tax_meal_lunch'], archetypeId:'tax_archetype_pasta_dish', servings:1, ingredients:[{ingredientId:'ing_pasta_dry',grams:80},{ingredientId:'ing_zucchini_raw',grams:180}], prepMinutes:10, cookMinutes:20, practicalTagIds:['tax_practical_quick'], dietTagIds:['tax_diet_vegan'], steps:{it:['Cuoci la pasta.','Salta le zucchine.'],en:['Cook the pasta.','Saute the zucchini.']} }
+      { kind:'recipe', id:'recipe_pasta_zucchini', revision:recipeRevision, status:'active', title:{it:title,en:'Pasta with zucchini'}, description:{it:'Pasta semplice con zucchine.',en:'Simple pasta with zucchini.'}, cuisineIds:['tax_cuisine_italian'], mealTypeIds:['tax_meal_lunch'], archetypeId:'tax_archetype_pasta_dish', servings:1, ingredients:[{ingredientId:'ing_pasta_dry',grams:80},{ingredientId:'ing_zucchini_raw',grams:180}], prepMinutes:10, cookMinutes:20, practicalTagIds:['tax_practical_quick'], dietTagIds:['tax_diet_vegan'], flavorProfileIds:['tax_flavor_sweet'], eatingMinutes:12, steps:{it:['Cuoci la pasta.','Salta le zucchine.'],en:['Cook the pasta.','Saute the zucchini.']} }
     ]
   };
 }
@@ -38,6 +39,8 @@ test('clean catalog compiler resolves authored source into runtime records and d
   assert.equal(catalog.recipeVersions[0].ingredientLines[0].ingredientRevisionId,'ing_pasta_dry_r1');
   assert.ok(catalog.recipeVersions[0].calculatedNutrition.energyKcal > 300);
   assert.deepEqual(catalog.recipeVersions[0].allergenIds,['gluten_cereals']);
+  assert.deepEqual(catalog.recipeVersions[0].tags.flavor,['flavor_sweet']);
+  assert.equal(catalog.recipeVersions[0].practical.eatingMinutes,12);
   assert.equal(catalog.catalogPacks[0].status,'installed');
 });
 

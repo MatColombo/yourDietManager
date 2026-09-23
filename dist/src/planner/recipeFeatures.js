@@ -49,5 +49,10 @@ export function numericRuleValue(recipe, rule) {
 
 export function numericRuleSatisfied(recipe, rule) {
   const value = numericRuleValue(recipe, rule);
-  return typeof value === 'number' && matchOperator(value, rule.operator, rule.value);
+  return typeof value === 'number' && typeof rule.value === 'number' && matchOperator(value, rule.operator, rule.value);
+}
+
+export function mealRuleSatisfied(recipe, rule, revisionById, foodGroups = []) {
+  if (rule.ruleType === 'nutrition' || rule.ruleType === 'practical') return numericRuleSatisfied(recipe, rule);
+  return recipeMatchesTarget(recipe, rule.ruleType, rule.target, revisionById, foodGroups);
 }

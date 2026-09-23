@@ -6,9 +6,18 @@ import path from 'node:path';
 
 const root = process.cwd();
 const dist = path.join(root, 'dist');
-const expectedCatalogManifest = JSON.parse(await readFile(path.join(dist, 'data', 'catalog-manifest.json'), 'utf8'));
-const expectedRecipeCount = Number(expectedCatalogManifest.recipeVersions?.count || expectedCatalogManifest.recipeFamilies?.count || 0);
-const expectedCatalogVersion = expectedCatalogManifest.catalogVersion;
+let expectedRecipeCount = 0;
+let expectedCatalogVersion = null;
+try {
+  const legacyManifest = JSON.parse(await readFile(path.join(dist, 'data', 'catalog-manifest.json'), 'utf8'));
+  expectedRecipeCount = Number(legacyManifest.recipeVersions?.count || legacyManifest.recipeFamilies?.count || 0);
+  expectedCatalogVersion = legacyManifest.catalogVersion;
+} catch (error) {
+  if (error?.code !== 'ENOENT') throw error;
+  const cleanCatalog = JSON.parse(await readFile(path.join(dist, 'data', 'catalog.json'), 'utf8'));
+  expectedRecipeCount = cleanCatalog.recipeVersions?.length || cleanCatalog.recipes?.length || 0;
+  expectedCatalogVersion = cleanCatalog.manifest?.catalogVersion || null;
+}
 const proposalDir = path.join(root, 'data-proposals', 'recipes');
 const proposalFiles = (await readdir(proposalDir).catch(() => [])).filter(name => name.endsWith('.json') && !name.endsWith('.example.json')).sort();
 let expectedAuthoredRecipe = null;

@@ -13,14 +13,14 @@ export const DAY_ARCHETYPES = Object.freeze([
 
 export const NUTRIENT_KEYS = Object.freeze(['proteinG', 'carbsG', 'fatG', 'fiberG']);
 export const NUTRITION_PRESETS = Object.freeze(['balanced', 'higher_protein', 'lower_fiber', 'moderate_fiber', 'higher_fiber', 'moderate_carbs', 'custom']);
-export const RULE_STRENGTHS = Object.freeze(['prefer', 'slight_prefer', 'neutral', 'avoid', 'forbid']);
+export const RULE_STRENGTHS = Object.freeze(['require', 'prefer', 'slight_prefer', 'neutral', 'avoid', 'forbid']);
 export const RULE_TYPES = Object.freeze(['productFood', 'foodCategory', 'ingredient', 'tag', 'flavor', 'nutrition', 'practical']);
 export const NUMERIC_OPERATORS = Object.freeze(['eq', 'lte', 'gte']);
 
 // V1 registry required by MEAL_CLASS_SPEC.md §8. Unknown quantitative targets are rejected.
 export const MEAL_RULE_TARGET_REGISTRY = Object.freeze({
   nutrition: Object.freeze({ energyKcal: 'kcal', proteinG: 'g', carbsG: 'g', fatG: 'g', fiberG: 'g' }),
-  practical: Object.freeze({ prepMinutes: 'min', cookMinutes: 'min' })
+  practical: Object.freeze({ prepMinutes: 'min', cookMinutes: 'min', eatingMinutes: 'min' })
 });
 
 export const FOOD_PREFERENCE_TARGET_TYPES = Object.freeze(['productFood', 'ingredient', 'foodCategory', 'recipeTag', 'cuisine']);

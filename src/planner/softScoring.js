@@ -1,7 +1,7 @@
 import { extensionPreferenceScore } from '../domain/productExtensions.js';
 import { legacyPreferenceRules } from '../domain/frequencyCounter.js';
 import { nutritionPenalty, matchOperator } from './planMath.js';
-import { recipeMatchesTarget, numericRuleSatisfied, families, cuisines, primaryIngredientId, foodCategories } from './recipeFeatures.js';
+import { recipeMatchesTarget, mealRuleSatisfied, families, cuisines, primaryIngredientId, foodCategories } from './recipeFeatures.js';
 import { plannerPolicy, VARIETY_MODES } from './varietyPolicy.js';
 
 const STRENGTH = Object.freeze({ prefer: -2, slight_prefer: -1, neutral: 0, avoid: 3 });
@@ -22,10 +22,8 @@ export function preferenceScore(recipe, { mealClass, foodPreferences, revisionBy
   let score = 0;
   const reasons = [];
   for (const rule of mealClass.rules || []) {
-    if (rule.strength === 'forbid' || rule.strength === 'neutral') continue;
-    let matched;
-    if (rule.ruleType === 'nutrition' || rule.ruleType === 'practical') matched = numericRuleSatisfied(recipe, rule);
-    else matched = recipeMatchesTarget(recipe, rule.ruleType, rule.target, revisionById);
+    if (rule.strength === 'forbid' || rule.strength === 'require' || rule.strength === 'neutral') continue;
+    const matched = mealRuleSatisfied(recipe, rule, revisionById);
     if (matched) {
       score += STRENGTH[rule.strength] || 0;
       reasons.push(`${rule.strength}:${rule.ruleType}:${rule.target}`);

@@ -1,0 +1,16 @@
+yourDietManager taxonomy alignment patch
+Baseline: yourDietManager-updated.zip
+Target:   taxonomy-aligned revision
+
+Apply by extracting this archive over the project root, preserving paths and replacing existing files.
+
+Added files:
+- CATALOG_TAXONOMY_ALIGNMENT_REPORT.md
+- catalog-source/008-complete-taxonomy-alignment.json
+- scripts/catalog/generate-taxonomy-alignment.py
+- tests/catalog-taxonomy-alignment.test.mjs
+
+Modified project files: 23
+Deleted files: none
+
+The archive intentionally contains only added/modified files, not the full project.

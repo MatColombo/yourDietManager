@@ -2,11 +2,12 @@ import { migrateFoodPresentation } from './foodPresentationMigration.js';
 import { sha256Json, canonicalJson } from '../lib/crypto.js';
 import { loadReferenceDataIndex } from './referenceDataService.js';
 import { RECIPE_PRESENTATION_VERSION, recipeTitleFromIngredients, recipeTextV2 } from '../domain/recipePresentation.js';
-
 // No published records, nutrition, recipe lines or local current pointers change.
 export async function migrateRecipePresentation({ repo, registry, onStep = null, batchSize = 100 }) {
   await migrateFoodPresentation({ repo, registry });
   const index = await loadReferenceDataIndex(repo);
+  const activeManifest = await repo.getMeta('catalogManifest');
+  const allowDevelopmentBaseRebase = activeManifest?.publication?.channel === 'development';
   const families = (await repo.getAll('recipes')).sort((a, b) => a.recipeId.localeCompare(b.recipeId));
   const revisions = new Map((await repo.getAll('ingredientRevisions')).map(row => [row.ingredientRevisionId, row]));
   const prior = await repo.getMeta('recipePresentation:R2');
@@ -35,13 +36,16 @@ export async function migrateRecipePresentation({ repo, registry, onStep = null,
         searchTokens: [...new Set(used.flatMap(row => [index.term(row.productTaxonomy?.conceptId)?.i18n?.it?.label, index.term(row.productTaxonomy?.conceptId)?.i18n?.en?.label]).filter(Boolean).join(' ').toLowerCase().split(/\s+/).filter(Boolean))], contentHash: '' };
       version.contentHash = await sha256Json(version); registry.assert('recipeVersion', version);
       const existing = await repo.get('recipeVersions', recipeVersionId);
-      if (existing && canonicalJson(existing) !== canonicalJson(version)) throw new Error(`Immutable recipe migration collision: ${recipeVersionId}`);
-      if (family.origin === 'user' || source.origin === 'user') {
+      const local = family.origin === 'user' || source.origin === 'user';
+      const versionChanged = Boolean(existing && canonicalJson(existing) !== canonicalJson(version));
+      const canRebaseDerivedVersion = versionChanged && allowDevelopmentBaseRebase && !local && existing.origin === 'base' && version.origin === 'base';
+      if (versionChanged && !canRebaseDerivedVersion) throw new Error(`Immutable recipe migration collision: ${recipeVersionId}`);
+      if (local) {
         report.reconciliation.push({ recipeId: family.recipeId, currentVersionId: source.recipeVersionId, status: 'convert_on_explicit_edit', proposedTitle: version.i18n.it.title });
         continue;
       }
       pending.expected.push({ store: 'recipes', key: family.recipeId, value: family }, { store: 'recipeVersions', key: recipeVersionId, value: existing ?? null });
-      if (!existing) pending.puts.recipeVersions.push(version);
+      if (!existing || canRebaseDerivedVersion) pending.puts.recipeVersions.push(version);
       pending.puts.recipes.push({ ...family, currentVersionId: recipeVersionId });
       report.migrated.push({ recipeId: family.recipeId, from: source.recipeVersionId, to: recipeVersionId });
       report.titles.push({ recipeVersionId, it: version.i18n.it.title, en: version.i18n.en.title, editorialReview: 'pending_R5' });

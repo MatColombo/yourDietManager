@@ -9,7 +9,8 @@ export const TAXONOMY_IDS = Object.freeze({
   dietTag: 'diet_tag',
   practicalTag: 'practical_tag',
   flavorProfile: 'flavor_profile',
-  preparationTechnique: 'preparation_technique'
+  preparationTechnique: 'preparation_technique',
+  culinaryRole: 'culinary_role'
 });
 
 export const RECIPE_TAG_TAXONOMY = Object.freeze({
@@ -193,6 +194,9 @@ export function semanticReferenceDiagnostics({ index, ingredientRevisions = [], 
       } catch (error) { errors.push(`${base}.taxonomy.foodSubgroup: ${error.message}`); }
     }
     try { index.assertTerm(revision.taxonomy?.flavorProfile, TAXONOMY_IDS.flavorProfile); } catch (error) { errors.push(`${base}.taxonomy.flavorProfile: ${error.message}`); }
+    for (const roleId of revision.taxonomy?.culinaryRoles || []) {
+      try { index.assertTerm(roleId, TAXONOMY_IDS.culinaryRole); } catch (error) { errors.push(`${base}.taxonomy.culinaryRoles: ${error.message}`); }
+    }
     if (!revision.taxonomy?.mealArchetypes?.length) errors.push(`${base}.taxonomy.mealArchetypes: at least one MealArchetype is required`);
   }
   for (const recipe of recipeVersions) {

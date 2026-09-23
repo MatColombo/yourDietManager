@@ -108,6 +108,24 @@ test('Phase A — numeric MealClass forbid rejects matching values and allows no
   assert.equal(hardFilterRecipe(recipe('fast', 'dinner', 500, { prep: 10 }), context).allowed, true);
 });
 
+test('Phase A — MealClass require is a hard positive requirement for practical and flavor rules', () => {
+  const quickSweet = recipe('quick-sweet', 'breakfast', 320, { prep: 6, cook: 0 });
+  quickSweet.tags.flavor = ['flavor_sweet'];
+  const slowSweet = recipe('slow-sweet', 'breakfast', 320, { prep: 12, cook: 0 });
+  slowSweet.tags.flavor = ['flavor_sweet'];
+  const quickSavory = recipe('quick-savory', 'breakfast', 320, { prep: 6, cook: 0 });
+  quickSavory.tags.flavor = ['flavor_savory'];
+  const mealClass = { id: 'mc-breakfast', mealArchetype: 'breakfast', rules: [
+    { ruleType: 'practical', target: 'prepMinutes', operator: 'lte', value: 6, strength: 'require' },
+    { ruleType: 'flavor', target: 'flavor_sweet', strength: 'require' }
+  ] };
+  const revisionById = new Map(['quick-sweet','slow-sweet','quick-savory'].map(id => [`rev_${id}`, revision(id)]));
+  const context = { mealClass, dayClass: { capabilities: { cooking: true, complexSnack: true } }, allergyProfile: { rules: [] }, foodPreferences: { rules: [] }, revisionById };
+  assert.equal(hardFilterRecipe(quickSweet, context).allowed, true);
+  const slow = hardFilterRecipe(slowSweet, context); assert.equal(slow.allowed, false); assert.ok(slow.reasons.includes('meal_rule:require:practical:prepMinutes'));
+  const savory = hardFilterRecipe(quickSavory, context); assert.equal(savory.allowed, false); assert.ok(savory.reasons.includes('meal_rule:require:flavor:flavor_sweet'));
+});
+
 test('Phase A — cooking and simple-snack capabilities are enforced as hard filters', () => {
   const dinnerContext = { mealClass: { id: 'd', mealArchetype: 'dinner', rules: [] }, dayClass: { capabilities: { cooking: false, complexSnack: true } }, allergyProfile: { rules: [] }, foodPreferences: { rules: [] }, revisionById: new Map(['slow', 'fast', 'cooked', 'simple-snack', 'complex-snack'].map(id => [`rev_${id}`, revision(id)])) };
   const cooked = hardFilterRecipe(recipe('cooked', 'dinner', 500, { cook: 15 }), dinnerContext);
@@ -131,7 +149,7 @@ test('Phase A — soft avoid changes ranking but does not exclude candidate', ()
 test('Phase A — constraint policy exposes hard and soft semantics explicitly', () => {
   const hard = new Set(PLANNER_CONSTRAINTS.filter(item => item.strength === 'hard').map(item => item.id));
   const soft = new Set(PLANNER_CONSTRAINTS.filter(item => item.strength === 'soft').map(item => item.id));
-  for (const id of ['daily_energy_tolerance', 'allergy_intolerance', 'food_auto_exclude', 'meal_rule_forbid', 'day_capabilities', 'fixed_serving']) assert.ok(hard.has(id), id);
+  for (const id of ['daily_energy_tolerance', 'allergy_intolerance', 'food_auto_exclude', 'meal_rule_forbid', 'meal_rule_require', 'day_capabilities', 'fixed_serving']) assert.ok(hard.has(id), id);
   for (const id of ['nutrient_targets', 'meal_rule_preferences', 'food_preferences', 'frequency_limits', 'variety', 'slot_energy_share']) assert.ok(soft.has(id), id);
 });
 

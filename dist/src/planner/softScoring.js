@@ -1,8 +1,8 @@
 import { extensionPreferenceScore } from '../domain/productExtensions.js';
 import { legacyPreferenceRules } from '../domain/frequencyCounter.js';
 import { nutritionPenalty, matchOperator } from './planMath.js';
-import { recipeMatchesTarget, numericRuleSatisfied, families, cuisines, primaryIngredientId, foodCategories } from './recipeFeatures.js';
-import { PLANNER_SOFT_OBJECTIVE_POLICY } from './qualityPolicy.js';
+import { recipeMatchesTarget, mealRuleSatisfied, families, cuisines, primaryIngredientId, foodCategories } from './recipeFeatures.js';
+import { plannerPolicy, VARIETY_MODES } from './varietyPolicy.js';
 
 const STRENGTH = Object.freeze({ prefer: -2, slight_prefer: -1, neutral: 0, avoid: 3 });
 const PREFERENCE = Object.freeze({ more_often: -1.5, normal: 0, less_often: 1.5, rarely: 3.5 });
@@ -22,10 +22,8 @@ export function preferenceScore(recipe, { mealClass, foodPreferences, revisionBy
   let score = 0;
   const reasons = [];
   for (const rule of mealClass.rules || []) {
-    if (rule.strength === 'forbid' || rule.strength === 'neutral') continue;
-    let matched;
-    if (rule.ruleType === 'nutrition' || rule.ruleType === 'practical') matched = numericRuleSatisfied(recipe, rule);
-    else matched = recipeMatchesTarget(recipe, rule.ruleType, rule.target, revisionById);
+    if (rule.strength === 'forbid' || rule.strength === 'require' || rule.strength === 'neutral') continue;
+    const matched = mealRuleSatisfied(recipe, rule, revisionById);
     if (matched) {
       score += STRENGTH[rule.strength] || 0;
       reasons.push(`${rule.strength}:${rule.ruleType}:${rule.target}`);
@@ -41,13 +39,31 @@ export function preferenceScore(recipe, { mealClass, foodPreferences, revisionBy
   return { score, reasons };
 }
 
+const PERISHABLE_CATEGORIES = new Set([
+  'product_category_vegetables', 'product_category_fruit', 'product_category_fish_seafood',
+  'product_category_meat_poultry', 'product_category_eggs', 'product_category_dairy'
+]);
+
+function perishableIngredientIds(recipe, revisionById) {
+  const ids = new Set();
+  for (const line of recipe.ingredientLines || []) {
+    if (line.included === false) continue;
+    const revision = revisionById.get(line.ingredientRevisionId);
+    const state = revision?.basis?.state;
+    if (!PERISHABLE_CATEGORIES.has(revision?.productTaxonomy?.categoryId)) continue;
+    if (['dry', 'drained'].includes(state)) continue;
+    ids.add(line.ingredientId);
+  }
+  return ids;
+}
+
 export function varietyScore(recipe, { history = [], date, revisionById, foodPreferences }) {
   let score = 0;
   const reasons = [];
-  const windows = PLANNER_SOFT_OBJECTIVE_POLICY.varietyWindows;
+  const policy = plannerPolicy(foodPreferences);
   const primary = primaryIngredientId(recipe);
   const cats = [...foodCategories(recipe, revisionById)];
-  for (const window of windows) {
+  for (const window of policy.varietyWindows) {
     const entries = recent(history, date, window.days);
     const recipeCount = entries.filter(entry => entry.recipe.recipeId === recipe.recipeId).length;
     const familyCount = countFeature(entries, r => families(r), families(recipe));
@@ -55,6 +71,20 @@ export function varietyScore(recipe, { history = [], date, revisionById, foodPre
     const categoryCount = countFeature(entries, r => [...foodCategories(r, revisionById)], cats);
     const cuisineCount = countFeature(entries, r => cuisines(r), cuisines(recipe));
     score += recipeCount * window.recipe + familyCount * window.family + primaryCount * window.primary + categoryCount * window.category + cuisineCount * window.cuisine;
+  }
+  if (policy.varietyMode === VARIETY_MODES.perishables) {
+    const wanted = perishableIngredientIds(recipe, revisionById);
+    if (wanted.size) {
+      const seen = new Set();
+      for (const entry of recent(history, date, policy.perishableWindowDays)) {
+        for (const id of perishableIngredientIds(entry.recipe, revisionById)) if (wanted.has(id)) seen.add(id);
+      }
+      if (seen.size) {
+        const reward = Math.min(6, seen.size * policy.perishableOverlapReward);
+        score -= reward;
+        reasons.push(`perishable-proximity:-${Math.round(reward * 100) / 100}`);
+      }
+    }
   }
   for (const rule of legacyPreferenceRules(foodPreferences)) {
     if (!rule.frequency || !recipeMatchesTarget(recipe, rule.targetType, rule.targetId, revisionById)) continue;
@@ -67,7 +97,7 @@ export function varietyScore(recipe, { history = [], date, revisionById, foodPre
       reasons.push(`frequency:${rule.targetId}:${next}/${rule.frequency.maxOccurrences}`);
     }
   }
-  if (score > 0) reasons.push(`variety:${Math.round(score * 100) / 100}`);
+  if (score !== 0) reasons.push(`variety:${Math.round(score * 100) / 100}`);
   return { score, reasons };
 }
 

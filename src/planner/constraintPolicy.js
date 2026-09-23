@@ -1,10 +1,11 @@
-export const PLANNER_CONSTRAINT_POLICY_VERSION = 'planner-constraint-policy-r3-1';
+export const PLANNER_CONSTRAINT_POLICY_VERSION = 'planner-constraint-policy-r3-2';
 
 export const PLANNER_CONSTRAINTS = Object.freeze([
   Object.freeze({ id: 'daily_energy_tolerance', scope: 'day', strength: 'hard', source: 'NutritionProfile.energyTolerancePct', enforcement: 'bounded_search_energy_filter_and_post_validation' }),
   Object.freeze({ id: 'allergy_intolerance', scope: 'recipe', strength: 'hard', source: 'AllergyIntoleranceProfile.rules.enabled', enforcement: 'candidate_filter' }),
   Object.freeze({ id: 'food_auto_exclude', scope: 'recipe', strength: 'hard', source: 'FoodPreferences.rules.autoExclude', enforcement: 'candidate_filter' }),
   Object.freeze({ id: 'meal_rule_forbid', scope: 'recipe', strength: 'hard', source: 'MealClass.rules[strength=forbid]', enforcement: 'candidate_filter' }),
+  Object.freeze({ id: 'meal_rule_require', scope: 'recipe', strength: 'hard', source: 'MealClass.rules[strength=require]', enforcement: 'candidate_filter' }),
   Object.freeze({ id: 'day_capabilities', scope: 'recipe', strength: 'hard', source: 'DayClass.capabilities', enforcement: 'candidate_filter' }),
   Object.freeze({ id: 'meal_archetype', scope: 'recipe', strength: 'hard', source: 'MealClass.mealArchetype', enforcement: 'candidate_filter' }),
   Object.freeze({ id: 'recipe_quality', scope: 'recipe', strength: 'hard', source: 'RecipeVersion.quality.status', enforcement: 'candidate_filter' }),

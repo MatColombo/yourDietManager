@@ -31,3 +31,9 @@ npm run catalog:test
 npm run catalog:check
 npm run build
 ```
+
+## Complete taxonomy alignment (batch 008)
+
+`008-complete-taxonomy-alignment.json` is the catalog-wide semantic normalization layer. It revises every active ingredient and recipe so supported taxonomy dimensions are explicit rather than supplied by runtime fallbacks. It also fixes known ProductFood/category mismatches and selected recipe timing/step contradictions.
+
+Future batches must preserve these invariants: explicit ingredient culinary role and flavor; exact ProductFood/category parent agreement; exactly one recipe flavor; explicit practical/diet/preparation arrays; positive `eatingMinutes`; and cooking/no-cook tags that agree with recipe timing and ingredient state. Run `npm run catalog:check` before deployment.

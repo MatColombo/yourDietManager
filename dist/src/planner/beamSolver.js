@@ -2,18 +2,28 @@ import { sumNutrition, nutritionPenalty, energyToleranceWindow, energyDistanceFr
 import { seededTie } from './seededRandom.js';
 import { families, cuisines, primaryIngredientId } from './recipeFeatures.js';
 import { PLANNER_SOFT_OBJECTIVE_POLICY, slotOptionSoftContribution } from './qualityPolicy.js';
+import { VARIETY_MODES } from './varietyPolicy.js';
 
 function keyOf(recipes) { return recipes.map(r => r.recipeVersionId).sort().join('+'); }
 function energyOfOption(option) { return Number(option?.nutrition?.energyKcal || 0); }
 
 function overlapCount(a, b) { const set = new Set(a); return b.filter(value => set.has(value)).length; }
-function intraDayRepetitionPenalty(existing, added) {
+function exactRecipeRepeatCount(existing, added) {
+  let count = 0;
+  for (const recipe of added) for (const prior of existing) if (recipe.recipeId === prior.recipeId) count += 1;
+  return count;
+}
+function intraDayRepetitionPenalty(existing, added, varietyMode) {
+  if (varietyMode === VARIETY_MODES.none) return 0;
+  const weights = varietyMode === VARIETY_MODES.perishables
+    ? { recipe: 60, family: 1, cuisine: 0.15, primary: 0.75 }
+    : { recipe: 180, family: 5, cuisine: 0.5, primary: 4 };
   let penalty = 0;
   for (const recipe of added) for (const prior of existing) {
-    if (recipe.recipeId === prior.recipeId) penalty += 10;
-    penalty += overlapCount(families(recipe), families(prior)) * 2;
-    penalty += overlapCount(cuisines(recipe), cuisines(prior)) * 0.5;
-    if (primaryIngredientId(recipe) && primaryIngredientId(recipe) === primaryIngredientId(prior)) penalty += 1.5;
+    if (recipe.recipeId === prior.recipeId) penalty += weights.recipe;
+    penalty += overlapCount(families(recipe), families(prior)) * weights.family;
+    penalty += overlapCount(cuisines(recipe), cuisines(prior)) * weights.cuisine;
+    if (primaryIngredientId(recipe) && primaryIngredientId(recipe) === primaryIngredientId(prior)) penalty += weights.primary;
   }
   return penalty;
 }
@@ -132,11 +142,13 @@ function nearestBoundedEnergy(bounds, window) {
   return { energyKcal: null, distanceKcal: null };
 }
 
-export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, nutritionProfile, beamWidth = 100, seed = 'seed', evaluateState = null }) {
+export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, nutritionProfile, beamWidth = 100, seed = 'seed', evaluateState = null, onProgress = null, varietyMode = VARIETY_MODES.maximum }) {
   const window = energyToleranceWindow(dayEnergyTarget, nutritionProfile.energyTolerancePct, externalEnergy);
   const bounds = remainingEnergyBounds(slotPlans);
-  let beam = [{ slots: [], recipes: [], partialScore: 0, tie: 0, energyKcal: 0 }];
+  let beam = [{ slots: [], recipes: [], partialScore: 0, tie: 0, energyKcal: 0, exactRecipeRepeats: 0 }];
   let hardPrunedStates = 0;
+  let energyPrunedStates = 0;
+  let frequencyPrunedStates = 0;
   for (let slotIndex = 0; slotIndex < slotPlans.length; slotIndex += 1) {
     const slot = slotPlans[slotIndex];
     const remaining = bounds[slotIndex + 1];
@@ -147,20 +159,25 @@ export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, n
       const energyKcal = state.energyKcal + energyOfOption(option);
       const reachableMin = energyKcal + remaining.min;
       const reachableMax = energyKcal + remaining.max;
-      if (reachableMax < window.plannedMinKcal - 1e-9 || reachableMin > window.plannedMaxKcal + 1e-9) { hardPrunedStates += 1; continue; }
+      if (reachableMax < window.plannedMinKcal - 1e-9 || reachableMin > window.plannedMaxKcal + 1e-9) { hardPrunedStates += 1; energyPrunedStates += 1; continue; }
       const frequency = evaluateState?.(slots, slotIndex + 1);
-      if (frequency && !frequency.valid) { hardPrunedStates += 1; continue; }
+      if (frequency && !frequency.valid) { hardPrunedStates += 1; frequencyPrunedStates += 1; continue; }
       const frequencyPenalty = frequency?.idealPenalty || 0;
-      const partialScore = state.partialScore + option.score + intraDayRepetitionPenalty(state.recipes, option.recipes);
+      const exactRecipeRepeats = state.exactRecipeRepeats + exactRecipeRepeatCount(state.recipes, option.recipes);
+      const partialScore = state.partialScore + option.score + intraDayRepetitionPenalty(state.recipes, option.recipes, varietyMode);
       const key = slots.map(item => `${item.slot.id}:${item.option.recipes.map(r => r.recipeVersionId).join('+')}`).join('|');
       const optimisticTargetDistance = intervalDistance(window.plannedTargetKcal, reachableMin, reachableMax);
-      expanded.push({ slots, recipes, partialScore, frequencyPenalty, tie: seededTie(seed, key), energyKcal, optimisticTargetDistance });
+      expanded.push({ slots, recipes, partialScore, frequencyPenalty, tie: seededTie(seed, key), energyKcal, optimisticTargetDistance, exactRecipeRepeats });
     }
-    expanded.sort((a, b) => a.optimisticTargetDistance - b.optimisticTargetDistance || (a.partialScore + (a.frequencyPenalty || 0)) - (b.partialScore + (b.frequencyPenalty || 0)) || a.tie - b.tie);
+    expanded.sort((a, b) => a.optimisticTargetDistance - b.optimisticTargetDistance || ((varietyMode === VARIETY_MODES.none ? 0 : a.exactRecipeRepeats) - (varietyMode === VARIETY_MODES.none ? 0 : b.exactRecipeRepeats)) || (a.partialScore + (a.frequencyPenalty || 0)) - (b.partialScore + (b.frequencyPenalty || 0)) || a.tie - b.tie);
     beam = expanded.slice(0, beamWidth);
+    onProgress?.({ completed: slotIndex + 1, total: slotPlans.length });
     if (!beam.length) {
       const nearest = nearestBoundedEnergy(bounds[0], window);
-      return { solution: null, diagnostics: { code: 'energy_window_unreachable_in_bounded_search', proof: 'bounded_search', window, evaluatedFinalists: 0, feasibleFinalists: 0, nearestPlannedEnergyKcal: nearest.energyKcal, nearestDistanceKcal: nearest.distanceKcal, hardPrunedStates, beamWidth } };
+      const code = frequencyPrunedStates > 0
+        ? (energyPrunedStates > 0 ? 'frequency_and_energy_frontier_exhausted' : 'frequency_frontier_exhausted')
+        : 'energy_window_unreachable_in_bounded_search';
+      return { solution: null, diagnostics: { code, proof: 'bounded_search', window, evaluatedFinalists: 0, feasibleFinalists: 0, nearestPlannedEnergyKcal: nearest.energyKcal, nearestDistanceKcal: nearest.distanceKcal, hardPrunedStates, energyPrunedStates, frequencyPrunedStates, beamWidth } };
     }
   }
 
@@ -171,9 +188,9 @@ export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, n
     const distance = energyDistanceFromWindow(nutrition.energyKcal, window);
     return { ...state, nutrition, dailyScore: daily, score: state.partialScore + daily + (state.frequencyPenalty || 0), energyDistanceKcal: distance };
   });
-  finalists.sort((a, b) => a.energyDistanceKcal - b.energyDistanceKcal || a.score - b.score || a.tie - b.tie);
+  finalists.sort((a, b) => a.energyDistanceKcal - b.energyDistanceKcal || ((varietyMode === VARIETY_MODES.none ? 0 : a.exactRecipeRepeats) - (varietyMode === VARIETY_MODES.none ? 0 : b.exactRecipeRepeats)) || a.score - b.score || a.tie - b.tie);
   const feasible = finalists.filter(item => item.energyDistanceKcal === 0);
-  feasible.sort((a, b) => a.score - b.score || a.tie - b.tie);
+  feasible.sort((a, b) => ((varietyMode === VARIETY_MODES.none ? 0 : a.exactRecipeRepeats) - (varietyMode === VARIETY_MODES.none ? 0 : b.exactRecipeRepeats)) || a.score - b.score || a.tie - b.tie);
   const nearest = finalists[0] || null;
   return {
     solution: feasible[0] || null, solutions: feasible,
@@ -186,6 +203,8 @@ export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, n
       nearestPlannedEnergyKcal: nearest?.nutrition?.energyKcal ?? null,
       nearestDistanceKcal: nearest?.energyDistanceKcal ?? null,
       hardPrunedStates,
+      energyPrunedStates,
+      frequencyPrunedStates,
       beamWidth
     }
   };

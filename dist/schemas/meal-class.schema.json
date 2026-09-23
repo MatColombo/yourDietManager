@@ -89,6 +89,7 @@
           },
           "strength": {
             "enum": [
+              "require",
               "prefer",
               "slight_prefer",
               "neutral",

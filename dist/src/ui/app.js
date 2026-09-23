@@ -1,6 +1,7 @@
 import { parseBackupText, MAX_BACKUP_BYTES } from '../services/portableBackup.js';
 import { createLocalDiagnostics } from '../services/localDiagnostics.js';
 import { element, clear } from './dom.js';
+import { mountInteractionHelp } from './interactionHelp.js';
 import { validateThemeContrast, applyTheme } from '../theme/themeEngine.js';
 import { createBackup, importBackup, validateBackup } from '../services/backupEngine.js';
 import { deleteAllLocalData } from '../services/localDataService.js';
@@ -225,6 +226,7 @@ export function renderApp(root, state) {
   sidebar.append(primary, element('div', { className: 'nav-divider' }), secondary, controlledDetails(state, 'advanced-diagnostics', { children: [element('summary', { text: state.i18n.locale === 'it' ? 'Diagnostica avanzata' : 'Advanced diagnostics' }), navLink(state, ['/planner-validation', 'nav.plannerValidation']), navLink(state, ['/manual-acceptance', 'nav.manualAcceptance']), catalogPanel(state)] }));
   const content = element('main', { className: 'content', id: 'main-content', tabindex: '-1' }, [routePage(state)]);
   shell.append(skip, topbar, sidebar, content, notificationRegion(state)); root.append(shell);
+  mountInteractionHelp(root, state);
   const heading = content.querySelector('h1');
   if (heading) document.title = `${heading.textContent} · ${state.i18n.t('app.name')}`;
   if (routeChanged && heading) {

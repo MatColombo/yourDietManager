@@ -15,7 +15,7 @@ function packRecord(pack, catalogVersion, status, now, previous = null, error = 
   };
 }
 
-async function stageImmutable(repo, store, records, idKey, onProgress = null) {
+async function stageImmutable(repo, store, records, idKey, onProgress = null, { allowDevelopmentBaseRebase = false } = {}) {
   if (!records.length) return;
   const existing = new Map((await repo.getMany(store, records.map(record => record[idKey]))).map(record => [record[idKey], record]));
   const toWrite = [];
@@ -23,7 +23,10 @@ async function stageImmutable(repo, store, records, idKey, onProgress = null) {
     const old = existing.get(record[idKey]);
     if (!old) { toWrite.push(record); continue; }
     if (old.origin === 'user') throw new Error(`Catalog ID collides with user record ${record[idKey]}`);
-    if (old.contentHash && record.contentHash && old.contentHash !== record.contentHash) throw new Error(`Immutable catalog record changed in place: ${record[idKey]}`);
+    if (old.contentHash && record.contentHash && old.contentHash !== record.contentHash) {
+      if (allowDevelopmentBaseRebase && old.origin === 'base' && record.origin === 'base') { toWrite.push(record); continue; }
+      throw new Error(`Immutable catalog record changed in place: ${record[idKey]}`);
+    }
   }
   await repo.putMany(store, toWrite, 250, onProgress);
 }
@@ -104,6 +107,7 @@ export class CatalogUpdater {
       }
       listener?.({ phase: 'validating', completed: 0, total: 1, messageKey: 'catalog.status.validating' });
       const selected = await loadCatalogSelection(manifest, wantedIds, { fetcher: this.fetcher, registry: this.registry });
+      const allowDevelopmentBaseRebase = manifest.publication?.channel === 'development';
       validateCatalogReferences({ ...selected, packs: selectedPacks }, this.registry);
       if (manifest.referenceDataDigest) {
         const digest = await referenceDataDigest(selected.taxonomies, selected.taxonomyTerms);
@@ -117,12 +121,12 @@ export class CatalogUpdater {
       await stageImmutable(this.repo, 'ingredientRevisions', selected.ingredientRevisions, 'ingredientRevisionId', progress => {
         staged = progress.completed;
         listener?.({ phase: 'importing', completed: staged, total: Math.max(1, totalStage), messageKey: 'catalog.status.importing' });
-      });
+      }, { allowDevelopmentBaseRebase });
       const ingredientStageTotal = selected.ingredientRevisions.length;
       await stageImmutable(this.repo, 'recipeVersions', selected.recipeVersions, 'recipeVersionId', progress => {
         staged = ingredientStageTotal + progress.completed;
         listener?.({ phase: 'importing', completed: staged, total: Math.max(1, totalStage), messageKey: 'catalog.status.importing' });
-      });
+      }, { allowDevelopmentBaseRebase });
 
       const now = new Date().toISOString();
       const previousIngredientFamilies = await this.repo.getAll('ingredients');

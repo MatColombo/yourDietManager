@@ -50,6 +50,8 @@
   "catalog.basisUnit": "Unità base",
   "catalog.carbs100": "Carboidrati (g / 100)",
   "catalog.cookMinutes": "Cottura (min)",
+  "catalog.eatingMinutesHint": "Facoltativo. Tempo stimato per consumare una porzione.",
+  "catalog.eatingMinutes": "Tempo di consumo (min)",
   "catalog.currentRevision": "Revisione corrente",
   "catalog.currentVersion": "Versione corrente",
   "catalog.custom.export": "Esporta catalogo personale",
@@ -150,6 +152,7 @@
   "catalog.practical.portable": "Trasportabile",
   "catalog.practical.reheat": "Richiede riscaldamento",
   "catalog.prepMinutes": "Preparazione (min)",
+  "catalog.practicalData": "Praticità e tempi",
   "catalog.productFood": "Tassonomia alimento prodotto",
   "catalog.productFood.help": "Seleziona il concetto culinario/prodotto, separato dal gruppo nutrizionale della fonte.",
   "catalog.protein100": "Proteine (g / 100)",
@@ -344,11 +347,13 @@
   "meal.rules": "Regole della classe",
   "meal.strength.avoid": "Evita",
   "meal.strength.forbid": "Vieta",
+  "meal.strength.require": "Richiedi",
   "meal.strength.neutral": "Neutro",
   "meal.strength.prefer": "Preferisci",
   "meal.strength.slight_prefer": "Preferisci leggermente",
   "meal.target.carbsG": "Carboidrati g",
   "meal.target.cookMinutes": "Cottura min",
+  "meal.target.eatingMinutes": "Tempo di consumo min",
   "meal.target.energyKcal": "Energia kcal",
   "meal.target.fatG": "Grassi g",
   "meal.target.fiberG": "Fibra g",
@@ -853,5 +858,6 @@
   "common.abort": "Interrompi",
   "plan.generation.searching": "Ricerca soluzione…",
   "plan.generation.progress": "Avanzamento generazione piano",
-  "plan.failure.search_capacity_exhausted": "Ricerca interrotta dal limite esplicito di espansioni configurato; non dimostra che i vincoli siano impossibili."
+  "plan.failure.search_capacity_exhausted": "Ricerca interrotta dal limite esplicito di espansioni configurato; non dimostra che i vincoli siano impossibili.",
+  "catalog.culinaryRoles": "Ruoli culinari"
 }
