@@ -97,7 +97,7 @@ export function generatePlanLegacyCore(input) {
     horizon, seed, catalogVersion, configSnapshotHash = 'pending', configSnapshot = {}, createdAt = new Date().toISOString(),
     reason = 'initial', previousGenerationRunId = null, previousPlanInstanceId = null, previousCalendarDays = [],
     continuationPolicy = { mode: 'prompt', triggerDaysBeforeEnd: 3, extensionDays: 7 }, candidateLimit = 20, beamWidth = 100, slotOptionLimit = 40, startCycleDay = 1, candidateSets = null,
-    regenerationPolicy = null
+    regenerationPolicy = null, candidateAdmission = null
   } = input;
   if (!nutritionProfile || !cycle || !horizon?.startDate || !horizon?.endDate || !seed) throw new Error('Missing required plan generator input');
   const meals = mealMap(mealClasses || []); const days = dayMap(dayClasses || []); const revisions = revisionMap(ingredientRevisions || []);
@@ -154,9 +154,20 @@ export function generatePlanLegacyCore(input) {
       }
       const sourceCandidates = candidateSets?.[mealClass.mealArchetype] || recipes || [];
       const filtered = filterCandidates(sourceCandidates, context); rejectionMerge(rejectionCounts, filtered.rejectionCounts);
+      const admissionRejectionCounts = {};
+      const admittedCandidates = candidateAdmission ? filtered.accepted.filter(recipe => {
+        const decision = candidateAdmission({ recipe, date: addCivilDays(date, slot.dayOffset), dietDate: date, mealClass, dayClass, slot });
+        const allowed = typeof decision === 'boolean' ? decision : decision?.allowed !== false;
+        if (!allowed) {
+          const reason = typeof decision === 'object' && decision?.reason ? decision.reason : 'frequency_candidate_cap';
+          admissionRejectionCounts[reason] = (admissionRejectionCounts[reason] || 0) + 1;
+        }
+        return allowed;
+      }) : filtered.accepted;
+      rejectionMerge(rejectionCounts, admissionRejectionCounts);
       const occurrenceId = stableHashId('meal', date, slot.id);
       const currentRecipeIds = new Set(regenerationPolicy?.currentRecipeVersionIdsByOccurrence?.[occurrenceId] || []);
-      const varietySelection = filterRecipeCandidatesForVariety(filtered.accepted, history, addCivilDays(date, slot.dayOffset), foodPreferences);
+      const varietySelection = filterRecipeCandidatesForVariety(admittedCandidates, history, addCivilDays(date, slot.dayOffset), foodPreferences);
       let acceptedForSelection = varietySelection.candidates;
       let regenerationExcludedCount = 0;
       if (regenerationPolicy?.mode === 'exclude_current' && currentRecipeIds.size) {
@@ -166,10 +177,12 @@ export function generatePlanLegacyCore(input) {
         regenerationExcludedCount = beforeRegeneration.length - acceptedForSelection.length;
       }
       if (!acceptedForSelection.length) {
-        const code = filtered.accepted.length && regenerationPolicy?.mode === 'exclude_current'
-          ? 'no_alternative_candidates_after_regeneration_exclusion'
-          : 'no_candidates_after_hard_constraints';
-        const diagnostic = { slotId: slot.id, mealClassId: mealClass.id, mealArchetype: mealClass.mealArchetype, targetEnergyKcal: rounded(targetEnergy), sourceCandidateCount: sourceCandidates.length, acceptedCandidateCount: filtered.accepted.length, selectableCandidateCount: 0, candidateFrontierCount: 0, optionCount: 0, sourceEnergyRange: energyRange(sourceCandidates), acceptedEnergyRange: energyRange(filtered.accepted), frontierEnergyRange: { minKcal: null, maxKcal: null }, optionEnergyRange: { minKcal: null, maxKcal: null }, hardRejectionCounts: filtered.rejectionCounts, regeneration: { mode: regenerationPolicy?.mode || null, currentRecipeVersionIds: [...currentRecipeIds], excludedCurrentCount: regenerationExcludedCount }, variety: { mode: varietySelection.policy.varietyMode, excludedRecentRecipes: varietySelection.excludedCount, fallbackUsed: varietySelection.fallbackUsed } };
+        const code = filtered.accepted.length && !admittedCandidates.length
+          ? 'no_candidates_after_frequency_caps'
+          : filtered.accepted.length && regenerationPolicy?.mode === 'exclude_current'
+            ? 'no_alternative_candidates_after_regeneration_exclusion'
+            : 'no_candidates_after_hard_constraints';
+        const diagnostic = { slotId: slot.id, mealClassId: mealClass.id, mealArchetype: mealClass.mealArchetype, targetEnergyKcal: rounded(targetEnergy), sourceCandidateCount: sourceCandidates.length, acceptedCandidateCount: filtered.accepted.length, frequencyAdmittedCandidateCount: admittedCandidates.length, frequencyAdmissionRejectedCount: filtered.accepted.length - admittedCandidates.length, selectableCandidateCount: 0, candidateFrontierCount: 0, optionCount: 0, sourceEnergyRange: energyRange(sourceCandidates), acceptedEnergyRange: energyRange(filtered.accepted), frontierEnergyRange: { minKcal: null, maxKcal: null }, optionEnergyRange: { minKcal: null, maxKcal: null }, hardRejectionCounts: { ...filtered.rejectionCounts, ...admissionRejectionCounts }, regeneration: { mode: regenerationPolicy?.mode || null, currentRecipeVersionIds: [...currentRecipeIds], excludedCurrentCount: regenerationExcludedCount }, variety: { mode: varietySelection.policy.varietyMode, excludedRecentRecipes: varietySelection.excludedCount, fallbackUsed: varietySelection.fallbackUsed } };
         slotDiagnostics.push(diagnostic);
         failedSlot = { slotId: slot.id, mealClassId: mealClass.id, code, rejections: filtered.rejectionCounts, slotDiagnostic: diagnostic }; break;
       }
@@ -189,10 +202,10 @@ export function generatePlanLegacyCore(input) {
       const options = buildSlotOptions(scored, { targetEnergy, dayEnergyTarget: energyTarget, nutritionProfile, maxComponents: mealClass.maxComponents ?? 3, optionLimit: slotOptionLimit, signatureFor, seed: `${seed}|${date}|${slot.id}` });
       const diagnostic = {
         slotId: slot.id, mealClassId: mealClass.id, mealArchetype: mealClass.mealArchetype, targetEnergyKcal: rounded(targetEnergy),
-        sourceCandidateCount: sourceCandidates.length, acceptedCandidateCount: filtered.accepted.length, selectableCandidateCount: acceptedForSelection.length, candidateFrontierCount: scored.length, optionCount: options.length,
+        sourceCandidateCount: sourceCandidates.length, acceptedCandidateCount: filtered.accepted.length, frequencyAdmittedCandidateCount: admittedCandidates.length, frequencyAdmissionRejectedCount: filtered.accepted.length - admittedCandidates.length, selectableCandidateCount: acceptedForSelection.length, candidateFrontierCount: scored.length, optionCount: options.length,
         sourceEnergyRange: energyRange(sourceCandidates), acceptedEnergyRange: energyRange(filtered.accepted), frontierEnergyRange: energyRange(scored.map(item => item.recipe)),
         optionEnergyRange: options.length ? { minKcal: rounded(Math.min(...options.map(item => item.nutrition.energyKcal))), maxKcal: rounded(Math.max(...options.map(item => item.nutrition.energyKcal))) } : { minKcal: null, maxKcal: null },
-        hardRejectionCounts: filtered.rejectionCounts,
+        hardRejectionCounts: { ...filtered.rejectionCounts, ...admissionRejectionCounts },
         regeneration: { mode: regenerationPolicy?.mode || null, currentRecipeVersionIds: [...currentRecipeIds], excludedCurrentCount: regenerationExcludedCount },
         variety: { mode: varietySelection.policy.varietyMode, excludedRecentRecipes: varietySelection.excludedCount, fallbackUsed: varietySelection.fallbackUsed },
         topSoftCandidates: allScored.slice(0, 5).map((item, index) => ({ recipeVersionId: item.recipe.recipeVersionId, rank: index + 1, energyKcal: rounded(item.recipe.calculatedNutrition?.energyKcal), score: Math.round(item.score.total * 1000) / 1000, scoreComponents: item.score.components, reasons: item.score.reasons.slice(0, 5) }))
@@ -209,10 +222,10 @@ export function generatePlanLegacyCore(input) {
     const solved = solvedResult.solution;
     if (!solved) {
       failures.push({
-        date, code: 'no_feasible_plan', reason: solvedResult.diagnostics.code, constraintId: 'daily_energy_tolerance', hardConstraint: true,
+        date, code: 'no_feasible_plan', reason: solvedResult.diagnostics.code, constraintId: solvedResult.diagnostics.frequencyPrunedStates > 0 ? 'frequency_bounds_v2' : 'daily_energy_tolerance', hardConstraint: true,
         energy: solvedResult.diagnostics.window, nearestPlannedEnergyKcal: solvedResult.diagnostics.nearestPlannedEnergyKcal,
         nearestDistanceKcal: solvedResult.diagnostics.nearestDistanceKcal,
-        search: { candidateLimit, beamWidth, slotOptionLimit, proof: solvedResult.diagnostics.proof, hardPrunedStates: solvedResult.diagnostics.hardPrunedStates || 0, evaluatedFinalists: solvedResult.diagnostics.evaluatedFinalists, feasibleFinalists: solvedResult.diagnostics.feasibleFinalists },
+        search: { candidateLimit, beamWidth, slotOptionLimit, proof: solvedResult.diagnostics.proof, hardPrunedStates: solvedResult.diagnostics.hardPrunedStates || 0, energyPrunedStates: solvedResult.diagnostics.energyPrunedStates || 0, frequencyPrunedStates: solvedResult.diagnostics.frequencyPrunedStates || 0, evaluatedFinalists: solvedResult.diagnostics.evaluatedFinalists, feasibleFinalists: solvedResult.diagnostics.feasibleFinalists },
         rejectionCounts, slotDiagnostics
       });
       break;

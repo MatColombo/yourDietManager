@@ -504,6 +504,8 @@
   "plan.failure.external_budget_inconsistency": "Il budget dei pasti esterni e incoerente con il target giornaliero.",
   "plan.failure.external_energy_unknown": "Il target calorico giornaliero non può essere garantito perché un pasto esterno non ha un budget energetico.",
   "plan.failure.generic": "Impossibile generare una proposta sicura",
+  "plan.failure.frequency_candidate_frontier_exhausted": "La ricerca ha esaurito l’insieme dei candidati dopo l’applicazione dei limiti di frequenza rolling. Il vincolo non è dichiarato impossibile; il motore ha terminato lo spazio di ricerca corrente.",
+  "plan.failure.energy_search_exhausted": "La ricerca energetica ha esaurito lo spazio di ricerca corrente senza dimostrare che i vincoli siano impossibili.",
   "plan.failure.insufficient_catalog_coverage": "Il catalogo non copre abbastanza questo periodo.",
   "plan.failure.meal_class_over_constrained": "La classe pasto e troppo restrittiva.",
   "plan.failure.no_candidates_after_hard_constraints": "Nessuna ricetta compatibile con i vincoli hard. Rivedi sicurezza o classe pasto.",

@@ -2,9 +2,60 @@ import { dateRange, addCivilDays } from './planMath.js';
 import { stableHashId } from './seededRandom.js';
 import { filterCandidates } from './hardFilter.js';
 import { recipeMatchesTarget } from './recipeFeatures.js';
-import { frequencyRules, frequencyConflicts, evaluateFrequencies, occurrenceMatches } from '../domain/frequencyCounter.js';
+import { frequencyRules, frequencyConflicts, evaluateFrequencies, occurrenceMatches, countFrequencyWindow, FREQUENCY_PRIORITY } from '../domain/frequencyCounter.js';
 
 function failure(status, code, details = {}) { return { status, failure: { code, ...details }, diagnostics: { status, ...details } }; }
+
+
+function maxOccurrencesForRule(rule) {
+  if (rule.mode === 'never') return 0;
+  if (rule.mode !== 'frequency' || rule.maxOccurrences === null) return null;
+  return Number(rule.maxOccurrences);
+}
+
+function maxFrequencyRules(rules) { return rules.filter(rule => maxOccurrencesForRule(rule) !== null); }
+
+function candidateAdmissionForState({ rules, past, recipesByVersion, revisionById, foodGroups }) {
+  const capped = maxFrequencyRules(rules);
+  if (!capped.length) return null;
+  const baseContext = { calendarDays: past, recipesByVersion, revisionById, foodGroups, coverageDates: past.map(day => day.date) };
+  return ({ recipe, date, mealClass }) => {
+    for (const rule of capped) {
+      if (date < rule.effectiveFrom) continue;
+      if (rule.scope.mealClassIds.length && !rule.scope.mealClassIds.includes(mealClass.id)) continue;
+      if (!recipeMatchesTarget(recipe, rule.target.type, rule.target.id, revisionById, foodGroups)) continue;
+      const window = countFrequencyWindow(rule, date, baseContext);
+      const limit = maxOccurrencesForRule(rule);
+      const sameDayAlreadyCounts = rule.countUnit === 'day' && window.contributingMeals.some(item => item.civilDate === date);
+      if (!sameDayAlreadyCounts && window.count >= limit) return { allowed: false, reason: `frequency_cap:${rule.id}` };
+    }
+    return { allowed: true };
+  };
+}
+
+function maxFrequencyHeadroomPenalty({ rules, calendarDays, recipesByVersion, revisionById, foodGroups, progress }) {
+  const capped = maxFrequencyRules(rules).filter(rule => maxOccurrencesForRule(rule) > 0);
+  if (!capped.length || !calendarDays.length) return 0;
+  const endDate = calendarDays.flatMap(day => (day.mealSlots || []).map(slot => slot.civilDate || day.date)).sort().at(-1) || calendarDays.at(-1).date;
+  const context = { calendarDays, recipesByVersion, revisionById, foodGroups, coverageDates: calendarDays.map(day => day.date) };
+  let penalty = 0;
+  for (const rule of capped) {
+    if (endDate < rule.effectiveFrom) continue;
+    const limit = maxOccurrencesForRule(rule);
+    const window = countFrequencyWindow(rule, endDate, context);
+    const utilization = Math.min(1, window.count / Math.max(1, limit));
+    const earlyUse = Math.max(0, utilization - Math.min(1, progress));
+    penalty += earlyUse * 24 * (FREQUENCY_PRIORITY[rule.priority] || FREQUENCY_PRIORITY.normal);
+  }
+  return penalty;
+}
+
+function exhaustedSearchCode(lastFailure) {
+  const reason = String(lastFailure?.reason || lastFailure?.code || '');
+  if (reason.includes('frequency') || reason === 'no_candidates_after_frequency_caps' || lastFailure?.constraintId === 'frequency_bounds_v2') return 'frequency_candidate_frontier_exhausted';
+  if (reason.includes('energy') || lastFailure?.constraintId === 'daily_energy_tolerance') return 'energy_search_exhausted';
+  return 'frequency_or_energy_search_exhausted';
+}
 
 // A bounded beam across days, with window reachability checked at every meal.
 // Bounded pruning never establishes global impossibility.
@@ -76,7 +127,8 @@ export function generateFrequencyPlan(input, generateLegacy) {
         const remaining = potentials.filter(slot => slot.dietDate >= date && !assignedIds.has(slot.mealOccurrenceId));
         return evaluateFrequencies({ ...context, calendarDays: [...past, { date, mealSlots: assigned }], potentialOccurrences: remaining });
       };
-      const output = generateLegacy({ ...input, onProgress: inner => {
+      const candidateAdmission = candidateAdmissionForState({ rules, past, recipesByVersion, revisionById: revisions, foodGroups });
+      const output = generateLegacy({ ...input, candidateAdmission, onProgress: inner => {
         const innerPercent = Number.isFinite(Number(inner?.percent)) ? Math.max(0, Math.min(100, Number(inner.percent))) / 100 : 0;
         const stateProgress = (stateIndex + innerPercent) / Math.max(1, currentBeam.length);
         const partialProgress = dateIndex + stateProgress * 0.85;
@@ -91,13 +143,14 @@ export function generateFrequencyPlan(input, generateLegacy) {
         const check = evaluateFrequencies({ ...context, calendarDays: [...previous, ...calendarDays], potentialOccurrences: potentials.filter(slot => slot.dietDate > date) });
         if (!check.valid) continue;
         const baseScore = state.baseScore + alternative.baseScore;
-        expanded.push({ calendarDays, baseScore, score: baseScore + check.idealPenalty,
-          dayDiagnostics: [...state.dayDiagnostics, { ...output.diagnostics.days[0], selectedMeals: alternative.selectedMeals }] });
+        const maxHeadroomPenalty = maxFrequencyHeadroomPenalty({ rules, calendarDays: [...previous, ...calendarDays], recipesByVersion, revisionById: revisions, foodGroups, progress: (dateIndex + 1) / dates.length });
+        expanded.push({ calendarDays, baseScore, score: baseScore + check.idealPenalty + maxHeadroomPenalty,
+          dayDiagnostics: [...state.dayDiagnostics, { ...output.diagnostics.days[0], selectedMeals: alternative.selectedMeals, maxFrequencyHeadroomPenalty: Math.round(maxHeadroomPenalty * 1000) / 1000 }] });
       }
     }
     expanded.sort((a, b) => a.score - b.score || a.calendarDays.flatMap(day => day.mealSlots.flatMap(slot => slot.recipeComponents.map(c => c.recipeVersionId))).join('|').localeCompare(b.calendarDays.flatMap(day => day.mealSlots.flatMap(slot => slot.recipeComponents.map(c => c.recipeVersionId))).join('|')));
     beam = expanded.slice(0, limits.planBeamWidth);
-    if (!beam.length) return failure('search_exhausted', 'frequency_or_energy_search_exhausted', { lastFailure: latestFailure, limits, expandedPlans, generatedDayCount: dateIndex });
+    if (!beam.length) return failure('search_exhausted', exhaustedSearchCode(latestFailure), { lastFailure: latestFailure, limits, expandedPlans, generatedDayCount: dateIndex });
     input.onProgress?.({ phase: 'search', completed: dateIndex + 1, total: dates.length, percent: Math.round(((dateIndex + 1) / dates.length) * 100), expandedPlans });
   }
   const finalists = beam.map(state => ({ ...state, frequencies: evaluateFrequencies({ ...context, calendarDays: [...previous, ...state.calendarDays], coverageDates: null }) })).filter(state => state.frequencies.valid);

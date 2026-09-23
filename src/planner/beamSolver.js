@@ -147,6 +147,8 @@ export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, n
   const bounds = remainingEnergyBounds(slotPlans);
   let beam = [{ slots: [], recipes: [], partialScore: 0, tie: 0, energyKcal: 0, exactRecipeRepeats: 0 }];
   let hardPrunedStates = 0;
+  let energyPrunedStates = 0;
+  let frequencyPrunedStates = 0;
   for (let slotIndex = 0; slotIndex < slotPlans.length; slotIndex += 1) {
     const slot = slotPlans[slotIndex];
     const remaining = bounds[slotIndex + 1];
@@ -157,9 +159,9 @@ export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, n
       const energyKcal = state.energyKcal + energyOfOption(option);
       const reachableMin = energyKcal + remaining.min;
       const reachableMax = energyKcal + remaining.max;
-      if (reachableMax < window.plannedMinKcal - 1e-9 || reachableMin > window.plannedMaxKcal + 1e-9) { hardPrunedStates += 1; continue; }
+      if (reachableMax < window.plannedMinKcal - 1e-9 || reachableMin > window.plannedMaxKcal + 1e-9) { hardPrunedStates += 1; energyPrunedStates += 1; continue; }
       const frequency = evaluateState?.(slots, slotIndex + 1);
-      if (frequency && !frequency.valid) { hardPrunedStates += 1; continue; }
+      if (frequency && !frequency.valid) { hardPrunedStates += 1; frequencyPrunedStates += 1; continue; }
       const frequencyPenalty = frequency?.idealPenalty || 0;
       const exactRecipeRepeats = state.exactRecipeRepeats + exactRecipeRepeatCount(state.recipes, option.recipes);
       const partialScore = state.partialScore + option.score + intraDayRepetitionPenalty(state.recipes, option.recipes, varietyMode);
@@ -172,7 +174,10 @@ export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, n
     onProgress?.({ completed: slotIndex + 1, total: slotPlans.length });
     if (!beam.length) {
       const nearest = nearestBoundedEnergy(bounds[0], window);
-      return { solution: null, diagnostics: { code: 'energy_window_unreachable_in_bounded_search', proof: 'bounded_search', window, evaluatedFinalists: 0, feasibleFinalists: 0, nearestPlannedEnergyKcal: nearest.energyKcal, nearestDistanceKcal: nearest.distanceKcal, hardPrunedStates, beamWidth } };
+      const code = frequencyPrunedStates > 0
+        ? (energyPrunedStates > 0 ? 'frequency_and_energy_frontier_exhausted' : 'frequency_frontier_exhausted')
+        : 'energy_window_unreachable_in_bounded_search';
+      return { solution: null, diagnostics: { code, proof: 'bounded_search', window, evaluatedFinalists: 0, feasibleFinalists: 0, nearestPlannedEnergyKcal: nearest.energyKcal, nearestDistanceKcal: nearest.distanceKcal, hardPrunedStates, energyPrunedStates, frequencyPrunedStates, beamWidth } };
     }
   }
 
@@ -198,6 +203,8 @@ export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, n
       nearestPlannedEnergyKcal: nearest?.nutrition?.energyKcal ?? null,
       nearestDistanceKcal: nearest?.energyDistanceKcal ?? null,
       hardPrunedStates,
+      energyPrunedStates,
+      frequencyPrunedStates,
       beamWidth
     }
   };

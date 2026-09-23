@@ -504,6 +504,8 @@
   "plan.failure.external_budget_inconsistency": "External meal budgets conflict with the daily target.",
   "plan.failure.external_energy_unknown": "The daily calorie target cannot be guaranteed because an external meal has no energy budget.",
   "plan.failure.generic": "Unable to generate a safe proposal",
+  "plan.failure.frequency_candidate_frontier_exhausted": "The search exhausted the candidate frontier after applying rolling frequency caps. The constraint is not proven impossible; the current search space was exhausted.",
+  "plan.failure.energy_search_exhausted": "The energy search exhausted the current search space without proving the constraints impossible.",
   "plan.failure.insufficient_catalog_coverage": "The catalog does not cover this range well enough.",
   "plan.failure.meal_class_over_constrained": "The meal class is too restrictive.",
   "plan.failure.no_candidates_after_hard_constraints": "No recipe matches the hard constraints. Review safety settings or the meal class.",
