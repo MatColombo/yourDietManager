@@ -5,6 +5,7 @@ export function tagValues(recipe) { return Object.values(recipe.tags || {}).flat
 export function cuisines(recipe) { return recipe.tags?.cuisines || []; }
 export function families(recipe) { return recipe.tags?.families || []; }
 export function primaryIngredientId(recipe) { return recipe.ingredientLines?.find(line => !line.optional)?.ingredientId || recipe.ingredientLines?.[0]?.ingredientId || null; }
+export function ingredientIds(recipe) { return [...new Set((recipe.ingredientLines || []).filter(line => line.included !== false).map(line => line.ingredientId).filter(Boolean))]; }
 
 export function foodCategories(recipe, revisionById) {
   const values = new Set();

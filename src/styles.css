@@ -536,3 +536,5 @@ button, .button, input, select { min-height: 44px; }
   .calendar-cell--editable-empty { display: flex; }
   .calendar-spillover-row { flex-direction: column; gap: 3px; }
 }
+.replacement-card--incompatible { border: 2px solid var(--danger, #b3261e); }
+.replacement-card--incompatible .validation-box { display: grid; gap: .25rem; }

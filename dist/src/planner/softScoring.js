@@ -1,7 +1,7 @@
 import { extensionPreferenceScore } from '../domain/productExtensions.js';
 import { legacyPreferenceRules } from '../domain/frequencyCounter.js';
 import { nutritionPenalty, matchOperator } from './planMath.js';
-import { recipeMatchesTarget, mealRuleSatisfied, families, cuisines, primaryIngredientId, foodCategories } from './recipeFeatures.js';
+import { recipeMatchesTarget, mealRuleSatisfied, families, cuisines, primaryIngredientId, ingredientIds, foodCategories } from './recipeFeatures.js';
 import { plannerPolicy, VARIETY_MODES } from './varietyPolicy.js';
 import { generationTuningScore } from './generationTuning.js';
 
@@ -69,9 +69,10 @@ export function varietyScore(recipe, { history = [], date, revisionById, foodPre
     const recipeCount = entries.filter(entry => entry.recipe.recipeId === recipe.recipeId).length;
     const familyCount = countFeature(entries, r => families(r), families(recipe));
     const primaryCount = entries.filter(entry => primary && primaryIngredientId(entry.recipe) === primary).length;
+    const ingredientCount = countFeature(entries, r => ingredientIds(r), ingredientIds(recipe));
     const categoryCount = countFeature(entries, r => [...foodCategories(r, revisionById)], cats);
     const cuisineCount = countFeature(entries, r => cuisines(r), cuisines(recipe));
-    score += recipeCount * window.recipe + familyCount * window.family + primaryCount * window.primary + categoryCount * window.category + cuisineCount * window.cuisine;
+    score += recipeCount * window.recipe + familyCount * window.family + primaryCount * window.primary + ingredientCount * Number(window.ingredient || 0) + categoryCount * window.category + cuisineCount * window.cuisine;
   }
   if (policy.varietyMode === VARIETY_MODES.perishables) {
     const wanted = perishableIngredientIds(recipe, revisionById);

@@ -160,7 +160,7 @@ export async function suggestIngredientSubstitutions({ recipeVersionId, lineInde
   };
 }
 
-export async function applyIngredientSubstitution({ recipeId, recipeVersionId, lineIndex, candidateIngredientRevisionId, amount = null }, { repo = repositories, registry } = {}) {
+export async function applyIngredientSubstitution({ recipeId, recipeVersionId, lineIndex, candidateIngredientRevisionId, amount = null, newName = '', locale = 'it' }, { repo = repositories, registry } = {}) {
   const family = await repo.get('recipes', recipeId);
   if (!family || family.currentVersionId !== recipeVersionId) throw new Error('Recipe changed after the substitution preview. Open the current version and retry.');
   const recipe = await repo.get('recipeVersions', recipeVersionId);
@@ -174,6 +174,9 @@ export async function applyIngredientSubstitution({ recipeId, recipeVersionId, l
   const affinity = ingredientAffinity(sourceLine, sourceRevision, candidate, recipe);
   if (!affinity || !affinity.dietCompatible) throw new Error('Replacement ingredient is not compatible with the recipe');
   const draft = await recipeToDraft(recipeId, { repo, recipeVersionId });
+  const requestedName = String(newName || '').trim();
+  if (!requestedName) throw new Error('A new recipe name is required when saving an ingredient substitution');
+  if (locale === 'en') draft.titleEn = requestedName; else draft.titleIt = requestedName;
   const proposedAmount = amount == null ? affinity.proposedLine.amount : Number(amount);
   if (!(proposedAmount > 0) || !Number.isFinite(proposedAmount)) throw new Error('Replacement amount must be positive');
   draft.ingredientLines[lineIndex] = {

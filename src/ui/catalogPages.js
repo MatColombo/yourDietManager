@@ -127,13 +127,22 @@ function openIngredientSubstitutionDialog(state, { recipeId, recipeVersionId, li
           element('p', { className: 'muted', text: t(state, 'catalog.substitution.deltaHelp') }), nutritionDeltaGrid(state, item.recipeDelta),
           warningParts.length ? element('p', { className: 'validation-box validation-box--warning', text: warningParts.join(' · ') }) : null
         ]));
-        article.append(element('button', { type: 'button', className: 'button button--small', 'data-testid': 'ingredient-substitution-apply', text: t(state, 'catalog.substitution.apply'), onClick: async event => {
+        const temporary = element('button', { type: 'button', className: 'button button--small', 'data-testid': 'ingredient-substitution-apply', text: t(state, 'catalog.substitution.applyTemporary'), onClick: () => {
+          state.catalogUi ||= {}; state.catalogUi.temporaryRecipeSubstitutions ||= {};
+          state.catalogUi.temporaryRecipeSubstitutions[recipeVersionId] = { lineIndex, candidate: structuredClone(item) };
+          close(); state.notify?.('success', t(state, 'catalog.substitution.temporaryApplied')); state.render();
+        } });
+        const saveVersion = element('button', { type: 'button', className: 'button button--secondary button--small', 'data-testid': 'ingredient-substitution-save-version', text: t(state, 'catalog.substitution.saveVersion'), onClick: async event => {
+          const newName = globalThis.prompt?.(t(state, 'catalog.substitution.newNamePrompt'), '')?.trim();
+          if (!newName) { state.notify?.('error', t(state, 'catalog.substitution.newNameRequired')); return; }
           const button = event.currentTarget; button.disabled = true; shell.setAttribute('aria-busy', 'true');
           try {
-            const result = await applyIngredientSubstitution({ recipeId, recipeVersionId, lineIndex, candidateIngredientRevisionId: item.ingredient.ingredientRevisionId, amount: item.proposedLine.amount }, { repo: state.repo, registry: state.registry });
+            const result = await applyIngredientSubstitution({ recipeId, recipeVersionId, lineIndex, candidateIngredientRevisionId: item.ingredient.ingredientRevisionId, amount: item.proposedLine.amount, newName, locale: state.i18n.locale }, { repo: state.repo, registry: state.registry });
+            state.catalogUi ||= {}; state.catalogUi.temporaryRecipeSubstitutions ||= {}; delete state.catalogUi.temporaryRecipeSubstitutions[recipeVersionId];
             await state.refreshCatalog(); close(); state.notify?.('success', t(state, 'catalog.substitution.saved')); nav(state, `/recipes/${encodeURIComponent(result.family.recipeId)}`);
           } catch (error) { state.notify?.('error', error.message || String(error)); button.disabled = false; shell.setAttribute('aria-busy', 'false'); }
-        } })); list.append(article);
+        } });
+        article.append(element('div', { className: 'button-row' }, [temporary, saveVersion])); list.append(article);
       }
       if (!preview.candidates.length) list.append(element('div', { className: 'empty-state', text: t(state, 'catalog.substitution.empty') }));
       const pages = element('div', { className: 'button-row' });
@@ -349,7 +358,15 @@ export function recipeDetailPage(state, recipeId, recipeVersionId = null) {
   const body = element('div', { className: 'catalog-results', 'data-testid': 'recipe-detail' }, [element('p', { className: 'muted', text: t(state, 'common.loading') })]); section.append(body);
   void Promise.all([state.catalogQuery.resolveRecipe(recipeId, recipeVersionId), state.catalogQuery.recipeHistory(recipeId)]).then(async ([record, history]) => {
     if (!record) { body.replaceChildren(element('div', { className: 'empty-state', text: t(state, 'catalog.recipe.notFound') })); return; }
-    const { family, version, ingredientLines } = record; const n = version.calculatedNutrition; const current = family.currentVersionId === version.recipeVersionId;
+    const { family } = record; let version = record.version; let ingredientLines = record.ingredientLines; const current = family.currentVersionId === version.recipeVersionId;
+    const temporaryEdit = state.catalogUi?.temporaryRecipeSubstitutions?.[version.recipeVersionId];
+    if (temporaryEdit && Number.isInteger(temporaryEdit.lineIndex) && temporaryEdit.candidate) {
+      const candidate = temporaryEdit.candidate; const index = temporaryEdit.lineIndex;
+      const nextLines = version.ingredientLines.map((line, lineIndex) => lineIndex === index ? structuredClone(candidate.proposedLine) : structuredClone(line));
+      version = { ...structuredClone(version), ingredientLines: nextLines, calculatedNutrition: structuredClone(candidate.recipeNutrition) };
+      ingredientLines = ingredientLines.map((line, lineIndex) => lineIndex === index ? { ...structuredClone(line), ...structuredClone(candidate.proposedLine), ingredientRevision: structuredClone(candidate.ingredient), ingredientRevisionId: candidate.ingredient.ingredientRevisionId, ingredientId: candidate.ingredient.ingredientId } : line);
+    }
+    const n = version.calculatedNutrition;
     const actions = element('div', { className: 'page-actions' });
     actions.append(element('a', { href: returnRoute, 'data-route': '', className: 'button button--secondary context-back-link', 'data-testid': 'context-back', text: returnRoute === '/recipes' ? t(state, 'common.back') : t(state, 'navigation.backToContext') }));
     const favorite=Boolean(await state.repo.get('recipeFavorites',recipeId));
@@ -379,6 +396,8 @@ export function recipeDetailPage(state, recipeId, recipeVersionId = null) {
     body.replaceChildren(
       actions, title, versionMeta, desc,
       !current ? element('div', { className: 'validation-box validation-box--warning', text: t(state, 'catalog.historicalWarning') }) : null,
+      temporaryEdit ? element('div', { className: 'validation-box validation-box--warning', 'data-testid': 'temporary-ingredient-substitution', text: t(state, 'catalog.substitution.temporaryBanner') }) : null,
+      temporaryEdit ? element('button', { type: 'button', className: 'button button--secondary button--small', text: t(state, 'catalog.substitution.resetTemporary'), onClick: () => { delete state.catalogUi.temporaryRecipeSubstitutions[version.recipeVersionId]; state.render(); } }) : null,
       !record.installed && version.origin === 'base' ? element('div', { className: 'validation-box validation-box--warning', text: t(state, 'catalog.recipe.packNotInstalled') }) : null,
       metrics, element('p', { className: 'muted', text: `${t(state, 'r2.ingredientWeight')}: ${ingredientWeightG(version.ingredientLines) ?? '—'} g · ${t(state, 'r2.finalWeight')}: ${version.practical.finalWeightG ?? '—'} g` }),
       element('h3', { text: t(state, 'catalog.recipe.nutritionBreakdown') }), ingredientNutrition,

@@ -1,6 +1,6 @@
 import { sumNutrition, nutritionPenalty, energyToleranceWindow, energyDistanceFromWindow } from './planMath.js';
 import { seededTie } from './seededRandom.js';
-import { families, cuisines, primaryIngredientId } from './recipeFeatures.js';
+import { families, cuisines, primaryIngredientId, ingredientIds } from './recipeFeatures.js';
 import { PLANNER_SOFT_OBJECTIVE_POLICY, slotOptionSoftContribution } from './qualityPolicy.js';
 import { VARIETY_MODES } from './varietyPolicy.js';
 
@@ -17,13 +17,14 @@ function exactRecipeRepeatCount(existing, added) {
 function intraDayRepetitionPenalty(existing, added, varietyMode) {
   if (varietyMode === VARIETY_MODES.none) return 0;
   const weights = varietyMode === VARIETY_MODES.perishables
-    ? { recipe: 60, family: 1, cuisine: 0.15, primary: 0.75 }
-    : { recipe: 180, family: 5, cuisine: 0.5, primary: 4 };
+    ? { recipe: 60, family: 1, cuisine: 0.15, primary: 0.75, ingredient: 0 }
+    : { recipe: 180, family: 5, cuisine: 0.5, primary: 4, ingredient: 7 };
   let penalty = 0;
   for (const recipe of added) for (const prior of existing) {
     if (recipe.recipeId === prior.recipeId) penalty += weights.recipe;
     penalty += overlapCount(families(recipe), families(prior)) * weights.family;
     penalty += overlapCount(cuisines(recipe), cuisines(prior)) * weights.cuisine;
+    penalty += overlapCount(ingredientIds(recipe), ingredientIds(prior)) * weights.ingredient;
     if (primaryIngredientId(recipe) && primaryIngredientId(recipe) === primaryIngredientId(prior)) penalty += weights.primary;
   }
   return penalty;

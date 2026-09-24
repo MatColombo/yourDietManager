@@ -10,9 +10,9 @@ const MODE_POLICY = Object.freeze({
   [VARIETY_MODES.maximum]: Object.freeze({
     exactRecipeGapDays: 14,
     varietyWindows: Object.freeze([
-      Object.freeze({ days: 3, recipe: 120, family: 8, primary: 9, category: 1.2, cuisine: 0.4 }),
-      Object.freeze({ days: 7, recipe: 60, family: 4, primary: 4.5, category: 0.5, cuisine: 0.2 }),
-      Object.freeze({ days: 14, recipe: 20, family: 1.2, primary: 1.5, category: 0.15, cuisine: 0.05 })
+      Object.freeze({ days: 3, recipe: 120, family: 8, primary: 9, ingredient: 3.5, category: 1.2, cuisine: 0.4 }),
+      Object.freeze({ days: 7, recipe: 60, family: 4, primary: 4.5, ingredient: 1.75, category: 0.5, cuisine: 0.2 }),
+      Object.freeze({ days: 14, recipe: 20, family: 1.2, primary: 1.5, ingredient: 0.6, category: 0.15, cuisine: 0.05 })
     ]),
     perishableWindowDays: 0,
     perishableOverlapReward: 0
@@ -20,8 +20,8 @@ const MODE_POLICY = Object.freeze({
   [VARIETY_MODES.perishables]: Object.freeze({
     exactRecipeGapDays: 4,
     varietyWindows: Object.freeze([
-      Object.freeze({ days: 3, recipe: 45, family: 1.5, primary: 1.5, category: 0.15, cuisine: 0 }),
-      Object.freeze({ days: 7, recipe: 12, family: 0.4, primary: 0.4, category: 0.05, cuisine: 0 })
+      Object.freeze({ days: 3, recipe: 45, family: 1.5, primary: 1.5, ingredient: 0, category: 0.15, cuisine: 0 }),
+      Object.freeze({ days: 7, recipe: 12, family: 0.4, primary: 0.4, ingredient: 0, category: 0.05, cuisine: 0 })
     ]),
     perishableWindowDays: 2,
     perishableOverlapReward: 2.25

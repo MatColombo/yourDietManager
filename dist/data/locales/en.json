@@ -969,5 +969,19 @@
   "plan.structure.success": "Plan calendar updated.",
   "plan.operation.calendar_day_add": "Day added",
   "plan.operation.calendar_day_modify": "Day changed",
-  "plan.operation.calendar_day_remove": "Day removed"
+  "plan.operation.calendar_day_remove": "Day removed",
+  "plan.structure.insertPreview": "Insert day here and shift following days",
+  "plan.structure.removeShiftPreview": "Remove day and shift following days earlier",
+  "plan.structure.shiftSummary": "This operation will shift {count} following days by {direction} day.",
+  "plan.structure.action.insert": "Insert and shift",
+  "plan.structure.action.remove_shift": "Remove and shift",
+  "plan.operation.calendar_day_insert": "Insert calendar day and shift",
+  "plan.operation.calendar_day_remove_shift": "Remove calendar day and shift",
+  "catalog.substitution.applyTemporary": "Apply temporarily",
+  "catalog.substitution.temporaryApplied": "Substitution applied only to this view.",
+  "catalog.substitution.saveVersion": "Create new version",
+  "catalog.substitution.newNamePrompt": "Name for the new recipe version",
+  "catalog.substitution.newNameRequired": "Enter a name to create the new version.",
+  "catalog.substitution.temporaryBanner": "Temporary variant: this substitution is not saved to the catalog.",
+  "catalog.substitution.resetTemporary": "Restore original recipe"
 }

@@ -222,7 +222,7 @@ export async function createReplacementPreview({ planInstanceId, calendarDayId, 
   }, contextHash, repo, 'replacement');
 }
 
-export async function createGenerationReplacementPreview({ generationPreview, mealOccurrenceId, seed = 'preview-replace', limit = 8, offset = 0, query = '' }, { repo = repositories, registry } = {}) {
+export async function createGenerationReplacementPreview({ generationPreview, mealOccurrenceId, seed = 'preview-replace', limit = 8, offset = 0, query = '', includeIncompatible = false }, { repo = repositories, registry } = {}) {
   if (!registry) throw new Error('Schema registry is required');
   const sourceState = await validatedPreviewSnapshot(generationPreview, { repo, kind: 'generation' });
   const source = sourceState.preview;
@@ -234,7 +234,12 @@ export async function createGenerationReplacementPreview({ generationPreview, me
   const dayClass = active.dayClasses.find(item => item.id === sourceDay.dayClassId); const mealClass = active.mealClasses.find(item => item.id === sourceSlot.mealClassId);
   if (!dayClass || !mealClass) throw new Error('Meal configuration not found');
   const candidateService = new PlanCandidateService({ repo });
-  const candidates = await candidateService.retrieve(mealClass.mealArchetype, { limit: MAX_PLANNER_CANDIDATES_PER_ARCHETYPE, foodPreferences: active.foodPreferences, eligibilityContexts: [{ mealClass, dayClass, allergyProfile: active.allergyProfile, generationTuningOverlay, date: sourceSlot.civilDate }] });
+  const eligibilityContext = { mealClass, dayClass, allergyProfile: active.allergyProfile, generationTuningOverlay, date: sourceSlot.civilDate };
+  const candidates = await candidateService.retrieve(mealClass.mealArchetype, {
+    limit: MAX_PLANNER_CANDIDATES_PER_ARCHETYPE,
+    foodPreferences: active.foodPreferences,
+    eligibilityContexts: includeIncompatible ? [] : [eligibilityContext]
+  });
   const sourceDerived = source.derivedRecipeVersions || [];
   const policyContext = await loadPlanPolicyContext(repo, { days: source.calendarDays, extraRecipes: [...sourceDerived, ...candidates], planInstanceId: source.planInstance?.previousPlanInstanceId || null, generationTuningOverlay });
   const current = sourceSlot.recipeComponents || []; const currentIds = new Set(current.map(component => component.recipeVersionId));
@@ -242,17 +247,24 @@ export async function createGenerationReplacementPreview({ generationPreview, me
   const ranked = []; const rejectionCounts = { ...candidateService.lastDiagnostics.hardRejectionCounts };
   for (const recipe of candidates) {
     if (currentIds.has(recipe.recipeVersionId) || !recipeTextMatches(recipe, policyContext.revisionById, query)) continue;
+    const hardCheck = hardFilterRecipe(recipe, { ...eligibilityContext, revisionById: policyContext.revisionById, safetyRevisionById: policyContext.safetyRevisionById, foodGroups: policyContext.foodGroups, foodPreferences: active.foodPreferences });
+    if (!hardCheck.allowed && !includeIncompatible) continue;
     const components = [{ recipeId: recipe.recipeId, recipeVersionId: recipe.recipeVersionId, servings: 1 }];
     const days = clone(source.calendarDays); const day = days.find(item => item.calendarDayId === sourceDay.calendarDayId); const slot = day.mealSlots.find(item => item.mealOccurrenceId === mealOccurrenceId); slot.recipeComponents = components;
     const policy = validatePlanPolicy(days, policyContext);
-    if (!policy.valid) { for (const violation of policy.violations) rejectionCounts[violation.code] = (rejectionCounts[violation.code] || 0) + 1; continue; }
+    if (!policy.valid && !includeIncompatible) { for (const violation of policy.violations) rejectionCounts[violation.code] = (rejectionCounts[violation.code] || 0) + 1; continue; }
     day.nutritionSummary = await recomputeDayNutrition(day, active.nutritionProfile, repo, [...sourceDerived, recipe]);
     const candidateMealNutrition = componentNutrition(components, policyContext.recipesByVersion); const affinity = mealNutritionAffinity(currentMealNutrition, candidateMealNutrition);
-    ranked.push({ choiceId: recipe.recipeVersionId, recipe, components, mealNutrition: candidateMealNutrition, nutritionDelta: affinity.delta, affinityScore: affinity.score, affinityDistance: affinity.distance, score: { total: policy.frequencies.idealPenalty, frequencies: policy.frequencies }, tie: seededTie(seed, recipe.recipeVersionId) });
+    const hardViolations = [
+      ...hardCheck.reasons.map(code => ({ code, source: 'recipe' })),
+      ...policy.violations.map(violation => ({ ...clone(violation), source: 'plan' }))
+    ];
+    const safetyBlocked = hardCheck.reasons.some(code => code.startsWith('safety:') || code.startsWith('safety_unverified:'));
+    ranked.push({ choiceId: recipe.recipeVersionId, recipe, components, mealNutrition: candidateMealNutrition, nutritionDelta: affinity.delta, affinityScore: affinity.score, affinityDistance: affinity.distance, hardCompatible: hardViolations.length === 0, safetyBlocked, hardViolations, score: { total: policy.frequencies.idealPenalty, frequencies: policy.frequencies }, tie: seededTie(seed, recipe.recipeVersionId) });
   }
-  ranked.sort((a, b) => a.affinityDistance - b.affinityDistance || a.score.total - b.score.total || a.tie - b.tie);
+  ranked.sort((a, b) => Number(!a.hardCompatible) - Number(!b.hardCompatible) || a.affinityDistance - b.affinityDistance || a.score.total - b.score.total || a.tie - b.tie);
   const pageSize = Math.max(1, Math.min(8, Math.floor(Number(limit) || 8))); const pageOffset = Math.max(0, Math.floor(Number(offset) || 0));
-  return sealPreview({ status: 'success', sourceGenerationPreviewId: generationPreview.previewId, mealOccurrenceId, calendarDayId: sourceDay.calendarDayId, mealLabel: mealClass.name, currentMealNutrition, query, offset: pageOffset, limit: pageSize, total: ranked.length, hasMore: pageOffset + pageSize < ranked.length, rejectionCounts, retrieval: candidateService.lastDiagnostics, candidates: ranked.slice(pageOffset, pageOffset + pageSize).map(({ tie, ...item }) => clone(item)) }, sourceState.contextHash, repo, 'generation_replacement');
+  return sealPreview({ status: 'success', sourceGenerationPreviewId: generationPreview.previewId, mealOccurrenceId, calendarDayId: sourceDay.calendarDayId, mealLabel: mealClass.name, currentMealNutrition, query, includeIncompatible, offset: pageOffset, limit: pageSize, total: ranked.length, hasMore: pageOffset + pageSize < ranked.length, rejectionCounts, retrieval: candidateService.lastDiagnostics, candidates: ranked.slice(pageOffset, pageOffset + pageSize).map(({ tie, ...item }) => clone(item)) }, sourceState.contextHash, repo, 'generation_replacement');
 }
 
 export async function applyGenerationReplacementPreview({ generationPreview, replacementPreview, choiceId }, { repo = repositories, registry } = {}) {
@@ -261,6 +273,7 @@ export async function applyGenerationReplacementPreview({ generationPreview, rep
   return withValidatedPreview(replacementPreview, { repo, kind: 'generation_replacement', choice: choiceId }, async () => {
     const sourceState = await validatedPreviewSnapshot(generationPreview, { repo, kind: 'generation' }); const source = sourceState.preview;
     const selected = replacementPreview.candidates.find(item => item.choiceId === choiceId); if (!selected) throw new Error('Replacement candidate not found');
+    if (selected.hardCompatible === false) throw new Error('This alternative is shown for comparison but violates hard constraints and cannot be applied directly');
     const next = clone(source); const day = next.calendarDays.find(item => item.calendarDayId === replacementPreview.calendarDayId); const slot = day?.mealSlots.find(item => item.mealOccurrenceId === replacementPreview.mealOccurrenceId);
     if (!day || !slot) throw new Error('Plan preview changed after replacement search'); slot.recipeComponents = clone(selected.components);
     const bundle = await loadConfigurationBundle(repo); assertConfigurationBundle(bundle, registry); const active = activeRecords(bundle);

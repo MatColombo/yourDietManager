@@ -969,5 +969,19 @@
   "plan.structure.success": "Calendario del piano aggiornato.",
   "plan.operation.calendar_day_add": "Aggiunta giornata",
   "plan.operation.calendar_day_modify": "Modifica giornata",
-  "plan.operation.calendar_day_remove": "Rimozione giornata"
+  "plan.operation.calendar_day_remove": "Rimozione giornata",
+  "plan.structure.insertPreview": "Inserisci giornata qui e sposta le successive",
+  "plan.structure.removeShiftPreview": "Elimina giornata e anticipa le successive",
+  "plan.structure.shiftSummary": "Questa operazione sposterà {count} giornate successive di {direction} giorno.",
+  "plan.structure.action.insert": "Inserimento con scorrimento",
+  "plan.structure.action.remove_shift": "Rimozione con scorrimento",
+  "plan.operation.calendar_day_insert": "Inserimento giornata con scorrimento",
+  "plan.operation.calendar_day_remove_shift": "Rimozione giornata con scorrimento",
+  "catalog.substitution.applyTemporary": "Applica temporaneamente",
+  "catalog.substitution.temporaryApplied": "Sostituzione applicata solo a questa visualizzazione.",
+  "catalog.substitution.saveVersion": "Crea nuova versione",
+  "catalog.substitution.newNamePrompt": "Nome della nuova versione della ricetta",
+  "catalog.substitution.newNameRequired": "Inserisci un nome per creare la nuova versione.",
+  "catalog.substitution.temporaryBanner": "Variante temporanea: questa sostituzione non è salvata nel catalogo.",
+  "catalog.substitution.resetTemporary": "Ripristina ricetta originale"
 }

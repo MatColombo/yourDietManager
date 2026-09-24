@@ -104,21 +104,56 @@ function nutritionDeltaSummary(state, delta = {}) {
   return `${value(delta.energyKcal, ' kcal')} · P ${value(delta.proteinG, ' g')} · C ${value(delta.carbsG, ' g')} · F ${value(delta.fatG, ' g')} · ${t(state, 'nutrient.fiber')} ${value(delta.fiberG, ' g')}`;
 }
 
+
+function hardViolationDetail(state, violation) {
+  const it = state.i18n.locale === 'it';
+  const code = String(violation?.code || 'hard_constraint');
+  if (code === 'daily_energy_tolerance' && violation.energy) {
+    const e = violation.energy;
+    const over = e.budgetedTotalKcal < e.dailyMinKcal ? e.budgetedTotalKcal - e.dailyMinKcal : e.budgetedTotalKcal > e.dailyMaxKcal ? e.budgetedTotalKcal - e.dailyMaxKcal : 0;
+    return `${it ? 'Energia giornaliera' : 'Daily energy'}: ${Math.round(e.budgetedTotalKcal)} kcal (${it ? 'ammesso' : 'allowed'} ${Math.round(e.dailyMinKcal)}–${Math.round(e.dailyMaxKcal)}; ${over > 0 ? '+' : ''}${Math.round(over)} kcal)`;
+  }
+  if (code === 'frequency_window' && violation.window) {
+    const w = violation.window;
+    const bounds = [w.min != null ? `min ${w.min}` : null, w.max != null ? `max ${w.max}` : null].filter(Boolean).join(', ');
+    return `${it ? 'Frequenza' : 'Frequency'} ${violation.ruleId || w.ruleId || ''}: ${w.count} (${bounds || '—'})`;
+  }
+  if (code.startsWith('meal_rule:require:')) return `${it ? 'Requisito MealClass non soddisfatto' : 'MealClass requirement not met'}: ${code.slice('meal_rule:require:'.length)}`;
+  if (code.startsWith('meal_rule:')) return `${it ? 'Regola MealClass violata' : 'MealClass rule violated'}: ${code.slice('meal_rule:'.length)}`;
+  if (code.startsWith('capability:')) return `${it ? 'Capacità della giornata' : 'Day capability'}: ${code.slice('capability:'.length)}`;
+  if (code.startsWith('never:')) return `${it ? 'Frequenza vietata' : 'Forbidden frequency'}: ${code.slice('never:'.length)}`;
+  if (code.startsWith('auto_exclude:')) return `${it ? 'Esclusione automatica' : 'Automatic exclusion'}: ${code.slice('auto_exclude:'.length)}`;
+  if (code.startsWith('safety:') || code.startsWith('safety_unverified:')) return `${it ? 'Sicurezza/allergeni' : 'Safety/allergens'}: ${code}`;
+  if (code.startsWith('tuning:')) return `${it ? 'Vincolo temporaneo' : 'Temporary constraint'}: ${code}`;
+  return code.replaceAll('_', ' ');
+}
+
 function generationReplacementCard(state, generationPreview, preview, dialog) {
   const it = state.i18n.locale === 'it'; const card = element('section', { className: 'plan-action-card plan-action-card--accent', 'data-testid': 'generation-replacement-preview' });
   const close = () => { try { dialog.close(); } catch {} dialog.remove(); };
   const query = element('input', { type: 'search', value: preview.query || '', placeholder: it ? 'Titolo o ingrediente' : 'Title or ingredient' });
+  const showIncompatible = check(it ? 'Mostra anche ricette che violano vincoli hard' : 'Also show recipes that violate hard constraints', Boolean(preview.includeIncompatible));
   const reload = async offset => {
-    const next = await createGenerationReplacementPreview({ generationPreview, mealOccurrenceId: preview.mealOccurrenceId, query: query.value.trim(), offset, limit: preview.limit, seed: `preview-replace-${generationPreview.generationRun?.seed || 'seed'}` }, { repo: state.repo, registry: state.registry });
+    const next = await createGenerationReplacementPreview({ generationPreview, mealOccurrenceId: preview.mealOccurrenceId, query: query.value.trim(), includeIncompatible: showIncompatible.querySelector('input').checked, offset, limit: preview.limit, seed: `preview-replace-${generationPreview.generationRun?.seed || 'seed'}` }, { repo: state.repo, registry: state.registry });
     card.replaceWith(generationReplacementCard(state, generationPreview, next, dialog));
   };
   card.append(element('div', { className: 'section-heading' }, [element('div', {}, [element('h2', { text: `${t(state, 'plan.replace.previewTitle')} · ${preview.mealLabel}` }), element('p', { className: 'muted', text: t(state, 'plan.replace.nutritionBody') })]), element('button', { type: 'button', className: 'button button--secondary button--small', text: t(state, 'common.cancel'), onClick: close })]));
-  card.append(element('div', { className: 'form-grid form-grid--2' }, [field(it ? 'Cerca' : 'Search', query), element('button', { type: 'button', className: 'button button--secondary', text: it ? 'Cerca alternative' : 'Search alternatives', onClick: () => void reload(0) })]));
+  card.append(element('div', { className: 'form-grid form-grid--2' }, [field(it ? 'Cerca' : 'Search', query), showIncompatible]), element('button', { type: 'button', className: 'button button--secondary', text: it ? 'Cerca alternative' : 'Search alternatives', onClick: () => void reload(0) }));
   const list = element('div', { className: 'replacement-list' });
   for (const item of preview.candidates) {
-    const article = element('article', { className: 'replacement-card' });
-    article.append(element('div', {}, [element('strong', { text: localeTitle(state, item.recipe) }), recipePills(state, item.recipe), element('p', { className: 'muted', text: `${t(state, 'plan.replace.affinity')}: ${item.affinityScore}%` }), element('p', { text: nutritionDeltaSummary(state, item.nutritionDelta) }), frequencySummary(state, item.score.frequencies)]));
-    article.append(element('button', { type: 'button', className: 'button button--small', 'data-testid': 'generation-replacement-apply', text: t(state, 'plan.replace.useAlternative'), onClick: async event => {
+    const article = element('article', { className: `replacement-card${item.hardCompatible === false ? ' replacement-card--incompatible' : ''}` });
+    const violations = item.hardViolations || [];
+    article.append(element('div', {}, [
+      element('strong', { text: localeTitle(state, item.recipe) }), recipePills(state, item.recipe),
+      element('p', { className: 'muted', text: `${t(state, 'plan.replace.affinity')}: ${item.affinityScore}%` }),
+      element('p', { text: nutritionDeltaSummary(state, item.nutritionDelta) }),
+      item.hardCompatible === false ? element('div', { className: item.safetyBlocked ? 'validation-box validation-box--error' : 'validation-box validation-box--warning', 'data-testid': 'generation-replacement-hard-warning' }, [
+        element('strong', { text: item.safetyBlocked ? (it ? 'Non compatibile per sicurezza' : 'Safety incompatible') : (it ? 'Viola vincoli hard' : 'Violates hard constraints') }),
+        ...violations.map(violation => element('span', { text: hardViolationDetail(state, violation) }))
+      ]) : element('p', { className: 'validation-box', text: it ? 'Compatibile con i vincoli hard.' : 'Hard-constraint compatible.' }),
+      frequencySummary(state, item.score.frequencies)
+    ]));
+    article.append(element('button', { type: 'button', className: 'button button--small', disabled: item.hardCompatible === false, 'data-testid': 'generation-replacement-apply', text: item.hardCompatible === false ? (it ? 'Solo confronto' : 'Comparison only') : t(state, 'plan.replace.useAlternative'), onClick: async event => {
       const button = event.currentTarget; button.disabled = true; card.setAttribute('aria-busy', 'true');
       try {
         const next = await applyGenerationReplacementPreview({ generationPreview, replacementPreview: preview, choiceId: item.choiceId }, { repo: state.repo, registry: state.registry });
@@ -538,10 +573,21 @@ function calendarStructureEditor(state, { day = null, date, planInstanceId }) {
     disabled: !choices.length,
     onClick: event => void requestCalendarStructurePreview(state, { planInstanceId, date, action: day ? 'modify' : 'add', dayClassId: select.value, seed: seedValue('calendar-structure', date) }, event.currentTarget)
   }));
-  if (day) actions.append(element('button', {
-    type: 'button', className: 'button button--danger', 'data-testid': 'calendar-day-remove-preview', text: t(state, 'plan.structure.removePreview'),
-    onClick: event => void requestCalendarStructurePreview(state, { planInstanceId, date, action: 'remove' }, event.currentTarget)
-  }));
+  if (day) {
+    actions.append(element('button', {
+      type: 'button', className: 'button button--secondary', 'data-testid': 'calendar-day-insert-preview', text: t(state, 'plan.structure.insertPreview'),
+      disabled: !choices.length,
+      onClick: event => void requestCalendarStructurePreview(state, { planInstanceId, date, action: 'insert', dayClassId: select.value, seed: seedValue('calendar-insert', date) }, event.currentTarget)
+    }));
+    actions.append(element('button', {
+      type: 'button', className: 'button button--danger', 'data-testid': 'calendar-day-remove-shift-preview', text: t(state, 'plan.structure.removeShiftPreview'),
+      onClick: event => void requestCalendarStructurePreview(state, { planInstanceId, date, action: 'remove_shift' }, event.currentTarget)
+    }));
+    actions.append(element('button', {
+      type: 'button', className: 'button button--danger', 'data-testid': 'calendar-day-remove-preview', text: t(state, 'plan.structure.removePreview'),
+      onClick: event => void requestCalendarStructurePreview(state, { planInstanceId, date, action: 'remove' }, event.currentTarget)
+    }));
+  }
   card.append(actions);
   return card;
 }
@@ -555,10 +601,11 @@ function calendarStructurePreviewCard(state, preview) {
   ]));
   if (preview.proposedDay) card.append(previewDays(state, preview));
   else card.append(element('div', { className: 'validation-box validation-box--warning', text: t(state, 'plan.structure.removeSummary', { meals: preview.summary.sourceMealCount }) }));
+  if (preview.summary.shiftedDayCount) card.append(element('div', { className: 'validation-box validation-box--warning', 'data-testid': 'calendar-shift-summary', text: t(state, 'plan.structure.shiftSummary', { count: preview.summary.shiftedDayCount, direction: preview.action === 'insert' ? '+1' : '-1' }) }));
   card.append(element('p', { className: 'muted', text: t(state, 'plan.structure.horizonSummary', { start: preview.planAfter.startDate, end: preview.planAfter.endDate }) }));
   if (preview.spillovers?.affectedCivilDates?.length) card.append(element('div', { className: 'validation-box', 'data-testid': 'calendar-spillover-summary', text: t(state, 'plan.structure.overflowSummary', { removed: preview.summary.removedSpillovers, added: preview.summary.addedSpillovers, dates: preview.spillovers.affectedCivilDates.join(', ') }) }));
   card.append(element('button', {
-    type: 'button', className: preview.action === 'remove' ? 'button button--danger' : 'button', 'data-testid': 'calendar-structure-confirm', text: t(state, 'plan.structure.confirm'),
+    type: 'button', className: ['remove', 'remove_shift'].includes(preview.action) ? 'button button--danger' : 'button', 'data-testid': 'calendar-structure-confirm', text: t(state, 'plan.structure.confirm'),
     onClick: async event => {
       const button = event.currentTarget; button.disabled = true;
       try {
@@ -566,7 +613,7 @@ function calendarStructurePreviewCard(state, preview) {
         state.planUi.calendarStructurePreview = null;
         state.planUi.replacementMessage = t(state, 'plan.structure.success');
         state.planUi.replacementUndoOperationId = committed.operation.operationId;
-        if (preview.action === 'remove') nav(state, `/calendar?month=${preview.date.slice(0, 7)}`); else state.render();
+        if (['remove', 'remove_shift'].includes(preview.action)) nav(state, `/calendar?month=${preview.date.slice(0, 7)}`); else state.render();
       } catch (error) { state.notify?.('error', error.message || String(error), { timeoutMs: 0 }); button.disabled = false; }
     }
   }));

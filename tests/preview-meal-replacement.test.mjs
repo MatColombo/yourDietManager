@@ -26,3 +26,19 @@ test('Feature 7 — generated-plan meal alternatives are ranked by nutrition and
   const committed = await commitGeneratedPreview(updated, deps);
   assert.equal(committed.planInstance.planInstanceId, updated.planInstance.planInstanceId);
 });
+
+
+test('Replacement preview can show hard-incompatible recipes for comparison with quantified warnings', async () => {
+  const deps = await plannerFixture();
+  const original = await createPlanPreview({ horizon: { startDate: '2026-09-23', endDate: '2026-09-23' }, seed: 'feature-7-hard-compare' }, deps);
+  assert.equal(original.status, 'success');
+  const dinner = original.calendarDays[0].mealSlots.find(slot => slot.mealClassId === 'mc-dinner');
+  const alternatives = await createGenerationReplacementPreview({ generationPreview: original, mealOccurrenceId: dinner.mealOccurrenceId, query: 'fish', includeIncompatible: true, seed: 'feature-7-hard-compare-search' }, deps);
+  assert.equal(alternatives.status, 'success');
+  const fish = alternatives.candidates.find(item => item.recipe.recipeVersionId === 'rv_fish');
+  assert.ok(fish);
+  assert.equal(fish.hardCompatible, false);
+  assert.equal(fish.safetyBlocked, true);
+  assert.ok(fish.hardViolations.some(v => String(v.code).startsWith('safety:')));
+  await assert.rejects(applyGenerationReplacementPreview({ generationPreview: original, replacementPreview: alternatives, choiceId: fish.choiceId }, deps), /violates hard constraints/i);
+});

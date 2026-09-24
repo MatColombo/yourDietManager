@@ -1,26 +1,36 @@
-Feature 8 incremental patch
-Baseline: project state after Feature 6 / Feature 4+5+7+1+2+3 stack
+Post-Feature 8 corrections patch
+Baseline: state after yourDietManager-feature-8-patch.zip
 
-Files added or replaced:
-- FEATURE_8_IMPLEMENTATION_REPORT.md
-- NEXT_FEATURE_ASSESSMENT.md
-- dist/data/locales/en.json
-- dist/data/locales/it.json
-- dist/service-worker.js
-- dist/src/services/calendarPlanEditorService.js
-- dist/src/styles.css
-- dist/src/ui/planPages.js
-- package.json
-- public/data/locales/en.json
-- public/data/locales/it.json
-- public/service-worker.js
-- specs/OPERATIONS_HISTORY_SPEC.md
-- src/services/calendarPlanEditorService.js
-- src/styles.css
-- src/ui/planPages.js
-- tests/calendar-structural-edit.test.mjs
-
-Files removed:
-- none
-
-Changed/added file count: 17
+Files:
+POST_FEATURE8_CORRECTIONS_REPORT.md
+package.json
+public/service-worker.js
+tests/nutritional-affinity.test.mjs
+tests/calendar-structural-edit.test.mjs
+tests/preview-meal-replacement.test.mjs
+tests/planner-variety-ingredient.test.mjs
+dist/service-worker.js
+src/styles.css
+src/ui/planPages.js
+src/ui/catalogPages.js
+src/services/calendarPlanEditorService.js
+src/services/nutritionalAffinityService.js
+src/services/effectivePlanService.js
+src/planner/beamSolver.js
+src/planner/recipeFeatures.js
+src/planner/softScoring.js
+src/planner/varietyPolicy.js
+dist/src/styles.css
+dist/src/ui/planPages.js
+dist/src/ui/catalogPages.js
+dist/src/services/calendarPlanEditorService.js
+dist/src/services/nutritionalAffinityService.js
+dist/src/services/effectivePlanService.js
+dist/src/planner/beamSolver.js
+dist/src/planner/recipeFeatures.js
+dist/src/planner/softScoring.js
+dist/src/planner/varietyPolicy.js
+dist/data/locales/it.json
+dist/data/locales/en.json
+public/data/locales/it.json
+public/data/locales/en.json

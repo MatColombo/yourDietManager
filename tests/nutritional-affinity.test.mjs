@@ -50,7 +50,8 @@ test('Feature 5 — recipe substitution preview proposes amount, delta and saves
   assert.ok(candidate.score > 0);
   assert.ok(candidate.proposedLine.amount > 0);
   assert.ok(Math.abs(candidate.recipeDelta.energyKcal) <= 2);
-  const saved = await applyIngredientSubstitution({ recipeId: recipe.recipeId, recipeVersionId: recipe.recipeVersionId, lineIndex: 1, candidateIngredientRevisionId: candidate.ingredient.ingredientRevisionId }, { repo, registry });
+  await assert.rejects(applyIngredientSubstitution({ recipeId: recipe.recipeId, recipeVersionId: recipe.recipeVersionId, lineIndex: 1, candidateIngredientRevisionId: candidate.ingredient.ingredientRevisionId }, { repo, registry }), /new recipe name/i);
+  const saved = await applyIngredientSubstitution({ recipeId: recipe.recipeId, recipeVersionId: recipe.recipeVersionId, lineIndex: 1, candidateIngredientRevisionId: candidate.ingredient.ingredientRevisionId, newName: 'Albicocche con semi', locale: 'it' }, { repo, registry });
   assert.equal(saved.version.versionNumber, recipe.versionNumber + 1);
   assert.equal(saved.version.supersedesVersionId, recipe.recipeVersionId);
   assert.equal(saved.version.ingredientLines[1].ingredientRevisionId, candidate.ingredient.ingredientRevisionId);

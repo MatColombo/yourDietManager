@@ -114,8 +114,42 @@ test('Feature 8 — calendar UI exposes add/modify/remove, overflow context and 
   assert.match(ui, /calendar-day-add-preview/);
   assert.match(ui, /calendar-day-modify-preview/);
   assert.match(ui, /calendar-day-remove-preview/);
+  assert.match(ui, /calendar-day-insert-preview/);
+  assert.match(ui, /calendar-day-remove-shift-preview/);
   assert.match(ui, /incoming-spillovers/);
   assert.equal(it['plan.operation.calendar_day_add'], 'Aggiunta giornata');
   assert.equal(it['plan.operation.calendar_day_modify'], 'Modifica giornata');
   assert.equal(it['plan.operation.calendar_day_remove'], 'Rimozione giornata');
+});
+
+
+async function activeThreeDayFixture() {
+  const deps = await plannerFixture();
+  const preview = await createPlanPreview({ horizon: { startDate: '2026-09-23', endDate: '2026-09-25' }, seed: 'feature-8-splice-base' }, deps);
+  assert.equal(preview.status, 'success');
+  await commitGeneratedPreview(preview, deps);
+  return { ...deps, planId: preview.planInstance.planInstanceId, originalDays: preview.calendarDays };
+}
+
+test('Calendar splice insert/remove shifts following generated days and preserves logical day ownership', async () => {
+  const deps = await activeThreeDayFixture();
+  const original24 = deps.originalDays.find(day => day.date === '2026-09-24');
+  const original25 = deps.originalDays.find(day => day.date === '2026-09-25');
+  const insert = await createCalendarStructurePreview({ planInstanceId: deps.planId, date: '2026-09-24', action: 'insert', dayClassId: 'dc-day', seed: 'feature-8-splice-insert', createdAt: '2026-09-23T16:00:00.000Z' }, deps);
+  assert.equal(insert.summary.shiftedDayCount, 2);
+  assert.equal(insert.planAfter.endDate, '2026-09-26');
+  await commitCalendarStructurePreview(insert, deps);
+  assert.equal((await deps.repo.get('calendarDays', original24.calendarDayId)).date, '2026-09-25');
+  assert.equal((await deps.repo.get('calendarDays', original25.calendarDayId)).date, '2026-09-26');
+  const insertedDay = (await deps.repo.getAllByIndex('calendarDays', 'date', { kind: 'only', value: '2026-09-24' })).find(day => day.planInstanceId === deps.planId);
+  assert.ok(insertedDay);
+  assert.notEqual(insertedDay.calendarDayId, original24.calendarDayId);
+
+  const remove = await createCalendarStructurePreview({ planInstanceId: deps.planId, date: '2026-09-24', action: 'remove_shift', createdAt: '2026-09-23T16:30:00.000Z' }, deps);
+  assert.equal(remove.summary.shiftedDayCount, 2);
+  assert.equal(remove.planAfter.endDate, '2026-09-25');
+  await commitCalendarStructurePreview(remove, deps);
+  assert.equal(await deps.repo.get('calendarDays', insertedDay.calendarDayId), undefined);
+  assert.equal((await deps.repo.get('calendarDays', original24.calendarDayId)).date, '2026-09-24');
+  assert.equal((await deps.repo.get('calendarDays', original25.calendarDayId)).date, '2026-09-25');
 });
