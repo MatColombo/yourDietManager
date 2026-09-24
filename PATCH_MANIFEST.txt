@@ -1,36 +1,40 @@
-Post-Feature 8 corrections patch
-Baseline: state after yourDietManager-feature-8-patch.zip
+YourDietManager incremental patch
+Baseline: state after configuration-export-completeness patch
+Purpose: meal/ingredient substitution bugfixes, calendar splice UX/frequency warning, full time audit, meat/international/Fusion expansion
 
-Files:
-POST_FEATURE8_CORRECTIONS_REPORT.md
-package.json
-public/service-worker.js
-tests/nutritional-affinity.test.mjs
-tests/calendar-structural-edit.test.mjs
-tests/preview-meal-replacement.test.mjs
-tests/planner-variety-ingredient.test.mjs
-dist/service-worker.js
-src/styles.css
-src/ui/planPages.js
-src/ui/catalogPages.js
-src/services/calendarPlanEditorService.js
-src/services/nutritionalAffinityService.js
-src/services/effectivePlanService.js
-src/planner/beamSolver.js
-src/planner/recipeFeatures.js
-src/planner/softScoring.js
-src/planner/varietyPolicy.js
-dist/src/styles.css
-dist/src/ui/planPages.js
-dist/src/ui/catalogPages.js
-dist/src/services/calendarPlanEditorService.js
-dist/src/services/nutritionalAffinityService.js
-dist/src/services/effectivePlanService.js
-dist/src/planner/beamSolver.js
-dist/src/planner/recipeFeatures.js
-dist/src/planner/softScoring.js
-dist/src/planner/varietyPolicy.js
-dist/data/locales/it.json
-dist/data/locales/en.json
-public/data/locales/it.json
-public/data/locales/en.json
+Apply: extract this archive over the repository root, preserving paths.
+
+Added files: 6
+  + BUGFIX_TIMES_CATALOG_EXPANSION_REPORT.md
+  + catalog-source/010-complete-recipe-time-audit.json
+  + catalog-source/011-global-cuisine-technique-expansion.json
+  + scripts/catalog/generate-time-and-global-expansion.py
+  + tests/catalog-global-expansion.test.mjs
+  + tests/post-feature8-regressions.test.mjs
+
+Modified files: 23
+  * catalog-source/README.md
+  * dist/data/catalog.json
+  * dist/data/locales/en.json
+  * dist/data/locales/it.json
+  * dist/service-worker.js
+  * dist/src/services/calendarPlanEditorService.js
+  * dist/src/services/nutritionalAffinityService.js
+  * dist/src/ui/configurationPages.js
+  * dist/src/ui/planPages.js
+  * package.json
+  * public/data/catalog.json
+  * public/data/locales/en.json
+  * public/data/locales/it.json
+  * public/service-worker.js
+  * src/services/calendarPlanEditorService.js
+  * src/services/nutritionalAffinityService.js
+  * src/ui/configurationPages.js
+  * src/ui/planPages.js
+  * tests/balanced-recipes-500.test.mjs
+  * tests/breakfast-flavor-classification.test.mjs
+  * tests/calendar-structural-edit.test.mjs
+  * tests/catalog-taxonomy-alignment.test.mjs
+  * tests/nutritional-affinity.test.mjs
+
+Deleted files: 0

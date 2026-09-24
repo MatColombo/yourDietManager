@@ -72,7 +72,12 @@ Un template e semplicemente JSON precompilato che crea DayClass/MealClass/Cycle 
 
 ## 6. Import/export configurazione
 
-Consentire export della sola configurazione separato dal backup completo. Questo permette di condividere un setup di ciclo/tema senza condividere storico, allergie o dati personali non desiderati.
+L'export configurazione e separato dal backup completo dell'applicazione e ha due modalita esplicite:
+
+- **configurazione completa** (predefinita): include l'intero `AppConfig`, profilo nutrizionale, allergie/intolleranze, preferenze, tema, MealClass, DayClass, Cycle, tutti i FoodGroup configurabili e la dichiarazione di stato del profilo di sicurezza. Non include piani, storico operativo, checklist, catalogo ricette/ingredienti o altre estensioni prodotto;
+- **solo struttura condivisibile**: mantiene il preset storico per condividere ciclo/tema/MealClass/DayClass senza profilo nutrizionale, sicurezza, preferenze, fuso orario o moltiplicatore persone.
+
+L'interfaccia deve presentare la configurazione completa come azione primaria, per evitare che il preset strutturale venga scambiato per un backup della configurazione personale. Gli import `formatVersion: 1` restano supportati; gli export nuovi usano `formatVersion: 2` e includono FoodGroup e dichiarazione profilo nel documento completo.
 
 ## 7. Persistenza, validazione e atomicita
 

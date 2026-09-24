@@ -35,7 +35,7 @@ test('quick snack preset has a useful pool and excludes the chicken-heart skewer
   const rules = [
     { ruleType: 'tag', target: 'practical_quick', strength: 'require' },
     { ruleType: 'tag', target: 'practical_no_cook', strength: 'require' },
-    { ruleType: 'practical', target: 'prepMinutes', operator: 'lte', value: 6, strength: 'require' },
+    { ruleType: 'practical', target: 'prepMinutes', operator: 'lte', value: 10, strength: 'require' },
     { ruleType: 'practical', target: 'cookMinutes', operator: 'eq', value: 0, strength: 'require' },
     { ruleType: 'nutrition', target: 'energyKcal', operator: 'lte', value: 350, strength: 'require' }
   ];
@@ -43,7 +43,7 @@ test('quick snack preset has a useful pool and excludes the chicken-heart skewer
   assert.ok(eligible.length >= 40, `quick snack preset leaves too few recipes: ${eligible.length}`);
   const skewer = snacks.find(recipe => recipe.recipeId === 'recipe_r2_snack_spiedino_cuori_pollo_pomodoro');
   assert.ok(skewer, 'expected chicken-heart skewer fixture');
-  assert.equal(skewer.practical.cookMinutes, 3);
+  assert.ok(skewer.practical.cookMinutes > 0);
   assert.equal(rules.every(rule => mealRuleSatisfied(skewer, rule, new Map())), false);
   assert.ok(!eligible.some(recipe => recipe.recipeId === skewer.recipeId));
 });

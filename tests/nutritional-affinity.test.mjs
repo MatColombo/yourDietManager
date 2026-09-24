@@ -48,6 +48,8 @@ test('Feature 5 — recipe substitution preview proposes amount, delta and saves
   assert.ok(preview.candidates.length >= 3);
   const candidate = preview.candidates[0];
   assert.ok(candidate.score > 0);
+  assert.ok(Number.isFinite(candidate.affinityScore), 'UI affinityScore must be numeric');
+  assert.equal(candidate.affinityScore, candidate.score);
   assert.ok(candidate.proposedLine.amount > 0);
   assert.ok(Math.abs(candidate.recipeDelta.energyKcal) <= 2);
   await assert.rejects(applyIngredientSubstitution({ recipeId: recipe.recipeId, recipeVersionId: recipe.recipeVersionId, lineIndex: 1, candidateIngredientRevisionId: candidate.ingredient.ingredientRevisionId }, { repo, registry }), /new recipe name/i);

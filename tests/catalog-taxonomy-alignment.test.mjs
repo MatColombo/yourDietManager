@@ -37,8 +37,8 @@ function assertRefs(terms, owner, field, taxonomyType, { nonEmpty = true } = {})
 
 test('complete taxonomy alignment covers every active ingredient and recipe', () => {
   const { terms, ingredients, recipes } = loadResolvedCatalog();
-  assert.equal(ingredients.size, 282);
-  assert.equal(recipes.size, 1030);
+  assert.equal(ingredients.size, 295);
+  assert.equal(recipes.size, 1260);
 
   for (const ingredient of ingredients.values()) {
     const product = terms.get(ingredient.productId);
@@ -110,7 +110,7 @@ test('known semantic category corrections stay canonical', () => {
 
 test('compiled ingredient revisions preserve authored culinary-role taxonomy', () => {
   const catalog = JSON.parse(fs.readFileSync(path.join(ROOT, 'public', 'data', 'catalog.json'), 'utf8'));
-  assert.equal(catalog.ingredientRevisions.length, 282);
+  assert.equal(catalog.ingredientRevisions.length, 295);
   for (const revision of catalog.ingredientRevisions) {
     assert.ok(Array.isArray(revision.taxonomy?.culinaryRoles) && revision.taxonomy.culinaryRoles.length > 0, `${revision.ingredientRevisionId} lost culinaryRoles during compilation`);
     for (const roleId of revision.taxonomy.culinaryRoles) {

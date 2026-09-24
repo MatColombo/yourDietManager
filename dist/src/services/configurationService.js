@@ -3,6 +3,7 @@ import { currentFoodGroups } from './revisionV2Service.js';
 import { repositories } from '../repositories/repositoryHub.js';
 import { DAY_ARCHETYPES, MEAL_RULE_TARGET_REGISTRY, NUTRIENT_KEYS } from '../domain/configurationRules.js';
 import { loadReferenceDataIndex, assertSemanticReferences } from './referenceDataService.js';
+import { assertFoodGroup } from '../domain/ingredientIdentity.js';
 
 export const CONFIG_COLLECTIONS = Object.freeze({
   nutritionProfiles: 'nutritionProfile',
@@ -159,14 +160,23 @@ export function assertConfigurationBundle(bundle, registry) {
   return result;
 }
 
-export async function saveConfigurationBundle(bundle, { repo = repositories, registry, meta = {} } = {}) {
+function latestFoodGroups(records = []) {
+  const latest = new Map();
+  for (const group of records) if (!latest.has(group.id) || latest.get(group.id).version < group.version) latest.set(group.id, group);
+  return [...latest.values()];
+}
+
+export async function saveConfigurationBundle(bundle, { repo = repositories, registry, meta = {}, foodGroups = null } = {}) {
   if (!registry) throw new Error('Schema registry is required');
   const clean = clone(bundle);
   assertConfigurationBundle(clean, registry);
   const referenceIndex = await loadReferenceDataIndex(repo);
-  const ingredients = await repo.getAll('ingredients'); const foodGroups = await currentFoodGroups({ repo });
-  assertSemanticReferences({ index: referenceIndex, configuration: clean, ingredientIds: ingredients.map(item => item.ingredientId), foodGroups });
-  const context = { index: referenceIndex, registry, ingredients, foodGroups, mealClasses: clean.mealClasses.filter(meal => clean.appConfig.mealClassIds.includes(meal.id)) };
+  const ingredients = await repo.getAll('ingredients');
+  const allFoodGroups = foodGroups === null ? null : clone(foodGroups);
+  if (allFoodGroups) for (const group of allFoodGroups) assertFoodGroup(group, { index: referenceIndex, ingredients, registry });
+  const activeFoodGroups = allFoodGroups ? latestFoodGroups(allFoodGroups) : await currentFoodGroups({ repo });
+  assertSemanticReferences({ index: referenceIndex, configuration: clean, ingredientIds: ingredients.map(item => item.ingredientId), foodGroups: activeFoodGroups });
+  const context = { index: referenceIndex, registry, ingredients, foodGroups: activeFoodGroups, mealClasses: clean.mealClasses.filter(meal => clean.appConfig.mealClassIds.includes(meal.id)) };
   for (const profile of clean.foodPreferences) if (profile.schemaVersion === 2) assertFoodPreferencesV2(profile, context);
   for (const profile of clean.allergyIntoleranceProfiles) if (profile.schemaVersion === 2) assertSafetyProfileV2(profile, context);
   await repo.atomicReplace({
@@ -177,7 +187,8 @@ export async function saveConfigurationBundle(bundle, { repo = repositories, reg
     themeProfiles: clean.themeProfiles || [],
     mealClasses: clean.mealClasses || [],
     dayClasses: clean.dayClasses || [],
-    cycles: clean.cycles || []
+    cycles: clean.cycles || [],
+    ...(foodGroups === null ? {} : { foodGroups: allFoodGroups })
   }, { ...meta, configurationUpdatedAt: new Date().toISOString() });
   return clean;
 }

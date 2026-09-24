@@ -153,3 +153,25 @@ test('Calendar splice insert/remove shifts following generated days and preserve
   assert.equal((await deps.repo.get('calendarDays', original24.calendarDayId)).date, '2026-09-24');
   assert.equal((await deps.repo.get('calendarDays', original25.calendarDayId)).date, '2026-09-25');
 });
+
+test('Calendar splice tolerates pre-existing frequency-window violations as explicit warnings', async () => {
+  const deps = await activeThreeDayFixture();
+  await deps.repo.put('ingredients', { ingredientId: 'ing_chicken', status: 'active' });
+  await deps.repo.put('foodPreferences', {
+    schemaVersion: 2,
+    id: 'prefs',
+    plannerPolicy: { varietyMode: 'none' },
+    legacyRules: [],
+    rules: [{
+      id: 'max-chicken-splice', enabled: true, mode: 'frequency',
+      target: { type: 'ingredient', id: 'ing_chicken' },
+      scope: { mealClassIds: ['mc-dinner'] }, countUnit: 'meal', countBasis: 'planned',
+      window: { kind: 'rolling', days: 7 }, minOccurrences: null, targetOccurrences: null, maxOccurrences: 1,
+      priority: 'normal', effectiveFrom: '2026-09-21'
+    }]
+  });
+  const preview = await createCalendarStructurePreview({ planInstanceId: deps.planId, date: '2026-09-24', action: 'remove_shift' }, deps);
+  assert.equal(preview.status, 'success');
+  assert.ok(preview.policyWarnings?.some(row => row.code === 'frequency_window'));
+  assert.ok(preview.summary.frequencyWarningCount > 0);
+});

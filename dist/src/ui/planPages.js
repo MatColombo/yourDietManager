@@ -23,6 +23,7 @@ function mealClass(state, id) { return state.configuration?.mealClasses?.find(it
 function localDateLabel(state, date) { try { return new Intl.DateTimeFormat(state.i18n.locale, { dateStyle: 'medium', timeZone: 'UTC' }).format(new Date(`${date}T12:00:00Z`)); } catch { return date; } }
 function localTime(state) { const parts = new Intl.DateTimeFormat('en', { timeZone: state.config.timeZone, hour: '2-digit', minute: '2-digit', hourCycle: 'h23' }).formatToParts(new Date()); const map = Object.fromEntries(parts.filter(part => part.type !== 'literal').map(part => [part.type, part.value])); return `${map.hour}:${map.minute}`; }
 function statusBox() { const node = element('div', { 'aria-live': 'polite' }); return { node, ok(message) { node.className = 'validation-box'; node.textContent = message; }, error(error) { node.className = 'validation-box validation-box--error'; node.textContent = error?.message || String(error); } }; }
+function check(label, checked = false) { return element('label', { className: 'check-field' }, [element('input', { type: 'checkbox', checked }), element('span', { text: label })]); }
 function seedValue(prefix, date) { return `${prefix}-${date}-${Math.random().toString(36).slice(2, 8)}`; }
 
 function planFailure(state, failure) {
@@ -592,6 +593,29 @@ function calendarStructureEditor(state, { day = null, date, planInstanceId }) {
   return card;
 }
 
+function calendarTimelineQuickEditor(state, plan, days) {
+  const card = element('section', { className: 'plan-action-card calendar-timeline-quick-editor', 'data-testid': 'calendar-timeline-quick-editor' });
+  const it = state.i18n.locale === 'it';
+  const dateSelect = element('select', { 'data-testid': 'calendar-timeline-date' });
+  for (const day of days) dateSelect.append(element('option', { value: day.date, text: `${localDateLabel(state, day.date)} · ${dayClass(state, day.dayClassId)?.name || day.dayClassId}` }));
+  const dayClassSelect = element('select', { 'data-testid': 'calendar-timeline-day-class' });
+  for (const item of activeDayClasses(state)) dayClassSelect.append(element('option', { value: item.id, text: item.name || item.abbreviation || item.id }));
+  const syncDayClass = () => {
+    const selected = days.find(day => day.date === dateSelect.value);
+    if (selected && [...dayClassSelect.options].some(option => option.value === selected.dayClassId)) dayClassSelect.value = selected.dayClassId;
+  };
+  dateSelect.addEventListener('change', syncDayClass); syncDayClass();
+  card.append(
+    element('div', { className: 'section-heading' }, [element('div', {}, [element('h2', { text: t(state, 'plan.structure.timelineTitle') }), element('p', { className: 'muted', text: t(state, 'plan.structure.timelineBody') })])]),
+    element('div', { className: 'form-grid form-grid--2' }, [field(it ? 'Posizione' : 'Position', dateSelect), field(t(state, 'plan.structure.dayClass'), dayClassSelect)]),
+    element('div', { className: 'button-row' }, [
+      element('button', { type: 'button', className: 'button button--secondary', 'data-testid': 'calendar-main-insert-day', text: t(state, 'plan.structure.insertPreview'), onClick: event => void requestCalendarStructurePreview(state, { planInstanceId: plan.planInstanceId, date: dateSelect.value, action: 'insert', dayClassId: dayClassSelect.value, seed: seedValue('calendar-main-insert', dateSelect.value) }, event.currentTarget) }),
+      element('button', { type: 'button', className: 'button button--danger', 'data-testid': 'calendar-main-remove-shift', text: t(state, 'plan.structure.removeShiftPreview'), onClick: event => void requestCalendarStructurePreview(state, { planInstanceId: plan.planInstanceId, date: dateSelect.value, action: 'remove_shift' }, event.currentTarget) })
+    ])
+  );
+  return card;
+}
+
 function calendarStructurePreviewCard(state, preview) {
   const card = element('section', { className: 'plan-action-card plan-action-card--accent', 'data-testid': 'calendar-structure-preview' });
   const label = t(state, `plan.structure.action.${preview.action}`);
@@ -602,6 +626,11 @@ function calendarStructurePreviewCard(state, preview) {
   if (preview.proposedDay) card.append(previewDays(state, preview));
   else card.append(element('div', { className: 'validation-box validation-box--warning', text: t(state, 'plan.structure.removeSummary', { meals: preview.summary.sourceMealCount }) }));
   if (preview.summary.shiftedDayCount) card.append(element('div', { className: 'validation-box validation-box--warning', 'data-testid': 'calendar-shift-summary', text: t(state, 'plan.structure.shiftSummary', { count: preview.summary.shiftedDayCount, direction: preview.action === 'insert' ? '+1' : '-1' }) }));
+  if (preview.policyWarnings?.length) card.append(element('div', { className: 'validation-box validation-box--warning', 'data-testid': 'calendar-frequency-warning' }, [
+    element('strong', { text: t(state, 'plan.structure.frequencyWarningTitle') }),
+    element('span', { text: t(state, 'plan.structure.frequencyWarningBody', { count: preview.policyWarnings.length }) }),
+    ...preview.policyWarnings.slice(0, 6).map(violation => element('span', { text: hardViolationDetail(state, violation) }))
+  ]));
   card.append(element('p', { className: 'muted', text: t(state, 'plan.structure.horizonSummary', { start: preview.planAfter.startDate, end: preview.planAfter.endDate }) }));
   if (preview.spillovers?.affectedCivilDates?.length) card.append(element('div', { className: 'validation-box', 'data-testid': 'calendar-spillover-summary', text: t(state, 'plan.structure.overflowSummary', { removed: preview.summary.removedSpillovers, added: preview.summary.addedSpillovers, dates: preview.spillovers.affectedCivilDates.join(', ') }) }));
   card.append(element('button', {
@@ -648,6 +677,8 @@ async function calendarBody(state, section) {
     element('a', { href: `/calendar?month=${shiftMonth(month, 1)}`, 'data-route': '', className: 'button button--secondary button--small', text: t(state, 'common.next') }),
     element('a', { href: '/history', 'data-route': '', className: 'button button--secondary button--small', text: t(state, 'plan.history.title') })
   ]));
+  if (canEditStructure && result.days.length) section.append(calendarTimelineQuickEditor(state, latestPlan, result.days));
+  if (state.planUi.calendarStructurePreview) section.append(calendarStructurePreviewCard(state, state.planUi.calendarStructurePreview));
   const grid = element('div', { className: 'calendar-grid' });
   const weekday = [...Array(7)].map((_, i) => new Intl.DateTimeFormat(state.i18n.locale, { weekday: 'short', timeZone: 'UTC' }).format(new Date(Date.UTC(2026, 7, 3 + i))));
   weekday.forEach(name => grid.append(element('div', { className: 'calendar-weekday', text: name })));

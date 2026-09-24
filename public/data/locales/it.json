@@ -279,9 +279,9 @@
   "config.summary.hardRules": "Vincoli hard attivi",
   "config.summary.mealClasses": "Classi pasto",
   "config.timeZone": "Fuso orario IANA",
-  "config.transfer.body": "Il preset strutturale esclude profilo nutrizionale, allergie/intolleranze, preferenze, fuso orario e moltiplicatore persone; il backup completo resta separato.",
-  "config.transfer.exportFull": "Esporta configurazione completa",
-  "config.transfer.exportStructure": "Esporta struttura",
+  "config.transfer.body": "Esporta configurazione salva profilo nutrizionale, sicurezza, preferenze, tema, MealClass, DayClass, ciclo, lingua/fuso orario, unità, moltiplicatore persone, gruppi alimentari e dichiarazione profilo. Solo struttura è il preset condivisibile che esclude il profilo personale.",
+  "config.transfer.exportFull": "Esporta configurazione",
+  "config.transfer.exportStructure": "Esporta solo struttura condivisibile",
   "config.transfer.import": "Importa configurazione",
   "config.transfer.imported": "Configurazione importata e attivata.",
   "config.transfer.title": "Import/export configurazione",
@@ -983,5 +983,9 @@
   "catalog.substitution.newNamePrompt": "Nome della nuova versione della ricetta",
   "catalog.substitution.newNameRequired": "Inserisci un nome per creare la nuova versione.",
   "catalog.substitution.temporaryBanner": "Variante temporanea: questa sostituzione non è salvata nel catalogo.",
-  "catalog.substitution.resetTemporary": "Ripristina ricetta originale"
+  "catalog.substitution.resetTemporary": "Ripristina ricetta originale",
+  "plan.structure.timelineTitle": "Modifica sequenza del calendario",
+  "plan.structure.timelineBody": "Inserisci una giornata prima della data selezionata oppure elimina la giornata selezionata anticipando tutte le successive.",
+  "plan.structure.frequencyWarningTitle": "Attenzione alle frequenze",
+  "plan.structure.frequencyWarningBody": "Lo spostamento è consentito, ma il piano risultante presenta {count} finestre di frequenza fuori vincolo. La modifica è manuale: riequilibra i pasti interessati se vuoi riportare il piano entro i limiti."
 }

@@ -279,9 +279,9 @@
   "config.summary.hardRules": "Active hard constraints",
   "config.summary.mealClasses": "Meal classes",
   "config.timeZone": "IANA time zone",
-  "config.transfer.body": "The structural preset excludes nutrition, allergies/intolerances, preferences, time zone and people multiplier; full backup remains separate.",
-  "config.transfer.exportFull": "Export full configuration",
-  "config.transfer.exportStructure": "Export structure",
+  "config.transfer.body": "Export configuration saves nutrition, safety, preferences, theme, MealClass, DayClass, cycle, language/time zone, units, people multiplier, food groups, and profile declaration. Structure only is the shareable preset that excludes the personal profile.",
+  "config.transfer.exportFull": "Export configuration",
+  "config.transfer.exportStructure": "Export shareable structure only",
   "config.transfer.import": "Import configuration",
   "config.transfer.imported": "Configuration imported and activated.",
   "config.transfer.title": "Configuration import/export",
@@ -983,5 +983,9 @@
   "catalog.substitution.newNamePrompt": "Name for the new recipe version",
   "catalog.substitution.newNameRequired": "Enter a name to create the new version.",
   "catalog.substitution.temporaryBanner": "Temporary variant: this substitution is not saved to the catalog.",
-  "catalog.substitution.resetTemporary": "Restore original recipe"
+  "catalog.substitution.resetTemporary": "Restore original recipe",
+  "plan.structure.timelineTitle": "Edit calendar sequence",
+  "plan.structure.timelineBody": "Insert a day before the selected date, or remove the selected day and shift all following days earlier.",
+  "plan.structure.frequencyWarningTitle": "Frequency warning",
+  "plan.structure.frequencyWarningBody": "The timeline shift is allowed, but the resulting plan has {count} frequency windows outside configured bounds. This is a manual edit; rebalance affected meals if you want the plan back within limits."
 }

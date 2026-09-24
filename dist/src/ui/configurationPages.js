@@ -15,6 +15,8 @@ import {
 } from '../services/configurationService.js';
 import { applyTheme } from '../theme/themeEngine.js';
 import { createConfigurationExport, importConfigurationExport } from '../services/configurationTransfer.js';
+import { currentFoodGroups } from '../services/revisionV2Service.js';
+import { ingredientProjection } from '../services/ingredientConceptQuery.js';
 import { TAXONOMY_IDS, semanticReferenceDiagnostics } from '../services/referenceDataService.js';
 import { createAutocomplete, createIngredientPicker, createProductFoodPicker, genericRecipeTagChoices, ingredientChoices, taxonomyChoices } from './guidedControls.js';
 import { controlledDetails, signalDraftChange } from './uiState.js';
@@ -234,6 +236,7 @@ export function configurationIndexPage(state) {
     try {
       const saved = await importConfigurationExport(JSON.parse(await file.text()), { repo: state.repo, registry: state.registry });
       state.configuration = saved; state.config = saved.appConfig; state.theme = activeRecords(saved).themeProfile;
+      state.foodGroups = await currentFoodGroups({ repo: state.repo }); state.ingredientProjection = await ingredientProjection(state.repo);
       applyTheme(state.theme); state.i18n.setLocale(saved.appConfig.locale); document.documentElement.lang = state.i18n.locale;
       localStorage.setItem('ydm:locale-bootstrap', state.i18n.locale); state.onboardingComplete = true; state.onboardingDraft = null;
       transferStatus.className = 'validation-box'; transferStatus.textContent = state.i18n.t('config.transfer.imported'); state.notify?.('success', state.i18n.t('config.transfer.imported')); state.render({ force: true });
@@ -242,8 +245,8 @@ export function configurationIndexPage(state) {
   });
   const transfer = element('div', { className: 'transfer-panel' });
   transfer.append(subheading(state, 'config.transfer.title', 'config.transfer.body'), element('div', { className: 'button-row' }, [
-    actionButton(state, 'config.transfer.exportStructure', async () => downloadConfigurationDocument(await createConfigurationExport(state.configuration, { mode: 'structure' })), 'button button--secondary'),
-    actionButton(state, 'config.transfer.exportFull', async () => downloadConfigurationDocument(await createConfigurationExport(state.configuration, { mode: 'full' })), 'button button--secondary'),
+    actionButton(state, 'config.transfer.exportFull', async () => downloadConfigurationDocument(await createConfigurationExport(state.configuration, { mode: 'full', repo: state.repo })), 'button'),
+    actionButton(state, 'config.transfer.exportStructure', async () => downloadConfigurationDocument(await createConfigurationExport(state.configuration, { mode: 'structure', repo: state.repo })), 'button button--secondary'),
     actionButton(state, 'config.transfer.import', () => importInput.click())
   ]), importInput, transferStatus);
   section.append(transfer);
@@ -437,7 +440,7 @@ function mealPresetButtons(state, meal, rerender, editor) {
       onClick: () => apply([
         { ruleType: 'tag', target: 'practical_quick', strength: 'require' },
         { ruleType: 'tag', target: 'practical_no_cook', strength: 'require' },
-        { ruleType: 'practical', target: 'prepMinutes', operator: 'lte', value: 6, strength: 'require' },
+        { ruleType: 'practical', target: 'prepMinutes', operator: 'lte', value: 10, strength: 'require' },
         { ruleType: 'practical', target: 'cookMinutes', operator: 'eq', value: 0, strength: 'require' },
         { ruleType: 'nutrition', target: 'energyKcal', operator: 'lte', value: 350, strength: 'require' }
       ])

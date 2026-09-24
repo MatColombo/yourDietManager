@@ -11,7 +11,7 @@
     "hardening:a11y": "node scripts/hardening/a11y-audit.mjs",
     "hardening:scale": "node scripts/hardening/scale-benchmark.mjs",
     "release:gate": "node scripts/hardening/release-gate.mjs",
-    "check": "npm run catalog:check && npm run planner:interaction-test && npm run build && npm run pages:audit",
+    "check": "npm run catalog:check && npm run configuration:test && npm run planner:interaction-test && npm run build && npm run pages:audit",
     "corpus:scan": "node scripts/corpus/scan.mjs",
     "corpus:plan": "node scripts/corpus/plan.mjs",
     "corpus:smoke": "node scripts/corpus/build-phase4-smoke.mjs",
@@ -92,8 +92,9 @@
     "data-proposals:t4e-feasibility": "node scripts/data-proposals/t4e-planner-feasibility.mjs",
     "legacy:check": "npm run v1:engine-phase-a && npm run v1:planner-phase-b && npm run v1:planner-phase-c && npm run v1:planner-phase-d && npm run v1:planner-phase-d-ux && npm run v1:planner-phase-e && npm run v1:planner-phase-f && npm run v1:planner-phase-g && npm run v1:planner-phase-h && npm run v1:step2-gate && npm run planner:smoke && npm run lint && npm run test && npm run hardening:a11y && npm run hardening:forms && npm run build && npm run hardening:browser && npm run hardening:revision && npm run pages:audit",
     "catalog:compile": "node scripts/catalog/compile.mjs",
-    "catalog:test": "node --test tests/clean-catalog.test.mjs tests/breakfast-flavor-classification.test.mjs tests/base-ingredients.test.mjs tests/base-recipes.test.mjs tests/expanded-recipes-200.test.mjs tests/italian-expansion-round2.test.mjs tests/pepper-semantic-consolidation.test.mjs tests/catalog-taxonomy-alignment.test.mjs tests/balanced-recipes-500.test.mjs tests/catalog-feature-123.test.mjs tests/nutritional-affinity.test.mjs",
+    "catalog:test": "node --test tests/clean-catalog.test.mjs tests/breakfast-flavor-classification.test.mjs tests/base-ingredients.test.mjs tests/base-recipes.test.mjs tests/expanded-recipes-200.test.mjs tests/italian-expansion-round2.test.mjs tests/pepper-semantic-consolidation.test.mjs tests/catalog-taxonomy-alignment.test.mjs tests/balanced-recipes-500.test.mjs tests/catalog-feature-123.test.mjs tests/nutritional-affinity.test.mjs tests/catalog-global-expansion.test.mjs",
     "catalog:check": "npm run catalog:compile && npm run catalog:test && npm run lint",
-    "planner:interaction-test": "node --test tests/planner-interruptible-search.test.mjs tests/planner-variety-policy.test.mjs tests/planner-variety-ingredient.test.mjs tests/planner-seed-diversity.test.mjs tests/preferences-ux-contract.test.mjs tests/preview-meal-replacement.test.mjs tests/plan-ingredient-substitution.test.mjs tests/generation-tuning.test.mjs tests/calendar-structural-edit.test.mjs && node --test tests/planner-frequency-cap-headroom.test.mjs"
+    "planner:interaction-test": "node --test tests/planner-interruptible-search.test.mjs tests/planner-variety-policy.test.mjs tests/planner-variety-ingredient.test.mjs tests/planner-seed-diversity.test.mjs tests/preferences-ux-contract.test.mjs tests/preview-meal-replacement.test.mjs tests/plan-ingredient-substitution.test.mjs tests/generation-tuning.test.mjs tests/calendar-structural-edit.test.mjs tests/post-feature8-regressions.test.mjs && node --test tests/planner-frequency-cap-headroom.test.mjs",
+    "configuration:test": "node --test tests/configuration-transfer-completeness.test.mjs"
   }
 }

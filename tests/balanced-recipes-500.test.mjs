@@ -71,10 +71,10 @@ test('balanced 500 expansion deliberately covers ingredients that were previousl
   assert.ok(used.size >= 220, `expected broad ingredient coverage, got ${used.size}`);
 });
 
-test('compiled catalog contains the complete 1030-recipe corpus and new recipes have nutrition', () => {
+test('compiled catalog contains the complete expanded recipe corpus and new recipes have nutrition', () => {
   const catalog = JSON.parse(fs.readFileSync(path.join(ROOT, 'public', 'data', 'catalog.json'), 'utf8'));
-  assert.equal(catalog.recipes.length, 1030);
-  assert.equal(catalog.recipeVersions.length, 1030);
+  assert.equal(catalog.recipes.length, 1260);
+  assert.equal(catalog.recipeVersions.length, 1260);
   const generated = catalog.recipeVersions.filter((recipe) => recipe.recipeVersionId.startsWith('recipe_balanced500_'));
   assert.equal(generated.length, 500);
   for (const recipe of generated) {

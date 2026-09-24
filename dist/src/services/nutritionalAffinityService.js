@@ -138,6 +138,7 @@ export async function suggestIngredientSubstitutions({ recipeVersionId, lineInde
     ranked.push({
       ingredient: revision,
       ...affinity,
+      affinityScore: affinity.score,
       recipeNutrition: nextNutrition,
       recipeDelta: nutritionDelta(nextNutrition, originalNutrition)
     });

@@ -127,19 +127,21 @@ function assertShiftableDays(days) {
   }
 }
 
-async function validateProjectedPlan(projectedDays, planInstanceId, repo) {
+async function validateProjectedPlan(projectedDays, planInstanceId, repo, { allowFrequencyWarnings = false } = {}) {
   const context = await loadPlanPolicyContext(repo, { days: projectedDays, planInstanceId });
   // A timeline splice changes dates, so the whole active-plan slice must be replaced during validation.
   // Otherwise old rows at dates no longer present in the projection can coexist with their shifted copies.
   context.calendarDays = context.calendarDays.filter(day => day.planInstanceId !== planInstanceId);
   const policy = validatePlanPolicy(projectedDays, context, { replacePlanInstanceId: planInstanceId });
-  if (!policy.valid) {
-    const error = new Error(`Piano non ammissibile / Plan constraints not met: ${[...new Set(policy.violations.map(row => row.code))].join(', ')}`);
+  const warnings = allowFrequencyWarnings ? policy.violations.filter(row => row.code === 'frequency_window') : [];
+  const blocking = policy.violations.filter(row => !(allowFrequencyWarnings && row.code === 'frequency_window'));
+  if (blocking.length) {
+    const error = new Error(`Piano non ammissibile / Plan constraints not met: ${[...new Set(blocking.map(row => row.code))].join(', ')}`);
     error.code = 'plan_constraint_violation';
-    error.violations = policy.violations;
+    error.violations = blocking;
     throw error;
   }
-  return policy;
+  return { ...policy, structuralWarnings: warnings, valid: blocking.length === 0 };
 }
 
 async function recomputePlanBounds(repo, plan, { date, action }) {
@@ -249,7 +251,7 @@ export async function createCalendarStructurePreview({ planInstanceId = null, da
       projectedDays = [...existingDays.filter(day => day.date < date), ...shiftedDays].sort((a, b) => a.date.localeCompare(b.date));
       if (!projectedDays.length) throw new Error('The active plan must keep at least one calendar day');
     }
-    await validateProjectedPlan(projectedDays, plan.planInstanceId, repo);
+    const projectedPolicy = await validateProjectedPlan(projectedDays, plan.planInstanceId, repo, { allowFrequencyWarnings: true });
     const bounds = { startDate: projectedDays[0].date, endDate: projectedDays.at(-1).date };
     const nextPlan = { ...clone(plan), ...bounds, updatedAt: timestamp };
     registry.assert('planInstance', nextPlan);
@@ -257,7 +259,8 @@ export async function createCalendarStructurePreview({ planInstanceId = null, da
     return sealPreview({
       status: 'success', action, planInstanceId: plan.planInstanceId, date, sourceDay: clone(sourceDay), proposedDay: clone(proposedDay), shiftedDays: clone(shiftedDays),
       shiftedBefore: clone(toShift), calendarDays: proposedDay ? [clone(proposedDay)] : [], projectedCalendarDays: clone(projectedDays), generationRun: clone(generationRun), planBefore: clone(plan), planAfter: nextPlan, spillovers,
-      summary: { sourceMealCount: sourceDay?.mealSlots?.length || 0, proposedMealCount: proposedDay?.mealSlots?.length || 0, shiftedDayCount: shiftedDays.length, removedSpillovers: spillovers.removed.length, addedSpillovers: spillovers.added.length, newStartDate: nextPlan.startDate, newEndDate: nextPlan.endDate }
+      policyWarnings: clone(projectedPolicy.structuralWarnings || []),
+      summary: { sourceMealCount: sourceDay?.mealSlots?.length || 0, proposedMealCount: proposedDay?.mealSlots?.length || 0, shiftedDayCount: shiftedDays.length, removedSpillovers: spillovers.removed.length, addedSpillovers: spillovers.added.length, frequencyWarningCount: projectedPolicy.structuralWarnings?.length || 0, newStartDate: nextPlan.startDate, newEndDate: nextPlan.endDate }
     }, contextHash, repo, 'calendar_structure');
   }
   if (action !== 'remove') {
@@ -312,7 +315,7 @@ export async function commitCalendarStructurePreview(preview, { repo = repositor
         if (!current || current.date !== beforeDay.date || current.updatedAt !== beforeDay.updatedAt) throw new Error('A shifted calendar day changed before commit');
       }
       assertShiftableDays(preview.action === 'remove_shift' ? [sourceDay, ...expected] : expected);
-      await validateProjectedPlan(preview.projectedCalendarDays || [], plan.planInstanceId, repo);
+      await validateProjectedPlan(preview.projectedCalendarDays || [], plan.planInstanceId, repo, { allowFrequencyWarnings: true });
     } else if (preview.proposedDay) await validatePlannedDays([preview.proposedDay], repo, { replacePlanInstanceId: plan.planInstanceId });
     else await validateRemoval(sourceDay, plan.planInstanceId, repo);
 
