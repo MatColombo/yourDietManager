@@ -1,17 +1,26 @@
-yourDietManager taxonomy alignment bootstrap hotfix
+Feature 8 incremental patch
+Baseline: project state after Feature 6 / Feature 4+5+7+1+2+3 stack
 
-Apply on top of: yourDietManager-taxonomy-alignment-patch.zip
-
-Changed files:
-- public/service-worker.js
+Files added or replaced:
+- FEATURE_8_IMPLEMENTATION_REPORT.md
+- NEXT_FEATURE_ASSESSMENT.md
+- dist/data/locales/en.json
+- dist/data/locales/it.json
 - dist/service-worker.js
+- dist/src/services/calendarPlanEditorService.js
+- dist/src/styles.css
+- dist/src/ui/planPages.js
+- package.json
+- public/data/locales/en.json
+- public/data/locales/it.json
+- public/service-worker.js
+- specs/OPERATIONS_HISTORY_SPEC.md
+- src/services/calendarPlanEditorService.js
+- src/styles.css
+- src/ui/planPages.js
+- tests/calendar-structural-edit.test.mjs
 
-Fixes:
-- bump shell cache ydm-shell-v46 -> ydm-shell-v47
-- activate updated worker immediately via self.skipWaiting()
-- load schema files network-first with cached offline fallback
+Files removed:
+- none
 
-Reason:
-The taxonomy patch updated ingredient schemas to allow taxonomy.culinaryRoles,
-but the previous service worker could keep serving the old cached schema while
-loading the new catalog from the network, causing bootstrap validation failure.
+Changed/added file count: 17

@@ -11,6 +11,7 @@ import { loadConfigurationBundle, assertConfigurationBundle, activeRecords } fro
 import { PlanCandidateService, MAX_PLANNER_CANDIDATES_PER_ARCHETYPE } from './planCandidateService.js';
 import { sha256Json } from '../lib/crypto.js';
 import { addCivilDays, daysBetween, dateRange } from '../planner/planMath.js';
+import { normalizeGenerationTuningOverlay } from '../planner/generationTuning.js';
 
 function snapshotConfiguration(bundle, active) {
   return {
@@ -24,13 +25,13 @@ function snapshotConfiguration(bundle, active) {
   };
 }
 
-async function boundedCandidates(active, catalogVersion, { repo, horizon, limit = MAX_PLANNER_CANDIDATES_PER_ARCHETYPE } = {}) {
+async function boundedCandidates(active, catalogVersion, { repo, horizon, limit = MAX_PLANNER_CANDIDATES_PER_ARCHETYPE, generationTuningOverlay = null } = {}) {
   const query = new PlanCandidateService({ repo });
   const archetypes = [...new Set(active.mealClasses.map(meal => meal.mealArchetype))];
   const candidateSets = {}; const versions = new Map(); const retrieval = {}; const foodGroups = await currentFoodGroups({ repo });
   for (const archetype of archetypes) {
     const eligibilityContexts = [];
-    for (const dayClass of active.dayClasses) for (const slot of dayClass.mealSlots.filter(s => s.mode === 'planned')) { const mealClass = active.mealClasses.find(m => m.id === slot.mealClassId); if (mealClass?.mealArchetype === archetype) { const dates = [horizon.startDate, horizon.endDate, ...(active.allergyProfile.rules || []).map(r => r.effectiveFrom).filter(d => d && d >= horizon.startDate && d <= horizon.endDate)]; for (const date of new Set(dates)) eligibilityContexts.push({ dayClass, mealClass, allergyProfile: active.allergyProfile, date: addCivilDays(date, slot.dayOffset || 0) }); } }
+    for (const dayClass of active.dayClasses) for (const slot of dayClass.mealSlots.filter(s => s.mode === 'planned')) { const mealClass = active.mealClasses.find(m => m.id === slot.mealClassId); if (mealClass?.mealArchetype === archetype) { const dates = [horizon.startDate, horizon.endDate, ...(active.allergyProfile.rules || []).map(r => r.effectiveFrom).filter(d => d && d >= horizon.startDate && d <= horizon.endDate)]; for (const date of new Set(dates)) eligibilityContexts.push({ dayClass, mealClass, allergyProfile: active.allergyProfile, generationTuningOverlay, date: addCivilDays(date, slot.dayOffset || 0) }); } }
     const items = await query.retrieve(archetype, { limit, foodPreferences: active.foodPreferences, foodGroups, eligibilityContexts });
     retrieval[archetype] = structuredClone(query.lastDiagnostics);
     candidateSets[archetype] = items;
@@ -75,13 +76,24 @@ export async function createPlanPreview(options, { repo = repositories, registry
   if (active.allergyProfile.schemaVersion === 2) assertSafetyProfileV2(active.allergyProfile, validationContext);
   const catalogVersion = await repo.getMeta('activeCatalogVersion');
   if (!catalogVersion) throw new Error('No active catalog version');
+  const ingredientFamiliesForTuning = await repo.getAll('ingredients');
+  const recipeFamiliesForTuning = await repo.getAll('recipes');
+  const taxonomyTerms = await repo.getAll('taxonomyTerms');
+  const generationTuningOverlay = options.generationTuningOverlay ? normalizeGenerationTuningOverlay(options.generationTuningOverlay, {
+    horizon: options.horizon,
+    mealClassIds: active.mealClasses.map(item => item.id),
+    ingredientIds: ingredientFamiliesForTuning.filter(item => item.status === 'active').map(item => item.ingredientId),
+    recipeIds: recipeFamiliesForTuning.filter(item => item.status === 'active').map(item => item.recipeId),
+    taxonomyTermIds: taxonomyTerms.map(item => item.termId)
+  }) : null;
   const configSnapshot = snapshotConfiguration(bundle, active);
   const extensions = await loadProductExtensions(repo);
   configSnapshot.productExtensions = extensions;
   configSnapshot.fixedSlots = options.fixedSlots || [];
   configSnapshot.foodGroups = await currentFoodGroups({ repo });
+  if (generationTuningOverlay?.rules?.length) configSnapshot.generationTuningOverlay = generationTuningOverlay;
   const configSnapshotHash = await sha256Json(configSnapshot);
-  const candidates = await boundedCandidates(active, catalogVersion, { repo, horizon: options.horizon, limit: options.candidateRetrievalLimit || MAX_PLANNER_CANDIDATES_PER_ARCHETYPE });
+  const candidates = await boundedCandidates(active, catalogVersion, { repo, horizon: options.horizon, limit: options.candidateRetrievalLimit || MAX_PLANNER_CANDIDATES_PER_ARCHETYPE, generationTuningOverlay });
   const continuation = await continuationContext({ previousPlanInstanceId: options.previousPlanInstanceId || null, active, repo });
   if (options.startCycleDayOverride != null) continuation.startCycleDay = Number(options.startCycleDayOverride);
   if (options.previousGenerationRunIdOverride !== undefined) continuation.previousGenerationRunId = options.previousGenerationRunIdOverride;
@@ -101,7 +113,7 @@ export async function createPlanPreview(options, { repo = repositories, registry
     nutritionProfile: active.nutritionProfile, allergyProfile: active.allergyProfile, foodPreferences: active.foodPreferences,
     mealClasses: active.mealClasses, dayClasses: active.dayClasses, cycle: active.cycle,
     recipes: contextRecipes, candidateSets: candidates.candidateSets, ingredientRevisions: revisions, ingredients, safetyRevisionById,
-    foodGroups: candidates.foodGroups, taxonomyTerms: await repo.getAll('taxonomyTerms'), retrievalTruncated: Object.values(candidates.retrieval).some(row => row.truncated),
+    foodGroups: candidates.foodGroups, taxonomyTerms, generationTuningOverlay, retrievalTruncated: Object.values(candidates.retrieval).some(row => row.truncated),
     searchBudget: options.searchBudget, extensions, fixedSlots: options.fixedSlots || [],
     horizon: options.horizon, seed: options.seed, catalogVersion, configSnapshotHash, configSnapshot, createdAt,
     reason: options.reason || (options.previousPlanInstanceId ? 'horizon_extension' : 'initial'),
@@ -116,6 +128,10 @@ export async function createPlanPreview(options, { repo = repositories, registry
   result.diagnostics.horizonRecommendation = Math.max(daysBetween(options.horizon.startDate, options.horizon.endDate) + 1, ...frequencyRules(active.foodPreferences).filter(rule => rule.minOccurrences > 0).map(rule => rule.window.days));
   if (options.validationContext) result.diagnostics.validationContext = structuredClone(options.validationContext);
   if (result.status === 'success') {
+    if (generationTuningOverlay?.rules?.length) {
+      result.generationTuningOverlay = structuredClone(generationTuningOverlay);
+      result.diagnostics.generationTuning = { policyVersion: generationTuningOverlay.policyVersion, ruleCount: generationTuningOverlay.rules.length, hardExclusionCount: generationTuningOverlay.rules.filter(rule => rule.mode === 'exclude').length };
+    }
     result.generationRun.diagnostics = result.diagnostics;
     registry.assert('generationRun', result.generationRun); registry.assert('planInstance', result.planInstance);
     for (const day of result.calendarDays) registry.assert('calendarDay', day);

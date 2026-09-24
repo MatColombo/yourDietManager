@@ -2,6 +2,7 @@ import { assessRecipeSafety } from '../domain/safetyPolicy.js';
 import { frequencyRules, legacyPreferenceRules, inRuleScope } from '../domain/frequencyCounter.js';
 import { allergenCompatibility, recipeQuarantineReasons } from '../domain/safetyCompatibility.js';
 import { recipeMatchesTarget, mealRuleSatisfied } from './recipeFeatures.js';
+import { generationTuningHardRejections } from './generationTuning.js';
 
 export const SIMPLE_SNACK_MAX_PREP_MINUTES = 10;
 
@@ -9,6 +10,7 @@ function reject(reasons, code) { reasons.push(code); }
 
 export function hardFilterRecipe(recipe, context) {
   const reasons = recipeQuarantineReasons(recipe, context.revisionById);
+  reasons.push(...generationTuningHardRejections(recipe, context));
   const { mealClass, dayClass, allergyProfile, foodPreferences, revisionById } = context;
   if (!recipe.mealArchetypes?.includes(mealClass.mealArchetype)) reject(reasons, 'meal_archetype');
   if (!['validated', 'curated'].includes(recipe.quality?.status)) reject(reasons, 'quality_not_ready');

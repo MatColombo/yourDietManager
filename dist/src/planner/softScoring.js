@@ -3,6 +3,7 @@ import { legacyPreferenceRules } from '../domain/frequencyCounter.js';
 import { nutritionPenalty, matchOperator } from './planMath.js';
 import { recipeMatchesTarget, mealRuleSatisfied, families, cuisines, primaryIngredientId, foodCategories } from './recipeFeatures.js';
 import { plannerPolicy, VARIETY_MODES } from './varietyPolicy.js';
+import { generationTuningScore } from './generationTuning.js';
 
 const STRENGTH = Object.freeze({ prefer: -2, slight_prefer: -1, neutral: 0, avoid: 3 });
 const PREFERENCE = Object.freeze({ more_often: -1.5, normal: 0, less_often: 1.5, rarely: 3.5 });
@@ -104,12 +105,13 @@ export function varietyScore(recipe, { history = [], date, revisionById, foodPre
 export function scoreRecipe(recipe, context) {
   const pref = preferenceScore(recipe, context); const extension = extensionPreferenceScore(recipe, context); pref.score += extension.score; pref.reasons.push(...extension.reasons);
   const variety = varietyScore(recipe, context);
+  const tuning = generationTuningScore(recipe, context);
   const target = context.slotEnergyTarget;
   const nutrientTargetFactor = target / Math.max(1, context.dayEnergyTarget);
   const nutrition = nutritionPenalty(recipe.calculatedNutrition, context.nutritionProfile, { energyTarget: target, energyWeight: 1.5, nutrientTargetFactor });
   return {
-    total: nutrition + pref.score + variety.score,
-    components: { nutrition, preference: pref.score, variety: variety.score },
-    reasons: [...pref.reasons, ...variety.reasons]
+    total: nutrition + pref.score + variety.score + tuning.score,
+    components: { nutrition, preference: pref.score, variety: variety.score, tuning: tuning.score },
+    reasons: [...pref.reasons, ...variety.reasons, ...tuning.reasons]
   };
 }

@@ -1,11 +1,12 @@
 export const PLANNER_SOFT_OBJECTIVE_POLICY = Object.freeze({
-  version: 'phase-f-soft-objective-2',
+  version: 'phase-f-soft-objective-3',
   seededDiversityMaxPenalty: 2.5,
   slotOption: Object.freeze({
     perRecipeNutritionTieBreakWeight: 0.15,
     preferenceWeight: 1,
     varietyWeight: 1,
     regenerationWeight: 1,
+    tuningWeight: 1,
     extraComponentPenalty: 0.5
   }),
   varietyWindows: Object.freeze([
@@ -27,8 +28,9 @@ export function slotOptionSoftContribution(score = {}) {
   const preference = Number(components.preference || 0) * weights.preferenceWeight;
   const variety = Number(components.variety || 0) * weights.varietyWeight;
   const regeneration = Number(components.regeneration || 0) * weights.regenerationWeight;
+  const tuning = Number(components.tuning || 0) * weights.tuningWeight;
   return {
-    total: nutritionTieBreak + preference + variety + regeneration,
-    components: { nutritionTieBreak, preference, variety, regeneration }
+    total: nutritionTieBreak + preference + variety + regeneration + tuning,
+    components: { nutritionTieBreak, preference, variety, regeneration, tuning }
   };
 }

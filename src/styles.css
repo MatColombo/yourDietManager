@@ -140,6 +140,7 @@ h2 { margin: 0; font-size: 1.15rem; letter-spacing: -.02em; }
 .form-grid--5 { grid-template-columns: repeat(5,minmax(0,1fr)); }
 .filter-details { padding: 8px 0; }
 .filter-details summary { cursor: pointer; font-weight: 700; }
+.filter-details__grid { margin-top: 10px; }
 .compact-checks { display: flex; flex-wrap: wrap; gap: 6px 14px; }
 .catalog-results { display: grid; gap: 14px; }
 .recipe-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(250px,1fr)); gap: 10px; }
@@ -151,6 +152,14 @@ h2 { margin: 0; font-size: 1.15rem; letter-spacing: -.02em; }
 .origin-pill--user { background: color-mix(in srgb,var(--ydm-color-success) 10%,var(--ydm-color-surface)); }
 .empty-state { padding: 24px; text-align: center; color: var(--ydm-color-muted-text); border: 1px dashed var(--ydm-color-border); border-radius: calc(10px * var(--ydm-radius-scale)); }
 .ingredient-list, .instructions-list { margin: 0; padding-left: 22px; display: grid; gap: 7px; }
+.ingredient-nutrition-breakdown { max-width:100%; overflow-x:auto; }
+.ingredient-nutrition-table { width:100%; min-width:820px; border-collapse:collapse; font-size:.84rem; }
+.ingredient-nutrition-table th, .ingredient-nutrition-table td { padding:9px 10px; text-align:left; vertical-align:top; border-bottom:1px solid var(--ydm-color-border); }
+.ingredient-nutrition-table thead th { color:var(--ydm-color-muted-text); font-size:.74rem; font-weight:760; }
+.ingredient-nutrition-table tfoot th, .ingredient-nutrition-table tfoot td { border-top:2px solid var(--ydm-color-border); border-bottom:0; }
+.ingredient-nutrition-table__ingredient { min-width:210px; }
+.ingredient-nutrition-table__ingredient small, .ingredient-nutrition-table__number small { display:block; margin-top:3px; }
+.ingredient-nutrition-table__number { min-width:88px; font-variant-numeric:tabular-nums; }
 .ingredient-editor-lines { display: grid; gap: 8px; }
 .ingredient-line-editor { display: grid; grid-template-columns: 2fr .7fr .7fr 1fr auto; gap: 8px; align-items: center; }
 .catalog-editor textarea, .catalog-page textarea { width: 100%; min-height: 84px; padding: 8px 10px; resize: vertical; border: 1px solid var(--ydm-color-border); border-radius: calc(8px * var(--ydm-radius-scale)); color: var(--ydm-color-text); background: var(--ydm-color-background); font: inherit; }
@@ -186,7 +195,8 @@ h2 { margin: 0; font-size: 1.15rem; letter-spacing: -.02em; }
 .plan-preview-day__head { display: flex; align-items: center; gap: 8px; padding: 10px 12px; background: color-mix(in srgb,var(--ydm-color-primary) 5%,var(--ydm-color-surface)); }
 .plan-preview-day__head .muted { margin-left: auto; }
 .preview-meals { display: grid; }
-.preview-meal { display: grid; grid-template-columns: minmax(160px,.8fr) minmax(0,2fr); gap: 10px; padding: 8px 12px; border-top: 1px solid var(--ydm-color-border); }
+.preview-meal { display: grid; grid-template-columns: minmax(160px,.8fr) minmax(0,2fr) auto; gap: 10px; align-items:center; padding: 8px 12px; border-top: 1px solid var(--ydm-color-border); }
+.preview-meal__energy { justify-self:end; white-space:nowrap; padding:4px 8px; border-radius:999px; background:color-mix(in srgb,var(--ydm-color-primary) 8%,var(--ydm-color-surface)); font-size:.78rem; font-weight:760; }
 .calendar-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
 .calendar-grid { display: grid; grid-template-columns: repeat(7,minmax(0,1fr)); border: 1px solid var(--ydm-color-border); border-radius: calc(12px * var(--ydm-radius-scale)); overflow: hidden; }
 .calendar-weekday { padding: 8px; text-align: center; font-size: .72rem; font-weight: 750; color: var(--ydm-color-muted-text); background: color-mix(in srgb,var(--ydm-color-primary) 6%,var(--ydm-color-surface)); }
@@ -214,6 +224,7 @@ h2 { margin: 0; font-size: 1.15rem; letter-spacing: -.02em; }
   .calendar-dayclass { font-size: .68rem; }
   .nutrition-metrics { grid-template-columns: repeat(2,minmax(0,1fr)); }
   .preview-meal, .replacement-card { grid-template-columns: 1fr; }
+  .preview-meal__energy { justify-self:start; }
   .meal-recipe-link, .history-plan-control, .history-card { align-items: stretch; flex-direction: column; }
   .history-plan-control .button:first-of-type, .history-card > .status-chip { margin-left: 0; }
 }
@@ -497,4 +508,31 @@ button, .button, input, select { min-height: 44px; }
   .interaction-help-toggle { display:inline-grid; place-items:center; }
   .interaction-help-tooltip { display:none !important; }
   .interaction-help-mode :is(a[href],button,input,select,textarea,summary,[role="button"],[role="tab"],[role="option"],[contenteditable="true"]):not(.interaction-help-toggle):not(.interaction-help-overlay *) { outline:2px dashed color-mix(in srgb,var(--ydm-color-primary) 70%,transparent); outline-offset:2px; }
+}
+
+/* Nutrition-affinity replacements (features 5 + 7). */
+.preview-meal--replaceable { grid-template-columns: minmax(160px,.8fr) minmax(0,2fr) auto auto; }
+.preview-meal__replace { justify-self:end; }
+.ingredient-substitution-dialog { width:min(980px, calc(100vw - 32px)); max-width:980px; }
+.ingredient-substitution-card { align-items:start; }
+.nutrition-delta-grid { display:grid; grid-template-columns:repeat(5,minmax(82px,1fr)); gap:8px; margin-top:8px; }
+.nutrition-delta { display:flex; flex-direction:column; gap:2px; padding:7px 8px; border:1px solid var(--ydm-color-border); border-radius:calc(8px * var(--ydm-radius-scale)); font-variant-numeric:tabular-nums; }
+.nutrition-delta small { color:var(--ydm-color-muted-text); }
+.nutrition-delta--positive strong::before, .nutrition-delta--negative strong::before { content:''; }
+@media (max-width: 720px) {
+  .preview-meal--replaceable { grid-template-columns:1fr; }
+  .preview-meal__replace { justify-self:start; }
+  .nutrition-delta-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+
+/* Feature 8 — structural calendar editing */
+.calendar-cell--editable-empty { border-style: dashed; cursor: pointer; }
+.calendar-cell--editable-empty:hover, .calendar-cell--editable-empty:focus-visible { background: color-mix(in srgb,var(--ydm-color-primary) 7%,var(--ydm-color-background)); }
+.calendar-add-hint { font-size: .72rem; font-weight: 750; color: var(--ydm-color-primary); }
+.calendar-spillover-card { border-left: 4px solid var(--ydm-color-primary); }
+.calendar-spillover-row { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-top: 1px solid var(--ydm-color-border); }
+.calendar-spillover-row:first-of-type { border-top: 0; }
+@media (max-width: 640px) {
+  .calendar-cell--editable-empty { display: flex; }
+  .calendar-spillover-row { flex-direction: column; gap: 3px; }
 }

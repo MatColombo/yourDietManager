@@ -29,8 +29,23 @@ export async function previewContext(repo) {
     catalog: await repo.getMeta('activeCatalogVersion') || null, unresolved: (await repo.getMeta('contentMigration:4'))?.unresolved || [], quarantinePolicy: CATALOG_QUARANTINE.policyVersion });
 }
 function payload(preview) {
-  const { previewId, recipeLabels, ...rest } = preview;
+  const { previewId, recipeLabels, recipeNutrition, ...rest } = preview;
   return rest;
+}
+
+export async function validatedPreviewSnapshot(preview, { repo, kind } = {}) {
+  const sealed = session(repo).previews.get(preview?.previewId);
+  if (!sealed || sealed.kind !== kind || await sha256Json(payload(preview)) !== sealed.payloadHash) throw stalePreview();
+  if (sealed.committed) throw stalePreview();
+  if (await previewContext(repo) !== sealed.contextHash) throw stalePreview();
+  return { preview: structuredClone(sealed.preview), contextHash: sealed.contextHash };
+}
+
+export async function replaceSealedPreview(sourcePreview, nextPreview, { repo, kind } = {}) {
+  const source = await validatedPreviewSnapshot(sourcePreview, { repo, kind });
+  const sealed = await sealPreview(nextPreview, source.contextHash, repo, kind);
+  session(repo).previews.delete(sourcePreview.previewId);
+  return sealed;
 }
 export async function sealPreview(preview, contextHash, repo, kind) {
   if (preview.status !== 'success') return preview;
@@ -59,7 +74,7 @@ export async function withValidatedPreview(preview, { repo, kind, choice = null 
     // A repeated command is rejected, also after undo; it never silently reapplies.
     if (sealed.committed) { const error = new Error('Questa anteprima è già stata confermata.'); error.code = 'preview_already_committed'; throw error; }
     if (await previewContext(repo) !== sealed.contextHash) throw stalePreview();
-    if (kind === 'replacement' && !sealed.preview.candidates.some(item => (item.choiceId || item.recipe.recipeVersionId) === choice)) throw stalePreview();
+    if (choice !== null && sealed.preview.candidates && !sealed.preview.candidates.some(item => (item.choiceId || item.recipe?.recipeVersionId) === choice)) throw stalePreview();
     const result = await action(async () => {
       if (await previewContext(repo) !== sealed.contextHash) throw stalePreview();
       return { ...sealed.readSet, commandId: preview.previewId };

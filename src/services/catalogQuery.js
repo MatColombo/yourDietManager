@@ -25,6 +25,17 @@ function matchesProductFood(revision, termId) {
   return Boolean(product && [product.categoryId, product.subcategoryId, product.conceptId].includes(termId));
 }
 
+const RECIPE_TAXONOMY_FILTERS = Object.freeze([
+  ['familyTag', 'families'], ['cuisineTag', 'cuisines'], ['dietTag', 'diet'],
+  ['flavorTag', 'flavor'], ['practicalTag', 'practical'], ['preparationTag', 'preparation']
+]);
+
+export function recipeMatchesTaxonomyFilters(version, filters = {}) {
+  return RECIPE_TAXONOMY_FILTERS.every(([filterKey, tagKey]) => !filters[filterKey] || (version?.tags?.[tagKey] || []).includes(filters[filterKey]));
+}
+
+function hasRecipeTaxonomyFilter(filters) { return RECIPE_TAXONOMY_FILTERS.some(([filterKey]) => Boolean(filters[filterKey])); }
+
 export class CatalogQueryService {
   constructor({ repo = repositories } = {}) {
     this.repo = repo;
@@ -117,12 +128,13 @@ export class CatalogQueryService {
       proteinMin: filters.proteinMin == null || filters.proteinMin === '' ? null : Number(filters.proteinMin),
       fiberMin: filters.fiberMin == null || filters.fiberMin === '' ? null : Number(filters.fiberMin),
       prepMax: filters.prepMax == null || filters.prepMax === '' ? null : Number(filters.prepMax),
-      productFoodId: filters.productFoodId || '', dietTag: filters.dietTag || '', practicalTag: filters.practicalTag || '',
+      productFoodId: filters.productFoodId || '', familyTag: filters.familyTag || '', cuisineTag: filters.cuisineTag || '', dietTag: filters.dietTag || '',
+      flavorTag: filters.flavorTag || '', practicalTag: filters.practicalTag || '', preparationTag: filters.preparationTag || '',
       excludeAllergens: new Set(filters.excludeAllergens || [])
     };
     const offset = Math.max(0, Number(filters.offset || 0));
     const limit = Math.min(100, Math.max(1, Number(filters.limit || 50)));
-    const onlyPackOrNoFilters = !clean.favoritesOnly && !hasIndexedPositiveFilter(clean) && clean.excludeAllergens.size === 0 && !clean.productFoodId && !clean.dietTag && !clean.practicalTag;
+    const onlyPackOrNoFilters = !clean.favoritesOnly && !hasIndexedPositiveFilter(clean) && clean.excludeAllergens.size === 0 && !clean.productFoodId && !hasRecipeTaxonomyFilter(clean);
     if (onlyPackOrNoFilters) return this.fastBrowse(clean, offset, limit);
 
     const favorites=clean.favoritesOnly?new Set((await this.repo.getAll('recipeFavorites')).map(r=>r.recipeId)):null;
@@ -153,8 +165,7 @@ export class CatalogQueryService {
       if (clean.proteinMin != null && n.proteinG < clean.proteinMin) return false;
       if (clean.fiberMin != null && n.fiberG < clean.fiberMin) return false;
       if (clean.prepMax != null && version.practical.prepMinutes > clean.prepMax) return false;
-      if (clean.dietTag && !(version.tags?.diet || []).includes(clean.dietTag)) return false;
-      if (clean.practicalTag && !(version.tags?.practical || []).includes(clean.practicalTag)) return false;
+      if (!recipeMatchesTaxonomyFilters(version, clean)) return false;
       if (clean.productFoodId && !version.ingredientLines.some(line => matchesProductFood(ingredientRevisionById?.get(line.ingredientRevisionId), clean.productFoodId))) return false;
       return true;
     });

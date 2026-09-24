@@ -85,5 +85,5 @@ test('seed diversification is preserved through the multi-day frequency planner'
   assert.equal(alternate.status, 'success', JSON.stringify(alternate.failure));
   assert.equal(selected(first), selected(repeated));
   assert.notEqual(selected(first), selected(alternate));
-  assert.equal(first.generationRun.solverVersion, 'window-beam-r3-2');
+  assert.equal(first.generationRun.solverVersion, 'window-beam-r3-3');
 });

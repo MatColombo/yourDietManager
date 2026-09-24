@@ -160,3 +160,16 @@ Slot-option scoring MUST NOT attenuate preference, variety or regeneration merel
 Short-window exact recipe reuse carries the strongest variety penalty, followed by family and primary-ingredient reuse. The windows are 3/7/14 days and all repetition penalties remain soft: they may never make an otherwise hard-feasible plan invalid or relax a hard constraint in the opposite direction.
 
 Planner quality diagnostics must expose unique-recipe rate and exact-repeat counts over rolling windows. The V1 Phase F quality gate requires a 2600 kcal, 14-day, ±2% standard plan to remain hard-feasible with fixed servings, at least 70% unique recipe components and zero exact-recipe repeat pairs within three days.
+
+## 16. Temporary GenerationTuningOverlay
+
+Dopo una prima generazione, la UI puo richiedere una nuova proposta con un `GenerationTuningOverlay` transiente. L'overlay e valido solo per il GenerationRun e per lo scope temporale dichiarato; non modifica MealClass, FoodPreferences o altre configurazioni permanenti.
+
+Ogni regola deve dichiarare target, modalita, peso e scope (`startDate`, `endDate`, opzionali `mealClassIds`). Lo scope viene valutato sulla `civilDate` effettiva dell'occorrenza, incluso `dayOffset`.
+
+`prefer`, `avoid`, `increase` e `decrease` sono componenti soft dell'obiettivo. `exclude` e invece hard e deve attraversare candidate filtering, replacement preview e validazione finale. In particolare un ingrediente temporaneamente non disponibile non puo essere reintrodotto da una sostituzione successiva nella stessa proposta.
+
+L'overlay normalizzato deve essere incluso in `GenerationRun.configSnapshot` prima del calcolo di `configSnapshotHash` e prima della sigillatura del preview, cosi il run resta riproducibile. Una nuova applicazione di tuning rigenera la proposta e produce un nuovo preview sigillato.
+
+La prima UI V1 usa un builder guidato taxonomy-aware. Un eventuale parser NLP/LLM futuro deve compilare nello stesso modello strutturato e non introdurre una semantica parallela nel solver.
+

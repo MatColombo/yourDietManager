@@ -1,7 +1,7 @@
 import { setRecipeFavorite } from '../services/productExtensionService.js';
 import { ingredientPresentation } from '../domain/ingredientPresentation.js';
 import { assertRecipeTitle, ingredientWeightG } from '../domain/recipePresentation.js';
-import { calculateRecipeNutrition, normalizeIngredientAmount } from '../domain/nutritionCore.js';
+import { calculateIngredientNutritionBreakdown, calculateRecipeNutrition, normalizeIngredientAmount } from '../domain/nutritionCore.js';
 import { element } from './dom.js';
 import { ALLERGEN_IDS, INGREDIENT_STATES, MEAL_ARCHETYPES } from '../domain/catalogEnums.js';
 import { archiveUserIngredient, archiveUserRecipe, duplicateRecipeToDraft, recipeToDraft, saveIngredient, saveRecipe } from '../services/personalCatalogService.js';
@@ -13,6 +13,7 @@ import {
 } from './guidedControls.js';
 import { controlledDetails, signalDraftChange } from './uiState.js';
 import { REVIEW_DIMENSIONS, expectedReviewRecipeVersionIds, isProductionReviewManifest } from '../services/recipeHumanReviewService.js';
+import { suggestIngredientSubstitutions, applyIngredientSubstitution } from '../services/nutritionalAffinityService.js';
 
 function t(state, key, vars = {}) { let value = state.i18n.t(key); for (const [name, replacement] of Object.entries(vars)) value = value.replace(`{${name}}`, replacement); return value; }
 function nav(state, url) { return state.navigate(url); }
@@ -36,6 +37,118 @@ function semanticTagGroups(state, version) {
   if (!groups.length) return element('span', { className: 'muted', text: t(state, 'catalog.tags.none') });
   return element('div', { className: 'semantic-groups' }, groups.map(group => element('section', { className: 'semantic-group' }, [element('h4', { className: 'semantic-group__label', text: group.label }), chipList(group.values)])));
 }
+
+function nutritionNumber(state, value, maximumFractionDigits = 1) {
+  return new Intl.NumberFormat(state.i18n.locale, { maximumFractionDigits }).format(Number(value || 0));
+}
+function nutritionContributionCell(state, value, share, unit = 'g') {
+  const percentage = share == null ? '—' : `${nutritionNumber(state, share)}%`;
+  return element('td', { className: 'ingredient-nutrition-table__number' }, [
+    element('strong', { text: `${nutritionNumber(state, value)}${unit === 'kcal' ? ' kcal' : ` ${unit}`}` }),
+    element('small', { className: 'muted', text: percentage })
+  ]);
+}
+function recipeIngredientNutritionTable(state, version, ingredientLines, returnRoute, { allowSubstitution = false, onSubstitute = null } = {}) {
+  const revisionById = new Map(ingredientLines.filter(line => line.ingredientRevision).map(line => [line.ingredientRevisionId, line.ingredientRevision]));
+  const breakdown = calculateIngredientNutritionBreakdown(version.ingredientLines, revisionById, version.calculatedNutrition);
+  const enrichedByRevision = new Map(ingredientLines.map(line => [line.ingredientRevisionId, line]));
+  const table = element('table', { className: 'ingredient-nutrition-table', 'data-testid': 'ingredient-nutrition-breakdown' });
+  table.append(element('thead', {}, [element('tr', {}, [
+    element('th', { scope: 'col', text: t(state, 'catalog.ingredient.select') }),
+    element('th', { scope: 'col', text: t(state, 'catalog.ingredient.amount') }),
+    element('th', { scope: 'col', text: 'kcal' }),
+    element('th', { scope: 'col', text: t(state, 'nutrient.protein') }),
+    element('th', { scope: 'col', text: t(state, 'nutrient.carbs') }),
+    element('th', { scope: 'col', text: t(state, 'nutrient.fat') }),
+    element('th', { scope: 'col', text: t(state, 'nutrient.fiber') }),
+    allowSubstitution ? element('th', { scope: 'col', text: t(state, 'catalog.substitution.action') }) : null
+  ])]));
+  const body = element('tbody');
+  for (const item of breakdown) {
+    const line = enrichedByRevision.get(item.ingredientRevisionId); const revision = line?.ingredientRevision;
+    const presentation = ingredientPresentation(revision, state.referenceDataIndex, state.i18n.locale);
+    body.append(element('tr', {}, [
+      element('td', { className: 'ingredient-nutrition-table__ingredient' }, [
+        element('a', { href: routeWithParams(`/configure/ingredients/${encodeURIComponent(item.ingredientId)}`, { revision: item.ingredientRevisionId, return: returnRoute }), 'data-route': '', className: 'text-link', 'data-testid': 'recipe-ingredient-link', text: revision ? presentation.name : item.ingredientId }),
+        revision ? element('small', { className: 'muted', text: `${presentation.variant} · ${presentation.weighing}` }) : null
+      ]),
+      element('td', { text: `${item.amount} ${item.unit}` }),
+      nutritionContributionCell(state, item.nutrition.energyKcal, item.sharePercent.energyKcal, 'kcal'),
+      nutritionContributionCell(state, item.nutrition.proteinG, item.sharePercent.proteinG),
+      nutritionContributionCell(state, item.nutrition.carbsG, item.sharePercent.carbsG),
+      nutritionContributionCell(state, item.nutrition.fatG, item.sharePercent.fatG),
+      nutritionContributionCell(state, item.nutrition.fiberG, item.sharePercent.fiberG),
+      allowSubstitution ? element('td', {}, [element('button', { type: 'button', className: 'button button--secondary button--small', 'data-testid': 'ingredient-substitution-open', text: t(state, 'catalog.substitution.action'), onClick: () => onSubstitute?.(item.index) })]) : null
+    ]));
+  }
+  table.append(body, element('tfoot', {}, [element('tr', {}, [
+    element('th', { scope: 'row', text: t(state, 'catalog.recipe.total') }), element('td', { text: '—' }),
+    nutritionContributionCell(state, version.calculatedNutrition.energyKcal, 100, 'kcal'),
+    nutritionContributionCell(state, version.calculatedNutrition.proteinG, 100),
+    nutritionContributionCell(state, version.calculatedNutrition.carbsG, 100),
+    nutritionContributionCell(state, version.calculatedNutrition.fatG, 100),
+    nutritionContributionCell(state, version.calculatedNutrition.fiberG, 100),
+    allowSubstitution ? element('td') : null
+  ])]));
+  return element('div', { className: 'ingredient-nutrition-breakdown' }, [
+    element('p', { className: 'muted', text: t(state, 'catalog.recipe.nutritionBreakdownHelp') }), table
+  ]);
+}
+function signedNutrition(state, value, unit = 'g') {
+  const number = Number(value || 0); const sign = number > 0 ? '+' : '';
+  return `${sign}${nutritionNumber(state, number)}${unit === 'kcal' ? ' kcal' : ` ${unit}`}`;
+}
+function nutritionDeltaGrid(state, delta = {}) {
+  return element('div', { className: 'nutrition-delta-grid' }, [
+    ['kcal', delta.energyKcal, 'kcal'], [t(state, 'nutrient.protein'), delta.proteinG, 'g'], [t(state, 'nutrient.carbs'), delta.carbsG, 'g'], [t(state, 'nutrient.fat'), delta.fatG, 'g'], [t(state, 'nutrient.fiber'), delta.fiberG, 'g']
+  ].map(([label, value, unit]) => element('span', { className: Number(value || 0) > 0 ? 'nutrition-delta nutrition-delta--positive' : Number(value || 0) < 0 ? 'nutrition-delta nutrition-delta--negative' : 'nutrition-delta' }, [element('small', { text: label }), element('strong', { text: signedNutrition(state, value, unit) })])));
+}
+function openIngredientSubstitutionDialog(state, { recipeId, recipeVersionId, lineIndex }) {
+  const dialog = element('dialog', { className: 'replacement-dialog ingredient-substitution-dialog', 'aria-label': t(state, 'catalog.substitution.title') });
+  const shell = element('section', { className: 'plan-action-card plan-action-card--accent', 'aria-busy': 'true' }, [element('p', { className: 'muted', text: t(state, 'common.loading') })]); dialog.append(shell); document.body.append(dialog);
+  const close = () => { try { dialog.close(); } catch {} dialog.remove(); };
+  dialog.addEventListener('cancel', event => { event.preventDefault(); if (shell.getAttribute('aria-busy') !== 'true') close(); }); dialog.showModal();
+  const render = async ({ query = '', offset = 0 } = {}) => {
+    shell.setAttribute('aria-busy', 'true');
+    try {
+      const preview = await suggestIngredientSubstitutions({ recipeVersionId, lineIndex, query, offset, limit: 8 }, { repo: state.repo });
+      const search = element('input', { type: 'search', value: query, placeholder: t(state, 'catalog.substitution.search') });
+      const list = element('div', { className: 'replacement-list' });
+      for (const item of preview.candidates) {
+        const presentation = ingredientPresentation(item.ingredient, state.referenceDataIndex, state.i18n.locale);
+        const article = element('article', { className: 'replacement-card ingredient-substitution-card' });
+        const warningParts = [];
+        if (item.stateMismatch) warningParts.push(t(state, 'catalog.substitution.stateWarning'));
+        if (item.newAllergenIds.length) warningParts.push(`${t(state, 'catalog.substitution.newAllergens')}: ${item.newAllergenIds.map(id => t(state, `allergen.${id}`)).join(', ')}`);
+        article.append(element('div', {}, [
+          element('strong', { text: presentation.name }),
+          element('p', { className: 'muted', text: `${presentation.variant} · ${Math.round(item.affinityScore)}% ${t(state, 'catalog.substitution.affinity').toLowerCase()}` }),
+          element('p', { text: `${t(state, 'catalog.substitution.amount')}: ${nutritionNumber(state, item.proposedLine.amount)} ${item.proposedLine.unit}` }),
+          element('p', { className: 'muted', text: t(state, 'catalog.substitution.deltaHelp') }), nutritionDeltaGrid(state, item.recipeDelta),
+          warningParts.length ? element('p', { className: 'validation-box validation-box--warning', text: warningParts.join(' · ') }) : null
+        ]));
+        article.append(element('button', { type: 'button', className: 'button button--small', 'data-testid': 'ingredient-substitution-apply', text: t(state, 'catalog.substitution.apply'), onClick: async event => {
+          const button = event.currentTarget; button.disabled = true; shell.setAttribute('aria-busy', 'true');
+          try {
+            const result = await applyIngredientSubstitution({ recipeId, recipeVersionId, lineIndex, candidateIngredientRevisionId: item.ingredient.ingredientRevisionId, amount: item.proposedLine.amount }, { repo: state.repo, registry: state.registry });
+            await state.refreshCatalog(); close(); state.notify?.('success', t(state, 'catalog.substitution.saved')); nav(state, `/recipes/${encodeURIComponent(result.family.recipeId)}`);
+          } catch (error) { state.notify?.('error', error.message || String(error)); button.disabled = false; shell.setAttribute('aria-busy', 'false'); }
+        } })); list.append(article);
+      }
+      if (!preview.candidates.length) list.append(element('div', { className: 'empty-state', text: t(state, 'catalog.substitution.empty') }));
+      const pages = element('div', { className: 'button-row' });
+      if (preview.offset > 0) pages.append(element('button', { type: 'button', className: 'button button--secondary', text: t(state, 'common.previous'), onClick: () => render({ query: search.value.trim(), offset: Math.max(0, preview.offset - preview.limit) }) }));
+      if (preview.hasMore) pages.append(element('button', { type: 'button', className: 'button button--secondary', text: t(state, 'common.next'), onClick: () => render({ query: search.value.trim(), offset: preview.offset + preview.limit }) }));
+      shell.replaceChildren(
+        element('div', { className: 'section-heading' }, [element('div', {}, [element('h2', { text: t(state, 'catalog.substitution.title') }), element('p', { className: 'muted', text: t(state, 'catalog.substitution.body') })]), element('button', { type: 'button', className: 'button button--secondary button--small', text: t(state, 'common.cancel'), onClick: close })]),
+        element('div', { className: 'form-grid form-grid--2' }, [field(t(state, 'catalog.substitution.searchLabel'), search), element('button', { type: 'button', className: 'button button--secondary', text: t(state, 'catalog.substitution.searchAction'), onClick: () => render({ query: search.value.trim(), offset: 0 }) })]),
+        list, pages
+      ); shell.setAttribute('aria-busy', 'false');
+    } catch (error) { shell.replaceChildren(element('div', { className: 'validation-box validation-box--error', text: error.message || String(error) }), element('button', { type: 'button', className: 'button button--secondary', text: t(state, 'common.cancel'), onClick: close })); shell.setAttribute('aria-busy', 'false'); }
+  };
+  void render();
+}
+
 function formatDateTime(state, value) { try { return new Intl.DateTimeFormat(state.i18n.locale, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value)); } catch { return value || '—'; } }
 function safeReturnRoute(value, fallback = null) {
   const route = String(value || '');
@@ -53,6 +166,11 @@ function currentRecipeRoute(recipeId, recipeVersionId = null, returnRoute = null
 function statusBox() { const node = element('div', { 'aria-live': 'polite' }); return { node, ok(message) { node.className = 'validation-box'; node.textContent = message; }, error(error) { node.className = 'validation-box validation-box--error'; node.textContent = error?.message || String(error); } }; }
 function page(title, lead, eyebrow = 'CATALOG') { return element('section', { className: 'page-card page-card--wide catalog-page' }, [element('p', { className: 'eyebrow', text: eyebrow }), element('h1', { text: title }), element('p', { className: 'lead', text: lead })]); }
 
+function taxonomyFilter(state, params, paramKey, taxonomyId, anyKey) {
+  const choices = taxonomyChoices(state.referenceDataIndex, taxonomyId, state.i18n.locale);
+  return optionSelect([['', t(state, anyKey)], ...choices.map(choice => [choice.id, choice.label])], params.get(paramKey) || '');
+}
+
 function recipeFilters(state) {
   const params = new URLSearchParams(location.search); const form = element('form', { className: 'filter-panel' });
   const favorites=check(state.i18n.locale==='it'?'Solo preferiti':'Favorites only',params.get('favorites')==='1');form.append(favorites);
@@ -60,36 +178,45 @@ function recipeFilters(state) {
   const meal = optionSelect([['', t(state, 'catalog.filter.anyMeal')], ...MEAL_ARCHETYPES.map(id => [id, t(state, `mealArchetype.${id}`)])], params.get('meal') || '');
   const origin = optionSelect([['', t(state, 'catalog.filter.anyOrigin')], ['base', t(state, 'catalog.origin.base')], ['user', t(state, 'catalog.origin.user')]], params.get('origin') || '');
   const productFood = createProductFoodPicker(state, state.referenceDataIndex, { value: params.get('food') || null, required: false });
-  const dietChoices = taxonomyChoices(state.referenceDataIndex, RECIPE_TAG_TAXONOMY.diet, state.i18n.locale);
-  const diet = optionSelect([['', t(state, 'catalog.filter.anyDiet')], ...dietChoices.map(choice => [choice.id, choice.label])], params.get('diet') || '');
-  const practicalChoices = taxonomyChoices(state.referenceDataIndex, RECIPE_TAG_TAXONOMY.practical, state.i18n.locale);
-  const practical = optionSelect([['', t(state, 'catalog.filter.anyPractical')], ...practicalChoices.map(choice => [choice.id, choice.label])], params.get('practical') || '');
+  const family = taxonomyFilter(state, params, 'family', RECIPE_TAG_TAXONOMY.families, 'catalog.filter.anyFamily');
+  const cuisine = taxonomyFilter(state, params, 'cuisine', RECIPE_TAG_TAXONOMY.cuisines, 'catalog.filter.anyCuisine');
+  const diet = taxonomyFilter(state, params, 'diet', RECIPE_TAG_TAXONOMY.diet, 'catalog.filter.anyDiet');
+  const flavor = taxonomyFilter(state, params, 'flavor', RECIPE_TAG_TAXONOMY.flavor, 'catalog.filter.anyFlavor');
+  const practical = taxonomyFilter(state, params, 'practical', RECIPE_TAG_TAXONOMY.practical, 'catalog.filter.anyPractical');
+  const preparation = taxonomyFilter(state, params, 'preparation', RECIPE_TAG_TAXONOMY.preparation, 'catalog.filter.anyPreparation');
   const energyMin = number(params.get('emin') || '', { min: 0, step: 50, placeholder: 'min' }); const energyMax = number(params.get('emax') || '', { min: 0, step: 50, placeholder: 'max' });
   const proteinMin = number(params.get('pmin') || '', { min: 0, step: 5 }); const fiberMin = number(params.get('fmin') || '', { min: 0, step: 1 }); const prepMax = number(params.get('prep') || '', { min: 0, step: 5 });
   const pack = optionSelect([['', t(state, 'catalog.filter.anyPack')]], params.get('pack') || '');
   state.catalogPacks.filter(item => item.status === 'installed').forEach(item => pack.append(element('option', { value: item.packId, text: t(state, item.labelKey) }))); pack.value = params.get('pack') || '';
   const allergens = element('div', { className: 'compact-checks' }); const selectedAllergens = new Set((params.get('allergens') || '').split(',').filter(Boolean));
   const allergenChecks = ALLERGEN_IDS.map(id => { const c = check(t(state, `allergen.${id}`), selectedAllergens.has(id)); allergens.append(c); return [id, c.querySelector('input')]; });
+  const taxonomyOpen = ['family','cuisine','diet','flavor','practical','preparation'].some(key => params.get(key));
   form.append(
     element('div', { className: 'form-grid form-grid--3' }, [
       field(t(state, 'catalog.search.label'), q), field(t(state, 'catalog.filter.meal'), meal), field(t(state, 'catalog.filter.origin'), origin),
-      field(t(state, 'catalog.filter.productFood'), productFood.node), field(t(state, 'catalog.filter.diet'), diet), field(t(state, 'catalog.filter.practical'), practical)
+      field(t(state, 'catalog.filter.productFood'), productFood.node), field(t(state, 'catalog.filter.pack'), pack)
     ]),
-    field(t(state, 'catalog.filter.pack'), pack)
+    controlledDetails(state, 'recipes-filter-taxonomy', { className: 'filter-details', defaultOpen: taxonomyOpen, children: [
+      element('summary', { text: t(state, 'catalog.filter.taxonomy') }),
+      element('div', { className: 'form-grid form-grid--3 filter-details__grid' }, [
+        field(t(state, 'catalog.tags.families'), family), field(t(state, 'catalog.tags.cuisines'), cuisine), field(t(state, 'catalog.tags.diet'), diet),
+        field(t(state, 'catalog.tags.flavor'), flavor), field(t(state, 'catalog.tags.practical'), practical), field(t(state, 'catalog.tags.preparation'), preparation)
+      ])
+    ] })
   );
   const metrics = element('div', { className: 'form-grid form-grid--5' }, [field(t(state, 'catalog.filter.energyMin'), energyMin), field(t(state, 'catalog.filter.energyMax'), energyMax), field(t(state, 'catalog.filter.proteinMin'), proteinMin), field(t(state, 'catalog.filter.fiberMin'), fiberMin), field(t(state, 'catalog.filter.prepMax'), prepMax)]); form.append(metrics, controlledDetails(state, 'recipes-filter-allergens', { className: 'filter-details', defaultOpen: false, children: [element('summary', { text: t(state, 'catalog.filter.excludeAllergens') }), allergens] }));
   form.append(element('div', { className: 'button-row' }, [element('button', { className: 'button', type: 'submit', text: t(state, 'catalog.filter.apply') }), element('a', { href: '/recipes', 'data-route': '', className: 'button button--secondary', text: t(state, 'catalog.filter.clear') })]));
   form.addEventListener('submit', event => {
     event.preventDefault(); const next = new URLSearchParams();if(favorites.querySelector('input').checked)next.set('favorites','1');
     if (q.value.trim()) next.set('q', q.value.trim()); if (meal.value) next.set('meal', meal.value); if (origin.value) next.set('origin', origin.value); if (pack.value) next.set('pack', pack.value);
-    if (productFood.getValue()) next.set('food', productFood.getValue()); if (diet.value) next.set('diet', diet.value); if (practical.value) next.set('practical', practical.value);
+    if (productFood.getValue()) next.set('food', productFood.getValue()); if (family.value) next.set('family', family.value); if (cuisine.value) next.set('cuisine', cuisine.value); if (diet.value) next.set('diet', diet.value); if (flavor.value) next.set('flavor', flavor.value); if (practical.value) next.set('practical', practical.value); if (preparation.value) next.set('preparation', preparation.value);
     if (energyMin.value) next.set('emin', energyMin.value); if (energyMax.value) next.set('emax', energyMax.value); if (proteinMin.value) next.set('pmin', proteinMin.value); if (fiberMin.value) next.set('fmin', fiberMin.value); if (prepMax.value) next.set('prep', prepMax.value);
     const ids = allergenChecks.filter(([, input]) => input.checked).map(([id]) => id); if (ids.length) next.set('allergens', ids.join(',')); nav(state, `/recipes${next.size ? `?${next}` : ''}`);
   });
   return form;
 }
 
-function queryFromLocation() { const p = new URLSearchParams(location.search); return { favoritesOnly:p.get('favorites')==='1', text: p.get('q') || '', mealArchetype: p.get('meal') || '', origin: p.get('origin') || '', packId: p.get('pack') || '', productFoodId: p.get('food') || '', dietTag: p.get('diet') || '', practicalTag: p.get('practical') || '', energyMin: p.get('emin'), energyMax: p.get('emax'), proteinMin: p.get('pmin'), fiberMin: p.get('fmin'), prepMax: p.get('prep'), excludeAllergens: (p.get('allergens') || '').split(',').filter(Boolean), offset: p.get('offset') || 0, limit: 50 }; }
+function queryFromLocation() { const p = new URLSearchParams(location.search); return { favoritesOnly:p.get('favorites')==='1', text: p.get('q') || '', mealArchetype: p.get('meal') || '', origin: p.get('origin') || '', packId: p.get('pack') || '', productFoodId: p.get('food') || '', familyTag: p.get('family') || '', cuisineTag: p.get('cuisine') || '', dietTag: p.get('diet') || '', flavorTag: p.get('flavor') || '', practicalTag: p.get('practical') || '', preparationTag: p.get('preparation') || '', energyMin: p.get('emin'), energyMax: p.get('emax'), proteinMin: p.get('pmin'), fiberMin: p.get('fmin'), prepMax: p.get('prep'), excludeAllergens: (p.get('allergens') || '').split(',').filter(Boolean), offset: p.get('offset') || 0, limit: 50 }; }
 
 export function recipesPage(state) {
   const params = new URLSearchParams(location.search); if (params.get('id')) return recipeDetailPage(state, params.get('id'), params.get('version'));
@@ -242,11 +369,7 @@ export function recipeDetailPage(state, recipeId, recipeVersionId = null) {
     ]);
     const metrics = element('div', { className: 'summary-grid' }, [['kcal', Math.round(n.energyKcal)], [t(state, 'nutrient.protein'), `${n.proteinG} g`], [t(state, 'nutrient.carbs'), `${n.carbsG} g`], [t(state, 'nutrient.fat'), `${n.fatG} g`], [t(state, 'nutrient.fiber'), `${n.fiberG} g`]].map(([label, value]) => element('div', { className: 'metric' }, [element('span', { text: label }), element('strong', { text: value })])));
     const selfRoute = currentRecipeRoute(recipeId, version.recipeVersionId, returnRoute === '/recipes' ? null : returnRoute);
-    const list = element('ul', { className: 'ingredient-list' });
-    for (const line of ingredientLines) list.append(element('li', {}, [
-      element('a', { href: routeWithParams(`/configure/ingredients/${encodeURIComponent(line.ingredientId)}`, { revision: line.ingredientRevisionId, return: selfRoute }), 'data-route': '', className: 'text-link', 'data-testid': 'recipe-ingredient-link', text: line.ingredientRevision ? ingredientPresentation(line.ingredientRevision, state.referenceDataIndex, state.i18n.locale).name : line.ingredientId }),
-      document.createTextNode(` · ${ingredientPresentation(line.ingredientRevision, state.referenceDataIndex, state.i18n.locale).variant} · ${line.amount} ${line.unit} ${ingredientPresentation(line.ingredientRevision, state.referenceDataIndex, state.i18n.locale).weighing}`)
-    ]));
+    const ingredientNutrition = recipeIngredientNutritionTable(state, version, ingredientLines, selfRoute, { allowSubstitution: current, onSubstitute: lineIndex => openIngredientSubstitutionDialog(state, { recipeId: family.recipeId, recipeVersionId: version.recipeVersionId, lineIndex }) });
     const tagBox = semanticTagGroups(state, version);
     const historyBox = element('div', { className: 'version-history' });
     for (const item of history) historyBox.append(element('a', {
@@ -258,7 +381,7 @@ export function recipeDetailPage(state, recipeId, recipeVersionId = null) {
       !current ? element('div', { className: 'validation-box validation-box--warning', text: t(state, 'catalog.historicalWarning') }) : null,
       !record.installed && version.origin === 'base' ? element('div', { className: 'validation-box validation-box--warning', text: t(state, 'catalog.recipe.packNotInstalled') }) : null,
       metrics, element('p', { className: 'muted', text: `${t(state, 'r2.ingredientWeight')}: ${ingredientWeightG(version.ingredientLines) ?? '—'} g · ${t(state, 'r2.finalWeight')}: ${version.practical.finalWeightG ?? '—'} g` }),
-      element('h3', { text: t(state, 'catalog.ingredients') }), list,
+      element('h3', { text: t(state, 'catalog.recipe.nutritionBreakdown') }), ingredientNutrition,
       element('h3', { text: t(state, 'catalog.semanticData') }), tagBox,
       element('div', { className: 'semantic-groups semantic-groups--summary' }, [
         element('section', { className: 'semantic-group' }, [element('h4', { className: 'semantic-group__label', text: t(state, 'catalog.mealArchetypes') }), chipList(version.mealArchetypes.map(id => t(state, `mealArchetype.${id}`)))]),

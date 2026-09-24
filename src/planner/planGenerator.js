@@ -9,8 +9,8 @@ import { seededTie, stableHashId } from './seededRandom.js';
 import { plannerConstraintPolicySnapshot } from './constraintPolicy.js';
 import { filterRecipeCandidatesForVariety, plannerPolicy } from './varietyPolicy.js';
 
-export const GENERATOR_VERSION = 'plan-generator-2.1';
-export const SOLVER_VERSION = 'beam-search-2.1';
+export const GENERATOR_VERSION = 'plan-generator-2.2';
+export const SOLVER_VERSION = 'beam-search-2.2';
 
 function mealMap(mealClasses) { return new Map(mealClasses.map(item => [item.id, item])); }
 function dayMap(dayClasses) { return new Map(dayClasses.map(item => [item.id, item])); }
@@ -143,7 +143,7 @@ export function generatePlanLegacyCore(input) {
       const mealClass = meals.get(slot.mealClassId);
       if (!mealClass) { failedSlot = { slotId: slot.id, code: 'meal_class_over_constrained', detail: 'missing MealClass' }; break; }
       const targetEnergy = slotEnergyTarget(slot, mealClass, energyTarget);
-      const context = { mealClass, dayClass, allergyProfile, foodPreferences, revisionById: revisions, safetyRevisionById: input.safetyRevisionById, foodGroups: input.foodGroups || [], extensions: input.extensions, history, date: addCivilDays(date, slot.dayOffset), nutritionProfile, slotEnergyTarget: targetEnergy, dayEnergyTarget: energyTarget };
+      const context = { mealClass, dayClass, allergyProfile, foodPreferences, revisionById: revisions, safetyRevisionById: input.safetyRevisionById, foodGroups: input.foodGroups || [], extensions: input.extensions, generationTuningOverlay: input.generationTuningOverlay || null, history, date: addCivilDays(date, slot.dayOffset), nutritionProfile, slotEnergyTarget: targetEnergy, dayEnergyTarget: energyTarget };
       const fixed = input.fixedSlots?.find(entry=>entry.date===date && entry.slot.mealOccurrenceId===stableHashId('meal',date,slot.id));
       if(fixed) {
         const frozen = fixed.slot.recipeComponents.map(c=>recipesByVersion.get(c.recipeVersionId));

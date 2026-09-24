@@ -3,7 +3,7 @@ import { ingredientSearchFields } from '../domain/ingredientPresentation.js';
 import { ingredientProjection } from './ingredientConceptQuery.js';
 import { loadPlanPolicyContext, validatePlanPolicy, currentPlanSafetyOverlay } from './planPolicyValidation.js';
 import { frequencyHistoryDays } from '../domain/frequencyCounter.js';
-import { previewContext, sealPreview, withValidatedPreview, replacementPreviewById, validatePlannedDays } from './planPreviewGuard.js';
+import { previewContext, sealPreview, withValidatedPreview, replacementPreviewById, validatePlannedDays, validatedPreviewSnapshot, replaceSealedPreview } from './planPreviewGuard.js';
 import { repositories } from '../repositories/repositoryHub.js';
 import { loadConfigurationBundle, assertConfigurationBundle, activeRecords } from './configurationService.js';
 import { PlanCandidateService, MAX_PLANNER_CANDIDATES_PER_ARCHETYPE } from './planCandidateService.js';
@@ -13,6 +13,7 @@ import { scoreRecipe } from '../planner/softScoring.js';
 import { addCivilDays, dayEnergyTarget, sumNutrition, nutritionPenalty, energyConstraintStatus } from '../planner/planMath.js';
 import { seededTie } from '../planner/seededRandom.js';
 import { commitOperation, mutationSnapshot, listRecentOperations, undoLastOperation, redoNextOperation, historyState } from './operationHistoryService.js';
+import { mealNutritionAffinity } from './nutritionalAffinityService.js';
 
 function clone(value) { return value == null ? value : structuredClone(value); }
 function nowIso(value) { return value || new Date().toISOString(); }
@@ -138,6 +139,29 @@ export function replacementComponents(current, additions, componentIndex = null)
   return current.map((component, index) => index === componentIndex ? incoming[0] : clone(component));
 }
 
+function componentNutrition(components, recipesByVersion) {
+  const rows = [];
+  for (const component of components || []) {
+    const recipe = recipesByVersion.get(component.recipeVersionId);
+    if (!recipe) continue;
+    const servings = Number(component.servings ?? 1);
+    rows.push(Object.fromEntries(Object.entries(recipe.calculatedNutrition || {}).map(([key, value]) => [key, Number(value || 0) * servings])));
+  }
+  return sumNutrition(rows);
+}
+
+function recipeTextMatches(recipe, revisionById, query) {
+  const normalize = text => String(text || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+  const words = normalize(query).split(/\s+/).filter(Boolean);
+  if (!words.length) return true;
+  const ingredientNames = (recipe.ingredientLines || []).flatMap(line => {
+    const revision = revisionById.get(line.ingredientRevisionId);
+    return [revision?.i18n?.it?.name, revision?.i18n?.en?.name, ...(revision?.i18n?.it?.aliases || []), ...(revision?.i18n?.en?.aliases || [])];
+  });
+  const haystack = normalize([recipe.i18n?.it?.title, recipe.i18n?.en?.title, ...ingredientNames].filter(Boolean).join(' '));
+  return words.every(word => haystack.includes(word));
+}
+
 export async function createReplacementPreview({ planInstanceId, calendarDayId, mealOccurrenceId, seed = 'replace', limit = 8, offset = 0, query = '', conceptId = null, maxMinutes = null, componentIndex }, { repo = repositories, registry } = {}) {
   const contextHash = await previewContext(repo);
   const context = await loadEditContext(planInstanceId, calendarDayId, mealOccurrenceId, { repo, registry });
@@ -172,6 +196,7 @@ export async function createReplacementPreview({ planInstanceId, calendarDayId, 
   }
   const ranked = [], rejectionCounts = { ...candidateService.lastDiagnostics.hardRejectionCounts }; let rejectedByEnergy = 0;
   const beforeEnergy = Number(context.day.nutritionSummary?.knownPlanned?.energyKcal || 0);
+  const currentMealNutrition = componentNutrition(current, policyContext.recipesByVersion);
   for (const recipes of sets) {
     if (!recipes.some(matches)) continue;
     if (maxMinutes !== null && recipes.reduce((sum, recipe) => sum + Number(recipe.practical?.prepMinutes || 0) + Number(recipe.practical?.cookMinutes || 0), 0) > Number(maxMinutes)) continue;
@@ -183,21 +208,78 @@ export async function createReplacementPreview({ planInstanceId, calendarDayId, 
     const nutrition = await recomputeDayNutrition(projected, context.active.nutritionProfile, repo);
     const energyConstraint = dayEnergyConstraint(projected, nutrition.knownPlanned.energyKcal, context.active.nutritionProfile);
     if (!energyConstraint.withinTolerance) { rejectedByEnergy++; continue; }
-    ranked.push({ choiceId: recipes.map(recipe => recipe.recipeVersionId).join('+'), recipe: recipes[0], recipes, components, energyConstraint, energyDelta: nutrition.knownPlanned.energyKcal - beforeEnergy, score: { total: policy.frequencies.idealPenalty, frequencies: policy.frequencies }, tie: seededTie(seed, recipes.map(r => r.recipeVersionId).join('+')) });
+    const candidateMealNutrition = componentNutrition(components, policyContext.recipesByVersion);
+    const affinity = mealNutritionAffinity(currentMealNutrition, candidateMealNutrition);
+    ranked.push({ choiceId: recipes.map(recipe => recipe.recipeVersionId).join('+'), recipe: recipes[0], recipes, components, energyConstraint, energyDelta: nutrition.knownPlanned.energyKcal - beforeEnergy, mealNutrition: candidateMealNutrition, nutritionDelta: affinity.delta, affinityScore: affinity.score, affinityDistance: affinity.distance, score: { total: policy.frequencies.idealPenalty, frequencies: policy.frequencies }, tie: seededTie(seed, recipes.map(r => r.recipeVersionId).join('+')) });
   }
-  ranked.sort((a, b) => a.score.total - b.score.total || Math.abs(a.energyDelta) - Math.abs(b.energyDelta) || a.tie - b.tie);
+  ranked.sort((a, b) => a.affinityDistance - b.affinityDistance || a.score.total - b.score.total || Math.abs(a.energyDelta) - Math.abs(b.energyDelta) || a.tie - b.tie);
   const pageSize = Math.max(1, Math.min(8, Math.floor(Number(limit) || 8))); const pageOffset = Math.max(0, Math.floor(Number(offset) || 0));
-  const currentRecipeTitles = await Promise.all(current.map(async component => (await repo.get('recipeVersions', component.recipeVersionId))?.i18n || {}));
-  return sealPreview({ mealLabel: context.mealClass.name, retrieval: candidateService.lastDiagnostics, currentRecipeTitles: currentRecipeTitles.map(locales => Object.fromEntries(Object.entries(locales).map(([locale, text]) => [locale, text.title]))), status: 'success', planInstanceId, calendarDayId, mealOccurrenceId, targetEnergy, componentIndex,
+  const currentRecipeTitles = current.map(component => policyContext.recipesByVersion.get(component.recipeVersionId)?.i18n || {});
+  return sealPreview({ mealLabel: context.mealClass.name, currentMealNutrition, retrieval: candidateService.lastDiagnostics, currentRecipeTitles: currentRecipeTitles.map(locales => Object.fromEntries(Object.entries(locales).map(([locale, text]) => [locale, text.title]))), status: 'success', planInstanceId, calendarDayId, mealOccurrenceId, targetEnergy, componentIndex,
     filters: { query, conceptId, maxMinutes }, offset: pageOffset, limit: pageSize, total: ranked.length, hasMore: pageOffset + pageSize < ranked.length,
     searchStatus: ranked.length ? 'success' : 'search_exhausted', rejectionCounts, currentComponents: clone(current),
     hardConstraints: { dailyEnergyTolerance: true, rejectedByEnergy }, candidates: ranked.slice(pageOffset, pageOffset + pageSize).map(({ tie, ...entry }) => clone(entry))
   }, contextHash, repo, 'replacement');
 }
 
-export async function recomputeDayNutrition(day, nutritionProfile, repo) {
+export async function createGenerationReplacementPreview({ generationPreview, mealOccurrenceId, seed = 'preview-replace', limit = 8, offset = 0, query = '' }, { repo = repositories, registry } = {}) {
+  if (!registry) throw new Error('Schema registry is required');
+  const sourceState = await validatedPreviewSnapshot(generationPreview, { repo, kind: 'generation' });
+  const source = sourceState.preview;
+  const sourceDay = source.calendarDays.find(day => (day.mealSlots || []).some(slot => slot.mealOccurrenceId === mealOccurrenceId));
+  const sourceSlot = sourceDay?.mealSlots.find(slot => slot.mealOccurrenceId === mealOccurrenceId);
+  if (!sourceDay || !sourceSlot || sourceSlot.mode !== 'planned') throw new Error('Planned meal occurrence not found in generation preview');
+  const bundle = await loadConfigurationBundle(repo); assertConfigurationBundle(bundle, registry); const active = activeRecords(bundle);
+  const generationTuningOverlay = source.generationTuningOverlay || source.generationRun?.configSnapshot?.generationTuningOverlay || null;
+  const dayClass = active.dayClasses.find(item => item.id === sourceDay.dayClassId); const mealClass = active.mealClasses.find(item => item.id === sourceSlot.mealClassId);
+  if (!dayClass || !mealClass) throw new Error('Meal configuration not found');
+  const candidateService = new PlanCandidateService({ repo });
+  const candidates = await candidateService.retrieve(mealClass.mealArchetype, { limit: MAX_PLANNER_CANDIDATES_PER_ARCHETYPE, foodPreferences: active.foodPreferences, eligibilityContexts: [{ mealClass, dayClass, allergyProfile: active.allergyProfile, generationTuningOverlay, date: sourceSlot.civilDate }] });
+  const sourceDerived = source.derivedRecipeVersions || [];
+  const policyContext = await loadPlanPolicyContext(repo, { days: source.calendarDays, extraRecipes: [...sourceDerived, ...candidates], planInstanceId: source.planInstance?.previousPlanInstanceId || null, generationTuningOverlay });
+  const current = sourceSlot.recipeComponents || []; const currentIds = new Set(current.map(component => component.recipeVersionId));
+  const currentMealNutrition = componentNutrition(current, policyContext.recipesByVersion);
+  const ranked = []; const rejectionCounts = { ...candidateService.lastDiagnostics.hardRejectionCounts };
+  for (const recipe of candidates) {
+    if (currentIds.has(recipe.recipeVersionId) || !recipeTextMatches(recipe, policyContext.revisionById, query)) continue;
+    const components = [{ recipeId: recipe.recipeId, recipeVersionId: recipe.recipeVersionId, servings: 1 }];
+    const days = clone(source.calendarDays); const day = days.find(item => item.calendarDayId === sourceDay.calendarDayId); const slot = day.mealSlots.find(item => item.mealOccurrenceId === mealOccurrenceId); slot.recipeComponents = components;
+    const policy = validatePlanPolicy(days, policyContext);
+    if (!policy.valid) { for (const violation of policy.violations) rejectionCounts[violation.code] = (rejectionCounts[violation.code] || 0) + 1; continue; }
+    day.nutritionSummary = await recomputeDayNutrition(day, active.nutritionProfile, repo, [...sourceDerived, recipe]);
+    const candidateMealNutrition = componentNutrition(components, policyContext.recipesByVersion); const affinity = mealNutritionAffinity(currentMealNutrition, candidateMealNutrition);
+    ranked.push({ choiceId: recipe.recipeVersionId, recipe, components, mealNutrition: candidateMealNutrition, nutritionDelta: affinity.delta, affinityScore: affinity.score, affinityDistance: affinity.distance, score: { total: policy.frequencies.idealPenalty, frequencies: policy.frequencies }, tie: seededTie(seed, recipe.recipeVersionId) });
+  }
+  ranked.sort((a, b) => a.affinityDistance - b.affinityDistance || a.score.total - b.score.total || a.tie - b.tie);
+  const pageSize = Math.max(1, Math.min(8, Math.floor(Number(limit) || 8))); const pageOffset = Math.max(0, Math.floor(Number(offset) || 0));
+  return sealPreview({ status: 'success', sourceGenerationPreviewId: generationPreview.previewId, mealOccurrenceId, calendarDayId: sourceDay.calendarDayId, mealLabel: mealClass.name, currentMealNutrition, query, offset: pageOffset, limit: pageSize, total: ranked.length, hasMore: pageOffset + pageSize < ranked.length, rejectionCounts, retrieval: candidateService.lastDiagnostics, candidates: ranked.slice(pageOffset, pageOffset + pageSize).map(({ tie, ...item }) => clone(item)) }, sourceState.contextHash, repo, 'generation_replacement');
+}
+
+export async function applyGenerationReplacementPreview({ generationPreview, replacementPreview, choiceId }, { repo = repositories, registry } = {}) {
+  if (!registry) throw new Error('Schema registry is required');
+  if (replacementPreview.sourceGenerationPreviewId !== generationPreview.previewId) throw new Error('Replacement preview does not belong to this plan preview');
+  return withValidatedPreview(replacementPreview, { repo, kind: 'generation_replacement', choice: choiceId }, async () => {
+    const sourceState = await validatedPreviewSnapshot(generationPreview, { repo, kind: 'generation' }); const source = sourceState.preview;
+    const selected = replacementPreview.candidates.find(item => item.choiceId === choiceId); if (!selected) throw new Error('Replacement candidate not found');
+    const next = clone(source); const day = next.calendarDays.find(item => item.calendarDayId === replacementPreview.calendarDayId); const slot = day?.mealSlots.find(item => item.mealOccurrenceId === replacementPreview.mealOccurrenceId);
+    if (!day || !slot) throw new Error('Plan preview changed after replacement search'); slot.recipeComponents = clone(selected.components);
+    const bundle = await loadConfigurationBundle(repo); assertConfigurationBundle(bundle, registry); const active = activeRecords(bundle);
+    const sourceDerived = source.derivedRecipeVersions || [];
+    day.nutritionSummary = await recomputeDayNutrition(day, active.nutritionProfile, repo, [...sourceDerived, selected.recipe]);
+    const context = await loadPlanPolicyContext(repo, { days: next.calendarDays, extraRecipes: [...sourceDerived, selected.recipe], planInstanceId: next.planInstance?.previousPlanInstanceId || null, generationTuningOverlay: next.generationTuningOverlay || next.generationRun?.configSnapshot?.generationTuningOverlay || null }); const policy = validatePlanPolicy(next.calendarDays, context);
+    if (!policy.valid) { const error = new Error(`Replacement no longer satisfies plan constraints: ${[...new Set(policy.violations.map(item => item.code))].join(', ')}`); error.code = 'plan_constraint_violation'; error.violations = policy.violations; throw error; }
+    const edit = { type: 'nutrition_affinity_replace', mealOccurrenceId: replacementPreview.mealOccurrenceId, recipeVersionId: selected.recipe.recipeVersionId, affinityScore: selected.affinityScore, nutritionDelta: clone(selected.nutritionDelta) };
+    next.diagnostics = { ...(next.diagnostics || {}), postGenerationEdits: [...(next.diagnostics?.postGenerationEdits || []), edit] };
+    next.generationRun = { ...next.generationRun, diagnostics: { ...(next.generationRun?.diagnostics || {}), postGenerationEdits: [...(next.generationRun?.diagnostics?.postGenerationEdits || []), edit] } };
+    registry.assert('calendarDay', day); registry.assert('generationRun', next.generationRun);
+    return replaceSealedPreview(generationPreview, next, { repo, kind: 'generation' });
+  });
+}
+
+export async function recomputeDayNutrition(day, nutritionProfile, repo, extraRecipes = []) {
   const componentIds = (day.mealSlots || []).flatMap(slot => (slot.recipeComponents || []).map(component => component.recipeVersionId));
-  const ids = [...new Set(componentIds)]; const versions = await repo.getMany('recipeVersions', ids); const byId = new Map(versions.map(recipe => [recipe.recipeVersionId, recipe]));
+  const ids = [...new Set(componentIds)]; const extraById = new Map((extraRecipes || []).map(recipe => [recipe.recipeVersionId, recipe]));
+  const stored = await repo.getMany('recipeVersions', ids.filter(id => !extraById.has(id))); const byId = new Map([...stored, ...extraById.values()].map(recipe => [recipe.recipeVersionId, recipe]));
   const known = sumNutrition(componentIds.map(id => byId.get(id)).filter(Boolean));
   const dailyTarget = Number(day.nutritionSummary?.target?.energyKcal || nutritionProfile.dailyEnergyKcal);
   const plannedTarget = Number(day.nutritionSummary?.target?.plannedEnergyKcal || dailyTarget);
@@ -261,7 +343,7 @@ export async function updateAdherence({ planInstanceId, calendarDayId, mealOccur
 
 export async function commitGeneratedPreview(preview, { repo = repositories, registry, createdAt = null, kind = null } = {}) {
   return withValidatedPreview(preview, { repo, kind: 'generation' }, async recheck => {
-    await validatePlannedDays(preview.calendarDays, repo);
+    await validatePlannedDays(preview.calendarDays, repo, { extraRecipes: preview.derivedRecipeVersions || [], replacePlanInstanceId: preview.planInstance?.previousPlanInstanceId || null, generationTuningOverlay: preview.generationTuningOverlay || preview.generationRun?.configSnapshot?.generationTuningOverlay || null });
     return commitGeneratedCurrent(preview, { repo, registry, createdAt, kind, recheck });
   });
 }
@@ -270,8 +352,10 @@ async function commitGeneratedCurrent(preview, { repo, registry, createdAt, kind
   if (preview?.status !== 'success') throw new Error('Only a successful preview can be committed');
   const timestamp = nowIso(createdAt || preview.planInstance.updatedAt); const planId = preview.planInstance.planInstanceId;
   const beforeMeta = await metaBefore(repo, ['activePlanInstanceId', 'lastSuccessfulGenerationRunId', 'planUpdatedAt']);
-  const before = mutationSnapshot({ deletes: { generationRuns: [preview.generationRun.generationRunId], planInstances: [planId], calendarDays: preview.calendarDays.map(day => day.calendarDayId) }, ...beforeMeta });
-  const after = mutationSnapshot({ puts: { generationRuns: [preview.generationRun], planInstances: [preview.planInstance], calendarDays: preview.calendarDays }, metaSet: { activePlanInstanceId: planId, lastSuccessfulGenerationRunId: preview.generationRun.generationRunId, planUpdatedAt: preview.planInstance.updatedAt } });
+  const derivedRecipeVersions = preview.derivedRecipeVersions || [];
+  for (const version of derivedRecipeVersions) registry.assert('recipeVersion', version);
+  const before = mutationSnapshot({ deletes: { generationRuns: [preview.generationRun.generationRunId], planInstances: [planId], calendarDays: preview.calendarDays.map(day => day.calendarDayId), recipeVersions: derivedRecipeVersions.map(version => version.recipeVersionId) }, ...beforeMeta });
+  const after = mutationSnapshot({ puts: { generationRuns: [preview.generationRun], planInstances: [preview.planInstance], calendarDays: preview.calendarDays, recipeVersions: derivedRecipeVersions }, metaSet: { activePlanInstanceId: planId, lastSuccessfulGenerationRunId: preview.generationRun.generationRunId, planUpdatedAt: preview.planInstance.updatedAt } });
   const operationKind = kind || (preview.generationRun.reason === 'horizon_extension' ? 'horizon_extension' : 'plan_create');
   const operation = await commitOperation({ planInstanceId: planId, kind: operationKind, before, after, createdAt: timestamp, metadata: { startDate: preview.planInstance.startDate, endDate: preview.planInstance.endDate, seed: preview.generationRun.seed, dayCount: preview.calendarDays.length } }, { repo, registry, beforeCommit: recheck });
   return { planInstance: preview.planInstance, operation };

@@ -1,5 +1,18 @@
 # Assessment: next plan/catalog features
 
+## Implementation status
+
+Implemented blocks now include:
+
+- **#1 ingredient nutrition contribution:** complete in recipe detail with kcal/macronutrient/fiber values and percentage share per ingredient.
+- **#2 recipe taxonomy search:** complete for recipe family, cuisine, diet, flavor, practical tags and preparation technique, in addition to existing meal/ProductFood filters.
+- **#3 calories per proposed meal:** complete in generation/rebalance previews.
+- **#5 recipe ingredient substitution:** complete with iso-caloric quantity, nutritional delta, semantic affinity and immutable recipe versioning.
+- **#7 proposed-meal replacement:** complete with hard-constraint revalidation and nutritional-affinity ranking.
+- **#4 plan-wide ingredient substitution:** complete for generation previews using frozen plan-local RecipeVersion derivatives; base recipe family pointers are never changed.
+
+No IndexedDB schema migration was required for these features. The next major blocks are #6 temporary generation tuning and #8 structural calendar editing.
+
 ## Architectural direction
 
 The requested features fit the current application, but they should not all be implemented independently. Three reusable primitives should be introduced first:
@@ -71,28 +84,24 @@ Recommended display: `13:00 · Pranzo · 612 kcal` next to the proposed recipe n
 
 ## 4. Plan-wide ingredient substitution with kcal-equivalent grams
 
-**Assessment:** high complexity. This should be built after feature 5 and the effective-recipe overlay primitive.
+**Implementation status: complete for uncommitted generation previews.**
 
-The current `CalendarDay.recipeComponents` references immutable recipe versions and has no place for per-plan ingredient modifications. Mutating the base recipe would be incorrect because it would affect every occurrence and future generation.
+The implementation deliberately uses frozen **plan-local RecipeVersion derivatives** instead of adding ingredient-override fields to every recipe component. For each affected recipe version the service:
 
-Recommended data model:
+- replaces every line for the selected source ingredient;
+- computes target quantity from the source line kcal and target kcal density;
+- recalculates full recipe nutrition and allergens;
+- preserves the base recipe family and its `currentVersionId`;
+- creates an immutable derived version referenced only by the proposed plan;
+- persists those derived versions atomically only when the plan preview is confirmed.
 
-- extend a planned recipe component with optional plan-scoped ingredient overrides, or introduce a dedicated override record keyed by `planInstanceId + mealOccurrenceId + recipeVersionId`;
-- each substitution records source ingredient/revision, target ingredient/revision, source grams, target grams, provenance and timestamp;
-- central `resolveEffectiveRecipeComponent()` returns effective ingredient lines and effective nutrition;
-- shopping, plan nutrition, calendar display, replacement validation and exports must consume the effective form.
+This choice keeps downstream behavior consistent without special cases: plan validation, safety checks, shopping, calendar display and nutrition all continue to resolve normal frozen RecipeVersions. Undo of the plan-creation operation also deletes the derived versions.
 
-Kcal-equivalent starting quantity:
+The candidate ranking reuses the feature-5 affinity engine and aggregates compatibility across every affected recipe/occurrence. The preview shows aggregate replacement amount, nutritional delta, state mismatch warnings and new allergens. Before a new generation preview is sealed, all hard constraints, daily energy limits and frequency rules are revalidated.
 
-`targetGrams = sourceLineEnergyKcal / targetEnergyKcalPerGram`
+Multiple global substitutions can be applied sequentially to the same preview, and feature #7 continues to work afterward because proposed-meal replacement now resolves uncommitted derived recipe versions as part of its policy context.
 
-Then show resulting macro/fiber deltas. Zero/near-zero-energy ingredients must not use this formula.
-
-A global “replace X with Y” action should first build a preview listing every affected occurrence. The user should be able to deselect occurrences before commit. All changes should be one undoable operation.
-
-Hard compatibility should include allergy/intolerance, diet rules, ingredient state, culinary-role compatibility and recipe preparation plausibility. Kcal matching alone is not sufficient.
-
-**Dependencies:** features 1 and 5 primitives; shopping integration; operation history; preview guard.
+Current scope: replacement applies to every occurrence of the selected ingredient in the proposed period. Per-occurrence opt-out can be added later if needed without changing the persistence model.
 
 ## 5. Nutritionally similar ingredient substitutions in recipe view
 
@@ -118,27 +127,15 @@ In base-recipe detail the first implementation can be a **what-if preview** only
 
 This service should later power feature 4.
 
-## 6. Temporary soft constraints for plan fine-tuning
+## 6. Temporary soft constraints for plan fine-tuning — IMPLEMENTED
 
-**Assessment:** high complexity, but fits the current solver if implemented as a separate transient overlay rather than by modifying permanent configuration.
+Feature 6 is now implemented through a run-local `GenerationTuningOverlay`. The proposal UI provides a taxonomy-aware guided intent builder with date and MealClass scope, 1–5 soft strength, ingredient/recipe autocomplete, and presets for sweet/savory, lower fiber, lower fat, more protein, simpler/quicker preparation and faster consumption.
 
-Introduce a `GenerationTuningOverlay` scoped to:
+Availability is intentionally modeled differently from preference: “ingredient unavailable” compiles to a temporary hard exclusion, while desire/avoidance and nutritional/practical directions remain soft objective terms. The normalized overlay is stored only in `GenerationRun.configSnapshot` for reproducibility and is never copied into permanent user configuration.
 
-- one preview/generation run;
-- a specified date range within that run;
-- optionally selected meal classes.
+The overlay is enforced by initial generation, frequency planning, Feature 7 meal replacement and Feature 4 plan-wide ingredient substitution. Re-tuning a preview with manual post-generation edits regenerates from the generation inputs and the UI explicitly warns that those manual edits will be reset.
 
-The overlay should compile user intent into existing or new structured scoring rules. Examples:
-
-- “I want ingredient X” -> temporary prefer rule and optionally a soft occurrence target;
-- “ingredient Y is unavailable” -> this is semantically a temporary **hard exclusion**, not merely a soft constraint;
-- “I want sweet food” -> temporary preference for `flavor_sweet`, optionally scoped to snack/breakfast;
-- “more sensitive to fiber” -> temporary penalty/upper-target adjustment for fiber;
-- “simpler and less fatty” -> practical-tag/time preference plus a fat penalty.
-
-For a local-first PWA, the first version should use a guided intent builder with taxonomy-aware autocomplete and deterministic phrase templates. Truly unrestricted natural-language interpretation would require an LLM/service boundary and should not be made a hidden dependency of plan generation.
-
-The structured overlay must be stored in `GenerationRun.configSnapshot` (or an explicit tuning snapshot) for reproducibility, but it should not be copied into permanent user configuration unless the user explicitly requests that.
+No IndexedDB migration was required. Solver/policy versions were advanced to reflect the new scoring semantics.
 
 ## 7. Replace a proposed meal by nutritional compatibility
 
@@ -164,75 +161,14 @@ Use a `RecipeAffinityService` parallel to the ingredient affinity service. Sugge
 
 This is a relatively safe early feature because the confirmed-plan replacement architecture already provides most validation logic.
 
-## 8. Manually edit a confirmed plan from Calendar
+## 8. Manually edit a confirmed plan from Calendar - IMPLEMENTED
 
-**Assessment:** high complexity. Existing foundations are strong, but structural day editing needs a transaction model that includes neighboring spill-over dates.
+Feature 8 is implemented through `calendarPlanEditorService` and the Calendar/day-management UI. The active confirmed plan now supports transactional add, modify/regenerate and remove operations for diet days. DayClass changes are solved through the normal planner, compatible locked slots can be preserved when regenerating the same DayClass, and PlanInstance bounds expand/shrink automatically at the edges.
 
-Already present:
+The implementation preserves the source-day ownership invariant for `dayOffset` meals: spill-over occurrences remain stored on their source CalendarDay and are projected onto the destination `civilDate`. The preview exposes the spill-over delta, incoming spill-overs are visible in the day page, and removing/modifying the source day reconciles the projection automatically.
 
-- calendar/day management;
-- meal replacement;
-- meal locking;
-- day/range rebalancing;
-- preview validation;
-- operation history with undo/redo;
-- `dayOffset` and `civilDate` modeling.
+Safety rules block structural rewriting when adherence has been recorded or production batches are attached, and block destructive DayClass/removal changes when locked meals cannot be preserved. Removal is also checked against frequency constraints. Every structural change is committed as one operation (`calendar_day_add`, `calendar_day_modify`, `calendar_day_remove`) and is fully undoable/redoable. No IndexedDB migration was required.
 
-Missing:
+## Requested feature set status
 
-- change DayClass for a confirmed day;
-- add/remove manual meal occurrences;
-- change time/meal class/mode for an occurrence;
-- add/remove complete diet days where allowed;
-- reconcile occurrences whose `dayOffset` makes them land on later civil dates.
-
-Recommended approach: `DayStructureEditPreview`.
-
-When day D is structurally edited, compute an **affected closure** rather than mutating D alone. Because the current schema permits `dayOffset` 0-2, validation/rendering must consider at minimum source diet days D-2 through D+2 where relevant. The preview should:
-
-1. remove occurrences generated by the old source-day structure;
-2. create occurrences from the new structure with correct `civilDate`;
-3. preserve explicitly locked/manual occurrences where requested;
-4. detect collisions and duplicate time/meal slots;
-5. recompute nutrition and frequency windows;
-6. optionally invoke the existing rebalance solver for unlocked planned meals;
-7. commit all affected CalendarDays as one operation so undo/redo is atomic.
-
-Do not store spill-over meals by physically moving them between CalendarDay records. Keep the existing invariant: the diet-day record owns its occurrence and `civilDate = date + dayOffset`; calendar views project by civil date.
-
-## Recommended implementation sequence
-
-### Phase A — visible/low-risk improvements
-
-- #1 ingredient nutrition contribution;
-- #3 kcal per proposed meal;
-- #2 full taxonomy filters.
-
-These require no new plan persistence model and give immediate UI value.
-
-### Phase B — affinity engine and meal alternatives
-
-- nutritional distance utilities;
-- #5 ingredient substitution what-if;
-- #7 nutritionally ranked meal replacement, including uncommitted preview support.
-
-### Phase C — effective recipe overrides
-
-- plan-scoped ingredient override schema/service;
-- integrate overrides into nutrition, shopping, plan rendering, validation and history;
-- #4 plan-wide ingredient substitution.
-
-### Phase D — temporary generation tuning
-
-- structured `GenerationTuningOverlay`;
-- guided taxonomy-aware intent builder;
-- #6 temporary date-scoped preferences/exclusions/nutrient adjustments.
-
-### Phase E — structural calendar editing
-
-- `DayStructureEditPreview` and affected-date closure;
-- add/remove/change meal occurrences and DayClass;
-- spill-over/dayOffset reconciliation;
-- #8 confirmed-plan structural editing with atomic undo/redo and optional rebalance.
-
-This order minimizes duplicate work: features 4 and 7 reuse the affinity engine, and feature 8 reuses the existing replacement/rebalance/history infrastructure rather than creating a separate calendar mutation path.
+Features 1 through 8 from the requested set are now implemented. Further work can focus on hardening and UX refinement rather than another missing core feature: richer drag/drop calendar editing, direct single-slot time/mode edits, multi-day structural batch edits, and optional natural-language compilation into the Feature 6 tuning overlay are logical follow-ups.

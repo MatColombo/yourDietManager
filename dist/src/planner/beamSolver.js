@@ -100,7 +100,7 @@ export function buildSlotOptions(scoredCandidates, { targetEnergy, dayEnergyTarg
           aggregate.total += contribution.total;
           for (const [key, value] of Object.entries(contribution.components)) aggregate.components[key] += value;
           return aggregate;
-        }, { total: 0, components: { nutritionTieBreak: 0, preference: 0, variety: 0, regeneration: 0 } });
+        }, { total: 0, components: { nutritionTieBreak: 0, preference: 0, variety: 0, regeneration: 0, tuning: 0 } });
         const componentPenalty = (recipes.length - 1) * PLANNER_SOFT_OBJECTIVE_POLICY.slotOption.extraComponentPenalty;
         const score = slotNutrition + softParts.total + componentPenalty;
         const entry = { recipes, nutrition, score, scoreComponents: { slotNutrition, ...softParts.components, componentPenalty }, tie: seededTie(seed, keyOf(recipes)) };

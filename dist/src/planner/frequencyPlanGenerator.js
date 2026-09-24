@@ -89,7 +89,7 @@ export function generateFrequencyPlan(input, generateLegacy) {
       const fixed=input.fixedSlots?.find(entry=>entry.date===date&&entry.slot.mealOccurrenceId===stableHashId('meal',date,slot.id));
       const candidates = slot.mode === 'planned' ? filterCandidates(fixed ? fixed.slot.recipeComponents.map(c=>recipesByVersion.get(c.recipeVersionId)).filter(Boolean) : input.candidateSets?.[meal.mealArchetype] || input.recipes, {
         mealClass: meal, dayClass, allergyProfile: input.allergyProfile, foodPreferences: profile, revisionById: revisions,
-        safetyRevisionById: input.safetyRevisionById, foodGroups, date: civilDate
+        safetyRevisionById: input.safetyRevisionById, foodGroups, generationTuningOverlay: input.generationTuningOverlay || null, date: civilDate
       }).accepted : [];
       potentials.push({ ...slot, dietDate: date, civilDate, mealOccurrenceId: stableHashId('meal', date, slot.id), recipeComponents: [],
         canMatch: Object.fromEntries(rules.map(rule => [rule.id, candidates.some(recipe => recipeMatchesTarget(recipe, rule.target.type, rule.target.id, revisions, foodGroups))])) });
@@ -179,7 +179,7 @@ export function generateFrequencyPlan(input, generateLegacy) {
   const diagnostics = { status: 'success', dayCount: calendarDays.length, days: winner.dayDiagnostics, frequencies: winner.frequencies,
     search: { limits, expandedPlans, elapsedMs: Math.round(performance.now() - started), bounded: true, seededDiversityMaxPenalty: PLANNER_SOFT_OBJECTIVE_POLICY.seededDiversityMaxPenalty },
     summary: { hardConstraintViolations: 0, meanScore: winner.score / dates.length, seedDiversityPenalty: Math.round((winner.seedDiversityPenalty || 0) * 1000) / 1000 } };
-  const generationRun = { schemaVersion: 1, generationRunId, generatorVersion: 'plan-generator-r3-2', solverVersion: 'window-beam-r3-2', seed: input.seed,
+  const generationRun = { schemaVersion: 1, generationRunId, generatorVersion: 'plan-generator-r3-3', solverVersion: 'window-beam-r3-3', seed: input.seed,
     catalogVersion: input.catalogVersion, configSnapshotHash: input.configSnapshotHash || 'pending', configSnapshot: input.configSnapshot || {}, horizon: structuredClone(input.horizon), createdAt,
     diagnostics, reason: input.reason || 'initial', previousGenerationRunId: input.previousGenerationRunId || null };
   const planInstance = { schemaVersion: 1, planInstanceId, generationRunId, startDate: input.horizon.startDate, endDate: input.horizon.endDate,

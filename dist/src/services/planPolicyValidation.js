@@ -15,7 +15,7 @@ export async function activePlanChainIds(repo, extraId = null) {
   }
   return ids;
 }
-export async function loadPlanPolicyContext(repo, { days = [], extraRecipes = [], planInstanceId = null } = {}) {
+export async function loadPlanPolicyContext(repo, { days = [], extraRecipes = [], planInstanceId = null, generationTuningOverlay = null } = {}) {
   const configuration = await loadConfigurationBundle(repo); const active = activeRecords(configuration);
   const chain = await activePlanChainIds(repo, planInstanceId);
   const dates = days.flatMap(day => [day.date, ...(day.mealSlots || []).map(slot => slot.civilDate || addCivilDays(day.date, slot.dayOffset || 0))]).sort();
@@ -31,7 +31,7 @@ export async function loadPlanPolicyContext(repo, { days = [], extraRecipes = []
   return { configuration, active, calendarDays, productionBatches, batchCalendarDays, recipesByVersion: new Map(recipes.map(recipe => [recipe.recipeVersionId, recipe])),
     revisionById: new Map(revisions.map(revision => [revision.ingredientRevisionId, revision])),
     safetyRevisionById: currentSafetyRevisionMap(revisions, ingredients, [...revisions, ...currentRevisions]), foodGroups: await currentFoodGroups({ repo }),
-    unresolved: new Set(((await repo.getMeta('contentMigration:4'))?.unresolved || []).map(row => row.ingredientId)) };
+    unresolved: new Set(((await repo.getMeta('contentMigration:4'))?.unresolved || []).map(row => row.ingredientId)), generationTuningOverlay: generationTuningOverlay ? structuredClone(generationTuningOverlay) : null };
 }
 export function projectedPlanDays(days, context, { replacePlanInstanceId = null, includeFuture = true } = {}) {
   const changed = new Set(days.map(day => day.date)); const last = [...changed].sort().at(-1);
@@ -56,7 +56,7 @@ export function validatePlanPolicy(days, context, options = {}) {
         const recipe = recipesByVersion.get(component.recipeVersionId);
         if (!recipe || recipe.recipeId !== component.recipeId || component.servings !== 1) { violations.push({ code: 'invalid_component_reference', mealOccurrenceId: slot.mealOccurrenceId }); continue; }
         if (recipe.ingredientLines.some(line => context.unresolved.has(line.ingredientId))) violations.push({ code: 'ingredient_mapping_unresolved', mealOccurrenceId: slot.mealOccurrenceId });
-        const check = hardFilterRecipe(recipe, { mealClass, dayClass, allergyProfile: active.allergyProfile, foodPreferences: active.foodPreferences, revisionById, safetyRevisionById, foodGroups, date: slot.civilDate });
+        const check = hardFilterRecipe(recipe, { mealClass, dayClass, allergyProfile: active.allergyProfile, foodPreferences: active.foodPreferences, revisionById, safetyRevisionById, foodGroups, generationTuningOverlay: context.generationTuningOverlay, date: slot.civilDate });
         for (const code of check.reasons) violations.push({ code, mealOccurrenceId: slot.mealOccurrenceId, date: slot.civilDate });
         try { calculated.push(calculateRecipeNutrition(recipe.ingredientLines, revisionById)); }
         catch (error) { violations.push({ code: 'invalid_nutrition_reference', detail: error.message, mealOccurrenceId: slot.mealOccurrenceId }); }
@@ -86,7 +86,7 @@ export function validatePlanPolicy(days, context, options = {}) {
   return { valid: !violations.length, violations, frequencies };
 }
 export async function assertPlanPolicy(days, repo, options = {}) {
-  const context = await loadPlanPolicyContext(repo, { days, planInstanceId: options.replacePlanInstanceId || null });
+  const context = await loadPlanPolicyContext(repo, { days, extraRecipes: options.extraRecipes || [], planInstanceId: options.replacePlanInstanceId || null, generationTuningOverlay: options.generationTuningOverlay || null });
   const result = validatePlanPolicy(days, context, options);
   if (!result.valid) {
     const error = new Error(`Piano non ammissibile / Plan constraints not met: ${[...new Set(result.violations.map(row => row.ruleId ? `${row.code} (${row.ruleId})` : row.code))].join(', ')}`);
