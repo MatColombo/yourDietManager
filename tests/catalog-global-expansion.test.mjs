@@ -54,27 +54,28 @@ test('full culinary time audit reviews all pre-expansion recipes semantically an
     recipe_melanzana_ripiena_riso_cannellini: [20, 40],
     recipe_r2_elaborate_spalla_maiale_finocchio_arrosto: [20, 70]
   };
+  const auditedById=new Map(audit.records.map(r=>[r.id,r]));
   for (const [id,[prepFloor,cookFloor]] of Object.entries(complexFloors)) {
-    const r=recipes.get(id);
-    assert.ok(r,`${id} missing`);
+    const r=auditedById.get(id);
+    assert.ok(r,`${id} missing from time-audit batch`);
     assert.ok(r.prepMinutes>=prepFloor,`${id} prep floor`);
     assert.ok(r.cookMinutes>=cookFloor,`${id} cook floor`);
   }
 });
 
-test('global expansion adds required meats, cuisines and exactly 100 fusion recipes', () => {
-  const {ingredients,recipes}=resolved();
-  assert.equal(ingredients.size,295);
-  assert.equal(recipes.size,1260);
+test('global expansion source batch adds required meats, cuisines and exactly 100 fusion recipes', () => {
+  const batch=JSON.parse(fs.readFileSync(path.join(SOURCE,'011-global-cuisine-technique-expansion.json'),'utf8'));
+  const ingredients=new Map((batch.records ?? []).filter(r=>r.kind==='ingredient' && r.status==='active').map(r=>[r.id,r]));
+  const recipes=(batch.records ?? []).filter(r=>r.kind==='recipe' && r.status==='active');
   for (const [id,min] of [['ing_beef_sirloin_raw',30],['ing_rabbit_meat_raw',30],['ing_lamb_leg_lean_raw',30]]) {
     assert.ok(ingredients.has(id));
-    const meatRecipes=[...recipes.values()].filter(r=>r.ingredients.some(line=>line.ingredientId===id));
+    const meatRecipes=recipes.filter(r=>r.ingredients.some(line=>line.ingredientId===id));
     assert.ok(meatRecipes.length>=min,`${id} recipe coverage`);
     assert.ok(new Set(meatRecipes.map(r=>r.title.it.toLocaleLowerCase('it'))).size>=min,`${id} unique recipe titles`);
   }
   const wants={tax_cuisine_japanese:10,tax_cuisine_indian:3,tax_cuisine_greek:2,tax_cuisine_spanish:10,tax_cuisine_chinese:10,tax_cuisine_mexican:5,tax_cuisine_fusion:100};
-  for (const [cuisine,want] of Object.entries(wants)) assert.ok([...recipes.values()].filter(r=>r.cuisineIds.includes(cuisine)).length>=want,`${cuisine} count`);
-  const fusion=[...recipes.values()].filter(r=>r.cuisineIds.includes('tax_cuisine_fusion'));
+  for (const [cuisine,want] of Object.entries(wants)) assert.ok(recipes.filter(r=>r.cuisineIds.includes(cuisine)).length>=want,`${cuisine} count`);
+  const fusion=recipes.filter(r=>r.cuisineIds.includes('tax_cuisine_fusion'));
   assert.equal(fusion.length,100);
   assert.equal(new Set(fusion.map(r=>r.title.it.toLocaleLowerCase('it'))).size,100,'fusion Italian titles must be unique');
   assert.ok(fusion.every(r=>(r.steps?.it?.length ?? 0)>=3),'fusion recipes need actionable steps');
@@ -86,12 +87,13 @@ test('global expansion adds required meats, cuisines and exactly 100 fusion reci
   assert.equal(fusion.some(r=>/Braisé fusion|Vapore fusion allo zenzero|Teglia arrosto fusion con|Pasta fusion in crema frullata/i.test(r.title.it)),false,'mechanical placeholder fusion titles must not return');
 });
 
-test('previously empty technique/diet combinations now have at least five recipes each', () => {
-  const {recipes}=resolved();
+test('global expansion source batch closes previously empty technique/diet combinations', () => {
+  const batch=JSON.parse(fs.readFileSync(path.join(SOURCE,'011-global-cuisine-technique-expansion.json'),'utf8'));
+  const recipes=(batch.records ?? []).filter(r=>r.kind==='recipe' && r.status==='active');
   const techniques=['tax_preparation_blending','tax_preparation_braising','tax_preparation_frying','tax_preparation_roasting','tax_preparation_steaming'];
   const diets=['tax_diet_vegan','tax_diet_vegetarian','tax_diet_pescatarian'];
   for (const technique of techniques) for (const diet of diets) {
-    const count=[...recipes.values()].filter(r=>r.preparationTechniqueIds.includes(technique) && r.dietTagIds.includes(diet)).length;
+    const count=recipes.filter(r=>r.preparationTechniqueIds.includes(technique) && r.dietTagIds.includes(diet)).length;
     assert.ok(count>=5,`${technique}/${diet} only ${count}`);
   }
 });

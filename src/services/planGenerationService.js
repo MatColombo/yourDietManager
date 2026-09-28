@@ -25,14 +25,14 @@ function snapshotConfiguration(bundle, active) {
   };
 }
 
-async function boundedCandidates(active, catalogVersion, { repo, horizon, limit = MAX_PLANNER_CANDIDATES_PER_ARCHETYPE, generationTuningOverlay = null } = {}) {
+async function boundedCandidates(active, catalogVersion, { repo, horizon, limit = MAX_PLANNER_CANDIDATES_PER_ARCHETYPE, generationTuningOverlay = null, seed = 'seed' } = {}) {
   const query = new PlanCandidateService({ repo });
   const archetypes = [...new Set(active.mealClasses.map(meal => meal.mealArchetype))];
   const candidateSets = {}; const versions = new Map(); const retrieval = {}; const foodGroups = await currentFoodGroups({ repo });
   for (const archetype of archetypes) {
     const eligibilityContexts = [];
     for (const dayClass of active.dayClasses) for (const slot of dayClass.mealSlots.filter(s => s.mode === 'planned')) { const mealClass = active.mealClasses.find(m => m.id === slot.mealClassId); if (mealClass?.mealArchetype === archetype) { const dates = [horizon.startDate, horizon.endDate, ...(active.allergyProfile.rules || []).map(r => r.effectiveFrom).filter(d => d && d >= horizon.startDate && d <= horizon.endDate)]; for (const date of new Set(dates)) eligibilityContexts.push({ dayClass, mealClass, allergyProfile: active.allergyProfile, generationTuningOverlay, date: addCivilDays(date, slot.dayOffset || 0) }); } }
-    const items = await query.retrieve(archetype, { limit, foodPreferences: active.foodPreferences, foodGroups, eligibilityContexts });
+    const items = await query.retrieve(archetype, { limit, foodPreferences: active.foodPreferences, foodGroups, eligibilityContexts, seed: `${seed}|retrieval|${archetype}` });
     retrieval[archetype] = structuredClone(query.lastDiagnostics);
     candidateSets[archetype] = items;
     for (const version of items) versions.set(version.recipeVersionId, version);
@@ -93,7 +93,7 @@ export async function createPlanPreview(options, { repo = repositories, registry
   configSnapshot.foodGroups = await currentFoodGroups({ repo });
   if (generationTuningOverlay?.rules?.length) configSnapshot.generationTuningOverlay = generationTuningOverlay;
   const configSnapshotHash = await sha256Json(configSnapshot);
-  const candidates = await boundedCandidates(active, catalogVersion, { repo, horizon: options.horizon, limit: options.candidateRetrievalLimit || MAX_PLANNER_CANDIDATES_PER_ARCHETYPE, generationTuningOverlay });
+  const candidates = await boundedCandidates(active, catalogVersion, { repo, horizon: options.horizon, limit: options.candidateRetrievalLimit || MAX_PLANNER_CANDIDATES_PER_ARCHETYPE, generationTuningOverlay, seed: options.seed });
   const continuation = await continuationContext({ previousPlanInstanceId: options.previousPlanInstanceId || null, active, repo });
   if (options.startCycleDayOverride != null) continuation.startCycleDay = Number(options.startCycleDayOverride);
   if (options.previousGenerationRunIdOverride !== undefined) continuation.previousGenerationRunId = options.previousGenerationRunIdOverride;
@@ -119,7 +119,7 @@ export async function createPlanPreview(options, { repo = repositories, registry
     reason: options.reason || (options.previousPlanInstanceId ? 'horizon_extension' : 'initial'),
     previousGenerationRunId: continuation.previousGenerationRunId, previousPlanInstanceId: continuation.previousPlanInstanceId,
     previousCalendarDays, continuationPolicy: options.continuationPolicy || { mode: 'prompt', triggerDaysBeforeEnd: 3, extensionDays: 7 },
-    startCycleDay: continuation.startCycleDay, candidateLimit: options.candidateLimit || 20, beamWidth: options.beamWidth || 100, slotOptionLimit: options.slotOptionLimit || 40,
+    startCycleDay: continuation.startCycleDay, candidateLimit: options.candidateLimit || 32, beamWidth: options.beamWidth || 100, slotOptionLimit: options.slotOptionLimit || 40,
     regenerationPolicy: options.regenerationPolicy || null
   }, { signal: options.signal, onProgress: options.onProgress });
   result.diagnostics.candidateRetrieval = { details: candidates.retrieval, limitPerArchetype: options.candidateRetrievalLimit || MAX_PLANNER_CANDIDATES_PER_ARCHETYPE, counts: Object.fromEntries(Object.entries(candidates.candidateSets).map(([key, values]) => [key, values.length])), totalUniqueRecipes: candidates.recipes.length };

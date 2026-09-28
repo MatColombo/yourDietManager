@@ -1,0 +1,670 @@
+{
+  "schemaVersion": 1,
+  "batchId": "catalog_review_unlock_veal_seabream_2026_09_28_v1",
+  "description": "Adds veal and gilthead seabream ProductFood/ingredient records and emits the six recipe revisions previously blocked by the user review workbook.",
+  "records": [
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_veal_loin",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_meat_poultry",
+      "labels": {
+        "it": "Vitello, lombata magra",
+        "en": "Veal loin, lean"
+      },
+      "aliases": {
+        "it": [
+          "Vitello",
+          "Carne di vitello"
+        ],
+        "en": [
+          "Veal",
+          "Lean veal loin"
+        ]
+      }
+    },
+    {
+      "kind": "taxonomy_term",
+      "id": "tax_product_gilthead_seabream",
+      "revision": 1,
+      "status": "active",
+      "taxonomyType": "product",
+      "parentId": "tax_category_fish_seafood",
+      "labels": {
+        "it": "Orata",
+        "en": "Gilthead seabream"
+      },
+      "aliases": {
+        "it": [
+          "Orata",
+          "Dorada"
+        ],
+        "en": [
+          "Gilthead sea bream",
+          "Gilthead bream"
+        ]
+      }
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_veal_loin_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_veal_loin",
+      "categoryId": "tax_category_meat_poultry",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Vitello crudo magro",
+        "en": "Raw lean veal loin"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_meat"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 114,
+        "proteinG": 21.85,
+        "carbohydrateG": 0,
+        "fatG": 2.9,
+        "fiberG": 0
+      },
+      "allergens": [],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "USDA_FDC",
+        "sourceId": "173826",
+        "description": "Veal, loin, separable lean only, raw",
+        "retrievedOrVerifiedDate": "2026-09-28"
+      },
+      "notes": {
+        "it": "Profilo usato per le ricette di vitello revisionate manualmente.",
+        "en": "Profile used by the manually reviewed veal recipes."
+      },
+      "flavorProfileId": "tax_flavor_savory"
+    },
+    {
+      "kind": "ingredient",
+      "id": "ing_gilthead_seabream_raw",
+      "revision": 1,
+      "status": "active",
+      "productId": "tax_product_gilthead_seabream",
+      "categoryId": "tax_category_fish_seafood",
+      "state": {
+        "physical": "raw",
+        "preservation": "fresh",
+        "drained": false
+      },
+      "display": {
+        "it": "Orata cruda",
+        "en": "Raw gilthead seabream"
+      },
+      "culinaryRoles": [
+        "tax_role_protein_fish"
+      ],
+      "nutritionPer100g": {
+        "energyKcal": 129,
+        "proteinG": 20.9,
+        "carbohydrateG": 0,
+        "fatG": 5.1,
+        "fiberG": 0
+      },
+      "allergens": [
+        "fish"
+      ],
+      "dietFlags": {
+        "vegetarian": false,
+        "vegan": false
+      },
+      "source": {
+        "provider": "CIQUAL",
+        "sourceId": "26088",
+        "description": "Daurade royale, crue, élevage (Sparus aurata)",
+        "retrievedOrVerifiedDate": "2026-09-28"
+      },
+      "notes": {
+        "it": "Profilo per orata cruda di allevamento (Sparus aurata).",
+        "en": "Profile for raw farmed gilthead seabream (Sparus aurata)."
+      },
+      "flavorProfileId": "tax_flavor_savory"
+    },
+    {
+      "kind": "recipe",
+      "id": "recipe_beef_expansion_21",
+      "revision": 2,
+      "status": "active",
+      "title": {
+        "it": "Vitello in umido con zucchine e limone",
+        "en": "Stewed beef with zucchini and lemon"
+      },
+      "description": {
+        "it": "Piatto principale bilanciato con tecnica e tempi di preparazione espliciti.",
+        "en": "Balanced main dish with explicit preparation technique and timing."
+      },
+      "servings": 1,
+      "mealTypeIds": [
+        "tax_meal_lunch",
+        "tax_meal_dinner"
+      ],
+      "archetypeId": "tax_archetype_stew",
+      "cuisineIds": [
+        "tax_cuisine_mediterranean"
+      ],
+      "ingredients": [
+        {
+          "ingredientId": "ing_veal_loin_raw",
+          "grams": 170
+        },
+        {
+          "ingredientId": "ing_zucchini_raw",
+          "grams": 150
+        },
+        {
+          "ingredientId": "ing_lemon_raw",
+          "grams": 70
+        },
+        {
+          "ingredientId": "ing_parsley_fresh",
+          "grams": 4
+        },
+        {
+          "ingredientId": "ing_olive_oil",
+          "grams": 8
+        },
+        {
+          "ingredientId": "ing_table_salt",
+          "grams": 1
+        },
+        {
+          "ingredientId": "ing_black_pepper_ground",
+          "grams": 1
+        },
+        {
+          "ingredientId": "ing_crushed_tomatoes_canned",
+          "grams": 120
+        }
+      ],
+      "steps": {
+        "it": [
+          "Taglia carne e verdure in pezzi regolari.",
+          "Rosola, aggiungi pomodoro e poca acqua, quindi stufa coperto a fuoco dolce fino a completa cottura.",
+          "Riduci il fondo scoperto se necessario."
+        ],
+        "en": [
+          "Prepare and weigh all ingredients.",
+          "Cook the required components with the stated technique and timing.",
+          "Finish with the aromatic components and serve."
+        ]
+      },
+      "prepMinutes": 18,
+      "cookMinutes": 50,
+      "eatingMinutes": 15,
+      "practicalTagIds": [
+        "tax_practical_elaborate",
+        "tax_practical_no_advance_prep"
+      ],
+      "dietTagIds": [],
+      "flavorProfileIds": [
+        "tax_flavor_savory"
+      ],
+      "preparationTechniqueIds": [
+        "tax_preparation_stewing"
+      ],
+      "timeReview": {
+        "policy": "culinary_time_audit_v1",
+        "reviewedAt": "2026-09-24",
+        "reasonCodes": [
+          "authored_with_explicit_technique_timing"
+        ]
+      }
+    },
+    {
+      "kind": "recipe",
+      "id": "recipe_beef_expansion_22",
+      "revision": 2,
+      "status": "active",
+      "title": {
+        "it": "Vitello in umido con peperoni e cipolla",
+        "en": "Stewed beef with peppers and onion"
+      },
+      "description": {
+        "it": "Piatto principale bilanciato con tecnica e tempi di preparazione espliciti.",
+        "en": "Balanced main dish with explicit preparation technique and timing."
+      },
+      "servings": 1,
+      "mealTypeIds": [
+        "tax_meal_lunch",
+        "tax_meal_dinner"
+      ],
+      "archetypeId": "tax_archetype_stew",
+      "cuisineIds": [
+        "tax_cuisine_mediterranean"
+      ],
+      "ingredients": [
+        {
+          "ingredientId": "ing_veal_loin_raw",
+          "grams": 170
+        },
+        {
+          "ingredientId": "ing_red_bell_pepper_raw",
+          "grams": 150
+        },
+        {
+          "ingredientId": "ing_yellow_onion_raw",
+          "grams": 70
+        },
+        {
+          "ingredientId": "ing_oregano_dried",
+          "grams": 4
+        },
+        {
+          "ingredientId": "ing_olive_oil",
+          "grams": 8
+        },
+        {
+          "ingredientId": "ing_table_salt",
+          "grams": 1
+        },
+        {
+          "ingredientId": "ing_black_pepper_ground",
+          "grams": 1
+        },
+        {
+          "ingredientId": "ing_crushed_tomatoes_canned",
+          "grams": 120
+        }
+      ],
+      "steps": {
+        "it": [
+          "Taglia carne e verdure in pezzi regolari.",
+          "Rosola, aggiungi pomodoro e poca acqua, quindi stufa coperto a fuoco dolce fino a completa cottura.",
+          "Riduci il fondo scoperto se necessario."
+        ],
+        "en": [
+          "Prepare and weigh all ingredients.",
+          "Cook the required components with the stated technique and timing.",
+          "Finish with the aromatic components and serve."
+        ]
+      },
+      "prepMinutes": 18,
+      "cookMinutes": 50,
+      "eatingMinutes": 15,
+      "practicalTagIds": [
+        "tax_practical_elaborate",
+        "tax_practical_no_advance_prep"
+      ],
+      "dietTagIds": [],
+      "flavorProfileIds": [
+        "tax_flavor_savory"
+      ],
+      "preparationTechniqueIds": [
+        "tax_preparation_stewing"
+      ],
+      "timeReview": {
+        "policy": "culinary_time_audit_v1",
+        "reviewedAt": "2026-09-24",
+        "reasonCodes": [
+          "authored_with_explicit_technique_timing"
+        ]
+      }
+    },
+    {
+      "kind": "recipe",
+      "id": "recipe_beef_expansion_23",
+      "revision": 2,
+      "status": "active",
+      "title": {
+        "it": "Vitello in umido con melanzane e pomodoro",
+        "en": "Stewed beef with eggplant and tomato"
+      },
+      "description": {
+        "it": "Piatto principale bilanciato con tecnica e tempi di preparazione espliciti.",
+        "en": "Balanced main dish with explicit preparation technique and timing."
+      },
+      "servings": 1,
+      "mealTypeIds": [
+        "tax_meal_lunch",
+        "tax_meal_dinner"
+      ],
+      "archetypeId": "tax_archetype_stew",
+      "cuisineIds": [
+        "tax_cuisine_mediterranean"
+      ],
+      "ingredients": [
+        {
+          "ingredientId": "ing_veal_loin_raw",
+          "grams": 170
+        },
+        {
+          "ingredientId": "ing_eggplant_raw",
+          "grams": 150
+        },
+        {
+          "ingredientId": "ing_grape_tomato_raw",
+          "grams": 70
+        },
+        {
+          "ingredientId": "ing_basil_fresh",
+          "grams": 4
+        },
+        {
+          "ingredientId": "ing_olive_oil",
+          "grams": 8
+        },
+        {
+          "ingredientId": "ing_table_salt",
+          "grams": 1
+        },
+        {
+          "ingredientId": "ing_black_pepper_ground",
+          "grams": 1
+        },
+        {
+          "ingredientId": "ing_crushed_tomatoes_canned",
+          "grams": 120
+        }
+      ],
+      "steps": {
+        "it": [
+          "Taglia carne e verdure in pezzi regolari.",
+          "Rosola, aggiungi pomodoro e poca acqua, quindi stufa coperto a fuoco dolce fino a completa cottura.",
+          "Riduci il fondo scoperto se necessario."
+        ],
+        "en": [
+          "Prepare and weigh all ingredients.",
+          "Cook the required components with the stated technique and timing.",
+          "Finish with the aromatic components and serve."
+        ]
+      },
+      "prepMinutes": 18,
+      "cookMinutes": 50,
+      "eatingMinutes": 15,
+      "practicalTagIds": [
+        "tax_practical_elaborate",
+        "tax_practical_no_advance_prep"
+      ],
+      "dietTagIds": [],
+      "flavorProfileIds": [
+        "tax_flavor_savory"
+      ],
+      "preparationTechniqueIds": [
+        "tax_preparation_stewing"
+      ],
+      "timeReview": {
+        "policy": "culinary_time_audit_v1",
+        "reviewedAt": "2026-09-24",
+        "reasonCodes": [
+          "authored_with_explicit_technique_timing"
+        ]
+      }
+    },
+    {
+      "kind": "recipe",
+      "id": "recipe_beef_expansion_24",
+      "revision": 2,
+      "status": "active",
+      "title": {
+        "it": "Vitello in umido con finocchio e rosmarino",
+        "en": "Stewed beef with fennel and rosemary"
+      },
+      "description": {
+        "it": "Piatto principale bilanciato con tecnica e tempi di preparazione espliciti.",
+        "en": "Balanced main dish with explicit preparation technique and timing."
+      },
+      "servings": 1,
+      "mealTypeIds": [
+        "tax_meal_lunch",
+        "tax_meal_dinner"
+      ],
+      "archetypeId": "tax_archetype_stew",
+      "cuisineIds": [
+        "tax_cuisine_mediterranean"
+      ],
+      "ingredients": [
+        {
+          "ingredientId": "ing_veal_loin_raw",
+          "grams": 170
+        },
+        {
+          "ingredientId": "ing_fennel_raw",
+          "grams": 150
+        },
+        {
+          "ingredientId": "ing_yellow_onion_raw",
+          "grams": 70
+        },
+        {
+          "ingredientId": "ing_rosemary_fresh",
+          "grams": 4
+        },
+        {
+          "ingredientId": "ing_olive_oil",
+          "grams": 8
+        },
+        {
+          "ingredientId": "ing_table_salt",
+          "grams": 1
+        },
+        {
+          "ingredientId": "ing_black_pepper_ground",
+          "grams": 1
+        },
+        {
+          "ingredientId": "ing_crushed_tomatoes_canned",
+          "grams": 120
+        }
+      ],
+      "steps": {
+        "it": [
+          "Taglia carne e verdure in pezzi regolari.",
+          "Rosola, aggiungi pomodoro e poca acqua, quindi stufa coperto a fuoco dolce fino a completa cottura.",
+          "Riduci il fondo scoperto se necessario."
+        ],
+        "en": [
+          "Prepare and weigh all ingredients.",
+          "Cook the required components with the stated technique and timing.",
+          "Finish with the aromatic components and serve."
+        ]
+      },
+      "prepMinutes": 18,
+      "cookMinutes": 50,
+      "eatingMinutes": 15,
+      "practicalTagIds": [
+        "tax_practical_elaborate",
+        "tax_practical_no_advance_prep"
+      ],
+      "dietTagIds": [],
+      "flavorProfileIds": [
+        "tax_flavor_savory"
+      ],
+      "preparationTechniqueIds": [
+        "tax_preparation_stewing"
+      ],
+      "timeReview": {
+        "policy": "culinary_time_audit_v1",
+        "reviewedAt": "2026-09-24",
+        "reasonCodes": [
+          "authored_with_explicit_technique_timing"
+        ]
+      }
+    },
+    {
+      "kind": "recipe",
+      "id": "recipe_beef_expansion_25",
+      "revision": 2,
+      "status": "active",
+      "title": {
+        "it": "Vitello in umido con broccoli e aglio",
+        "en": "Stewed beef with broccoli and garlic"
+      },
+      "description": {
+        "it": "Piatto principale bilanciato con tecnica e tempi di preparazione espliciti.",
+        "en": "Balanced main dish with explicit preparation technique and timing."
+      },
+      "servings": 1,
+      "mealTypeIds": [
+        "tax_meal_lunch",
+        "tax_meal_dinner"
+      ],
+      "archetypeId": "tax_archetype_stew",
+      "cuisineIds": [
+        "tax_cuisine_mediterranean"
+      ],
+      "ingredients": [
+        {
+          "ingredientId": "ing_veal_loin_raw",
+          "grams": 170
+        },
+        {
+          "ingredientId": "ing_broccoli_raw",
+          "grams": 150
+        },
+        {
+          "ingredientId": "ing_garlic_raw",
+          "grams": 70
+        },
+        {
+          "ingredientId": "ing_parsley_fresh",
+          "grams": 4
+        },
+        {
+          "ingredientId": "ing_olive_oil",
+          "grams": 8
+        },
+        {
+          "ingredientId": "ing_table_salt",
+          "grams": 1
+        },
+        {
+          "ingredientId": "ing_black_pepper_ground",
+          "grams": 1
+        },
+        {
+          "ingredientId": "ing_crushed_tomatoes_canned",
+          "grams": 120
+        }
+      ],
+      "steps": {
+        "it": [
+          "Taglia carne e verdure in pezzi regolari.",
+          "Rosola, aggiungi pomodoro e poca acqua, quindi stufa coperto a fuoco dolce fino a completa cottura.",
+          "Riduci il fondo scoperto se necessario."
+        ],
+        "en": [
+          "Prepare and weigh all ingredients.",
+          "Cook the required components with the stated technique and timing.",
+          "Finish with the aromatic components and serve."
+        ]
+      },
+      "prepMinutes": 18,
+      "cookMinutes": 50,
+      "eatingMinutes": 15,
+      "practicalTagIds": [
+        "tax_practical_elaborate",
+        "tax_practical_no_advance_prep"
+      ],
+      "dietTagIds": [],
+      "flavorProfileIds": [
+        "tax_flavor_savory"
+      ],
+      "preparationTechniqueIds": [
+        "tax_preparation_stewing"
+      ],
+      "timeReview": {
+        "policy": "culinary_time_audit_v1",
+        "reviewedAt": "2026-09-24",
+        "reasonCodes": [
+          "authored_with_explicit_technique_timing"
+        ]
+      }
+    },
+    {
+      "kind": "recipe",
+      "id": "recipe_r2_quick_pesce_serra_pomodoro_olive",
+      "revision": 4,
+      "status": "active",
+      "title": {
+        "it": "Orata in padella con pomodoro e olive",
+        "en": "Pan-seared bluefish with tomato and olives"
+      },
+      "description": {
+        "it": "Preparazione italiana o mediterranea distinta: pesce serra in padella con pomodoro e olive.",
+        "en": "A distinct Italian or Mediterranean preparation: pan-seared bluefish with tomato and olives."
+      },
+      "cuisineIds": [
+        "tax_cuisine_italian",
+        "tax_cuisine_mediterranean"
+      ],
+      "mealTypeIds": [
+        "tax_meal_lunch",
+        "tax_meal_dinner"
+      ],
+      "archetypeId": "tax_archetype_quick_seafood_plate",
+      "servings": 1,
+      "ingredients": [
+        {
+          "ingredientId": "ing_gilthead_seabream_raw",
+          "grams": 150
+        },
+        {
+          "ingredientId": "ing_grape_tomato_raw",
+          "grams": 100
+        },
+        {
+          "ingredientId": "ing_green_olives_pimiento",
+          "grams": 30
+        },
+        {
+          "ingredientId": "ing_olive_oil",
+          "grams": 7
+        }
+      ],
+      "steps": {
+        "it": [
+          "Taglia gli ingredienti in pezzi regolari.",
+          "Cuoci in padella partendo dagli elementi che richiedono più tempo.",
+          "Regola il condimento e servi caldo."
+        ],
+        "en": [
+          "Cut the ingredients into even pieces.",
+          "Cook in a pan, starting with the ingredients that need more time.",
+          "Adjust seasoning and serve hot."
+        ]
+      },
+      "prepMinutes": 13,
+      "cookMinutes": 12,
+      "practicalTagIds": [
+        "tax_practical_no_advance_prep",
+        "tax_practical_quick"
+      ],
+      "dietTagIds": [
+        "tax_diet_pescatarian"
+      ],
+      "flavorProfileIds": [
+        "tax_flavor_savory"
+      ],
+      "eatingMinutes": 15,
+      "preparationTechniqueIds": [
+        "tax_preparation_pan_cooking"
+      ],
+      "timeReview": {
+        "policy": "culinary_time_audit_v1",
+        "reviewedAt": "2026-09-24",
+        "previousPrepMinutes": 8,
+        "previousCookMinutes": 12,
+        "reasonCodes": [
+          "raw_fish_safe_cooking",
+          "technique_elapsed_time",
+          "wash_cut_raw_produce"
+        ]
+      }
+    }
+  ]
+}

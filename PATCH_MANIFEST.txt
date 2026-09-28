@@ -1,40 +1,29 @@
-YourDietManager incremental patch
-Baseline: state after configuration-export-completeness patch
-Purpose: meal/ingredient substitution bugfixes, calendar splice UX/frequency warning, full time audit, meat/international/Fusion expansion
+yourDietManager incremental patch
 
-Apply: extract this archive over the repository root, preserving paths.
+Baseline: repository after user-reviewed recipe batch 012 and planner exposure diversity patch.
+Purpose: add canonical veal + gilthead seabream ingredients and apply the 6 recipe edits previously blocked by unresolved ingredients.
 
-Added files: 6
-  + BUGFIX_TIMES_CATALOG_EXPANSION_REPORT.md
-  + catalog-source/010-complete-recipe-time-audit.json
-  + catalog-source/011-global-cuisine-technique-expansion.json
-  + scripts/catalog/generate-time-and-global-expansion.py
-  + tests/catalog-global-expansion.test.mjs
-  + tests/post-feature8-regressions.test.mjs
+Added:
+- REVIEW_UNLOCK_VEAL_SEABREAM_REPORT.md
+- catalog-source/013-review-unlock-veal-seabream.json
 
-Modified files: 23
-  * catalog-source/README.md
-  * dist/data/catalog.json
-  * dist/data/locales/en.json
-  * dist/data/locales/it.json
-  * dist/service-worker.js
-  * dist/src/services/calendarPlanEditorService.js
-  * dist/src/services/nutritionalAffinityService.js
-  * dist/src/ui/configurationPages.js
-  * dist/src/ui/planPages.js
-  * package.json
-  * public/data/catalog.json
-  * public/data/locales/en.json
-  * public/data/locales/it.json
-  * public/service-worker.js
-  * src/services/calendarPlanEditorService.js
-  * src/services/nutritionalAffinityService.js
-  * src/ui/configurationPages.js
-  * src/ui/planPages.js
-  * tests/balanced-recipes-500.test.mjs
-  * tests/breakfast-flavor-classification.test.mjs
-  * tests/calendar-structural-edit.test.mjs
-  * tests/catalog-taxonomy-alignment.test.mjs
-  * tests/nutritional-affinity.test.mjs
+Modified:
+- catalog-source/README.md
+- public/data/catalog.json
+- public/service-worker.js (data cache v25 -> v26)
+- dist/data/catalog.json
+- dist/service-worker.js
+- tests/catalog-taxonomy-alignment.test.mjs
+- tests/user-reviewed-recipes.test.mjs
 
-Deleted files: 0
+No deletions.
+Catalog after patch: 297 active ingredients / 803 active recipes.
+Catalog version: clean-2d580835b846.
+
+Validation:
+- npm run check: PASS
+- catalog tests: 31/31 PASS
+- configuration tests: 5/5 PASS
+- planner/interactions: 32/32 PASS
+- frequency-cap: 2/2 PASS
+- lint/build/pages audit: PASS

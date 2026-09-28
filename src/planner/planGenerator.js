@@ -7,10 +7,11 @@ import { scoreRecipe } from './softScoring.js';
 import { buildSlotOptions, selectCandidateFrontier, solveDayBeam } from './beamSolver.js';
 import { seededTie, stableHashId } from './seededRandom.js';
 import { plannerConstraintPolicySnapshot } from './constraintPolicy.js';
+import { EXPLORATION_POLICY_VERSION, explorationProfile } from './explorationPolicy.js';
 import { filterRecipeCandidatesForVariety, plannerPolicy } from './varietyPolicy.js';
 
-export const GENERATOR_VERSION = 'plan-generator-2.2';
-export const SOLVER_VERSION = 'beam-search-2.2';
+export const GENERATOR_VERSION = 'plan-generator-2.3';
+export const SOLVER_VERSION = 'beam-search-2.3';
 
 function mealMap(mealClasses) { return new Map(mealClasses.map(item => [item.id, item])); }
 function dayMap(dayClasses) { return new Map(dayClasses.map(item => [item.id, item])); }
@@ -96,7 +97,7 @@ export function generatePlanLegacyCore(input) {
     nutritionProfile, allergyProfile, foodPreferences, mealClasses, dayClasses, cycle, recipes, ingredientRevisions,
     horizon, seed, catalogVersion, configSnapshotHash = 'pending', configSnapshot = {}, createdAt = new Date().toISOString(),
     reason = 'initial', previousGenerationRunId = null, previousPlanInstanceId = null, previousCalendarDays = [],
-    continuationPolicy = { mode: 'prompt', triggerDaysBeforeEnd: 3, extensionDays: 7 }, candidateLimit = 20, beamWidth = 100, slotOptionLimit = 40, startCycleDay = 1, candidateSets = null,
+    continuationPolicy = { mode: 'prompt', triggerDaysBeforeEnd: 3, extensionDays: 7 }, candidateLimit = 32, beamWidth = 100, slotOptionLimit = 40, startCycleDay = 1, candidateSets = null,
     regenerationPolicy = null, candidateAdmission = null
   } = input;
   if (!nutritionProfile || !cycle || !horizon?.startDate || !horizon?.endDate || !seed) throw new Error('Missing required plan generator input');
@@ -198,7 +199,9 @@ export function generatePlanLegacyCore(input) {
       }).sort((a, b) => a.score.total - b.score.total || a.tie - b.tie || a.recipe.recipeVersionId.localeCompare(b.recipe.recipeVersionId));
       const requiredMatches = frequencyRules(foodPreferences).map(rule => recipe => recipeMatchesTarget(recipe, rule.target.type, rule.target.id, revisions, input.foodGroups));
       const signatureFor = requiredMatches.length ? recipes => requiredMatches.map(match => recipes.some(match) ? '1' : '0').join('') : null;
-      const scored = selectCandidateFrontier(allScored, { targetEnergy, limit: candidateLimit, requiredMatches });
+      const frontierSeed = `${seed}|${date}|${slot.id}`;
+      const frontierExploration = explorationProfile(frontierSeed, 'candidate-frontier');
+      const scored = selectCandidateFrontier(allScored, { targetEnergy, limit: candidateLimit, requiredMatches, seed: frontierSeed, explorationKey: `${date}|${slot.id}` });
       const options = buildSlotOptions(scored, { targetEnergy, dayEnergyTarget: energyTarget, nutritionProfile, maxComponents: mealClass.maxComponents ?? 3, optionLimit: slotOptionLimit, signatureFor, seed: `${seed}|${date}|${slot.id}` });
       const diagnostic = {
         slotId: slot.id, mealClassId: mealClass.id, mealArchetype: mealClass.mealArchetype, targetEnergyKcal: rounded(targetEnergy),
@@ -208,6 +211,7 @@ export function generatePlanLegacyCore(input) {
         hardRejectionCounts: { ...filtered.rejectionCounts, ...admissionRejectionCounts },
         regeneration: { mode: regenerationPolicy?.mode || null, currentRecipeVersionIds: [...currentRecipeIds], excludedCurrentCount: regenerationExcludedCount },
         variety: { mode: varietySelection.policy.varietyMode, excludedRecentRecipes: varietySelection.excludedCount, fallbackUsed: varietySelection.fallbackUsed },
+        exploration: { policyVersion: EXPLORATION_POLICY_VERSION, mode: frontierExploration.mode, randomShare: frontierExploration.randomShare, featureShare: frontierExploration.featureShare, scoreJitter: frontierExploration.scoreJitter },
         topSoftCandidates: allScored.slice(0, 5).map((item, index) => ({ recipeVersionId: item.recipe.recipeVersionId, rank: index + 1, energyKcal: rounded(item.recipe.calculatedNutrition?.energyKcal), score: Math.round(item.score.total * 1000) / 1000, scoreComponents: item.score.components, reasons: item.score.reasons.slice(0, 5) }))
       };
       slotDiagnostics.push(diagnostic);
@@ -225,7 +229,7 @@ export function generatePlanLegacyCore(input) {
         date, code: 'no_feasible_plan', reason: solvedResult.diagnostics.code, constraintId: solvedResult.diagnostics.frequencyPrunedStates > 0 ? 'frequency_bounds_v2' : 'daily_energy_tolerance', hardConstraint: true,
         energy: solvedResult.diagnostics.window, nearestPlannedEnergyKcal: solvedResult.diagnostics.nearestPlannedEnergyKcal,
         nearestDistanceKcal: solvedResult.diagnostics.nearestDistanceKcal,
-        search: { candidateLimit, beamWidth, slotOptionLimit, proof: solvedResult.diagnostics.proof, hardPrunedStates: solvedResult.diagnostics.hardPrunedStates || 0, energyPrunedStates: solvedResult.diagnostics.energyPrunedStates || 0, frequencyPrunedStates: solvedResult.diagnostics.frequencyPrunedStates || 0, evaluatedFinalists: solvedResult.diagnostics.evaluatedFinalists, feasibleFinalists: solvedResult.diagnostics.feasibleFinalists },
+        search: { candidateLimit, beamWidth, slotOptionLimit, exploration: solvedResult.diagnostics.exploration || null, proof: solvedResult.diagnostics.proof, hardPrunedStates: solvedResult.diagnostics.hardPrunedStates || 0, energyPrunedStates: solvedResult.diagnostics.energyPrunedStates || 0, frequencyPrunedStates: solvedResult.diagnostics.frequencyPrunedStates || 0, evaluatedFinalists: solvedResult.diagnostics.evaluatedFinalists, feasibleFinalists: solvedResult.diagnostics.feasibleFinalists },
         rejectionCounts, slotDiagnostics
       });
       break;

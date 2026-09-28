@@ -1,6 +1,6 @@
 import { dateRange, addCivilDays } from './planMath.js';
-import { seededTie, stableHashId } from './seededRandom.js';
-import { PLANNER_SOFT_OBJECTIVE_POLICY } from './qualityPolicy.js';
+import { stableHashId } from './seededRandom.js';
+import { EXPLORATION_POLICY_VERSION, explorationProfile, seededExposureOrder, signedSeedJitter } from './explorationPolicy.js';
 import { filterCandidates } from './hardFilter.js';
 import { recipeMatchesTarget } from './recipeFeatures.js';
 import { frequencyRules, frequencyConflicts, evaluateFrequencies, occurrenceMatches, countFrequencyWindow, FREQUENCY_PRIORITY } from '../domain/frequencyCounter.js';
@@ -11,8 +11,10 @@ function planSignature(calendarDays) {
   return calendarDays.flatMap(day => (day.mealSlots || []).flatMap(slot => (slot.recipeComponents || []).map(component => `${day.date}:${slot.mealOccurrenceId}:${component.recipeVersionId}`))).join('|');
 }
 
-function seededDiversityPenalty(seed, calendarDays) {
-  return seededTie(`${seed}|frequency-plan-diversity`, planSignature(calendarDays)) * PLANNER_SOFT_OBJECTIVE_POLICY.seededDiversityMaxPenalty;
+function seededPlanExploration(seed, calendarDays) {
+  const profile = explorationProfile(seed, 'frequency-plan');
+  const signature = planSignature(calendarDays);
+  return { profile, jitter: signedSeedJitter(`${seed}|frequency-plan`, signature, profile.planScoreJitter) };
 }
 
 
@@ -108,8 +110,8 @@ export function generateFrequencyPlan(input, generateLegacy) {
   const rawExpansionLimit = input.searchBudget?.maxExpandedPlans;
   const requestedExpansionLimit = rawExpansionLimit == null ? null : Number(rawExpansionLimit);
   const limits = {
-    planBeamWidth: input.planBeamWidth ?? 4,
-    alternativesPerDay: input.alternativesPerDay ?? 4,
+    planBeamWidth: input.planBeamWidth ?? 6,
+    alternativesPerDay: input.alternativesPerDay ?? 6,
     // There is intentionally no wall-clock timeout. Normal app generation runs until
     // it finds a result, proves a bounded failure, or the user aborts the worker.
     maxExpandedPlans: requestedExpansionLimit != null && Number.isFinite(requestedExpansionLimit) ? requestedExpansionLimit : null
@@ -154,8 +156,8 @@ export function generateFrequencyPlan(input, generateLegacy) {
         const baseScore = state.baseScore + alternative.baseScore;
         const maxHeadroomPenalty = maxFrequencyHeadroomPenalty({ rules, calendarDays: [...previous, ...calendarDays], recipesByVersion, revisionById: revisions, foodGroups, progress: (dateIndex + 1) / dates.length });
         const score = baseScore + check.idealPenalty + maxHeadroomPenalty;
-        const seedDiversityPenalty = seededDiversityPenalty(input.seed, calendarDays);
-        expanded.push({ calendarDays, baseScore, score, selectionScore: score + seedDiversityPenalty, seedDiversityPenalty,
+        const exploration = seededPlanExploration(input.seed, calendarDays);
+        expanded.push({ calendarDays, baseScore, score, selectionScore: score + exploration.jitter, seedExplorationJitter: exploration.jitter,
           dayDiagnostics: [...state.dayDiagnostics, { ...output.diagnostics.days[0], selectedMeals: alternative.selectedMeals, maxFrequencyHeadroomPenalty: Math.round(maxHeadroomPenalty * 1000) / 1000 }] });
       }
     }
@@ -168,18 +170,22 @@ export function generateFrequencyPlan(input, generateLegacy) {
   if (!finalists.length) return failure('search_exhausted', 'independent_frequency_validation_failed', { limits, expandedPlans });
   for (const finalist of finalists) {
     finalist.finalScore = finalist.baseScore + finalist.frequencies.idealPenalty;
-    finalist.seedDiversityPenalty = seededDiversityPenalty(input.seed, finalist.calendarDays);
-    finalist.selectionScore = finalist.finalScore + finalist.seedDiversityPenalty;
+    const exploration = seededPlanExploration(input.seed, finalist.calendarDays);
+    finalist.seedExplorationJitter = exploration.jitter;
+    finalist.selectionScore = finalist.finalScore + exploration.jitter;
   }
-  finalists.sort((a, b) => a.selectionScore - b.selectionScore || a.finalScore - b.finalScore || planSignature(a.calendarDays).localeCompare(planSignature(b.calendarDays)));
-  const winner = finalists[0]; const createdAt = input.createdAt || new Date().toISOString();
+  const finalExploration = explorationProfile(input.seed, 'frequency-plan');
+  let orderedFinalists = finalists;
+  if (finalExploration.pickMode === 'uniform_feasible') orderedFinalists = seededExposureOrder(finalists, `${input.seed}|frequency-final`, state => planSignature(state.calendarDays));
+  else orderedFinalists = [...finalists].sort((a, b) => a.selectionScore - b.selectionScore || a.finalScore - b.finalScore || planSignature(a.calendarDays).localeCompare(planSignature(b.calendarDays)));
+  const winner = orderedFinalists[0]; const createdAt = input.createdAt || new Date().toISOString();
   const planInstanceId = stableHashId('plan', input.seed, input.horizon.startDate, input.horizon.endDate, input.catalogVersion, input.configSnapshotHash || 'pending');
   const generationRunId = stableHashId('genrun', input.seed, input.catalogVersion, input.horizon.startDate, input.horizon.endDate, input.configSnapshotHash || 'pending', input.reason || 'initial', input.previousGenerationRunId || 'none');
   const calendarDays = winner.calendarDays.map(day => ({ ...day, planInstanceId, calendarDayId: stableHashId('calday', planInstanceId, day.date) }));
   const diagnostics = { status: 'success', dayCount: calendarDays.length, days: winner.dayDiagnostics, frequencies: winner.frequencies,
-    search: { limits, expandedPlans, elapsedMs: Math.round(performance.now() - started), bounded: true, seededDiversityMaxPenalty: PLANNER_SOFT_OBJECTIVE_POLICY.seededDiversityMaxPenalty },
-    summary: { hardConstraintViolations: 0, meanScore: winner.score / dates.length, seedDiversityPenalty: Math.round((winner.seedDiversityPenalty || 0) * 1000) / 1000 } };
-  const generationRun = { schemaVersion: 1, generationRunId, generatorVersion: 'plan-generator-r3-3', solverVersion: 'window-beam-r3-3', seed: input.seed,
+    search: { limits, expandedPlans, elapsedMs: Math.round(performance.now() - started), bounded: true, exploration: { policyVersion: EXPLORATION_POLICY_VERSION, ...explorationProfile(input.seed, 'frequency-plan') } },
+    summary: { hardConstraintViolations: 0, meanScore: winner.score / dates.length, seedExplorationJitter: Math.round((winner.seedExplorationJitter || 0) * 1000) / 1000 } };
+  const generationRun = { schemaVersion: 1, generationRunId, generatorVersion: 'plan-generator-r3-4', solverVersion: 'window-beam-r3-4', seed: input.seed,
     catalogVersion: input.catalogVersion, configSnapshotHash: input.configSnapshotHash || 'pending', configSnapshot: input.configSnapshot || {}, horizon: structuredClone(input.horizon), createdAt,
     diagnostics, reason: input.reason || 'initial', previousGenerationRunId: input.previousGenerationRunId || null };
   const planInstance = { schemaVersion: 1, planInstanceId, generationRunId, startDate: input.horizon.startDate, endDate: input.horizon.endDate,

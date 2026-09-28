@@ -173,3 +173,20 @@ L'overlay normalizzato deve essere incluso in `GenerationRun.configSnapshot` pri
 
 La prima UI V1 usa un builder guidato taxonomy-aware. Un eventuale parser NLP/LLM futuro deve compilare nello stesso modello strutturato e non introdurre una semantica parallela nel solver.
 
+
+
+## 17. Seeded exposure fairness and non-greedy proposal search
+
+Con un catalogo ampio, la correttezza del ranking non e sufficiente se il bounded search espone sempre lo stesso sottoinsieme di RecipeVersion. Il planner deve distinguere **candidate exposure** da **candidate scoring**.
+
+Requisiti:
+
+1. Il retrieval per archetipo puo restare bounded (massimo 500), ma quando l'insieme eleggibile supera il limite la selezione deve essere seed-dependent all'interno degli strata energia/frequenza. Ricette diverse devono poter entrare nel retrieval cambiando seed.
+2. Il frontier per slot usa di default 32 candidati e deve riservare una quota esplicita a campionamento uniforme seedato dell'intero insieme hard-feasible. Le quote restanti coprono qualita soft, prossimita al target energetico e diversita tassonomica/famiglia/ingrediente primario.
+3. Ogni slot deriva dal seed un profilo di esplorazione riproducibile: `balanced`, `broad`, `energy_stratified` o `taxonomy_stratified`.
+4. La modalita `broad` usa un pick finale `uniform_feasible`: tra le soluzioni dentro la finestra energetica hard e con il minimo numero di ripetizioni esatte, la scelta e uniforme seedata e non `best-score-wins`. Le altre modalita mantengono uno score soft con jitter seedato limitato.
+5. Lo stesso seed deve produrre lo stesso output. Seed diversi devono modificare retrieval, frontier, ordine di costruzione delle opzioni e pick finale.
+6. La randomizzazione non puo mai rendere derogabili hard constraint, allergie/intolleranze, esclusioni, capability, MealClass require/forbid, frequency cap hard o tolleranza energetica giornaliera.
+7. I diagnostics devono esporre policy/mode/pickMode usati per permettere la riproduzione e l'analisi della proposta.
+
+L'obiettivo e dare a ogni ricetta hard-feasible una possibilita non nulla di essere considerata e, nelle generazioni esplorative, di essere selezionata. Le preferenze soft continuano a orientare le modalita weighted, ma non devono creare un monopolio permanente delle prime ricette ordinate per score.

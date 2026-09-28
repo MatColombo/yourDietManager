@@ -5,12 +5,31 @@ import { availableCurrentRecipeIds } from './catalogAvailability.js';
 import { allergenCompatibility } from '../domain/safetyCompatibility.js';
 import { recipeMatchesTarget } from '../planner/recipeFeatures.js';
 import { frequencyRules } from '../domain/frequencyCounter.js';
+import { seededExposureOrder } from '../planner/explorationPolicy.js';
 
 export const MAX_PLANNER_CANDIDATES_PER_ARCHETYPE = 500;
+
+export function seededStratifiedSelection(buckets, bounded, seed = 'seed') {
+  const selected = [];
+  const orderedKeys = seededExposureOrder([...buckets.keys()], `${seed}|bucket-order`, key => key);
+  const randomizedBuckets = new Map(orderedKeys.map(key => [key, seededExposureOrder(buckets.get(key) || [], `${seed}|bucket|${key}`, recipe => recipe.recipeVersionId)]));
+  let depth = 0;
+  while (selected.length < bounded) {
+    let added = 0;
+    for (const key of orderedKeys) {
+      const value = randomizedBuckets.get(key)?.[depth];
+      if (value && selected.length < bounded) { selected.push(value); added += 1; }
+    }
+    if (!added) break;
+    depth += 1;
+  }
+  return selected;
+}
+
 export class PlanCandidateService {
   constructor({ repo = repositories } = {}) { this.repo = repo; this.lastDiagnostics = null; }
   async installedRecipeVersionIds() { return new Set(await availableCurrentRecipeIds(this.repo)); }
-  async retrieve(mealArchetype, { limit = MAX_PLANNER_CANDIDATES_PER_ARCHETYPE, excludeAllergens = [], foodPreferences = null, foodGroups = [], eligibilityContexts = [] } = {}) {
+  async retrieve(mealArchetype, { limit = MAX_PLANNER_CANDIDATES_PER_ARCHETYPE, excludeAllergens = [], foodPreferences = null, foodGroups = [], eligibilityContexts = [], seed = 'seed' } = {}) {
     const bounded = Math.min(MAX_PLANNER_CANDIDATES_PER_ARCHETYPE, Math.max(1, Number(limit) || MAX_PLANNER_CANDIDATES_PER_ARCHETYPE));
     const ids = await availableCurrentRecipeIds(this.repo);
     const versions = await this.repo.getMany('recipeVersions', ids);
@@ -33,14 +52,9 @@ export class PlanCandidateService {
       const key = `${Math.floor(recipe.calculatedNutrition.energyKcal / 100)}|${targets.map(target => recipeMatchesTarget(recipe, target.type, target.id, revisions, foodGroups) ? '1' : '0').join('')}`;
       if (!buckets.has(key)) buckets.set(key, []); buckets.get(key).push(recipe);
     }
-    const selected = []; const ordered = [...buckets.keys()].sort(); let depth = 0;
-    while (selected.length < bounded) {
-      let added = 0;
-      for (const key of ordered) { const value = buckets.get(key)[depth]; if (value && selected.length < bounded) { selected.push(value); added += 1; } }
-      if (!added) break; depth += 1;
-    }
+    const selected = seededStratifiedSelection(buckets, bounded, `${seed}|${mealArchetype}`);
     this.lastDiagnostics = { currentAvailableCount: versions.length, eligibleCount: eligible.length, selectedCount: selected.length, limit: bounded,
-      hardRejectionCounts, truncated: eligible.length > selected.length, selection: 'deterministic_energy_and_target_strata', strata: buckets.size };
+      hardRejectionCounts, truncated: eligible.length > selected.length, selection: 'seeded_energy_and_target_strata', strata: buckets.size, seedDependent: true };
     return selected;
   }
 }

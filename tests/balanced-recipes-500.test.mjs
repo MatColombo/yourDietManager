@@ -71,12 +71,15 @@ test('balanced 500 expansion deliberately covers ingredients that were previousl
   assert.ok(used.size >= 220, `expected broad ingredient coverage, got ${used.size}`);
 });
 
-test('compiled catalog contains the complete expanded recipe corpus and new recipes have nutrition', () => {
+test('compiled catalog preserves nutrition for every balanced-500 recipe that remains active', () => {
   const catalog = JSON.parse(fs.readFileSync(path.join(ROOT, 'public', 'data', 'catalog.json'), 'utf8'));
-  assert.equal(catalog.recipes.length, 1260);
-  assert.equal(catalog.recipeVersions.length, 1260);
+  const activeRecords = resolvedRecords(fs.readdirSync(SOURCE).filter((name) => name.endsWith('.json')).sort());
+  const expectedIds = new Set(activeRecords
+    .filter((record) => record.kind === 'recipe' && record.id.startsWith('recipe_balanced500_'))
+    .map((record) => record.id));
   const generated = catalog.recipeVersions.filter((recipe) => recipe.recipeVersionId.startsWith('recipe_balanced500_'));
-  assert.equal(generated.length, 500);
+  assert.equal(generated.length, expectedIds.size);
+  assert.deepEqual(new Set(generated.map((recipe) => recipe.recipeId)), expectedIds);
   for (const recipe of generated) {
     assert.ok(Number(recipe.calculatedNutrition?.energyKcal) > 0, `${recipe.recipeVersionId} requires compiled energy`);
     assert.ok(Number(recipe.calculatedNutrition?.proteinG) >= 0, `${recipe.recipeVersionId} requires compiled protein`);

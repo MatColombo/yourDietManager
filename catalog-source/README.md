@@ -54,3 +54,7 @@ The generator is `scripts/catalog/generate-time-and-global-expansion.py`; rerunn
 - at least five recipes for each previously empty vegan/vegetarian/pescatarian combination of blending, braising, frying, roasting and steaming.
 
 Fusion recipes are authored as concrete cookable dishes (for example rice-paper crisps, miso/avocado/feta pasta and modern rice bowls), not as arbitrary ingredient Cartesian products. New cuisine, ProductFood and archetype taxonomy terms are authored in the same batch.
+
+## 013 — Review unlock: vitello e orata
+
+`013-review-unlock-veal-seabream.json` aggiunge i ProductFood e gli ingredienti canonici per vitello crudo magro e orata cruda, quindi applica le sei modifiche del workbook di revisione che il batch 012 aveva lasciato bloccate per ingredienti non risolti. Nessun'altra ricetta del workbook viene riscritta.

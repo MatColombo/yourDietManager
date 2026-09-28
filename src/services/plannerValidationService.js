@@ -89,7 +89,7 @@ export async function runPlannerValidationCase(options, { repo = repositories, r
     horizon: { startDate, endDate: endDate(startDate, days) }, seed: options.seed || 'phase-c-manual', createdAt: options.createdAt || new Date().toISOString(),
     reason: 'manual_regeneration', configurationOverride: bundle, validationContext,
     candidateRetrievalLimit: options.candidateRetrievalLimit || 500,
-    candidateLimit: options.candidateLimit || 20, beamWidth: options.beamWidth || 100, slotOptionLimit: options.slotOptionLimit || 40,
+    candidateLimit: options.candidateLimit || 32, beamWidth: options.beamWidth || 100, slotOptionLimit: options.slotOptionLimit || 40,
     historyPlanInstanceId: null, ignorePlanHistory: true
   }, { repo, registry });
   const durationMs = round(nowMs() - started, 1);
