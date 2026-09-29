@@ -92,3 +92,65 @@ test('day solver reports frequency pruning separately from energy pruning', () =
   assert.equal(result.diagnostics.frequencyPrunedStates, 1);
   assert.equal(result.diagnostics.energyPrunedStates, 0);
 });
+
+test('rolling alternatives preserve civil-date placement across dayOffset boundaries', () => {
+  const targetRevision = revision('rev_target_offset', 'ing_target_offset', 'product_category_target_offset');
+  const plainRevision = revision('rev_plain_offset', 'ing_plain_offset', 'product_category_plain_offset');
+  const makeRecipe = (id, archetype, revisionRow, ingredientId) => ({
+    ...recipe(id, revisionRow.ingredientRevisionId, ingredientId),
+    mealArchetypes: [archetype],
+    calculatedNutrition: { energyKcal: 300, proteinG: 15, carbsG: 30, fatG: 10, fiberG: 5 }
+  });
+  const earlyMatch = makeRecipe('recipe_early_match', 'early', targetRevision, targetRevision.ingredientId);
+  const earlyPlain = makeRecipe('recipe_early_plain', 'early', plainRevision, plainRevision.ingredientId);
+  const lateMatch = makeRecipe('recipe_late_match', 'late', targetRevision, targetRevision.ingredientId);
+  const latePlain = makeRecipe('recipe_late_plain', 'late', plainRevision, plainRevision.ingredientId);
+  const forcedMatch = makeRecipe('recipe_forced_match', 'forced', targetRevision, targetRevision.ingredientId);
+  const mealClasses = [
+    { schemaVersion: 1, id: 'mc-early', name: 'Early', abbreviation: 'E', mealArchetype: 'early', energyShare: { target: 0.5, min: 0, max: 1 }, rules: [] },
+    { schemaVersion: 1, id: 'mc-late', name: 'Late', abbreviation: 'L', mealArchetype: 'late', energyShare: { target: 0.5, min: 0, max: 1 }, rules: [] },
+    { schemaVersion: 1, id: 'mc-forced', name: 'Forced', abbreviation: 'F', mealArchetype: 'forced', energyShare: { target: 0.5, min: 0, max: 1 }, rules: [] }
+  ];
+  const capabilities = { fridge: 'yes', reheating: 'yes', cooking: true, complexSnack: true, portabilityRequired: false, maxPrepMinutes: 60 };
+  const dayClasses = [
+    { schemaVersion: 1, id: 'dc-choice', name: 'Choice', abbreviation: 'C', color: '#000000', dayArchetype: 'day', workWindows: [], capabilities, mealSlots: [
+      { id: 'early', mealClassId: 'mc-early', time: '08:00', dayOffset: 0, mode: 'planned', energyBudgetKcal: 300, energyShare: null, guidanceKeys: [], parallel: false, proteinMinG: null },
+      { id: 'late', mealClassId: 'mc-late', time: '02:00', dayOffset: 1, mode: 'planned', energyBudgetKcal: 300, energyShare: null, guidanceKeys: [], parallel: false, proteinMinG: null }
+    ] },
+    { schemaVersion: 1, id: 'dc-forced', name: 'Forced', abbreviation: 'F', color: '#000000', dayArchetype: 'day', workWindows: [], capabilities, mealSlots: [
+      { id: 'external', mealClassId: 'mc-early', time: '12:00', dayOffset: 0, mode: 'external', energyBudgetKcal: 300, energyShare: null, guidanceKeys: [], parallel: false, proteinMinG: null, estimatedNutritionPolicy: 'budget_only' },
+      { id: 'forced', mealClassId: 'mc-forced', time: '02:00', dayOffset: 1, mode: 'planned', energyBudgetKcal: 300, energyShare: null, guidanceKeys: [], parallel: false, proteinMinG: null }
+    ] }
+  ];
+  const result = generatePlanCore({
+    nutritionProfile: { schemaVersion: 1, id: 'nutrition-offset', dailyEnergyKcal: 600, energyTolerancePct: 1, preset: 'custom', nutrients: { proteinG: { enabled: false, min: null, target: null, max: null, weight: 0 }, carbsG: { enabled: false, min: null, target: null, max: null, weight: 0 }, fatG: { enabled: false, min: null, target: null, max: null, weight: 0 }, fiberG: { enabled: false, min: null, target: null, max: null, weight: 0 } }, dayArchetypeModifiers: {} },
+    allergyProfile: { schemaVersion: 1, id: 'allergy-offset', rules: [] },
+    foodPreferences: { schemaVersion: 2, id: 'prefs-offset', plannerPolicy: { varietyMode: 'none' }, legacyRules: [], rules: [{ id: 'exactly-one-offset', enabled: true, mode: 'frequency', target: { type: 'productFood', id: 'product_category_target_offset' }, scope: { mealClassIds: [] }, countUnit: 'meal', countBasis: 'planned', window: { kind: 'rolling', days: 2 }, minOccurrences: 1, targetOccurrences: 1, maxOccurrences: 1, priority: 'normal', effectiveFrom: '2026-09-29' }] },
+    mealClasses,
+    dayClasses,
+    cycle: { schemaVersion: 1, id: 'cycle-offset', name: 'Offset cycle', length: 2, days: [{ cycleDay: 1, dayClassId: 'dc-choice' }, { cycleDay: 2, dayClassId: 'dc-forced' }] },
+    recipes: [earlyMatch, earlyPlain, lateMatch, latePlain, forcedMatch],
+    ingredients: [],
+    ingredientRevisions: [targetRevision, plainRevision],
+    taxonomyTerms: [],
+    foodGroups: [],
+    candidateSets: { early: [earlyMatch, earlyPlain], late: [lateMatch, latePlain], forced: [forcedMatch] },
+    horizon: { startDate: '2026-09-29', endDate: '2026-09-30' },
+    seed: 'offset-placement-regression',
+    catalogVersion: 'test',
+    configSnapshotHash: 'test',
+    createdAt: '2026-09-29T00:00:00.000Z',
+    candidateLimit: 10,
+    beamWidth: 50,
+    slotOptionLimit: 10,
+    planBeamWidth: 6,
+    alternativesPerDay: 6
+  });
+  assert.equal(result.status, 'success', JSON.stringify(result.failure));
+  const planned = result.calendarDays.flatMap(day => day.mealSlots.filter(slot => slot.mode === 'planned').map(slot => ({ civilDate: slot.civilDate, recipeVersionId: slot.recipeComponents[0]?.recipeVersionId })));
+  assert.deepEqual(planned, [
+    { civilDate: '2026-09-29', recipeVersionId: 'recipe_early_match_v1' },
+    { civilDate: '2026-09-30', recipeVersionId: 'recipe_late_plain_v1' },
+    { civilDate: '2026-10-01', recipeVersionId: 'recipe_forced_match_v1' }
+  ]);
+});

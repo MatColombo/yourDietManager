@@ -27,3 +27,17 @@ Validation:
 - planner/interactions: 32/32 PASS
 - frequency-cap: 2/2 PASS
 - lint/build/pages audit: PASS
+
+--- 2026-09-29 rolling frequency dayOffset hotfix ---
+Modified:
+- src/planner/frequencyPlanGenerator.js
+- tests/planner-frequency-cap-headroom.test.mjs
+- tests/frequency-cap-planner-regression.test.mjs
+
+Added:
+- ROLLING_FREQUENCY_DAYOFFSET_BUGFIX_REPORT.md
+
+Validation:
+- focused rolling/frequency/revision suite: 20/20 PASS
+- planner interaction suite: 32/32 PASS
+- frequency-cap suite: 3/3 PASS

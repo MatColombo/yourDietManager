@@ -26,6 +26,18 @@ function maxOccurrencesForRule(rule) {
 
 function maxFrequencyRules(rules) { return rules.filter(rule => maxOccurrencesForRule(rule) !== null); }
 
+function dayFrequencyAlternativeKey(mealSlots, rules, context) {
+  return rules.map(rule => {
+    const matched = (mealSlots || []).filter(slot => slot.mode === 'planned'
+      && (!rule.scope.mealClassIds.length || rule.scope.mealClassIds.includes(slot.mealClassId))
+      && occurrenceMatches(slot, rule.target, context).matches);
+    const byDate = new Map();
+    for (const slot of matched) byDate.set(slot.civilDate, (byDate.get(slot.civilDate) || 0) + 1);
+    if (rule.countUnit === 'day') return `${rule.id}:${[...byDate.keys()].sort().join(',')}`;
+    return `${rule.id}:${[...byDate.entries()].sort(([a], [b]) => a.localeCompare(b)).map(([date, count]) => `${date}=${count}`).join(',')}`;
+  }).join('|');
+}
+
 function candidateAdmissionForState({ rules, past, recipesByVersion, revisionById, foodGroups }) {
   const capped = maxFrequencyRules(rules);
   if (!capped.length) return null;
@@ -146,8 +158,7 @@ export function generateFrequencyPlan(input, generateLegacy) {
         input.onProgress?.({ phase: 'search', completed: dateIndex, total: dates.length, percent: Math.min(99, Math.floor((partialProgress / dates.length) * 100)), expandedPlans });
       }, horizon: { startDate: date, endDate: date }, startCycleDay: schedule[dateIndex].cycleDay,
         previousCalendarDays: past, evaluateDayState, daySolutionLimit: limits.alternativesPerDay,
-        dayAlternativeKey: slots => rules.map(rule => slots.filter(slot => slot.mode === 'planned' && (!rule.scope.mealClassIds.length || rule.scope.mealClassIds.includes(slot.mealClassId))
-          && occurrenceMatches(slot, rule.target, context).matches).map(slot => rule.countUnit === 'day' ? slot.civilDate : slot.mealOccurrenceId)).map(values => new Set(values).size).join('|') });
+        dayAlternativeKey: slots => dayFrequencyAlternativeKey(slots, rules, context) });
       if (output.status !== 'success') { latestFailure = output.failure; continue; }
       for (const alternative of output.alternativeDays) {
         const calendarDays = [...state.calendarDays, alternative.calendarDay];
