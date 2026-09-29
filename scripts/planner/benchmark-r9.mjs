@@ -1,8 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import { performance } from 'node:perf_hooks';
 import { generatePlanCore } from '../../src/planner/planGenerator.js';
-import { createPlannerRuntimeCache } from '../../src/planner/plannerRuntimeCache.js';
-import { createPlannerTelemetry } from '../../src/planner/plannerTelemetry.js';
 import { addCivilDays } from '../../src/planner/planMath.js';
 
 function arg(name, fallback = null) {
@@ -45,20 +43,15 @@ const common = {
 };
 
 const results = [];
-const runtimeCache = createPlannerRuntimeCache({ maxContexts: 2 });
 for (let index = 0; index < runs; index += 1) {
-  const telemetry = createPlannerTelemetry();
-  const prepared = runtimeCache.prepareInput({ ...common, plannerTelemetry: telemetry }, telemetry);
   const started = performance.now();
-  const result = generatePlanCore(prepared);
+  const result = generatePlanCore(common);
   const elapsedMs = performance.now() - started;
   results.push({ run: index + 1, elapsedMs: Math.round(elapsedMs * 100) / 100, status: result.status, failureCode: result.failure?.code || null,
     generatedDayCount: result.calendarDays?.length || result.failure?.generatedDayCount || result.diagnostics?.generatedDayCount || 0,
-    telemetry: result.diagnostics?.search?.telemetry || result.diagnostics?.telemetry || null, cacheStats: runtimeCache.stats() });
+    telemetry: result.diagnostics?.search?.telemetry || result.diagnostics?.telemetry || null });
 }
 const times = results.map(item => item.elapsedMs).sort((a, b) => a - b);
-const warmTimes = results.slice(1).map(item => item.elapsedMs).sort((a, b) => a - b);
 console.log(JSON.stringify({ benchmark: 'planner-r9', horizon: { startDate, endDate, days }, recipes: recipes.length,
   candidateCounts: Object.fromEntries(Object.entries(candidateSets).map(([key, value]) => [key, value.length])), runs: results,
-  summary: { minMs: times[0], medianMs: times[Math.floor(times.length / 2)], maxMs: times.at(-1), coldMs: results[0]?.elapsedMs ?? null,
-    warmMedianMs: warmTimes.length ? warmTimes[Math.floor(warmTimes.length / 2)] : null } }, null, 2));
+  summary: { minMs: times[0], medianMs: times[Math.floor(times.length / 2)], maxMs: times.at(-1) } }, null, 2));

@@ -155,7 +155,7 @@ export function generateFrequencyPlan(input, generateLegacy) {
     alternativesPerDay: baseAlternatives,
     maxPlanBeamWidth: Math.max(baseBeamWidth, Number(input.searchBudget?.maxPlanBeamWidth ?? Math.min(48, baseBeamWidth * 4))),
     maxAlternativesPerDay: Math.max(baseAlternatives, Number(input.searchBudget?.maxAlternativesPerDay ?? Math.min(24, baseAlternatives * 4))),
-    maxAdaptiveRescues: Math.max(0, Number(input.searchBudget?.maxAdaptiveRescues ?? 8)),
+    maxAdaptiveRescues: Math.max(0, Number(input.searchBudget?.maxAdaptiveRescues ?? 3)),
     maxExpandedPlans: requestedExpansionLimit != null && Number.isFinite(requestedExpansionLimit) ? requestedExpansionLimit : null
   };
   const finalExplorationProfile = explorationProfile(input.seed, 'frequency-plan');
@@ -170,7 +170,7 @@ export function generateFrequencyPlan(input, generateLegacy) {
   }
 
   function expandDate(currentDateIndex, currentBeam, alternativesPerDay) {
-    const date = dates[currentDateIndex]; const expanded = []; let localFailure = null;
+    const date = dates[currentDateIndex]; const expanded = []; let localFailure = null; let alternativeLimitSaturated = false;
     for (let stateIndex = 0; stateIndex < currentBeam.length; stateIndex += 1) {
       const state = currentBeam[stateIndex];
       if (input.shouldCancel?.()) return { fatal: failure('cancelled', 'cancelled', {}, telemetry) };
@@ -192,6 +192,7 @@ export function generateFrequencyPlan(input, generateLegacy) {
         previousCalendarDays: past, evaluateDayState, daySolutionLimit: alternativesPerDay,
         dayAlternativeKey: slots => compiled.alternativeKey(slots) });
       if (output.status !== 'success') { localFailure = output.failure; continue; }
+      if ((output.alternativeDays?.length || 0) >= alternativesPerDay) alternativeLimitSaturated = true;
       for (const alternative of output.alternativeDays) {
         const calendarDays = [...state.calendarDays, alternative.calendarDay];
         const frequencyState = compiled.extendState(state.frequencyState, alternative.calendarDay.mealSlots);
@@ -209,7 +210,7 @@ export function generateFrequencyPlan(input, generateLegacy) {
     }
     latestFailure = localFailure || latestFailure;
     const nextDate = dates[currentDateIndex + 1] || addCivilDays(dates[currentDateIndex], 1);
-    return { states: dominancePrune(expanded.sort(comparePlanStates), { compiled, compiledVariety, nextDate, keepPerKey: dominanceKeepPerKey, telemetry }), localFailure };
+    return { states: dominancePrune(expanded.sort(comparePlanStates), { compiled, compiledVariety, nextDate, keepPerKey: dominanceKeepPerKey, telemetry }), localFailure, alternativeLimitSaturated };
   }
 
   input.onProgress?.({ phase: 'search', completed: 0, total: dates.length, percent: 0, expandedPlans });
@@ -220,15 +221,18 @@ export function generateFrequencyPlan(input, generateLegacy) {
     if (expansion.fatal) return expansion.fatal;
 
     if (expansion.states.length) {
+      // Keep the normal path exactly as narrow as the configured beam. R9G widening
+      // is rescue-only: proactively doubling the beam near a frequency cap made
+      // ordinary runs substantially more expensive even when no rescue was needed.
       const maxRisk = expansion.states.reduce((value, state) => {
         const endDate = latestCivilDate([...previous, ...state.calendarDays]) || date;
         return Math.max(value, compiled.searchRisk(state.frequencyState, { endDate, fromDietDate: date }));
       }, 0);
-      let selectedWidth = baseBeamWidth;
-      if (maxRisk >= 0.75) selectedWidth = Math.min(limits.maxPlanBeamWidth, baseBeamWidth * 2);
-      if (selectedWidth > baseBeamWidth) telemetryIncrement(telemetry, 'adaptiveBeamExpansions');
-      selectedWidth = Math.min(selectedWidth, expansion.states.length);
-      checkpoints[dateIndex] = { dateIndex, date, inputBeam: currentBeam, expandedStates: expansion.states, selectedWidth, alternativesPerDay, maxRisk };
+      const selectedWidth = Math.min(baseBeamWidth, expansion.states.length);
+      checkpoints[dateIndex] = {
+        dateIndex, date, inputBeam: currentBeam, expandedStates: expansion.states, selectedWidth, alternativesPerDay, maxRisk,
+        alternativeLimitSaturated: expansion.alternativeLimitSaturated
+      };
       checkpoints.length = dateIndex + 1;
       beam = expansion.states.slice(0, selectedWidth);
       dateIndex += 1;
@@ -239,16 +243,6 @@ export function generateFrequencyPlan(input, generateLegacy) {
     const frequencyExhausted = isFrequencyExhaustion(expansion.localFailure || latestFailure);
     if (!frequencyExhausted) {
       return failure('search_exhausted', exhaustedSearchCode(expansion.localFailure || latestFailure), { lastFailure: expansion.localFailure || latestFailure, limits, expandedPlans, generatedDayCount: dateIndex, rescueCount, rescueEvents }, telemetry);
-    }
-
-    if (rescueCount < limits.maxAdaptiveRescues && alternativesPerDay < limits.maxAlternativesPerDay) {
-      const rescueStarted = performance.now();
-      const nextAlternatives = nextLarger(alternativesPerDay, limits.maxAlternativesPerDay);
-      dayAlternativeLimits.set(dateIndex, nextAlternatives);
-      rescueCount += 1; telemetryIncrement(telemetry, 'adaptiveBeamRescues'); telemetryIncrement(telemetry, 'adaptiveDayRetries');
-      rescueEvents.push({ type: 'day_retry', failedDateIndex: dateIndex, resumeDateIndex: dateIndex, alternativesPerDay: nextAlternatives });
-      telemetryAddTime(telemetry, 'adaptiveRescueMs', performance.now() - rescueStarted);
-      continue;
     }
 
     let rescued = false; const failedDateIndex = dateIndex;
@@ -268,14 +262,14 @@ export function generateFrequencyPlan(input, generateLegacy) {
           rescueEvents.push({ type: 'checkpoint_widen', failedDateIndex, checkpointDateIndex: checkpointIndex, resumeDateIndex: dateIndex, planBeamWidth: nextWidth });
           rescued = true; break;
         }
-        if (checkpoint.alternativesPerDay < limits.maxAlternativesPerDay) {
+        if (checkpoint.alternativeLimitSaturated && checkpoint.alternativesPerDay < limits.maxAlternativesPerDay) {
           const nextAlternatives = nextLarger(checkpoint.alternativesPerDay, limits.maxAlternativesPerDay);
           dayAlternativeLimits.set(checkpointIndex, nextAlternatives);
           beam = checkpoint.inputBeam;
           checkpoints.length = checkpointIndex;
           dateIndex = checkpointIndex;
           rescueCount += 1; telemetryIncrement(telemetry, 'adaptiveBeamRescues'); telemetryIncrement(telemetry, 'adaptiveDayRetries');
-          rescueEvents.push({ type: 'checkpoint_retry', failedDateIndex, checkpointDateIndex: checkpointIndex, resumeDateIndex: dateIndex, alternativesPerDay: nextAlternatives });
+          rescueEvents.push({ type: 'checkpoint_retry_saturated', failedDateIndex, checkpointDateIndex: checkpointIndex, resumeDateIndex: dateIndex, alternativesPerDay: nextAlternatives });
           rescued = true; break;
         }
       }
@@ -303,7 +297,7 @@ export function generateFrequencyPlan(input, generateLegacy) {
   const diagnostics = { status: 'success', dayCount: calendarDays.length, days: winner.dayDiagnostics, frequencies: winner.frequencies,
     search: { limits, expandedPlans, elapsedMs: Math.round(performance.now() - started), bounded: true, compiledFrequencyEngine: 'compiled-frequency-r9b', compiledVarietyEngine: 'compiled-variety-r9d', preparedSlotEngine: 'prepared-slots-r9e', adaptiveBeamEngine: 'adaptive-beam-r9g', rescueCount, rescueEvents, telemetry: telemetrySnapshot(telemetry), exploration: { policyVersion: EXPLORATION_POLICY_VERSION, ...finalExplorationProfile } },
     summary: { hardConstraintViolations: 0, meanScore: winner.score / dates.length, seedExplorationJitter: Math.round((winner.seedExplorationJitter || 0) * 1000) / 1000 } };
-  const generationRun = { schemaVersion: 1, generationRunId, generatorVersion: 'plan-generator-r3-6-r9gh', solverVersion: 'window-beam-r3-6-r9gh', seed: input.seed,
+  const generationRun = { schemaVersion: 1, generationRunId, generatorVersion: 'plan-generator-r3-7-r9gh-hotfix', solverVersion: 'window-beam-r3-7-r9gh-hotfix', seed: input.seed,
     catalogVersion: input.catalogVersion, configSnapshotHash: input.configSnapshotHash || 'pending', configSnapshot: input.configSnapshot || {}, horizon: structuredClone(input.horizon), createdAt,
     diagnostics, reason: input.reason || 'initial', previousGenerationRunId: input.previousGenerationRunId || null };
   const planInstance = { schemaVersion: 1, planInstanceId, generationRunId, startDate: input.horizon.startDate, endDate: input.horizon.endDate,

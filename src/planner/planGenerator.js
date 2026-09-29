@@ -13,8 +13,8 @@ import { compileVarietySearch } from './compiledVarietyState.js';
 import { preparedSlotKey, slotEnergyTarget } from './preparedSlots.js';
 import { createPlannerTelemetry, telemetryAddTime, telemetryIncrement, telemetrySnapshot } from './plannerTelemetry.js';
 
-export const GENERATOR_VERSION = 'plan-generator-2.5-r9gh';
-export const SOLVER_VERSION = 'beam-search-2.5-r9gh';
+export const GENERATOR_VERSION = 'plan-generator-2.6-r9gh-hotfix';
+export const SOLVER_VERSION = 'beam-search-2.6-r9gh-hotfix';
 
 function mealMap(mealClasses) { return new Map(mealClasses.map(item => [item.id, item])); }
 function dayMap(dayClasses) { return new Map(dayClasses.map(item => [item.id, item])); }

@@ -176,8 +176,7 @@ test('R9F lazy slot-option construction is deterministic and materializes a boun
 
 import { generateFrequencyPlan } from '../src/planner/frequencyPlanGenerator.js';
 import { stableHashId } from '../src/planner/seededRandom.js';
-import { createPlannerRuntimeCache } from '../src/planner/plannerRuntimeCache.js';
-import { PlannerWorkerClient } from '../src/services/plannerExecution.js';
+import { executePlanGeneration } from '../src/services/plannerExecution.js';
 
 function rescueRecipe(id, revisionRow, energy = 500) {
   return {
@@ -241,57 +240,49 @@ test('R9G adaptive beam rescues a valid path pruned by the initial global beam',
   assert.ok(result.diagnostics.search.telemetry.counters.adaptiveBeamRescues >= 1);
 });
 
-test('R9H runtime cache reuses feature index and prepared-slot storage for the same immutable planning context', () => {
-  const telemetryFirst = createPlannerTelemetry(); const telemetrySecond = createPlannerTelemetry();
-  const cache = createPlannerRuntimeCache({ maxContexts: 2 });
-  const recipeRow = rescueRecipe('cache_plain', plainRevision);
-  const context = {
-    catalogVersion: 'cache-catalog', configSnapshotHash: 'cache-config', recipes: [recipeRow], candidateSets: { lunch: [recipeRow] }, ingredientRevisions: [plainRevision], foodGroups: [],
-    nutritionProfile: { dailyEnergyKcal: 500 }, allergyProfile: { rules: [] }, foodPreferences: { rules: [] }, mealClasses: [], dayClasses: [], cycle: { length: 1, days: [] }
+test('R9H safety rollback uses a disposable worker per generation so browser transfer/cache overhead cannot accumulate', async () => {
+  const originalWorker = globalThis.Worker;
+  let instances = 0; let terminations = 0;
+  class FakeWorker {
+    constructor() { instances += 1; this.onmessage = null; this.onerror = null; }
+    postMessage(input) { queueMicrotask(() => this.onmessage?.({ data: { type: 'result', result: { status: 'success', seed: input.seed } } })); }
+    terminate() { terminations += 1; }
+  }
+  globalThis.Worker = FakeWorker;
+  try {
+    const first = await executePlanGeneration({ seed: 'one' });
+    const second = await executePlanGeneration({ seed: 'two' });
+    assert.equal(first.seed, 'one'); assert.equal(second.seed, 'two');
+    assert.equal(instances, 2);
+    assert.equal(terminations, 2);
+  } finally {
+    if (originalWorker === undefined) delete globalThis.Worker;
+    else globalThis.Worker = originalWorker;
+  }
+});
+
+test('R9G does not retry an identical failed day just by increasing daySolutionLimit', () => {
+  const dairy = rescueRecipe('same_day_dairy', dairyRevision);
+  const foodPreferences = { schemaVersion: 2, rules: [{
+    id: 'dairy-zero', enabled: true, mode: 'frequency', target: { type: 'productFood', id: 'product_category_dairy' }, scope: { mealClassIds: [] },
+    countUnit: 'meal', countBasis: 'planned', window: { kind: 'rolling', days: 2 }, minOccurrences: 0, targetOccurrences: 0, maxOccurrences: 0,
+    priority: 'normal', effectiveFrom: '2026-09-29'
+  }], legacyRules: [], plannerPolicy: { varietyMode: 'maximum_variety' } };
+  const slot = { id: 'slot-main', mealClassId: 'mc-main', time: '13:00', dayOffset: 0, mode: 'planned', energyBudgetKcal: 500 };
+  let calls = 0;
+  const input = {
+    nutritionProfile: { dailyEnergyKcal: 500, energyTolerancePct: 5, nutrients: { proteinG: { enabled: false }, carbsG: { enabled: false }, fatG: { enabled: false }, fiberG: { enabled: false } } },
+    allergyProfile: { rules: [] }, foodPreferences,
+    mealClasses: [{ id: 'mc-main', mealArchetype: 'lunch', energyShare: { target: 1 }, rules: [] }],
+    dayClasses: [{ id: 'dc-main', dayArchetype: 'day', capabilities: { fridge: 'yes', reheating: 'yes', cooking: true, complexSnack: true, portabilityRequired: false, maxPrepMinutes: 60 }, mealSlots: [slot] }],
+    cycle: { id: 'cycle-main', length: 1, days: [{ cycleDay: 1, dayClassId: 'dc-main' }] }, recipes: [dairy], candidateSets: { lunch: [dairy] },
+    ingredientRevisions: [dairyRevision], ingredients: [], taxonomyTerms: [], foodGroups: [], horizon: { startDate: '2026-09-29', endDate: '2026-09-29' }, startCycleDay: 1,
+    seed: 'same-day-failure', catalogVersion: 'test', configSnapshotHash: 'test', configSnapshot: {}, createdAt: '2026-09-29T08:00:00.000Z', previousCalendarDays: [],
+    planBeamWidth: 1, alternativesPerDay: 1, searchBudget: { maxPlanBeamWidth: 4, maxAlternativesPerDay: 8, maxAdaptiveRescues: 3 }
   };
-  const first = cache.prepareInput(context, telemetryFirst);
-  const second = cache.prepareInput(structuredClone(context), telemetrySecond);
-  assert.equal(first.recipeFeatureIndex, second.recipeFeatureIndex);
-  assert.equal(first.plannerPreparedSlotCache, second.plannerPreparedSlotCache);
-  assert.equal(telemetrySecond.counters.runtimeContextCacheHits, 1);
-  assert.equal(telemetrySecond.counters.recipeFeatureIndexCacheHits, 1);
-});
-
-test('R9H PlannerWorkerClient keeps one worker alive across sequential successful generations', async () => {
-  let instances = 0; let terminations = 0;
-  class FakeWorker {
-    constructor() { instances += 1; this.onmessage = null; this.onerror = null; }
-    postMessage(message) { queueMicrotask(() => this.onmessage?.({ data: { type: 'result', requestId: message.requestId, result: { status: 'success', seed: message.input.seed } } })); }
-    terminate() { terminations += 1; }
-  }
-  const client = new PlannerWorkerClient({ workerFactory: () => new FakeWorker() });
-  const first = await client.run({ seed: 'one' });
-  const second = await client.run({ seed: 'two' });
-  assert.equal(first.seed, 'one'); assert.equal(second.seed, 'two');
-  assert.equal(instances, 1);
-  client.dispose();
-  assert.equal(terminations, 1);
-});
-
-test('R9H active cancellation terminates only the busy worker and recreates a reusable worker for the next request', async () => {
-  let instances = 0; let terminations = 0;
-  class FakeWorker {
-    constructor() { instances += 1; this.onmessage = null; this.onerror = null; }
-    postMessage(message) {
-      if (message.input.seed === 'slow') return;
-      queueMicrotask(() => this.onmessage?.({ data: { type: 'result', requestId: message.requestId, result: { status: 'success', seed: message.input.seed } } }));
-    }
-    terminate() { terminations += 1; }
-  }
-  const client = new PlannerWorkerClient({ workerFactory: () => new FakeWorker() });
-  const controller = new AbortController();
-  const pending = client.run({ seed: 'slow' }, { signal: controller.signal });
-  controller.abort();
-  assert.equal((await pending).status, 'cancelled');
-  const next = await client.run({ seed: 'next' });
-  assert.equal(next.seed, 'next');
-  assert.equal(instances, 2);
-  assert.equal(terminations, 1);
-  client.dispose();
-  assert.equal(terminations, 2);
+  const fakeLegacy = () => { calls += 1; return { status: 'failed', failure: { code: 'no_feasible_plan', reason: 'frequency_bounds_v2', constraintId: 'frequency_bounds_v2' }, diagnostics: { days: [] } }; };
+  const result = generateFrequencyPlan(input, fakeLegacy);
+  assert.equal(result.status, 'search_exhausted');
+  assert.equal(calls, 1);
+  assert.equal(result.failure.rescueCount || 0, 0);
 });
