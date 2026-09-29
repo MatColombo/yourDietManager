@@ -1,5 +1,6 @@
 import { addCivilDays, dateRange } from '../planner/planMath.js';
 import { recipeMatchesTarget } from '../planner/recipeFeatures.js';
+import { telemetryAddTime, telemetryIncrement } from '../planner/plannerTelemetry.js';
 
 export const FREQUENCY_POLICY_VERSION = 'frequency-policy-r3-1';
 export const FREQUENCY_PRIORITY = Object.freeze({ low: 1, normal: 2, high: 4 });
@@ -21,14 +22,14 @@ export function planOccurrences(calendarDays = []) {
   }
   return [...occurrences.values()].sort((a, b) => a.civilDate.localeCompare(b.civilDate) || a.mealOccurrenceId.localeCompare(b.mealOccurrenceId));
 }
-export function occurrenceMatches(occurrence, target, { recipesByVersion, revisionById, foodGroups = [] }) {
+export function occurrenceMatches(occurrence, target, { recipesByVersion, revisionById, foodGroups = [], recipeFeatureIndex = null }) {
   let missing = false; let matches = false;
   for (const component of occurrence.recipeComponents || []) {
     if (component.included === false) continue;
     const recipe = recipesByVersion.get(component.recipeVersionId);
     if (!recipe || recipe.recipeId !== component.recipeId) { missing = true; continue; }
     if ((recipe.ingredientLines || []).some(line => line.included !== false && !revisionById.has(line.ingredientRevisionId))) missing = true;
-    if (recipeMatchesTarget(recipe, target.type, target.id, revisionById, foodGroups)) matches = true;
+    if (recipeMatchesTarget(recipe, target.type, target.id, revisionById, foodGroups, recipeFeatureIndex)) matches = true;
   }
   return { matches, unresolved: missing };
 }
@@ -36,6 +37,8 @@ export function occurrenceMatches(occurrence, target, { recipesByVersion, revisi
 // One counter for UI, solver reachability, final validation and every commit.
 // A materialized civil day is coverage; missing days are never fabricated zeros.
 export function countFrequencyWindow(rule, endDate, context) {
+  telemetryIncrement(context.telemetry, 'frequencyWindowEvaluations');
+  telemetryIncrement(context.telemetry, 'authoritativeFrequencyWindowEvaluations');
   const windowStart = addCivilDays(endDate, -(rule.window.days - 1));
   const startDate = windowStart < rule.effectiveFrom ? rule.effectiveFrom : windowStart;
   const coverage = new Set(context.coverageDates || context.calendarDays.map(day => day.date));
@@ -71,17 +74,22 @@ export function countFrequencyWindow(rule, endDate, context) {
 }
 
 export function evaluateFrequencies({ profile, calendarDays = [], recipesByVersion = new Map(), revisionById = new Map(), foodGroups = [], changedCivilDates = null,
-  endDates = null, coverageDates = null, potentialOccurrences = [] }) {
+  endDates = null, coverageDates = null, potentialOccurrences = [], recipeFeatureIndex = null, telemetry = null }) {
+  const started = performance.now();
+  telemetryIncrement(telemetry, 'frequencyEvaluations');
+  telemetryIncrement(telemetry, 'authoritativeFrequencyEvaluations');
   const rules = frequencyRules(profile); const occurrences = planOccurrences(calendarDays);
   const dates = [...new Set(endDates || [...calendarDays.map(day => day.date), ...occurrences.map(slot => slot.civilDate)])].sort();
   const windows = [];
   for (const rule of rules) for (const endDate of dates) {
     if (endDate < rule.effectiveFrom) continue;
     if (changedCivilDates && !changedCivilDates.some(date => date <= endDate && endDate <= addCivilDays(date, rule.window.days - 1))) continue;
-    windows.push(countFrequencyWindow(rule, endDate, { calendarDays, occurrences, recipesByVersion, revisionById, foodGroups, coverageDates, potentialOccurrences }));
+    windows.push(countFrequencyWindow(rule, endDate, { calendarDays, occurrences, recipesByVersion, revisionById, foodGroups, coverageDates, potentialOccurrences, recipeFeatureIndex, telemetry }));
   }
   const violations = windows.filter(window => window.state === 'violated' || window.unresolvedPlannedMeals > 0);
-  return { policyVersion: FREQUENCY_POLICY_VERSION, valid: !violations.length, windows, violations, idealPenalty: windows.reduce((sum, window) => sum + window.idealPenalty, 0) };
+  const result = { policyVersion: FREQUENCY_POLICY_VERSION, valid: !violations.length, windows, violations, idealPenalty: windows.reduce((sum, window) => sum + window.idealPenalty, 0) };
+  telemetryAddTime(telemetry, 'frequencyMs', performance.now() - started);
+  return result;
 }
 
 function scopeContains(a, b) { return !a.length || (b.length > 0 && b.every(id => a.includes(id))); }

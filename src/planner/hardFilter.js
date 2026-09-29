@@ -18,15 +18,15 @@ export function hardFilterRecipe(recipe, context) {
   const safety = assessRecipeSafety(recipe, { allergyProfile, revisionById: context.safetyRevisionById || revisionById, foodGroups: context.foodGroups || [], date: context.date });
   for (const check of safety.rules) if (check.status !== 'compatible') reject(reasons, `${check.status === 'unknown' ? 'safety_unverified' : 'safety'}:${check.ruleId}:${check.reason}`);
   for (const rule of legacyPreferenceRules(foodPreferences)) {
-    if (rule.autoExclude && recipeMatchesTarget(recipe, rule.targetType, rule.targetId, revisionById, context.foodGroups)) reject(reasons, `auto_exclude:${rule.id}`);
+    if (rule.autoExclude && recipeMatchesTarget(recipe, rule.targetType, rule.targetId, revisionById, context.foodGroups, context.recipeFeatureIndex)) reject(reasons, `auto_exclude:${rule.id}`);
   }
   for (const rule of frequencyRules(foodPreferences)) {
     if (rule.mode !== 'never' || (context.date && context.date < rule.effectiveFrom) || !inRuleScope(rule, { mealClassId: mealClass.id })) continue;
-    if (recipeMatchesTarget(recipe, rule.target.type, rule.target.id, revisionById, context.foodGroups)) reject(reasons, `never:${rule.id}`);
+    if (recipeMatchesTarget(recipe, rule.target.type, rule.target.id, revisionById, context.foodGroups, context.recipeFeatureIndex)) reject(reasons, `never:${rule.id}`);
   }
   for (const rule of mealClass.rules || []) {
     if (!['forbid', 'require'].includes(rule.strength)) continue;
-    const matched = mealRuleSatisfied(recipe, rule, revisionById, context.foodGroups || []);
+    const matched = mealRuleSatisfied(recipe, rule, revisionById, context.foodGroups || [], context.recipeFeatureIndex);
     if (rule.strength === 'forbid' && matched) reject(reasons, `meal_rule:${rule.ruleType}:${rule.target}`);
     if (rule.strength === 'require' && !matched) reject(reasons, `meal_rule:require:${rule.ruleType}:${rule.target}`);
   }

@@ -1,9 +1,10 @@
-import { sumNutrition, nutritionPenalty, energyToleranceWindow, energyDistanceFromWindow } from './planMath.js';
+import { addNutrition, sumNutrition, nutritionPenalty, energyToleranceWindow, energyDistanceFromWindow } from './planMath.js';
 import { seededTie } from './seededRandom.js';
 import { families, cuisines, primaryIngredientId, ingredientIds } from './recipeFeatures.js';
 import { PLANNER_SOFT_OBJECTIVE_POLICY, slotOptionSoftContribution } from './qualityPolicy.js';
 import { explorationProfile, exploratoryScore, quotaCounts, recipeFeatureSignature, seededExposureOrder } from './explorationPolicy.js';
 import { VARIETY_MODES } from './varietyPolicy.js';
+import { telemetryIncrement } from './plannerTelemetry.js';
 
 function keyOf(recipes) { return recipes.map(r => r.recipeVersionId).sort().join('+'); }
 function energyOfOption(option) { return Number(option?.nutrition?.energyKcal || 0); }
@@ -111,45 +112,123 @@ function selectOptionFrontier(options, { targetEnergy, limit, signatureFor = nul
   return selected.sort((a, b) => exploratoryRank(a.score, seed, key(a), profile.scoreJitter) - exploratoryRank(b.score, seed, key(b), profile.scoreJitter) || a.score - b.score || key(a).localeCompare(key(b)));
 }
 
-export function buildSlotOptions(scoredCandidates, { targetEnergy, dayEnergyTarget, nutritionProfile, maxComponents = 3, optionLimit = 40, seed = 'seed', signatureFor = null }) {
-  const profile = explorationProfile(seed, 'slot-options');
-  const candidates = seededExposureOrder(scoredCandidates, `${seed}|option-construction`, item => item.recipe.recipeVersionId);
-  let states = [{ recipes: [], score: 0 }];
+function candidateSoftContribution(item) {
+  return slotOptionSoftContribution(item?.score);
+}
+
+function addSoftParts(left, right) {
+  const components = {};
+  for (const key of ['nutritionTieBreak', 'preference', 'variety', 'regeneration', 'tuning']) components[key] = Number(left?.components?.[key] || 0) + Number(right?.components?.[key] || 0);
+  return { total: Number(left?.total || 0) + Number(right?.total || 0), components };
+}
+
+function emptyNutrition() { return { energyKcal: 0, proteinG: 0, carbsG: 0, fatG: 0, fiberG: 0 }; }
+
+function optionFromRecords(records, { targetEnergy, dayEnergyTarget, nutritionProfile, seed }) {
+  let nutrition = emptyNutrition();
+  let softParts = { total: 0, components: { nutritionTieBreak: 0, preference: 0, variety: 0, regeneration: 0, tuning: 0 } };
+  for (const record of records) {
+    nutrition = addNutrition(nutrition, record.recipe.calculatedNutrition || {});
+    softParts = addSoftParts(softParts, record.softContribution);
+  }
+  const recipes = records.map(record => record.recipe);
+  const nutrientTargetFactor = targetEnergy / Math.max(1, dayEnergyTarget);
+  const slotNutrition = nutritionPenalty(nutrition, nutritionProfile, { energyTarget: targetEnergy, energyWeight: 2.2, nutrientTargetFactor });
+  const componentPenalty = (recipes.length - 1) * PLANNER_SOFT_OBJECTIVE_POLICY.slotOption.extraComponentPenalty;
+  const score = slotNutrition + softParts.total + componentPenalty;
+  return { recipes, nutrition, score, scoreComponents: { slotNutrition, ...softParts.components, componentPenalty }, tie: seededTie(seed, keyOf(recipes)) };
+}
+
+function extensionRecords(records, afterIndex, residualEnergy, { limit, seed, baseRecipes = [], signatureFor = null }) {
+  const available = records.filter(record => record.index > afterIndex);
+  if (available.length <= limit) return available;
+  const byEnergy = [...available].sort((a, b) => Math.abs(a.energy - residualEnergy) - Math.abs(b.energy - residualEnergy) || a.item.score.total - b.item.score.total || a.recipe.recipeVersionId.localeCompare(b.recipe.recipeVersionId));
+  const byQuality = [...available].sort((a, b) => a.item.score.total - b.item.score.total || a.recipe.recipeVersionId.localeCompare(b.recipe.recipeVersionId));
+  const byRandom = seededExposureOrder(available, seed, record => record.recipe.recipeVersionId);
+  const selected = []; const seen = new Set();
+  const push = record => { if (!record || selected.length >= limit || seen.has(record.index)) return; seen.add(record.index); selected.push(record); };
+  if (signatureFor) {
+    const signatures = new Set();
+    for (const record of byRandom) {
+      const signature = signatureFor([...baseRecipes, record.recipe]);
+      if (signatures.has(signature)) continue;
+      signatures.add(signature); push(record);
+      if (selected.length >= limit) return selected;
+    }
+  }
+  const energyQuota = Math.max(2, Math.ceil(limit * 0.55));
+  const qualityQuota = Math.max(1, Math.ceil(limit * 0.2));
+  for (const record of byEnergy.slice(0, energyQuota)) push(record);
+  for (const record of byQuality.slice(0, qualityQuota)) push(record);
+  for (const record of byRandom) push(record);
+  return selected;
+}
+
+export function buildSlotOptions(scoredCandidates, { targetEnergy, dayEnergyTarget, nutritionProfile, maxComponents = 3, optionLimit = 40, seed = 'seed', signatureFor = null, telemetry = null }) {
+  const ordered = seededExposureOrder(scoredCandidates, `${seed}|option-construction`, item => item.recipe.recipeVersionId);
+  const records = ordered.map((item, index) => ({
+    index, item, recipe: item.recipe, energy: Number(item.recipe.calculatedNutrition?.energyKcal || 0), softContribution: candidateSoftContribution(item)
+  }));
   const options = [];
-  for (let depth = 1; depth <= maxComponents; depth += 1) {
-    const next = [];
-    for (const state of states) {
-      const lastIndex = state.recipes.length ? candidates.findIndex(item => item.recipe.recipeVersionId === state.recipes.at(-1).recipeVersionId) : -1;
-      for (let index = lastIndex + 1; index < candidates.length; index += 1) {
-        const candidate = candidates[index];
-        if (state.recipes.some(recipe => recipe.recipeVersionId === candidate.recipe.recipeVersionId)) continue;
-        const recipes = [...state.recipes, candidate.recipe];
-        const nutrition = sumNutrition(recipes);
-        const nutrientTargetFactor = targetEnergy / Math.max(1, dayEnergyTarget);
-        const slotNutrition = nutritionPenalty(nutrition, nutritionProfile, { energyTarget: targetEnergy, energyWeight: 2.2, nutrientTargetFactor: nutrientTargetFactor });
-        const softParts = recipes.reduce((aggregate, recipe) => {
-          const scored = scoredCandidates.find(item => item.recipe.recipeVersionId === recipe.recipeVersionId)?.score;
-          const contribution = slotOptionSoftContribution(scored);
-          aggregate.total += contribution.total;
-          for (const [key, value] of Object.entries(contribution.components)) aggregate.components[key] += value;
-          return aggregate;
-        }, { total: 0, components: { nutritionTieBreak: 0, preference: 0, variety: 0, regeneration: 0, tuning: 0 } });
-        const componentPenalty = (recipes.length - 1) * PLANNER_SOFT_OBJECTIVE_POLICY.slotOption.extraComponentPenalty;
-        const score = slotNutrition + softParts.total + componentPenalty;
-        const entry = { recipes, nutrition, score, scoreComponents: { slotNutrition, ...softParts.components, componentPenalty }, tie: seededTie(seed, keyOf(recipes)) };
-        next.push(entry); options.push(entry);
+  const pairStates = [];
+  const addOption = (recordSet, counter = null) => {
+    telemetryIncrement(telemetry, 'slotOptionCombinationAttempts');
+    const entry = optionFromRecords(recordSet, { targetEnergy, dayEnergyTarget, nutritionProfile, seed });
+    options.push(entry);
+    if (counter) telemetryIncrement(telemetry, counter);
+    return entry;
+  };
+
+  for (const record of records) addOption([record]);
+
+  if (maxComponents >= 2 && records.length >= 2) {
+    const partnerLimit = Math.min(records.length, Math.max(10, Math.ceil(optionLimit * 0.6)));
+    const pairSeen = new Set();
+    for (const first of records) {
+      const partners = extensionRecords(records, first.index, targetEnergy - first.energy, {
+        limit: partnerLimit, seed: `${seed}|pair|${first.recipe.recipeVersionId}`, baseRecipes: [first.recipe], signatureFor
+      });
+      for (const second of partners) {
+        const pairKey = `${first.index}:${second.index}`;
+        if (pairSeen.has(pairKey)) continue;
+        pairSeen.add(pairKey);
+        const entry = addOption([first, second], 'slotPairOptionsGenerated');
+        pairStates.push({ records: [first, second], entry });
       }
     }
-    next.sort((a, b) => exploratoryRank(a.score, seed, keyOf(a.recipes), profile.scoreJitter) - exploratoryRank(b.score, seed, keyOf(b.recipes), profile.scoreJitter) || a.score - b.score || keyOf(a.recipes).localeCompare(keyOf(b.recipes)));
-    // Preserve enough construction breadth for 3-component options; the final frontier applies optionLimit.
-    states = next.slice(0, Math.max(optionLimit * 3, 120));
   }
+
+  if (maxComponents >= 3 && pairStates.length && records.length >= 3) {
+    const stateByKey = new Map(pairStates.map(state => [keyOf(state.entry.recipes), state]));
+    const tripleSeedLimit = Math.min(pairStates.length, Math.max(optionLimit * 2, 36));
+    const tripleSeeds = selectOptionFrontier(pairStates.map(state => state.entry), { targetEnergy, limit: tripleSeedLimit, signatureFor, seed: `${seed}|triple-frontier` })
+      .map(entry => stateByKey.get(keyOf(entry.recipes))).filter(Boolean);
+    const thirdLimit = Math.min(records.length, Math.max(7, Math.ceil(optionLimit * 0.45)));
+    const tripleSeen = new Set();
+    for (const pair of tripleSeeds) {
+      const lastIndex = pair.records.at(-1).index;
+      const pairEnergy = energyOfOption(pair.entry);
+      const thirds = extensionRecords(records, lastIndex, targetEnergy - pairEnergy, {
+        limit: thirdLimit, seed: `${seed}|triple|${keyOf(pair.entry.recipes)}`, baseRecipes: pair.entry.recipes, signatureFor
+      });
+      for (const third of thirds) {
+        const tripleKey = `${pair.records[0].index}:${pair.records[1].index}:${third.index}`;
+        if (tripleSeen.has(tripleKey)) continue;
+        tripleSeen.add(tripleKey);
+        addOption([...pair.records, third], 'slotTripleOptionsGenerated');
+      }
+    }
+  }
+
   const dedup = new Map();
   for (const option of options) {
     const key = keyOf(option.recipes); const current = dedup.get(key);
     if (!current || option.score < current.score) dedup.set(key, option);
   }
-  return selectOptionFrontier([...dedup.values()], { targetEnergy, limit: optionLimit, signatureFor, seed });
+  telemetryIncrement(telemetry, 'slotOptionsGenerated', options.length);
+  const retained = selectOptionFrontier([...dedup.values()], { targetEnergy, limit: optionLimit, signatureFor, seed });
+  telemetryIncrement(telemetry, 'slotOptionsRetained', retained.length);
+  return retained;
 }
 
 function remainingEnergyBounds(slotPlans) {
@@ -176,7 +255,7 @@ function nearestBoundedEnergy(bounds, window) {
   return { energyKcal: null, distanceKcal: null };
 }
 
-export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, nutritionProfile, beamWidth = 100, seed = 'seed', evaluateState = null, onProgress = null, varietyMode = VARIETY_MODES.maximum }) {
+export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, nutritionProfile, beamWidth = 100, seed = 'seed', evaluateState = null, onProgress = null, varietyMode = VARIETY_MODES.maximum, telemetry = null }) {
   const exploration = explorationProfile(seed, 'day-beam');
   const window = energyToleranceWindow(dayEnergyTarget, nutritionProfile.energyTolerancePct, externalEnergy);
   const bounds = remainingEnergyBounds(slotPlans);
@@ -189,6 +268,7 @@ export function solveDayBeam(slotPlans, { dayEnergyTarget, externalEnergy = 0, n
     const remaining = bounds[slotIndex + 1];
     const expanded = [];
     for (const state of beam) for (const option of slot.options) {
+      telemetryIncrement(telemetry, 'dayStatesExpanded');
       const slots = [...state.slots, { slot, option }];
       const recipes = [...state.recipes, ...option.recipes];
       const energyKcal = state.energyKcal + energyOfOption(option);

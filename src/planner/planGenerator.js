@@ -1,29 +1,26 @@
 import { generateFrequencyPlan } from './frequencyPlanGenerator.js';
 import { frequencyRules } from '../domain/frequencyCounter.js';
-import { recipeMatchesTarget } from './recipeFeatures.js';
+import { buildRecipeFeatureIndex, recipeMatchesTarget } from './recipeFeatures.js';
 import { addCivilDays, dateRange, dayEnergyTarget, sumNutrition, energyConstraintStatus, energyToleranceWindow } from './planMath.js';
 import { filterCandidates } from './hardFilter.js';
-import { scoreRecipe } from './softScoring.js';
+import { scoreRecipe, scoreRecipeFromStatic } from './softScoring.js';
 import { buildSlotOptions, selectCandidateFrontier, solveDayBeam } from './beamSolver.js';
 import { seededTie, stableHashId } from './seededRandom.js';
 import { plannerConstraintPolicySnapshot } from './constraintPolicy.js';
 import { EXPLORATION_POLICY_VERSION, explorationProfile } from './explorationPolicy.js';
 import { filterRecipeCandidatesForVariety, plannerPolicy } from './varietyPolicy.js';
+import { compileVarietySearch } from './compiledVarietyState.js';
+import { preparedSlotKey, slotEnergyTarget } from './preparedSlots.js';
+import { createPlannerTelemetry, telemetryAddTime, telemetryIncrement, telemetrySnapshot } from './plannerTelemetry.js';
 
-export const GENERATOR_VERSION = 'plan-generator-2.3';
-export const SOLVER_VERSION = 'beam-search-2.3';
+export const GENERATOR_VERSION = 'plan-generator-2.5-r9gh';
+export const SOLVER_VERSION = 'beam-search-2.5-r9gh';
 
 function mealMap(mealClasses) { return new Map(mealClasses.map(item => [item.id, item])); }
 function dayMap(dayClasses) { return new Map(dayClasses.map(item => [item.id, item])); }
 function revisionMap(revisions) { return new Map(revisions.map(item => [item.ingredientRevisionId, item])); }
 function rejectionMerge(target, source) { for (const [key, value] of Object.entries(source || {})) target[key] = (target[key] || 0) + value; }
 
-function slotEnergyTarget(slot, mealClass, target) {
-  if (slot.energyBudgetKcal != null) return Number(slot.energyBudgetKcal);
-  if (slot.energyShare != null) return target * Number(slot.energyShare);
-  if (mealClass.energyShare?.target != null) return target * Number(mealClass.energyShare.target);
-  return target * 0.2;
-}
 
 function externalBudget(slot, target) {
   if (slot.energyBudgetKcal != null) return Number(slot.energyBudgetKcal);
@@ -103,7 +100,19 @@ export function generatePlanLegacyCore(input) {
   if (!nutritionProfile || !cycle || !horizon?.startDate || !horizon?.endDate || !seed) throw new Error('Missing required plan generator input');
   const meals = mealMap(mealClasses || []); const days = dayMap(dayClasses || []); const revisions = revisionMap(ingredientRevisions || []);
   const recipesByVersion = new Map((recipes || []).map(recipe => [recipe.recipeVersionId, recipe]));
+  const telemetry = input.plannerTelemetry || createPlannerTelemetry();
+  let recipeFeatureIndex = input.recipeFeatureIndex || null;
+  if (!recipeFeatureIndex) {
+    const featureStarted = performance.now();
+    recipeFeatureIndex = buildRecipeFeatureIndex(recipes || [], revisions, input.foodGroups || [], { telemetry });
+    telemetryAddTime(telemetry, 'featureIndexBuildMs', performance.now() - featureStarted);
+  }
   const history = historyEntries(previousCalendarDays, recipesByVersion);
+  const compiledVarietySearch = input.compiledVarietySearch || compileVarietySearch({
+    foodPreferences, previousCalendarDays, recipesByVersion, revisionById: revisions, foodGroups: input.foodGroups || [], recipeFeatureIndex, telemetry
+  });
+  let varietyState = input.varietyState || compiledVarietySearch.initialState;
+  const varietyEvaluator = { score: (recipe, date) => compiledVarietySearch.score(varietyState, recipe, date) };
   const allDates = dateRange(horizon.startDate, horizon.endDate);
   input.onProgress?.({ phase: 'search', completed: 0, total: allDates.length, percent: 0 });
   const generatedDays = []; const dayDiagnostics = []; const failures = []; const alternativeDays = [];
@@ -144,17 +153,27 @@ export function generatePlanLegacyCore(input) {
       const mealClass = meals.get(slot.mealClassId);
       if (!mealClass) { failedSlot = { slotId: slot.id, code: 'meal_class_over_constrained', detail: 'missing MealClass' }; break; }
       const targetEnergy = slotEnergyTarget(slot, mealClass, energyTarget);
-      const context = { mealClass, dayClass, allergyProfile, foodPreferences, revisionById: revisions, safetyRevisionById: input.safetyRevisionById, foodGroups: input.foodGroups || [], extensions: input.extensions, generationTuningOverlay: input.generationTuningOverlay || null, history, date: addCivilDays(date, slot.dayOffset), nutritionProfile, slotEnergyTarget: targetEnergy, dayEnergyTarget: energyTarget };
+      const context = { mealClass, dayClass, allergyProfile, foodPreferences, revisionById: revisions, safetyRevisionById: input.safetyRevisionById, foodGroups: input.foodGroups || [], recipeFeatureIndex, extensions: input.extensions, generationTuningOverlay: input.generationTuningOverlay || null, history, varietyEvaluator, date: addCivilDays(date, slot.dayOffset), nutritionProfile, slotEnergyTarget: targetEnergy, dayEnergyTarget: energyTarget };
       const fixed = input.fixedSlots?.find(entry=>entry.date===date && entry.slot.mealOccurrenceId===stableHashId('meal',date,slot.id));
       if(fixed) {
         const frozen = fixed.slot.recipeComponents.map(c=>recipesByVersion.get(c.recipeVersionId));
-        const check=filterCandidates(frozen.filter(Boolean),context);rejectionMerge(rejectionCounts,check.rejectionCounts);
+        const filterStarted = performance.now(); const check=filterCandidates(frozen.filter(Boolean),context); telemetryAddTime(telemetry, 'candidateFilterMs', performance.now() - filterStarted); rejectionMerge(rejectionCounts,check.rejectionCounts);
         if(frozen.some(r=>!r)||check.accepted.length!==frozen.length){failedSlot={slotId:slot.id,code:'locked_meal_incompatible',rejections:check.rejectionCounts};break;}
         const nutrition=sumNutrition(frozen);const option={recipes:frozen,nutrition,score:0,tie:0};
         slotPlans.push({...slot,mealClass,targetEnergy,options:[option],fixedSlot:structuredClone(fixed.slot),allScored:[],scoredCandidates:[]});continue;
       }
-      const sourceCandidates = candidateSets?.[mealClass.mealArchetype] || recipes || [];
-      const filtered = filterCandidates(sourceCandidates, context); rejectionMerge(rejectionCounts, filtered.rejectionCounts);
+      const prepared = input.preparedSlots?.get?.(preparedSlotKey(date, slot.id)) || null;
+      const sourceCandidates = prepared?.sourceCandidates || candidateSets?.[mealClass.mealArchetype] || recipes || [];
+      let filtered;
+      if (prepared) {
+        telemetryIncrement(telemetry, 'preparedSlotHits');
+        filtered = { accepted: prepared.acceptedCandidates, rejectionCounts: prepared.rejectionCounts };
+      } else {
+        const filterStarted = performance.now();
+        filtered = filterCandidates(sourceCandidates, context);
+        telemetryAddTime(telemetry, 'candidateFilterMs', performance.now() - filterStarted);
+      }
+      rejectionMerge(rejectionCounts, filtered.rejectionCounts);
       const admissionRejectionCounts = {};
       const admittedCandidates = candidateAdmission ? filtered.accepted.filter(recipe => {
         const decision = candidateAdmission({ recipe, date: addCivilDays(date, slot.dayOffset), dietDate: date, mealClass, dayClass, slot });
@@ -168,7 +187,9 @@ export function generatePlanLegacyCore(input) {
       rejectionMerge(rejectionCounts, admissionRejectionCounts);
       const occurrenceId = stableHashId('meal', date, slot.id);
       const currentRecipeIds = new Set(regenerationPolicy?.currentRecipeVersionIdsByOccurrence?.[occurrenceId] || []);
-      const varietySelection = filterRecipeCandidatesForVariety(admittedCandidates, history, addCivilDays(date, slot.dayOffset), foodPreferences);
+      const varietySelection = compiledVarietySearch
+        ? compiledVarietySearch.filterCandidates(varietyState, admittedCandidates, addCivilDays(date, slot.dayOffset))
+        : filterRecipeCandidatesForVariety(admittedCandidates, history, addCivilDays(date, slot.dayOffset), foodPreferences);
       let acceptedForSelection = varietySelection.candidates;
       let regenerationExcludedCount = 0;
       if (regenerationPolicy?.mode === 'exclude_current' && currentRecipeIds.size) {
@@ -187,8 +208,10 @@ export function generatePlanLegacyCore(input) {
         slotDiagnostics.push(diagnostic);
         failedSlot = { slotId: slot.id, mealClassId: mealClass.id, code, rejections: filtered.rejectionCounts, slotDiagnostic: diagnostic }; break;
       }
+      const scoringStarted = performance.now();
       const allScored = acceptedForSelection.map(recipe => {
-        const score = scoreRecipe(recipe, context);
+        const staticScore = prepared?.staticScores?.get(recipe.recipeVersionId);
+        const score = staticScore ? scoreRecipeFromStatic(recipe, context, staticScore) : scoreRecipe(recipe, context);
         if (regenerationPolicy?.mode === 'prefer_alternative' && currentRecipeIds.has(recipe.recipeVersionId)) {
           const penalty = Number(regenerationPolicy.currentRecipePenalty || 100);
           score.total += penalty;
@@ -197,12 +220,15 @@ export function generatePlanLegacyCore(input) {
         }
         return { recipe, score, tie: seededTie(seed, `${date}|${slot.id}|${recipe.recipeVersionId}`) };
       }).sort((a, b) => a.score.total - b.score.total || a.tie - b.tie || a.recipe.recipeVersionId.localeCompare(b.recipe.recipeVersionId));
-      const requiredMatches = frequencyRules(foodPreferences).map(rule => recipe => recipeMatchesTarget(recipe, rule.target.type, rule.target.id, revisions, input.foodGroups));
+      telemetryAddTime(telemetry, 'scoringMs', performance.now() - scoringStarted);
+      const requiredMatches = frequencyRules(foodPreferences).map(rule => recipe => recipeMatchesTarget(recipe, rule.target.type, rule.target.id, revisions, input.foodGroups, recipeFeatureIndex));
       const signatureFor = requiredMatches.length ? recipes => requiredMatches.map(match => recipes.some(match) ? '1' : '0').join('') : null;
       const frontierSeed = `${seed}|${date}|${slot.id}`;
       const frontierExploration = explorationProfile(frontierSeed, 'candidate-frontier');
       const scored = selectCandidateFrontier(allScored, { targetEnergy, limit: candidateLimit, requiredMatches, seed: frontierSeed, explorationKey: `${date}|${slot.id}` });
-      const options = buildSlotOptions(scored, { targetEnergy, dayEnergyTarget: energyTarget, nutritionProfile, maxComponents: mealClass.maxComponents ?? 3, optionLimit: slotOptionLimit, signatureFor, seed: `${seed}|${date}|${slot.id}` });
+      const optionStarted = performance.now();
+      const options = buildSlotOptions(scored, { targetEnergy, dayEnergyTarget: energyTarget, nutritionProfile, maxComponents: mealClass.maxComponents ?? 3, optionLimit: slotOptionLimit, signatureFor, seed: `${seed}|${date}|${slot.id}`, telemetry });
+      telemetryAddTime(telemetry, 'optionBuildMs', performance.now() - optionStarted);
       const diagnostic = {
         slotId: slot.id, mealClassId: mealClass.id, mealArchetype: mealClass.mealArchetype, targetEnergyKcal: rounded(targetEnergy),
         sourceCandidateCount: sourceCandidates.length, acceptedCandidateCount: filtered.accepted.length, frequencyAdmittedCandidateCount: admittedCandidates.length, frequencyAdmissionRejectedCount: filtered.accepted.length - admittedCandidates.length, selectableCandidateCount: acceptedForSelection.length, candidateFrontierCount: scored.length, optionCount: options.length,
@@ -222,7 +248,9 @@ export function generatePlanLegacyCore(input) {
     }
     if (failedSlot) { failures.push({ date, ...failedSlot, rejectionCounts, slotDiagnostics }); break; }
 
-    const solvedResult = solveDayBeam(slotPlans, { dayEnergyTarget: energyTarget, externalEnergy, nutritionProfile, beamWidth, seed: `${seed}|${date}`, varietyMode: plannerPolicy(foodPreferences).varietyMode, evaluateState: input.evaluateDayState ? (slots, count) => input.evaluateDayState({ date, slots, count, slotPlans }) : null, onProgress: progress => { const solveFraction = 0.45 + ((progress.completed || 0) / Math.max(1, progress.total || 1)) * 0.5; input.onProgress?.({ phase: 'search', completed: dateIndex, total: allDates.length, percent: Math.min(99, Math.floor(((dateIndex + solveFraction) / allDates.length) * 100)), stage: 'solve' }); } });
+    const solveStarted = performance.now();
+    const solvedResult = solveDayBeam(slotPlans, { dayEnergyTarget: energyTarget, externalEnergy, nutritionProfile, beamWidth, seed: `${seed}|${date}`, varietyMode: plannerPolicy(foodPreferences).varietyMode, telemetry, evaluateState: input.evaluateDayState ? (slots, count) => input.evaluateDayState({ date, slots, count, slotPlans }) : null, onProgress: progress => { const solveFraction = 0.45 + ((progress.completed || 0) / Math.max(1, progress.total || 1)) * 0.5; input.onProgress?.({ phase: 'search', completed: dateIndex, total: allDates.length, percent: Math.min(99, Math.floor(((dateIndex + solveFraction) / allDates.length) * 100)), stage: 'solve' }); } });
+    telemetryAddTime(telemetry, 'daySolveMs', performance.now() - solveStarted);
     const solved = solvedResult.solution;
     if (!solved) {
       failures.push({
@@ -245,6 +273,7 @@ export function generatePlanLegacyCore(input) {
     }
     const occurrences = [...plannedOccurrences, ...externalSlots.map(slot => buildExternalSlot(slot, date))]
       .sort((a, b) => a.dayOffset - b.dayOffset || a.time.localeCompare(b.time) || a.mealOccurrenceId.localeCompare(b.mealOccurrenceId));
+    varietyState = compiledVarietySearch.extendState(varietyState, plannedOccurrences);
     const knownNutrition = solved?.nutrition || sumNutrition([]);
     const dailyScore = solved?.score || 0;
     const planId = stableHashId('plan', seed, horizon.startDate, horizon.endDate, catalogVersion, configSnapshotHash);
@@ -280,14 +309,14 @@ export function generatePlanLegacyCore(input) {
     input.onProgress?.({ phase: 'search', completed: dateIndex + 1, total: allDates.length, percent: Math.round(((dateIndex + 1) / allDates.length) * 100), stage: 'complete' });
   }
 
-  if (failures.length) return { status: 'failed', failure: failures[0], diagnostics: { status: 'failed', constraintPolicy: plannerConstraintPolicySnapshot(), failures, generatedDayCount: generatedDays.length } };
+  if (failures.length) return { status: 'failed', failure: failures[0], diagnostics: { status: 'failed', constraintPolicy: plannerConstraintPolicySnapshot(), failures, generatedDayCount: generatedDays.length, search: { telemetry: telemetrySnapshot(telemetry) } } };
   const generationRunId = stableHashId('genrun', seed, catalogVersion, horizon.startDate, horizon.endDate, configSnapshotHash, reason, previousGenerationRunId || 'none');
   const planInstanceId = stableHashId('plan', seed, horizon.startDate, horizon.endDate, catalogVersion, configSnapshotHash);
   for (const day of generatedDays) day.planInstanceId = planInstanceId;
   const generationRun = {
     schemaVersion: 1, generationRunId, generatorVersion: GENERATOR_VERSION, solverVersion: SOLVER_VERSION, seed, catalogVersion,
     configSnapshotHash, configSnapshot, horizon: structuredClone(horizon), createdAt,
-    diagnostics: { status: 'success', constraintPolicy: plannerConstraintPolicySnapshot(), dayCount: generatedDays.length, days: dayDiagnostics, summary: { meanScore: generatedDays.length ? Math.round(dayDiagnostics.reduce((a, b) => a + b.score, 0) / generatedDays.length * 1000) / 1000 : 0, hardConstraintViolations: 0 } },
+    diagnostics: { status: 'success', constraintPolicy: plannerConstraintPolicySnapshot(), dayCount: generatedDays.length, days: dayDiagnostics, search: { telemetry: telemetrySnapshot(telemetry) }, summary: { meanScore: generatedDays.length ? Math.round(dayDiagnostics.reduce((a, b) => a + b.score, 0) / generatedDays.length * 1000) / 1000 : 0, hardConstraintViolations: 0 } },
     reason, previousGenerationRunId
   };
   const planInstance = {

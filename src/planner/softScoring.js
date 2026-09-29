@@ -19,7 +19,8 @@ function countFeature(entries, getter, values) {
   return entries.reduce((count, entry) => count + (getter(entry.recipe).some(value => target.has(value)) ? 1 : 0), 0);
 }
 
-export function preferenceScore(recipe, { mealClass, foodPreferences, revisionById }) {
+export function preferenceScore(recipe, context) {
+  const { mealClass, foodPreferences, revisionById } = context;
   let score = 0;
   const reasons = [];
   for (const rule of mealClass.rules || []) {
@@ -58,7 +59,9 @@ function perishableIngredientIds(recipe, revisionById) {
   return ids;
 }
 
-export function varietyScore(recipe, { history = [], date, revisionById, foodPreferences }) {
+export function varietyScore(recipe, context) {
+  const { history = [], date, revisionById, foodPreferences } = context;
+  if (context.varietyEvaluator?.score) return context.varietyEvaluator.score(recipe, date);
   let score = 0;
   const reasons = [];
   const policy = plannerPolicy(foodPreferences);
@@ -103,16 +106,30 @@ export function varietyScore(recipe, { history = [], date, revisionById, foodPre
   return { score, reasons };
 }
 
-export function scoreRecipe(recipe, context) {
-  const pref = preferenceScore(recipe, context); const extension = extensionPreferenceScore(recipe, context); pref.score += extension.score; pref.reasons.push(...extension.reasons);
-  const variety = varietyScore(recipe, context);
+export function scoreRecipeStatic(recipe, context) {
+  const pref = preferenceScore(recipe, context);
+  const extension = extensionPreferenceScore(recipe, context);
+  pref.score += extension.score; pref.reasons.push(...extension.reasons);
   const tuning = generationTuningScore(recipe, context);
   const target = context.slotEnergyTarget;
   const nutrientTargetFactor = target / Math.max(1, context.dayEnergyTarget);
   const nutrition = nutritionPenalty(recipe.calculatedNutrition, context.nutritionProfile, { energyTarget: target, energyWeight: 1.5, nutrientTargetFactor });
   return {
-    total: nutrition + pref.score + variety.score + tuning.score,
-    components: { nutrition, preference: pref.score, variety: variety.score, tuning: tuning.score },
-    reasons: [...pref.reasons, ...variety.reasons, ...tuning.reasons]
+    total: nutrition + pref.score + tuning.score,
+    components: { nutrition, preference: pref.score, variety: 0, tuning: tuning.score },
+    reasons: [...pref.reasons, ...tuning.reasons]
   };
+}
+
+export function scoreRecipeFromStatic(recipe, context, staticScore) {
+  const variety = varietyScore(recipe, context);
+  return {
+    total: Number(staticScore?.total || 0) + variety.score,
+    components: { ...(staticScore?.components || {}), variety: variety.score },
+    reasons: [...(staticScore?.reasons || []), ...variety.reasons]
+  };
+}
+
+export function scoreRecipe(recipe, context) {
+  return scoreRecipeFromStatic(recipe, context, scoreRecipeStatic(recipe, context));
 }
